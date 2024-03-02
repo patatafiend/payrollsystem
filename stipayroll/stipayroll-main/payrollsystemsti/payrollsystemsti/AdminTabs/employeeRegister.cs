@@ -279,7 +279,7 @@ namespace payrollsystemsti.AdminTabs
                         "'" + empAdd.Text + "','" + empDob.Value.ToString("MM/dd/yyyy") + "'," +
                         "'" + fileName + "','"+ConvertImageToBinary(employeePic.Image)+"', '"+empBasicRate.Text+"', '"+empPosition.Text+"'" +
                         ",'0')");
-                    //conn.DataSend("UPDATE Employee SET Username = '"+generatedUsername+"' WHERE EmpID = '"+empID.Text+"'");
+                    //passes the data saved to UserRegistration method
                     userForm.UserRegistration(empName.Text, empEmail.Text, empPosition.Text, empDob.Value, empAdd.Text, empID.Text);
                     MessageBox.Show("Succesfully Saved ", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearData();

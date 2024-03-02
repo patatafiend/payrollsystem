@@ -65,11 +65,11 @@ namespace payrollsystemsti.Tabs
         {
             //string username = GenerateUniqueUsername(name); // You need to implement a method to generate a unique username based on the user's name.
             string password = passwordGenerator(); // Generate a random password
-			string username = name+empid;
+			string username = GenerateUniqueUsername(name);
             // Assuming you have a Users table with columns: Username, Password, Name, Email, Role, Dob, Address
             con.DataSend($"INSERT INTO Users (Username, Password, Name, Email, Role, Dob, Address) VALUES ('{username}', '{password}', '{name}', '{email}', '{role}', '{dob.ToString("MM/dd/yyyy")}', '{address}')");
 
-            return username;
+            return "";
         }
 
         private string GenerateUniqueUsername(string name)
