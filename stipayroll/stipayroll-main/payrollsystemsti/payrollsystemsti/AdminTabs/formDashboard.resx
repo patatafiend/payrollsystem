@@ -219,6 +219,16 @@
         ZuQuJ1WuW0vohUsfh8kn08hea4GMohdEWe/xNfoWGgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAQFJREFUSEvt0jFOAlEQh/HVBBsTGxOtLaSzwRNoJVfwEiY2tF7BO3AGK2mhwAtY
+        aAUJJQQaCpXvn+wkz808mAU6/ZJfQt7OPF2l+HM9lvbeAZ7wU3rGIfbSEbrQxcuSPutMz3bqGC/QhXPc
+        4QbT8qyHE2zVKQbQRRO0YF1hBD17wzlqdYF36IIPXKJaOvOJJkLptxtDi0OcIZfesg97y2us7RYzaOEV
+        kb9v+n9aoA23e9g3RBqIplnb0x2661cP+IINSd3S3W904LbrD9iYN2hnVWnemdu65ao078wtshyZyRZZ
+        jsxkiyxHZrJFliMz2WzQY3nPzMa8JWN5z8x/dSqKFblkiiBkslnBAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
