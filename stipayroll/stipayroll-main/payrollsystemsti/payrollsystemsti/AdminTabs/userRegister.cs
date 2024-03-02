@@ -38,7 +38,6 @@ namespace payrollsystemsti.Tabs
 			}
 			LoadData();
 			ClearData();
-
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -61,11 +60,34 @@ namespace payrollsystemsti.Tabs
 				}
 			}
 		}
+		//method to register employees in the users database
+        public string UserRegistration(string name, string email, string role, DateTime dob, string address, string empid)
+        {
+            //string username = GenerateUniqueUsername(name); // You need to implement a method to generate a unique username based on the user's name.
+            string password = passwordGenerator(); // Generate a random password
+			string username = name+empid;
+            // Assuming you have a Users table with columns: Username, Password, Name, Email, Role, Dob, Address
+            con.DataSend($"INSERT INTO Users (Username, Password, Name, Email, Role, Dob, Address) VALUES ('{username}', '{password}', '{name}', '{email}', '{role}', '{dob.ToString("MM/dd/yyyy")}', '{address}')");
+
+            return username;
+        }
+
+        private string GenerateUniqueUsername(string name)
+        {
+			Random ran = new Random();
+			int randomNum = ran.Next(1000);
+			string randomName = name + randomNum;
+			while (ifNameExists(randomName).Equals(true))
+			{
+				GenerateUniqueUsername(randomName);
+			}
+            return randomName;
+        }
+
         private void ClearData()
         {
             txtName.Clear();
             txtUserName.Clear();
-
             txtEmail.Clear();
             txtAddress.Clear();
             cbRole.SelectedIndex = -1;
@@ -73,6 +95,16 @@ namespace payrollsystemsti.Tabs
             btnDelete.Enabled = false;
             btnSave.Enabled = true;
             tpBirthDate.Value = DateTime.Now;
+        }
+        private bool ifNameExists(string name)
+        {
+            con.DataGet("SELECT 1 FROM [Users] WHERE [Name]= '" + name + "'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+                return true;
+            else
+                return false;
         }
 
         private bool ifUserNameExists(string userName)
@@ -95,7 +127,7 @@ namespace payrollsystemsti.Tabs
             foreach (DataRow row in dt.Rows)
             {
                 int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells["dgSno"].Value = n + 1;
+                dataGridView1.Rows[n].Cells["dgUserID"].Value = row["UserID"].ToString();
                 dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
                 try
                 {
@@ -301,5 +333,6 @@ namespace payrollsystemsti.Tabs
 			return sqlSafePassword;
 		}
 
-	}
+        
+    }
 }

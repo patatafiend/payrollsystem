@@ -1,4 +1,5 @@
-﻿using System;
+﻿using payrollsystemsti.Tabs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -271,12 +272,16 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else
                 {
+                    userRegister userForm = new userRegister();
+                    
                     conn.DataSend("INSERT INTO Employee (Mobile, SSN, Email, Name, Address, Dob, FileName, ImageData, BasicRate, Position, IsDeleted) VALUES" +
                         "  ('" + empNumber.Text + "','"+ empSSN.Text +"','" + empEmail.Text + "','" + empName.Text + "'," +
                         "'" + empAdd.Text + "','" + empDob.Value.ToString("MM/dd/yyyy") + "'," +
                         "'" + fileName + "','"+ConvertImageToBinary(employeePic.Image)+"', '"+empBasicRate.Text+"', '"+empPosition.Text+"'" +
                         ",'0')");
-                    MessageBox.Show("Succesfully Saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //conn.DataSend("UPDATE Employee SET Username = '"+generatedUsername+"' WHERE EmpID = '"+empID.Text+"'");
+                    userForm.UserRegistration(empName.Text, empEmail.Text, empPosition.Text, empDob.Value, empAdd.Text, empID.Text);
+                    MessageBox.Show("Succesfully Saved ", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearData();
                     LoadData();
                 }
