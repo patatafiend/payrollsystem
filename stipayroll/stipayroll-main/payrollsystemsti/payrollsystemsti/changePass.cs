@@ -21,13 +21,13 @@ namespace payrollsystemsti
         {
             if(e.KeyCode == Keys.Enter)
             {
-                if(txtUser.Text.Length > 0)
+                if(tbUser.Text.Length > 0)
                 {
-                    txtPass.Focus();
+                    tbPassword.Focus();
                 }
                 else
                 {
-                    txtUser.Focus();
+                    tbUser.Focus();
                 }
             }
         }
@@ -36,13 +36,13 @@ namespace payrollsystemsti
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtPass.Text.Length > 0)
+                if (tbPassword.Text.Length > 0)
                 {
-                    txtNpass.Focus();
+                    tbNewPass.Focus();
                 }
                 else
                 {
-                    txtPass.Focus();
+                    tbPassword.Focus();
                 }
             }
         }
@@ -51,13 +51,13 @@ namespace payrollsystemsti
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtNpass.Text.Length > 0)
+                if (tbNewPass.Text.Length > 0)
                 {
-                    txtCpass.Focus();
+                    tbConfirmPass.Focus();
                 }
                 else
                 {
-                    txtNpass.Focus();
+                    tbNewPass.Focus();
                 }
             }
         }
@@ -66,56 +66,54 @@ namespace payrollsystemsti
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtCpass.Text.Length > 0)
+                if (tbConfirmPass.Text.Length > 0)
                 {
-                    confirm.Focus();
+                    btnConfirm.Focus();
                 }
                 else
                 {
-                    txtCpass.Focus();
+                    tbConfirmPass.Focus();
                 }
             }
         }
-
         private void cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void confirm_Click(object sender, EventArgs e)
         {
             DialogResult action = MessageBox.Show("Change Password?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (action == DialogResult.Yes)
             {
                 
-                con.DataGet("SELECT 1 FROM Users WHERE Username = '"+txtUser.Text+"' and Password = '"+txtPass.Text+"'");
+                con.DataGet("SELECT 1 FROM Users WHERE Username = '"+tbUser.Text+"' and Password = '"+tbPassword.Text+"'");
                 DataTable dt = new DataTable();
                 con.sda.Fill(dt);
                 if(dt.Rows.Count > 0) {
-                    if(txtNpass.Text == txtCpass.Text)
+                    if(tbNewPass.Text == tbConfirmPass.Text)
                     {
-                        if(txtNpass.Text.Length > 3)
+                        if(tbNewPass.Text.Length > 3)
                         {
-                            con.DataSend("UPDATE Users SET Password = '"+txtNpass.Text+"' " +
-                                "WHERE Username = '"+txtUser.Text+"' and" +
-                                " Password = '"+txtPass.Text+"'");
+                            con.DataSend("UPDATE Users SET Password = '"+tbNewPass.Text+"' " +
+                                "WHERE Username = '"+tbUser.Text+"' and" +
+                                " Password = '"+tbPassword.Text+"'");
                             MessageBox.Show("Password Changed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information );
                         }
                         else
                         {
-                            errorProvider1.SetError(txtNpass, "Please enter minimum 4 Character Password");
+                            errorProvider1.SetError(tbNewPass, "Please enter minimum 4 Character Password");
                         }
                     }
                     else
                     {
-                        errorProvider1.SetError(txtNpass, "Password dont Match");
-                        errorProvider1.SetError(txtCpass, "Password dont Match");
+                        errorProvider1.SetError(tbNewPass, "Password dont Match");
+                        errorProvider1.SetError(tbConfirmPass, "Password dont Match");
                     }
                 }
                 else
                 {
-                    errorProvider1.SetError(txtUser, "Wrong Username or Password");
-                    errorProvider1.SetError(txtPass, "Wrong Username or Password");
+                    errorProvider1.SetError(tbUser, "Wrong Username or Password");
+                    errorProvider1.SetError(tbPassword, "Wrong Username or Password");
                 }
             }
         }

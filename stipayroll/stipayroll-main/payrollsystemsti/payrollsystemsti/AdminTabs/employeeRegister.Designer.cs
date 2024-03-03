@@ -426,7 +426,7 @@
             this.groupBox1.Controls.Add(this.tbFirstName);
             this.groupBox1.Location = new System.Drawing.Point(293, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 254);
+            this.groupBox1.Size = new System.Drawing.Size(252, 230);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Information";
@@ -452,7 +452,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(41, 74);
+            this.label13.Location = new System.Drawing.Point(41, 100);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 15;
@@ -468,7 +468,7 @@
             "Accounting regular",
             "Logistics probationary",
             "Marketing part time"});
-            this.cbPosition.Location = new System.Drawing.Point(94, 71);
+            this.cbPosition.Location = new System.Drawing.Point(94, 97);
             this.cbPosition.Name = "cbPosition";
             this.cbPosition.Size = new System.Drawing.Size(121, 21);
             this.cbPosition.TabIndex = 18;
@@ -497,7 +497,7 @@
             // tbDepart
             // 
             this.tbDepart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbDepart.Location = new System.Drawing.Point(94, 124);
+            this.tbDepart.Location = new System.Drawing.Point(94, 71);
             this.tbDepart.Multiline = true;
             this.tbDepart.Name = "tbDepart";
             this.tbDepart.Size = new System.Drawing.Size(100, 20);
@@ -506,7 +506,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 127);
+            this.label9.Location = new System.Drawing.Point(26, 74);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 13);
             this.label9.TabIndex = 32;
@@ -515,7 +515,7 @@
             // tbBasicRate
             // 
             this.tbBasicRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBasicRate.Location = new System.Drawing.Point(94, 98);
+            this.tbBasicRate.Location = new System.Drawing.Point(94, 124);
             this.tbBasicRate.Multiline = true;
             this.tbBasicRate.Name = "tbBasicRate";
             this.tbBasicRate.Size = new System.Drawing.Size(100, 20);
@@ -525,7 +525,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 101);
+            this.label1.Location = new System.Drawing.Point(26, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 19;
