@@ -16,7 +16,7 @@ namespace payrollsystemsti
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new fm_login());
+			Application.Run(new formLogin());
 		}
 	}
 }

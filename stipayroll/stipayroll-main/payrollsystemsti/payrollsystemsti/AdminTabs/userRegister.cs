@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System;
 using System.Globalization;
 using System.Security.Cryptography;
+using payrollsystemsti.AdminTabs;
 
 namespace payrollsystemsti.Tabs
 {
@@ -20,23 +21,44 @@ namespace payrollsystemsti.Tabs
 		private const string Digits = "0123456789";
 		private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 		//I'll lipat nalang to sa ibang class para mas malinis dito na muna eksdi :)
-		private Connection con = new Connection();
 
 		public userRegister()
 		{
 			InitializeComponent();
 		}
 
-		private void btnDelete_Click(object sender, EventArgs e)
+		private void btnDeactivate_Click(object sender, EventArgs e)
 		{
-
-
-			DialogResult dialogResult = MessageBox.Show("Delete this row?", "Delete", MessageBoxButtons.YesNo);
+			DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
-				con.DataSend("DELETE FROM Users WHERE Username = '" + txtUserName.Text + "'");
-			}
-			LoadData();
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    string userID = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
+
+                    string query = "UPDATE UserAccounts SET IsDeleted = @deactivate WHERE UserID = @userId";
+                    using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@deactivate", '1');
+                            cmd.Parameters.AddWithValue("@userId", userID);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("User Deactivated", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearData();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            LoadData();
 			ClearData();
 		}
 
@@ -44,190 +66,165 @@ namespace payrollsystemsti.Tabs
 		{
 			if (Validation())
 			{
-				if (ifUserNameExists(txtUserName.Text))
+				if (ifUserNameExists(tbUserName.Text))
 				{
 					MessageBox.Show("User Name Already Exists");
 				}
 				else
 				{
-					string newpassword = passwordGenerator(); //Generate randomPassword
-					con.DataSend("INSERT INTO [Users] (Username, Password, Name, Email, Role, Dob, Address)VALUES('" + txtUserName.Text +
-						"','" + newpassword + "','" + txtName.Text + "','" + txtEmail.Text + "'," +
-						"'" + cbRole.Text + "','" + tpBirthDate.Value.ToString("MM/dd/yyyy") + "','" + txtAddress.Text + "')");
-					MessageBox.Show("User password = " + newpassword + " Record Saved Successfully.... ");
+					string randomPass = passwordGenerator(); //Generate randomPassword
+					string query = "INSERT INTO UserAccounts (Username, Password, Role) VALUES (@Username, @Password, @Role)";
+					using(SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+					{
+						conn.Open();
+						using(SqlCommand cmd = new SqlCommand(query, conn))
+						{
+							cmd.Parameters.AddWithValue("@Username", tbUserName.Text);
+                            cmd.Parameters.AddWithValue("@Password", randomPass);
+                            cmd.Parameters.AddWithValue("@Username", cbRole.Text);
+                        }
+					}
+					MessageBox.Show("User password = " + randomPass + " Record Saved Successfully.... ");
 					ClearData();
 					LoadData();
 				}
 			}
 		}
-		//method to register employees in the users database
-        public string UserRegistration(string name, string email, string role, DateTime dob, string address, string empid)
-        {
-            //string username = GenerateUniqueUsername(name); // You need to implement a method to generate a unique username based on the user's name.
-            string password = passwordGenerator(); // Generate a random password
-			string username = GenerateUniqueUsername(name);
-            // Assuming you have a Users table with columns: Username, Password, Name, Email, Role, Dob, Address
-            con.DataSend($"INSERT INTO Users (Username, Password, Name, Email, Role, Dob, Address) VALUES ('{username}', '{password}', '{name}', '{email}', '{role}', '{dob.ToString("MM/dd/yyyy")}', '{address}')");
 
-            return "";
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+				string query = "UPDATE UserAccounts SET Username =@Username, Role =@Role," +
+					           "WHERE UserID = @UserID";
+                using(SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
+                {
+                    conn.Open();
+                    using(SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", tbUserName.Text);
+                        cmd.Parameters.AddWithValue("@Role", cbRole.Text);
+                        cmd.Parameters.AddWithValue("@Username", tbUserID.Text);
+                    }
+                }
+                MessageBox.Show("Update Successful", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                btnSave.Enabled = true;
+                btnUpdate.Enabled = false;
+                btnDeactivate.Enabled = false;
+            }
+            ClearData();
         }
-
-        private string GenerateUniqueUsername(string name)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-			Random ran = new Random();
-			int randomNum = ran.Next(1000);
-			string randomName = name + randomNum;
-			while (ifNameExists(randomName).Equals(true))
-			{
-				GenerateUniqueUsername(randomName);
-			}
-            return randomName;
-        }
-
-        private void ClearData()
-        {
-            txtName.Clear();
-            txtUserName.Clear();
-            txtEmail.Clear();
-            txtAddress.Clear();
-            cbRole.SelectedIndex = -1;
+            ClearData();
             btnUpdate.Enabled = false;
-            btnDelete.Enabled = false;
             btnSave.Enabled = true;
-            tpBirthDate.Value = DateTime.Now;
         }
-        private bool ifNameExists(string name)
-        {
-            con.DataGet("SELECT 1 FROM [Users] WHERE [Name]= '" + name + "'");
-            DataTable dt = new DataTable();
-            con.sda.Fill(dt);
-            if (dt.Rows.Count > 0)
-                return true;
-            else
-                return false;
-        }
-
         private bool ifUserNameExists(string userName)
         {
-            con.DataGet("SELECT 1 FROM [Users] WHERE [Username]= '" + userName + "'");
-            DataTable dt = new DataTable();
-            con.sda.Fill(dt);
-            if (dt.Rows.Count > 0)
-                return true;
-            else
-                return false;
+            string query = "SELECT 1 FROM UserAccounts WHERE Username = @Username";
+            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count > 0)
+                    return true;
+                else
+                    return false;
+            } 
         }
-
+        private void ClearData()
+        {
+            tbUserID.Clear();
+            tbUserName.Clear();
+            cbRole.SelectedIndex = -1;
+            btnUpdate.Enabled = false;
+            btnDeactivate.Enabled = false;
+            btnSave.Enabled = true;
+        }
         private void LoadData()
         {
             dataGridView1.Rows.Clear();
-            con.DataGet("SELECT * FROM [Users]");
-            DataTable dt = new DataTable();
-            con.sda.Fill(dt);
-            foreach (DataRow row in dt.Rows)
-            {
-                int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells["dgUserID"].Value = row["UserID"].ToString();
-                dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
-                try
-                {
-                    dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"].ToString()).ToString("dd/MM/yyyy");
+			string query = "SELECT UserAccounts.UserID, UserAccounts.UserName, UserAccounts.Role," +
+                           " EmployeeAccounts.EmployeeID, EmployeeAccounts.Department, EmployeeAccounts.Position FROM UserAccounts JOIN EmployeeAccounts" +
+				           " ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID;";
+			using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+			{
+				conn.Open();
+				using(SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgUserID"].Value = row["UserID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgUserName"].Value = row["UserName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = row["Department"].ToString();
+                        dataGridView1.Rows[n].Cells["dgPosition"].Value = row["Position"].ToString();
+                        dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                    }
                 }
-                catch (Exception e)
-                {
-
-                }
-
-                dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
-                dataGridView1.Rows[n].Cells["dgUsername"].Value = row["UserName"].ToString();
-                dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();
-                dataGridView1.Rows[n].Cells["dgAddress"].Value = row["Address"].ToString();
-            }
+			}
         }
 
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            tbUserID.Text = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
+            tbUserName.Text = dataGridView1.SelectedRows[0].Cells["dgUsername"].Value.ToString();
+            cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
+            btnSave.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDeactivate.Enabled = true;
+        }
+        private void tbUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbUserName.Text.Length > 0)
+                {
+                    tbPassword.Focus();
+                }
+                else
+                {
+                    tbUserName.Focus();
+                }
+            }
+        }
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbPassword.Text.Length > 0)
+                {
+                    cbRole.Focus();
+                }
+                else
+                {
+                    tbPassword.Focus();
+                }
+            }
+        }
         private void cbRole_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				txtAddress.Focus();
+                btnSave.Focus();
 			}
 		}
-
 		
-		private void tpBirthDate_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				cbRole.Focus();
-			}
-		}
-		private void txtEmail_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				e.SuppressKeyPress = true;
-				if (txtEmail.Text.Length > 0)
-				{
-					tpBirthDate.Focus();
-				}
-				else
-				{
-					txtEmail.Focus();
-				}
-			}
-		}
-		//Keydown(when user enters data it goes to the nxt txtbox)
-		private void txtName_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				e.SuppressKeyPress = true;
-				if (txtName.Text.Length > 0)
-				{
-					txtUserName.Focus();
-				}
-				else
-				{
-					txtName.Focus();
-				}
-			}
-		}
-		private void txtPassword_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				e.SuppressKeyPress = true;
-				if (txtPassword.Text.Length > 0)
-				{
-					txtEmail.Focus();
-				}
-				else
-				{
-					txtPassword.Focus();
-				}
-			}
-		}
-		//private void txtUserName_KeyDown(object sender, KeyEventArgs e)
-		//{
-		//	if (e.KeyCode == Keys.Enter)
-		//	{
-		//		e.SuppressKeyPress = true;
-		//		if (txtUserName.Text.Length > 0)
-		//		{
-		//			txtPassword.Focus();
-		//		}
-		//		else
-		//		{
-		//			txtUserName.Focus();
-		//		}
-		//	}
-		//}
-
 		//first load of form, it focuses on Name txtbox
 		private void userRegister_Load(object sender, EventArgs e)
 		{
-			this.ActiveControl = txtName;
-			btnDelete.Enabled = false;
+			this.ActiveControl = tbUserID;
+			btnDeactivate.Enabled = false;
 			btnUpdate.Enabled = false;
 			LoadData();
 		}
@@ -235,26 +232,16 @@ namespace payrollsystemsti.Tabs
 		private bool Validation()
 		{
 			bool result = false;
-			if (string.IsNullOrEmpty(txtName.Text))
+			if (string.IsNullOrEmpty(cbRole.Text))
 			{
 				errorProvider1.Clear();
-				errorProvider1.SetError(txtName, "Please enter Name");
+				errorProvider1.SetError(cbRole, "Please select Role");
 			}
-			else if (string.IsNullOrEmpty(txtUserName.Text))
+			else if (string.IsNullOrEmpty(tbUserName.Text))
 			{
 				errorProvider1.Clear();
-				errorProvider1.SetError(txtUserName, "Please enter UserName");
+				errorProvider1.SetError(tbUserName, "Please enter UserName");
 			}
-			//else if (string.IsNullOrEmpty(txtEmail.Text))
-			//{
-			//	errorProvider1.Clear();
-			//	errorProvider1.SetError(txtPassword, "Please enter Email");
-			//}
-			//else if (cbRole.SelectedIndex == -1)
-			//{
-			//	errorProvider1.Clear();
-			//	errorProvider1.SetError(txtPassword, "Please Select Role");
-			//}
 			else
 			{
 				errorProvider1.Clear();
@@ -262,49 +249,6 @@ namespace payrollsystemsti.Tabs
 			}
 			return result;
 		}
-
-		private void btnUpdate_Click(object sender, EventArgs e)
-		{
-			DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
-			if (dialogResult == DialogResult.Yes)
-			{
-				con.DataSend("UPDATE Users SET Username ='" + txtName.Text + "', Email ='" + txtEmail.Text + "', Role ='" + cbRole.Text + "'," +
-					" Dob ='" + tpBirthDate.Value.ToString("MM/dd/yyyy") + "', Address ='" + txtAddress.Text + "'" +
-					" Where Username = '" + txtUserName.Text + "'");
-				MessageBox.Show("Updated", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				LoadData();
-				btnSave.Enabled = true;
-				btnUpdate.Enabled = false;
-				btnDelete.Enabled = false;
-			}
-			ClearData();
-		}
-
-		private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-			txtName.Text = dataGridView1.SelectedRows[0].Cells["dgName"].Value.ToString();
-			txtUserName.Text = dataGridView1.SelectedRows[0].Cells["dgUsername"].Value.ToString();
-			txtEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
-			txtAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAddress"].Value.ToString();
-
-			string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
-			DateTime dob;
-
-			if (DateTime.TryParseExact(dobCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
-			{
-				tpBirthDate.Value = dob;
-			}
-			else
-			{
-				MessageBox.Show("Invalid date format");
-			}
-
-			cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
-			btnSave.Enabled = false;
-			btnUpdate.Enabled = true;
-			btnDelete.Enabled = true;
-		}
-
 		public string passwordGenerator(int passlength = 12)
 		{
 			string validChars = LowerCase + UpperCase + Digits + SpecialChars;
@@ -333,6 +277,9 @@ namespace payrollsystemsti.Tabs
 			return sqlSafePassword;
 		}
 
-        
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            btnCancel.Visible = btnUpdate.Enabled;
+        }
     }
 }

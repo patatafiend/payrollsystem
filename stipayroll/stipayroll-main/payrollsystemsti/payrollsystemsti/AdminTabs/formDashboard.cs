@@ -1,4 +1,5 @@
 ﻿using payrollsystemsti.AdminTabs;
+using payrollsystemsti.EmployeeTabs;
 using payrollsystemsti.Tabs;
 using System;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace payrollsystemsti
 		private formSettings fSettings;
 		private employeeRegister empRegister;
 		private employeeSalary employeeSalary;
+		private leaveApplication leaveApplication;
 
 
 		private bool logout = false;
@@ -184,7 +186,7 @@ namespace payrollsystemsti
 				DialogResult result = MessageBox.Show("Logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 				if (result == DialogResult.Yes)
 				{
-					fm_login fm_Login = new fm_login();
+					formLogin fm_Login = new formLogin();
 					fm_Login.Show();
 				}
 				else
@@ -271,19 +273,25 @@ namespace payrollsystemsti
 		{
 			employeeSalary = null;
 		}
+        private void btnLeave_Click(object sender, EventArgs e)
+        {
+            if (leaveApplication == null)
+            {
+                leaveApplication = new leaveApplication();
+                leaveApplication.FormClosed += LeaveApplication_FormClosed;
+                leaveApplication.MdiParent = this;
+                leaveApplication.Dock = DockStyle.Fill;
+                leaveApplication.Show();
+            }
+            else
+            {
+                leaveApplication.Activate();
+            }
+        }
 
-		
-		private void lb_User_Username_Click(object sender, EventArgs e)
-		{
-			
-		}
-		private void sideBar_Paint_1(object sender, PaintEventArgs e)
-		{
-		}
-
-		private void label1_Click(object sender, EventArgs e)
-		{
-
-		}
-	}
+        private void LeaveApplication_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            leaveApplication = null;
+        }
+    }
 }

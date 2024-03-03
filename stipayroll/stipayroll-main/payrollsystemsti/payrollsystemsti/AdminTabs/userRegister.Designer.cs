@@ -30,31 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.tbUserID = new System.Windows.Forms.TextBox();
+            this.tbUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnDeactivate = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.dgUserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -63,87 +57,47 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(93, 71);
+            this.label1.Location = new System.Drawing.Point(60, 159);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 20);
+            this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name :";
+            this.label1.Text = "UserID:";
             // 
-            // txtName
+            // tbUserID
             // 
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtName.Location = new System.Drawing.Point(152, 68);
-            this.txtName.Multiline = true;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(150, 23);
-            this.txtName.TabIndex = 1;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
+            this.tbUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbUserID.Location = new System.Drawing.Point(124, 153);
+            this.tbUserID.Multiline = true;
+            this.tbUserID.Name = "tbUserID";
+            this.tbUserID.ReadOnly = true;
+            this.tbUserID.Size = new System.Drawing.Size(150, 25);
+            this.tbUserID.TabIndex = 1;
             // 
-            // txtUserName
+            // tbUserName
             // 
-            this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUserName.Location = new System.Drawing.Point(152, 97);
-            this.txtUserName.Multiline = true;
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(150, 23);
-            this.txtUserName.TabIndex = 3;
+            this.tbUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbUserName.Location = new System.Drawing.Point(124, 182);
+            this.tbUserName.Multiline = true;
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(150, 25);
+            this.tbUserName.TabIndex = 3;
+            this.tbUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbUserName_KeyDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(59, 100);
+            this.label2.Location = new System.Drawing.Point(31, 185);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "UserName :";
             // 
-            // txtEmail
-            // 
-            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Location = new System.Drawing.Point(152, 155);
-            this.txtEmail.Multiline = true;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(150, 23);
-            this.txtEmail.TabIndex = 7;
-            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(96, 158);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Email :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(336, 68);
-            this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(49, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "DoB :";
-            // 
-            // tpBirthDate
-            // 
-            this.tpBirthDate.CustomFormat = "dd/MM/yyyy";
-            this.tpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.tpBirthDate.Location = new System.Drawing.Point(385, 68);
-            this.tpBirthDate.Name = "tpBirthDate";
-            this.tpBirthDate.Size = new System.Drawing.Size(150, 20);
-            this.tpBirthDate.TabIndex = 9;
-            this.tpBirthDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tpBirthDate_KeyDown);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(336, 96);
+            this.label6.Location = new System.Drawing.Point(75, 243);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label6.Size = new System.Drawing.Size(50, 20);
@@ -159,30 +113,11 @@
             "Human Resource",
             "Accountant",
             "Employee"});
-            this.cbRole.Location = new System.Drawing.Point(385, 95);
+            this.cbRole.Location = new System.Drawing.Point(124, 242);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(150, 21);
             this.cbRole.TabIndex = 11;
             this.cbRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbRole_KeyDown);
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddress.Location = new System.Drawing.Point(385, 131);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(312, 77);
-            this.txtAddress.TabIndex = 13;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(310, 128);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 20);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Address :";
             // 
             // dataGridView1
             // 
@@ -190,26 +125,61 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgUserID,
-            this.dgName,
-            this.dgDob,
-            this.dgEmail,
+            this.dgEmpID,
             this.dgUsername,
+            this.dgDepartment,
+            this.dgPosition,
             this.dgRole,
-            this.dgAddress});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 385);
+            this.dgUserID});
+            this.dataGridView1.Location = new System.Drawing.Point(364, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(742, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(543, 565);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmpIoyee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgUsername
+            // 
+            this.dgUsername.HeaderText = "UserName";
+            this.dgUsername.Name = "dgUsername";
+            this.dgUsername.ReadOnly = true;
+            // 
+            // dgDepartment
+            // 
+            this.dgDepartment.HeaderText = "Department";
+            this.dgDepartment.Name = "dgDepartment";
+            this.dgDepartment.ReadOnly = true;
+            // 
+            // dgPosition
+            // 
+            this.dgPosition.HeaderText = "Position";
+            this.dgPosition.Name = "dgPosition";
+            this.dgPosition.ReadOnly = true;
+            // 
+            // dgRole
+            // 
+            this.dgRole.HeaderText = "Role";
+            this.dgRole.Name = "dgRole";
+            this.dgRole.ReadOnly = true;
+            // 
+            // dgUserID
+            // 
+            this.dgUserID.HeaderText = "UserID";
+            this.dgUserID.Name = "dgUserID";
+            this.dgUserID.ReadOnly = true;
             // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btnSave.Location = new System.Drawing.Point(222, 332);
+            this.btnSave.Location = new System.Drawing.Point(34, 332);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 35);
             this.btnSave.TabIndex = 15;
@@ -221,25 +191,26 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btnUpdate.Location = new System.Drawing.Point(326, 332);
+            this.btnUpdate.Location = new System.Drawing.Point(130, 332);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(90, 35);
             this.btnUpdate.TabIndex = 16;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.EnabledChanged += new System.EventHandler(this.btnUpdate_EnabledChanged);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnDelete
+            // btnDeactivate
             // 
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btnDelete.Location = new System.Drawing.Point(427, 332);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(90, 35);
-            this.btnDelete.TabIndex = 17;
-            this.btnDelete.Text = "Deactivate";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.btnDeactivate.Location = new System.Drawing.Point(226, 332);
+            this.btnDeactivate.Name = "btnDeactivate";
+            this.btnDeactivate.Size = new System.Drawing.Size(90, 35);
+            this.btnDeactivate.TabIndex = 17;
+            this.btnDeactivate.Text = "Deactivate";
+            this.btnDeactivate.UseVisualStyleBackColor = true;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // errorProvider1
             // 
@@ -249,87 +220,52 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(66, 129);
+            this.label3.Location = new System.Drawing.Point(38, 214);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password :";
             // 
-            // txtPassword
+            // tbPassword
             // 
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.Enabled = false;
-            this.txtPassword.Location = new System.Drawing.Point(152, 126);
-            this.txtPassword.Multiline = true;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(150, 23);
-            this.txtPassword.TabIndex = 5;
-            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
+            this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPassword.Enabled = false;
+            this.tbPassword.Location = new System.Drawing.Point(124, 211);
+            this.tbPassword.Multiline = true;
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(150, 25);
+            this.tbPassword.TabIndex = 5;
+            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
-            // dgUserID
+            // btnCancel
             // 
-            this.dgUserID.HeaderText = "UserID";
-            this.dgUserID.Name = "dgUserID";
-            this.dgUserID.ReadOnly = true;
-            // 
-            // dgName
-            // 
-            this.dgName.HeaderText = "Name";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgDob
-            // 
-            this.dgDob.HeaderText = "DoB";
-            this.dgDob.Name = "dgDob";
-            this.dgDob.ReadOnly = true;
-            // 
-            // dgEmail
-            // 
-            this.dgEmail.HeaderText = "Email";
-            this.dgEmail.Name = "dgEmail";
-            this.dgEmail.ReadOnly = true;
-            // 
-            // dgUsername
-            // 
-            this.dgUsername.HeaderText = "UserName";
-            this.dgUsername.Name = "dgUsername";
-            this.dgUsername.ReadOnly = true;
-            // 
-            // dgRole
-            // 
-            this.dgRole.HeaderText = "Role";
-            this.dgRole.Name = "dgRole";
-            this.dgRole.ReadOnly = true;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.HeaderText = "Address";
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.btnCancel.Location = new System.Drawing.Point(130, 373);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(90, 35);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // userRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 612);
-            this.Controls.Add(this.btnDelete);
+            this.ClientSize = new System.Drawing.Size(938, 612);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.cbRole);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.tpBirthDate);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.tbUserName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.tbUserID);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "userRegister";
@@ -345,30 +281,24 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox tbUserID;
+        private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker tpBirthDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbRole;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-		private System.Windows.Forms.TextBox txtPassword;
-		private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgUserID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDob;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmail;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgPosition;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgUserID;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

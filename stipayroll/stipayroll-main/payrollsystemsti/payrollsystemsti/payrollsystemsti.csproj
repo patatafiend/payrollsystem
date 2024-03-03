@@ -58,6 +58,18 @@
     <Compile Include="AdminTabs\employeeSalary.Designer.cs">
       <DependentUpon>employeeSalary.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\leaveCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\leaveCategory.Designer.cs">
+      <DependentUpon>leaveCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminTabs\leaveManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\leaveManagement.Designer.cs">
+      <DependentUpon>leaveManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="changePass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +83,17 @@
     <Compile Include="AdminTabs\dashBoard.Designer.cs">
       <DependentUpon>dashBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="EmployeeTabs\leaveApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="EmployeeTabs\leaveApplication.Designer.cs">
+      <DependentUpon>leaveApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loginForm.Designer.cs">
+      <DependentUpon>loginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminTabs\formDashboard.cs">
       <SubType>Form</SubType>
@@ -88,12 +106,6 @@
     </Compile>
     <Compile Include="formSettings.Designer.cs">
       <DependentUpon>formSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="leaveApplication.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="leaveApplication.Designer.cs">
-      <DependentUpon>leaveApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,8 +124,11 @@
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeTabs\leaveApplication.resx">
+      <DependentUpon>leaveApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loginForm.resx">
+      <DependentUpon>loginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\formDashboard.resx">
       <DependentUpon>formDashboard.cs</DependentUpon>
@@ -168,8 +183,6 @@
   <ItemGroup>
     <None Include="Resources\circle company logo %281%29.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EmployeeTabs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

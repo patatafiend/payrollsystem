@@ -88,7 +88,6 @@ C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.AdminTabs.employeeRegister.resources
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.AdminTabs.employeeSalary.resources
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.changePass.resources
-C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.fm_login.resources
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.formDashboard.resources
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.formSettings.resources
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.Properties.Resources.resources
@@ -98,3 +97,5 @@ C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.csproj.CoreCompileInputs.cache
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.exe
 C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.pdb
+C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.EmployeeTabs.leaveApplication.resources
+C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.formLogin.resources

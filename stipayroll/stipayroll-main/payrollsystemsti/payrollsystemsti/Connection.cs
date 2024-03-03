@@ -21,7 +21,6 @@ namespace payrollsystemsti
 			if(con.State == System.Data.ConnectionState.Closed)
 			{
 				con.Open();
-
 			}
             
 
