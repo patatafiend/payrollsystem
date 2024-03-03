@@ -26,7 +26,6 @@ namespace payrollsystemsti.Tabs
 		{
 			InitializeComponent();
 		}
-
 		private void btnDeactivate_Click(object sender, EventArgs e)
 		{
 			DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
@@ -61,7 +60,6 @@ namespace payrollsystemsti.Tabs
             LoadData();
 			ClearData();
 		}
-
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			if (Validation())
@@ -90,7 +88,6 @@ namespace payrollsystemsti.Tabs
 				}
 			}
 		}
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
@@ -172,7 +169,6 @@ namespace payrollsystemsti.Tabs
                 }
 			}
         }
-
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             tbUserID.Text = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
@@ -219,7 +215,6 @@ namespace payrollsystemsti.Tabs
                 btnSave.Focus();
 			}
 		}
-		
 		//first load of form, it focuses on Name txtbox
 		private void userRegister_Load(object sender, EventArgs e)
 		{
@@ -228,7 +223,6 @@ namespace payrollsystemsti.Tabs
 			btnUpdate.Enabled = false;
 			LoadData();
 		}
-
 		private bool Validation()
 		{
 			bool result = false;
@@ -276,7 +270,6 @@ namespace payrollsystemsti.Tabs
 
 			return sqlSafePassword;
 		}
-
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)
         {
             btnCancel.Visible = btnUpdate.Enabled;
