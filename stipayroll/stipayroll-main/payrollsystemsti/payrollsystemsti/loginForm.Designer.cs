@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLogin));
-            this.bt_login = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbUserName = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -44,18 +44,18 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // bt_login
+            // btnLogin
             // 
-            this.bt_login.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_login.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_login.Location = new System.Drawing.Point(161, 306);
-            this.bt_login.Name = "bt_login";
-            this.bt_login.Size = new System.Drawing.Size(75, 33);
-            this.bt_login.TabIndex = 0;
-            this.bt_login.TabStop = false;
-            this.bt_login.Text = "Login";
-            this.bt_login.UseVisualStyleBackColor = true;
-            this.bt_login.Click += new System.EventHandler(this.bt_login_Click);
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogin.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(161, 306);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 33);
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabStop = false;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.bt_login_Click);
             // 
             // tbPassword
             // 
@@ -142,7 +142,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.bt_login);
+            this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.tbPassword);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -176,7 +176,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button bt_login;
+		private System.Windows.Forms.Button btnLogin;
 		private System.Windows.Forms.TextBox tbPassword;
 		private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.PictureBox pictureBox1;

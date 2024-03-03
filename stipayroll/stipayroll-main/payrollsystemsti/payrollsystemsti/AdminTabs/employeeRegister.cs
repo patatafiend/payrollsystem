@@ -17,7 +17,6 @@ namespace payrollsystemsti.AdminTabs
 {
     public partial class employeeRegister : Form
     {
-
         //Connection conn = new Connection();
         userRegister user = new userRegister();
         private string fileName;
@@ -25,7 +24,6 @@ namespace payrollsystemsti.AdminTabs
         {
             InitializeComponent();
         }
-
         // adds image
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -44,7 +42,6 @@ namespace payrollsystemsti.AdminTabs
         {
             pbEmployee.Image = null;
         }
-
         private void employeeRegister_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbFirstName;
@@ -52,140 +49,6 @@ namespace payrollsystemsti.AdminTabs
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
-        }
-
-        //when enter is pressed and textbox has value, it goes to the next textbox 
-        private void empName_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbFirstName.Text.Length > 0)
-                {
-                    dtDob.Focus();
-                }
-                else
-                {
-                    tbFirstName.Focus();
-                }
-            }
-        }
-        private void empNumber_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbMob.Text.Length > 1)
-                {
-                    tbEmail.Focus();
-                }
-                else
-                {
-                    tbMob.Focus();
-                }
-            }
-        }
-        private void empSSN_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbSSN.Text.Length > 1)
-                {
-                    cbPosition.Focus();
-                }
-                else
-                {
-                    tbSSN.Focus();
-                }
-            }
-        }
-
-        private void empEmail_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbEmail.Text.Length > 0)
-                {
-                    tbSSN.Focus();
-                }
-                else
-                {
-                    tbEmail.Focus();
-                }
-            }
-        }
-
-        private void empAdd_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbAddress.Text.Length > 1)
-                {
-                    tbMob.Focus();
-                }
-                else
-                {
-                    tbAddress.Focus();
-                }
-            }
-        }
-
-        private void empDob_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                tbAddress.Focus();
-            }
-        }
-        private void empPosition_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (cbPosition.SelectedIndex > -1)
-                {
-                    tbBasicRate.Focus();
-                }
-                else
-                {
-                    cbPosition.Focus();
-                }
-
-            }
-        }
-        private void empBasicRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbBasicRate.Text.Length > 1)
-                {
-                    btnSave.Focus();
-                }
-                else
-                {
-                    tbBasicRate.Focus();
-                }
-            }
-        }
-
-        private void empNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void empSSN_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
         }
         // checks if textboxes are filled
         private bool Validation()
@@ -243,7 +106,6 @@ namespace payrollsystemsti.AdminTabs
             }
             return result;
         }
-
         // checks if the database have a combination of firstname and lastname
         private bool ifEmployeeExists(string fname, string lname)
         {
@@ -288,7 +150,6 @@ namespace payrollsystemsti.AdminTabs
                 return ms.ToArray();
             }
         }
-
         //saves inputed data in the textbox
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -297,7 +158,8 @@ namespace payrollsystemsti.AdminTabs
                 if (ifEmployeeExists(tbFirstName.Text, tbLastName.Text))
                 {
                     MessageBox.Show("User Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }else if (ifSSNExists(tbSSN.Text))
+                }
+                else if (ifSSNExists(tbSSN.Text))
                 {
                     MessageBox.Show("SSN Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -353,9 +215,9 @@ namespace payrollsystemsti.AdminTabs
                             }
                         }
                     }
-                    
+
                 }
-                
+
             }
             //ClearData();
             LoadData();
@@ -410,7 +272,6 @@ namespace payrollsystemsti.AdminTabs
                 LoadData();
             }
         }
-
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
@@ -443,7 +304,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearData();
@@ -469,7 +329,6 @@ namespace payrollsystemsti.AdminTabs
             cbPosition.SelectedIndex = -1;
             tbBasicRate.Clear();
         }
-
         //loads data
         private void LoadData()
         {
@@ -506,9 +365,8 @@ namespace payrollsystemsti.AdminTabs
                 }
 
             }
-            
-        }
 
+        }
         // if double click on the data in datagridview, it goes to the textboxes
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -571,10 +429,137 @@ namespace payrollsystemsti.AdminTabs
                     return "610";
             }
         }
-
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)
         {
             btnCancel.Visible = btnUpdate.Enabled;
+        }
+        //when enter is pressed and textbox has value, it goes to the next textbox 
+        private void empName_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbFirstName.Text.Length > 0)
+                {
+                    dtDob.Focus();
+                }
+                else
+                {
+                    tbFirstName.Focus();
+                }
+            }
+        }
+        private void empNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbMob.Text.Length > 1)
+                {
+                    tbEmail.Focus();
+                }
+                else
+                {
+                    tbMob.Focus();
+                }
+            }
+        }
+        private void empSSN_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbSSN.Text.Length > 1)
+                {
+                    cbPosition.Focus();
+                }
+                else
+                {
+                    tbSSN.Focus();
+                }
+            }
+        }
+        private void empEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbEmail.Text.Length > 0)
+                {
+                    tbSSN.Focus();
+                }
+                else
+                {
+                    tbEmail.Focus();
+                }
+            }
+        }
+        private void empAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbAddress.Text.Length > 1)
+                {
+                    tbMob.Focus();
+                }
+                else
+                {
+                    tbAddress.Focus();
+                }
+            }
+        }
+        private void empDob_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                tbAddress.Focus();
+            }
+        }
+        private void empPosition_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (cbPosition.SelectedIndex > -1)
+                {
+                    tbBasicRate.Focus();
+                }
+                else
+                {
+                    cbPosition.Focus();
+                }
+
+            }
+        }
+        private void empBasicRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbBasicRate.Text.Length > 1)
+                {
+                    btnSave.Focus();
+                }
+                else
+                {
+                    tbBasicRate.Focus();
+                }
+            }
+        }
+        private void empNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+        private void empSSN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
     }
 }
