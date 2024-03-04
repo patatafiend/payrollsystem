@@ -32,14 +32,14 @@ namespace payrollsystemsti
 
 		private void dashBoard_Load(object sender, EventArgs e)
 		{
-			// Set your connection string here
+			
 			string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True;";
 
 			try
 			{
 				using (SqlConnection sqlConn = new SqlConnection(connectionString))
 				{
-					// Open the connection
+					
 					sqlConn.Open();
 
 					// Create a SqlCommand to count the number of employees
