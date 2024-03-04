@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace payrollsystemsti
         {
             InitializeComponent();
         }
-        Connection con = new Connection();
+        
         private void textUser_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -82,40 +83,61 @@ namespace payrollsystemsti
         }
         private void confirm_Click(object sender, EventArgs e)
         {
-            DialogResult action = MessageBox.Show("Change Password?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (action == DialogResult.Yes)
-            {
-                
-                con.DataGet("SELECT 1 FROM Users WHERE Username = '"+tbUser.Text+"' and Password = '"+tbPassword.Text+"'");
-                DataTable dt = new DataTable();
-                con.sda.Fill(dt);
-                if(dt.Rows.Count > 0) {
-                    if(tbNewPass.Text == tbConfirmPass.Text)
-                    {
-                        if(tbNewPass.Text.Length > 3)
-                        {
-                            con.DataSend("UPDATE Users SET Password = '"+tbNewPass.Text+"' " +
-                                "WHERE Username = '"+tbUser.Text+"' and" +
-                                " Password = '"+tbPassword.Text+"'");
-                            MessageBox.Show("Password Changed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information );
-                        }
-                        else
-                        {
-                            errorProvider1.SetError(tbNewPass, "Please enter minimum 4 Character Password");
-                        }
-                    }
-                    else
-                    {
-                        errorProvider1.SetError(tbNewPass, "Password dont Match");
-                        errorProvider1.SetError(tbConfirmPass, "Password dont Match");
-                    }
-                }
-                else
-                {
-                    errorProvider1.SetError(tbUser, "Wrong Username or Password");
-                    errorProvider1.SetError(tbPassword, "Wrong Username or Password");
-                }
-            }
-        }
+			DialogResult action = MessageBox.Show("Change Password?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+			if (action == DialogResult.Yes)
+			{
+				using (SqlConnection sqlConn = new SqlConnection("your_connection_string_here"))
+				{
+					sqlConn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("SELECT 1 FROM Users WHERE Username = @username AND Password = @password", sqlConn))
+					{
+						cmd.Parameters.AddWithValue("@username", tbUser.Text);
+						cmd.Parameters.AddWithValue("@password", tbPassword.Text);
+
+						DataTable dt = new DataTable();
+						using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+						{
+							sda.Fill(dt);
+
+							if (dt.Rows.Count > 0)
+							{
+								if (tbNewPass.Text == tbConfirmPass.Text)
+								{
+									if (tbNewPass.Text.Length > 3)
+									{
+										using (SqlCommand updateCmd = new SqlCommand("UPDATE Users SET Password = @newPassword WHERE Username = @username AND Password = @oldPassword", sqlConn))
+										{
+											updateCmd.Parameters.AddWithValue("@newPassword", tbNewPass.Text);
+											updateCmd.Parameters.AddWithValue("@username", tbUser.Text);
+											updateCmd.Parameters.AddWithValue("@oldPassword", tbPassword.Text);
+
+											updateCmd.ExecuteNonQuery();
+
+											MessageBox.Show("Password Changed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+										}
+									}
+									else
+									{
+										errorProvider1.SetError(tbNewPass, "Please enter a minimum 4-character password");
+									}
+								}
+								else
+								{
+									errorProvider1.SetError(tbNewPass, "Passwords don't match");
+									errorProvider1.SetError(tbConfirmPass, "Passwords don't match");
+								}
+							}
+							else
+							{
+								errorProvider1.SetError(tbUser, "Wrong Username or Password");
+								errorProvider1.SetError(tbPassword, "Wrong Username or Password");
+							}
+						}
+					}
+				}
+			}
+		}
     }
 }
