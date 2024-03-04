@@ -76,7 +76,6 @@
     <Compile Include="changePass.Designer.cs">
       <DependentUpon>changePass.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
     <Compile Include="AdminTabs\dashBoard.cs">
       <SubType>Form</SubType>
     </Compile>

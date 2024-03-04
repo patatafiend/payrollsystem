@@ -21,7 +21,7 @@ namespace payrollsystemsti.Tabs
 		private const string Digits = "0123456789";
 		private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 		//I'll lipat nalang to sa ibang class para mas malinis dito na muna eksdi :)
-        Connection con = new Connection();
+        Methods m = new Methods();
 
 		public userRegister()
 		{
@@ -128,7 +128,7 @@ namespace payrollsystemsti.Tabs
         private bool ifUserNameExists(string userName)
         {
             string query = "SELECT 1 FROM UserAccounts WHERE Username = @Username";
-            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -155,7 +155,7 @@ namespace payrollsystemsti.Tabs
 			string query = "SELECT UserAccounts.UserID, UserAccounts.UserName, UserAccounts.Role," +
                            " EmployeeAccounts.EmployeeID, EmployeeAccounts.Department, EmployeeAccounts.Position FROM UserAccounts JOIN EmployeeAccounts" +
 				           " ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID;";
-			using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
 				using(SqlCommand cmd = new SqlCommand(query, conn))
@@ -286,7 +286,7 @@ namespace payrollsystemsti.Tabs
         {
             dataGridView1.Rows.Clear();
             string query = "SELECT * FROM UserAccounts WHERE EmployeeID IS NULL";
-            using (SqlConnection conn = new SqlConnection(con.constr))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))

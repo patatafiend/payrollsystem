@@ -8,6 +8,6 @@ namespace payrollsystemsti
 {
     internal class Methods
     {
-
+        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
     }
 }

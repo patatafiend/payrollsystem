@@ -17,7 +17,7 @@ namespace payrollsystemsti.AdminTabs
 {
     public partial class employeeRegister : Form
     {
-        //Connection conn = new Connection();
+        Methods m = new Methods();
         userRegister user = new userRegister();
         private string fileName;
         public employeeRegister()
@@ -111,7 +111,7 @@ namespace payrollsystemsti.AdminTabs
         {
             string query = "SELECT 1 FROM EmployeeAccounts WHERE FirstName = @FirstName AND LastName = @LastName";
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -129,7 +129,7 @@ namespace payrollsystemsti.AdminTabs
         {
             string query = "SELECT 1 FROM EmployeeAccounts WHERE SSN = @SSN";
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -171,7 +171,7 @@ namespace payrollsystemsti.AdminTabs
                                    "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, @Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, @FileName, @ImageData, @Mobile, @IsDeleted)";
 
 
-                    using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -239,7 +239,7 @@ namespace payrollsystemsti.AdminTabs
 
                 query += " WHERE EmployeeID = @employeeId";
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+                using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     conn.Open();
 
@@ -282,7 +282,7 @@ namespace payrollsystemsti.AdminTabs
                     string empID = dataGridView1.SelectedRows[0].Cells["dgEmp"].Value.ToString();
 
                     string query = "UPDATE EmployeeAccounts SET IsDeleted = @deactivate WHERE EmployeeID = @employeeId";
-                    using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -334,7 +334,7 @@ namespace payrollsystemsti.AdminTabs
         {
             dataGridView1.Rows.Clear();
             // gets all active employees in the database
-            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string queryActive = "SELECT * FROM EmployeeAccounts WHERE IsDeleted = 0";
