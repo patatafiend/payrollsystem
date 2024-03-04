@@ -56,6 +56,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnLeave = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.pbEmpPic = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -69,6 +71,8 @@
             this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmpPic)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,7 +84,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1206, 40);
+            this.panel1.Size = new System.Drawing.Size(1206, 43);
             this.panel1.TabIndex = 1;
             // 
             // lb_User_Username
@@ -298,9 +302,9 @@
             this.sideBar.Controls.Add(this.panel7);
             this.sideBar.Controls.Add(this.panel10);
             this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sideBar.Location = new System.Drawing.Point(0, 40);
+            this.sideBar.Location = new System.Drawing.Point(0, 43);
             this.sideBar.Name = "sideBar";
-            this.sideBar.Size = new System.Drawing.Size(187, 639);
+            this.sideBar.Size = new System.Drawing.Size(187, 636);
             this.sideBar.TabIndex = 3;
             // 
             // panel9
@@ -378,12 +382,29 @@
             this.btnLeave.UseVisualStyleBackColor = false;
             this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
             // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.pbEmpPic);
+            this.panel11.Location = new System.Drawing.Point(1066, 62);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(101, 91);
+            this.panel11.TabIndex = 5;
+            // 
+            // pbEmpPic
+            // 
+            this.pbEmpPic.Location = new System.Drawing.Point(3, 4);
+            this.pbEmpPic.Name = "pbEmpPic";
+            this.pbEmpPic.Size = new System.Drawing.Size(95, 84);
+            this.pbEmpPic.TabIndex = 2;
+            this.pbEmpPic.TabStop = false;
+            // 
             // formDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1206, 679);
+            this.Controls.Add(this.panel11);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;
@@ -405,6 +426,8 @@
             this.panel9.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmpPic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -437,5 +460,7 @@
 		private System.Windows.Forms.Label lb_User_Username;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnLeave;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.PictureBox pbEmpPic;
     }
 }

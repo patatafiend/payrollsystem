@@ -9,11 +9,18 @@ namespace payrollsystemsti
     {
         private bool loggedIn = false;
         private string loggedInUserName;
+        private int loggedInEmployeeID;
+
 
         public string LoggedInUserName
         {
             get { return loggedInUserName; }
             private set { loggedInUserName = value; }
+        }
+        public int LoggedInEmployeeID
+        {
+            get { return loggedInEmployeeID; }
+            private set { loggedInEmployeeID = value; }
         }
 
         public formLogin()
@@ -26,9 +33,9 @@ namespace payrollsystemsti
             if (tbUserName.Text.Equals("tester") && tbPassword.Text.Equals("tester"))
             {
                 this.Hide();
-                formDashboard dashboard = new formDashboard();
-                dashboard.LoggedInUserName = LoggedInUserName;
-                dashboard.Show();
+                formDashboard formDashboard = new formDashboard();
+                formDashboard.LoggedInUserName = LoggedInUserName;
+                formDashboard.Show();
             }
             else
             {
@@ -52,19 +59,19 @@ namespace payrollsystemsti
                                     string role = reader["Role"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
 
+                                    byte[] imageData = RetrieveEmployeeImageData(employeeID);
                                     loggedIn = true;
                                     LoggedInUserName = tbUserName.Text; // Fix: Assign the entered username to LoggedInUserName
                                     this.Hide();
-                                    formDashboard dashboard = new formDashboard();
-                                    dashboard.LoggedInUserName = LoggedInUserName;
-                                    dashboard.Show();
-
-                                    if (role != "Admin")
+                                    formDashboard formDashboard = new formDashboard();
+                                    formDashboard.LoggedInUserName = LoggedInUserName;
+                                    formDashboard.Show();
+                                    if (role != "admin")
                                     {
-                                        // Disable functions if not admin
-                                        Button userAccountButton = dashboard.GetUserAccountButton();
-                                        userAccountButton.Hide();
-                                        userAccountButton.Enabled = false;
+                                        // disable functions if not admin
+                                        Button useraccountbutton = formDashboard.GetUserAccountButton();
+                                        useraccountbutton.Hide();
+                                        useraccountbutton.Enabled = false;
                                     }
                                 }
                                 else
@@ -81,16 +88,6 @@ namespace payrollsystemsti
                 }
             }
             
-        }
-
-        public bool IsLoggedIn()
-        {
-            return loggedIn;
-        }
-
-        public string GetLoggedInUserName()
-        {
-            return LoggedInUserName;
         }
 
         bool close;
@@ -110,5 +107,33 @@ namespace payrollsystemsti
         {
             this.ActiveControl = tbUserName;
         }
+        internal byte[] RetrieveEmployeeImageData(int employeeID)
+        {
+            byte[] imageData = null;
+            string query = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @employeID";
+            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+            {
+                conn.Open();
+                using(SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            if (!(reader["ImageData"]is DBNull))
+                            {
+                                imageData = (byte[])reader["ImageData"];
+                            }
+                        }
+                    }
+                }
+            }
+
+                return imageData;
+        }
     }
+
 }
+

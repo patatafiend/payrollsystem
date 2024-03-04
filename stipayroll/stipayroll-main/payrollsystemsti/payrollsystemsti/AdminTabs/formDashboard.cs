@@ -17,13 +17,10 @@ namespace payrollsystemsti
 		private employeeSalary employeeSalary;
 		private leaveApplication leaveApplication;
 
-
 		private bool logout = false;
 		private bool closedForm = true;
 		private bool isClosing = false;
 
-		// Database connection instance
-		private Connection con = new Connection();
 
 		// Logged-in user name property
 		private string loggedInUserName;
@@ -38,15 +35,23 @@ namespace payrollsystemsti
 				lb_User_Username.Text = "Name: " + loggedInUserName;
 			}
 		}
+        // Get user account button
+        public Button GetUserAccountButton()
+        {
+            return btn_useraccount;
+        }
+		
 
-		// Employee panel expand/collapse transition flags
-		private bool employeeExpand = false;
+        // Employee panel expand/collapse transition flags
+        private bool employeeExpand = false;
 		private bool sideBarExpand = false;
 
 		// Form constructor
 		public formDashboard()
 		{
 			InitializeComponent();
+
+
 		}
 
 		// Click event for employee button
@@ -195,13 +200,6 @@ namespace payrollsystemsti
 				}
 			}
 		}
-
-		// Get user account button
-		public Button GetUserAccountButton()
-		{
-			return btn_useraccount;
-		}
-
 		// Click event for settings button
 		private void settings_Click(object sender, EventArgs e)
 		{
