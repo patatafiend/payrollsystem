@@ -13,11 +13,12 @@ namespace payrollsystemsti
         public SqlCommand cmd;
         public SqlDataAdapter sda;
         public string pkk;
+		public string constr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
 
         public void OpenConnection()
         {
 
-            con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false");
+            con = new SqlConnection(constr);
 			if(con.State == System.Data.ConnectionState.Closed)
 			{
 				con.Open();

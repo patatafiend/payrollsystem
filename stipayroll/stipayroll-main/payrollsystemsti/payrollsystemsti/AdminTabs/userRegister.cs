@@ -21,6 +21,7 @@ namespace payrollsystemsti.Tabs
 		private const string Digits = "0123456789";
 		private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 		//I'll lipat nalang to sa ibang class para mas malinis dito na muna eksdi :)
+        Connection con = new Connection();
 
 		public userRegister()
 		{
@@ -79,7 +80,9 @@ namespace payrollsystemsti.Tabs
 						{
 							cmd.Parameters.AddWithValue("@Username", tbUserName.Text);
                             cmd.Parameters.AddWithValue("@Password", randomPass);
-                            cmd.Parameters.AddWithValue("@Username", cbRole.Text);
+                            cmd.Parameters.AddWithValue("@Role", cbRole.Text);
+
+                            cmd.ExecuteNonQuery();
                         }
 					}
 					MessageBox.Show("User password = " + randomPass + " Record Saved Successfully.... ");
@@ -127,13 +130,14 @@ namespace payrollsystemsti.Tabs
             string query = "SELECT 1 FROM UserAccounts WHERE Username = @Username";
             using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
             {
-                SqlDataAdapter sda = new SqlDataAdapter();
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                if (dt.Rows.Count > 0)
-                    return true;
-                else
-                    return false;
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", userName);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null && result != DBNull.Value;
+                }  
             } 
         }
         private void ClearData()
@@ -276,6 +280,34 @@ namespace payrollsystemsti.Tabs
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)
         {
             btnCancel.Visible = btnUpdate.Enabled;
+        }
+
+        private void LoadUserData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT * FROM UserAccounts WHERE EmployeeID IS NULL";
+            using (SqlConnection conn = new SqlConnection(con.constr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgUserID"].Value = row["UserID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgUserName"].Value = row["UserName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();
+                    }
+                }
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadUserData();
         }
     }
 }

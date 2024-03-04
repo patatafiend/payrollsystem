@@ -49,6 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -249,11 +250,22 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(269, 24);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(89, 80);
+            this.btnLoad.TabIndex = 19;
+            this.btnLoad.Text = "Load User Accounts";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // userRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(938, 612);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.btnUpdate);
@@ -300,5 +312,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRole;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgUserID;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
