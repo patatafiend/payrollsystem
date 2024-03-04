@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbEmployeeID = new System.Windows.Forms.Label();
             this.lb_User_Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -56,8 +57,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnLeave = new System.Windows.Forms.Button();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.pbEmpPic = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -71,13 +70,12 @@
             this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmpPic)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbEmployeeID);
             this.panel1.Controls.Add(this.lb_User_Username);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -86,6 +84,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1206, 43);
             this.panel1.TabIndex = 1;
+            // 
+            // lbEmployeeID
+            // 
+            this.lbEmployeeID.AutoSize = true;
+            this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmployeeID.Location = new System.Drawing.Point(676, 15);
+            this.lbEmployeeID.Name = "lbEmployeeID";
+            this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
+            this.lbEmployeeID.TabIndex = 3;
+            this.lbEmployeeID.Text = "EmployeeID:";
             // 
             // lb_User_Username
             // 
@@ -382,29 +390,12 @@
             this.btnLeave.UseVisualStyleBackColor = false;
             this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
             // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.pbEmpPic);
-            this.panel11.Location = new System.Drawing.Point(1066, 62);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(101, 91);
-            this.panel11.TabIndex = 5;
-            // 
-            // pbEmpPic
-            // 
-            this.pbEmpPic.Location = new System.Drawing.Point(3, 4);
-            this.pbEmpPic.Name = "pbEmpPic";
-            this.pbEmpPic.Size = new System.Drawing.Size(95, 84);
-            this.pbEmpPic.TabIndex = 2;
-            this.pbEmpPic.TabStop = false;
-            // 
             // formDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1206, 679);
-            this.Controls.Add(this.panel11);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;
@@ -426,8 +417,6 @@
             this.panel9.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmpPic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -460,7 +449,6 @@
 		private System.Windows.Forms.Label lb_User_Username;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnLeave;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.PictureBox pbEmpPic;
+        private System.Windows.Forms.Label lbEmployeeID;
     }
 }

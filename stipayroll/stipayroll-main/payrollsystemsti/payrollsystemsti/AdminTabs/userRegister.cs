@@ -93,8 +93,8 @@ namespace payrollsystemsti.Tabs
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-				string query = "UPDATE UserAccounts SET Username =@Username, Role =@Role," +
-					           "WHERE UserID = @UserID";
+				string query = "UPDATE UserAccounts SET Username =@Username, Role =@Role" +
+					           " WHERE UserID = @UserID";
                 using(SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
                 {
                     conn.Open();
@@ -102,7 +102,9 @@ namespace payrollsystemsti.Tabs
                     {
                         cmd.Parameters.AddWithValue("@Username", tbUserName.Text);
                         cmd.Parameters.AddWithValue("@Role", cbRole.Text);
-                        cmd.Parameters.AddWithValue("@Username", tbUserID.Text);
+                        cmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
+
+                        cmd.ExecuteNonQuery();
                     }
                 }
                 MessageBox.Show("Update Successful", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -111,6 +113,7 @@ namespace payrollsystemsti.Tabs
                 btnUpdate.Enabled = false;
                 btnDeactivate.Enabled = false;
             }
+            
             ClearData();
         }
         private void btnCancel_Click(object sender, EventArgs e)

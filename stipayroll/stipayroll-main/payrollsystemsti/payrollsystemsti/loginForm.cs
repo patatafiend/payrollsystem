@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
@@ -44,7 +46,7 @@ namespace payrollsystemsti
                     try
                     {
                         conn.Open();
-                        string query = "SELECT UserID, Role, EmployeeID FROM UserAccounts WHERE Username=@username AND Password=@password";
+                        string query = "SELECT UserID, Role, EmployeeID, Username FROM UserAccounts WHERE Username=@username AND Password=@password";
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
@@ -57,16 +59,20 @@ namespace payrollsystemsti
                                 {
                                     int userID = (int)reader["UserID"];
                                     string role = reader["Role"].ToString();
+                                    string username = reader["Username"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
 
-                                    byte[] imageData = RetrieveEmployeeImageData(employeeID);
                                     loggedIn = true;
-                                    LoggedInUserName = tbUserName.Text; // Fix: Assign the entered username to LoggedInUserName
+                                    LoggedInUserName = username;// Fix: Assign the entered username to LoggedInUserName
+                                    LoggedInEmployeeID = employeeID;
+
+                                    
                                     this.Hide();
                                     formDashboard formDashboard = new formDashboard();
                                     formDashboard.LoggedInUserName = LoggedInUserName;
+                                    formDashboard.LoggedInEmployeeID = LoggedInEmployeeID;
                                     formDashboard.Show();
-                                    if (role != "admin")
+                                    if (role != "Admin")
                                     {
                                         // disable functions if not admin
                                         Button useraccountbutton = formDashboard.GetUserAccountButton();
@@ -87,9 +93,7 @@ namespace payrollsystemsti
                     }
                 }
             }
-            
         }
-
         bool close;
         private void fm_login_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -107,32 +111,8 @@ namespace payrollsystemsti
         {
             this.ActiveControl = tbUserName;
         }
-        internal byte[] RetrieveEmployeeImageData(int employeeID)
-        {
-            byte[] imageData = null;
-            string query = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @employeID";
-            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
-            {
-                conn.Open();
-                using(SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+        
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if(reader.Read())
-                        {
-                            if (!(reader["ImageData"]is DBNull))
-                            {
-                                imageData = (byte[])reader["ImageData"];
-                            }
-                        }
-                    }
-                }
-            }
-
-                return imageData;
-        }
     }
 
 }

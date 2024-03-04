@@ -2,6 +2,9 @@
 using payrollsystemsti.EmployeeTabs;
 using payrollsystemsti.Tabs;
 using System;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -24,8 +27,46 @@ namespace payrollsystemsti
 
 		// Logged-in user name property
 		private string loggedInUserName;
+        private int loggedInEmployeeID;
+        private byte[] RetrieveEmployeeImageData(int employeeID)
+        {
+            // Implement your logic to fetch ImageData from EmployeeAccounts table based on EmployeeID
+            byte[] imageData = null;
+            using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+            {
+				conn.Open();
+                string imageQuery = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @employeeID";
 
-		public string LoggedInUserName
+                using (SqlCommand imageCmd = new SqlCommand(imageQuery, conn))
+                {
+                    imageCmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    using (SqlDataReader imageReader = imageCmd.ExecuteReader())
+                    {
+                        if (imageReader.Read())
+                        {
+                            if (!(imageReader["ImageData"] is DBNull))
+                            {
+                                imageData = (byte[])imageReader["ImageData"];
+                            }
+                        }
+                    }
+                }
+            }
+            return imageData;
+        }
+        public static Image ConvertToImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+                return null;
+
+            using (MemoryStream ms = new MemoryStream(imageData))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        public string LoggedInUserName
 		{
 			get { return loggedInUserName; }
 			set
@@ -33,8 +74,19 @@ namespace payrollsystemsti
 				loggedInUserName = value;
 				// Update the label with logged-in user name
 				lb_User_Username.Text = "Name: " + loggedInUserName;
+            }
+		}
+        public int LoggedInEmployeeID
+		{
+			get { return loggedInEmployeeID;}
+			set
+			{
+				loggedInEmployeeID = value;
+				lbEmployeeID.Text = loggedInEmployeeID.ToString();
 			}
 		}
+
+        
         // Get user account button
         public Button GetUserAccountButton()
         {
@@ -50,8 +102,6 @@ namespace payrollsystemsti
 		public formDashboard()
 		{
 			InitializeComponent();
-
-
 		}
 
 		// Click event for employee button
@@ -152,10 +202,12 @@ namespace payrollsystemsti
 			{
 				dashboard.Activate();
 			}
-		}
+            byte[] imageData = RetrieveEmployeeImageData(loggedInEmployeeID);
+            dashBoard.dashboardInstance.pbGetImageUser.Image = ConvertToImage(imageData);
+        }
 
-		// FormClosed event for dashboard form
-		private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        // FormClosed event for dashboard form
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			dashboard = null;
 		}

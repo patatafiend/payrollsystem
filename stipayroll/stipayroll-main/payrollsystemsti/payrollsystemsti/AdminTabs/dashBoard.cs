@@ -7,14 +7,19 @@ namespace payrollsystemsti
 	public partial class dashBoard : Form
 	{
 		private leaveApplication leaveApplication;
+		public static dashBoard dashboardInstance;
+		public PictureBox pbGetImageUser;
 		public dashBoard()
 		{
 			InitializeComponent();
 			InitializeEventHandlers();
+			dashboardInstance = this;
+			pbGetImageUser = pbCurrentUser;
 
 		}
+        
 
-		private void InitializeEventHandlers()
+        private void InitializeEventHandlers()
 		{
 			pnl_Leave.Click += Pnl_leave_Click;
 		}
