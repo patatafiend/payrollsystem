@@ -121,6 +121,9 @@
     <EmbeddedResource Include="AdminTabs\employeeSalary.resx">
       <DependentUpon>employeeSalary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\leaveCategoriesManagement.resx">
+      <DependentUpon>leaveCategoriesManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
