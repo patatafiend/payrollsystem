@@ -58,11 +58,11 @@
     <Compile Include="AdminTabs\employeeSalary.Designer.cs">
       <DependentUpon>employeeSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminTabs\leaveCategory.cs">
+    <Compile Include="AdminTabs\leaveCategoriesManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminTabs\leaveCategory.Designer.cs">
-      <DependentUpon>leaveCategory.cs</DependentUpon>
+    <Compile Include="AdminTabs\leaveCategoriesManagement.Designer.cs">
+      <DependentUpon>leaveCategoriesManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminTabs\leaveManagement.cs">
       <SubType>Form</SubType>

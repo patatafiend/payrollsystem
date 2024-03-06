@@ -37,7 +37,7 @@ namespace payrollsystemsti.Tabs
                     string userID = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
 
                     string query = "UPDATE UserAccounts SET IsDeleted = @deactivate WHERE UserID = @userId";
-                    using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -73,7 +73,7 @@ namespace payrollsystemsti.Tabs
 				{
 					string randomPass = passwordGenerator(); //Generate randomPassword
 					string query = "INSERT INTO UserAccounts (Username, Password, Role) VALUES (@Username, @Password, @Role)";
-					using(SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt=false"))
+					using(SqlConnection conn = new SqlConnection(m.connStr))
 					{
 						conn.Open();
 						using(SqlCommand cmd = new SqlCommand(query, conn))
@@ -98,7 +98,7 @@ namespace payrollsystemsti.Tabs
             {
 				string query = "UPDATE UserAccounts SET Username =@Username, Role =@Role" +
 					           " WHERE UserID = @UserID";
-                using(SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false"))
+                using(SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     conn.Open();
                     using(SqlCommand cmd = new SqlCommand(query, conn))
@@ -153,8 +153,10 @@ namespace payrollsystemsti.Tabs
         {
             dataGridView1.Rows.Clear();
 			string query = "SELECT UserAccounts.UserID, UserAccounts.UserName, UserAccounts.Role," +
-                           " EmployeeAccounts.EmployeeID, EmployeeAccounts.Department, EmployeeAccounts.Position FROM UserAccounts JOIN EmployeeAccounts" +
+                           " EmployeeAccounts.EmployeeID, EmployeeAccounts.Department, EmployeeAccounts.Position" +
+                           " FROM UserAccounts JOIN EmployeeAccounts" +
 				           " ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID;";
+
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
@@ -304,10 +306,16 @@ namespace payrollsystemsti.Tabs
                 }
             }
         }
+        bool btnUserLoadClicked = true;
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
             LoadUserData();
+        }
+
+        private void btnLoadEmpAcc_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

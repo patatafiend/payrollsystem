@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace payrollsystemsti.AdminTabs
 {
-    public partial class leaveCategory : Form
+    public partial class leaveCategoriesManagement : Form
     {
-        public leaveCategory()
+        public leaveCategoriesManagement()
         {
             InitializeComponent();
         }

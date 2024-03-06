@@ -13,6 +13,7 @@ namespace payrollsystemsti
 {
     public partial class changePass : Form
     {
+        Methods m = new Methods();
         public changePass()
         {
             InitializeComponent();
@@ -87,11 +88,11 @@ namespace payrollsystemsti
 
 			if (action == DialogResult.Yes)
 			{
-				using (SqlConnection sqlConn = new SqlConnection("your_connection_string_here"))
+				using (SqlConnection sqlConn = new SqlConnection(m.connStr))
 				{
 					sqlConn.Open();
 
-					using (SqlCommand cmd = new SqlCommand("SELECT 1 FROM Users WHERE Username = @username AND Password = @password", sqlConn))
+					using (SqlCommand cmd = new SqlCommand("SELECT 1 FROM UserAccounts WHERE Username = @username AND Password = @password", sqlConn))
 					{
 						cmd.Parameters.AddWithValue("@username", tbUser.Text);
 						cmd.Parameters.AddWithValue("@password", tbPassword.Text);
@@ -107,7 +108,7 @@ namespace payrollsystemsti
 								{
 									if (tbNewPass.Text.Length > 3)
 									{
-										using (SqlCommand updateCmd = new SqlCommand("UPDATE Users SET Password = @newPassword WHERE Username = @username AND Password = @oldPassword", sqlConn))
+										using (SqlCommand updateCmd = new SqlCommand("UPDATE UserAccounts SET Password = @newPassword WHERE Username = @username AND Password = @oldPassword", sqlConn))
 										{
 											updateCmd.Parameters.AddWithValue("@newPassword", tbNewPass.Text);
 											updateCmd.Parameters.AddWithValue("@username", tbUser.Text);

@@ -16,11 +16,16 @@ namespace payrollsystemsti.EmployeeTabs
 {
     public partial class leaveApplication : Form
     {
-       
+        public static leaveApplication leaveApplicationInstance;
+        public TextBox tbEmployee;
+        Methods m = new Methods();
         string fileName;
+        
         public leaveApplication()
         {
             InitializeComponent();
+            leaveApplicationInstance = this;
+            tbEmployee = tbEmployeeID;
         }
 
         private void leaveApplication_Load(object sender, EventArgs e)
@@ -30,11 +35,13 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void loadLeaveCB()
         {
-			using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+            string query = "SELECT * FROM LeaveCategory";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
 
-				using (SqlCommand cmd = new SqlCommand("SELECT * FROM [Category]", conn))
+				using (SqlCommand cmd = new SqlCommand(query, conn))
 				{
 					DataTable dt = new DataTable();
 					using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -83,27 +90,25 @@ namespace payrollsystemsti.EmployeeTabs
 				// Convert medical certificate image to binary
 				byte[] medicalCertificate = ConvertImageToBinary(pbMedCert.Image);
 
-				// Retrieve the EmpID of the logged-in employee
-				int employeeID = GetLoggedInEmployeeID();
-
-				using (SqlConnection sqlConn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+				using (SqlConnection sqlConn = new SqlConnection(m.connStr))
 				{
 					sqlConn.Open();
 
-					string query = "INSERT INTO Leaves (EmployeeID, CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName) VALUES" +
-						"(@EmployeeID, (SELECT CategoryID FROM LeaveCategory WHERE CatName = @CategoryName)," +
-						" @StartDate, @EndDate, @Reason, @MedicalCertificate, 'Pending', @FileName)";
+					string query = "INSERT INTO LeaveApplication (CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName, DateApplied, EmployeeID) VALUES" +
+						"((SELECT CategoryID FROM LeaveCategory WHERE CategoryName = @CategoryName)," +
+						" @StartDate, @EndDate, @Reason, @MedicalCertificate, @Status, @FileName, @DateApplied, EmployeeID)";
 
 					using (SqlCommand cmd = new SqlCommand(query, sqlConn))
 					{
 						// Add parameters to prevent SQL injection
-						cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+						cmd.Parameters.AddWithValue("@EmployeeID", tbEmployeeID.Text);
 						cmd.Parameters.AddWithValue("@CategoryName", categoryName);
 						cmd.Parameters.AddWithValue("@StartDate", dtStart.Value.ToString("MM/dd/yyyy"));
 						cmd.Parameters.AddWithValue("@EndDate", dtEnd.Value.ToString("MM/dd/yyyy"));
 						cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
 						cmd.Parameters.AddWithValue("@MedicalCertificate", medicalCertificate);
 						cmd.Parameters.AddWithValue("@FileName", fileName);
+                        cmd.Parameters.AddWithValue("@DateApplied", DateTime.Now.ToString("MM/dd/yyyy"));
 
 						cmd.ExecuteNonQuery();
 					}
@@ -111,6 +116,7 @@ namespace payrollsystemsti.EmployeeTabs
 					MessageBox.Show("Leave Application Submitted Successfully");
 					ClearLeaveApplicationForm();
 				}
+                LoadData();
 			}
 		}
         private bool Validation()
@@ -138,38 +144,6 @@ namespace payrollsystemsti.EmployeeTabs
             }
             return result;
         }
-        string loggedInUserName;
-        public string LoggedInUserName
-        {
-            get { return loggedInUserName; }
-            set
-            {
-                loggedInUserName = value;
-                // Update the label with logged-in user name
-                
-            }
-        }
-        private int GetLoggedInEmployeeID()
-        {
-
-			using (SqlConnection sqlConn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
-			{
-				sqlConn.Open();
-				string query = "SELECT EmpID FROM Employee WHERE UserName = @username";
-
-				using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-				{
-					cmd.Parameters.AddWithValue("@username", loggedInUserName);
-
-					object result = cmd.ExecuteScalar();
-					if (result != null)
-					{
-						return (int)result;
-					}
-					return -1; // Return -1 if the EmpID is not found (handle this case appropriately in your application)
-				}
-			}
-		}
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -180,6 +154,38 @@ namespace payrollsystemsti.EmployeeTabs
                     fileName = ofd.FileName;
                     lbFileName.Text = fileName;
                     pbMedCert.Image = Image.FromFile(fileName);
+                }
+            }
+        }
+
+        private void LoadData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT LeaveAccounts.StartDate, LeaveAccounts.EndDate,LeaveAccounts.Reason," +
+                "LeaveAccounts.EndDate, LeaveAccounts.Reason, LeaveAccounts.FileName,LeaveAccounts.ImageData," +
+                " Category.CategoryId, Category.CategoryName FROM LeaveApplication JOIN Category ON" +
+                " LeaveApplication.CategoryId = Category.CategoryId";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    adapter.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveId"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveCategory"].Value = row["CategoryId"].ToString();
+                        dataGridView1.Rows[n].Cells["dgStartDate"].Value = Convert.ToDateTime(row["StartDate"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgEndDate"].Value = Convert.ToDateTime(row["EndDate"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgReason"].Value = row["Reason"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
+                    }
                 }
             }
         }

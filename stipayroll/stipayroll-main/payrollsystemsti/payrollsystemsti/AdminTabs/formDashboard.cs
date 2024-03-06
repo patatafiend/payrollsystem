@@ -337,6 +337,7 @@ namespace payrollsystemsti
             {
                 leaveApplication.Activate();
             }
+            leaveApplication.leaveApplicationInstance.tbEmployee.Text = loggedInEmployeeID.ToString();
         }
 
         private void LeaveApplication_FormClosed(object sender, FormClosedEventArgs e)
