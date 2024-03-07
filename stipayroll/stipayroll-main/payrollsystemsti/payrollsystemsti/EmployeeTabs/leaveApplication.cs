@@ -95,7 +95,7 @@ namespace payrollsystemsti.EmployeeTabs
 					sqlConn.Open();
 
 					string query = "INSERT INTO LeaveApplication (CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName, DateApplied, EmployeeID) VALUES" +
-						"((SELECT CategoryID FROM LeaveCategory WHERE CategoryName = @CategoryName)," +
+						"(@CategoryName," +
 						" @StartDate, @EndDate, @Reason, @MedicalCertificate, @Status, @FileName, @DateApplied, EmployeeID)";
 
 					using (SqlCommand cmd = new SqlCommand(query, sqlConn))
@@ -109,8 +109,9 @@ namespace payrollsystemsti.EmployeeTabs
 						cmd.Parameters.AddWithValue("@MedicalCertificate", medicalCertificate);
 						cmd.Parameters.AddWithValue("@FileName", fileName);
                         cmd.Parameters.AddWithValue("@DateApplied", DateTime.Now.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@Status", "Pending");
 
-						cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
 					}
 
 					MessageBox.Show("Leave Application Submitted Successfully");

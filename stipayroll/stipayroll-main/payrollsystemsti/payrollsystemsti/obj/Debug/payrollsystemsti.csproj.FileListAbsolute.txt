@@ -135,3 +135,4 @@ C:\Users\neilm\Source\Repos\patatafiend\payrollsystem\stipayroll\stipayroll-main
 C:\Users\neilm\Source\Repos\patatafiend\payrollsystem\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.csproj.CoreCompileInputs.cache
 C:\Users\neilm\Source\Repos\patatafiend\payrollsystem\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.exe
 C:\Users\neilm\Source\Repos\patatafiend\payrollsystem\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.pdb
+C:\Users\neil\Source\Repos\NewRepo2\stipayroll\stipayroll-main\payrollsystemsti\payrollsystemsti\obj\Debug\payrollsystemsti.AdminTabs.leaveCategoriesManagement.resources

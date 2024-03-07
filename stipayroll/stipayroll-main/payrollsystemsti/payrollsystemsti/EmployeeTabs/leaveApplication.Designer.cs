@@ -245,7 +245,6 @@
             this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Choose Type of Leave";
-            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -255,7 +254,6 @@
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Start";
-            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -265,7 +263,6 @@
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "End";
-            this.label3.Visible = false;
             // 
             // label4
             // 
@@ -275,7 +272,6 @@
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "Reason";
-            this.label4.Visible = false;
             // 
             // tbEmployeeID
             // 
