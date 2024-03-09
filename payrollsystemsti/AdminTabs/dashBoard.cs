@@ -10,6 +10,7 @@ namespace payrollsystemsti
 		private leaveApplication leaveApplication;
 		public static dashBoard dashboardInstance;
 		public PictureBox pbGetImageUser;
+		public Label lbGetLabel;
 
 		public dashBoard()
 		{
@@ -17,6 +18,7 @@ namespace payrollsystemsti
 			InitializeEventHandlers();
 			dashboardInstance = this;
 			pbGetImageUser = pbCurrentUser;
+			lbGetLabel = lbWelcome;
 		}
 
 		private void InitializeEventHandlers()

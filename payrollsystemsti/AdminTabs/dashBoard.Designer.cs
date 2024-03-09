@@ -38,12 +38,12 @@
             this.lb_Leave = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbWelcome = new System.Windows.Forms.Label();
             this.pbCurrentUser = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbEmployeeID = new System.Windows.Forms.Label();
             this.lb_User_Username = new System.Windows.Forms.Label();
+            this.lbEmployeeID = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pnl_Employee.SuspendLayout();
@@ -146,7 +146,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.lbWelcome);
             this.panel2.Location = new System.Drawing.Point(35, 87);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(725, 68);
@@ -164,18 +164,18 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Have a nice day!";
             // 
-            // label1
+            // lbWelcome
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label1.Location = new System.Drawing.Point(20, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 32);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Welcome, Renz";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lbWelcome.AutoSize = true;
+            this.lbWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.lbWelcome.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWelcome.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lbWelcome.Location = new System.Drawing.Point(20, 4);
+            this.lbWelcome.Name = "lbWelcome";
+            this.lbWelcome.Size = new System.Drawing.Size(214, 32);
+            this.lbWelcome.TabIndex = 6;
+            this.lbWelcome.Text = "Welcome, Renz";
+            this.lbWelcome.Click += new System.EventHandler(this.label1_Click);
             // 
             // pbCurrentUser
             // 
@@ -201,16 +201,15 @@
             this.panel1.Size = new System.Drawing.Size(285, 673);
             this.panel1.TabIndex = 4;
             // 
-            // label3
+            // lb_User_Username
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 23);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "My Profile";
+            this.lb_User_Username.AutoSize = true;
+            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_User_Username.Location = new System.Drawing.Point(15, 268);
+            this.lb_User_Username.Name = "lb_User_Username";
+            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
+            this.lb_User_Username.TabIndex = 5;
+            this.lb_User_Username.Text = "Username:";
             // 
             // lbEmployeeID
             // 
@@ -223,15 +222,16 @@
             this.lbEmployeeID.TabIndex = 4;
             this.lbEmployeeID.Text = "EmployeeID:";
             // 
-            // lb_User_Username
+            // label3
             // 
-            this.lb_User_Username.AutoSize = true;
-            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_User_Username.Location = new System.Drawing.Point(15, 268);
-            this.lb_User_Username.Name = "lb_User_Username";
-            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
-            this.lb_User_Username.TabIndex = 5;
-            this.lb_User_Username.Text = "Username:";
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(14, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "My Profile";
             // 
             // panel3
             // 
@@ -301,7 +301,7 @@
 		private System.Windows.Forms.Label lb_EmployeeNum;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbWelcome;
         private System.Windows.Forms.PictureBox pbCurrentUser;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;

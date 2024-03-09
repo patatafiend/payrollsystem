@@ -10,7 +10,7 @@ namespace payrollsystemsti
     public partial class formLogin : Form
     {
         private bool loggedIn = false;
-        private string loggedInUserName;
+        private string loggedInUserName, loggedInFirstName;
         private int loggedInEmployeeID;
 
 
@@ -18,6 +18,11 @@ namespace payrollsystemsti
         {
             get { return loggedInUserName; }
             private set { loggedInUserName = value; }
+        }
+        public string LoggedInFirstName
+        {
+            get { return loggedInFirstName; }
+            private set { loggedInFirstName = value; }
         }
         public int LoggedInEmployeeID
         {
@@ -46,7 +51,10 @@ namespace payrollsystemsti
                     try
                     {
                         conn.Open();
-                        string query = "SELECT UserID, Role, EmployeeID, Username FROM UserAccounts WHERE Username=@username AND Password=@password";
+                        string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, UserAccounts.Username," +
+                            "EmployeeAccounts.FirstName FROM UserAccounts INNER JOIN EmployeeAccounts" +
+                            " ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID" +
+                            " WHERE Username=@username AND Password=@password";
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
@@ -60,16 +68,19 @@ namespace payrollsystemsti
                                     int userID = (int)reader["UserID"];
                                     string role = reader["Role"].ToString();
                                     string username = reader["Username"].ToString();
+                                    string fname = reader["FirstName"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
 
                                     loggedIn = true;
                                     LoggedInUserName = username;// Fix: Assign the entered username to LoggedInUserName
+                                    LoggedInFirstName = fname;
                                     LoggedInEmployeeID = employeeID;
 
                                     
                                     this.Hide();
                                     formDashboard formDashboard = new formDashboard();
                                     formDashboard.LoggedInUserName = LoggedInUserName;
+                                    formDashboard.LoggedInFirstName = LoggedInFirstName;
                                     formDashboard.LoggedInEmployeeID = LoggedInEmployeeID;
                                     formDashboard.Show();
                                     if (role != "Admin")

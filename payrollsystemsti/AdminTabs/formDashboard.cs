@@ -28,15 +28,43 @@ namespace payrollsystemsti
 
 
 		// Logged-in user name property
-		private string loggedInUserName;
+		private string loggedInUserName, loggedInFirstName;
         private int loggedInEmployeeID;
+        
+        public string LoggedInUserName
+		{
+			get { return loggedInUserName; }
+			set
+			{
+				loggedInUserName = value;
+				// Update the label with logged-in user name
+				lb_User_Username.Text = "Name: " + loggedInUserName;
+            }
+		}
+        public string LoggedInFirstName
+        {
+            get { return loggedInFirstName; }
+            set
+            {
+                loggedInFirstName = value;
+            }
+        }
+        public int LoggedInEmployeeID
+		{
+			get { return loggedInEmployeeID;}
+			set
+			{
+				loggedInEmployeeID = value;
+				lbEmployeeID.Text = loggedInEmployeeID.ToString();
+			}
+		}
         private byte[] RetrieveEmployeeImageData(int employeeID)
         {
             // Implement your logic to fetch ImageData from EmployeeAccounts table based on EmployeeID
             byte[] imageData = null;
             using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
             {
-				conn.Open();
+                conn.Open();
                 string imageQuery = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand imageCmd = new SqlCommand(imageQuery, conn))
@@ -68,27 +96,8 @@ namespace payrollsystemsti
             }
         }
 
-        public string LoggedInUserName
-		{
-			get { return loggedInUserName; }
-			set
-			{
-				loggedInUserName = value;
-				// Update the label with logged-in user name
-				lb_User_Username.Text = "Name: " + loggedInUserName;
-            }
-		}
-        public int LoggedInEmployeeID
-		{
-			get { return loggedInEmployeeID;}
-			set
-			{
-				loggedInEmployeeID = value;
-				lbEmployeeID.Text = loggedInEmployeeID.ToString();
-			}
-		}
 
-        
+
         // Get user account button
         public Button GetUserAccountButton()
         {
@@ -204,8 +213,11 @@ namespace payrollsystemsti
 			{
 				dashboard.Activate();
 			}
+			String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
+
             byte[] imageData = RetrieveEmployeeImageData(loggedInEmployeeID);
             dashBoard.dashboardInstance.pbGetImageUser.Image = ConvertToImage(imageData);
+			dashBoard.dashboardInstance.lbGetLabel.Text = "Welcome , " + fnameC;
         }
 
         // FormClosed event for dashboard form
