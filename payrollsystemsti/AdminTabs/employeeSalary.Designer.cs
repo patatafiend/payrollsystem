@@ -175,7 +175,6 @@
             this.label10.Size = new System.Drawing.Size(133, 19);
             this.label10.TabIndex = 8;
             this.label10.Text = "Total Deduction:";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // textBox11
             // 
@@ -257,7 +256,6 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(94, 28);
             this.textBox9.TabIndex = 9;
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label9
             // 
@@ -276,7 +274,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(94, 28);
             this.textBox8.TabIndex = 9;
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label8
             // 
@@ -295,7 +292,6 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(94, 28);
             this.textBox7.TabIndex = 9;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // label7
             // 
@@ -314,7 +310,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(94, 28);
             this.textBox6.TabIndex = 9;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label6
             // 
@@ -338,7 +333,6 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Overtime";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // textBox5
             // 
@@ -348,7 +342,6 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(94, 28);
             this.textBox5.TabIndex = 9;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label5
             // 
@@ -367,7 +360,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(94, 28);
             this.textBox4.TabIndex = 4;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
             // 
@@ -385,7 +377,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(265, 240);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // textBox14
             // 
@@ -405,7 +396,6 @@
             this.label14.Size = new System.Drawing.Size(101, 19);
             this.label14.TabIndex = 7;
             this.label14.Text = "Total Salary:";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // button1
             // 

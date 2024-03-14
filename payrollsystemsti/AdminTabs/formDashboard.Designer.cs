@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lb_User_Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbEmployeeID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,12 +53,10 @@
             this.sideBar = new System.Windows.Forms.FlowLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnLeave = new System.Windows.Forms.Button();
-            this.settings = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.settings = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.lb_User_Username = new System.Windows.Forms.Label();
-            this.lbEmployeeID = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -86,7 +86,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1250, 70);
             this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lb_User_Username
+            // 
+            this.lb_User_Username.AutoSize = true;
+            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_User_Username.Location = new System.Drawing.Point(855, 38);
+            this.lb_User_Username.Name = "lb_User_Username";
+            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
+            this.lb_User_Username.TabIndex = 7;
+            this.lb_User_Username.Text = "Username:";
             // 
             // label1
             // 
@@ -98,7 +107,17 @@
             this.label1.Size = new System.Drawing.Size(302, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Payroll Management System";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lbEmployeeID
+            // 
+            this.lbEmployeeID.AutoSize = true;
+            this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmployeeID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbEmployeeID.Location = new System.Drawing.Point(631, 38);
+            this.lbEmployeeID.Name = "lbEmployeeID";
+            this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
+            this.lbEmployeeID.TabIndex = 6;
+            this.lbEmployeeID.Text = "EmployeeID:";
             // 
             // pictureBox1
             // 
@@ -307,7 +326,6 @@
             this.sideBar.Name = "sideBar";
             this.sideBar.Size = new System.Drawing.Size(187, 698);
             this.sideBar.TabIndex = 3;
-            this.sideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.sideBar_Paint);
             // 
             // panel7
             // 
@@ -319,7 +337,6 @@
             this.panel7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.panel7.Size = new System.Drawing.Size(185, 52);
             this.panel7.TabIndex = 5;
-            this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
             // 
             // btnLeave
             // 
@@ -337,6 +354,17 @@
             this.btnLeave.UseVisualStyleBackColor = false;
             this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
             // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.Transparent;
+            this.panel10.Controls.Add(this.settings);
+            this.panel10.Location = new System.Drawing.Point(0, 220);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.panel10.Size = new System.Drawing.Size(188, 52);
+            this.panel10.TabIndex = 7;
+            // 
             // settings
             // 
             this.settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
@@ -353,17 +381,16 @@
             this.settings.UseVisualStyleBackColor = false;
             this.settings.Click += new System.EventHandler(this.settings_Click);
             // 
-            // panel10
+            // panel9
             // 
-            this.panel10.BackColor = System.Drawing.Color.Transparent;
-            this.panel10.Controls.Add(this.settings);
-            this.panel10.Location = new System.Drawing.Point(0, 220);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.panel10.Size = new System.Drawing.Size(188, 52);
-            this.panel10.TabIndex = 7;
-            this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel10_Paint);
+            this.panel9.BackColor = System.Drawing.Color.Transparent;
+            this.panel9.Controls.Add(this.button6);
+            this.panel9.Location = new System.Drawing.Point(0, 275);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.panel9.Size = new System.Drawing.Size(188, 52);
+            this.panel9.TabIndex = 8;
             // 
             // button6
             // 
@@ -380,38 +407,6 @@
             this.button6.Text = "Logout";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.btnLogout);
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.Transparent;
-            this.panel9.Controls.Add(this.button6);
-            this.panel9.Location = new System.Drawing.Point(0, 275);
-            this.panel9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(188, 52);
-            this.panel9.TabIndex = 8;
-            // 
-            // lb_User_Username
-            // 
-            this.lb_User_Username.AutoSize = true;
-            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_User_Username.Location = new System.Drawing.Point(855, 38);
-            this.lb_User_Username.Name = "lb_User_Username";
-            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
-            this.lb_User_Username.TabIndex = 7;
-            this.lb_User_Username.Text = "Username:";
-            // 
-            // lbEmployeeID
-            // 
-            this.lbEmployeeID.AutoSize = true;
-            this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmployeeID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbEmployeeID.Location = new System.Drawing.Point(631, 38);
-            this.lbEmployeeID.Name = "lbEmployeeID";
-            this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
-            this.lbEmployeeID.TabIndex = 6;
-            this.lbEmployeeID.Text = "EmployeeID:";
             // 
             // formDashboard
             // 

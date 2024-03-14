@@ -410,11 +410,7 @@ namespace payrollsystemsti.AdminTabs
         //gets the value in the combo box role
         private void empPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbPosition.SelectedItem != null)
-            {
-                string p = cbPosition.SelectedItem.ToString();
-                tbBasicRate.Text = setItem(p);
-            }
+
         }
         //sets the value of textbox basicrate
         private string setItem(string p)
@@ -560,51 +556,6 @@ namespace payrollsystemsti.AdminTabs
             {
                 e.Handled = true;
             }
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtDob_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void empID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbBasicRate_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbDepart_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

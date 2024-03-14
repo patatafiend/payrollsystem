@@ -62,25 +62,5 @@ namespace payrollsystemsti
 				MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
-        private void lb_DashBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_EmployeeNum_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_Employee_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

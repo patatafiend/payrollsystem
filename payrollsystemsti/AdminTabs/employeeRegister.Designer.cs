@@ -127,7 +127,6 @@
             this.empID.ReadOnly = true;
             this.empID.Size = new System.Drawing.Size(172, 28);
             this.empID.TabIndex = 8;
-            this.empID.TextChanged += new System.EventHandler(this.empID_TextChanged);
             // 
             // tbMob
             // 
@@ -168,7 +167,6 @@
             this.label4.Size = new System.Drawing.Size(41, 19);
             this.label4.TabIndex = 11;
             this.label4.Text = "SSN:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tbEmail
             // 
@@ -178,7 +176,6 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(172, 28);
             this.tbEmail.TabIndex = 14;
-            this.tbEmail.TextChanged += new System.EventHandler(this.tbEmail_TextChanged);
             this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empEmail_KeyDown);
             // 
             // label5
@@ -226,7 +223,6 @@
             this.dtDob.Name = "dtDob";
             this.dtDob.Size = new System.Drawing.Size(172, 27);
             this.dtDob.TabIndex = 18;
-            this.dtDob.ValueChanged += new System.EventHandler(this.dtDob_ValueChanged);
             this.dtDob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empDob_KeyDown);
             // 
             // tbAddress
@@ -328,7 +324,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(927, 219);
             this.dataGridView1.TabIndex = 27;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dgEmp
@@ -463,7 +458,6 @@
             this.label10.Size = new System.Drawing.Size(94, 19);
             this.label10.TabIndex = 21;
             this.label10.Text = "Last Name:";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // tbLastName
             // 
@@ -528,7 +522,6 @@
             this.tbDepart.Name = "tbDepart";
             this.tbDepart.Size = new System.Drawing.Size(172, 28);
             this.tbDepart.TabIndex = 33;
-            this.tbDepart.TextChanged += new System.EventHandler(this.tbDepart_TextChanged);
             // 
             // label9
             // 
@@ -547,7 +540,6 @@
             this.tbBasicRate.Name = "tbBasicRate";
             this.tbBasicRate.Size = new System.Drawing.Size(172, 28);
             this.tbBasicRate.TabIndex = 31;
-            this.tbBasicRate.TextChanged += new System.EventHandler(this.tbBasicRate_TextChanged);
             this.tbBasicRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empBasicRate_KeyDown);
             // 
             // label1
@@ -558,7 +550,6 @@
             this.label1.Size = new System.Drawing.Size(91, 19);
             this.label1.TabIndex = 19;
             this.label1.Text = "Basic Rate:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnCancel
             // 

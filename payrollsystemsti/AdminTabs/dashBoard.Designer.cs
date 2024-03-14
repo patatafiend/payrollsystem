@@ -66,7 +66,6 @@
             this.lb_DashBoard.Size = new System.Drawing.Size(186, 38);
             this.lb_DashBoard.TabIndex = 0;
             this.lb_DashBoard.Text = "Dashboard";
-            this.lb_DashBoard.Click += new System.EventHandler(this.lb_DashBoard_Click);
             // 
             // pnl_Employee
             // 
@@ -77,7 +76,6 @@
             this.pnl_Employee.Name = "pnl_Employee";
             this.pnl_Employee.Size = new System.Drawing.Size(274, 135);
             this.pnl_Employee.TabIndex = 1;
-            this.pnl_Employee.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Employee_Paint);
             // 
             // lb_EmployeeNum
             // 
@@ -88,7 +86,6 @@
             this.lb_EmployeeNum.Size = new System.Drawing.Size(113, 13);
             this.lb_EmployeeNum.TabIndex = 1;
             this.lb_EmployeeNum.Text = "Number of Employees:";
-            this.lb_EmployeeNum.Click += new System.EventHandler(this.lb_EmployeeNum_Click);
             // 
             // lb_Employee
             // 
@@ -172,10 +169,9 @@
             this.lbWelcome.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lbWelcome.Location = new System.Drawing.Point(20, 4);
             this.lbWelcome.Name = "lbWelcome";
-            this.lbWelcome.Size = new System.Drawing.Size(214, 32);
+            this.lbWelcome.Size = new System.Drawing.Size(153, 32);
             this.lbWelcome.TabIndex = 6;
-            this.lbWelcome.Text = "Welcome, Renz";
-            this.lbWelcome.Click += new System.EventHandler(this.label1_Click);
+            this.lbWelcome.Text = "Welcome !";
             // 
             // pbCurrentUser
             // 

@@ -195,15 +195,5 @@ namespace payrollsystemsti.EmployeeTabs
         {
 
         }
-
-        private void lbFileName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtEnd_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

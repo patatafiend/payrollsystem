@@ -206,7 +206,6 @@
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(100, 23);
             this.dtEnd.TabIndex = 8;
-            this.dtEnd.ValueChanged += new System.EventHandler(this.dtEnd_ValueChanged);
             // 
             // btnAdd
             // 
@@ -247,7 +246,6 @@
             this.lbFileName.TabIndex = 11;
             this.lbFileName.Text = "File Name:";
             this.lbFileName.Visible = false;
-            this.lbFileName.Click += new System.EventHandler(this.lbFileName_Click);
             // 
             // label1
             // 
