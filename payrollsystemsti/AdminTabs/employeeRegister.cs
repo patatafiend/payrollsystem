@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -50,8 +51,24 @@ namespace payrollsystemsti.AdminTabs
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
         }
-        // checks if textboxes are filled
-        private bool Validation()
+		private bool ValidateEmail(string email)
+		{
+			// Regular expression pattern for email validation
+			string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+			// Check if the email matches the pattern
+			if (Regex.IsMatch(email, pattern))
+			{
+				return true;
+			}
+			else
+			{
+				
+				return false;
+			}
+		}
+		// checks if textboxes are filled
+		private bool Validation()
         {
             bool result = false;
             if (string.IsNullOrEmpty(tbFirstName.Text))
@@ -99,6 +116,13 @@ namespace payrollsystemsti.AdminTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(pbEmployee, "Please Choose Image");
             }
+            else if (!ValidateEmail(tbEmail.Text)) // email format validation
+            {
+				
+				errorProvider1.Clear();
+				errorProvider1.SetError(tbEmail, "Invalid email format");
+
+			}
             else
             {
                 errorProvider1.Clear();
@@ -557,5 +581,10 @@ namespace payrollsystemsti.AdminTabs
                 e.Handled = true;
             }
         }
-    }
+
+		
+
+		
+		
+	}
 }
