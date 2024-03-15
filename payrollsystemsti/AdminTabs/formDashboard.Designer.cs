@@ -64,6 +64,8 @@
             this.settings = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.btnLeaveM = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -84,6 +86,7 @@
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -412,6 +415,7 @@
             this.sideBar.Controls.Add(this.panel7);
             this.sideBar.Controls.Add(this.panel10);
             this.sideBar.Controls.Add(this.panel9);
+            this.sideBar.Controls.Add(this.panel15);
             this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideBar.Location = new System.Drawing.Point(0, 70);
             this.sideBar.Name = "sideBar";
@@ -499,6 +503,33 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.btnLogout);
             // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.Transparent;
+            this.panel15.Controls.Add(this.btnLeaveM);
+            this.panel15.Location = new System.Drawing.Point(0, 330);
+            this.panel15.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.panel15.Size = new System.Drawing.Size(185, 52);
+            this.panel15.TabIndex = 9;
+            // 
+            // btnLeaveM
+            // 
+            this.btnLeaveM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btnLeaveM.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeaveM.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLeaveM.Image = ((System.Drawing.Image)(resources.GetObject("btnLeaveM.Image")));
+            this.btnLeaveM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLeaveM.Location = new System.Drawing.Point(-7, -32);
+            this.btnLeaveM.Name = "btnLeaveM";
+            this.btnLeaveM.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnLeaveM.Size = new System.Drawing.Size(200, 117);
+            this.btnLeaveM.TabIndex = 3;
+            this.btnLeaveM.Text = "Leave \r\nManagement";
+            this.btnLeaveM.UseVisualStyleBackColor = false;
+            this.btnLeaveM.Click += new System.EventHandler(this.btnLeaveM_Click);
+            // 
             // formDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,6 +566,7 @@
             this.panel7.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -575,5 +607,7 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private System.Windows.Forms.Panel panel13;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Button btnLeaveM;
     }
 }

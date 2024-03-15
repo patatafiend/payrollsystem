@@ -21,6 +21,7 @@ namespace payrollsystemsti
 		private employeeRegister empRegister;
 		private employeeSalary employeeSalary;
 		private leaveApplication leaveApplication;
+		private leaveCategoriesManagement leaveManage;
 
 		private bool logout = false;
 		private bool closedForm = true;
@@ -334,10 +335,31 @@ namespace payrollsystemsti
             }
             leaveApplication.leaveApplicationInstance.tbEmployee.Text = loggedInEmployeeID.ToString();
         }
-
         private void LeaveApplication_FormClosed(object sender, FormClosedEventArgs e)
         {
             leaveApplication = null;
+        }
+
+        private void btnLeaveM_Click(object sender, EventArgs e)
+        {
+            if (leaveManage == null)
+            {
+                leaveManage = new leaveCategoriesManagement();
+                leaveManage.FormClosed += LeaveManagement_FormClosed;
+                leaveManage.MdiParent = this;
+                leaveManage.Dock = DockStyle.Fill;
+                leaveManage.Show();
+            }
+            else
+            {
+                leaveManage.Activate();
+            }
+            
+        }
+
+        private void LeaveManagement_FormClosed(object sender, FormClosedEventArgs e)
+        {
+			leaveManage = null;
         }
     }
 }
