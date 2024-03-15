@@ -165,15 +165,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        // converts image to binary
-        byte[] ConvertImageToBinary(Image img)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
-            }
-        }
         //saves inputed data in the textbox
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -210,7 +201,7 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Dob", dtDob.Value.ToString("MM/dd/yyyy"));
                             cmd.Parameters.AddWithValue("@BasicRate", tbBasicRate.Text);
                             cmd.Parameters.AddWithValue("@FileName", fileName);
-                            cmd.Parameters.AddWithValue("@ImageData", ConvertImageToBinary(pbEmployee.Image));
+                            cmd.Parameters.AddWithValue("@ImageData", m.ConvertImageToBinary(pbEmployee.Image));
                             cmd.Parameters.AddWithValue("@Mobile", tbMob.Text);
                             cmd.Parameters.AddWithValue("@IsDeleted", '0');
                             int employeeId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -278,7 +269,7 @@ namespace payrollsystemsti.AdminTabs
                         cmd.Parameters.AddWithValue("@Address", tbAddress.Text);
                         cmd.Parameters.AddWithValue("@Dob", dtDob.Value.ToString("MM/dd/yyyy"));
                         cmd.Parameters.AddWithValue("@BasicRate", tbBasicRate.Text);
-                        cmd.Parameters.AddWithValue("@ImageData", ConvertImageToBinary(pbEmployee.Image));
+                        cmd.Parameters.AddWithValue("@ImageData", m.ConvertImageToBinary(pbEmployee.Image));
                         cmd.Parameters.AddWithValue("@Mobile", tbMob.Text);
                         cmd.Parameters.AddWithValue("@employeeId", empID.Text);
 
@@ -434,9 +425,18 @@ namespace payrollsystemsti.AdminTabs
         //gets the value in the combo box role
         private void empPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(cbPosition.SelectedIndex != -1)
+            {
+                tbBasicRate.Text = setItem(cbPosition.Text);
+            }
         }
         //sets the value of textbox basicrate
+
+        //void setBasicRate()
+        //{
+        //    tbBasicRate.Text = setItem(cbPosition.ToString());
+        //}
+
         private string setItem(string p)
         {
             switch (p)
@@ -581,10 +581,5 @@ namespace payrollsystemsti.AdminTabs
                 e.Handled = true;
             }
         }
-
-		
-
-		
-		
 	}
 }

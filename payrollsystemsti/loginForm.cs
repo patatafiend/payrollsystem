@@ -9,10 +9,10 @@ namespace payrollsystemsti
 {
     public partial class formLogin : Form
     {
-        private bool loggedIn = false;
+        Methods m = new Methods();
+        //private bool loggedIn = false;
         private string loggedInUserName, loggedInFirstName;
         private int loggedInEmployeeID;
-
 
         public string LoggedInUserName
         {
@@ -46,7 +46,7 @@ namespace payrollsystemsti
             }
             else
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=stipayrolldb; Integrated Security=True; TrustServerCertificate=True; Encrypt=false"))
+                using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     try
                     {
@@ -71,7 +71,7 @@ namespace payrollsystemsti
                                     string fname = reader["FirstName"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
 
-                                    loggedIn = true;
+                                    //loggedIn = true;
                                     LoggedInUserName = username;// Fix: Assign the entered username to LoggedInUserName
                                     LoggedInFirstName = fname;
                                     LoggedInEmployeeID = employeeID;

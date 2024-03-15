@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbLeaveID = new System.Windows.Forms.TextBox();
+            this.tbLeaveName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLeaveName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,21 +42,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbLeaveID
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 106);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 27);
-            this.textBox1.TabIndex = 0;
+            this.tbLeaveID.Location = new System.Drawing.Point(112, 106);
+            this.tbLeaveID.Margin = new System.Windows.Forms.Padding(4);
+            this.tbLeaveID.Name = "tbLeaveID";
+            this.tbLeaveID.ReadOnly = true;
+            this.tbLeaveID.Size = new System.Drawing.Size(116, 27);
+            this.tbLeaveID.TabIndex = 0;
             // 
-            // textBox2
+            // tbLeaveName
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 174);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(227, 27);
-            this.textBox2.TabIndex = 1;
+            this.tbLeaveName.Location = new System.Drawing.Point(112, 174);
+            this.tbLeaveName.Margin = new System.Windows.Forms.Padding(4);
+            this.tbLeaveName.Name = "tbLeaveName";
+            this.tbLeaveName.Size = new System.Drawing.Size(227, 27);
+            this.tbLeaveName.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -119,6 +120,7 @@
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -132,6 +134,7 @@
             this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -171,13 +174,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbLeaveName);
+            this.Controls.Add(this.tbLeaveID);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "leaveCategoriesManagement";
             this.Text = "leaveCategoriesManagement";
+            this.Load += new System.EventHandler(this.leaveCategoriesManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,8 +190,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbLeaveID;
+        private System.Windows.Forms.TextBox tbLeaveName;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveName;

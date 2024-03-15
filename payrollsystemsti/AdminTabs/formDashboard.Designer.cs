@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.lb_User_Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbEmployeeID = new System.Windows.Forms.Label();
@@ -58,6 +65,13 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
+            this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.employeeContainer.SuspendLayout();
@@ -75,6 +89,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.panel1.Controls.Add(this.panel11);
             this.panel1.Controls.Add(this.lb_User_Username);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbEmployeeID);
@@ -86,6 +101,82 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1250, 70);
             this.panel1.TabIndex = 1;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.panel14);
+            this.panel11.Controls.Add(this.panel13);
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Location = new System.Drawing.Point(1093, 8);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(145, 30);
+            this.panel11.TabIndex = 5;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.iconPictureBox3);
+            this.panel14.Location = new System.Drawing.Point(105, 3);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(37, 25);
+            this.panel14.TabIndex = 8;
+            // 
+            // iconPictureBox3
+            // 
+            this.iconPictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox3.IconSize = 19;
+            this.iconPictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.iconPictureBox3.Name = "iconPictureBox3";
+            this.iconPictureBox3.Size = new System.Drawing.Size(31, 19);
+            this.iconPictureBox3.TabIndex = 0;
+            this.iconPictureBox3.TabStop = false;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.iconPictureBox2);
+            this.panel13.Location = new System.Drawing.Point(54, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(37, 25);
+            this.panel13.TabIndex = 1;
+            // 
+            // iconPictureBox2
+            // 
+            this.iconPictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.iconPictureBox2.ForeColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconPictureBox2.IconColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox2.IconSize = 19;
+            this.iconPictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.iconPictureBox2.Name = "iconPictureBox2";
+            this.iconPictureBox2.Size = new System.Drawing.Size(31, 19);
+            this.iconPictureBox2.TabIndex = 0;
+            this.iconPictureBox2.TabStop = false;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.iconPictureBox1);
+            this.panel12.Location = new System.Drawing.Point(3, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(37, 25);
+            this.panel12.TabIndex = 0;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 19;
+            this.iconPictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(31, 19);
+            this.iconPictureBox1.TabIndex = 0;
+            this.iconPictureBox1.TabStop = false;
             // 
             // lb_User_Username
             // 
@@ -324,7 +415,7 @@
             this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideBar.Location = new System.Drawing.Point(0, 70);
             this.sideBar.Name = "sideBar";
-            this.sideBar.Size = new System.Drawing.Size(187, 698);
+            this.sideBar.Size = new System.Drawing.Size(187, 670);
             this.sideBar.TabIndex = 3;
             // 
             // panel7
@@ -414,7 +505,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.ClientSize = new System.Drawing.Size(1250, 768);
+            this.ClientSize = new System.Drawing.Size(1250, 740);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -425,6 +516,13 @@
             this.Load += new System.EventHandler(this.dashBoard_btn);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
+            this.panel13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
+            this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.employeeContainer.ResumeLayout(false);
@@ -470,5 +568,12 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label lb_User_Username;
         private System.Windows.Forms.Label lbEmployeeID;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private System.Windows.Forms.Panel panel14;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
+        private System.Windows.Forms.Panel panel13;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
     }
 }
