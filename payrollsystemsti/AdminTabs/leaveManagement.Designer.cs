@@ -28,12 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbLM = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgLeaveID,
+            this.dgLeaveName});
+            this.dataGridView1.Location = new System.Drawing.Point(51, 125);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(833, 470);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            // 
+            // dgLeaveName
+            // 
+            this.dgLeaveName.HeaderText = "Leave Name";
+            this.dgLeaveName.Name = "dgLeaveName";
+            this.dgLeaveName.ReadOnly = true;
+            // 
+            // lbLM
+            // 
+            this.lbLM.AutoSize = true;
+            this.lbLM.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLM.ForeColor = System.Drawing.Color.Crimson;
+            this.lbLM.Location = new System.Drawing.Point(45, 26);
+            this.lbLM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLM.Name = "lbLM";
+            this.lbLM.Size = new System.Drawing.Size(278, 32);
+            this.lbLM.TabIndex = 9;
+            this.lbLM.Text = "Leave Management";
+            // 
+            // leaveManagement
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ClientSize = new System.Drawing.Size(974, 729);
+            this.Controls.Add(this.lbLM);
+            this.Controls.Add(this.dataGridView1);
+            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "leaveManagement";
             this.Text = "leaveManagement";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveName;
+        private System.Windows.Forms.Label lbLM;
     }
 }

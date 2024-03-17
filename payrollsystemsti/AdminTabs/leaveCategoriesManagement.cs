@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace payrollsystemsti.AdminTabs
@@ -17,6 +11,9 @@ namespace payrollsystemsti.AdminTabs
         public leaveCategoriesManagement()
         {
             InitializeComponent();
+            btnAdd.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -36,17 +33,21 @@ namespace payrollsystemsti.AdminTabs
             ClearData();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string query = "UPDATE LeaveCategory SET CatName = @catname";
-            using (SqlConnection conn = new SqlConnection(m.connStr))
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                string query = "UPDATE LeaveCategory SET CatName = @catname";
+                using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
-                    cmd.Parameters.AddWithValue("@catname", tbLeaveName);
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@catname", tbLeaveName);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
             LoadData();
@@ -63,16 +64,17 @@ namespace payrollsystemsti.AdminTabs
                 {
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
-                    
+
                     sda.Fill(dt);
-                    foreach (DataRow row in dt.Rows){
+                    foreach (DataRow row in dt.Rows)
+                    {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["CatID"].ToString();
                         dataGridView1.Rows[n].Cells["dgLeaveName"].Value = row["CatName"].ToString();
                     }
 
                 }
-                
+
             }
         }
 
@@ -85,6 +87,30 @@ namespace payrollsystemsti.AdminTabs
         {
             tbLeaveID.Clear();
             tbLeaveName.Clear();
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            tbLeaveID.Text = dataGridView1.SelectedRows[0].Cells["dgLeaveID"].Value.ToString();
+            tbLeaveName.Text = dataGridView1.SelectedRows[0].Cells["dgLeaveName"].Value.ToString();
+
+            btnAdd.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+        }
+
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            btnCancel.Visible = btnUpdate.Enabled;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnAdd.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+
+            ClearData();
         }
     }
 }

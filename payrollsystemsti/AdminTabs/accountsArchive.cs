@@ -2,9 +2,9 @@
 
 namespace payrollsystemsti.AdminTabs
 {
-    public partial class employeeSalary : Form
+    public partial class accountsArchive : Form
     {
-        public employeeSalary()
+        public accountsArchive()
         {
             InitializeComponent();
         }

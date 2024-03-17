@@ -136,7 +136,7 @@
             this.tbMob.Name = "tbMob";
             this.tbMob.Size = new System.Drawing.Size(172, 28);
             this.tbMob.TabIndex = 10;
-            this.tbMob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empNumber_KeyDown);
+            this.tbMob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbNumber_KeyDown);
             this.tbMob.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.empNumber_KeyPress);
             // 
             // label3
@@ -156,7 +156,7 @@
             this.tbSSN.Name = "tbSSN";
             this.tbSSN.Size = new System.Drawing.Size(172, 28);
             this.tbSSN.TabIndex = 12;
-            this.tbSSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empSSN_KeyDown);
+            this.tbSSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSSN_KeyDown);
             this.tbSSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.empSSN_KeyPress);
             // 
             // label4
@@ -176,7 +176,7 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(172, 28);
             this.tbEmail.TabIndex = 14;
-            this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empEmail_KeyDown);
+            this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbEmail_KeyDown);
             // 
             // label5
             // 
@@ -195,7 +195,7 @@
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(172, 28);
             this.tbFirstName.TabIndex = 16;
-            this.tbFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empName_KeyDown);
+            this.tbFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbFirstName_KeyDown);
             // 
             // label6
             // 
@@ -223,7 +223,7 @@
             this.dtDob.Name = "dtDob";
             this.dtDob.Size = new System.Drawing.Size(172, 27);
             this.dtDob.TabIndex = 18;
-            this.dtDob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empDob_KeyDown);
+            this.dtDob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtDob_KeyDown);
             // 
             // tbAddress
             // 
@@ -233,7 +233,7 @@
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(172, 46);
             this.tbAddress.TabIndex = 20;
-            this.tbAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empAdd_KeyDown);
+            this.tbAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbAdd_KeyDown);
             // 
             // label8
             // 
@@ -467,6 +467,7 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(172, 28);
             this.tbLastName.TabIndex = 22;
+            this.tbLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLastName_KeyDown);
             // 
             // label13
             // 
@@ -492,7 +493,7 @@
             this.cbPosition.Size = new System.Drawing.Size(172, 27);
             this.cbPosition.TabIndex = 18;
             this.cbPosition.SelectedIndexChanged += new System.EventHandler(this.empPosition_SelectedIndexChanged);
-            this.cbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empPosition_KeyDown);
+            this.cbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbPosition_KeyDown);
             // 
             // groupBox3
             // 
@@ -522,6 +523,7 @@
             this.tbDepart.Name = "tbDepart";
             this.tbDepart.Size = new System.Drawing.Size(172, 28);
             this.tbDepart.TabIndex = 33;
+            this.tbDepart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbDepart_KeyDown);
             // 
             // label9
             // 
@@ -540,7 +542,7 @@
             this.tbBasicRate.Name = "tbBasicRate";
             this.tbBasicRate.Size = new System.Drawing.Size(172, 28);
             this.tbBasicRate.TabIndex = 31;
-            this.tbBasicRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.empBasicRate_KeyDown);
+            this.tbBasicRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBasicRate_KeyDown);
             // 
             // label1
             // 

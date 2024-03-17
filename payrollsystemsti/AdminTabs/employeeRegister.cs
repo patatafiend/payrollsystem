@@ -1,25 +1,16 @@
-﻿using payrollsystemsti.Tabs;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace payrollsystemsti.AdminTabs
 {
     public partial class employeeRegister : Form
     {
         Methods m = new Methods();
-        userRegister user = new userRegister();
         private string fileName;
         public employeeRegister()
         {
@@ -51,24 +42,24 @@ namespace payrollsystemsti.AdminTabs
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
         }
-		private bool ValidateEmail(string email)
-		{
-			// Regular expression pattern for email validation
-			string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        private bool ValidateEmail(string email)
+        {
+            // Regular expression pattern for email validation
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-			// Check if the email matches the pattern
-			if (Regex.IsMatch(email, pattern))
-			{
-				return true;
-			}
-			else
-			{
-				
-				return false;
-			}
-		}
-		// checks if textboxes are filled
-		private bool Validation()
+            // Check if the email matches the pattern
+            if (Regex.IsMatch(email, pattern))
+            {
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+        }
+        // checks if textboxes are filled
+        private bool Validation()
         {
             bool result = false;
             if (string.IsNullOrEmpty(tbFirstName.Text))
@@ -118,11 +109,11 @@ namespace payrollsystemsti.AdminTabs
             }
             else if (!ValidateEmail(tbEmail.Text)) // email format validation
             {
-				
-				errorProvider1.Clear();
-				errorProvider1.SetError(tbEmail, "Invalid email format");
 
-			}
+                errorProvider1.Clear();
+                errorProvider1.SetError(tbEmail, "Invalid email format");
+
+            }
             else
             {
                 errorProvider1.Clear();
@@ -217,7 +208,7 @@ namespace payrollsystemsti.AdminTabs
                                 using (SqlCommand userCmd = new SqlCommand(userQuery, conn))
                                 {
                                     userCmd.Parameters.AddWithValue("@Username", generatedUsername);
-                                    userCmd.Parameters.AddWithValue("@Password", user.passwordGenerator());
+                                    userCmd.Parameters.AddWithValue("@Password", m.passwordGenerator());
                                     userCmd.Parameters.AddWithValue("@Role", "Employee");
                                     userCmd.Parameters.AddWithValue("@EmployeeID", employeeId);
                                     userCmd.ExecuteNonQuery();
@@ -425,7 +416,7 @@ namespace payrollsystemsti.AdminTabs
         //gets the value in the combo box role
         private void empPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbPosition.SelectedIndex != -1)
+            if (cbPosition.SelectedIndex != -1)
             {
                 tbBasicRate.Text = setItem(cbPosition.Text);
             }
@@ -454,9 +445,23 @@ namespace payrollsystemsti.AdminTabs
             btnCancel.Visible = btnUpdate.Enabled;
         }
         //when enter is pressed and textbox has value, it goes to the next textbox 
-        private void empName_KeyDown(object sender, KeyEventArgs e)
+        private void tbFirstName_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbFirstName.Text.Length > 0)
+                {
+                    tbLastName.Focus();
+                }
+                else
+                {
+                    tbFirstName.Focus();
+                }
+            }
+        }
+        private void tbLastName_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
@@ -470,52 +475,14 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        private void empNumber_KeyDown(object sender, KeyEventArgs e)
+        private void dtDob_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true;
-                if (tbMob.Text.Length > 1)
-                {
-                    tbEmail.Focus();
-                }
-                else
-                {
-                    tbMob.Focus();
-                }
+                tbAddress.Focus();
             }
         }
-        private void empSSN_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbSSN.Text.Length > 1)
-                {
-                    cbPosition.Focus();
-                }
-                else
-                {
-                    tbSSN.Focus();
-                }
-            }
-        }
-        private void empEmail_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                if (tbEmail.Text.Length > 0)
-                {
-                    tbSSN.Focus();
-                }
-                else
-                {
-                    tbEmail.Focus();
-                }
-            }
-        }
-        private void empAdd_KeyDown(object sender, KeyEventArgs e)
+        private void tbAdd_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -530,14 +497,53 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        private void empDob_KeyDown(object sender, KeyEventArgs e)
+        private void tbNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                tbAddress.Focus();
+                e.SuppressKeyPress = true;
+                if (tbMob.Text.Length > 1)
+                {
+                    tbEmail.Focus();
+                }
+                else
+                {
+                    tbMob.Focus();
+                }
             }
         }
-        private void empPosition_KeyDown(object sender, KeyEventArgs e)
+
+        private void tbEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbEmail.Text.Length > 0)
+                {
+                    tbDepart.Focus();
+                }
+                else
+                {
+                    tbEmail.Focus();
+                }
+            }
+        }
+        private void tbDepart_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbEmail.Text.Length > 0)
+                {
+                    cbPosition.Focus();
+                }
+                else
+                {
+                    tbDepart.Focus();
+                }
+            }
+        }
+        private void cbPosition_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -552,14 +558,14 @@ namespace payrollsystemsti.AdminTabs
 
             }
         }
-        private void empBasicRate_KeyDown(object sender, KeyEventArgs e)
+        private void tbBasicRate_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
                 if (tbBasicRate.Text.Length > 1)
                 {
-                    btnSave.Focus();
+                    tbSSN.Focus();
                 }
                 else
                 {
@@ -567,6 +573,22 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+        private void tbSSN_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbSSN.Text.Length > 1)
+                {
+                    btnSave.Focus();
+                }
+                else
+                {
+                    tbSSN.Focus();
+                }
+            }
+        }
+
         private void empNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
@@ -581,5 +603,5 @@ namespace payrollsystemsti.AdminTabs
                 e.Handled = true;
             }
         }
-	}
+    }
 }

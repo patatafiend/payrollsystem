@@ -1,16 +1,9 @@
-﻿using payrollsystemsti.AdminTabs;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace payrollsystemsti.EmployeeTabs
 {
@@ -20,7 +13,7 @@ namespace payrollsystemsti.EmployeeTabs
         public TextBox tbEmployee;
         Methods m = new Methods();
         string fileName;
-        
+
         public leaveApplication()
         {
             InitializeComponent();
@@ -38,29 +31,29 @@ namespace payrollsystemsti.EmployeeTabs
             string query = "SELECT * FROM LeaveCategory";
 
             using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
+            {
+                conn.Open();
 
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					DataTable dt = new DataTable();
-					using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-					{
-						sda.Fill(dt);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
 
-						// Clear existing items before adding new ones
-						cbLeaves.Items.Clear();
+                        // Clear existing items before adding new ones
+                        cbLeaves.Items.Clear();
 
-						foreach (DataRow row in dt.Rows)
-						{
-							// gets data in the 2nd Column of Category database
-							string categoryName = row[1].ToString();
-							cbLeaves.Items.Add(categoryName);
-						}
-					}
-				}
-			}
-		}
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            // gets data in the 2nd Column of Category database
+                            string categoryName = row[1].ToString();
+                            cbLeaves.Items.Add(categoryName);
+                        }
+                    }
+                }
+            }
+        }
         private void ClearLeaveApplicationForm()
         {
             cbLeaves.SelectedIndex = -1;
@@ -81,45 +74,45 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-			// Retrieve the selected leave category from the combo box
-			string categoryName = cbLeaves.Text;
+            // Retrieve the selected leave category from the combo box
+            string categoryName = cbLeaves.Text;
 
-			// Validate input fields
-			if (Validation())
-			{
-				// Convert medical certificate image to binary
-				byte[] medicalCertificate = ConvertImageToBinary(pbMedCert.Image);
+            // Validate input fields
+            if (Validation())
+            {
+                // Convert medical certificate image to binary
+                byte[] medicalCertificate = ConvertImageToBinary(pbMedCert.Image);
 
-				using (SqlConnection sqlConn = new SqlConnection(m.connStr))
-				{
-					sqlConn.Open();
+                using (SqlConnection sqlConn = new SqlConnection(m.connStr))
+                {
+                    sqlConn.Open();
 
-					string query = "INSERT INTO LeaveApplication (CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName, DateApplied, EmployeeID) VALUES" +
-						"(@CategoryName," +
-						" @StartDate, @EndDate, @Reason, @MedicalCertificate, @Status, @FileName, @DateApplied, EmployeeID)";
+                    string query = "INSERT INTO LeaveApplication (CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName, DateApplied, EmployeeID) VALUES" +
+                        "(@CategoryName," +
+                        " @StartDate, @EndDate, @Reason, @MedicalCertificate, @Status, @FileName, @DateApplied, EmployeeID)";
 
-					using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-					{
-						// Add parameters to prevent SQL injection
-						cmd.Parameters.AddWithValue("@EmployeeID", tbEmployeeID.Text);
-						cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-						cmd.Parameters.AddWithValue("@StartDate", dtStart.Value.ToString("MM/dd/yyyy"));
-						cmd.Parameters.AddWithValue("@EndDate", dtEnd.Value.ToString("MM/dd/yyyy"));
-						cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
-						cmd.Parameters.AddWithValue("@MedicalCertificate", medicalCertificate);
-						cmd.Parameters.AddWithValue("@FileName", fileName);
+                    using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+                    {
+                        // Add parameters to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@EmployeeID", tbEmployeeID.Text);
+                        cmd.Parameters.AddWithValue("@CategoryName", categoryName);
+                        cmd.Parameters.AddWithValue("@StartDate", dtStart.Value.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@EndDate", dtEnd.Value.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
+                        cmd.Parameters.AddWithValue("@MedicalCertificate", medicalCertificate);
+                        cmd.Parameters.AddWithValue("@FileName", fileName);
                         cmd.Parameters.AddWithValue("@DateApplied", DateTime.Now.ToString("MM/dd/yyyy"));
                         cmd.Parameters.AddWithValue("@Status", "Pending");
 
                         cmd.ExecuteNonQuery();
-					}
+                    }
 
-					MessageBox.Show("Leave Application Submitted Successfully");
-					ClearLeaveApplicationForm();
-				}
+                    MessageBox.Show("Leave Application Submitted Successfully");
+                    ClearLeaveApplicationForm();
+                }
                 LoadData();
-			}
-		}
+            }
+        }
         private bool Validation()
         {
             bool result = false;
@@ -191,9 +184,25 @@ namespace payrollsystemsti.EmployeeTabs
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbLeaves_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbLeaves.Text.Equals("Sick Leave"))
+            {
+                pbMedCert.Visible = true;
+                btnAdd.Visible = true;
+                btnRemove.Visible = true;
+            }
+            else
+            {
+                pbMedCert.Visible = false;
+                btnAdd.Visible = false;
+                btnRemove.Visible = false;
+            }
         }
     }
 }

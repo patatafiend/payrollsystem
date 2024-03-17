@@ -1,34 +1,13 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace payrollsystemsti
 {
     public partial class formLogin : Form
     {
         Methods m = new Methods();
-        //private bool loggedIn = false;
-        private string loggedInUserName, loggedInFirstName;
-        private int loggedInEmployeeID;
-
-        public string LoggedInUserName
-        {
-            get { return loggedInUserName; }
-            private set { loggedInUserName = value; }
-        }
-        public string LoggedInFirstName
-        {
-            get { return loggedInFirstName; }
-            private set { loggedInFirstName = value; }
-        }
-        public int LoggedInEmployeeID
-        {
-            get { return loggedInEmployeeID; }
-            private set { loggedInEmployeeID = value; }
-        }
+        formDashboard formDashboard = new formDashboard();
 
         public formLogin()
         {
@@ -40,8 +19,6 @@ namespace payrollsystemsti
             if (tbUserName.Text.Equals("tester") && tbPassword.Text.Equals("tester"))
             {
                 this.Hide();
-                formDashboard formDashboard = new formDashboard();
-                formDashboard.LoggedInUserName = LoggedInUserName;
                 formDashboard.Show();
             }
             else
@@ -71,18 +48,11 @@ namespace payrollsystemsti
                                     string fname = reader["FirstName"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
 
-                                    //loggedIn = true;
-                                    LoggedInUserName = username;// Fix: Assign the entered username to LoggedInUserName
-                                    LoggedInFirstName = fname;
-                                    LoggedInEmployeeID = employeeID;
-
-                                    
                                     this.Hide();
-                                    formDashboard formDashboard = new formDashboard();
-                                    formDashboard.LoggedInUserName = LoggedInUserName;
-                                    formDashboard.LoggedInFirstName = LoggedInFirstName;
-                                    formDashboard.LoggedInEmployeeID = LoggedInEmployeeID;
+                                    formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
+                                    formDashboard.formDashboardInstance.LoggedInFirstName = fname;
                                     formDashboard.Show();
+                                    
                                     if (role != "Admin")
                                     {
                                         // disable functions if not admin
@@ -105,20 +75,8 @@ namespace payrollsystemsti
                 }
             }
         }
-        bool close;
-        private void fm_login_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (close)
-            {
-                DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
 
-        private void fm_login_Load(object sender, EventArgs e)
+        private void loginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbUserName;
         }

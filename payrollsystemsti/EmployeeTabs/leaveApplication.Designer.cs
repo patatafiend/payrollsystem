@@ -40,7 +40,7 @@
             this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.cbLeaves = new System.Windows.Forms.ComboBox();
             this.tbReason = new System.Windows.Forms.TextBox();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
@@ -66,6 +66,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgLeaveID,
@@ -153,18 +154,18 @@
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // btnEdit
+            // btnUpdate
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.Teal;
-            this.btnEdit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEdit.Location = new System.Drawing.Point(178, 381);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(118, 44);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnUpdate.BackColor = System.Drawing.Color.Teal;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUpdate.Location = new System.Drawing.Point(178, 381);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // cbLeaves
             // 
@@ -176,6 +177,7 @@
             this.cbLeaves.Name = "cbLeaves";
             this.cbLeaves.Size = new System.Drawing.Size(206, 21);
             this.cbLeaves.TabIndex = 3;
+            this.cbLeaves.SelectedIndexChanged += new System.EventHandler(this.cbLeaves_SelectedIndexChanged);
             // 
             // tbReason
             // 
@@ -218,6 +220,8 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.UseWaitCursor = true;
+            this.btnAdd.Visible = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnRemove
@@ -231,6 +235,7 @@
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Visible = false;
             // 
             // errorProvider1
             // 
@@ -294,6 +299,7 @@
             this.tbEmployeeID.ReadOnly = true;
             this.tbEmployeeID.Size = new System.Drawing.Size(123, 20);
             this.tbEmployeeID.TabIndex = 16;
+            this.tbEmployeeID.Visible = false;
             this.tbEmployeeID.WordWrap = false;
             // 
             // label5
@@ -316,6 +322,7 @@
             this.pbMedCert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMedCert.TabIndex = 7;
             this.pbMedCert.TabStop = false;
+            this.pbMedCert.Visible = false;
             // 
             // label6
             // 
@@ -348,7 +355,7 @@
             this.Controls.Add(this.dtStart);
             this.Controls.Add(this.tbReason);
             this.Controls.Add(this.cbLeaves);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -367,7 +374,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ComboBox cbLeaves;
         private System.Windows.Forms.TextBox tbReason;
         private System.Windows.Forms.DateTimePicker dtStart;

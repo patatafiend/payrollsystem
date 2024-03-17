@@ -38,9 +38,7 @@
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.lb_User_Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbEmployeeID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -93,9 +91,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.panel1.Controls.Add(this.panel11);
-            this.panel1.Controls.Add(this.lb_User_Username);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.lbEmployeeID);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,16 +177,6 @@
             this.iconPictureBox1.TabIndex = 0;
             this.iconPictureBox1.TabStop = false;
             // 
-            // lb_User_Username
-            // 
-            this.lb_User_Username.AutoSize = true;
-            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_User_Username.Location = new System.Drawing.Point(855, 38);
-            this.lb_User_Username.Name = "lb_User_Username";
-            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
-            this.lb_User_Username.TabIndex = 7;
-            this.lb_User_Username.Text = "Username:";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -201,17 +187,6 @@
             this.label1.Size = new System.Drawing.Size(302, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Payroll Management System";
-            // 
-            // lbEmployeeID
-            // 
-            this.lbEmployeeID.AutoSize = true;
-            this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmployeeID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbEmployeeID.Location = new System.Drawing.Point(631, 38);
-            this.lbEmployeeID.Name = "lbEmployeeID";
-            this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
-            this.lbEmployeeID.TabIndex = 6;
-            this.lbEmployeeID.Text = "EmployeeID:";
             // 
             // pictureBox1
             // 
@@ -598,8 +573,6 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnLeave;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label lb_User_Username;
-        private System.Windows.Forms.Label lbEmployeeID;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
