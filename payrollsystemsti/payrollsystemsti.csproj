@@ -128,6 +128,9 @@
     <Compile Include="AdminTabs\manageEmployee.Designer.cs">
       <DependentUpon>manageEmployee.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
+      <DependentUpon>accountsArchive.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeRegister.resx">
       <DependentUpon>employeeRegister.cs</DependentUpon>
     </EmbeddedResource>
