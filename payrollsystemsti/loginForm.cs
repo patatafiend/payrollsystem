@@ -8,10 +8,12 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
+        dashBoard dashBoard = new dashBoard();
 
         public formLogin()
         {
             InitializeComponent();
+            
         }
 
         private void bt_login_Click(object sender, EventArgs e)
@@ -28,12 +30,12 @@ namespace payrollsystemsti
                     try
                     {
                         conn.Open();
-                        string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, UserAccounts.Username," +
-                            "EmployeeAccounts.FirstName FROM UserAccounts INNER JOIN EmployeeAccounts" +
-                            " ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID" +
-                            " WHERE Username=@username AND Password=@password";
+						string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, UserAccounts.Username," +
+								"EmployeeAccounts.FirstName, EmployeeAccounts.Department FROM UserAccounts INNER JOIN EmployeeAccounts" +
+								" ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID" +
+								" WHERE Username=@username AND Password=@password";
 
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+						using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@username", tbUserName.Text);
                             cmd.Parameters.AddWithValue("@password", tbPassword.Text);
@@ -47,11 +49,15 @@ namespace payrollsystemsti
                                     string username = reader["Username"].ToString();
                                     string fname = reader["FirstName"].ToString();
                                     int employeeID = (int)reader["EmployeeID"];
+                                    string department = reader["Department"].ToString();
 
-                                    this.Hide();
+									this.Hide();
                                     formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
                                     formDashboard.formDashboardInstance.LoggedInFirstName = fname;
-                                    formDashboard.Show();
+									formDashboard.formDashboardInstance.LoggedInDepartment = department;
+
+
+									formDashboard.Show();
                                     
                                     if (role != "Admin")
                                     {

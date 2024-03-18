@@ -32,7 +32,8 @@ namespace payrollsystemsti
 
 
         // Logged-in user name property
-        private string loggedInUserName, loggedInFirstName;
+        private string loggedInUserName, loggedInFirstName, loggedInDepartment;
+        
         private int loggedInEmployeeID;
 
         // Form constructor
@@ -68,7 +69,18 @@ namespace payrollsystemsti
             }
         }
 
-        public Button GetUserAccountButton()
+		public string LoggedInDepartment
+		{
+			get { return loggedInDepartment; }
+			set
+			{
+				loggedInDepartment = value;
+			}
+		}
+
+
+
+		public Button GetUserAccountButton()
         {
             return btn_useraccount;
         }
@@ -179,17 +191,19 @@ namespace payrollsystemsti
             if (!string.IsNullOrEmpty(loggedInFirstName))
             {
                 String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
-                dashBoard.dashboardInstance.lbGetLabel.Text = "Welcome , " + fnameC;
+                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
             }
             else
             {
-                dashBoard.dashboardInstance.lbGetLabel.Text = "Welcome , Tester <3";
+                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
             }
 
             byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
             dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
 
-        }
+			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
+
+		}
 
         // FormClosed event for dashboard form
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)

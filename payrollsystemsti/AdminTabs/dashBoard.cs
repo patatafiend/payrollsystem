@@ -11,8 +11,9 @@ namespace payrollsystemsti
         private leaveApplication leaveApplication;
         public static dashBoard dashboardInstance;
         public PictureBox pbGetImageUser;
-        public Label lbGetLabel;
-        public int number = 0;
+        public Label lbGetName;
+        public Label lbGetDepartment;
+
 
         public dashBoard()
         {
@@ -20,8 +21,10 @@ namespace payrollsystemsti
             InitializeEventHandlers();
             dashboardInstance = this;
             pbGetImageUser = pbCurrentUser;
-            lbGetLabel = lbWelcome;
-        }
+            lbGetName = lbWelcome;
+			lbGetDepartment = lb_curDepartment;
+
+		}
 
         private void InitializeEventHandlers()
         {
@@ -37,6 +40,7 @@ namespace payrollsystemsti
         private void dashBoard_Load(object sender, EventArgs e)
         {
             LoadEmployeeCount();
+
         }
         void LoadEmployeeCount()
         {
@@ -54,7 +58,7 @@ namespace payrollsystemsti
                         int numberOfEmployees = Convert.ToInt32(cmd.ExecuteScalar());
 
                         // Display the number of employees in a label
-                        lb_EmployeeNum.Text = $"Number of Employees: {numberOfEmployees}";
+                        lb_EmployeeNum.Text = $"{numberOfEmployees}";
                     }
                 }
             }
@@ -64,5 +68,6 @@ namespace payrollsystemsti
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+	}
+
 }
