@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leaveManagement));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbLM = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,8 +49,10 @@
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgLeaveID,
-            this.dgLeaveName});
+            this.dgEmpID,
+            this.dgLeaveType,
+            this.dgLeaveName,
+            this.dgStatus});
             this.dataGridView1.Location = new System.Drawing.Point(84, 202);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
@@ -54,18 +60,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(833, 342);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // dgLeaveID
-            // 
-            this.dgLeaveID.HeaderText = "Leave ID";
-            this.dgLeaveID.Name = "dgLeaveID";
-            this.dgLeaveID.ReadOnly = true;
-            // 
-            // dgLeaveName
-            // 
-            this.dgLeaveName.HeaderText = "Leave Name";
-            this.dgLeaveName.Name = "dgLeaveName";
-            this.dgLeaveName.ReadOnly = true;
             // 
             // lbLM
             // 
@@ -79,29 +73,65 @@
             this.lbLM.TabIndex = 9;
             this.lbLM.Text = "Leave Management";
             // 
-            // btnAdd
+            // btnView
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.Teal;
-            this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Location = new System.Drawing.Point(84, 135);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(118, 44);
-            this.btnAdd.TabIndex = 25;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnView.BackColor = System.Drawing.Color.Teal;
+            this.btnView.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnView.Location = new System.Drawing.Point(81, 151);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(118, 44);
+            this.btnView.TabIndex = 25;
+            this.btnView.Text = "View Details";
+            this.btnView.UseVisualStyleBackColor = false;
             // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(221, 135);
+            this.btnUpdate.Location = new System.Drawing.Point(218, 151);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 26;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgLeaveType
+            // 
+            this.dgLeaveType.HeaderText = "Leave Type";
+            this.dgLeaveType.Name = "dgLeaveType";
+            this.dgLeaveType.ReadOnly = true;
+            // 
+            // dgLeaveName
+            // 
+            this.dgLeaveName.HeaderText = "Name";
+            this.dgLeaveName.Name = "dgLeaveName";
+            this.dgLeaveName.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnReload.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(879, 156);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(38, 39);
+            this.btnReload.TabIndex = 27;
+            this.btnReload.UseVisualStyleBackColor = false;
             // 
             // leaveManagement
             // 
@@ -109,8 +139,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(974, 729);
+            this.Controls.Add(this.btnReload);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.lbLM);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
@@ -127,10 +158,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveName;
         private System.Windows.Forms.Label lbLM;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
     }
 }

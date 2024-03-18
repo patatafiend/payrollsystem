@@ -3,6 +3,8 @@ using payrollsystemsti.EmployeeTabs;
 using payrollsystemsti.Tabs;
 using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
 
 
 namespace payrollsystemsti
@@ -23,6 +25,14 @@ namespace payrollsystemsti
         private bool logout = false;
         private bool closedForm = true;
         private bool isClosing = false;
+
+        //draggable panel shit
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+        [DllImport("User32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("User32.dll")]
+        public static extern int SendMessage(IntPtr hWnd,int Msg, int wParam, int lParam);
 
 
         // Logged-in user name property
@@ -194,42 +204,9 @@ namespace payrollsystemsti
         // Click event for logout button
         private void btnLogout(object sender, EventArgs e)
         {
-            logout = true;
             this.Close();
-        }
-
-        // FormClosing event for the dashboard form
-        private void formDashboard_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (closedForm && logout == false)
-            {
-                if (!isClosing)
-                {
-                    DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-                        isClosing = true;
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            }
-            else if (logout)
-            {
-                DialogResult result = MessageBox.Show("Logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    formLogin fm_Login = new formLogin();
-                    fm_Login.Show();
-                }
-                else
-                {
-                    e.Cancel = true;
-                }
-            }
+            formLogin fm_Login = new formLogin();
+            fm_Login.Show();
         }
         // Click event for settings button
         private void settings_Click(object sender, EventArgs e)
@@ -339,10 +316,42 @@ namespace payrollsystemsti
             }
 
         }
-
         private void LeaveManagement_FormClosed(object sender, FormClosedEventArgs e)
         {
             leaveManage = null;
+        }
+        //when left mouse is clicked on the header panel this executes
+        private void header_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to close the application?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+            }
         }
     }
 }
