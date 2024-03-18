@@ -22,10 +22,6 @@ namespace payrollsystemsti
         private leaveApplication leaveApplication;
         private leaveCategoriesManagement leaveManage;
 
-        private bool logout = false;
-        private bool closedForm = true;
-        private bool isClosing = false;
-
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -293,7 +289,7 @@ namespace payrollsystemsti
             {
                 leaveApplication.Activate();
             }
-            leaveApplication.leaveApplicationInstance.tbEmployee.Text = loggedInEmployeeID.ToString();
+            leaveApplication.leaveApplicationInstance.LoggedInEmpID = loggedInEmployeeID;
         }
         private void LeaveApplication_FormClosed(object sender, FormClosedEventArgs e)
         {

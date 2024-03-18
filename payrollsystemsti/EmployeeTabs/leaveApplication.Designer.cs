@@ -30,15 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateApplied = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cbLeaves = new System.Windows.Forms.ComboBox();
@@ -53,10 +44,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbEmployeeID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.pbMedCert = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedCert)).BeginInit();
@@ -71,9 +69,9 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgLeaveID,
             this.dgLeaveCategory,
-            this.dgDateApplied,
-            this.dgDateStart,
-            this.dgDateEnd,
+            this.dgAppliedDate,
+            this.dgStart,
+            this.dgEnd,
             this.dgReason,
             this.dgStatus,
             this.dgImageData,
@@ -82,64 +80,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(46, 446);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(744, 175);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dgLeaveID
-            // 
-            this.dgLeaveID.HeaderText = "Leave ID";
-            this.dgLeaveID.Name = "dgLeaveID";
-            this.dgLeaveID.ReadOnly = true;
-            // 
-            // dgLeaveCategory
-            // 
-            this.dgLeaveCategory.HeaderText = "Leave Category";
-            this.dgLeaveCategory.Name = "dgLeaveCategory";
-            this.dgLeaveCategory.ReadOnly = true;
-            // 
-            // dgDateApplied
-            // 
-            this.dgDateApplied.HeaderText = "Date Applied";
-            this.dgDateApplied.Name = "dgDateApplied";
-            this.dgDateApplied.ReadOnly = true;
-            // 
-            // dgDateStart
-            // 
-            this.dgDateStart.HeaderText = "Date Start";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            // 
-            // dgDateEnd
-            // 
-            this.dgDateEnd.HeaderText = "Date End";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            // 
-            // dgReason
-            // 
-            this.dgReason.HeaderText = "Reason";
-            this.dgReason.Name = "dgReason";
-            this.dgReason.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "File Name";
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // btnSubmit
             // 
@@ -292,27 +236,6 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Reason:";
             // 
-            // tbEmployeeID
-            // 
-            this.tbEmployeeID.Location = new System.Drawing.Point(587, 40);
-            this.tbEmployeeID.Name = "tbEmployeeID";
-            this.tbEmployeeID.ReadOnly = true;
-            this.tbEmployeeID.Size = new System.Drawing.Size(123, 20);
-            this.tbEmployeeID.TabIndex = 16;
-            this.tbEmployeeID.Visible = false;
-            this.tbEmployeeID.WordWrap = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(583, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 19);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Employee ID:";
-            this.label5.Visible = false;
-            // 
             // pbMedCert
             // 
             this.pbMedCert.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -335,6 +258,62 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Leave Form Application\r\n";
             // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            // 
+            // dgLeaveCategory
+            // 
+            this.dgLeaveCategory.HeaderText = "Leave Category";
+            this.dgLeaveCategory.Name = "dgLeaveCategory";
+            this.dgLeaveCategory.ReadOnly = true;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "Date Applied";
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
+            // 
+            // dgStart
+            // 
+            this.dgStart.HeaderText = "Date Start";
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
+            // 
+            // dgEnd
+            // 
+            this.dgEnd.HeaderText = "Date End";
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            // 
+            // dgReason
+            // 
+            this.dgReason.HeaderText = "Reason";
+            this.dgReason.Name = "dgReason";
+            this.dgReason.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "File Name";
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
             // leaveApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,8 +321,6 @@
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(858, 658);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbEmployeeID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -383,23 +360,21 @@
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateApplied;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateStart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateEnd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgReason;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgImageData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgFileName;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label lbFileName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbEmployeeID;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAppliedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgReason;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgImageData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFileName;
     }
 }

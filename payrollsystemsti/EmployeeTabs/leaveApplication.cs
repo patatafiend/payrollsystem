@@ -2,7 +2,9 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace payrollsystemsti.EmployeeTabs
@@ -10,20 +12,32 @@ namespace payrollsystemsti.EmployeeTabs
     public partial class leaveApplication : Form
     {
         public static leaveApplication leaveApplicationInstance;
-        public TextBox tbEmployee;
         Methods m = new Methods();
         string fileName;
 
+        private int loggedInID;
         public leaveApplication()
         {
             InitializeComponent();
             leaveApplicationInstance = this;
-            tbEmployee = tbEmployeeID;
+        }
+
+        public int LoggedInEmpID
+        {
+            set
+            {
+                loggedInID = value;
+            }
+            get
+            {
+                return loggedInID;
+            }
         }
 
         private void leaveApplication_Load(object sender, EventArgs e)
         {
             loadLeaveCB();
+            LoadData();
         }
 
         private void loadLeaveCB()
@@ -62,48 +76,42 @@ namespace payrollsystemsti.EmployeeTabs
             tbReason.Clear();
             pbMedCert.Image = null;
         }
-        byte[] ConvertImageToBinary(Image img)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
-            }
-        }
-
-
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Retrieve the selected leave category from the combo box
-            string categoryName = cbLeaves.Text;
-
             // Validate input fields
             if (Validation())
             {
                 // Convert medical certificate image to binary
-                byte[] medicalCertificate = ConvertImageToBinary(pbMedCert.Image);
+                byte[] medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
 
                 using (SqlConnection sqlConn = new SqlConnection(m.connStr))
                 {
                     sqlConn.Open();
 
-                    string query = "INSERT INTO LeaveApplication (CategoryID, StartDate, EndDate, Reason, MedicalCertificate, Status, FileName, DateApplied, EmployeeID) VALUES" +
-                        "(@CategoryName," +
-                        " @StartDate, @EndDate, @Reason, @MedicalCertificate, @Status, @FileName, @DateApplied, EmployeeID)";
+                    string query = "INSERT INTO LeaveApplications (CategoryName, DateStart, DateEnd, AppliedDate, Status, Reason, MedicalCert, FileName, EmployeeID) VALUES" +
+                        "(@CategoryName, @DateStart, @DateEnd, @AppliedDate, @Status, @Reason, @MedicalCert, @FileName, @EmployeeID)";
 
                     using (SqlCommand cmd = new SqlCommand(query, sqlConn))
                     {
                         // Add parameters to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@EmployeeID", tbEmployeeID.Text);
-                        cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-                        cmd.Parameters.AddWithValue("@StartDate", dtStart.Value.ToString("MM/dd/yyyy"));
-                        cmd.Parameters.AddWithValue("@EndDate", dtEnd.Value.ToString("MM/dd/yyyy"));
-                        cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
-                        cmd.Parameters.AddWithValue("@MedicalCertificate", medicalCertificate);
-                        cmd.Parameters.AddWithValue("@FileName", fileName);
-                        cmd.Parameters.AddWithValue("@DateApplied", DateTime.Now.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@EmployeeID", loggedInID);
+                        cmd.Parameters.AddWithValue("@CategoryName", cbLeaves.Text);
+                        cmd.Parameters.AddWithValue("@DateStart", dtStart.Value.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@DateEnd", dtEnd.Value.ToString("MM/dd/yyyy"));
+                        cmd.Parameters.AddWithValue("@AppliedDate", DateTime.Now.ToString("MM/dd/yyyy"));
                         cmd.Parameters.AddWithValue("@Status", "Pending");
-
+                        cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
+                        if(medicalCertificate != null)
+                        {
+                            cmd.Parameters.AddWithValue("@MedicalCert", medicalCertificate);
+                            cmd.Parameters.AddWithValue("@FileName", fileName);
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add("@MedicalCert", SqlDbType.Image).Value = DBNull.Value;
+                            cmd.Parameters.AddWithValue("@FileName", DBNull.Value);
+                        }
+                        
                         cmd.ExecuteNonQuery();
                     }
 
@@ -111,6 +119,7 @@ namespace payrollsystemsti.EmployeeTabs
                     ClearLeaveApplicationForm();
                 }
                 LoadData();
+                ClearData();
             }
         }
         private bool Validation()
@@ -121,7 +130,7 @@ namespace payrollsystemsti.EmployeeTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbReason, "Please provide a reason..");
             }
-            else if (pbMedCert.Image == null)
+            else if (pbMedCert.Visible == true)
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(pbMedCert, "Please provide a Medical Certificate");
@@ -155,10 +164,7 @@ namespace payrollsystemsti.EmployeeTabs
         private void LoadData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT LeaveAccounts.StartDate, LeaveAccounts.EndDate,LeaveAccounts.Reason," +
-                "LeaveAccounts.EndDate, LeaveAccounts.Reason, LeaveAccounts.FileName,LeaveAccounts.ImageData," +
-                " Category.CategoryId, Category.CategoryName FROM LeaveApplication JOIN Category ON" +
-                " LeaveApplication.CategoryId = Category.CategoryId";
+            string query = "SELECT * FROM LeaveApplications";
 
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -172,16 +178,28 @@ namespace payrollsystemsti.EmployeeTabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveId"].ToString();
-                        dataGridView1.Rows[n].Cells["dgLeaveCategory"].Value = row["CategoryId"].ToString();
-                        dataGridView1.Rows[n].Cells["dgStartDate"].Value = Convert.ToDateTime(row["StartDate"].ToString()).ToString("dd/MM/yyyy");
-                        dataGridView1.Rows[n].Cells["dgEndDate"].Value = Convert.ToDateTime(row["EndDate"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveCategory"].Value = row["CategoryName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
                         dataGridView1.Rows[n].Cells["dgReason"].Value = row["Reason"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImageData"].Value = row["MedicalCert"].ToString();
                         dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
                     }
                 }
             }
+        }
+
+        private void ClearData()
+        {
+            cbLeaves.Items.Clear();
+            dtStart.Value = DateTime.Now;
+            dtEnd.Value = DateTime.Now;
+            tbReason.Clear();
+            pbMedCert = null;
+            lbFileName.Text = string.Empty;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -202,6 +220,50 @@ namespace payrollsystemsti.EmployeeTabs
                 pbMedCert.Visible = false;
                 btnAdd.Visible = false;
                 btnRemove.Visible = false;
+            }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                cbLeaves.Text = dataGridView1.SelectedRows[0].Cells["dgLeaveCategory"].Value.ToString();
+                tbReason.Text = dataGridView1.SelectedRows[0].Cells["dgReason"].Value.ToString();
+
+                if (!dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.Equals(null))
+                {
+                    pbMedCert.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
+                }
+                
+
+                string startCellValue = dataGridView1.SelectedRows[0].Cells["dgStart"].Value.ToString();
+                string endCellValue = dataGridView1.SelectedRows[0].Cells["dgEnd"].Value.ToString();
+                DateTime start, end;
+
+                if (DateTime.TryParseExact(startCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out start))
+                {
+                    dtStart.Value = start;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid date format");
+                }
+
+                if (DateTime.TryParseExact(endCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out end))
+                {
+                    dtEnd.Value = end;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid date format");
+                }
+
+                btnSubmit.Enabled = false;
+                btnUpdate.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

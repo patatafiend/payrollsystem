@@ -225,7 +225,7 @@ namespace payrollsystemsti.AdminTabs
                 }
 
             }
-            //ClearData();
+            ClearData();
             LoadData();
 
         }
@@ -376,42 +376,34 @@ namespace payrollsystemsti.AdminTabs
         // if double click on the data in datagridview, it goes to the textboxes
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            bool isDeleted = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells["dgIsDeleted"].Value);
-            if (isDeleted)
+            empID.Text = dataGridView1.SelectedRows[0].Cells["dgEmp"].Value.ToString();
+            tbFirstName.Text = dataGridView1.SelectedRows[0].Cells["dgFirstName"].Value.ToString();
+            tbLastName.Text = dataGridView1.SelectedRows[0].Cells["dgLastName"].Value.ToString();
+            tbDepart.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
+            tbMob.Text = dataGridView1.SelectedRows[0].Cells["dgMobile"].Value.ToString();
+            tbEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
+            tbSSN.Text = dataGridView1.SelectedRows[0].Cells["dgSSN"].Value.ToString();
+            tbAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAdd"].Value.ToString();
+            lbFileName.Text = dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString();
+            cbPosition.Text = dataGridView1.SelectedRows[0].Cells["dgPosition"].Value.ToString();
+            tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
+            pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
+
+            string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
+            DateTime dob;
+
+            if (DateTime.TryParseExact(dobCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
             {
-                MessageBox.Show("This employee is deactivated.", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtDob.Value = dob;
             }
             else
             {
-                empID.Text = dataGridView1.SelectedRows[0].Cells["dgEmp"].Value.ToString();
-                tbFirstName.Text = dataGridView1.SelectedRows[0].Cells["dgFirstName"].Value.ToString();
-                tbLastName.Text = dataGridView1.SelectedRows[0].Cells["dgLastName"].Value.ToString();
-                tbDepart.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
-                tbMob.Text = dataGridView1.SelectedRows[0].Cells["dgMobile"].Value.ToString();
-                tbEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
-                tbSSN.Text = dataGridView1.SelectedRows[0].Cells["dgSSN"].Value.ToString();
-                tbAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAdd"].Value.ToString();
-                lbFileName.Text = dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString();
-                cbPosition.Text = dataGridView1.SelectedRows[0].Cells["dgPosition"].Value.ToString();
-                tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
-                pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
-
-                string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
-                DateTime dob;
-
-                if (DateTime.TryParseExact(dobCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
-                {
-                    dtDob.Value = dob;
-                }
-                else
-                {
-                    MessageBox.Show("Invalid date format");
-                }
-
-                btnSave.Enabled = false;
-                btnUpdate.Enabled = true;
-                btnDeactivate.Enabled = false;
+                MessageBox.Show("Invalid date format");
             }
+
+            btnSave.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDeactivate.Enabled = false;
         }
         //gets the value in the combo box role
         private void empPosition_SelectedIndexChanged(object sender, EventArgs e)

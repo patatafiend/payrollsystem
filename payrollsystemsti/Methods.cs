@@ -20,11 +20,19 @@ namespace payrollsystemsti
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
-            using (MemoryStream ms = new MemoryStream())
+            if (img == null)
             {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
+                return null;
             }
+            else
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return ms.ToArray();
+                }
+            }
+            
         }
         public Image ConvertToImage(byte[] imageData)
         {
