@@ -12,7 +12,10 @@ namespace payrollsystemsti
 {
     public partial class formDashboard : Form
     {
-        Methods m = new Methods();
+		
+        
+
+		Methods m = new Methods();
         public static formDashboard formDashboardInstance;
         // Declare form instances
         private dashBoard dashboard;
@@ -22,6 +25,8 @@ namespace payrollsystemsti
         private employeeSalary employeeSalary;
         private leaveApplication leaveApplication;
         private leaveCategoriesManagement leaveManage;
+
+        
 
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -37,12 +42,49 @@ namespace payrollsystemsti
         
         private int loggedInEmployeeID;
 
-        // Form constructor
-        public formDashboard()
+		static formDashboard _obj;
+
+		public static formDashboard Instance
+		{
+			get
+			{
+				if (_obj == null)
+				{
+					_obj = new formDashboard();
+				}
+				return _obj;
+			}
+		}
+
+		public Panel PnlContainer
+		{
+			get { return panelContainer; }
+			set { panelContainer = value; }
+
+		}
+
+
+
+		// Form constructor
+		public formDashboard()
         {
             InitializeComponent();
             formDashboardInstance = this;
+			
+		}
+
+        public void formDashboard_load(object sender, EventArgs e)
+        {
+            _obj = this;
+            dashBoard dashboard = new dashBoard();
+            dashboard.Dock = DockStyle.Fill;
+            panelContainer.Controls.Add(dashboard);
         }
+
+        
+
+       
+
         public string LoggedInFirstName
         {
             get { return loggedInFirstName; }

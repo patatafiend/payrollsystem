@@ -32,7 +32,6 @@
 			this.lb_DashBoard = new System.Windows.Forms.Label();
 			this.pnl_Employee = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lb_EmployeeNum = new System.Windows.Forms.Label();
 			this.lb_Employee = new System.Windows.Forms.Label();
 			this.pnl_Leave = new System.Windows.Forms.Panel();
@@ -44,23 +43,24 @@
 			this.lb_User_Username = new System.Windows.Forms.Label();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
-			this.panel4 = new System.Windows.Forms.Panel();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.pnl_Department = new System.Windows.Forms.Panel();
 			this.lb_curDepartment = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
 			this.pnl_Employee.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.pnl_Leave.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			this.panel3.SuspendLayout();
-			this.panel4.SuspendLayout();
+			this.pnl_Department.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lb_DashBoard
@@ -82,6 +82,7 @@
 			this.pnl_Employee.Controls.Add(this.pictureBox1);
 			this.pnl_Employee.Controls.Add(this.lb_EmployeeNum);
 			this.pnl_Employee.Controls.Add(this.lb_Employee);
+			this.pnl_Employee.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pnl_Employee.Location = new System.Drawing.Point(30, 74);
 			this.pnl_Employee.Name = "pnl_Employee";
 			this.pnl_Employee.Size = new System.Drawing.Size(308, 124);
@@ -98,16 +99,6 @@
 			this.label1.Size = new System.Drawing.Size(127, 19);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Total Employee";
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = global::payrollsystemsti.Properties.Resources.people;
-			this.pictureBox1.Location = new System.Drawing.Point(188, 13);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(104, 94);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 2;
-			this.pictureBox1.TabStop = false;
 			// 
 			// lb_EmployeeNum
 			// 
@@ -158,9 +149,10 @@
 			this.panel2.Controls.Add(this.label2);
 			this.panel2.Controls.Add(this.lb_DashBoard);
 			this.panel2.Controls.Add(this.lbWelcome);
-			this.panel2.Location = new System.Drawing.Point(-1, 0);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1098, 45);
+			this.panel2.Size = new System.Drawing.Size(819, 45);
 			this.panel2.TabIndex = 5;
 			// 
 			// label2
@@ -169,7 +161,7 @@
 			this.label2.BackColor = System.Drawing.Color.Transparent;
 			this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label2.Location = new System.Drawing.Point(525, 9);
+			this.label2.Location = new System.Drawing.Point(564, 11);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(142, 19);
 			this.label2.TabIndex = 7;
@@ -181,7 +173,7 @@
 			this.lbWelcome.BackColor = System.Drawing.Color.Transparent;
 			this.lbWelcome.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbWelcome.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.lbWelcome.Location = new System.Drawing.Point(673, 2);
+			this.lbWelcome.Location = new System.Drawing.Point(185, 4);
 			this.lbWelcome.Name = "lbWelcome";
 			this.lbWelcome.Size = new System.Drawing.Size(153, 32);
 			this.lbWelcome.TabIndex = 6;
@@ -195,9 +187,9 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.pbCurrentUser);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel1.Location = new System.Drawing.Point(813, 0);
+			this.panel1.Location = new System.Drawing.Point(819, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(285, 673);
+			this.panel1.Size = new System.Drawing.Size(279, 673);
 			this.panel1.TabIndex = 4;
 			// 
 			// lb_User_Username
@@ -232,22 +224,11 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "My Profile";
 			// 
-			// pbCurrentUser
-			// 
-			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-			this.pbCurrentUser.Location = new System.Drawing.Point(78, 138);
-			this.pbCurrentUser.Name = "pbCurrentUser";
-			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
-			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pbCurrentUser.TabIndex = 3;
-			this.pbCurrentUser.TabStop = false;
-			// 
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
 			this.panel3.Controls.Add(this.label4);
-			this.panel3.Location = new System.Drawing.Point(432, 232);
+			this.panel3.Location = new System.Drawing.Point(398, 232);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(274, 135);
 			this.panel3.TabIndex = 3;
@@ -263,17 +244,52 @@
 			this.label4.TabIndex = 0;
 			this.label4.Text = "Department";
 			// 
-			// panel4
+			// pnl_Department
 			// 
-			this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
-			this.panel4.Controls.Add(this.pictureBox2);
-			this.panel4.Controls.Add(this.label5);
-			this.panel4.Controls.Add(this.lb_curDepartment);
-			this.panel4.Controls.Add(this.label7);
-			this.panel4.Location = new System.Drawing.Point(459, 74);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(308, 124);
-			this.panel4.TabIndex = 4;
+			this.pnl_Department.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
+			this.pnl_Department.Controls.Add(this.lb_curDepartment);
+			this.pnl_Department.Controls.Add(this.pictureBox2);
+			this.pnl_Department.Controls.Add(this.label5);
+			this.pnl_Department.Controls.Add(this.label7);
+			this.pnl_Department.Location = new System.Drawing.Point(398, 74);
+			this.pnl_Department.Name = "pnl_Department";
+			this.pnl_Department.Size = new System.Drawing.Size(308, 124);
+			this.pnl_Department.TabIndex = 4;
+			// 
+			// lb_curDepartment
+			// 
+			this.lb_curDepartment.AutoSize = true;
+			this.lb_curDepartment.BackColor = System.Drawing.Color.Transparent;
+			this.lb_curDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_curDepartment.Location = new System.Drawing.Point(3, 46);
+			this.lb_curDepartment.Name = "lb_curDepartment";
+			this.lb_curDepartment.Size = new System.Drawing.Size(175, 29);
+			this.lb_curDepartment.TabIndex = 1;
+			this.lb_curDepartment.Text = "My Department";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.BackColor = System.Drawing.Color.Transparent;
+			this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label5.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.label5.Location = new System.Drawing.Point(3, 100);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(161, 19);
+			this.label5.TabIndex = 3;
+			this.label5.Text = "Current Department";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.BackColor = System.Drawing.Color.Transparent;
+			this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label7.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.label7.Location = new System.Drawing.Point(3, 2);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(101, 19);
+			this.label7.TabIndex = 0;
+			this.label7.Text = "Department";
 			// 
 			// pictureBox2
 			// 
@@ -285,40 +301,26 @@
 			this.pictureBox2.TabIndex = 2;
 			this.pictureBox2.TabStop = false;
 			// 
-			// label5
+			// pictureBox1
 			// 
-			this.label5.AutoSize = true;
-			this.label5.BackColor = System.Drawing.Color.Transparent;
-			this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.label5.Location = new System.Drawing.Point(3, 101);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(161, 19);
-			this.label5.TabIndex = 3;
-			this.label5.Text = "Current Department";
+			this.pictureBox1.Image = global::payrollsystemsti.Properties.Resources.people;
+			this.pictureBox1.Location = new System.Drawing.Point(188, 13);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(104, 94);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
 			// 
-			// lb_curDepartment
+			// pbCurrentUser
 			// 
-			this.lb_curDepartment.AutoSize = true;
-			this.lb_curDepartment.BackColor = System.Drawing.Color.Transparent;
-			this.lb_curDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_curDepartment.Location = new System.Drawing.Point(1, 44);
-			this.lb_curDepartment.Name = "lb_curDepartment";
-			this.lb_curDepartment.Size = new System.Drawing.Size(199, 31);
-			this.lb_curDepartment.TabIndex = 1;
-			this.lb_curDepartment.Text = "My Department";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.BackColor = System.Drawing.Color.Transparent;
-			this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.label7.Location = new System.Drawing.Point(1, 2);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(101, 19);
-			this.label7.TabIndex = 0;
-			this.label7.Text = "Department";
+			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
+			this.pbCurrentUser.Location = new System.Drawing.Point(78, 138);
+			this.pbCurrentUser.Name = "pbCurrentUser";
+			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
+			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pbCurrentUser.TabIndex = 3;
+			this.pbCurrentUser.TabStop = false;
 			// 
 			// dashBoard
 			// 
@@ -326,12 +328,12 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
 			this.ClientSize = new System.Drawing.Size(1098, 673);
-			this.Controls.Add(this.panel4);
-			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.panel2);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.pnl_Department);
+			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.pnl_Leave);
 			this.Controls.Add(this.pnl_Employee);
+			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "dashBoard";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -339,19 +341,19 @@
 			this.Load += new System.EventHandler(this.dashBoard_Load);
 			this.pnl_Employee.ResumeLayout(false);
 			this.pnl_Employee.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.pnl_Leave.ResumeLayout(false);
 			this.pnl_Leave.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
+			this.pnl_Department.ResumeLayout(false);
+			this.pnl_Department.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -376,7 +378,7 @@
         private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel pnl_Department;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.Label lb_curDepartment;

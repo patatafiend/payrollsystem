@@ -1,4 +1,5 @@
-﻿using payrollsystemsti.EmployeeTabs;
+﻿using payrollsystemsti.AdminTabs;
+using payrollsystemsti.EmployeeTabs;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -8,7 +9,11 @@ namespace payrollsystemsti
     public partial class dashBoard : Form
     {
         Methods m = new Methods();
+
+        private formDashboard formDashboard;
         private leaveApplication leaveApplication;
+        private employeeList EmployeeList;
+        private departmentList DepartmentList;
         public static dashBoard dashboardInstance;
         public PictureBox pbGetImageUser;
         public Label lbGetName;
@@ -26,23 +31,78 @@ namespace payrollsystemsti
 
 		}
 
-        private void InitializeEventHandlers()
+		private void dashBoard_Load(object sender, EventArgs e)
+		{
+			LoadEmployeeCount();
+
+		}
+
+
+
+		private void InitializeEventHandlers()
         {
             pnl_Leave.Click += Pnl_leave_Click;
+            pnl_Employee.Click += Pnl_Employee_Click;
+            pnl_Department.Click += Pnl_Department_Click;
         }
 
-        private void Pnl_leave_Click(object sender, EventArgs e)
+        private void Pnl_leave_Click(object sender, EventArgs e) //Leave Application
         {
             leaveApplication = new leaveApplication();
             leaveApplication.ShowDialog();
         }
 
-        private void dashBoard_Load(object sender, EventArgs e)
+        //employee list
+        private void Pnl_Employee_Click(object sender, EventArgs e) 
         {
-            LoadEmployeeCount();
+            if(EmployeeList == null)
+            {
+				EmployeeList = new employeeList();
+				EmployeeList.FormClosed += EmployeeList_FormClosed;
+                EmployeeList.MdiParent = formDashboard;
+                EmployeeList.Dock = DockStyle.Fill;
 
+				EmployeeList.Show();
+			}
+			else
+            {
+				EmployeeList.Activate();
+			}
+			
+
+
+		}
+
+        //department list
+
+        private void Pnl_Department_Click(object sender, EventArgs e)
+        {
+			if(DepartmentList == null)
+            {
+                DepartmentList = new departmentList();
+                DepartmentList.FormClosed += DepartmentList_FormClosed;
+                DepartmentList.MdiParent = formDashboard;
+                DepartmentList.Dock = DockStyle.Fill;
+                DepartmentList.Show();
+
+            }  
+            else
+            {
+				DepartmentList.Activate();
+			}
+		}
+
+        private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DepartmentList = null;
         }
-        void LoadEmployeeCount()
+
+        private void EmployeeList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+			EmployeeList = null;
+		}
+
+		void LoadEmployeeCount()
         {
             try
             {

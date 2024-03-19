@@ -59,6 +59,12 @@
     <Compile Include="AdminTabs\accountsArchive.Designer.cs">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\departmentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\departmentList.Designer.cs">
+      <DependentUpon>departmentList.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\employeeRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,12 @@
     <Compile Include="AdminTabs\dashBoard.Designer.cs">
       <DependentUpon>dashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\employeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\employeeList.Designer.cs">
+      <DependentUpon>employeeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeTabs\leaveApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +149,9 @@
     <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\departmentList.resx">
+      <DependentUpon>departmentList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeRegister.resx">
       <DependentUpon>employeeRegister.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\employeeList.resx">
+      <DependentUpon>employeeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeTabs\leaveApplication.resx">
       <DependentUpon>leaveApplication.cs</DependentUpon>
