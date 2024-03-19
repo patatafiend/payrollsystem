@@ -4,6 +4,7 @@ using payrollsystemsti.Tabs;
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 
 
@@ -32,7 +33,7 @@ namespace payrollsystemsti
 
 
         // Logged-in user name property
-        private string loggedInUserName, loggedInFirstName, loggedInDepartment;
+        private string loggedInFirstName, loggedInDepartment;
         
         private int loggedInEmployeeID;
 
@@ -41,16 +42,6 @@ namespace payrollsystemsti
         {
             InitializeComponent();
             formDashboardInstance = this;
-        }
-
-        public string LoggedInUserName
-        {
-            get { return loggedInUserName; }
-            set
-            {
-                loggedInUserName = value;
-                // Update the label with logged-in user name
-            }
         }
         public string LoggedInFirstName
         {
@@ -363,5 +354,7 @@ namespace payrollsystemsti
                 WindowState = FormWindowState.Maximized;
             }
         }
+
+        
     }
 }
