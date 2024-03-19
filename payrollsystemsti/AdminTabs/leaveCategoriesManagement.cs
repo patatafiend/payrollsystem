@@ -18,13 +18,13 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO LeaveCategory (LeaveName) VALUES CatName = @catname";
+            string query = "INSERT INTO LeaveCategory (CategoryName) VALUES (@catname)";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@catname", tbLeaveName);
+                    cmd.Parameters.AddWithValue("@catname", tbLeaveName.Text);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -69,8 +69,8 @@ namespace payrollsystemsti.AdminTabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["CatID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgLeaveName"].Value = row["CatName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["CategoryID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveName"].Value = row["CategoryName"].ToString();
                     }
 
                 }

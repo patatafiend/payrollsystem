@@ -207,20 +207,29 @@ namespace payrollsystemsti.EmployeeTabs
 
         }
 
+        string[] leavesMed = {"Sick Leave", "Paternity Leave", "Maternity Leave"};
+
         private void cbLeaves_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbLeaves.Text.Equals("Sick Leave"))
+            //foreach (string a: leavesMed){
+
+            //}
+            for(int i = 0; i < leavesMed.Length; i++)
             {
-                pbMedCert.Visible = true;
-                btnAdd.Visible = true;
-                btnRemove.Visible = true;
+                if (cbLeaves.Text == leavesMed[i])
+                {
+                    pbMedCert.Visible = true;
+                    btnAdd.Visible = true;
+                    btnRemove.Visible = true;
+                }
+                else
+                {
+                    pbMedCert.Visible = false;
+                    btnAdd.Visible = false;
+                    btnRemove.Visible = false;
+                }
             }
-            else
-            {
-                pbMedCert.Visible = false;
-                btnAdd.Visible = false;
-                btnRemove.Visible = false;
-            }
+            
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
