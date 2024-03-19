@@ -45,7 +45,7 @@
 			this.btnExit.BackColor = System.Drawing.Color.Crimson;
 			this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-			this.btnExit.Location = new System.Drawing.Point(751, 77);
+			this.btnExit.Location = new System.Drawing.Point(819, 163);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Size = new System.Drawing.Size(118, 44);
 			this.btnExit.TabIndex = 31;
@@ -65,7 +65,7 @@
             this.dgLastName,
             this.dgDepartment,
             this.dgStatus});
-			this.dgv_DepartmentList.Location = new System.Drawing.Point(36, 128);
+			this.dgv_DepartmentList.Location = new System.Drawing.Point(104, 214);
 			this.dgv_DepartmentList.Margin = new System.Windows.Forms.Padding(4);
 			this.dgv_DepartmentList.Name = "dgv_DepartmentList";
 			this.dgv_DepartmentList.ReadOnly = true;
