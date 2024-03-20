@@ -24,7 +24,8 @@ namespace payrollsystemsti
         private employeeRegister empRegister;
         private employeeSalary employeeSalary;
         private leaveApplication leaveApplication;
-        private leaveCategoriesManagement leaveManage;
+        private leaveCategoriesManagement ltm;
+        private leaveManagement lm;
 
         
 
@@ -343,26 +344,47 @@ namespace payrollsystemsti
             leaveApplication = null;
         }
 
-        private void btnLeaveM_Click(object sender, EventArgs e)
+        private void btnLTM_Click(object sender, EventArgs e)
         {
-            if (leaveManage == null)
+            if (ltm == null)
             {
-                leaveManage = new leaveCategoriesManagement();
-                leaveManage.FormClosed += LeaveManagement_FormClosed;
-                leaveManage.MdiParent = this;
-                leaveManage.Dock = DockStyle.Fill;
-                leaveManage.Show();
+                ltm = new leaveCategoriesManagement();
+                ltm.FormClosed += LeaveTypeManagement_FormClosed;
+                ltm.MdiParent = this;
+                ltm.Dock = DockStyle.Fill;
+                ltm.Show();
             }
             else
             {
-                leaveManage.Activate();
+                ltm.Activate();
             }
-
         }
+        private void LeaveTypeManagement_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ltm = null;
+        }
+
+        private void btnLM_Click(object sender, EventArgs e)
+        {
+            if (lm == null)
+            {
+                lm = new leaveManagement();
+                lm.FormClosed += LeaveManagement_FormClosed;
+                lm.MdiParent = this;
+                lm.Dock = DockStyle.Fill;
+                lm.Show();
+            }
+            else
+            {
+                lm.Activate();
+            }
+        }
+
         private void LeaveManagement_FormClosed(object sender, FormClosedEventArgs e)
         {
-            leaveManage = null;
+            lm = null;
         }
+
         //when left mouse is clicked on the header panel this executes
         private void header_MouseDown(object sender, MouseEventArgs e)
         {

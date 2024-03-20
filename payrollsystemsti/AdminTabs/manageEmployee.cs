@@ -48,36 +48,7 @@ namespace payrollsystemsti.Tabs
             LoadData();
             ClearData();
         }
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //	if (Validation())
-        //	{
-        //		if (ifUserNameExists(tbUserName.Text))
-        //		{
-        //			MessageBox.Show("User Name Already Exists");
-        //		}
-        //		else
-        //		{
-        //			string randomPass = passwordGenerator(); //Generate randomPassword
-        //			string query = "INSERT INTO UserAccounts (Username, Password, Role) VALUES (@Username, @Password, @Role)";
-        //			using(SqlConnection conn = new SqlConnection(m.connStr))
-        //			{
-        //				conn.Open();
-        //				using(SqlCommand cmd = new SqlCommand(query, conn))
-        //				{
-        //					cmd.Parameters.AddWithValue("@Username", tbUserName.Text);
-        //                          cmd.Parameters.AddWithValue("@Password", randomPass);
-        //                          cmd.Parameters.AddWithValue("@Role", cbRole.Text);
-
-        //                          cmd.ExecuteNonQuery();
-        //                      }
-        //			}
-        //			MessageBox.Show("User password = " + randomPass + " Record Saved Successfully.... ");
-        //			ClearData();
-        //			LoadData();
-        //		}
-        //	}
-        //}
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);

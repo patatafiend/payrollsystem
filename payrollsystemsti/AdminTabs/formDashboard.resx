@@ -276,7 +276,18 @@
         XnojaozqAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnLeaveM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLTM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAUlJREFUSEvN
+        VUtqhUAQnKvkEtnmAFnnBoGs3iWyDblBdtnmIlm48bdQVLIRNQafEgPiL11h5iEyw0TxySsoWke7yp5m
+        WrYLxnFklmVdm6Z5uwWhBc0TaPGGFjYFNLk8Y47j3PH1v2o24AhNLn8BBkmSmMMwjDp6nvfEc9QG2Ls4
+        jt8FgyB4Kcvys+/7Ybo+J5KjKHqDBq6VBvQVjxATrKrqCIOmaVo8VxEV/MtARhhQ1GK1AbYNleloGMYV
+        z1lmsILLDIqiiClqEYbhKwXkqA1c1z1QQ0/I8zzatMm2bd/Xdf0tmKapBYO2bTvMGRWRvLrJVMUHRS1w
+        Zigg58KajOcoH6TrB9k7My4zmB60H4Lv+8+ycUG9wNhHznIDjI2u63oY0P3XdMgJ0mHTDzsZ8XViNmVZ
+        5snemXHnJvO92xTQ5PI7/PTPB8Z+AVYBNM54KfQoAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnLM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAUlJREFUSEvN
         VUtqhUAQnKvkEtnmAFnnBoGs3iWyDblBdtnmIlm48bdQVLIRNQafEgPiL11h5iEyw0TxySsoWke7yp5m

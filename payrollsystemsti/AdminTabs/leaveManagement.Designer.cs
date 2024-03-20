@@ -33,11 +33,11 @@
             this.lbLM = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgLeaveType,
-            this.dgLeaveName,
+            this.dgName,
             this.dgStatus});
             this.dataGridView1.Location = new System.Drawing.Point(84, 202);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
@@ -60,6 +60,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(833, 342);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // lbLM
             // 
@@ -84,6 +85,7 @@
             this.btnView.TabIndex = 25;
             this.btnView.Text = "View Details";
             this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnUpdate
             // 
@@ -97,30 +99,6 @@
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
             // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "Leave Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
-            // dgLeaveName
-            // 
-            this.dgLeaveName.HeaderText = "Name";
-            this.dgLeaveName.Name = "dgLeaveName";
-            this.dgLeaveName.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
             // btnReload
             // 
             this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -133,12 +111,36 @@
             this.btnReload.TabIndex = 27;
             this.btnReload.UseVisualStyleBackColor = false;
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgLeaveType
+            // 
+            this.dgLeaveType.HeaderText = "Leave Type";
+            this.dgLeaveType.Name = "dgLeaveType";
+            this.dgLeaveType.ReadOnly = true;
+            // 
+            // dgName
+            // 
+            this.dgName.HeaderText = "Name";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
             // leaveManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(974, 729);
+            this.ClientSize = new System.Drawing.Size(974, 701);
             this.Controls.Add(this.btnReload);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnView);
@@ -149,6 +151,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "leaveManagement";
             this.Text = "leaveManagement";
+            this.Load += new System.EventHandler(this.leaveManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,7 +167,7 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
     }
 }
