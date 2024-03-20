@@ -178,7 +178,7 @@ namespace payrollsystemsti.EmployeeTabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveID"].ToString();
                         dataGridView1.Rows[n].Cells["dgLeaveCategory"].Value = row["CategoryName"].ToString();
                         dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
                         dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("dd/MM/yyyy");

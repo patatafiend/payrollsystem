@@ -1,13 +1,15 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Windows.Markup;
 
 namespace payrollsystemsti.AdminTabs
 {
     public partial class leaveManagement : Form
     {
         Methods m = new Methods();
-        private int employeeID;
+        private string employeeID;
         public leaveManagement()
         {
             InitializeComponent();
@@ -23,9 +25,8 @@ namespace payrollsystemsti.AdminTabs
         private void btnView_Click(object sender, System.EventArgs e)
         {
             leaveDetails ld = new leaveDetails();
+            leaveDetails.ld.employeeID = Int32.Parse(employeeID);
             ld.Show();
-            leaveDetails.ld.employeeID = employeeID;
-            
         }
 
         private void LoadData()
@@ -44,7 +45,6 @@ namespace payrollsystemsti.AdminTabs
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
 
-                    string catQuery = "SELECT CategoryName";
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
@@ -59,7 +59,10 @@ namespace payrollsystemsti.AdminTabs
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            employeeID = (int)dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value;
+            employeeID = dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString();
+
+            btnUpdate.Enabled = true;
+            btnView.Enabled = true;
         }
     }
 }
