@@ -12,9 +12,6 @@ namespace payrollsystemsti
 {
     public partial class formDashboard : Form
     {
-		
-        
-
 		Methods m = new Methods();
         public static formDashboard formDashboardInstance;
         // Declare form instances
@@ -28,7 +25,6 @@ namespace payrollsystemsti
         private leaveManagement lm;
 
         
-
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -64,8 +60,6 @@ namespace payrollsystemsti
 
 		}
 
-
-
 		// Form constructor
 		public formDashboard()
         {
@@ -81,10 +75,6 @@ namespace payrollsystemsti
             dashboard.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(dashboard);
         }
-
-        
-
-       
 
         public string LoggedInFirstName
         {
@@ -111,9 +101,6 @@ namespace payrollsystemsti
 				loggedInDepartment = value;
 			}
 		}
-
-
-
 		public Button GetUserAccountButton()
         {
             return btn_useraccount;
@@ -122,7 +109,7 @@ namespace payrollsystemsti
 
         // Employee panel expand/collapse transition flags
         private bool employeeExpand = false;
-        private bool sideBarExpand = false;
+        private bool sideBarExpand = true;
 
         // Click event for employee button
         private void employee_Click(object sender, EventArgs e)
@@ -156,10 +143,11 @@ namespace payrollsystemsti
         // Sidebar expand/collapse transition
         private void sideBarTransition_Tick(object sender, EventArgs e)
         {
+            
             if (sideBarExpand == false)
             {
-                panel7.Width += 10;
-                if (panel7.Width >= 183)
+                sideBar.Width += 10;
+                if (sideBar.Width >= 180)
                 {
                     sideBarTransition.Stop();
                     sideBarExpand = true;
@@ -167,8 +155,8 @@ namespace payrollsystemsti
             }
             else
             {
-                panel7.Width -= 10;
-                if (panel7.Width <= 43)
+                sideBar.Width -= 10;
+                if (sideBar.Width <= 0)
                 {
                     sideBarTransition.Stop();
                     sideBarExpand = false;

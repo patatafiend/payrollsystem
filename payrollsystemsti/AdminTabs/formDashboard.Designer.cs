@@ -64,9 +64,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.btnLTM = new System.Windows.Forms.Button();
-            this.panelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLM = new System.Windows.Forms.Button();
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.header.SuspendLayout();
             this.controlBox.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -506,15 +506,6 @@
             this.btnLTM.UseVisualStyleBackColor = false;
             this.btnLTM.Click += new System.EventHandler(this.btnLTM_Click);
             // 
-            // panelContainer
-            // 
-            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(187, 70);
-            this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(1063, 670);
-            this.panelContainer.TabIndex = 5;
-            this.panelContainer.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
@@ -541,6 +532,15 @@
             this.btnLM.Text = "Leave \r\nManagement";
             this.btnLM.UseVisualStyleBackColor = false;
             this.btnLM.Click += new System.EventHandler(this.btnLM_Click);
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(187, 70);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(1063, 670);
+            this.panelContainer.TabIndex = 5;
+            this.panelContainer.Visible = false;
             // 
             // formDashboard
             // 

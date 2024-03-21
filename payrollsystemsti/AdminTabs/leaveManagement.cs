@@ -20,6 +20,8 @@ namespace payrollsystemsti.AdminTabs
             LoadData();
             btnUpdate.Enabled = false;
             btnView.Enabled = false;
+            btnApprove.Enabled = false;
+            btnReject.Enabled = false;
         }
 
         private void btnView_Click(object sender, System.EventArgs e)
@@ -63,6 +65,53 @@ namespace payrollsystemsti.AdminTabs
 
             btnUpdate.Enabled = true;
             btnView.Enabled = true;
+            btnApprove.Enabled = true;
+            btnReject.Enabled = true;
+        }
+        
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            if(employeeID != "0")
+            {
+                string query = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
+                using (SqlConnection conn = new SqlConnection(m.connStr))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Approved");
+                        cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                LoadData();
+            }
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            if (employeeID != "0")
+            {
+                string query = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
+                using (SqlConnection conn = new SqlConnection(m.connStr))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Rejected");
+                        cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                LoadData();
+            }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }
