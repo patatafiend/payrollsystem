@@ -23,6 +23,7 @@ namespace payrollsystemsti
         private leaveApplication leaveApplication;
         private leaveCategoriesManagement ltm;
         private leaveManagement lm;
+        private accountsArchive aa;
 
         
         //draggable panel shit
@@ -372,6 +373,26 @@ namespace payrollsystemsti
         {
             lm = null;
         }
+        private void btnArchive_Click(object sender, EventArgs e)
+        {
+            if (aa == null)
+            {
+                aa = new accountsArchive();
+                aa.FormClosed += AccountArchive_FormClosed;
+                aa.MdiParent = this;
+                aa.Dock = DockStyle.Fill;
+                aa.Show();
+            }
+            else
+            {
+                aa.Activate();
+            }
+        }
+
+        private void AccountArchive_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            aa = null;
+        }
 
         //when left mouse is clicked on the header panel this executes
         private void header_MouseDown(object sender, MouseEventArgs e)
@@ -406,7 +427,5 @@ namespace payrollsystemsti
                 WindowState = FormWindowState.Maximized;
             }
         }
-
-        
     }
 }

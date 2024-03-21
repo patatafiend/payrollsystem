@@ -34,6 +34,7 @@ namespace payrollsystemsti
             }
             
         }
+        //convert binary image to image
         public Image ConvertToImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0)
@@ -45,9 +46,9 @@ namespace payrollsystemsti
             }
         }
 
+        //retrieve image data from database based on employeeID
         public byte[] RetrieveEmployeeImageData(int employeeID)
         {
-            // Implement your logic to fetch ImageData from EmployeeAccounts table based on EmployeeID
             byte[] imageData = null;
             using (SqlConnection conn = new SqlConnection(connStr))
             {

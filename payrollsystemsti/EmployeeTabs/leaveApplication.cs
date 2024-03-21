@@ -15,6 +15,7 @@ namespace payrollsystemsti.EmployeeTabs
         Methods m = new Methods();
         string fileName;
 
+
         private int loggedInID;
         public leaveApplication()
         {
@@ -204,7 +205,32 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // Convert medical certificate image to binary
+            byte[] medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
+            string query = "UPDATE LeaveApplications SET CategoryName = @categoryName, DateStart = @dateStart, DateEnd = @dateEnd" +
+                ", Reason = @reason, MedicalCert = @medcert, FileName = @filename";
 
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@categoryName", cbLeaves.Text);
+                    cmd.Parameters.AddWithValue("@dateStart", dtStart.Value.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue("@dateEnd", dtEnd.Value.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue("@reason", tbReason.Text);
+                    if (medicalCertificate != null)
+                    {
+                        cmd.Parameters.AddWithValue("@MedicalCert", medicalCertificate);
+                        cmd.Parameters.AddWithValue("@FileName", fileName);
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@MedicalCert", SqlDbType.Image).Value = DBNull.Value;
+                        cmd.Parameters.AddWithValue("@FileName", DBNull.Value);
+                    }
+                }
+            }
         }
 
         string[] leavesMed = {"Paternity Leave", "Maternity Leave", "Sick Leave"};

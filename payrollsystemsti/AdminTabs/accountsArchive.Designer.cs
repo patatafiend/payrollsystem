@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnActivate = new System.Windows.Forms.Button();
             this.dgEmployeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnActivate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,18 +54,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(629, 268);
             this.dataGridView1.TabIndex = 4;
             // 
-            // btnActivate
-            // 
-            this.btnActivate.BackColor = System.Drawing.Color.Crimson;
-            this.btnActivate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnActivate.Location = new System.Drawing.Point(608, 99);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(118, 44);
-            this.btnActivate.TabIndex = 27;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = false;
-            // 
             // dgEmployeeID
             // 
             this.dgEmployeeID.HeaderText = "Employee ID";
@@ -77,6 +65,18 @@
             this.dgFullName.HeaderText = "Name";
             this.dgFullName.Name = "dgFullName";
             this.dgFullName.ReadOnly = true;
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnActivate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnActivate.Location = new System.Drawing.Point(608, 99);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(118, 44);
+            this.btnActivate.TabIndex = 27;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -102,6 +102,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "accountsArchive";
             this.Text = "accountsArchive";
+            this.Load += new System.EventHandler(this.accountsArchive_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

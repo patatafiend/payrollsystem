@@ -8,7 +8,6 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
-        dashBoard dashBoard = new dashBoard();
 
         public formLogin()
         {
@@ -85,6 +84,38 @@ namespace payrollsystemsti
         private void loginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbUserName;
+        }
+
+        private void tbUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if(tbUserName.Text.Length > 0)
+                {
+                    tbPassword.Focus();
+                }
+                else
+                {
+                    tbUserName.Focus();
+                }
+            }
+        }
+
+        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbPassword.Text.Length > 0)
+                {
+                    btnLogin.Focus();
+                }
+                else
+                {
+                    tbPassword.Focus();
+                }
+            }
         }
     }
 

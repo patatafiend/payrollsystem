@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cbLeaves = new System.Windows.Forms.ComboBox();
@@ -46,15 +55,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pbMedCert = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedCert)).BeginInit();
@@ -64,6 +64,9 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -84,6 +87,62 @@
             this.dataGridView1.Size = new System.Drawing.Size(744, 175);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            // 
+            // dgLeaveCategory
+            // 
+            this.dgLeaveCategory.HeaderText = "Leave Category";
+            this.dgLeaveCategory.Name = "dgLeaveCategory";
+            this.dgLeaveCategory.ReadOnly = true;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "Date Applied";
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
+            // 
+            // dgStart
+            // 
+            this.dgStart.HeaderText = "Date Start";
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
+            // 
+            // dgEnd
+            // 
+            this.dgEnd.HeaderText = "Date End";
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            // 
+            // dgReason
+            // 
+            this.dgReason.HeaderText = "Reason";
+            this.dgReason.Name = "dgReason";
+            this.dgReason.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "File Name";
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
             // 
             // btnSubmit
             // 
@@ -155,6 +214,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.BackColor = System.Drawing.Color.Teal;
             this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
@@ -170,6 +230,7 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.BackColor = System.Drawing.Color.Crimson;
             this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
@@ -187,6 +248,7 @@
             // 
             // lbFileName
             // 
+            this.lbFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbFileName.AutoSize = true;
             this.lbFileName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFileName.Location = new System.Drawing.Point(583, 83);
@@ -238,6 +300,7 @@
             // 
             // pbMedCert
             // 
+            this.pbMedCert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbMedCert.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbMedCert.Location = new System.Drawing.Point(587, 109);
             this.pbMedCert.Name = "pbMedCert";
@@ -257,62 +320,6 @@
             this.label6.Size = new System.Drawing.Size(323, 32);
             this.label6.TabIndex = 18;
             this.label6.Text = "Leave Form Application\r\n";
-            // 
-            // dgLeaveID
-            // 
-            this.dgLeaveID.HeaderText = "Leave ID";
-            this.dgLeaveID.Name = "dgLeaveID";
-            this.dgLeaveID.ReadOnly = true;
-            // 
-            // dgLeaveCategory
-            // 
-            this.dgLeaveCategory.HeaderText = "Leave Category";
-            this.dgLeaveCategory.Name = "dgLeaveCategory";
-            this.dgLeaveCategory.ReadOnly = true;
-            // 
-            // dgAppliedDate
-            // 
-            this.dgAppliedDate.HeaderText = "Date Applied";
-            this.dgAppliedDate.Name = "dgAppliedDate";
-            this.dgAppliedDate.ReadOnly = true;
-            // 
-            // dgStart
-            // 
-            this.dgStart.HeaderText = "Date Start";
-            this.dgStart.Name = "dgStart";
-            this.dgStart.ReadOnly = true;
-            // 
-            // dgEnd
-            // 
-            this.dgEnd.HeaderText = "Date End";
-            this.dgEnd.Name = "dgEnd";
-            this.dgEnd.ReadOnly = true;
-            // 
-            // dgReason
-            // 
-            this.dgReason.HeaderText = "Reason";
-            this.dgReason.Name = "dgReason";
-            this.dgReason.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "File Name";
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
             // 
             // leaveApplication
             // 

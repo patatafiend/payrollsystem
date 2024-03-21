@@ -67,6 +67,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLM = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.btnArchive = new System.Windows.Forms.Button();
             this.header.SuspendLayout();
             this.controlBox.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -86,6 +88,7 @@
             this.panel9.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
@@ -392,6 +395,7 @@
             this.sideBar.Controls.Add(this.panel9);
             this.sideBar.Controls.Add(this.panel15);
             this.sideBar.Controls.Add(this.panel1);
+            this.sideBar.Controls.Add(this.panel11);
             this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideBar.Location = new System.Drawing.Point(0, 70);
             this.sideBar.Name = "sideBar";
@@ -542,6 +546,33 @@
             this.panelContainer.TabIndex = 5;
             this.panelContainer.Visible = false;
             // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Transparent;
+            this.panel11.Controls.Add(this.btnArchive);
+            this.panel11.Location = new System.Drawing.Point(0, 440);
+            this.panel11.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.panel11.Size = new System.Drawing.Size(185, 52);
+            this.panel11.TabIndex = 11;
+            // 
+            // btnArchive
+            // 
+            this.btnArchive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btnArchive.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArchive.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnArchive.Image = ((System.Drawing.Image)(resources.GetObject("btnArchive.Image")));
+            this.btnArchive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnArchive.Location = new System.Drawing.Point(-7, -32);
+            this.btnArchive.Name = "btnArchive";
+            this.btnArchive.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnArchive.Size = new System.Drawing.Size(200, 117);
+            this.btnArchive.TabIndex = 3;
+            this.btnArchive.Text = "Account\r\nArchive";
+            this.btnArchive.UseVisualStyleBackColor = false;
+            this.btnArchive.Click += new System.EventHandler(this.btnArchive_Click);
+            // 
             // formDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,6 +608,7 @@
             this.panel9.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -620,5 +652,7 @@
 		private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLM;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Button btnArchive;
     }
 }
