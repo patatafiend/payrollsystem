@@ -128,10 +128,6 @@ namespace payrollsystemsti
             }
         }
 
-		private void pnl_Employee_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
 	}
 
 }

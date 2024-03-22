@@ -87,7 +87,6 @@
 			this.pnl_Employee.Name = "pnl_Employee";
 			this.pnl_Employee.Size = new System.Drawing.Size(308, 124);
 			this.pnl_Employee.TabIndex = 1;
-			this.pnl_Employee.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Employee_Paint);
 			// 
 			// label1
 			// 
