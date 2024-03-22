@@ -2,6 +2,7 @@
 using payrollsystemsti.EmployeeTabs;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace payrollsystemsti
@@ -10,9 +11,8 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
 
-        private formDashboard formDashboard;
+        
         private leaveApplication leaveApplication;
-        private employeeList EmployeeList;
         private departmentList DepartmentList;
         public static dashBoard dashboardInstance;
         public PictureBox pbGetImageUser;
@@ -53,41 +53,45 @@ namespace payrollsystemsti
         //employee list
         private void Pnl_Employee_Click(object sender, EventArgs e) 
         {
-            if(EmployeeList == null)
-            {
-				EmployeeList = new employeeList();
-				EmployeeList.FormClosed += EmployeeList_FormClosed;
-                EmployeeList.MdiParent = formDashboard;
-                EmployeeList.Dock = DockStyle.Fill;
-
-				EmployeeList.Show();
-			}
-			else
-            {
-				EmployeeList.Activate();
-			}
 			
+			var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
 
+			if (employeeListForm == null)
+			{
+				employeeListForm = new employeeList()
+				{
+					Dock = DockStyle.Fill,
+					Name = "employeeList", 
+					TopLevel = false,
+					
+				};
+				formDashboard.Instance.PnlContainer.Controls.Add(employeeListForm);
+				employeeListForm.Show();
+			}
 
+            employeeListForm.BringToFront();
 		}
 
-        //department list
+		//department list
 
-        private void Pnl_Department_Click(object sender, EventArgs e)
+		private void Pnl_Department_Click(object sender, EventArgs e)
         {
-			if(DepartmentList == null)
-            {
-                DepartmentList = new departmentList();
-                DepartmentList.FormClosed += DepartmentList_FormClosed;
-                DepartmentList.MdiParent = formDashboard;
-                DepartmentList.Dock = DockStyle.Fill;
-                DepartmentList.Show();
+			var departmentListForm = formDashboard.Instance.PnlContainer.Controls.OfType<departmentList>().FirstOrDefault();
 
-            }  
-            else
-            {
-				DepartmentList.Activate();
+			if (departmentListForm == null)
+			{
+				departmentListForm = new departmentList()
+				{
+					Dock = DockStyle.Fill,
+					Name = "departmentList",
+					TopLevel = false,
+					
+				};
+				formDashboard.Instance.PnlContainer.Controls.Add(departmentListForm);
+				departmentListForm.Show();
 			}
+
+			departmentListForm.BringToFront();
 		}
 
         private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
@@ -95,10 +99,7 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-        private void EmployeeList_FormClosed(object sender, FormClosedEventArgs e)
-        {
-			EmployeeList = null;
-		}
+        
 
 		void LoadEmployeeCount()
         {
@@ -126,6 +127,11 @@ namespace payrollsystemsti
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+		private void pnl_Employee_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
 	}
 
 }

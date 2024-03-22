@@ -32,6 +32,7 @@
 			this.lb_DashBoard = new System.Windows.Forms.Label();
 			this.pnl_Employee = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lb_EmployeeNum = new System.Windows.Forms.Label();
 			this.lb_Employee = new System.Windows.Forms.Label();
 			this.pnl_Leave = new System.Windows.Forms.Panel();
@@ -43,24 +44,23 @@
 			this.lb_User_Username = new System.Windows.Forms.Label();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
 			this.pnl_Department = new System.Windows.Forms.Panel();
 			this.lb_curDepartment = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
 			this.pnl_Employee.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.pnl_Leave.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			this.panel3.SuspendLayout();
 			this.pnl_Department.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lb_DashBoard
@@ -87,6 +87,7 @@
 			this.pnl_Employee.Name = "pnl_Employee";
 			this.pnl_Employee.Size = new System.Drawing.Size(308, 124);
 			this.pnl_Employee.TabIndex = 1;
+			this.pnl_Employee.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Employee_Paint);
 			// 
 			// label1
 			// 
@@ -94,18 +95,28 @@
 			this.label1.BackColor = System.Drawing.Color.Transparent;
 			this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.label1.Location = new System.Drawing.Point(3, 101);
+			this.label1.Location = new System.Drawing.Point(9, 100);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(127, 19);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Total Employee";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::payrollsystemsti.Properties.Resources.people;
+			this.pictureBox1.Location = new System.Drawing.Point(13, 25);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(81, 72);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
 			// 
 			// lb_EmployeeNum
 			// 
 			this.lb_EmployeeNum.AutoSize = true;
 			this.lb_EmployeeNum.BackColor = System.Drawing.Color.Transparent;
 			this.lb_EmployeeNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_EmployeeNum.Location = new System.Drawing.Point(56, 44);
+			this.lb_EmployeeNum.Location = new System.Drawing.Point(154, 44);
 			this.lb_EmployeeNum.Name = "lb_EmployeeNum";
 			this.lb_EmployeeNum.Size = new System.Drawing.Size(74, 39);
 			this.lb_EmployeeNum.TabIndex = 1;
@@ -152,7 +163,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(819, 45);
+			this.panel2.Size = new System.Drawing.Size(784, 45);
 			this.panel2.TabIndex = 5;
 			// 
 			// label2
@@ -187,9 +198,9 @@
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.pbCurrentUser);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel1.Location = new System.Drawing.Point(819, 0);
+			this.panel1.Location = new System.Drawing.Point(784, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(279, 673);
+			this.panel1.Size = new System.Drawing.Size(279, 670);
 			this.panel1.TabIndex = 4;
 			// 
 			// lb_User_Username
@@ -223,6 +234,17 @@
 			this.label3.Size = new System.Drawing.Size(99, 23);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "My Profile";
+			// 
+			// pbCurrentUser
+			// 
+			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
+			this.pbCurrentUser.Location = new System.Drawing.Point(78, 138);
+			this.pbCurrentUser.Name = "pbCurrentUser";
+			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
+			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pbCurrentUser.TabIndex = 3;
+			this.pbCurrentUser.TabStop = false;
 			// 
 			// panel3
 			// 
@@ -261,11 +283,21 @@
 			this.lb_curDepartment.AutoSize = true;
 			this.lb_curDepartment.BackColor = System.Drawing.Color.Transparent;
 			this.lb_curDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_curDepartment.Location = new System.Drawing.Point(3, 46);
+			this.lb_curDepartment.Location = new System.Drawing.Point(102, 44);
 			this.lb_curDepartment.Name = "lb_curDepartment";
 			this.lb_curDepartment.Size = new System.Drawing.Size(175, 29);
 			this.lb_curDepartment.TabIndex = 1;
 			this.lb_curDepartment.Text = "My Department";
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+			this.pictureBox2.Location = new System.Drawing.Point(11, 25);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(85, 72);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox2.TabIndex = 2;
+			this.pictureBox2.TabStop = false;
 			// 
 			// label5
 			// 
@@ -291,43 +323,12 @@
 			this.label7.TabIndex = 0;
 			this.label7.Text = "Department";
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(192, 13);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(104, 94);
-			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox2.TabIndex = 2;
-			this.pictureBox2.TabStop = false;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = global::payrollsystemsti.Properties.Resources.people;
-			this.pictureBox1.Location = new System.Drawing.Point(188, 13);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(104, 94);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 2;
-			this.pictureBox1.TabStop = false;
-			// 
-			// pbCurrentUser
-			// 
-			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-			this.pbCurrentUser.Location = new System.Drawing.Point(78, 138);
-			this.pbCurrentUser.Name = "pbCurrentUser";
-			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
-			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pbCurrentUser.TabIndex = 3;
-			this.pbCurrentUser.TabStop = false;
-			// 
 			// dashBoard
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
-			this.ClientSize = new System.Drawing.Size(1098, 673);
+			this.ClientSize = new System.Drawing.Size(1063, 670);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.pnl_Department);
 			this.Controls.Add(this.panel3);
@@ -335,25 +336,26 @@
 			this.Controls.Add(this.pnl_Employee);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Location = new System.Drawing.Point(187, 70);
 			this.Name = "dashBoard";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "dashBoard";
 			this.Load += new System.EventHandler(this.dashBoard_Load);
 			this.pnl_Employee.ResumeLayout(false);
 			this.pnl_Employee.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.pnl_Leave.ResumeLayout(false);
 			this.pnl_Leave.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
 			this.pnl_Department.ResumeLayout(false);
 			this.pnl_Department.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			this.ResumeLayout(false);
 
         }

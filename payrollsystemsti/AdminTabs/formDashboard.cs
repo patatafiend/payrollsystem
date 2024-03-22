@@ -61,6 +61,14 @@ namespace payrollsystemsti
 
 		}
 
+        public Button BackButton
+        {
+            get { return btn_back; }
+            set {  btn_back = value; }
+        }
+
+
+
 		// Form constructor
 		public formDashboard()
         {
@@ -69,14 +77,13 @@ namespace payrollsystemsti
 			
 		}
 
-        public void formDashboard_load(object sender, EventArgs e)
-        {
-            _obj = this;
-            dashBoard dashboard = new dashBoard();
-            dashboard.Dock = DockStyle.Fill;
-            panelContainer.Controls.Add(dashboard);
-        }
+        
 
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls["dashBoard"].BringToFront();
+			btn_back.Visible = false;
+		}
         public string LoggedInFirstName
         {
             get { return loggedInFirstName; }
@@ -174,8 +181,9 @@ namespace payrollsystemsti
         // Click event for user account button
         private void userAccount_btn(object sender, EventArgs e)
         {
-            // Show user registration form or activate if already open
-            if (userRegister == null)
+			panelContainerToBackOrToFront(false);
+			// Show user registration form or activate if already open
+			if (userRegister == null)
             {
                 userRegister = new manageEmployee();
                 userRegister.FormClosed += userRegister_FormClosed;
@@ -198,14 +206,23 @@ namespace payrollsystemsti
         // Click event for dashboard button
         private void dashBoard_btn(object sender, EventArgs e)
         {
-            // Show dashboard form or activate if already open
-            if (dashboard == null)
+
+
+
+            panelContainerToBackOrToFront(true);
+			// Show dashboard form or activate if already open
+			if (dashboard == null)
             {
-                dashboard = new dashBoard();
+              
+				btn_back.Visible = false;
+				_obj = this;
+				dashboard = new dashBoard();
                 dashboard.FormClosed += Dashboard_FormClosed;
                 dashboard.MdiParent = this;
                 dashboard.Dock = DockStyle.Fill;
-                dashboard.Show();
+				
+
+				dashboard.Show();
             }
             else
             {
@@ -223,8 +240,9 @@ namespace payrollsystemsti
 
             byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
             dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
-
 			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
+
+			panelContainer.Controls.Add(dashboard);
 
 		}
 
@@ -244,19 +262,22 @@ namespace payrollsystemsti
         // Click event for settings button
         private void settings_Click(object sender, EventArgs e)
         {
+			panelContainerToBackOrToFront(false);
+			if (fSettings == null)
+			{
+				fSettings = new formSettings();
+				fSettings.FormClosed += Settings_FormClosed;
+				fSettings.MdiParent = this;
+				fSettings.Dock = DockStyle.Fill;
+				fSettings.Show();
+			}
+			else
+			{
+				fSettings.Activate();
+			}
+			
             // Show settings form or activate if already open
-            if (fSettings == null)
-            {
-                fSettings = new formSettings();
-                fSettings.FormClosed += Settings_FormClosed;
-                fSettings.MdiParent = this;
-                fSettings.Dock = DockStyle.Fill;
-                fSettings.Show();
-            }
-            else
-            {
-                fSettings.Activate();
-            }
+            
         }
 
         // FormClosed event for settings form
@@ -268,8 +289,11 @@ namespace payrollsystemsti
         // Click event for employee registration button
         private void employee_Register(object sender, EventArgs e)
         {
-            // Show employee registration form or activate if already open
-            if (empRegister == null)
+
+			panelContainerToBackOrToFront(false);
+
+			// Show employee registration form or activate if already open
+			if (empRegister == null)
             {
                 empRegister = new employeeRegister();
                 empRegister.FormClosed += EmployeeRegister_FormClosed;
@@ -292,8 +316,9 @@ namespace payrollsystemsti
         // Click event for employee salary button
         private void employee_Salary(object sender, EventArgs e)
         {
-            // Show employee salary form or activate if already open
-            if (employeeSalary == null)
+			panelContainerToBackOrToFront(false);
+			// Show employee salary form or activate if already open
+			if (employeeSalary == null)
             {
                 employeeSalary = new employeeSalary();
                 employeeSalary.FormClosed += EmployeeSalary_FormClosed;
@@ -314,7 +339,8 @@ namespace payrollsystemsti
         }
         private void btnLeave_Click(object sender, EventArgs e)
         {
-            if (leaveApplication == null)
+			panelContainerToBackOrToFront(false);
+			if (leaveApplication == null)
             {
                 leaveApplication = new leaveApplication();
                 leaveApplication.FormClosed += LeaveApplication_FormClosed;
@@ -335,7 +361,8 @@ namespace payrollsystemsti
 
         private void btnLTM_Click(object sender, EventArgs e)
         {
-            if (ltm == null)
+			panelContainerToBackOrToFront(false);
+			if (ltm == null)
             {
                 ltm = new leaveCategoriesManagement();
                 ltm.FormClosed += LeaveTypeManagement_FormClosed;
@@ -355,7 +382,8 @@ namespace payrollsystemsti
 
         private void btnLM_Click(object sender, EventArgs e)
         {
-            if (lm == null)
+			panelContainerToBackOrToFront(false);
+			if (lm == null)
             {
                 lm = new leaveManagement();
                 lm.FormClosed += LeaveManagement_FormClosed;
@@ -375,6 +403,8 @@ namespace payrollsystemsti
         }
         private void btnArchive_Click(object sender, EventArgs e)
         {
+			panelContainerToBackOrToFront(false);
+
             if (aa == null)
             {
                 aa = new accountsArchive();
@@ -427,5 +457,19 @@ namespace payrollsystemsti
                 WindowState = FormWindowState.Maximized;
             }
         }
+
+        private void panelContainerToBackOrToFront(Boolean ifVisibile)
+        {
+			panelContainer.Visible = ifVisibile;
+            if (ifVisibile)
+            {
+                panelContainer.BringToFront();
+            }
+            else
+            {
+                panelContainer.SendToBack();
+			}
+            
+		}
     }
 }
