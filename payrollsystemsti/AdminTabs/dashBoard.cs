@@ -18,7 +18,7 @@ namespace payrollsystemsti
         public PictureBox pbGetImageUser;
         public Label lbGetName;
         public Label lbGetDepartment;
-
+        public Label lbEmpID;
 
         public dashBoard()
         {
@@ -28,6 +28,7 @@ namespace payrollsystemsti
             pbGetImageUser = pbCurrentUser;
             lbGetName = lbWelcome;
 			lbGetDepartment = lb_curDepartment;
+            lbEmpID = lbEmployeeID;
 
 		}
 
