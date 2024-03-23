@@ -30,10 +30,10 @@
 		{
 			this.btnExit = new System.Windows.Forms.Button();
 			this.dgv_DepartmentList = new System.Windows.Forms.DataGridView();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.lb_DepartmentList = new System.Windows.Forms.Label();
 			this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.lb_DepartmentList = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_DepartmentList)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -41,15 +41,16 @@
 			// btnExit
 			// 
 			this.btnExit.BackColor = System.Drawing.Color.Crimson;
+			this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
 			this.btnExit.Location = new System.Drawing.Point(819, 163);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Size = new System.Drawing.Size(118, 44);
 			this.btnExit.TabIndex = 31;
-			this.btnExit.Text = "Exit";
+			this.btnExit.Text = "Back";
 			this.btnExit.UseVisualStyleBackColor = false;
-			this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
+			this.btnExit.Click += new System.EventHandler(this.btn_back);
 			// 
 			// dgv_DepartmentList
 			// 
@@ -68,6 +69,20 @@
 			this.dgv_DepartmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgv_DepartmentList.Size = new System.Drawing.Size(833, 408);
 			this.dgv_DepartmentList.TabIndex = 30;
+			// 
+			// dgEmpID
+			// 
+			this.dgEmpID.DataPropertyName = "EmployeeID";
+			this.dgEmpID.HeaderText = "Employee ID";
+			this.dgEmpID.Name = "dgEmpID";
+			this.dgEmpID.ReadOnly = true;
+			// 
+			// dgDepartment
+			// 
+			this.dgDepartment.DataPropertyName = "Department";
+			this.dgDepartment.HeaderText = "Department";
+			this.dgDepartment.Name = "dgDepartment";
+			this.dgDepartment.ReadOnly = true;
 			// 
 			// panel2
 			// 
@@ -90,20 +105,6 @@
 			this.lb_DepartmentList.Size = new System.Drawing.Size(147, 23);
 			this.lb_DepartmentList.TabIndex = 0;
 			this.lb_DepartmentList.Text = "DepartmentList";
-			// 
-			// dgEmpID
-			// 
-			this.dgEmpID.DataPropertyName = "EmployeeID";
-			this.dgEmpID.HeaderText = "Employee ID";
-			this.dgEmpID.Name = "dgEmpID";
-			this.dgEmpID.ReadOnly = true;
-			// 
-			// dgDepartment
-			// 
-			this.dgDepartment.DataPropertyName = "Department";
-			this.dgDepartment.HeaderText = "Department";
-			this.dgDepartment.Name = "dgDepartment";
-			this.dgDepartment.ReadOnly = true;
 			// 
 			// departmentList
 			// 

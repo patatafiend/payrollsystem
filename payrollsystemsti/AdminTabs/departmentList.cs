@@ -21,10 +21,7 @@ namespace payrollsystemsti.AdminTabs
 			InitializeComponent();
 		}
 
-		private void btnExit_Click_1(object sender, EventArgs e)
-		{
-			this.Close();
-		}
+		
 
 		private void departmentList_Load_1(object sender, EventArgs e)
 		{
@@ -43,6 +40,11 @@ namespace payrollsystemsti.AdminTabs
 				dgv_DepartmentList.AutoGenerateColumns = false;
 				dgv_DepartmentList.DataSource = dtbl;
 			}
+		}
+
+		private void btn_back(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 
 
