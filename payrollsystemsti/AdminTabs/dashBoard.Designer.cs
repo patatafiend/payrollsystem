@@ -39,7 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbWelcome = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lb_User_Username = new System.Windows.Forms.Label();
             this.lbEmployeeID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pbCurrentUser = new System.Windows.Forms.PictureBox();
@@ -49,6 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.notifContainer = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pnl_Employee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -167,7 +167,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.lb_User_Username);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.lbEmployeeID);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.pbCurrentUser);
@@ -176,33 +176,23 @@
             this.panel1.Size = new System.Drawing.Size(279, 670);
             this.panel1.TabIndex = 4;
             // 
-            // lb_User_Username
-            // 
-            this.lb_User_Username.AutoSize = true;
-            this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_User_Username.Location = new System.Drawing.Point(15, 283);
-            this.lb_User_Username.Name = "lb_User_Username";
-            this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
-            this.lb_User_Username.TabIndex = 5;
-            this.lb_User_Username.Text = "Username:";
-            // 
             // lbEmployeeID
             // 
             this.lbEmployeeID.AutoSize = true;
             this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmployeeID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbEmployeeID.Location = new System.Drawing.Point(15, 241);
+            this.lbEmployeeID.Location = new System.Drawing.Point(78, 80);
             this.lbEmployeeID.Name = "lbEmployeeID";
-            this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
+            this.lbEmployeeID.Size = new System.Drawing.Size(74, 16);
             this.lbEmployeeID.TabIndex = 4;
-            this.lbEmployeeID.Text = "EmployeeID:";
+            this.lbEmployeeID.Text = "EmployeeID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 48);
+            this.label3.Location = new System.Drawing.Point(95, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 23);
             this.label3.TabIndex = 2;
@@ -212,7 +202,7 @@
             // 
             this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-            this.pbCurrentUser.Location = new System.Drawing.Point(71, 76);
+            this.pbCurrentUser.Location = new System.Drawing.Point(67, 99);
             this.pbCurrentUser.Name = "pbCurrentUser";
             this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
             this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -283,6 +273,13 @@
             this.notifContainer.Size = new System.Drawing.Size(671, 333);
             this.notifContainer.TabIndex = 6;
             // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(23, 319);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(223, 304);
+            this.panel3.TabIndex = 6;
+            // 
             // dashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +328,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbEmployeeID;
-        private System.Windows.Forms.Label lb_User_Username;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel pnl_Department;
@@ -340,5 +336,6 @@
 		private System.Windows.Forms.Label lb_curDepartment;
 		private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel notifContainer;
+        private System.Windows.Forms.Panel panel3;
     }
 }
