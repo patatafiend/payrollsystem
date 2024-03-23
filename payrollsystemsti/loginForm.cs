@@ -1,4 +1,5 @@
-﻿using System;
+﻿using payrollsystemsti.AdminTabs;
+using System;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -64,6 +65,7 @@ namespace payrollsystemsti
                                     formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
                                     formDashboard.formDashboardInstance.LoggedInFirstName = fname;
 									formDashboard.formDashboardInstance.LoggedInDepartment = department;
+
 
 
 									formDashboard.Show();

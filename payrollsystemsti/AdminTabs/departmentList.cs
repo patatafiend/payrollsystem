@@ -14,6 +14,8 @@ namespace payrollsystemsti.AdminTabs
 	public partial class departmentList : Form
 	{
 		Methods m = new Methods();
+
+		private string loggedInDepartment;
 		public departmentList()
 		{
 			InitializeComponent();
@@ -24,23 +26,26 @@ namespace payrollsystemsti.AdminTabs
 			this.Close();
 		}
 
-        private void departmentList_Load_1(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+		private void departmentList_Load_1(object sender, EventArgs e)
+		{
+			LoadData();
+		}
 
 		private void LoadData()
 		{
-            using (SqlConnection sqlCon = new SqlConnection(m.connStr))
-            {
-                sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("Select * FROM EmployeeAccounts", sqlCon);
-                DataTable dtbl = new DataTable();
-                sqlDa.Fill(dtbl);
+			using (SqlConnection sqlCon = new SqlConnection(m.connStr))
+			{
+				sqlCon.Open();
+				SqlDataAdapter sqlDa = new SqlDataAdapter("Select * FROM EmployeeAccounts", sqlCon);
+				DataTable dtbl = new DataTable();
+				sqlDa.Fill(dtbl);
 
-                dgv_DepartmentList.AutoGenerateColumns = false;
-                dgv_DepartmentList.DataSource = dtbl;
-            }
-        }
-    }
+				dgv_DepartmentList.AutoGenerateColumns = false;
+				dgv_DepartmentList.DataSource = dtbl;
+			}
+		}
+
+
+
+	}
 }
