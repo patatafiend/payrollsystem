@@ -39,7 +39,6 @@ namespace payrollsystemsti
 
 		private void InitializeEventHandlers()
         {
-            pnl_Leave.Click += Pnl_leave_Click;
             pnl_Employee.Click += Pnl_Employee_Click;
             pnl_Department.Click += Pnl_Department_Click;
         }

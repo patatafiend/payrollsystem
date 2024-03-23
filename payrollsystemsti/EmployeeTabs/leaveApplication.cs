@@ -231,6 +231,8 @@ namespace payrollsystemsti.EmployeeTabs
                     }
                 }
             }
+            LoadData();
+            ClearData();
         }
 
         string[] leavesMed = {"Paternity Leave", "Maternity Leave", "Sick Leave"};
