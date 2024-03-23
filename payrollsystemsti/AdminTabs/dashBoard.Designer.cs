@@ -162,7 +162,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(784, 45);
+			this.panel2.Size = new System.Drawing.Size(1063, 45);
 			this.panel2.TabIndex = 5;
 			// 
 			// label2
@@ -191,12 +191,12 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel1.Controls.Add(this.lb_User_Username);
 			this.panel1.Controls.Add(this.lbEmployeeID);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.pbCurrentUser);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.panel1.Location = new System.Drawing.Point(784, 0);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(279, 670);
@@ -206,7 +206,7 @@
 			// 
 			this.lb_User_Username.AutoSize = true;
 			this.lb_User_Username.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_User_Username.Location = new System.Drawing.Point(15, 351);
+			this.lb_User_Username.Location = new System.Drawing.Point(15, 283);
 			this.lb_User_Username.Name = "lb_User_Username";
 			this.lb_User_Username.Size = new System.Drawing.Size(70, 16);
 			this.lb_User_Username.TabIndex = 5;
@@ -217,7 +217,7 @@
 			this.lbEmployeeID.AutoSize = true;
 			this.lbEmployeeID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbEmployeeID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.lbEmployeeID.Location = new System.Drawing.Point(15, 335);
+			this.lbEmployeeID.Location = new System.Drawing.Point(15, 241);
 			this.lbEmployeeID.Name = "lbEmployeeID";
 			this.lbEmployeeID.Size = new System.Drawing.Size(79, 16);
 			this.lbEmployeeID.TabIndex = 4;
@@ -228,7 +228,7 @@
 			this.label3.AutoSize = true;
 			this.label3.BackColor = System.Drawing.Color.Transparent;
 			this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(14, 112);
+			this.label3.Location = new System.Drawing.Point(3, 48);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(99, 23);
 			this.label3.TabIndex = 2;
@@ -238,7 +238,7 @@
 			// 
 			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-			this.pbCurrentUser.Location = new System.Drawing.Point(78, 138);
+			this.pbCurrentUser.Location = new System.Drawing.Point(71, 76);
 			this.pbCurrentUser.Name = "pbCurrentUser";
 			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
 			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -267,6 +267,7 @@
 			// 
 			// pnl_Department
 			// 
+			this.pnl_Department.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pnl_Department.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
 			this.pnl_Department.Controls.Add(this.lb_curDepartment);
 			this.pnl_Department.Controls.Add(this.pictureBox2);
