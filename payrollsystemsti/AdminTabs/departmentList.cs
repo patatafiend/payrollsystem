@@ -14,6 +14,8 @@ namespace payrollsystemsti.AdminTabs
 	public partial class departmentList : Form
 	{
 		Methods m = new Methods();
+        
+        private string loggedInDepartment;
 		public departmentList()
 		{
 			InitializeComponent();

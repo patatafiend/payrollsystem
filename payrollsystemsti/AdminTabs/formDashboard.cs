@@ -237,8 +237,9 @@ namespace payrollsystemsti
             {
                 dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
             }
-
-            byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
+			
+			
+			byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
             dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
 			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
 
