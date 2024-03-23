@@ -48,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(56, 106);
+            this.label1.Location = new System.Drawing.Point(77, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 25);
             this.label1.TabIndex = 0;
@@ -57,7 +57,7 @@
             // tbUser
             // 
             this.tbUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbUser.Location = new System.Drawing.Point(261, 106);
+            this.tbUser.Location = new System.Drawing.Point(282, 112);
             this.tbUser.Multiline = true;
             this.tbUser.Name = "tbUser";
             this.tbUser.Size = new System.Drawing.Size(218, 31);
@@ -67,7 +67,7 @@
             // tbPassword
             // 
             this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPassword.Location = new System.Drawing.Point(261, 150);
+            this.tbPassword.Location = new System.Drawing.Point(282, 156);
             this.tbPassword.Multiline = true;
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(218, 31);
@@ -78,7 +78,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(56, 150);
+            this.label2.Location = new System.Drawing.Point(77, 156);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 25);
             this.label2.TabIndex = 2;
@@ -87,7 +87,7 @@
             // tbNewPass
             // 
             this.tbNewPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbNewPass.Location = new System.Drawing.Point(261, 191);
+            this.tbNewPass.Location = new System.Drawing.Point(282, 197);
             this.tbNewPass.Multiline = true;
             this.tbNewPass.Name = "tbNewPass";
             this.tbNewPass.Size = new System.Drawing.Size(218, 31);
@@ -98,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(56, 191);
+            this.label3.Location = new System.Drawing.Point(77, 197);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(165, 25);
             this.label3.TabIndex = 4;
@@ -107,7 +107,7 @@
             // tbConfirmPass
             // 
             this.tbConfirmPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbConfirmPass.Location = new System.Drawing.Point(261, 235);
+            this.tbConfirmPass.Location = new System.Drawing.Point(282, 241);
             this.tbConfirmPass.Multiline = true;
             this.tbConfirmPass.Name = "tbConfirmPass";
             this.tbConfirmPass.Size = new System.Drawing.Size(218, 31);
@@ -119,7 +119,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(56, 235);
+            this.label4.Location = new System.Drawing.Point(77, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 25);
             this.label4.TabIndex = 6;
@@ -131,7 +131,7 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnConfirm.Location = new System.Drawing.Point(270, 282);
+            this.btnConfirm.Location = new System.Drawing.Point(291, 288);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(92, 40);
             this.btnConfirm.TabIndex = 8;
@@ -145,7 +145,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(368, 282);
+            this.btnCancel.Location = new System.Drawing.Point(389, 288);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 40);
             this.btnCancel.TabIndex = 9;
@@ -162,7 +162,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(16, 27);
+            this.label11.Location = new System.Drawing.Point(26, 27);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(251, 32);
@@ -189,6 +189,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "changePass";
             this.Text = "changePass";
+            this.Load += new System.EventHandler(this.changePass_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

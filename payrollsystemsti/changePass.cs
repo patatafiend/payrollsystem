@@ -82,11 +82,12 @@ namespace payrollsystemsti
 
             if (action == DialogResult.Yes)
             {
-                using (SqlConnection sqlConn = new SqlConnection(m.connStr))
+                string query = "SELECT 1 FROM UserAccounts WHERE Username = @username AND Password = @password";
+                using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
-                    sqlConn.Open();
+                    conn.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("SELECT 1 FROM UserAccounts WHERE Username = @username AND Password = @password", sqlConn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", tbUser.Text);
                         cmd.Parameters.AddWithValue("@password", tbPassword.Text);
@@ -102,7 +103,8 @@ namespace payrollsystemsti
                                 {
                                     if (tbNewPass.Text.Length > 3)
                                     {
-                                        using (SqlCommand updateCmd = new SqlCommand("UPDATE UserAccounts SET Password = @newPassword WHERE Username = @username AND Password = @oldPassword", sqlConn))
+                                        string queryC = "UPDATE UserAccounts SET Password = @newPassword WHERE Username = @username AND Password = @oldPassword";
+                                        using (SqlCommand updateCmd = new SqlCommand(queryC, conn))
                                         {
                                             updateCmd.Parameters.AddWithValue("@newPassword", tbNewPass.Text);
                                             updateCmd.Parameters.AddWithValue("@username", tbUser.Text);
@@ -136,6 +138,11 @@ namespace payrollsystemsti
         }
 
         private void tbConfirmPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changePass_Load(object sender, EventArgs e)
         {
 
         }
