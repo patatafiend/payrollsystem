@@ -20,6 +20,8 @@ namespace payrollsystemsti
         public Label lbGetDepartment;
         public Label lbEmpID;
 
+        public static Boolean isClickable;
+
         public dashBoard()
         {
             InitializeComponent();
@@ -36,6 +38,13 @@ namespace payrollsystemsti
 		{
 			LoadEmployeeCount();
 
+            
+
+		}
+
+		public Panel GetEmployeePanel()
+		{
+			return pnl_Employee;
 		}
 
 		private void InitializeEventHandlers()
@@ -54,44 +63,56 @@ namespace payrollsystemsti
         private void Pnl_Employee_Click(object sender, EventArgs e) 
         {
 			
-			var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
+			if (isClickable)
+            {
+				
+				var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
 
-			if (employeeListForm == null)
-			{
-				employeeListForm = new employeeList()
+				if (employeeListForm == null)
 				{
-					Dock = DockStyle.Fill,
-					Name = "employeeList", 
-					TopLevel = false,
-					
-				};
-				formDashboard.Instance.PnlContainer.Controls.Add(employeeListForm);
-				employeeListForm.Show();
-			}
+					employeeListForm = new employeeList()
+					{
+						Dock = DockStyle.Fill,
+						Name = "employeeList",
+						TopLevel = false,
 
-            employeeListForm.BringToFront();
+					};
+					formDashboard.Instance.PnlContainer.Controls.Add(employeeListForm);
+					employeeListForm.Show();
+				}
+
+				employeeListForm.BringToFront();
+
+            }
+            
+			
+			
 		}
 
 		//department list
 
 		private void Pnl_Department_Click(object sender, EventArgs e)
         {
-			var departmentListForm = formDashboard.Instance.PnlContainer.Controls.OfType<departmentList>().FirstOrDefault();
+            if (isClickable)
+            {
+				var departmentListForm = formDashboard.Instance.PnlContainer.Controls.OfType<departmentList>().FirstOrDefault();
 
-			if (departmentListForm == null)
-			{
-				departmentListForm = new departmentList()
+				if (departmentListForm == null)
 				{
-					Dock = DockStyle.Fill,
-					Name = "departmentList",
-					TopLevel = false,
-					
-				};
-				formDashboard.Instance.PnlContainer.Controls.Add(departmentListForm);
-				departmentListForm.Show();
-			}
+					departmentListForm = new departmentList()
+					{
+						Dock = DockStyle.Fill,
+						Name = "departmentList",
+						TopLevel = false,
 
-			departmentListForm.BringToFront();
+					};
+					formDashboard.Instance.PnlContainer.Controls.Add(departmentListForm);
+					departmentListForm.Show();
+				}
+
+				departmentListForm.BringToFront();
+			}
+			
 		}
 
         private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)

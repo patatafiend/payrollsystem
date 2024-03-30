@@ -11,6 +11,7 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
+        dashBoard dashBoard = new dashBoard();
 
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -74,9 +75,19 @@ namespace payrollsystemsti
                                     {
                                         // disable functions if not admin
                                         Button useraccountbutton = formDashboard.GetUserAccountButton();
+                                        Panel EmployeePanel = dashBoard.GetEmployeePanel();
+
+
                                         useraccountbutton.Hide();
                                         useraccountbutton.Enabled = false;
-                                    }
+
+                                        dashBoard.isClickable = false;
+                                        
+									}
+                                    else
+                                    {
+										dashBoard.isClickable = true;
+									}
                                 }
                                 else
                                 {
