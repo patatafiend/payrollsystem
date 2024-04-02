@@ -24,6 +24,7 @@ namespace payrollsystemsti
         private leaveCategoriesManagement ltm;
         private leaveManagement lm;
         private accountsArchive aa;
+        private attendanceMonitoring am;
 
         
         //draggable panel shit
@@ -424,6 +425,29 @@ namespace payrollsystemsti
         private void AccountArchive_FormClosed(object sender, FormClosedEventArgs e)
         {
             aa = null;
+        }
+
+        private void employeeAttendance_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (am == null)
+            {
+                am = new attendanceMonitoring();
+                am.FormClosed += AttendanceMonitoring_FormClosed;
+                am.MdiParent = this;
+                am.Dock = DockStyle.Fill;
+                am.Show();
+            }
+            else
+            {
+                am.Activate();
+            }
+        }
+
+        private void AttendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            am = null;
         }
 
         //when left mouse is clicked on the header panel this executes
