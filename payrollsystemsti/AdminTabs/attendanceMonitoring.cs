@@ -18,7 +18,6 @@ namespace payrollsystemsti.AdminTabs
             InitializeComponent();
             serialPort1.Open();
             serialPort1.DataReceived += SerialPort_DataReceived;
-
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
