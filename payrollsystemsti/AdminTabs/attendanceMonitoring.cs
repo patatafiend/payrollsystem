@@ -20,28 +20,35 @@ namespace payrollsystemsti.AdminTabs
             serialPort1.DataReceived += SerialPort_DataReceived;
         }
 
+        private string previousStatus = "OUT"; // Initial status
+
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string data = serialPort1.ReadLine();
-
-            UpdateLabel(data);
-        }
-
-        private void UpdateLabel(string text)
-        {
-            if (label1.InvokeRequired)
+            try
             {
-                BeginInvoke((MethodInvoker)(() => UpdateLabel(text)));
-            }
-            else
-            {
-                label1.Text = text;
-            }
-        }
+                string data = serialPort1.ReadLine();
 
-        private void attendanceMonitoring_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            serialPort1.Close();
+                
+                string id = data;
+
+                // Determine status based on previous status
+                string status = (previousStatus == "IN") ? "OUT" : "IN";
+                previousStatus = status; // Update previous status
+
+                // Get the current time
+                string currentTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+
+                // Add a new row to the DataGridView
+                dataGridView1.Invoke((MethodInvoker)(() =>
+                {
+                    dataGridView1.Rows.Add(id, currentTime, status);
+                }));
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }
