@@ -33,7 +33,8 @@ namespace payrollsystemsti
             {
                 this.Hide();
                 formDashboard.Show();
-            }
+				dashBoard.isClickable = true;
+			}
             else
             {
                 using (SqlConnection conn = new SqlConnection(m.connStr))
