@@ -238,11 +238,13 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(-6, -8);
+            this.button1.Location = new System.Drawing.Point(-13, -13);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(211, 71);
@@ -399,7 +401,7 @@
             this.btn_useraccount.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_useraccount.Image = ((System.Drawing.Image)(resources.GetObject("btn_useraccount.Image")));
             this.btn_useraccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_useraccount.Location = new System.Drawing.Point(-6, -35);
+            this.btn_useraccount.Location = new System.Drawing.Point(-12, -37);
             this.btn_useraccount.Name = "btn_useraccount";
             this.btn_useraccount.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btn_useraccount.Size = new System.Drawing.Size(210, 117);
@@ -410,7 +412,7 @@
             // 
             // sideBar
             // 
-            this.sideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(181)))), ((int)(((byte)(202)))));
+            this.sideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.sideBar.Controls.Add(this.panel3);
             this.sideBar.Controls.Add(this.panel2);
             this.sideBar.Controls.Add(this.employeeContainer);
@@ -598,6 +600,7 @@
             // 
             // panelContainer
             // 
+            this.panelContainer.BackColor = System.Drawing.Color.White;
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(187, 70);
             this.panelContainer.Name = "panelContainer";
