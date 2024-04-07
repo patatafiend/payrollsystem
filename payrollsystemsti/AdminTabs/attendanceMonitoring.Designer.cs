@@ -51,7 +51,7 @@
             // 
             // serialPort1
             // 
-            this.serialPort1.PortName = "COM4";
+            this.serialPort1.PortName = "COM9";
             // 
             // dataGridView1
             // 
