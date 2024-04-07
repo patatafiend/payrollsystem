@@ -36,7 +36,7 @@ namespace payrollsystemsti.AdminTabs
                 previousStatus = status; // Update previous status
 
                 // Get the current time
-                string currentTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
 
                 // Add a new row to the DataGridView
                 dataGridView1.Invoke((MethodInvoker)(() =>
