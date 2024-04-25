@@ -167,5 +167,11 @@ namespace payrollsystemsti
                     return "610";
             }
         }
+
+        public bool ValidateNumber(string number)
+        {
+            string pattern = @"^(09|\d{2})[-]?(\d{3})[-]?(\d{4})$";
+            return Regex.IsMatch(number, pattern);
+        }
     }
 }
