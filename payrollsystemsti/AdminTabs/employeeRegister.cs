@@ -43,21 +43,7 @@ namespace payrollsystemsti.AdminTabs
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
         }
-        private bool ValidateEmail(string email)
-        {
-            // Regular expression pattern for email validation
-            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-
-            // Check if the email matches the pattern
-            if (Regex.IsMatch(email, pattern))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
         // checks if textboxes are filled
         private bool Validation()
         {
@@ -77,7 +63,7 @@ namespace payrollsystemsti.AdminTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbSSN, "Please enter Social Security Number");
             }
-            else if (tbSSN.Text.Length < 11)
+            else if (tbSSN.Text.Length < 10)
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbSSN, "Invalid Number");
@@ -102,7 +88,7 @@ namespace payrollsystemsti.AdminTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(pbEmployee, "Please Choose Image");
             }
-            else if (!ValidateEmail(tbEmail.Text)) // email format validation
+            else if (!m.ValidateEmail(tbEmail.Text)) // email format validation
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbEmail, "Invalid email format");
@@ -114,51 +100,17 @@ namespace payrollsystemsti.AdminTabs
             }
             return result;
         }
-        // checks if the database have a combination of firstname and lastname
-        private bool ifEmployeeExists(string fname, string lname)
-        {
-            string query = "SELECT 1 FROM EmployeeAccounts WHERE FirstName = @FirstName AND LastName = @LastName";
-
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@FirstName", fname);
-                    cmd.Parameters.AddWithValue("@LastName", lname);
-
-                    object result = cmd.ExecuteScalar();
-                    return result != null && result != DBNull.Value;
-                }
-            }
-        }
-        // checks if the database already has ssn
-        private bool ifSSNExists(string ssn)
-        {
-            string query = "SELECT 1 FROM EmployeeAccounts WHERE SSN = @SSN";
-
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@SSN", ssn);
-
-                    object result = cmd.ExecuteScalar();
-                    return result != null && result != DBNull.Value;
-                }
-            }
-        }
+        
         //saves inputed data in the textbox
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (Validation())
             {
-                if (ifEmployeeExists(tbFirstName.Text, tbLastName.Text))
+                if (m.ifEmployeeExists(tbFirstName.Text, tbLastName.Text))
                 {
                     MessageBox.Show("User Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (ifSSNExists(tbSSN.Text))
+                else if (m.ifSSNExists(tbSSN.Text))
                 {
                     MessageBox.Show("SSN Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -403,26 +355,7 @@ namespace payrollsystemsti.AdminTabs
         {
             if (cbPosition.SelectedIndex != -1)
             {
-                tbBasicRate.Text = setItem(cbPosition.Text);
-            }
-        }
-        //sets the value of textbox basicrate
-
-        //void setBasicRate()
-        //{
-        //    tbBasicRate.Text = setItem(cbPosition.ToString());
-        //}
-
-        private string setItem(string p)
-        {
-            switch (p)
-            {
-                case "Sales Manager":
-                    return "1000";
-                case "Purchasing supervisor":
-                    return "850";
-                default:
-                    return "610";
+                tbBasicRate.Text = m.setItem(cbPosition.Text);
             }
         }
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)

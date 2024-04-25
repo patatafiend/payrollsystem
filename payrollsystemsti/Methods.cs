@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace payrollsystemsti
 {
@@ -100,6 +101,71 @@ namespace payrollsystemsti
             string sqlSafePassword = shuffledPassword.Replace("'", "''");
 
             return sqlSafePassword;
+        }
+
+        public bool ValidateEmail(string email)
+        {
+            // Regular expression pattern for email validation
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            // Check if the email matches the pattern
+            if (Regex.IsMatch(email, pattern))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // checks if the database have a combination of firstname and lastname
+        public bool ifEmployeeExists(string fname, string lname)
+        {
+            string query = "SELECT 1 FROM EmployeeAccounts WHERE FirstName = @FirstName AND LastName = @LastName";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FirstName", fname);
+                    cmd.Parameters.AddWithValue("@LastName", lname);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null && result != DBNull.Value;
+                }
+            }
+        }
+        // checks if the database already has ssn
+        public bool ifSSNExists(string ssn)
+        {
+            string query = "SELECT 1 FROM EmployeeAccounts WHERE SSN = @SSN";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SSN", ssn);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null && result != DBNull.Value;
+                }
+            }
+        }
+
+        public string setItem(string p)
+        {
+            switch (p)
+            {
+                case "Sales Manager":
+                    return "1000";
+                case "Purchasing supervisor":
+                    return "850";
+                default:
+                    return "610";
+            }
         }
     }
 }
