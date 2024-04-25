@@ -25,6 +25,7 @@ namespace payrollsystemsti
         private leaveManagement lm;
         private accountsArchive aa;
         private attendanceMonitoring am;
+        private enrollFingerprint ef;
 
         
         //draggable panel shit
@@ -155,7 +156,7 @@ namespace payrollsystemsti
             
             if (sideBarExpand == false)
             {
-                sideBar.Width += 10;
+                sideBar.Width += 100;
                 if (sideBar.Width >= 180)
                 {
                     sideBarTransition.Stop();
@@ -164,7 +165,7 @@ namespace payrollsystemsti
             }
             else
             {
-                sideBar.Width -= 10;
+                sideBar.Width -= 100;
                 if (sideBar.Width <= 0)
                 {
                     sideBarTransition.Stop();
@@ -207,9 +208,6 @@ namespace payrollsystemsti
         // Click event for dashboard button
         private void dashBoard_btn(object sender, EventArgs e)
         {
-
-
-
             panelContainerToBackOrToFront(true);
 			// Show dashboard form or activate if already open
 			if (dashboard == null)
@@ -427,9 +425,14 @@ namespace payrollsystemsti
             aa = null;
         }
 
-        private void employeeAttendance_Click(object sender, EventArgs e)
+        private void btnAttendanceM_Click(object sender, EventArgs e)
         {
             panelContainerToBackOrToFront(false);
+
+            if (ef != null)
+            {
+                ef.Close();
+            }
 
             if (am == null)
             {
@@ -443,12 +446,46 @@ namespace payrollsystemsti
             {
                 am.Activate();
             }
+            attendanceMonitoring.AMinstance.loggedInEmpID = loggedInEmployeeID;
         }
-
         private void AttendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
             am = null;
         }
+
+        private void employeeAttendance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEnrollFinger_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+            if(am != null)
+            {
+                am.Close();
+            }
+
+            if (ef == null)
+            {
+                ef = new enrollFingerprint();
+                ef.FormClosed += enrollFingerprint_FormClosed;
+                ef.MdiParent = this;
+                ef.Dock = DockStyle.Fill;
+                ef.Show();
+            }
+            else
+            {
+                ef.Activate();
+            }
+        }
+
+        private void enrollFingerprint_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ef = null;
+        }
+
+
 
         //when left mouse is clicked on the header panel this executes
         private void header_MouseDown(object sender, MouseEventArgs e)

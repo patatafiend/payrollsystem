@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -54,7 +55,6 @@ namespace payrollsystemsti.AdminTabs
             }
             else
             {
-
                 return false;
             }
         }
@@ -77,16 +77,11 @@ namespace payrollsystemsti.AdminTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbSSN, "Please enter Social Security Number");
             }
-            //else if (empSSN.Text.Length < 10)
-            //{
-            //    errorProvider1.Clear();
-            //    errorProvider1.SetError(empSSN, "Invalid SSN");
-            //}
-            //else if (empSSN.Text.Length < 11)
-            //{
-            //    errorProvider1.Clear();
-            //    errorProvider1.SetError(empSSN, "Invalid Number");
-            //}
+            else if (tbSSN.Text.Length < 11)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(tbSSN, "Invalid Number");
+            }
             else if (string.IsNullOrEmpty(tbEmail.Text))
             {
                 errorProvider1.Clear();
@@ -109,10 +104,8 @@ namespace payrollsystemsti.AdminTabs
             }
             else if (!ValidateEmail(tbEmail.Text)) // email format validation
             {
-
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbEmail, "Invalid email format");
-
             }
             else
             {

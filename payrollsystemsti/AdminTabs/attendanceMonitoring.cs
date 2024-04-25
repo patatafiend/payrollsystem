@@ -2,53 +2,111 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
 
 namespace payrollsystemsti.AdminTabs
 {
     public partial class attendanceMonitoring : Form
     {
+        ArduinoComms ac;
+        public static attendanceMonitoring AMinstance;
+        Methods m = new Methods();
+        
+        public int loggedInEmpID;
+        int fingerID = 0;
+
         public attendanceMonitoring()
         {
             InitializeComponent();
-            serialPort1.Open();
-            serialPort1.DataReceived += SerialPort_DataReceived;
+            AMinstance = this;
+            
         }
 
-        private string previousStatus = "OUT"; // Initial status
-
-        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
-            try
+            ac = new ArduinoComms("COM4");
+            btnOvertime.Enabled = true;
+            btnTimeIN.Enabled = true;
+            btnTimeOUT.Enabled = true;
+        }
+
+        private async void btnTimeIN_Click(object sender, EventArgs e)
+        {
+            btnTimeIN.Enabled = false;
+            btnTimeOUT.Enabled = false;
+            btnOvertime.Enabled = false;
+
+            string status = "Time IN";
+            string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+            if (getFingerID())
             {
-                string data = serialPort1.ReadLine();
-
-                
-                string id = data;
-
-                // Determine status based on previous status
-                string status = (previousStatus == "IN") ? "OUT" : "IN";
-                previousStatus = status; // Update previous status
-
-                // Get the current time
-                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
-
-                // Add a new row to the DataGridView
-                dataGridView1.Invoke((MethodInvoker)(() =>
+                try
                 {
-                    dataGridView1.Rows.Add(id, currentTime, status);
-                }));
+                    bool success = await ac.SendTimeCommand(fingerID);
+                    if (success)
+                    {
+                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, status);
+                        Console.WriteLine($"This is the loginID and FingerID: {loggedInEmpID}, {fingerID}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to display time");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+                finally
+                {
+                    btnTimeIN.Enabled = true;
+                    btnTimeOUT.Enabled = true;
+                    btnOvertime.Enabled = true;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Handle any exceptions
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Enroll Fingerprint first.");
+                btnTimeIN.Enabled = true;
+                btnTimeOUT.Enabled = true;
+                btnOvertime.Enabled = true;
             }
+        }
+
+        private bool getFingerID()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT fingerID FROM EmployeeFingerprints WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", loggedInEmpID);
+                    object result = cmd.ExecuteScalar();
+                    if(result != null)
+                    {
+                        fingerID = Convert.ToInt32(result);
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fingerprint not Enrolled");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ac.closePort();
         }
     }
 }

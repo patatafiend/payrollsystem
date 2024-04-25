@@ -31,15 +31,11 @@ namespace payrollsystemsti
             lbGetName = lbWelcome;
 			lbGetDepartment = lb_curDepartment;
             lbEmpID = lbEmployeeID;
-
 		}
 
 		private void dashBoard_Load(object sender, EventArgs e)
 		{
 			LoadEmployeeCount();
-
-            
-
 		}
 
 		public Panel GetEmployeePanel()
@@ -65,7 +61,6 @@ namespace payrollsystemsti
 			
 			if (isClickable)
             {
-				
 				var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
 
 				if (employeeListForm == null)
@@ -82,11 +77,7 @@ namespace payrollsystemsti
 				}
 
 				employeeListForm.BringToFront();
-
             }
-            
-			
-			
 		}
 
 		//department list
@@ -112,15 +103,12 @@ namespace payrollsystemsti
 
 				departmentListForm.BringToFront();
 			}
-			
 		}
 
         private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
         {
             DepartmentList = null;
         }
-
-        
 
 		void LoadEmployeeCount()
         {
@@ -150,5 +138,4 @@ namespace payrollsystemsti
         }
 
 	}
-
 }

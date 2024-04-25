@@ -15,7 +15,6 @@ namespace payrollsystemsti.EmployeeTabs
         Methods m = new Methods();
         string fileName;
 
-
         private int loggedInID;
         public leaveApplication()
         {

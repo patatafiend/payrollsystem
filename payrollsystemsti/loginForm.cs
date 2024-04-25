@@ -107,6 +107,7 @@ namespace payrollsystemsti
         private void loginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbUserName;
+            tbPassword.PasswordChar = '*';
         }
 
         private void tbUserName_KeyDown(object sender, KeyEventArgs e)
