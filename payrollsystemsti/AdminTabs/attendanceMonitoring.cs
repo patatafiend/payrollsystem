@@ -22,6 +22,7 @@ namespace payrollsystemsti.AdminTabs
         public int loggedInEmpID;
         int fingerID = 0;
         bool timedIN = false;
+        bool timedOUT = false;
 
         public attendanceMonitoring()
         {
@@ -109,9 +110,46 @@ namespace payrollsystemsti.AdminTabs
             ac.closePort();
         }
 
-        private void btnTimeOUT_Click(object sender, EventArgs e)
+        private async void btnTimeOUT_Click(object sender, EventArgs e)
         {
+            btnTimeOUT.Enabled = false;
+            btnOvertime.Enabled = false;
 
+            string status = "Time OUT";
+            string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+            if (getFingerID())
+            {
+                try
+                {
+                    bool success = await ac.SendTimeCommand(fingerID);
+                    if (success)
+                    {
+                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, status);
+                        Console.WriteLine($"This is the loginID and FingerID: {loggedInEmpID}, {fingerID}");
+                        timedOUT = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to display time");
+                        timedOUT = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+                finally
+                {
+                    btnTimeIN.Enabled = timedOUT;
+                    btnTimeOUT.Enabled = !timedOUT;
+                    btnOvertime.Enabled = true;
+                }
+            }
+            else
+            {
+                btnTimeOUT.Enabled = true;
+                btnOvertime.Enabled = true;
+            }
         }
     }
 }

@@ -23,8 +23,9 @@ namespace payrollsystemsti
             {
                 var tcs = new TaskCompletionSource<string>();
 
+                SerialDataReceivedEventHandler dataReceivedHandler = null; // Store a reference
 
-                void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+                dataReceivedHandler = (object sender, SerialDataReceivedEventArgs e) =>
                 {
                     try
                     {
@@ -35,10 +36,14 @@ namespace payrollsystemsti
                     {
                         Console.WriteLine(ex.ToString());
                     }
+                    finally
+                    {
+                        // Crucial Step: Remove the handler after use
+                        _serialport.DataReceived -= dataReceivedHandler;
+                    }
+                };
 
-                }
-
-                _serialport.DataReceived += DataReceivedHandler;
+                _serialport.DataReceived += dataReceivedHandler;
                 return tcs.Task;
 
             }
@@ -47,8 +52,8 @@ namespace payrollsystemsti
                 Console.WriteLine(e);
                 return null;
             }
-
         }
+
 
         public void closePort()
         {
