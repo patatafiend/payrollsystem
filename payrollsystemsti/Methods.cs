@@ -9,7 +9,6 @@ namespace payrollsystemsti
 {
     internal class Methods
     {
-
         //random password generator variables
         private const string LowerCase = "abcdefghijklmnopqrstuvwxyz";
         private const string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -124,7 +123,7 @@ namespace payrollsystemsti
         {
             string query = "SELECT 1 FROM EmployeeAccounts WHERE FirstName = @FirstName AND LastName = @LastName";
 
-            using (SqlConnection conn = new SqlConnection(m.connStr))
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -142,7 +141,7 @@ namespace payrollsystemsti
         {
             string query = "SELECT 1 FROM EmployeeAccounts WHERE SSN = @SSN";
 
-            using (SqlConnection conn = new SqlConnection(m.connStr))
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))

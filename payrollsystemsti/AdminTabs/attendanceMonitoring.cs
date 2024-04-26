@@ -21,12 +21,12 @@ namespace payrollsystemsti.AdminTabs
         
         public int loggedInEmpID;
         int fingerID = 0;
+        bool timedIN = false;
 
         public attendanceMonitoring()
         {
             InitializeComponent();
             AMinstance = this;
-            
         }
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
@@ -34,13 +34,12 @@ namespace payrollsystemsti.AdminTabs
             ac = new ArduinoComms("COM4");
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
-            btnTimeOUT.Enabled = true;
+            btnTimeOUT.Enabled = timedIN;
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
         {
             btnTimeIN.Enabled = false;
-            btnTimeOUT.Enabled = false;
             btnOvertime.Enabled = false;
 
             string status = "Time IN";
@@ -54,10 +53,12 @@ namespace payrollsystemsti.AdminTabs
                     {
                         dataGridView1.Rows.Add(loggedInEmpID, currentTime, status);
                         Console.WriteLine($"This is the loginID and FingerID: {loggedInEmpID}, {fingerID}");
+                        timedIN = true;
                     }
                     else
                     {
                         MessageBox.Show("Failed to display time");
+                        timedIN = false;
                     }
                 }
                 catch (Exception ex)
@@ -66,8 +67,8 @@ namespace payrollsystemsti.AdminTabs
                 }
                 finally
                 {
-                    btnTimeIN.Enabled = true;
-                    btnTimeOUT.Enabled = true;
+                    btnTimeIN.Enabled = !timedIN;
+                    btnTimeOUT.Enabled = timedIN;
                     btnOvertime.Enabled = true;
                 }
             }
@@ -75,7 +76,6 @@ namespace payrollsystemsti.AdminTabs
             {
                 MessageBox.Show("Enroll Fingerprint first.");
                 btnTimeIN.Enabled = true;
-                btnTimeOUT.Enabled = true;
                 btnOvertime.Enabled = true;
             }
         }
@@ -107,6 +107,11 @@ namespace payrollsystemsti.AdminTabs
         private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
             ac.closePort();
+        }
+
+        private void btnTimeOUT_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

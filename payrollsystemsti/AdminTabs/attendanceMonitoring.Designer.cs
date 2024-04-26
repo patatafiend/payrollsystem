@@ -140,6 +140,7 @@
             this.btnTimeOUT.TabIndex = 34;
             this.btnTimeOUT.Text = "Time OUT";
             this.btnTimeOUT.UseVisualStyleBackColor = false;
+            this.btnTimeOUT.Click += new System.EventHandler(this.btnTimeOUT_Click);
             // 
             // attendanceMonitoring
             // 
