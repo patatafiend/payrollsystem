@@ -71,22 +71,24 @@ namespace payrollsystemsti
 
 
 									formDashboard.Show();
-                                    
-                                    if (role != "Admin")
+									//Disable function based on role
+									if (role == "Employee")
                                     {
-                                        // disable functions if not admin
-                                        Button useraccountbutton = formDashboard.GetUserAccountButton();
-                                        Panel EmployeePanel = dashBoard.GetEmployeePanel();
+                                       
+                                        formDashboard.GetUserAccountPanel().Hide();
+                                        formDashboard.GetLeaveTypePanel().Hide();
+                                        formDashboard.GetLeaveManagementPanel().Hide();
+                                        formDashboard.GetAccountArchivePanel().Hide();
+                                        formDashboard.GetAttendanceMonitoring().Hide();
+										formDashboard.GetEnrollFingerPanel().Hide();
+                                        formDashboard.GetEmployeePanel().Hide();
 
 
-                                        useraccountbutton.Hide();
-                                        useraccountbutton.Enabled = false;
-
-                                        dashBoard.isClickable = false;
+										dashBoard.isClickable = false;
                                         
 									}
-                                    else
-                                    {
+									else //Admin
+									{
 										dashBoard.isClickable = true;
 									}
                                 }

@@ -116,9 +116,63 @@ namespace payrollsystemsti
             return btn_useraccount;
         }
 
+        public Button GetEnrollFingerButton()
+		{
+			return btnEnrollFinger;
+		}
 
-        // Employee panel expand/collapse transition flags
-        private bool employeeExpand = false;
+        public Button GetAttendanceMonitoringButton()
+		{
+			return btnAttendanceM;
+		}
+
+        public Panel GetUserAccountPanel()
+		{
+			return userAccountPnl;
+		}
+
+        public Panel GetLeavePanel()
+        {
+            return LeaveApplicationPnl;
+
+		}
+
+        public Panel GetLeaveTypePanel()
+        {
+            return leaveTypeManagementPnl;
+		}
+
+        public Panel GetLeaveManagementPanel()
+		{
+			return leaveManagementPnl;
+		}
+
+        public Panel GetAccountArchivePanel()
+        {
+            return AccountArchivePnl;
+        }
+
+        public Panel GetAttendanceMonitoring()
+        {
+            return attendanceMonitoringPnl;
+
+		}
+
+        public Panel GetEnrollFingerPanel()
+        {
+            return enrollFingerprintPnl;
+		}
+
+       public Panel GetEmployeePanel()
+        {
+            return employeePnl;
+		}
+
+
+
+
+		// Employee panel expand/collapse transition flags
+		private bool employeeExpand = false;
         private bool sideBarExpand = true;
 
         // Click event for employee button
@@ -132,8 +186,8 @@ namespace payrollsystemsti
         {
             if (employeeExpand == false)
             {
-                employeeContainer.Height += 10;
-                if (employeeContainer.Height >= 300)
+                employeePnl.Height += 10;
+                if (employeePnl.Height >= 300)
                 {
                     employeeTransition.Stop();
                     employeeExpand = true;
@@ -141,8 +195,8 @@ namespace payrollsystemsti
             }
             else
             {
-                employeeContainer.Height -= 10;
-                if (employeeContainer.Height <= 52)
+                employeePnl.Height -= 10;
+                if (employeePnl.Height <= 52)
                 {
                     employeeTransition.Stop();
                     employeeExpand = false;
@@ -244,6 +298,8 @@ namespace payrollsystemsti
 			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
 
 			panelContainer.Controls.Add(dashboard);
+
+			
 
 		}
 
