@@ -9,7 +9,7 @@ namespace payrollsystemsti.Tabs
     {
 
         Methods m = new Methods();
-
+        string userID;
         public manageEmployee()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace payrollsystemsti.Tabs
             {
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    string userID = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
+                    userID = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
 
                     string query = "UPDATE UserAccounts SET IsDeleted = @deactivate WHERE UserID = @userId";
                     using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -54,14 +54,17 @@ namespace payrollsystemsti.Tabs
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                string query = "UPDATE UserAccounts SET Username =@Username, Role =@Role" +
-                               " WHERE UserID = @UserID";
+                userID = dataGridView1.SelectedRows[0].Cells["dgUserID"].Value.ToString();
+
                 using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     conn.Open();
+                    string query = "UPDATE UserAccounts SET Role =@Role WHERE UserID = @UserID";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Role", cbRole.Text);
+                        cmd.Parameters.AddWithValue("@UserID", userID);
 
                         cmd.ExecuteNonQuery();
                     }
