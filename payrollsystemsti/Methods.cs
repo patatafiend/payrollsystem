@@ -172,5 +172,23 @@ namespace payrollsystemsti
             string pattern = @"^(09|\d{2})[-]?(\d{3})[-]?(\d{4})$";
             return Regex.IsMatch(number, pattern);
         }
-    }
+
+		public int GetTotalEmployeeCount()
+		{
+			int totalCount = 0;
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				conn.Open();
+				string query = "SELECT COUNT(*) FROM EmployeeAccounts";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					totalCount = (int)cmd.ExecuteScalar();
+				}
+			}
+			return totalCount;
+		}
+
+
+
+	}
 }
