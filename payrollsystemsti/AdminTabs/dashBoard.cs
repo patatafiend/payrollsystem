@@ -110,7 +110,7 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-		void LoadEmployeeCount()
+		public void LoadEmployeeCount()
         {
             try
             {
@@ -136,6 +136,34 @@ namespace payrollsystemsti
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //show available leaves for employee
+        public void EmployeeNumOfLeave()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(m.connStr))
+                {
+					conn.Open();
+
+					// Create a SqlCommand to count the number of employees
+					string query = "SELECT COUNT(*) FROM LeaveApplication WHERE Status = 'Pending'";
+					using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+						// ExecuteScalar returns the first column of the first row
+						int numberOfEmployees = Convert.ToInt32(cmd.ExecuteScalar());
+
+						// Display the number of employees in a label
+						//lbLeaveNum.Text = $"{numberOfEmployees}";
+					}
+				}
+            }
+			catch (Exception ex)
+			{
+				// Handle the exception
+				MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
 	}
 }
