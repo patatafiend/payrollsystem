@@ -40,7 +40,7 @@ namespace payrollsystemsti
         // Logged-in user name property
         private string loggedInFirstName, loggedInDepartment;
         
-        private int loggedInEmployeeID;
+        private int loggedInEmployeeID, loggedInLeaves, loggedInAbsents;
 
 		static formDashboard _obj;
 
@@ -94,15 +94,6 @@ namespace payrollsystemsti
                 loggedInFirstName = value;
             }
         }
-        public int LoggedInEmployeeID
-        {
-            get { return loggedInEmployeeID; }
-            set
-            {
-                loggedInEmployeeID = value;
-            }
-        }
-
 		public string LoggedInDepartment
 		{
 			get { return loggedInDepartment; }
@@ -111,6 +102,34 @@ namespace payrollsystemsti
 				loggedInDepartment = value;
 			}
 		}
+		public int LoggedInEmployeeID
+        {
+            get { return loggedInEmployeeID; }
+            set
+            {
+                loggedInEmployeeID = value;
+            }
+        }
+
+		public int LoggedInLeaves
+		{
+			get { return loggedInLeaves; }
+			set
+			{
+				loggedInLeaves = value;
+			}
+		}
+
+        public int LoggedInAbsents
+		{
+			get { return loggedInAbsents; }
+			set
+			{
+				loggedInAbsents = value;
+			}
+		}
+
+
 		public Button GetUserAccountButton()
         {
             return btn_useraccount;
@@ -273,10 +292,14 @@ namespace payrollsystemsti
             }
             if (!string.IsNullOrEmpty(loggedInFirstName))
             {
-                String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
+				
+				String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
                 dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
                 dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
-            }
+                
+                dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
+				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
+			}
             else
             {
                 dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";

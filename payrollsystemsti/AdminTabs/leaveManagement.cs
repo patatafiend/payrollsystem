@@ -68,28 +68,58 @@ namespace payrollsystemsti.AdminTabs
             btnApprove.Enabled = true;
             btnReject.Enabled = true;
         }
-        
-        private void btnApprove_Click(object sender, EventArgs e)
-        {
-            if(employeeID != "0")
-            {
-                string query = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
-                using (SqlConnection conn = new SqlConnection(m.connStr))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@status", "Approved");
-                        cmd.Parameters.AddWithValue("@employeeID", employeeID);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                LoadData();
-            }
-        }
+		private void btnApprove_Click(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrEmpty(employeeID))
+			{
+				using (SqlConnection conn = new SqlConnection(m.connStr))
+				{
+					conn.Open();
+					SqlTransaction transaction = conn.BeginTransaction();
 
-        private void btnReject_Click(object sender, EventArgs e)
+					try
+					{
+						// Update LeaveApplications table
+						string leaveQuery = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
+						using (SqlCommand leaveCmd = new SqlCommand(leaveQuery, conn, transaction))
+						{
+							leaveCmd.Parameters.AddWithValue("@status", "Approved");
+							leaveCmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+							leaveCmd.ExecuteNonQuery();
+						}
+
+						// Update EmployeeAccounts table
+						string employeeQuery = "UPDATE EmployeeAccounts SET Leaves = Leaves - 1 WHERE EmployeeID = @employeeID";
+						using (SqlCommand employeeCmd = new SqlCommand(employeeQuery, conn, transaction))
+						{
+							employeeCmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+							employeeCmd.ExecuteNonQuery();
+						}
+
+						// Commit the transaction if both updates are successful
+						transaction.Commit();
+						MessageBox.Show("Leave approved successfully.", "Success");
+					}
+					catch (Exception ex)
+					{
+						// Roll back the transaction if there's an error
+						transaction.Rollback();
+						MessageBox.Show($"Error updating tables: {ex.Message}", "Error");
+					}
+				}
+				LoadData(); // Reload data after updates
+			}
+			else
+			{
+				MessageBox.Show("EmployeeID is invalid.", "Error");
+			}
+		}
+
+
+		private void btnReject_Click(object sender, EventArgs e)
         {
             if (employeeID != "0")
             {

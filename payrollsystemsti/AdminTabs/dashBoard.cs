@@ -19,10 +19,13 @@ namespace payrollsystemsti
         public Label lbGetName;
         public Label lbGetDepartment;
         public Label lbEmpID;
+        public Label lbLeaves;
+        public Label lbAbsents;
 
-        public static Boolean isClickable;
 
-        public dashBoard()
+		public static Boolean isClickable;
+
+		public dashBoard()
         {
             InitializeComponent();
             InitializeEventHandlers();
@@ -31,17 +34,29 @@ namespace payrollsystemsti
             lbGetName = lbWelcome;
 			lbGetDepartment = lb_curDepartment;
             lbEmpID = lbEmployeeID;
+			lbLeaves = lb_EmployeeNum;
+			lbAbsents = lb_absents;
 		}
 
 		private void dashBoard_Load(object sender, EventArgs e)
 		{
-			LoadEmployeeCount();
+			
 		}
 
 		public Panel GetEmployeePanel()
 		{
 			return pnl_Employee;
 		}
+
+        public Label GetEmployeeLabel()
+		{
+			return lb_EmployeeNum;
+		}
+
+        public Label GetTotalLabel()
+        {
+            return lb_Total;
+        }
 
 		private void InitializeEventHandlers()
         {
@@ -110,60 +125,9 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-		public void LoadEmployeeCount()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(m.connStr))
-                {
-                    conn.Open();
+		
 
-                    // Create a SqlCommand to count the number of employees
-                    string query = "SELECT COUNT(*) FROM EmployeeAccounts";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        // ExecuteScalar returns the first column of the first row
-                        int numberOfEmployees = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        // Display the number of employees in a label
-                        lb_EmployeeNum.Text = $"{numberOfEmployees}";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //show available leaves for employee
-        public void EmployeeNumOfLeave()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(m.connStr))
-                {
-					conn.Open();
-
-					// Create a SqlCommand to count the number of employees
-					string query = "SELECT COUNT(*) FROM LeaveApplication WHERE Status = 'Pending'";
-					using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-						// ExecuteScalar returns the first column of the first row
-						int numberOfEmployees = Convert.ToInt32(cmd.ExecuteScalar());
-
-						// Display the number of employees in a label
-						//lbLeaveNum.Text = $"{numberOfEmployees}";
-					}
-				}
-            }
-			catch (Exception ex)
-			{
-				// Handle the exception
-				MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+       
 
 	}
 }

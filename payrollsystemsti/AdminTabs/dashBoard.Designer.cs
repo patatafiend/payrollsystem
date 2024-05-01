@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashBoard));
 			this.lb_DashBoard = new System.Windows.Forms.Label();
 			this.pnl_Employee = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lb_Total = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lb_EmployeeNum = new System.Windows.Forms.Label();
 			this.lb_Employee = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.notifContainer = new System.Windows.Forms.Panel();
+			this.lb_absents = new System.Windows.Forms.Label();
 			this.pnl_Employee.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panel2.SuspendLayout();
@@ -73,7 +74,7 @@
 			// pnl_Employee
 			// 
 			this.pnl_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
-			this.pnl_Employee.Controls.Add(this.label1);
+			this.pnl_Employee.Controls.Add(this.lb_Total);
 			this.pnl_Employee.Controls.Add(this.pictureBox1);
 			this.pnl_Employee.Controls.Add(this.lb_EmployeeNum);
 			this.pnl_Employee.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -82,17 +83,17 @@
 			this.pnl_Employee.Size = new System.Drawing.Size(310, 125);
 			this.pnl_Employee.TabIndex = 1;
 			// 
-			// label1
+			// lb_Total
 			// 
-			this.label1.AutoSize = true;
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.label1.Location = new System.Drawing.Point(122, 3);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(127, 19);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Total Employee";
+			this.lb_Total.AutoSize = true;
+			this.lb_Total.BackColor = System.Drawing.Color.Transparent;
+			this.lb_Total.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_Total.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.lb_Total.Location = new System.Drawing.Point(122, 3);
+			this.lb_Total.Name = "lb_Total";
+			this.lb_Total.Size = new System.Drawing.Size(127, 19);
+			this.lb_Total.TabIndex = 3;
+			this.lb_Total.Text = "Total Employee";
 			// 
 			// pictureBox1
 			// 
@@ -167,6 +168,7 @@
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel1.Controls.Add(this.lb_absents);
 			this.panel1.Controls.Add(this.panel3);
 			this.panel1.Controls.Add(this.lbEmployeeID);
 			this.panel1.Controls.Add(this.label3);
@@ -281,6 +283,15 @@
 			this.notifContainer.Size = new System.Drawing.Size(671, 333);
 			this.notifContainer.TabIndex = 6;
 			// 
+			// lb_absents
+			// 
+			this.lb_absents.AutoSize = true;
+			this.lb_absents.Location = new System.Drawing.Point(20, 292);
+			this.lb_absents.Name = "lb_absents";
+			this.lb_absents.Size = new System.Drawing.Size(35, 13);
+			this.lb_absents.TabIndex = 7;
+			this.lb_absents.Text = "label1";
+			// 
 			// dashBoard
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,7 +341,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbEmployeeID;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lb_Total;
 		private System.Windows.Forms.Panel pnl_Department;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.PictureBox pictureBox2;
@@ -338,5 +349,6 @@
 		private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel notifContainer;
         private System.Windows.Forms.Panel panel3;
-    }
+		private System.Windows.Forms.Label lb_absents;
+	}
 }
