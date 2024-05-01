@@ -118,8 +118,8 @@ namespace payrollsystemsti.AdminTabs
                 {
                     //inserts employee accounts
                     //OUTPUT INSERTED.EmployeeID gets the value of the newly inserted data
-                    string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, ImageData, Mobile, IsDeleted) " +
-                                   "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, @Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, @FileName, @ImageData, @Mobile, @IsDeleted)";
+                    string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, ImageData, Mobile, IsDeleted, Leaves, Absents) " +
+								   "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, @Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, @FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
 
 
                     using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -140,7 +140,9 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@ImageData", m.ConvertImageToBinary(pbEmployee.Image));
                             cmd.Parameters.AddWithValue("@Mobile", tbMob.Text);
                             cmd.Parameters.AddWithValue("@IsDeleted", '0');
-                            int employeeId = Convert.ToInt32(cmd.ExecuteScalar());
+							cmd.Parameters.AddWithValue("@Leaves", 5);
+							cmd.Parameters.AddWithValue("@Absents", 0);
+							int employeeId = Convert.ToInt32(cmd.ExecuteScalar());
 
 
                             if (employeeId != 0)
