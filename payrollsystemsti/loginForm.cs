@@ -1,6 +1,7 @@
 ﻿using payrollsystemsti.AdminTabs;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -11,6 +12,7 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
+        attendanceMonitoring attendanceMonitoring = new attendanceMonitoring();
         dashBoard dashBoard = new dashBoard();
 
         //draggable panel shit
@@ -74,12 +76,10 @@ namespace payrollsystemsti
 									//Disable function based on role
 									if (role == "Employee")
                                     {
-                                       
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetLeaveTypePanel().Hide();
                                         formDashboard.GetLeaveManagementPanel().Hide();
                                         formDashboard.GetAccountArchivePanel().Hide();
-                                        formDashboard.GetAttendanceMonitoring().Hide();
 										formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.GetEmployeePanel().Hide();
 
@@ -111,6 +111,7 @@ namespace payrollsystemsti
         {
             this.ActiveControl = tbUserName;
             tbPassword.PasswordChar = '*';
+            loginHeader.BackColor = Color.Transparent; loginHeader.ForeColor = Color.Transparent;
         }
 
         private void tbUserName_KeyDown(object sender, KeyEventArgs e)
@@ -174,6 +175,11 @@ namespace payrollsystemsti
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void btnCheckIn_Click(object sender, EventArgs e)
+        {
+            attendanceMonitoring.Show();
         }
     }
 

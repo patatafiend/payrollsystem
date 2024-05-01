@@ -121,11 +121,6 @@ namespace payrollsystemsti
 			return btnEnrollFinger;
 		}
 
-        public Button GetAttendanceMonitoringButton()
-		{
-			return btnAttendanceM;
-		}
-
         public Panel GetUserAccountPanel()
 		{
 			return userAccountPnl;
@@ -151,12 +146,6 @@ namespace payrollsystemsti
         {
             return AccountArchivePnl;
         }
-
-        public Panel GetAttendanceMonitoring()
-        {
-            return attendanceMonitoringPnl;
-
-		}
 
         public Panel GetEnrollFingerPanel()
         {
@@ -479,34 +468,6 @@ namespace payrollsystemsti
         private void AccountArchive_FormClosed(object sender, FormClosedEventArgs e)
         {
             aa = null;
-        }
-
-        private void btnAttendanceM_Click(object sender, EventArgs e)
-        {
-            panelContainerToBackOrToFront(false);
-
-            if (ef != null)
-            {
-                ef.Close();
-            }
-
-            if (am == null)
-            {
-                am = new attendanceMonitoring();
-                am.FormClosed += AttendanceMonitoring_FormClosed;
-                am.MdiParent = this;
-                am.Dock = DockStyle.Fill;
-                am.Show();
-            }
-            else
-            {
-                am.Activate();
-            }
-            attendanceMonitoring.AMinstance.loggedInEmpID = loggedInEmployeeID;
-        }
-        private void AttendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            am = null;
         }
 
         private void employeeAttendance_Click(object sender, EventArgs e)
