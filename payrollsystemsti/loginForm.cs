@@ -13,6 +13,7 @@ namespace payrollsystemsti
         formDashboard formDashboard = new formDashboard();
         public static formLogin formLoginInstance;
         dashBoard dashBoard = new dashBoard();
+        attendanceMonitoring attedanceMonitoring = new attendanceMonitoring();
 
 		//draggable panel shit
 		public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -108,7 +109,8 @@ namespace payrollsystemsti
 											formDashboard.GetLeaveTypePanel().Hide();
 											formDashboard.GetLeaveManagementPanel().Hide();
 											formDashboard.GetAccountArchivePanel().Hide();
-											formDashboard.GetEnrollFingerPanel().Hide();formDashboard.GetEmployeeRegisterPanel().Hide();
+											formDashboard.GetEnrollFingerPanel().Hide();
+                                            formDashboard.GetEmployeeRegisterPanel().Hide();
                                             formDashboard.GetSalaryPanel().Hide();
 
 											dashBoard.isClickable = false;
@@ -212,7 +214,7 @@ namespace payrollsystemsti
 
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
-            attendanceMonitoring.Show();
+            attedanceMonitoring.Show();
         }
 
 	}
