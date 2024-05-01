@@ -74,18 +74,43 @@ namespace payrollsystemsti
 									//Disable function based on role
 									if (role == "Employee")
                                     {
+                                        if(department == "HR")
+                                        {
+											
+											formDashboard.GetAttendanceMonitoring().Hide();
+											formDashboard.GetEnrollFingerPanel().Hide();
+
+											dashBoard.isClickable = true;
+
+										}
+										else if (department == "Accountant")
+										{
+											formDashboard.GetUserAccountPanel().Hide();
+											formDashboard.GetEnrollFingerPanel().Hide();
+											formDashboard.GetAttendanceMonitoring().Hide();
+											formDashboard.GetEmployeeRegisterPanel().Hide();
+											formDashboard.GetLeaveTypePanel().Hide();
+											formDashboard.GetLeaveManagementPanel().Hide();
+											formDashboard.GetAccountArchivePanel().Hide();
+
+											dashBoard.isClickable = true;
+										}
+										else
+                                        {
+											formDashboard.GetUserAccountPanel().Hide();
+											formDashboard.GetLeaveTypePanel().Hide();
+											formDashboard.GetLeaveManagementPanel().Hide();
+											formDashboard.GetAccountArchivePanel().Hide();
+											formDashboard.GetAttendanceMonitoring().Hide();
+											formDashboard.GetEnrollFingerPanel().Hide();
+											formDashboard.GetEmployeeRegisterPanel().Hide();
+                                            formDashboard.GetSalaryPanel().Hide();
+
+											dashBoard.isClickable = false;
+
+										}
                                        
-                                        formDashboard.GetUserAccountPanel().Hide();
-                                        formDashboard.GetLeaveTypePanel().Hide();
-                                        formDashboard.GetLeaveManagementPanel().Hide();
-                                        formDashboard.GetAccountArchivePanel().Hide();
-                                        formDashboard.GetAttendanceMonitoring().Hide();
-										formDashboard.GetEnrollFingerPanel().Hide();
-                                        formDashboard.GetEmployeeRegisterPanel().Hide();
-
-
-
-										dashBoard.isClickable = false;
+										
                                         
 									}
 									else //Admin

@@ -132,6 +132,11 @@ namespace payrollsystemsti
 
 		}
 
+        public Panel GetSalaryPanel()
+        {
+            return panel6;
+        }
+
         public Panel GetEmployeeRegisterPanel()
         {
             return panel4;
