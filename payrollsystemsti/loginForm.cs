@@ -11,13 +11,8 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
-<<<<<<< HEAD
+        public static formLogin formLoginInstance;
         dashBoard dashBoard = new dashBoard();
-        attendanceMonitoring attendanceMonitoring = new attendanceMonitoring();
-=======
-		dashBoard dashBoard = new dashBoard();
-		public static formLogin formLoginInstance;
->>>>>>> c0d65209be1901eb3bfcca6d519331444c29385b
 
 		//draggable panel shit
 		public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -113,15 +108,8 @@ namespace payrollsystemsti
 											formDashboard.GetLeaveTypePanel().Hide();
 											formDashboard.GetLeaveManagementPanel().Hide();
 											formDashboard.GetAccountArchivePanel().Hide();
-											formDashboard.GetEnrollFingerPanel().Hide();
-<<<<<<< HEAD
-=======
-											formDashboard.GetEmployeeRegisterPanel().Hide();
+											formDashboard.GetEnrollFingerPanel().Hide();formDashboard.GetEmployeeRegisterPanel().Hide();
                                             formDashboard.GetSalaryPanel().Hide();
-											formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-
-
->>>>>>> c0d65209be1901eb3bfcca6d519331444c29385b
 
 											dashBoard.isClickable = false;
 
@@ -222,17 +210,14 @@ namespace payrollsystemsti
             }
         }
 
-<<<<<<< HEAD
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
             attendanceMonitoring.Show();
         }
-    }
-=======
+
 	}
 
 
->>>>>>> c0d65209be1901eb3bfcca6d519331444c29385b
 
 }
 
