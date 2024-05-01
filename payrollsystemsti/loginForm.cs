@@ -81,7 +81,8 @@ namespace payrollsystemsti
                                         formDashboard.GetAccountArchivePanel().Hide();
                                         formDashboard.GetAttendanceMonitoring().Hide();
 										formDashboard.GetEnrollFingerPanel().Hide();
-                                        formDashboard.GetEmployeePanel().Hide();
+                                        formDashboard.GetEmployeeRegisterPanel().Hide();
+
 
 
 										dashBoard.isClickable = false;

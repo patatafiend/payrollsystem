@@ -126,6 +126,18 @@ namespace payrollsystemsti
 			return btnAttendanceM;
 		}
 
+        public Button GetEmployeeRegister()
+        {
+            return employeeRegister;
+
+		}
+
+        public Panel GetEmployeeRegisterPanel()
+        {
+            return panel4;
+
+		}
+
         public Panel GetUserAccountPanel()
 		{
 			return userAccountPnl;
