@@ -121,10 +121,6 @@ namespace payrollsystemsti
 			return btnEnrollFinger;
 		}
 
-        public Button GetAttendanceMonitoringButton()
-		{
-			return btnAttendanceM;
-		}
 
         public Panel GetUserAccountPanel()
 		{

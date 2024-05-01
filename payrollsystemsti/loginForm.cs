@@ -12,6 +12,7 @@ namespace payrollsystemsti
         Methods m = new Methods();
         formDashboard formDashboard = new formDashboard();
         dashBoard dashBoard = new dashBoard();
+        attendanceMonitoring attendanceMonitoring = new attendanceMonitoring();
 
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -76,8 +77,6 @@ namespace payrollsystemsti
                                     {
                                         if(department == "HR")
                                         {
-											
-											formDashboard.GetAttendanceMonitoring().Hide();
 											formDashboard.GetEnrollFingerPanel().Hide();
 
 											dashBoard.isClickable = true;
@@ -87,8 +86,6 @@ namespace payrollsystemsti
 										{
 											formDashboard.GetUserAccountPanel().Hide();
 											formDashboard.GetEnrollFingerPanel().Hide();
-											formDashboard.GetAttendanceMonitoring().Hide();
-											formDashboard.GetEmployeeRegisterPanel().Hide();
 											formDashboard.GetLeaveTypePanel().Hide();
 											formDashboard.GetLeaveManagementPanel().Hide();
 											formDashboard.GetAccountArchivePanel().Hide();
@@ -101,10 +98,7 @@ namespace payrollsystemsti
 											formDashboard.GetLeaveTypePanel().Hide();
 											formDashboard.GetLeaveManagementPanel().Hide();
 											formDashboard.GetAccountArchivePanel().Hide();
-											formDashboard.GetAttendanceMonitoring().Hide();
 											formDashboard.GetEnrollFingerPanel().Hide();
-											formDashboard.GetEmployeeRegisterPanel().Hide();
-                                            formDashboard.GetSalaryPanel().Hide();
 
 											dashBoard.isClickable = false;
 
@@ -200,6 +194,11 @@ namespace payrollsystemsti
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void btnCheckIn_Click(object sender, EventArgs e)
+        {
+            attendanceMonitoring.Show();
         }
     }
 

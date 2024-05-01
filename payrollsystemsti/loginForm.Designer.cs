@@ -1,4 +1,6 @@
-﻿namespace payrollsystemsti
+﻿using System;
+
+namespace payrollsystemsti
 {
 	partial class formLogin
 	{
@@ -35,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCheckIn = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -47,7 +50,6 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnMax = new System.Windows.Forms.Button();
-            this.btnCheckIn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -140,6 +142,22 @@
             this.panel1.Size = new System.Drawing.Size(390, 499);
             this.panel1.TabIndex = 8;
             // 
+            // btnCheckIn
+            // 
+            this.btnCheckIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(50)))), ((int)(((byte)(139)))));
+            this.btnCheckIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCheckIn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckIn.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCheckIn.Location = new System.Drawing.Point(137, 428);
+            this.btnCheckIn.Name = "btnCheckIn";
+            this.btnCheckIn.Size = new System.Drawing.Size(109, 46);
+            this.btnCheckIn.TabIndex = 9;
+            this.btnCheckIn.TabStop = false;
+            this.btnCheckIn.Text = "CheckIn";
+            this.btnCheckIn.UseVisualStyleBackColor = false;
+            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::payrollsystemsti.Properties.Resources.JE__2_1;
@@ -189,7 +207,7 @@
             // 
             this.loginHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginHeader.BackColor = System.Drawing.Color.White;
+            this.loginHeader.BackColor = System.Drawing.Color.LavenderBlush;
             this.loginHeader.Controls.Add(this.controlBox);
             this.loginHeader.Location = new System.Drawing.Point(0, 0);
             this.loginHeader.Name = "loginHeader";
@@ -277,22 +295,6 @@
             this.btnMax.UseVisualStyleBackColor = false;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
-            // btnCheckIn
-            // 
-            this.btnCheckIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(50)))), ((int)(((byte)(139)))));
-            this.btnCheckIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheckIn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckIn.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCheckIn.Location = new System.Drawing.Point(137, 428);
-            this.btnCheckIn.Name = "btnCheckIn";
-            this.btnCheckIn.Size = new System.Drawing.Size(109, 46);
-            this.btnCheckIn.TabIndex = 9;
-            this.btnCheckIn.TabStop = false;
-            this.btnCheckIn.Text = "CheckIn";
-            this.btnCheckIn.UseVisualStyleBackColor = false;
-            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
-            // 
             // formLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,9 +323,10 @@
 
 		}
 
-		#endregion
 
-		private System.Windows.Forms.Button btnLogin;
+        #endregion
+
+        private System.Windows.Forms.Button btnLogin;
 		private System.Windows.Forms.TextBox tbPassword;
 		private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.PictureBox pictureBox1;

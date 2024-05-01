@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendanceMonitoring));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,7 +39,20 @@
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnOvertime = new System.Windows.Forms.Button();
             this.btnTimeOUT = new System.Windows.Forms.Button();
+            this.attendanceHeader = new System.Windows.Forms.Panel();
+            this.controlBox = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btnMin = new System.Windows.Forms.Button();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.btnMax = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.attendanceHeader.SuspendLayout();
+            this.controlBox.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -61,12 +75,12 @@
             this.dgTime,
             this.dgStatus});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.Location = new System.Drawing.Point(52, 151);
+            this.dataGridView1.Location = new System.Drawing.Point(52, 190);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(699, 470);
+            this.dataGridView1.Size = new System.Drawing.Size(878, 488);
             this.dataGridView1.TabIndex = 3;
             // 
             // dgEmpID
@@ -92,7 +106,7 @@
             this.dateTimePicker1.CustomFormat = "dddd, MM/dd/yyyy hh:mm tt";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(52, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(562, 139);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(338, 30);
@@ -105,7 +119,7 @@
             this.btnTimeIN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeIN.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeIN.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeIN.Location = new System.Drawing.Point(58, 91);
+            this.btnTimeIN.Location = new System.Drawing.Point(52, 125);
             this.btnTimeIN.Name = "btnTimeIN";
             this.btnTimeIN.Size = new System.Drawing.Size(118, 44);
             this.btnTimeIN.TabIndex = 26;
@@ -120,7 +134,7 @@
             this.btnOvertime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOvertime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOvertime.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOvertime.Location = new System.Drawing.Point(633, 91);
+            this.btnOvertime.Location = new System.Drawing.Point(369, 125);
             this.btnOvertime.Name = "btnOvertime";
             this.btnOvertime.Size = new System.Drawing.Size(118, 44);
             this.btnOvertime.TabIndex = 33;
@@ -134,7 +148,7 @@
             this.btnTimeOUT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeOUT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeOUT.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeOUT.Location = new System.Drawing.Point(239, 91);
+            this.btnTimeOUT.Location = new System.Drawing.Point(209, 125);
             this.btnTimeOUT.Name = "btnTimeOUT";
             this.btnTimeOUT.Size = new System.Drawing.Size(118, 44);
             this.btnTimeOUT.TabIndex = 34;
@@ -142,11 +156,100 @@
             this.btnTimeOUT.UseVisualStyleBackColor = false;
             this.btnTimeOUT.Click += new System.EventHandler(this.btnTimeOUT_Click);
             // 
+            // attendanceHeader
+            // 
+            this.attendanceHeader.BackColor = System.Drawing.Color.White;
+            this.attendanceHeader.Controls.Add(this.controlBox);
+            this.attendanceHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.attendanceHeader.Location = new System.Drawing.Point(0, 0);
+            this.attendanceHeader.Name = "attendanceHeader";
+            this.attendanceHeader.Size = new System.Drawing.Size(983, 39);
+            this.attendanceHeader.TabIndex = 35;
+            this.attendanceHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.attendanceHeader_MouseDown);
+            // 
+            // controlBox
+            // 
+            this.controlBox.Controls.Add(this.panel17);
+            this.controlBox.Controls.Add(this.panel12);
+            this.controlBox.Controls.Add(this.panel16);
+            this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.controlBox.Location = new System.Drawing.Point(843, 0);
+            this.controlBox.Name = "controlBox";
+            this.controlBox.Size = new System.Drawing.Size(140, 39);
+            this.controlBox.TabIndex = 6;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.btnClose);
+            this.panel17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel17.Location = new System.Drawing.Point(93, 3);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(44, 30);
+            this.panel17.TabIndex = 31;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(3, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(36, 27);
+            this.btnClose.TabIndex = 30;
+            this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.btnMin);
+            this.panel12.Location = new System.Drawing.Point(3, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(44, 30);
+            this.panel12.TabIndex = 0;
+            // 
+            // btnMin
+            // 
+            this.btnMin.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMin.FlatAppearance.BorderSize = 0;
+            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMin.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMin.Image = ((System.Drawing.Image)(resources.GetObject("btnMin.Image")));
+            this.btnMin.Location = new System.Drawing.Point(3, 3);
+            this.btnMin.Name = "btnMin";
+            this.btnMin.Size = new System.Drawing.Size(36, 27);
+            this.btnMin.TabIndex = 30;
+            this.btnMin.UseVisualStyleBackColor = false;
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.btnMax);
+            this.panel16.Location = new System.Drawing.Point(48, 3);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(44, 30);
+            this.panel16.TabIndex = 30;
+            // 
+            // btnMax
+            // 
+            this.btnMax.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMax.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMax.FlatAppearance.BorderSize = 0;
+            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMax.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMax.Image = ((System.Drawing.Image)(resources.GetObject("btnMax.Image")));
+            this.btnMax.Location = new System.Drawing.Point(3, 3);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(36, 27);
+            this.btnMax.TabIndex = 30;
+            this.btnMax.UseVisualStyleBackColor = false;
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 644);
+            this.ClientSize = new System.Drawing.Size(983, 662);
+            this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);
             this.Controls.Add(this.btnOvertime);
             this.Controls.Add(this.btnTimeIN);
@@ -158,6 +261,11 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.attendanceMonitoring_FormClosed);
             this.Load += new System.EventHandler(this.attendanceMonitoring_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.attendanceHeader.ResumeLayout(false);
+            this.controlBox.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -172,5 +280,13 @@
         private System.Windows.Forms.Button btnTimeIN;
         private System.Windows.Forms.Button btnOvertime;
         private System.Windows.Forms.Button btnTimeOUT;
+        private System.Windows.Forms.Panel attendanceHeader;
+        private System.Windows.Forms.Panel controlBox;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btnMin;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Button btnMax;
     }
 }
