@@ -110,8 +110,8 @@ namespace payrollsystemsti
 											formDashboard.GetLeaveManagementPanel().Hide();
 											formDashboard.GetAccountArchivePanel().Hide();
 											formDashboard.GetEnrollFingerPanel().Hide();
-                                            formDashboard.GetEmployeeRegisterPanel().Hide();
-                                            formDashboard.GetSalaryPanel().Hide();
+                                            //formDashboard.GetEmployeeRegisterPanel().Hide();
+                                            //formDashboard.GetSalaryPanel().Hide();
 
 											dashBoard.isClickable = false;
 
