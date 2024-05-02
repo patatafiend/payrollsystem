@@ -86,6 +86,7 @@ namespace payrollsystemsti
                                         {
 											formDashboard.GetEnrollFingerPanel().Hide();
 											formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+                                            
 
 
 											dashBoard.isClickable = true;
@@ -112,6 +113,7 @@ namespace payrollsystemsti
 											formDashboard.GetEnrollFingerPanel().Hide();
                                             formDashboard.GetEmployeeRegisterPanel().Hide();
                                             formDashboard.GetSalaryPanel().Hide();
+                                            formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
 
 											dashBoard.isClickable = false;
 

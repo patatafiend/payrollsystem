@@ -21,6 +21,7 @@ namespace payrollsystemsti
         public Label lbEmpID;
         public Label lbLeaves;
         public Label lbAbsents;
+		public Label lbPanelName1;
 
 
 		public static Boolean isClickable;
@@ -36,6 +37,7 @@ namespace payrollsystemsti
             lbEmpID = lbEmployeeID;
 			lbLeaves = lb_EmployeeNum;
 			lbAbsents = lb_absents;
+			lbPanelName1 = lb_Total;
 		}
 
 		private void dashBoard_Load(object sender, EventArgs e)
