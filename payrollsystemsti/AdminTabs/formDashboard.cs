@@ -177,6 +177,16 @@ namespace payrollsystemsti
             return employeePnl;
 		}
 
+        public Panel GetEmployeeRegisterPanel()
+        {
+            return registerPnl;
+        }
+
+        public Panel GetSalaryPanel()
+        {
+            return salaryPnl;
+        }
+
 
 
 
