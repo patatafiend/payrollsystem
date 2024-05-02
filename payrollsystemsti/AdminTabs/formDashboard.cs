@@ -309,6 +309,18 @@ namespace payrollsystemsti
                 
                 dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
 				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
+
+
+                if(LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
+                {
+					dashBoard.dashboardInstance.lbPanelName1.Text = "Total Employee";
+                }
+                else
+                {
+					dashBoard.dashboardInstance.lbPanelName1.Text = "Available Leaves";
+				}
+                
+                
 			}
             else
             {
