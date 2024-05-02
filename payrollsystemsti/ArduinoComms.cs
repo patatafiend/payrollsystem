@@ -99,29 +99,15 @@ namespace payrollsystemsti
             }
         }
 
-        public async Task<bool> SendTimeCommand(int fingerID)
+        public async Task<int> SendTimeCommand(int id)
         {
-            string command = $"Time {fingerID}";
+            string command = "Time";
             _serialport.Write(command);
 
-            try
-            {
-                string response = await ReadLineAsync();
-                if (response.Trim() == "Success")
-                {
-                    MessageBox.Show("Time in Success");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
+            string idS = await ReadLineAsync();
+            int fID = Convert.ToInt32(idS);
+
+            return id+=fID;
         }
 
         public async Task<bool> SendDeleteCommand(int fingerID)

@@ -30,8 +30,6 @@ namespace payrollsystemsti.AdminTabs
 
         public int loggedInEmpID;
         int fingerID = 0;
-        bool timedIN = false;
-        bool timedOUT = false;
 
         public attendanceMonitoring()
         {
@@ -44,31 +42,34 @@ namespace payrollsystemsti.AdminTabs
             ac = new ArduinoComms("COM4");
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
-            btnTimeOUT.Enabled = timedIN;
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
         {
-            btnTimeIN.Enabled = false;
-            btnOvertime.Enabled = false;
-
-            string status = "Time IN";
-            string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
-            if (getFingerID())
+            DialogResult dialogResult = MessageBox.Show("Time IN?", "Action", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
+                btnTimeIN.Enabled = false;
+                btnTimeOUT.Enabled = false;
+                btnOvertime.Enabled = false;
+                
+
+                string status = "Time IN";
+                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+
                 try
                 {
-                    bool success = await ac.SendTimeCommand(fingerID);
-                    if (success)
+                    int fID = 0;
+                    fID = await ac.SendTimeCommand(fID);
+
+                    if (fID > 0)
                     {
-                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, status);
-                        Console.WriteLine($"This is the loginID and FingerID: {loggedInEmpID}, {fingerID}");
-                        timedIN = true;
+                        dataGridView1.Rows.Add(fID, currentTime, status);
+                        Console.WriteLine($"This is the FingerID: {fID}");
                     }
                     else
                     {
                         MessageBox.Show("Failed to display time");
-                        timedIN = false;
                     }
                 }
                 catch (Exception ex)
@@ -77,42 +78,42 @@ namespace payrollsystemsti.AdminTabs
                 }
                 finally
                 {
-                    btnTimeIN.Enabled = !timedIN;
-                    btnTimeOUT.Enabled = timedIN;
+                    btnTimeIN.Enabled = true;
+                    btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
                 }
-            }
-            else
+            }else if(DialogResult == DialogResult.No)
             {
-                MessageBox.Show("Enroll Fingerprint first.");
                 btnTimeIN.Enabled = true;
+                btnTimeOUT.Enabled = true;
                 btnOvertime.Enabled = true;
             }
+            
         }
 
-        private bool getFingerID()
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT fingerID FROM EmployeeFingerprints WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", loggedInEmpID);
-                    object result = cmd.ExecuteScalar();
-                    if(result != null)
-                    {
-                        fingerID = Convert.ToInt32(result);
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Fingerprint not Enrolled");
-                        return false;
-                    }
-                }
-            }
-        }
+        //private bool getFingerID()
+        //{
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT fingerID FROM EmployeeFingerprints WHERE EmployeeID = @empID";
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@empID", loggedInEmpID);
+        //            object result = cmd.ExecuteScalar();
+        //            if(result != null)
+        //            {
+        //                fingerID = Convert.ToInt32(result);
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Fingerprint not Enrolled");
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //}
 
         private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -121,26 +122,28 @@ namespace payrollsystemsti.AdminTabs
 
         private async void btnTimeOUT_Click(object sender, EventArgs e)
         {
-            btnTimeOUT.Enabled = false;
-            btnOvertime.Enabled = false;
-
-            string status = "Time OUT";
-            string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
-            if (getFingerID())
+            DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
+                btnTimeIN.Enabled = false;
+                btnTimeOUT.Enabled = false;
+                btnOvertime.Enabled = false;
+
+                string status = "Time OUT";
+                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+
                 try
                 {
-                    bool success = await ac.SendTimeCommand(fingerID);
-                    if (success)
+                    //await ac.SendTimeCommand();
+                    string id = await ac.ReadLineAsync();
+                    if (id != "0")
                     {
-                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, status);
-                        Console.WriteLine($"This is the loginID and FingerID: {loggedInEmpID}, {fingerID}");
-                        timedOUT = true;
+                        dataGridView1.Rows.Add(id, currentTime, status);
+                        Console.WriteLine($"This is the FingerID: {id}");
                     }
                     else
                     {
                         MessageBox.Show("Failed to display time");
-                        timedOUT = false;
                     }
                 }
                 catch (Exception ex)
@@ -149,13 +152,14 @@ namespace payrollsystemsti.AdminTabs
                 }
                 finally
                 {
-                    btnTimeIN.Enabled = timedOUT;
-                    btnTimeOUT.Enabled = !timedOUT;
+                    btnTimeIN.Enabled = true;
+                    btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
                 }
             }
-            else
+            else if (DialogResult == DialogResult.No)
             {
+                btnTimeIN.Enabled = true;
                 btnTimeOUT.Enabled = true;
                 btnOvertime.Enabled = true;
             }
@@ -168,6 +172,28 @@ namespace payrollsystemsti.AdminTabs
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

@@ -199,6 +199,7 @@
             this.btnClose.Size = new System.Drawing.Size(36, 27);
             this.btnClose.TabIndex = 30;
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel12
             // 
@@ -221,6 +222,7 @@
             this.btnMin.Size = new System.Drawing.Size(36, 27);
             this.btnMin.TabIndex = 30;
             this.btnMin.UseVisualStyleBackColor = false;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
             // panel16
             // 
@@ -243,6 +245,7 @@
             this.btnMax.Size = new System.Drawing.Size(36, 27);
             this.btnMax.TabIndex = 30;
             this.btnMax.UseVisualStyleBackColor = false;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
             // attendanceMonitoring
             // 
