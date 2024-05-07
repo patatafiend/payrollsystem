@@ -114,7 +114,7 @@
             this.dateTimePicker1.CustomFormat = "dddd, MM/dd/yyyy hh:mm tt";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(562, 139);
+            this.dateTimePicker1.Location = new System.Drawing.Point(622, 139);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(338, 30);
@@ -127,7 +127,7 @@
             this.btnTimeIN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeIN.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeIN.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeIN.Location = new System.Drawing.Point(77, 125);
+            this.btnTimeIN.Location = new System.Drawing.Point(49, 125);
             this.btnTimeIN.Name = "btnTimeIN";
             this.btnTimeIN.Size = new System.Drawing.Size(118, 44);
             this.btnTimeIN.TabIndex = 26;
@@ -142,7 +142,7 @@
             this.btnOvertime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOvertime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOvertime.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOvertime.Location = new System.Drawing.Point(394, 125);
+            this.btnOvertime.Location = new System.Drawing.Point(366, 125);
             this.btnOvertime.Name = "btnOvertime";
             this.btnOvertime.Size = new System.Drawing.Size(118, 44);
             this.btnOvertime.TabIndex = 33;
@@ -156,7 +156,7 @@
             this.btnTimeOUT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeOUT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeOUT.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeOUT.Location = new System.Drawing.Point(234, 125);
+            this.btnTimeOUT.Location = new System.Drawing.Point(206, 125);
             this.btnTimeOUT.Name = "btnTimeOUT";
             this.btnTimeOUT.Size = new System.Drawing.Size(118, 44);
             this.btnTimeOUT.TabIndex = 34;

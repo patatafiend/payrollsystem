@@ -49,7 +49,6 @@
             // 
             // btnEnrollFinger
             // 
-            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnrollFinger.BackColor = System.Drawing.Color.SkyBlue;
             this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -65,7 +64,7 @@
             // tbFingerID
             // 
             this.tbFingerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFingerID.Location = new System.Drawing.Point(40, 37);
+            this.tbFingerID.Location = new System.Drawing.Point(55, 33);
             this.tbFingerID.Multiline = true;
             this.tbFingerID.Name = "tbFingerID";
             this.tbFingerID.Size = new System.Drawing.Size(168, 22);
@@ -73,7 +72,6 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.BackColor = System.Drawing.Color.Crimson;
             this.btnRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +108,7 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(606, 389);
+            this.dataGridView1.Size = new System.Drawing.Size(727, 389);
             this.dataGridView1.TabIndex = 37;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -152,7 +150,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 21);
+            this.label1.Location = new System.Drawing.Point(52, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 38;
@@ -167,7 +165,7 @@
             this.cbFilterID.Items.AddRange(new object[] {
             "FingerID",
             "No FingerID"});
-            this.cbFilterID.Location = new System.Drawing.Point(540, 113);
+            this.cbFilterID.Location = new System.Drawing.Point(661, 113);
             this.cbFilterID.Name = "cbFilterID";
             this.cbFilterID.Size = new System.Drawing.Size(121, 24);
             this.cbFilterID.TabIndex = 39;
