@@ -91,6 +91,117 @@ namespace payrollsystemsti.AdminTabs
             
         }
 
+        public void insertAttendance(int empID, string date, DateTime? timeIn, DateTime? timeOut, int fingerID)
+        {
+            string query;
+            if (checkAttendanceAM(empID, date))
+            {
+                if (timeIn != null && timeOut == null)
+                {
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
+                    {
+                        conn.Open();
+                        query = "INSERT INTO Attendance (EmployeeID, Date, TimeIn_AM, fingerID) VALUES (@empID, @Date, @timeInAM, @fingerID)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@empID", empID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInAM", timeIn);
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
+                    {
+                        conn.Open();
+                        query = "UPDATE Attendance SET TimeOut_AM = @timeOutAM WHERE EmployeeID = @empID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@empID", empID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutAM", timeOut);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (timeIn != null && timeOut == null)
+                {
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
+                    {
+                        conn.Open();
+                        query = "UPDATE Attendance SET TimeIn_PM = @timeInPM WHERE EmployeeID = @empID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@empID", empID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInPM", timeOut);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(m.connStr))
+                    {
+                        conn.Open();
+                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE EmployeeID = @empID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@empID", empID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutPM", timeOut);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+
+        public bool checkAttendanceAM(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeOut_AM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    object result = cmd.ExecuteScalar();
+                    if(result != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        //public bool isTimedInAM(int fingerID)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT 1 FROM Attendance WHERE fingerID = @fingerID";
+        //    }
+        //}
+
         //private bool getFingerID()
         //{
         //    using (SqlConnection conn = new SqlConnection(m.connStr))

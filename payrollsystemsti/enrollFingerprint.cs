@@ -17,7 +17,7 @@ namespace payrollsystemsti
         Methods m = new Methods();
         ArduinoComms ac;
         int empID = 0;
-        int fingerID = 0;
+        int fingerID = 1;
         public enrollFingerprint()
         {
             InitializeComponent();
@@ -29,6 +29,7 @@ namespace payrollsystemsti
             btnRemove.Enabled = false;
             btnEnrollFinger.Enabled = false;
             cbFilterID.SelectedIndex = 1;
+            loadingIndicator.Visible = false;
             //LoadData();
 
             ac = new ArduinoComms("COM4");
@@ -68,31 +69,66 @@ namespace payrollsystemsti
 
         }
 
-        private async void btnEnrollFinger_Click(object sender, EventArgs e)
+        public bool isfingerIDExist(int fingerID)
         {
-            fingerID = Int32.Parse(tbFingerID.Text.ToString());
-            btnEnrollFinger.Enabled = false;
-            MessageBox.Show("Enrollment in progress...");
-
-            try
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                bool success = await ac.SendEnrollCommand(fingerID);
-
-                if (success)
+                conn.Open();
+                string query = "SELECT 1 FROM EmployeeFingerprints WHERE FingerID = @fingerID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    bool insert = insertFID(fingerID, empID);
-                    if (insert)
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    object result = cmd.ExecuteScalar();
+
+                    if(result != null)
                     {
-                        LoadData();
-                        MessageBox.Show("Enrollment Success");
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
             }
-            catch (Exception ex)
+        }
+
+        private async void btnEnrollFinger_Click(object sender, EventArgs e)
+        {
+            
+            btnEnrollFinger.Enabled = false;
+
+            if (!isfingerIDExist(fingerID))
             {
-                MessageBox.Show("Enrollment failed. See log for details");
-                Console.WriteLine($"Enrollment Error: {ex.Message}");
+                loadingIndicator.Visible = true;
+
+                try
+                {
+                    bool success = await ac.SendEnrollCommand(fingerID);
+
+                    if (success)
+                    {
+                        bool insert = insertFID(fingerID, empID);
+                        if (insert)
+                        {
+                            LoadData();
+                            loadingIndicator.Visible = false;
+                            MessageBox.Show("Enrollment Success");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loadingIndicator.Visible = false;
+                    MessageBox.Show("Enrollment failed. See log for details");
+                    Console.WriteLine($"Enrollment Error: {ex.Message}");
+                }
             }
+            else
+            {
+                MessageBox.Show("Finger ID already exist");
+                btnEnrollFinger.Enabled = true;
+            }
+            
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)

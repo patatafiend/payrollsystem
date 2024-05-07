@@ -126,27 +126,13 @@
   <metadata name="dgTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="dgStatus.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgEmpID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="dgDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="dgStatus.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnMin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAFpJREFUSEvt0UEKgDAMRNEsexS7E7xaj61eof5IoHRt3Og8mE1Ch5aaiPxV772Q
-        lWwP4udLVM5YVHKSDAepUT0wbPc6T4vqgaG/xG+QYSdLVM9YvPsnIvJ5Zhcirm7FHfY0uAAAAABJRU5E
-        rkJggg==
-</value>
-  </data>
   <data name="btnClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -155,6 +141,14 @@
         zwswMIwG8TwtwMA4GMQ5T4DBgn7QkZovwGBR93q+9XRf87+wsKZesl3PWkfzwEJ5k5tsh/nfhEX9j3yg
         osuQDQsqKvrInIO3zg1GCbjIFohuEc/TgjD0A3Y6+oF+XhDCpACDuS8IgSvAQJcexPDcyr5BlbaTQN/9
         YU/ajmG4FgHlCjDwSZD4V9pa8FIUHytCS4PZOv8DAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnMin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAFpJREFUSEvt0UEKgDAMRNEsexS7E7xaj61eof5IoHRt3Og8mE1Ch5aaiPxV772Q
+        lWwP4udLVM5YVHKSDAepUT0wbPc6T4vqgaG/xG+QYSdLVM9YvPsnIvJ5Zhcirm7FHfY0uAAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="btnMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

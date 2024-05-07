@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendanceMonitoring));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnOvertime = new System.Windows.Forms.Button();
@@ -47,6 +44,10 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnMax = new System.Windows.Forms.Button();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -73,33 +74,16 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgTime,
+            this.dgDate,
             this.dgStatus});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.Location = new System.Drawing.Point(52, 190);
+            this.dataGridView1.Location = new System.Drawing.Point(49, 176);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(878, 488);
+            this.dataGridView1.Size = new System.Drawing.Size(911, 420);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgTime
-            // 
-            this.dgTime.HeaderText = "Time";
-            this.dgTime.Name = "dgTime";
-            this.dgTime.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
             // 
             // dateTimePicker1
             // 
@@ -119,7 +103,7 @@
             this.btnTimeIN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeIN.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeIN.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeIN.Location = new System.Drawing.Point(52, 125);
+            this.btnTimeIN.Location = new System.Drawing.Point(77, 125);
             this.btnTimeIN.Name = "btnTimeIN";
             this.btnTimeIN.Size = new System.Drawing.Size(118, 44);
             this.btnTimeIN.TabIndex = 26;
@@ -134,7 +118,7 @@
             this.btnOvertime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOvertime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOvertime.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOvertime.Location = new System.Drawing.Point(369, 125);
+            this.btnOvertime.Location = new System.Drawing.Point(394, 125);
             this.btnOvertime.Name = "btnOvertime";
             this.btnOvertime.Size = new System.Drawing.Size(118, 44);
             this.btnOvertime.TabIndex = 33;
@@ -148,7 +132,7 @@
             this.btnTimeOUT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeOUT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeOUT.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeOUT.Location = new System.Drawing.Point(209, 125);
+            this.btnTimeOUT.Location = new System.Drawing.Point(234, 125);
             this.btnTimeOUT.Name = "btnTimeOUT";
             this.btnTimeOUT.Size = new System.Drawing.Size(118, 44);
             this.btnTimeOUT.TabIndex = 34;
@@ -163,7 +147,7 @@
             this.attendanceHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.attendanceHeader.Location = new System.Drawing.Point(0, 0);
             this.attendanceHeader.Name = "attendanceHeader";
-            this.attendanceHeader.Size = new System.Drawing.Size(983, 39);
+            this.attendanceHeader.Size = new System.Drawing.Size(1008, 39);
             this.attendanceHeader.TabIndex = 35;
             this.attendanceHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.attendanceHeader_MouseDown);
             // 
@@ -173,7 +157,7 @@
             this.controlBox.Controls.Add(this.panel12);
             this.controlBox.Controls.Add(this.panel16);
             this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.controlBox.Location = new System.Drawing.Point(843, 0);
+            this.controlBox.Location = new System.Drawing.Point(868, 0);
             this.controlBox.Name = "controlBox";
             this.controlBox.Size = new System.Drawing.Size(140, 39);
             this.controlBox.TabIndex = 6;
@@ -247,11 +231,35 @@
             this.btnMax.UseVisualStyleBackColor = false;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgTime
+            // 
+            this.dgTime.HeaderText = "Time";
+            this.dgTime.Name = "dgTime";
+            this.dgTime.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 662);
+            this.ClientSize = new System.Drawing.Size(1008, 609);
             this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);
             this.Controls.Add(this.btnOvertime);
@@ -276,9 +284,6 @@
         #endregion
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnTimeIN;
         private System.Windows.Forms.Button btnOvertime;
@@ -291,5 +296,9 @@
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Button btnMax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
     }
 }
