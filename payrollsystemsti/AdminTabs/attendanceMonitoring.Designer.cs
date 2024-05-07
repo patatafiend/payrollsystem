@@ -32,6 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendanceMonitoring));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnOvertime = new System.Windows.Forms.Button();
@@ -44,10 +48,6 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnMax = new System.Windows.Forms.Button();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -84,6 +84,30 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(911, 420);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgTime
+            // 
+            this.dgTime.HeaderText = "Time";
+            this.dgTime.Name = "dgTime";
+            this.dgTime.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
             // 
             // dateTimePicker1
             // 
@@ -142,7 +166,7 @@
             // 
             // attendanceHeader
             // 
-            this.attendanceHeader.BackColor = System.Drawing.Color.White;
+            this.attendanceHeader.BackColor = System.Drawing.Color.Transparent;
             this.attendanceHeader.Controls.Add(this.controlBox);
             this.attendanceHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.attendanceHeader.Location = new System.Drawing.Point(0, 0);
@@ -231,34 +255,11 @@
             this.btnMax.UseVisualStyleBackColor = false;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgTime
-            // 
-            this.dgTime.HeaderText = "Time";
-            this.dgTime.Name = "dgTime";
-            this.dgTime.ReadOnly = true;
-            // 
-            // dgDate
-            // 
-            this.dgDate.HeaderText = "Date";
-            this.dgDate.Name = "dgDate";
-            this.dgDate.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1008, 609);
             this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);

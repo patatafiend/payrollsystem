@@ -94,7 +94,7 @@ namespace payrollsystemsti.AdminTabs
         public void insertAttendance(int empID, string date, DateTime? timeIn, DateTime? timeOut, int fingerID)
         {
             string query;
-            if (checkAttendanceAM(empID, date))
+            if (!checkAttendanceAM(empID, date))
             {
                 if (timeIn != null && timeOut == null)
                 {
