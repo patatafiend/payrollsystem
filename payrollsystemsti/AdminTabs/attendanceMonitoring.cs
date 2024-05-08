@@ -55,7 +55,8 @@ namespace payrollsystemsti.AdminTabs
                 
 
                 string status = "Time IN";
-                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+                DateTime currentTime = dateTimePicker1.Value;
+                string currentDate = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy");
 
                 try
                 {
@@ -64,6 +65,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
+                        insertAttendance(loggedInEmpID, currentDate, currentTime, null, fID);
                         dataGridView1.Rows.Add(fID, currentTime, status);
                         Console.WriteLine($"This is the FingerID: {fID}");
                     }
@@ -94,7 +96,7 @@ namespace payrollsystemsti.AdminTabs
         public void insertAttendance(int empID, string date, DateTime? timeIn, DateTime? timeOut, int fingerID)
         {
             string query;
-            if (!checkAttendanceAM(empID, date))
+            if (!checkAttendanceAM(empID, date) && !checkIfTimedIn(empID, date))
             {
                 if (timeIn != null && timeOut == null)
                 {
@@ -130,7 +132,7 @@ namespace payrollsystemsti.AdminTabs
                     }
                 }
             }
-            else
+            else if(checkAttendanceAM(empID, date))
             {
                 if (timeIn != null && timeOut == null)
                 {
@@ -164,7 +166,11 @@ namespace payrollsystemsti.AdminTabs
                         }
                     }
                 }
-                
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid Action");
             }
             
         }
@@ -175,6 +181,30 @@ namespace payrollsystemsti.AdminTabs
             {
                 conn.Open();
                 string query = "SELECT TimeOut_AM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    object result = cmd.ExecuteScalar();
+                    if(result != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool checkIfTimedIn(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_AM FROM Attendance WHERE EmployeeID = @empID AND Date = @date AND time";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
