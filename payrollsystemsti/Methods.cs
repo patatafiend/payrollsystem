@@ -187,8 +187,5 @@ namespace payrollsystemsti
 			}
 			return totalCount;
 		}
-
-
-
 	}
 }
