@@ -169,6 +169,10 @@ namespace payrollsystemsti.AdminTabs
                 }
 
             }
+            else if(checkIfTimedIn(empID, date))
+            {
+                MessageBox.Show("You have already Timed In....");
+            }
             else
             {
                 MessageBox.Show("Invalid Action");
