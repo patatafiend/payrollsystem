@@ -224,39 +224,6 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        //public bool isTimedInAM(int fingerID)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        string query = "SELECT 1 FROM Attendance WHERE fingerID = @fingerID";
-        //    }
-        //}
-
-        //private bool getFingerID()
-        //{
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        string query = "SELECT fingerID FROM EmployeeFingerprints WHERE EmployeeID = @empID";
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@empID", loggedInEmpID);
-        //            object result = cmd.ExecuteScalar();
-        //            if(result != null)
-        //            {
-        //                fingerID = Convert.ToInt32(result);
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Fingerprint not Enrolled");
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //}
-
         private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
             ac.closePort();
