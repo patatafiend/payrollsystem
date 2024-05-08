@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -271,7 +272,8 @@ namespace payrollsystemsti.AdminTabs
                 btnOvertime.Enabled = false;
 
                 string status = "Time OUT";
-                string currentTime = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy hh:mm tt");
+                DateTime currentTime = dateTimePicker1.Value;
+                string currentDate = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy");
 
                 try
                 {
@@ -280,6 +282,7 @@ namespace payrollsystemsti.AdminTabs
                     if (id != "0")
                     {
                         dataGridView1.Rows.Add(id, currentTime, status);
+                        insertAttendance(loggedInEmpID, currentDate, currentTime, null, fingerID);
                         Console.WriteLine($"This is the FingerID: {id}");
                     }
                     else
