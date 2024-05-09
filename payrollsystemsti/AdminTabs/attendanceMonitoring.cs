@@ -56,8 +56,8 @@ namespace payrollsystemsti.AdminTabs
                 
 
                 string status = "Time IN";
-                DateTime currentTime = dateTimePicker1.Value;
-                string currentDate = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy");
+                DateTime currentTime = time.Value;
+                string currentDate = date.Value.ToString("dddd, MM/dd/yyyy");
 
                 try
                 {
@@ -67,7 +67,7 @@ namespace payrollsystemsti.AdminTabs
                     if (fID > 0)
                     {
                         insertAttendance(loggedInEmpID, currentDate, currentTime, null, fID);
-                        dataGridView1.Rows.Add(fID, currentTime, status);
+                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, currentDate, status);
                         Console.WriteLine($"This is the FingerID: {fID}");
                     }
                     else
@@ -243,8 +243,8 @@ namespace payrollsystemsti.AdminTabs
                 btnOvertime.Enabled = false;
 
                 string status = "Time OUT";
-                DateTime currentTime = dateTimePicker1.Value;
-                string currentDate = dateTimePicker1.Value.ToString("dddd, MM/dd/yyyy");
+                DateTime currentTime = time.Value;
+                string currentDate = date.Value.ToString("dddd, MM/dd/yyyy");
 
                 try
                 {
@@ -252,8 +252,9 @@ namespace payrollsystemsti.AdminTabs
                     string id = await ac.ReadLineAsync();
                     if (id != "0")
                     {
-                        dataGridView1.Rows.Add(id, currentTime, status);
+                        
                         insertAttendance(loggedInEmpID, currentDate, currentTime, null, fingerID);
+                        dataGridView1.Rows.Add(loggedInEmpID, currentTime, currentDate, status);
                         Console.WriteLine($"This is the FingerID: {id}");
                     }
                     else

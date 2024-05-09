@@ -36,7 +36,7 @@
             this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.date = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnOvertime = new System.Windows.Forms.Button();
             this.btnTimeOUT = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnMax = new System.Windows.Forms.Button();
+            this.time = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -109,16 +110,16 @@
             this.dgStatus.Name = "dgStatus";
             this.dgStatus.ReadOnly = true;
             // 
-            // dateTimePicker1
+            // date
             // 
-            this.dateTimePicker1.CustomFormat = "dddd, MM/dd/yyyy hh:mm tt";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(622, 139);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(338, 30);
-            this.dateTimePicker1.TabIndex = 4;
+            this.date.CustomFormat = "dddd, MM/dd/yyyy hh:mm tt";
+            this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date.Location = new System.Drawing.Point(622, 139);
+            this.date.Name = "date";
+            this.date.ShowUpDown = true;
+            this.date.Size = new System.Drawing.Size(338, 30);
+            this.date.TabIndex = 4;
             // 
             // btnTimeIN
             // 
@@ -255,17 +256,30 @@
             this.btnMax.UseVisualStyleBackColor = false;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
+            // time
+            // 
+            this.time.CustomFormat = "hh:mm tt";
+            this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.time.Location = new System.Drawing.Point(843, 81);
+            this.time.Name = "time";
+            this.time.ShowUpDown = true;
+            this.time.Size = new System.Drawing.Size(112, 30);
+            this.time.TabIndex = 36;
+            this.time.Value = new System.DateTime(2024, 5, 9, 17, 51, 0, 0);
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1008, 609);
+            this.Controls.Add(this.time);
             this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);
             this.Controls.Add(this.btnOvertime);
             this.Controls.Add(this.btnTimeIN);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.date);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "attendanceMonitoring";
@@ -285,7 +299,7 @@
         #endregion
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker date;
         private System.Windows.Forms.Button btnTimeIN;
         private System.Windows.Forms.Button btnOvertime;
         private System.Windows.Forms.Button btnTimeOUT;
@@ -301,5 +315,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
+        private System.Windows.Forms.DateTimePicker time;
     }
 }
