@@ -49,6 +49,7 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnMax = new System.Windows.Forms.Button();
             this.time = new System.Windows.Forms.DateTimePicker();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -112,14 +113,16 @@
             // 
             // date
             // 
-            this.date.CustomFormat = "dddd, MM/dd/yyyy hh:mm tt";
+            this.date.CustomFormat = "dddd, MM/dd/yyyy";
+            this.date.Enabled = false;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.date.Location = new System.Drawing.Point(622, 139);
+            this.date.Location = new System.Drawing.Point(49, 58);
             this.date.Name = "date";
             this.date.ShowUpDown = true;
-            this.date.Size = new System.Drawing.Size(338, 30);
+            this.date.Size = new System.Drawing.Size(248, 30);
             this.date.TabIndex = 4;
+            this.date.Value = new System.DateTime(2024, 5, 12, 0, 0, 0, 0);
             // 
             // btnTimeIN
             // 
@@ -260,13 +263,18 @@
             // 
             this.time.CustomFormat = "hh:mm tt";
             this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.time.Location = new System.Drawing.Point(843, 81);
+            this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.time.Location = new System.Drawing.Point(820, 58);
             this.time.Name = "time";
             this.time.ShowUpDown = true;
-            this.time.Size = new System.Drawing.Size(112, 30);
+            this.time.Size = new System.Drawing.Size(140, 30);
             this.time.TabIndex = 36;
-            this.time.Value = new System.DateTime(2024, 5, 9, 17, 51, 0, 0);
+            this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // attendanceMonitoring
             // 
@@ -316,5 +324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DateTimePicker time;
+        private System.Windows.Forms.Timer timer;
     }
 }
