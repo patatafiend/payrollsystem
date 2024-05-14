@@ -32,16 +32,16 @@ namespace payrollsystemsti.AdminTabs
         public int loggedInEmpID;
         int fingerID = 0;
         TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
-        TimeSpan endTimeAM = new TimeSpan(9, 15, 0);    // 9:15 AM
+        TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
-        TimeSpan startTimePM = new TimeSpan(1, 0, 0);  // 1:00 PM
-        TimeSpan endTimePM = new TimeSpan(1, 15, 0);    // 1:15 PM
+        TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
+        TimeSpan endTimePM = new TimeSpan(19, 00, 0);    // 6:00 PM
 
         TimeSpan timeOutBDYS = new TimeSpan(9, 16, 0);  // 9:16 AM
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
 
-        TimeSpan timeOutBDYSS = new TimeSpan(1, 16, 0);  // 1:16 PM
-        TimeSpan timeOutBDYEE = new TimeSpan(6, 0, 0);    // 6:00 PM
+        TimeSpan timeOutBDYSS = new TimeSpan(13, 16, 0);  // 1:16 PM
+        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);    // 6:00 PM
 
         public attendanceMonitoring()
         {
@@ -58,115 +58,110 @@ namespace payrollsystemsti.AdminTabs
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
         {
-            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
-            if ((timeNow >= startTimeAM && timeNow <= endTimeAM) || (timeNow >= startTimePM && timeNow <= endTimePM))
+            DialogResult dialogResult = MessageBox.Show("Time IN?", "Action", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                DialogResult dialogResult = MessageBox.Show("Time IN?", "Action", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                btnTimeIN.Enabled = false;
+                btnTimeOUT.Enabled = false;
+                btnOvertime.Enabled = false;
+
+
+                string status = "Time IN";
+                int currentTime = time.Value.Hour;
+                string currentDate = date.Value.ToString("MM/dd/yyyy");
+
+                try
                 {
-                    btnTimeIN.Enabled = false;
-                    btnTimeOUT.Enabled = false;
-                    btnOvertime.Enabled = false;
+                    int fID = 0;
+                    fID = await ac.SendTimeCommand(fID);
 
-
-                    string status = "Time IN";
-                    int currentTime = time.Value.Hour;
-                    string currentDate = date.Value.ToString("MM/dd/yyyy");
-
-                    try
+                    if (fID > 0)
                     {
-                        int fID = 0;
-                        fID = await ac.SendTimeCommand(fID);
-
-                        if (fID > 0)
+                        if(!IsTimedInAM(fID, currentDate))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
                             dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
-                            Console.WriteLine($"This is the FingerID: {fID}");
+                        }
+                        else if(IsTimedInAM(fID, currentDate))
+                        {
+                            insertAttendance(currentDate, currentTime, null, fID);
                         }
                         else
                         {
-                            MessageBox.Show("Failed to display time");
+                            MessageBox.Show("You already have a record for the morning hours..");
                         }
+
+                        Console.WriteLine($"This is the FingerID: {fID}");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine($"{ex.Message}");
-                    }
-                    finally
-                    {
-                        btnTimeIN.Enabled = true;
-                        btnTimeOUT.Enabled = true;
-                        btnOvertime.Enabled = true;
+                        MessageBox.Show("Failed to display time");
                     }
                 }
-                else if (DialogResult == DialogResult.No)
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+                finally
                 {
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
                 }
             }
-            else
+            else if (DialogResult == DialogResult.No)
             {
-                MessageBox.Show("You are currently not allowed to time-in..");
+                btnTimeIN.Enabled = true;
+                btnTimeOUT.Enabled = true;
+                btnOvertime.Enabled = true;
             }
         }
         private async void btnTimeOUT_Click(object sender, EventArgs e)
         {
-            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
-            if ((timeNow >= timeOutBDYS && timeNow <= timeOutBDYE) || (timeNow >= timeOutBDYSS && timeNow <= timeOutBDYEE))
+            DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                btnTimeIN.Enabled = false;
+                btnTimeOUT.Enabled = false;
+                btnOvertime.Enabled = false;
+
+                string status = "Time OUT";
+                int currentTime = time.Value.Hour;
+                string currentDate = date.Value.ToString("MM/dd/yyyy");
+
+                try
                 {
-                    btnTimeIN.Enabled = false;
-                    btnTimeOUT.Enabled = false;
-                    btnOvertime.Enabled = false;
+                    //await ac.SendTimeCommand();
+                    fingerID = await ac.SendTimeCommand(fingerID);
 
-                    string status = "Time OUT";
-                    int currentTime = time.Value.Hour;
-                    string currentDate = date.Value.ToString("MM/dd/yyyy");
-
-                    try
+                    if (fingerID != 0)
                     {
-                        //await ac.SendTimeCommand();
-                        int fID = 0;
-                        fID = await ac.SendTimeCommand(fID);
 
-                        if (fID != 0)
-                        {
-
-                            insertAttendance(currentDate, null, currentTime, fID);
-                            dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
-                            Console.WriteLine($"This is the FingerID: {fID}");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to display time");
-                        }
+                        insertAttendance(currentDate, null, currentTime, fingerID);
+                        dataGridView1.Rows.Add(getEmpID(fingerID), currentTime, currentDate, status);
+                        Console.WriteLine($"This is the FingerID: {fingerID}");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine($"{ex.Message}");
-                    }
-                    finally
-                    {
-                        btnTimeIN.Enabled = true;
-                        btnTimeOUT.Enabled = true;
-                        btnOvertime.Enabled = true;
+                        MessageBox.Show("Failed to display time");
                     }
                 }
-                else if (DialogResult == DialogResult.No)
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+                finally
                 {
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
                 }
             }
-            else
+            else if (DialogResult == DialogResult.No)
             {
-                MessageBox.Show("Unable to time-out...");
+                btnTimeIN.Enabled = true;
+                btnTimeOUT.Enabled = true;
+                btnOvertime.Enabled = true;
             }
         }
 
@@ -177,7 +172,7 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 string query;
                 
-                if (!checkAttendanceAM(fingerID, date) && !checkIfTimedIn(fingerID, date))
+                if (!IsTimedInAM(fingerID, date))
                 {
                     if (timeIn != null && timeOut == null)
                     {
@@ -193,7 +188,10 @@ namespace payrollsystemsti.AdminTabs
                             cmd.ExecuteNonQuery();
                         }
                     }
-                    else
+                }
+                else if(!IsTimedOutAM(fingerID, date))
+                {
+                    if (timeIn == null && timeOut != null)
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -208,7 +206,7 @@ namespace payrollsystemsti.AdminTabs
                         }
                     }
                 }
-                else if (checkAttendanceAM(fingerID, date))
+                else if (IsTimedOutAM(fingerID, date))
                 {
                     if (timeIn != null && timeOut == null)
                     {
@@ -224,7 +222,7 @@ namespace payrollsystemsti.AdminTabs
                             cmd.ExecuteNonQuery();
                         }
                     }
-                    else
+                    else if(timeIn == null && timeOut != null)
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -239,19 +237,14 @@ namespace payrollsystemsti.AdminTabs
                         }
                     }
                 }
-                else if (checkIfTimedIn(fingerID, date))
-                {
-                    MessageBox.Show("You have already Timed In....");
-                }
                 else
                 {
-                    MessageBox.Show("Invalid Action");
+                    MessageBox.Show("Failed to insert attendance...");
                 }
-
             }
         }
 
-        public bool checkAttendanceAM(int fingerID, string date)
+        public bool IsTimedOutAM(int fingerID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -263,7 +256,7 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", date);
 
                     object result = cmd.ExecuteScalar();
-                    if(result != null)
+                    if(result.ToString() != "00:00:00")
                     {
                         return true;
                     }
@@ -275,7 +268,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public bool checkIfTimedIn(int fingerID, string date)
+        public bool IsTimedInAM(int fingerID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -322,6 +315,30 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        //public void LoadAtttendanceData(string date)
+        //{
+        //    dataGridView1.Rows.Clear();
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT * FROM Attedance WHERE Date = @date";
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+
+        //            sda.Fill(dt);
+        //            foreach(DataRow row in dt.Rows)
+        //            {
+        //                int n = dataGridView1.Rows.Add();
+
+        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["Date"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgTime"].Value = row["Date"].ToString();
+        //            }
+        //        }
+        //    }
+        //}
 
         private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
