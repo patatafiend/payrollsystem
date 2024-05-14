@@ -23,7 +23,6 @@ namespace payrollsystemsti
         public Label lbAbsents;
 		public Label lbPanelName1;
 
-
 		public static Boolean isClickable;
 
 		public dashBoard()

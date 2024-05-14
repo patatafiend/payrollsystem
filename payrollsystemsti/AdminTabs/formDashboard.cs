@@ -26,6 +26,7 @@ namespace payrollsystemsti
         private accountsArchive aa;
         private attendanceMonitoring am;
         private enrollFingerprint ef;
+        private HistoryLogForm HistoyLogForm;
 
         
         //draggable panel shit
@@ -281,60 +282,63 @@ namespace payrollsystemsti
         // Click event for dashboard button
         private void dashBoard_btn(object sender, EventArgs e)
         {
-            panelContainerToBackOrToFront(true);
-			// Show dashboard form or activate if already open
-			if (dashboard == null)
-            {
-              
-				btn_back.Visible = false;
-				_obj = this;
-				dashboard = new dashBoard();
-                dashboard.FormClosed += Dashboard_FormClosed;
-                dashboard.MdiParent = this;
-                dashboard.Dock = DockStyle.Fill;
-				
+			
+			panelContainerToBackOrToFront(true);
 
-				dashboard.Show();
-            }
-            else
-            {
-                dashboard.Activate();
-            }
-            if (!string.IsNullOrEmpty(loggedInFirstName))
-            {
+			
+			if (dashboard == null)
+			{
 				
+				dashboard = new dashBoard();
+				dashboard.FormClosed += Dashboard_FormClosed;
+				dashboard.MdiParent = this;
+				dashboard.Dock = DockStyle.Fill;
+				dashboard.Show();
+			}
+			else
+			{
+				
+				dashboard.BringToFront();
+				dashboard.Activate();
+			}
+
+			// Update the dashboard labels with the logged-in user details
+			if (!string.IsNullOrEmpty(loggedInFirstName))
+			{
 				String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
-                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
-                dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
-                
-                dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
+				dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
+				dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
+				dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
 				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
 
-
-                if(LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
-                {
+				if (LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
+				{
 					dashBoard.dashboardInstance.lbPanelName1.Text = "Total Employee";
-                }
-                else
-                {
+				}
+				else
+				{
 					dashBoard.dashboardInstance.lbPanelName1.Text = "Available Leaves";
 				}
-                
-                
 			}
-            else
-            {
-                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
-            }
-			
-			
+			else
+			{
+				dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
+			}
+
 			byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
-            dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
+			dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
 			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
 
-			panelContainer.Controls.Add(dashboard);
+			// Ensure the dashboard is added to the panelContainer
+			if (!panelContainer.Controls.Contains(dashboard))
+			{
+				panelContainer.Controls.Add(dashboard);
+			}
 
-			
+			// Hide the back button when the dashboard is displayed
+			btn_back.Visible = false;
+
+
 
 		}
 
@@ -568,7 +572,37 @@ namespace payrollsystemsti
             }
         }
 
-        private void btnMin_Click(object sender, EventArgs e)
+		private void BtnHistoryLog_Click(object sender, EventArgs e)
+		{
+			panelContainerToBackOrToFront(true);
+
+			
+			if (HistoyLogForm == null || HistoyLogForm.IsDisposed)
+			{
+				
+				HistoyLogForm = new HistoryLogForm();
+				HistoyLogForm.FormClosed += HistoyLogForm_FormClosed;
+				HistoyLogForm.MdiParent = this;
+				HistoyLogForm.Dock = DockStyle.Fill;
+				panelContainer.Controls.Add(HistoyLogForm);
+				HistoyLogForm.Show();
+			}
+			else
+			{
+				
+				HistoyLogForm.BringToFront();
+				HistoyLogForm.Activate();
+		}
+
+
+		}
+
+		private void HistoyLogForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			HistoyLogForm = null;
+		}
+
+		private void btnMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }

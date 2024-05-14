@@ -80,7 +80,7 @@ namespace payrollsystemsti.AdminTabs
                         if(!IsTimedInAM(fID, currentDate))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
-                            MessageBox.Show($"Welcome {}");
+                            //MessageBox.Show($"Welcome {}");
                             dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
                         }
                         else if(IsTimedInAM(fID, currentDate))
@@ -326,15 +326,15 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public string getEmpName(int fingerID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT "
-                using (SqlCommand cmd = new SqlCommand())
-            }
-        }
+        //public string getEmpName(int fingerID)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT ";
+        //        using (SqlCommand cmd = new SqlCommand()) ;
+        //    }
+        //}
 
         //public void LoadAtttendanceData(string date)
         //{

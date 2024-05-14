@@ -386,6 +386,17 @@
         iDO8VRYzwvFU1Sc3gbwPc+gY5QAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="BtnHistoryLog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAASlJREFUSEvFkz1KA1EURqexl6xCXIB1ViAKgm4gbVQQbEQsLaztbBTcQloLlyDR
+        PRiIraKM5773Tbjjzxh5F+bA4U3mm/leZnJT9UZd11v4iC94g6uKYqBwHV/Rc604BgoPcm+LueIYKNzL
+        vS2mimOgcAXvU3XGXt2m4jgotY12cYxrOh0Dhfaj7+Pxkh7hQLf/DRdv4xv+l0PdP0L/BUap2MPJJ+zi
+        Es+/eILpSVjt1fpsnIo9nPxAY661hS4rQ13GmdYWuqwMdRm/bsKykz8txUMq9igw+n2SYtRldL0u+x/5
+        Me3yxxGe4B36TS60+k38mHb5fYQbCP0mi2PFMdDX7yYsZSPcQNjvk4RB32murd9xcaysbIQbCDfwGa9w
+        iDO8VRYzwvFU1Sc3gbwPc+gY5QAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
