@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -64,8 +66,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -91,10 +96,29 @@
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 112);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 303);
+            this.groupBox1.Size = new System.Drawing.Size(287, 271);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Income";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox4.Location = new System.Drawing.Point(156, 231);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(94, 28);
+            this.textBox4.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 233);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 19);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "OverTimePay:";
             // 
             // textBox19
             // 
@@ -195,7 +219,7 @@
             // textBox16
             // 
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox16.Location = new System.Drawing.Point(25, 255);
+            this.textBox16.Location = new System.Drawing.Point(245, 173);
             this.textBox16.Multiline = true;
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
@@ -205,16 +229,16 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(20, 214);
+            this.label17.Location = new System.Drawing.Point(20, 171);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(158, 38);
+            this.label17.Size = new System.Drawing.Size(192, 38);
             this.label17.TabIndex = 11;
-            this.label17.Text = "Prov Transportation \r\nAllowance :";
+            this.label17.Text = "Provision Transportation \r\nAllowance :";
             // 
             // textBox15
             // 
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox15.Location = new System.Drawing.Point(24, 174);
+            this.textBox15.Location = new System.Drawing.Point(245, 123);
             this.textBox15.Multiline = true;
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -224,7 +248,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(20, 152);
+            this.label16.Location = new System.Drawing.Point(20, 125);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(144, 19);
             this.label16.TabIndex = 9;
@@ -233,7 +257,7 @@
             // textBox14
             // 
             this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox14.Location = new System.Drawing.Point(24, 113);
+            this.textBox14.Location = new System.Drawing.Point(245, 81);
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
@@ -243,7 +267,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 91);
+            this.label14.Location = new System.Drawing.Point(21, 81);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(213, 19);
             this.label14.TabIndex = 7;
@@ -252,7 +276,7 @@
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(25, 60);
+            this.textBox3.Location = new System.Drawing.Point(245, 26);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -418,12 +442,20 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgEmpID,
+            this.dgFullName,
+            this.dgBasic});
             this.dataGridView1.Location = new System.Drawing.Point(22, 435);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1021, 221);
             this.dataGridView1.TabIndex = 1;
             // 
@@ -432,7 +464,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Crimson;
-            this.label15.Location = new System.Drawing.Point(67, 42);
+            this.label15.Location = new System.Drawing.Point(16, 41);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(233, 32);
@@ -442,6 +474,8 @@
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.textBox16);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.label17);
@@ -453,29 +487,47 @@
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(333, 112);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(383, 303);
+            this.groupBox5.Size = new System.Drawing.Size(383, 271);
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Allowances";
             // 
-            // textBox4
+            // dgEmpID
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(156, 231);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(94, 28);
-            this.textBox4.TabIndex = 12;
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
             // 
-            // label4
+            // dgFullName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 233);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 19);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "OverTimePay:";
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgBasic
+            // 
+            this.dgBasic.HeaderText = "Basic";
+            this.dgBasic.Name = "dgBasic";
+            this.dgBasic.ReadOnly = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox5.Location = new System.Drawing.Point(245, 223);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(94, 28);
+            this.textBox5.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 225);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 19);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "OB Allowance :";
             // 
             // employeeSalary
             // 
@@ -547,5 +599,10 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label5;
     }
 }

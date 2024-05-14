@@ -41,7 +41,7 @@ namespace payrollsystemsti.AdminTabs
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
 
         TimeSpan timeOutBDYSS = new TimeSpan(13, 16, 0);  // 1:16 PM
-        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);    // 6:00 PM
+        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);    // 7:00 PM
 
         public attendanceMonitoring()
         {
@@ -80,6 +80,7 @@ namespace payrollsystemsti.AdminTabs
                         if(!IsTimedInAM(fID, currentDate))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
+                            MessageBox.Show($"Welcome {}");
                             dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
                         }
                         else if(IsTimedInAM(fID, currentDate))
@@ -167,12 +168,13 @@ namespace payrollsystemsti.AdminTabs
 
         public void insertAttendance(string date, int? timeIn, int? timeOut, int fingerID)
         {
+            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query;
                 
-                if (!IsTimedInAM(fingerID, date))
+                if (!IsTimedInAM(fingerID, date) && (TimeSpan.FromHours(time.Value.Hour) >= startTimeAM && TimeSpan.FromHours(time.Value.Hour) <= endTimeAM) )
                 {
                     if (timeIn != null && timeOut == null)
                     {
@@ -189,7 +191,7 @@ namespace payrollsystemsti.AdminTabs
                         }
                     }
                 }
-                else if(!IsTimedOutAM(fingerID, date))
+                else if(!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                 {
                     if (timeIn == null && timeOut != null)
                     {
@@ -237,6 +239,10 @@ namespace payrollsystemsti.AdminTabs
                         }
                     }
                 }
+                else if(timeNow >= startTimePM && timeNow <= endTimePM)
+                {
+
+                }
                 else
                 {
                     MessageBox.Show("Failed to insert attendance...");
@@ -256,13 +262,17 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", date);
 
                     object result = cmd.ExecuteScalar();
-                    if(result.ToString() != "00:00:00")
+                    if(result == null)
                     {
-                        return true;
+                        return false;
+                    }
+                    else if(result.ToString() == "00:00:00")
+                    {
+                        return false;
                     }
                     else
                     {
-                        return false;
+                        return true;
                     }
                 }
             }
@@ -313,6 +323,16 @@ namespace payrollsystemsti.AdminTabs
                         return 0;
                     }
                 }
+            }
+        }
+
+        public string getEmpName(int fingerID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT "
+                using (SqlCommand cmd = new SqlCommand())
             }
         }
 
