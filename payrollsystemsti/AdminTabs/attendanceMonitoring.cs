@@ -31,17 +31,13 @@ namespace payrollsystemsti.AdminTabs
 
         public int loggedInEmpID;
         int fingerID = 0;
+        
+        
         TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
         TimeSpan endTimePM = new TimeSpan(19, 00, 0);    // 6:00 PM
-
-        TimeSpan timeOutBDYS = new TimeSpan(9, 16, 0);  // 9:16 AM
-        TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
-
-        TimeSpan timeOutBDYSS = new TimeSpan(13, 16, 0);  // 1:16 PM
-        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);    // 6:00 PM
 
         public attendanceMonitoring()
         {
@@ -54,6 +50,8 @@ namespace payrollsystemsti.AdminTabs
             ac = new ArduinoComms("COM4");
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
+
+            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -172,7 +170,7 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 string query;
                 
-                if (!IsTimedInAM(fingerID, date))
+                if (!IsTimedInAM(fingerID, date) && time.Value.Hour >= startTimeAM)
                 {
                     if (timeIn != null && timeOut == null)
                     {
