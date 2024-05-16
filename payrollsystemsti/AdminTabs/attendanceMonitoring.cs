@@ -326,15 +326,28 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        //public string getEmpName(int fingerID)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        string query = "SELECT ";
-        //        using (SqlCommand cmd = new SqlCommand()) ;
-        //    }
-        //}
+        public string getEmpName(int fingerID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT FirstName,LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    object result = cmd.ExecuteScalar();
+
+                    if(result != null)
+                    {
+                        return result.ToString();
+                    }
+                    else
+                    {
+                        return "Employee Doesn't Exist";
+                    }
+                }
+            }
+        }
 
         //public void LoadAtttendanceData(string date)
         //{
