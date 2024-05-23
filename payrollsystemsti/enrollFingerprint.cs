@@ -39,7 +39,7 @@ namespace payrollsystemsti
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                string query = "UPDATE EmployeeFingerprints SET FingerID = @fingerID, EmployeeID = @empID";
+                string query = "UPDATE EmployeeAccounts SET FingerID = @fingerID WHERE EmployeeID = @empID";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -56,7 +56,7 @@ namespace payrollsystemsti
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                string query = "INSERT INTO EmployeeFingerprints(fingerID, EmployeeID) VALUES(@fingerID, @empID)";
+                string query = "UPDATE EmployeeAccounts SET FingerID = @fingerID WHERE EmployeeID = @empID";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -74,7 +74,7 @@ namespace payrollsystemsti
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT 1 FROM EmployeeFingerprints WHERE FingerID = @fingerID";
+                string query = "SELECT 1 FROM EmployeeAccounts WHERE FingerID = @fingerID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@fingerID", fingerID);
@@ -113,6 +113,10 @@ namespace payrollsystemsti
                             LoadData();
                             loadingIndicator.Visible = false;
                             MessageBox.Show("Enrollment Success");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enrollment Unsuccessful");
                         }
                     }
                 }
@@ -153,7 +157,7 @@ namespace payrollsystemsti
             {
                 conn.Open();
                 string query = "SELECT EmployeeID, FirstName, LastName FROM EmployeeAccounts WHERE" +
-                    " EmployeeID NOT IN (SELECT EmployeeID FROM EmployeeFingerprints) AND isDeleted = 0";
+                    " FingerID IS NULL AND isDeleted = 0";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -178,9 +182,9 @@ namespace payrollsystemsti
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName" +
-                    ", EmployeeFingerprints.FingerID FROM EmployeeAccounts JOIN EmployeeFingerprints ON" +
-                    " EmployeeAccounts.EmployeeID = EmployeeFingerprints.EmployeeID";
+                string query = "SELECT EmployeeID, FirstName, LastName" +
+                    ", FingerID FROM EmployeeAccounts WHERE FingerID IS NOT NULL";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);

@@ -53,7 +53,7 @@
             this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(114, 89);
+            this.btnEnrollFinger.Location = new System.Drawing.Point(55, 87);
             this.btnEnrollFinger.Name = "btnEnrollFinger";
             this.btnEnrollFinger.Size = new System.Drawing.Size(110, 50);
             this.btnEnrollFinger.TabIndex = 34;
@@ -76,7 +76,7 @@
             this.btnRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRemove.Location = new System.Drawing.Point(238, 89);
+            this.btnRemove.Location = new System.Drawing.Point(171, 87);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 50);
             this.btnRemove.TabIndex = 36;
@@ -174,7 +174,7 @@
             // loadingIndicator
             // 
             this.loadingIndicator.Image = ((System.Drawing.Image)(resources.GetObject("loadingIndicator.Image")));
-            this.loadingIndicator.Location = new System.Drawing.Point(55, 89);
+            this.loadingIndicator.Location = new System.Drawing.Point(298, 87);
             this.loadingIndicator.Name = "loadingIndicator";
             this.loadingIndicator.Size = new System.Drawing.Size(48, 48);
             this.loadingIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
