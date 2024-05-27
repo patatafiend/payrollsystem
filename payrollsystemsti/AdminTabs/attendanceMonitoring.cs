@@ -51,9 +51,12 @@ namespace payrollsystemsti.AdminTabs
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
-            ac = new ArduinoComms("COM4");
+            ac = new ArduinoComms("COM3");
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
+
+            //LoadAtttendanceData(date.Text);
+
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -367,13 +370,18 @@ namespace payrollsystemsti.AdminTabs
         //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
         //            DataTable dt = new DataTable();
 
+        //            cmd.Parameters.AddWithValue("@date", date);
+
         //            sda.Fill(dt);
-        //            foreach(DataRow row in dt.Rows)
+        //            foreach (DataRow row in dt.Rows)
         //            {
         //                int n = dataGridView1.Rows.Add();
 
-        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["Date"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgTime"].Value = row["Date"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["fingerID"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgTime"].Value = row["fingerID"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgDate"].Value = row["Date"].ToString();
+
+
         //            }
         //        }
         //    }

@@ -32,7 +32,7 @@ namespace payrollsystemsti
             loadingIndicator.Visible = false;
             //LoadData();
 
-            ac = new ArduinoComms("COM4");
+            ac = new ArduinoComms("COM3");
         }
 
         private bool updateFID(int fingerID, int empID)
@@ -94,7 +94,7 @@ namespace payrollsystemsti
 
         private async void btnEnrollFinger_Click(object sender, EventArgs e)
         {
-            
+            fingerID = Convert.ToInt32(tbFingerID.Text.ToString());
             btnEnrollFinger.Enabled = false;
 
             if (!isfingerIDExist(fingerID))
