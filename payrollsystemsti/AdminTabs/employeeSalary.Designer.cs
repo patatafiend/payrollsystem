@@ -59,16 +59,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -371,14 +369,12 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.textBox8);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.textBox6);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(740, 264);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(303, 151);
+            this.groupBox3.Size = new System.Drawing.Size(303, 119);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Deductions";
@@ -386,7 +382,7 @@
             // textBox8
             // 
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Location = new System.Drawing.Point(190, 106);
+            this.textBox8.Location = new System.Drawing.Point(190, 71);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -396,30 +392,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 108);
+            this.label8.Location = new System.Drawing.Point(22, 73);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 19);
             this.label8.TabIndex = 8;
             this.label8.Text = "Absent:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox7.Location = new System.Drawing.Point(190, 71);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(94, 28);
-            this.textBox7.TabIndex = 9;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 73);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(165, 19);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Total amount of late:";
             // 
             // textBox6
             // 
@@ -453,11 +430,29 @@
             this.dgEmpID,
             this.dgFullName,
             this.dgBasic});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 435);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 398);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1021, 221);
+            this.dataGridView1.Size = new System.Drawing.Size(1021, 258);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgBasic
+            // 
+            this.dgBasic.HeaderText = "Basic";
+            this.dgBasic.Name = "dgBasic";
+            this.dgBasic.ReadOnly = true;
             // 
             // label15
             // 
@@ -491,24 +486,6 @@
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Allowances";
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "EmployeeID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgBasic
-            // 
-            this.dgBasic.HeaderText = "Basic";
-            this.dgBasic.Name = "dgBasic";
-            this.dgBasic.ReadOnly = true;
             // 
             // textBox5
             // 
@@ -572,8 +549,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox3;

@@ -110,6 +110,12 @@
     <Compile Include="AdminTabs\leaveManagement.Designer.cs">
       <DependentUpon>leaveManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\overtimeApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\overtimeApplication.Designer.cs">
+      <DependentUpon>overtimeApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArduinoComms.cs" />
     <Compile Include="changePass.cs">
       <SubType>Form</SubType>
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\leaveManagement.resx">
       <DependentUpon>leaveManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
+      <DependentUpon>overtimeApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>

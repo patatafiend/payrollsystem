@@ -50,12 +50,14 @@
             this.btnMax = new System.Windows.Forms.Button();
             this.time = new System.Windows.Forms.DateTimePicker();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.loadingIndicator = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -152,6 +154,7 @@
             this.btnOvertime.TabIndex = 33;
             this.btnOvertime.Text = "Overtime";
             this.btnOvertime.UseVisualStyleBackColor = false;
+            this.btnOvertime.Click += new System.EventHandler(this.btnOvertime_Click);
             // 
             // btnTimeOUT
             // 
@@ -276,12 +279,24 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // loadingIndicator
+            // 
+            this.loadingIndicator.Image = ((System.Drawing.Image)(resources.GetObject("loadingIndicator.Image")));
+            this.loadingIndicator.Location = new System.Drawing.Point(912, 125);
+            this.loadingIndicator.Name = "loadingIndicator";
+            this.loadingIndicator.Size = new System.Drawing.Size(48, 48);
+            this.loadingIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.loadingIndicator.TabIndex = 41;
+            this.loadingIndicator.TabStop = false;
+            this.loadingIndicator.Visible = false;
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1008, 609);
+            this.Controls.Add(this.loadingIndicator);
             this.Controls.Add(this.time);
             this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);
@@ -300,7 +315,9 @@
             this.panel17.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -325,5 +342,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DateTimePicker time;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.PictureBox loadingIndicator;
     }
 }

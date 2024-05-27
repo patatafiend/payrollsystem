@@ -61,6 +61,7 @@ namespace payrollsystemsti.AdminTabs
             DialogResult dialogResult = MessageBox.Show("Time IN?", "Action", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
                 btnOvertime.Enabled = false;
@@ -80,7 +81,7 @@ namespace payrollsystemsti.AdminTabs
                         if(!IsTimedInAM(fID, currentDate))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
-                            //MessageBox.Show($"Welcome {}");
+                            MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
                             dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
                         }
                         else if(IsTimedInAM(fID, currentDate))
@@ -108,6 +109,7 @@ namespace payrollsystemsti.AdminTabs
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
+                    loadingIndicator.Visible = false;
                 }
             }
             else if (DialogResult == DialogResult.No)
@@ -115,6 +117,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeIN.Enabled = true;
                 btnTimeOUT.Enabled = true;
                 btnOvertime.Enabled = true;
+                loadingIndicator.Visible = false;
             }
         }
         private async void btnTimeOUT_Click(object sender, EventArgs e)
@@ -122,6 +125,7 @@ namespace payrollsystemsti.AdminTabs
             DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
                 btnOvertime.Enabled = false;
@@ -156,6 +160,7 @@ namespace payrollsystemsti.AdminTabs
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
                     btnOvertime.Enabled = true;
+                    loadingIndicator.Visible = false;
                 }
             }
             else if (DialogResult == DialogResult.No)
@@ -163,6 +168,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeIN.Enabled = true;
                 btnTimeOUT.Enabled = true;
                 btnOvertime.Enabled = true;
+                loadingIndicator.Visible = false;
             }
         }
 
@@ -332,7 +338,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 conn.Open();
                 string query = "SELECT FirstName,LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand(query,conn))
                 {
                     cmd.Parameters.AddWithValue("@fingerID", fingerID);
                     object result = cmd.ExecuteScalar();
@@ -412,6 +418,11 @@ namespace payrollsystemsti.AdminTabs
         private void timer_Tick(object sender, EventArgs e)
         {
             time.Value = DateTime.Now;
+        }
+
+        private void btnOvertime_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
