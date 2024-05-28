@@ -51,7 +51,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
-            ac = new ArduinoComms("COM3");
+            ac = new ArduinoComms("COM4");
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
 
@@ -64,6 +64,7 @@ namespace payrollsystemsti.AdminTabs
             DialogResult dialogResult = MessageBox.Show("Time IN?", "Action", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
                 loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
@@ -81,7 +82,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if(!IsTimedInAM(fID, currentDate))
+                        if(!IsTimedInAM(fID, currentDate) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
@@ -89,11 +90,11 @@ namespace payrollsystemsti.AdminTabs
                         }
                         else if(IsTimedInAM(fID, currentDate))
                         {
-                            insertAttendance(currentDate, currentTime, null, fID);
-                        }
-                        else
-                        {
                             MessageBox.Show("You already have a record for the morning hours..");
+                        }
+                        else if (!(timeNow >= startTimeAM && timeNow <= endTimeAM))
+                        {
+                            MessageBox.Show("Something gone wrong");
                         }
 
                         Console.WriteLine($"This is the FingerID: {fID}");
@@ -250,7 +251,7 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else if(timeNow >= startTimePM && timeNow <= endTimePM)
                 {
-
+                    MessageBox.Show("You are checking in afternoon");
                 }
                 else
                 {

@@ -32,7 +32,7 @@ namespace payrollsystemsti
             loadingIndicator.Visible = false;
             //LoadData();
 
-            ac = new ArduinoComms("COM3");
+            ac = new ArduinoComms("COM4");
         }
 
         private bool updateFID(int fingerID, int empID)
