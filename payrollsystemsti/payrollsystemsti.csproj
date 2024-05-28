@@ -116,6 +116,12 @@
     <Compile Include="AdminTabs\overtimeApplication.Designer.cs">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\payslip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\payslip.Designer.cs">
+      <DependentUpon>payslip.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArduinoComms.cs" />
     <Compile Include="changePass.cs">
       <SubType>Form</SubType>
@@ -204,6 +210,9 @@
     <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\payslip.resx">
+      <DependentUpon>payslip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +299,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\people.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\raads.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
