@@ -272,7 +272,7 @@
             this.time.ShowUpDown = true;
             this.time.Size = new System.Drawing.Size(140, 30);
             this.time.TabIndex = 36;
-            this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            this.time.Value = new System.DateTime(2024, 5, 12, 9, 0, 0, 0);
             // 
             // timer
             // 

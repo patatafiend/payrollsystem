@@ -321,7 +321,9 @@ namespace payrollsystemsti.AdminTabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@fingerID", fingerID);
+
                     object result = cmd.ExecuteScalar();
+                    
                     if(result != null)
                     {
                         int empID = (int)result;
