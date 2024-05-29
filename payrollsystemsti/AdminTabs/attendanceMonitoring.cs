@@ -30,7 +30,7 @@ namespace payrollsystemsti.AdminTabs
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         public int loggedInEmpID;
-        int fingerID = 0;
+        
         TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
@@ -94,10 +94,9 @@ namespace payrollsystemsti.AdminTabs
                         }
                         else if (!(timeNow >= startTimeAM && timeNow <= endTimeAM))
                         {
+                            insertAttendance(currentDate, currentTime, null, fID);
                             MessageBox.Show("Something gone wrong");
                         }
-
-                        Console.WriteLine($"This is the FingerID: {fID}");
                     }
                     else
                     {
@@ -129,6 +128,7 @@ namespace payrollsystemsti.AdminTabs
             DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
                 loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
@@ -140,15 +140,26 @@ namespace payrollsystemsti.AdminTabs
 
                 try
                 {
-                    //await ac.SendTimeCommand();
-                    fingerID = await ac.SendTimeCommand(fingerID);
+                    int fID = 0;
+                    fID = await ac.SendTimeCommand(fID);
 
-                    if (fingerID != 0)
+                    if (fID > 0)
                     {
-
-                        insertAttendance(currentDate, null, currentTime, fingerID);
-                        dataGridView1.Rows.Add(getEmpID(fingerID), currentTime, currentDate, status);
-                        Console.WriteLine($"This is the FingerID: {fingerID}");
+                        if (IsTimedInAM(fID, currentDate) || IsTimedinPM(fID, currentDate))
+                        {
+                            insertAttendance(currentDate, null, currentTime, fID);
+                            MessageBox.Show($"We are sad to see you go {getEmpName(fID)}!!!");
+                            dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
+                        }
+                        else if (IsTimedInAM(fID, currentDate))
+                        {
+                            MessageBox.Show("You already have a record for the morning hours..");
+                        }
+                        else if (!(timeNow >= startTimeAM && timeNow <= endTimeAM))
+                        {
+                            insertAttendance(currentDate, currentTime, null, fID);
+                            MessageBox.Show("Something gone wrong");
+                        }
                     }
                     else
                     {
@@ -184,7 +195,7 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 string query;
                 
-                if (!IsTimedInAM(fingerID, date) && (TimeSpan.FromHours(time.Value.Hour) >= startTimeAM && TimeSpan.FromHours(time.Value.Hour) <= endTimeAM) )
+                if (!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                 {
                     if (timeIn != null && timeOut == null)
                     {
@@ -200,6 +211,7 @@ namespace payrollsystemsti.AdminTabs
                             cmd.ExecuteNonQuery();
                         }
                     }
+                    Console.WriteLine("why is this printing ........");
                 }
                 else if(!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                 {
@@ -251,7 +263,37 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else if(timeNow >= startTimePM && timeNow <= endTimePM)
                 {
-                    MessageBox.Show("You are checking in afternoon");
+                    if(timeIn != null && timeOut == null)
+                    {
+                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
+                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID) VALUES (@Date, @timeInPM, @fingerID)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        Console.WriteLine("YOU ARE CHECKING IN IN AFTERNOON");
+                    }
+                    else if(timeIn == null && timeOut != null)
+                    {
+                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
+                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        Console.WriteLine("YOU ARE CHECKING IN IN AFTERNOON");
+                    }
+                    
                 }
                 else
                 {
@@ -300,13 +342,47 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", date);
 
                     object result = cmd.ExecuteScalar();
-                    if(result != null)
+
+                    if (result == null)
                     {
-                        return true;
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
                     }
                     else
                     {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        private bool IsTimedinPM(int fID, string currentDate)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand (query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fID);
+                    cmd.Parameters.AddWithValue("@date", currentDate);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result == null)
+                    {
                         return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
                     }
                 }
             }
@@ -343,22 +419,21 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT FirstName,LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
-                using (SqlCommand cmd = new SqlCommand(query,conn))
+                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                    object result = cmd.ExecuteScalar();
+                    cmd.Parameters.Add("@fingerID", SqlDbType.Int).Value = fingerID;
 
-                    if(result != null)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        return result.ToString();
-                    }
-                    else
-                    {
-                        return "Employee Doesn't Exist";
+                        if (reader.Read())
+                        {
+                            return reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                        }
                     }
                 }
             }
+            return "Employee Doesn't Exist";
         }
 
         //public void LoadAtttendanceData(string date)
