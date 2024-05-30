@@ -55,7 +55,7 @@ namespace payrollsystemsti.AdminTabs
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
 
-            //LoadAtttendanceData(date.Text);
+            LoadAtttendanceData(date.Value.ToString());
 
         }
 
@@ -73,6 +73,7 @@ namespace payrollsystemsti.AdminTabs
 
                 string status = "Time IN";
                 int currentTime = time.Value.Hour;
+                string currentTimeString = time.Value.ToString("HH:mm");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
                 try
@@ -85,6 +86,7 @@ namespace payrollsystemsti.AdminTabs
                         if(!IsTimedInAM(fID, currentDate) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                         {
                             insertAttendance(currentDate, currentTime, null, fID);
+                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
                             dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
                         }
@@ -122,6 +124,7 @@ namespace payrollsystemsti.AdminTabs
                 btnOvertime.Enabled = true;
                 loadingIndicator.Visible = false;
             }
+            LoadAtttendanceData(date.Value.ToString());
         }
         private async void btnTimeOUT_Click(object sender, EventArgs e)
         {
@@ -185,6 +188,7 @@ namespace payrollsystemsti.AdminTabs
                 btnOvertime.Enabled = true;
                 loadingIndicator.Visible = false;
             }
+            LoadAtttendanceData(date.Value.ToString());
         }
 
         public void insertAttendance(string date, int? timeIn, int? timeOut, int fingerID)
@@ -393,7 +397,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT EmployeeID FROM EmployeeFingerprints WHERE fingerID = @fingerID";
+                string query = "SELECT EmployeeID FROM EmployeeAccounts WHERE fingerID = @fingerID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -436,34 +440,56 @@ namespace payrollsystemsti.AdminTabs
             return "Employee Doesn't Exist";
         }
 
-        //public void LoadAtttendanceData(string date)
-        //{
-        //    dataGridView1.Rows.Clear();
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        string query = "SELECT * FROM Attedance WHERE Date = @date";
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
+        public bool insertAttedanceHistory(int empID, string time, string date, string status)
+        {
 
-        //            cmd.Parameters.AddWithValue("@date", date);
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO AttedanceHistory(EmployeeID, Date, Status, Time) " +
+                    "VALUES(@empID, @date, @status, @time)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", time);
+                    cmd.Parameters.AddWithValue("@status", date);
+                    cmd.Parameters.AddWithValue("@time", status);
 
-        //            sda.Fill(dt);
-        //            foreach (DataRow row in dt.Rows)
-        //            {
-        //                int n = dataGridView1.Rows.Add();
+                    cmd.ExecuteNonQuery();
 
-        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["fingerID"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgTime"].Value = row["fingerID"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgDate"].Value = row["Date"].ToString();
+                    return true;
+                }
+            }
+            
+        }
 
+        public void LoadAtttendanceData(string date)
+        {
+            dataGridView1.Rows.Clear();
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM AttedanceHistory WHERE Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
 
-        //            }
-        //        }
-        //    }
-        //}
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTime"].Value = row["Time"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDate"].Value = row["Date"].ToString();
+                        dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
+                    }
+                }
+            }
+        }
 
         private void attendanceMonitoring_FormClosed(object sender, FormClosedEventArgs e)
         {
