@@ -39,6 +39,9 @@ namespace payrollsystemsti.AdminTabs
         {
             this.ActiveControl = tbFirstName;
             LoadData();
+            LoadDepartments();
+            LoadPositions();
+            LoadRoles();
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
@@ -116,21 +119,21 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else
                 {
-                    //inserts employee accounts
-                    //OUTPUT INSERTED.EmployeeID gets the value of the newly inserted data
-                    string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, ImageData, Mobile, IsDeleted, Leaves, Absents) " +
-								   "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, @Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, @FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
-
-
                     using (SqlConnection conn = new SqlConnection(m.connStr))
                     {
                         conn.Open();
+                        string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
+                                   "Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, " +
+                                   "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
+                                   "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
+                                   "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
+                                   "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@FirstName", tbFirstName.Text);
                             cmd.Parameters.AddWithValue("@LastName", tbLastName.Text);
-                            cmd.Parameters.AddWithValue("@Department", tbDepart.Text);
-                            cmd.Parameters.AddWithValue("@Position", cbPosition.Text);
+                            cmd.Parameters.AddWithValue("@Departments", getDepartmentID(cbDeparment.Text));
+                            cmd.Parameters.AddWithValue("@Positions", getPositionID(cbPosition.Text));
                             cmd.Parameters.AddWithValue("@SSN", tbSSN.Text);
                             cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
                             cmd.Parameters.AddWithValue("@Address", tbAddress.Text);
@@ -142,30 +145,8 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@IsDeleted", '0');
 							cmd.Parameters.AddWithValue("@Leaves", 5);
 							cmd.Parameters.AddWithValue("@Absents", 0);
-							int employeeId = Convert.ToInt32(cmd.ExecuteScalar());
 
-
-                            if (employeeId != 0)
-                            {
-                                string userQuery = "INSERT INTO UserAccounts (Username, Password, Role, EmployeeID) " +
-                                                   "VALUES (@Username, @Password, @Role, @EmployeeID)";
-
-                                string generatedUsername = $"{tbFirstName.Text.ToLower()}{employeeId}";
-
-                                using (SqlCommand userCmd = new SqlCommand(userQuery, conn))
-                                {
-                                    userCmd.Parameters.AddWithValue("@Username", generatedUsername);
-                                    userCmd.Parameters.AddWithValue("@Password", m.passwordGenerator());
-                                    userCmd.Parameters.AddWithValue("@Role", "Employee");
-                                    userCmd.Parameters.AddWithValue("@EmployeeID", employeeId);
-                                    userCmd.ExecuteNonQuery();
-                                }
-                                MessageBox.Show("User Account Created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to create user account", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
+                            cmd.ExecuteNonQuery();
                         }
                     }
 
@@ -174,34 +155,40 @@ namespace payrollsystemsti.AdminTabs
             }
             ClearData();
             LoadData();
+            LoadDepartments();
+            LoadPositions();
+            LoadRoles();
 
         }
+
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                string query = "UPDATE EmployeeAccounts SET FirstName = @FirstName, LastName = @LastName," +
-                           "Department = @Department, Position = @Position, SSN = @SSN, Email = @Email, Address = @Address, Dob = @Dob, " +
-                           "BasicRate = @BasicRate, ImageData = @ImageData, Mobile = @Mobile";
-
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    query += ", FileName = @FileName ";
-                }
-
-                query += " WHERE EmployeeID = @employeeId";
-
                 using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     conn.Open();
+                    string query = "UPDATE EmployeeAccounts SET FirstName = @FirstName, LastName = @LastName," +
+                           "DepartmentID = @Department, PositionID = @Position, SSN = @SSN, Email = @Email, " +
+                           "Address = @Address, Dob = @Dob, BasicRate = @BasicRate, ImageData = @ImageData, " +
+                           "Mobile = @Mobile, RoleID = @role";
+
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        query += ", FileName = @FileName ";
+                    }
+
+                    query += " WHERE EmployeeID = @employeeId";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@FirstName", tbFirstName.Text);
                         cmd.Parameters.AddWithValue("@LastName", tbLastName.Text);
-                        cmd.Parameters.AddWithValue("@Department", tbDepart.Text);
-                        cmd.Parameters.AddWithValue("@Position", cbPosition.Text);
+                        cmd.Parameters.AddWithValue("@Department", getDepartmentID(cbDeparment.Text));
+                        cmd.Parameters.AddWithValue("@Position", getPositionID(cbPosition.Text));
+                        cmd.Parameters.AddWithValue("@role", getRoleID(cbRole.Text));
                         cmd.Parameters.AddWithValue("@SSN", tbSSN.Text);
                         cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
                         cmd.Parameters.AddWithValue("@Address", tbAddress.Text);
@@ -223,6 +210,9 @@ namespace payrollsystemsti.AdminTabs
                 MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearData();
                 LoadData();
+                LoadDepartments();
+                LoadPositions();
+                LoadRoles();
             }
         }
         private void btnDeactivate_Click(object sender, EventArgs e)
@@ -249,6 +239,9 @@ namespace payrollsystemsti.AdminTabs
 
                     MessageBox.Show("Employee Deactivated", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
+                    LoadDepartments();
+                    LoadPositions();
+                    LoadRoles();
                     ClearData();
                 }
                 else
@@ -269,7 +262,6 @@ namespace payrollsystemsti.AdminTabs
             empID.Clear();
             tbFirstName.Clear();
             tbLastName.Clear();
-            tbDepart.Clear();
             tbMob.Clear();
             tbSSN.Clear();
             tbEmail.Clear();
@@ -280,6 +272,7 @@ namespace payrollsystemsti.AdminTabs
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
             cbPosition.SelectedIndex = -1;
+            cbDeparment.SelectedIndex = -1;
             tbBasicRate.Clear();
         }
         //loads data
@@ -302,9 +295,7 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgEmp"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgFirstName"].Value = row["FirstName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgLastName"].Value = row["LastName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = row["Department"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dgSSN"].Value = row["SSN"].ToString();
                         dataGridView1.Rows[n].Cells["dgMobile"].Value = row["Mobile"].ToString();
                         dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"].ToString()).ToString("dd/MM/yyyy");
@@ -312,7 +303,9 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgAdd"].Value = row["Address"].ToString();
                         dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
                         dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
-                        dataGridView1.Rows[n].Cells["dgPosition"].Value = row["Position"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = getDepartmentName(Convert.ToInt32(row["DepartmentID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgPosition"].Value = getPositionTitle(Convert.ToInt32(row["PositionID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgRole"].Value = getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
                         dataGridView1.Rows[n].Cells["dgBasicRate"].Value = row["BasicRate"].ToString();
                     }
                 }
@@ -323,16 +316,21 @@ namespace payrollsystemsti.AdminTabs
         // if double click on the data in datagridview, it goes to the textboxes
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            string fullName = dataGridView1.SelectedRows[0].Cells["dgFullName"].Value.ToString();
+            string firstName = fullName.Split(' ')[0];
+            string lastName = fullName.Split(' ')[1];
+            tbFirstName.Text = firstName;
+            tbLastName.Text = lastName;
+
             empID.Text = dataGridView1.SelectedRows[0].Cells["dgEmp"].Value.ToString();
-            tbFirstName.Text = dataGridView1.SelectedRows[0].Cells["dgFirstName"].Value.ToString();
-            tbLastName.Text = dataGridView1.SelectedRows[0].Cells["dgLastName"].Value.ToString();
-            tbDepart.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
             tbMob.Text = dataGridView1.SelectedRows[0].Cells["dgMobile"].Value.ToString();
             tbEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
             tbSSN.Text = dataGridView1.SelectedRows[0].Cells["dgSSN"].Value.ToString();
             tbAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAdd"].Value.ToString();
             lbFileName.Text = dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString();
             cbPosition.Text = dataGridView1.SelectedRows[0].Cells["dgPosition"].Value.ToString();
+            cbDeparment.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
+            cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
             pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
 
@@ -358,6 +356,191 @@ namespace payrollsystemsti.AdminTabs
             if (cbPosition.SelectedIndex != -1)
             {
                 tbBasicRate.Text = m.setItem(cbPosition.Text);
+            }
+        }
+
+        public int getDepartmentID(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentID FROM Departments WHERE DepartmentName = @title";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+        }
+
+        public int getPositionID(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT PositionID FROM Positions WHERE PositionTitle = @title";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+        }
+
+        public int getRoleID(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT RoleID FROM Roles WHERE RoleTitle = @title";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+        }
+
+        public string getDepartmentName(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+
+        public string getPositionTitle(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT PositionTitle FROM Positions WHERE PositionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+
+        public string getRoleTitle(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT RoleTitle FROM Roles WHERE RoleID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+
+
+        private void LoadDepartments()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentName FROM Departments WHERE IsDeactivated = @status";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    cmd.ExecuteNonQuery();
+
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+
+                        cbDeparment.Items.Clear();
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string departmentName = row[0].ToString();
+                            cbDeparment.Items.Add(departmentName);
+                        }
+                    }
+                }
+            }
+        }
+        private void LoadPositions()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT PositionTitle FROM Positions WHERE IsDeactivated = @status";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    cmd.ExecuteNonQuery();
+
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+
+                        cbPosition.Items.Clear();
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string positions = row[0].ToString();
+                            cbPosition.Items.Add(positions);
+                        }
+                    }
+                }
+            }
+        }
+        private void LoadRoles()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT RoleTitle FROM Roles WHERE IsDeactivated = @status";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    cmd.ExecuteNonQuery();
+
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+
+                        cbRole.Items.Clear();
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string roleTitle = row[0].ToString();
+                            cbRole.Items.Add(roleTitle);
+                        }
+                    }
+                }
             }
         }
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)
@@ -440,7 +623,7 @@ namespace payrollsystemsti.AdminTabs
                 e.SuppressKeyPress = true;
                 if (tbEmail.Text.Length > 0)
                 {
-                    tbDepart.Focus();
+                    cbDeparment.Focus();
                 }
                 else
                 {
@@ -448,7 +631,8 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        private void tbDepart_KeyDown(object sender, KeyEventArgs e)
+
+        private void cbDeparment_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -459,10 +643,11 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else
                 {
-                    tbDepart.Focus();
+                    cbDeparment.Focus();
                 }
             }
         }
+
         private void cbPosition_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -117,7 +117,6 @@
             // date
             // 
             this.date.CustomFormat = "dddd, MM/dd/yyyy";
-            this.date.Enabled = false;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.date.Location = new System.Drawing.Point(49, 58);
@@ -126,6 +125,7 @@
             this.date.Size = new System.Drawing.Size(248, 30);
             this.date.TabIndex = 4;
             this.date.Value = new System.DateTime(2024, 5, 12, 0, 0, 0, 0);
+            this.date.ValueChanged += new System.EventHandler(this.date_ValueChanged);
             // 
             // btnTimeIN
             // 

@@ -55,7 +55,8 @@ namespace payrollsystemsti.AdminTabs
             btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
 
-            LoadAtttendanceData(date.Value.ToString());
+            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+            Console.WriteLine(date.Value.Date.ToString("MM/dd/yyyy"));
 
         }
 
@@ -73,7 +74,8 @@ namespace payrollsystemsti.AdminTabs
 
                 string status = "Time IN";
                 int currentTime = time.Value.Hour;
-                string currentTimeString = time.Value.ToString("HH:mm");
+                int late = time.Value.Minute;
+                string currentTimeString = time.Value.ToString("HH:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
                 try
@@ -83,26 +85,15 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if(!IsTimedInAM(fID, currentDate) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
+                        if (insertAttendance(currentDate, currentTime, null, fID))
                         {
-                            insertAttendance(currentDate, currentTime, null, fID);
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
-                            dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
-                        }
-                        else if(IsTimedInAM(fID, currentDate))
-                        {
-                            MessageBox.Show("You already have a record for the morning hours..");
-                        }
-                        else if (!(timeNow >= startTimeAM && timeNow <= endTimeAM))
-                        {
-                            insertAttendance(currentDate, currentTime, null, fID);
-                            MessageBox.Show("Something gone wrong");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Failed to display time");
+                        MessageBox.Show("Failed to Time-In");
                     }
                 }
                 catch (Exception ex)
@@ -139,6 +130,8 @@ namespace payrollsystemsti.AdminTabs
 
                 string status = "Time OUT";
                 int currentTime = time.Value.Hour;
+                int late = time.Value.Minute;
+                string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
                 try
@@ -148,25 +141,15 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (IsTimedInAM(fID, currentDate) || IsTimedinPM(fID, currentDate))
+                        if (insertAttendance(currentDate, null, currentTime, fID))
                         {
-                            insertAttendance(currentDate, null, currentTime, fID);
-                            MessageBox.Show($"We are sad to see you go {getEmpName(fID)}!!!");
-                            dataGridView1.Rows.Add(getEmpID(fID), currentTime, currentDate, status);
-                        }
-                        else if (IsTimedInAM(fID, currentDate))
-                        {
-                            MessageBox.Show("You already have a record for the morning hours..");
-                        }
-                        else if (!(timeNow >= startTimeAM && timeNow <= endTimeAM))
-                        {
-                            insertAttendance(currentDate, currentTime, null, fID);
-                            MessageBox.Show("Something gone wrong");
+                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                            MessageBox.Show($"We are sad to see you go {getEmpName(fID)} :(");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Failed to display time");
+                        MessageBox.Show("Failed to Time-Out");
                     }
                 }
                 catch (Exception ex)
@@ -191,7 +174,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAtttendanceData(date.Value.ToString());
         }
 
-        public void insertAttendance(string date, int? timeIn, int? timeOut, int fingerID)
+        public bool insertAttendance(string date, int? timeIn, int? timeOut, int fingerID)
         {
             TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -199,7 +182,7 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 string query;
                 
-                if (!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
+                if (!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM) || !IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                 {
                     if (timeIn != null && timeOut == null)
                     {
@@ -214,12 +197,9 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
+                        return true;
                     }
-                    Console.WriteLine("why is this printing ........");
-                }
-                else if(!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
-                {
-                    if (timeIn == null && timeOut != null)
+                    else if (timeIn == null && timeOut != null && IsTimedInAM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -232,6 +212,12 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("you dont have a time-in(AM) record yet...");
+                        return false;
                     }
                 }
                 else if (IsTimedOutAM(fingerID, date))
@@ -249,8 +235,9 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
+                        return true;
                     }
-                    else if(timeIn == null && timeOut != null)
+                    else if(timeIn == null && timeOut != null && IsTimedInPM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -263,9 +250,15 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("you dont have a time-in(PM) record yet");
+                        return false;
                     }
                 }
-                else if(timeNow >= startTimePM && timeNow <= endTimePM)
+                else if((timeNow >= startTimePM && timeNow <= endTimePM) && !IsTimedInAM(fingerID, date))
                 {
                     if(timeIn != null && timeOut == null)
                     {
@@ -280,9 +273,10 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
-                        Console.WriteLine("YOU ARE CHECKING IN IN AFTERNOON");
+                        Console.WriteLine("first Time in afternoon");
+                        return true;
                     }
-                    else if(timeIn == null && timeOut != null)
+                    else if(timeIn == null && timeOut != null && IsTimedInPM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -295,13 +289,20 @@ namespace payrollsystemsti.AdminTabs
 
                             cmd.ExecuteNonQuery();
                         }
-                        Console.WriteLine("YOU ARE CHECKING IN IN AFTERNOON");
+                        Console.WriteLine("first time out afternoon");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("you dont have a time-in(PM) record");
+                        return false;
                     }
                     
                 }
                 else
                 {
                     MessageBox.Show("Failed to insert attendance...");
+                    return false;
                 }
             }
         }
@@ -339,7 +340,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT TimeIn_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date AND TimeIn_AM IS NOT NULL";
+                string query = "SELECT TimeIn_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@fingerID", fingerID);
@@ -363,7 +364,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool IsTimedinPM(int fID, string currentDate)
+        private bool IsTimedInPM(int fID, string currentDate)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -391,6 +392,37 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        private bool IsTimedOutPM(int fID, string currentDate)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeOut_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fID);
+                    cmd.Parameters.AddWithValue("@date", currentDate);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result == null)
+                    {
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+
 
         public int getEmpID(int fingerID)
         {
@@ -451,9 +483,9 @@ namespace payrollsystemsti.AdminTabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
-                    cmd.Parameters.AddWithValue("@date", time);
-                    cmd.Parameters.AddWithValue("@status", date);
-                    cmd.Parameters.AddWithValue("@time", status);
+                    cmd.Parameters.AddWithValue("@time", time);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@status", status);
 
                     cmd.ExecuteNonQuery();
 
@@ -484,7 +516,7 @@ namespace payrollsystemsti.AdminTabs
 
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgTime"].Value = row["Time"].ToString();
-                        dataGridView1.Rows[n].Cells["dgDate"].Value = row["Date"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
                     }
                 }
@@ -535,6 +567,11 @@ namespace payrollsystemsti.AdminTabs
         private void btnOvertime_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
         }
     }
 }
