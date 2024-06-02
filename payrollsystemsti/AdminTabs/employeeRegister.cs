@@ -260,7 +260,7 @@ namespace payrollsystemsti.AdminTabs
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show("Error Updating Employee: " + ex.Message);
+                        MessageBox.Show("Error Creating Employee: " + ex.Message);
                         return false;
                     }
                 }
@@ -773,7 +773,7 @@ namespace payrollsystemsti.AdminTabs
             if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
             {
                 string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
-                CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[2]);
+                CreateUser(info.Split(' ')[0] + Convert.ToInt32(info.Split(' ')[1]), info.Split(' ')[2]);
                 btnCreate.Enabled = false;
             }
             else
