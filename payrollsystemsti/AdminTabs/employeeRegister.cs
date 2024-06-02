@@ -771,7 +771,7 @@ namespace payrollsystemsti.AdminTabs
             if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
             {
                 string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
-                CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[3]);
+                CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[2]);
             }
             else
             {
