@@ -71,16 +71,12 @@ namespace payrollsystemsti
         }
 
 
-
 		// Form constructor
 		public formDashboard()
         {
             InitializeComponent();
             formDashboardInstance = this;
-			
 		}
-
-        
 
         private void btn_back_Click(object sender, EventArgs e)
         {
@@ -129,7 +125,6 @@ namespace payrollsystemsti
 				loggedInAbsents = value;
 			}
 		}
-
 
 		public Button GetUserAccountButton()
         {

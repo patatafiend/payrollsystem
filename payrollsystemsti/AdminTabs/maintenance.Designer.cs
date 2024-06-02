@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -40,9 +42,11 @@
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbPicture = new System.Windows.Forms.CheckBox();
-            this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPicture = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbAmount = new System.Windows.Forms.Label();
+            this.tbAmount = new System.Windows.Forms.TextBox();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -89,14 +93,30 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgID,
-            this.dgTitle,
-            this.dgPicture,
+            this.dg1st,
+            this.dg2nd,
+            this.dg3rd,
             this.dgIsDeactivated});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(63, 295);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -145,7 +165,8 @@
             "Departments",
             "Positions",
             "Roles",
-            "Leaves"});
+            "Leaves",
+            "Deductions"});
             this.cbMaintenance.Location = new System.Drawing.Point(824, 246);
             this.cbMaintenance.Name = "cbMaintenance";
             this.cbMaintenance.Size = new System.Drawing.Size(121, 24);
@@ -200,24 +221,46 @@
             this.cbPicture.UseVisualStyleBackColor = true;
             this.cbPicture.Visible = false;
             // 
-            // dgID
+            // lbAmount
             // 
-            this.dgID.HeaderText = "ID";
-            this.dgID.Name = "dgID";
-            this.dgID.ReadOnly = true;
+            this.lbAmount.AutoSize = true;
+            this.lbAmount.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAmount.Location = new System.Drawing.Point(273, 118);
+            this.lbAmount.Name = "lbAmount";
+            this.lbAmount.Size = new System.Drawing.Size(62, 19);
+            this.lbAmount.TabIndex = 48;
+            this.lbAmount.Text = "Amount";
+            this.lbAmount.Visible = false;
             // 
-            // dgTitle
+            // tbAmount
             // 
-            this.dgTitle.HeaderText = "Title";
-            this.dgTitle.Name = "dgTitle";
-            this.dgTitle.ReadOnly = true;
+            this.tbAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAmount.Location = new System.Drawing.Point(276, 143);
+            this.tbAmount.Multiline = true;
+            this.tbAmount.Name = "tbAmount";
+            this.tbAmount.Size = new System.Drawing.Size(172, 28);
+            this.tbAmount.TabIndex = 47;
+            this.tbAmount.Visible = false;
             // 
-            // dgPicture
+            // dg1st
             // 
-            this.dgPicture.HeaderText = "Picture Required";
-            this.dgPicture.Name = "dgPicture";
-            this.dgPicture.ReadOnly = true;
-            this.dgPicture.Visible = false;
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Title";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Picture Required";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            this.dg3rd.Visible = false;
             // 
             // dgIsDeactivated
             // 
@@ -226,12 +269,14 @@
             this.dgIsDeactivated.ReadOnly = true;
             this.dgIsDeactivated.Visible = false;
             // 
-            // manageEmployee
+            // maintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1018, 642);
+            this.Controls.Add(this.lbAmount);
+            this.Controls.Add(this.tbAmount);
             this.Controls.Add(this.cbPicture);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbTitle);
@@ -244,7 +289,7 @@
             this.Controls.Add(this.label11);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "manageEmployee";
+            this.Name = "maintenance";
             this.Text = "userRegister";
             this.Load += new System.EventHandler(this.manageEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -266,9 +311,11 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox cbPicture;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgPicture;
+        private System.Windows.Forms.Label lbAmount;
+        private System.Windows.Forms.TextBox tbAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }

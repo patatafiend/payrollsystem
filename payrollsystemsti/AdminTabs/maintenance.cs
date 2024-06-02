@@ -18,7 +18,8 @@ namespace payrollsystemsti.Tabs
 
         private void ClearData()
         {
-            cbMaintenance.SelectedIndex = -1;
+            tbTitle.Clear();
+            tbAmount.Clear();
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
         }
@@ -30,11 +31,6 @@ namespace payrollsystemsti.Tabs
             btnDeactivate.Enabled = false;
             btnUpdate.Enabled = false;
             btnAdd.Enabled = false;
-        }
-
-        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
-        {
-            btnCancel.Visible = btnUpdate.Enabled;
         }
 
         private void LoadDepartmentData()
@@ -52,8 +48,8 @@ namespace payrollsystemsti.Tabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgID"].Value = row["DepartmentID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTitle"].Value = row["DepartmentName"].ToString();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["DepartmentID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["DepartmentName"].ToString();
                     }
                 }
             }
@@ -74,8 +70,8 @@ namespace payrollsystemsti.Tabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgID"].Value = row["PositionID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTitle"].Value = row["PositionTitle"].ToString();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["PositionID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["PositionTitle"].ToString();
                     }
                 }
             }
@@ -96,8 +92,8 @@ namespace payrollsystemsti.Tabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgID"].Value = row["RoleID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTitle"].Value = row["RoleTitle"].ToString();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["RoleID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["RoleTitle"].ToString();
                     }
                 }
             }
@@ -118,13 +114,37 @@ namespace payrollsystemsti.Tabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells["dgID"].Value = row["CategoryID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTitle"].Value = row["CategoryName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgPicture"].Value = hasProof(row["hasProof"].ToString());
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["CategoryID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["CategoryName"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = hasProof(row["hasProof"].ToString());
                     }
                 }
             }
         }
+
+        private void LoadDeductionData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT * FROM Deductions WHERE IsDeactivated = 0";
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["DeductionID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["DeductionType"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = hasProof(row["Amount"].ToString());
+                    }
+                }
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!ifDepartmentNameExist(tbTitle.Text.ToString()) && !ifRoleTitleExist(tbTitle.Text.ToString()) && !ifPositionTitleExist(tbTitle.Text.ToString()))
@@ -146,6 +166,10 @@ namespace payrollsystemsti.Tabs
                     case "Leaves":
                         insertToLeaves(tbTitle.Text, checkBox());
                         LoadLeaveCategoryData();
+                        break;
+                    case "Deductions":
+                        insertToDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
+                        LoadDeductionData();
                         break;
                 }
             }
@@ -170,19 +194,24 @@ namespace payrollsystemsti.Tabs
                     switch (cbMaintenance.Text.ToString())
                     {
                         case "Departments":
-                            updateDepartments(tbTitle.Text.ToString());
+                            updateDepartments(tbTitle.Text);
                             LoadDepartmentData();
                             break;
                         case "Postions":
-                            updatePositions(tbTitle.Text.ToString());
+                            updatePositions(tbTitle.Text);
                             LoadPositionData();
                             break;
                         case "Roles":
-                            updateRoles(tbTitle.Text.ToString());
+                            updateRoles(tbTitle.Text);
                             LoadRoleData();
                             break;
                         case "Leaves":
+                            updateLeaves(tbTitle.Text, checkBox());
                             LoadLeaveCategoryData();
+                            break;
+                        case "Deductions":
+                            updateDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
+                            LoadDeductionData();
                             break;
                     }
                 }
@@ -230,6 +259,11 @@ namespace payrollsystemsti.Tabs
                             LoadRoleData();
                             break;
                         case "Leaves":
+                            deactivateLeave();
+                            LoadLeaveCategoryData();
+                            break;
+                        case "Deductions":
+                            deactivateDeduction();
                             LoadLeaveCategoryData();
                             break;
                     }
@@ -365,6 +399,31 @@ namespace payrollsystemsti.Tabs
             }
         }
 
+        public bool insertToDeductions(string title, int amount)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Deductions (DeductionType, Amount) VALUES (@type, @amount)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Deductions: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool updateDepartments(string title)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -438,15 +497,18 @@ namespace payrollsystemsti.Tabs
             }
         }
 
-        public bool updateLeaves(string title)
+        public bool updateLeaves(string title, bool hasProof)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "UPDATE LeaveCategory SET CategoryName = @name WHERE CategoryID = @ID";
+                string query = "UPDATE LeaveCategory SET CategoryName = @name, IsDeactivated = @status " +
+                    "WHERE CategoryID = @ID";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@name", title);
+                    cmd.Parameters.AddWithValue("@status", hasProof);
                     cmd.Parameters.AddWithValue("@ID", titleID);
 
                     try
@@ -457,6 +519,31 @@ namespace payrollsystemsti.Tabs
                     catch (SqlException ex)
                     {
                         MessageBox.Show("Error updating Leaves: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateDeductions(string title, int amount)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET DeductionType = @type WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@ID", titleID);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Deduction: " + ex.Message);
                         return false;
                     }
                 }
@@ -563,6 +650,31 @@ namespace payrollsystemsti.Tabs
             }
         }
 
+        public bool deactivateDeduction()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET IsDeactivated = @status WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", titleID);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool ifRoleTitleExist(string title)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -613,8 +725,9 @@ namespace payrollsystemsti.Tabs
         {
             btnUpdate.Enabled = true;
             btnAdd.Enabled = false;
-            tbTitle.Text = dataGridView1.SelectedRows[0].Cells["dgTitle"].Value.ToString();
-            titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgID"].Value.ToString());
+
+            titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+            tbTitle.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)
@@ -631,37 +744,68 @@ namespace payrollsystemsti.Tabs
 
         private void cbMaintenance_SelectedValueChanged(object sender, EventArgs e)
         {
-            hideLeaves();
+            firstInterface();
             switch (cbMaintenance.Text.ToString())
             {
                 case "Departments":
+                    changeToDepartment();
                     LoadDepartmentData();
                     break;
                 case "Positions":
+                    changeToPositon();
                     LoadPositionData();
                     break;
                 case "Roles":
+                    changeToRole();
                     LoadRoleData();
                     break;
                 case "Leaves":
-                    LoadLeaveCategoryData();
                     changeToLeaves();
+                    LoadLeaveCategoryData();
+                    break;
+                case "Deductions":
+                    changeToDeductions();
+                    LoadDeductionData();
                     break;
             }
         }
 
+        public void changeToDepartment()
+        {
+            dataGridView1.Columns["dg2nd"].HeaderText = "Department Name";
+        }
+        public void changeToPositon()
+        {
+            dataGridView1.Columns["dg2nd"].HeaderText = "Position Title";
+        }
+        public void changeToRole()
+        {
+            dataGridView1.Columns["dg2nd"].HeaderText = "Role Title";
+        }
         public void changeToLeaves()
         {
-            cbPicture.Visible = true;
-            dataGridView1.Columns["dgPicture"].Visible = true;
+            dataGridView1.Columns["dg2nd"].HeaderText = "Leave Type";
+            dataGridView1.Columns["dg3rd"].Visible = true;
         }
-
-        public void hideLeaves()
+        public void changeToDeductions()
         {
-            cbPicture.Visible = false;
-            dataGridView1.Columns["dgPicture"].Visible = false;
+            tbAmount.Visible = true;
+            lbAmount.Visible = true;
+            dataGridView1.Columns["dg2nd"].HeaderText = "Deduction Type";
+            dataGridView1.Columns["dg3rd"].HeaderText = "Amount";
+            dataGridView1.Columns["dg3rd"].Visible = true;
         }
 
+        public void firstInterface()
+        {
+            tbAmount.Visible = false;
+            lbAmount.Visible = false;
+            dataGridView1.Columns["dg1st"].HeaderText = "ID";
+            dataGridView1.Columns["dg2nd"].HeaderText = "Title";
+            dataGridView1.Columns["dg3rd"].HeaderText = "Picture Required";
+            dataGridView1.Columns["dg3rd"].Visible = false;
+            cbPicture.Visible = false;
+        }
 
         private void btnUpdate_EnabledChanged_1(object sender, EventArgs e)
         {

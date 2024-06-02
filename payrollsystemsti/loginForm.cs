@@ -32,119 +32,147 @@ namespace payrollsystemsti
 
         private void bt_login_Click(object sender, EventArgs e)
         {
-			if (tbUserName.Text.Equals("tester") && tbPassword.Text.Equals("tester"))
+			if (LogInTester(tbUserName.Text, tbPassword.Text))
 			{
 				this.Hide();
 				formDashboard.Show();
 				formDashboard.formDashboardInstance.LoggedInLeaves = m.GetTotalEmployeeCount();
 				dashBoard.isClickable = true;
 
-				// Log the login time for the tester user
 				LogLoginTime(0, "Tester", "User", 0, 0, 0); // Assuming 0 or dummy values for tester
 			}
 			else
 			{
-				using (SqlConnection conn = new SqlConnection(m.connStr))
-				{
-					try
-					{
-						conn.Open();
-						string query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.EmployeeID, " +
-							"EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.DepartmentID, " +
-							"EmployeeAccounts.Leaves, EmployeeAccounts.Absents, EmployeeAccounts.RoleID FROM UserAccounts " +
-							"INNER JOIN EmployeeAccounts ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID WHERE " +
-							"Username=@username AND Password=@password AND IsDeactivated = @status";
-
-						using (SqlCommand cmd = new SqlCommand(query, conn))
-						{
-							cmd.Parameters.AddWithValue("@username", tbUserName.Text);
-							cmd.Parameters.AddWithValue("@password", tbPassword.Text);
-                            cmd.Parameters.AddWithValue("@status", 0);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-							{
-								if (reader.Read())
-								{
-									int userID = (int)reader["UserID"];
-									int employeeID = (int)reader["EmployeeID"];
-									int numLeaves = (int)reader["Leaves"];
-									int numAbsents = (int)reader["Absents"];
-									int totalEmployee = m.GetTotalEmployeeCount();
-
-									string roleTitle = m.getRoleTitle((int)reader["RoleID"]);
-                                    string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
-                                    int departmentID = (int)reader["DepartmentID"];
-
-
-                                    string username = reader["Username"].ToString();
-									string fname = reader["FirstName"].ToString();
-									string lname = reader["LastName"].ToString();  // LastName added
-									
-
-									// Log the login time
-									LogLoginTime(employeeID, fname, lname, departmentID, numLeaves, numAbsents);
-
-									this.Hide();
-									formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
-									formDashboard.formDashboardInstance.LoggedInFirstName = fname;
-									formDashboard.formDashboardInstance.LoggedInDepartment = departmentName;
-									formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
-
-									// Disable function based on role/department
-									if (roleTitle == "User")
-									{
-										if (departmentName == "HR")
-										{
-											formDashboard.GetEnrollFingerPanel().Hide();
-											formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
-											dashBoard.isClickable = true;
-										}
-										else if (departmentName == "Accountant")
-										{
-											formDashboard.GetUserAccountPanel().Hide();
-											formDashboard.GetEnrollFingerPanel().Hide();
-											formDashboard.GetLeaveTypePanel().Hide();
-											formDashboard.GetLeaveManagementPanel().Hide();
-											formDashboard.GetAccountArchivePanel().Hide();
-											formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
-											dashBoard.isClickable = true;
-										}
-										else
-										{
-											formDashboard.GetUserAccountPanel().Hide();
-											formDashboard.GetLeaveTypePanel().Hide();
-											formDashboard.GetLeaveManagementPanel().Hide();
-											formDashboard.GetAccountArchivePanel().Hide();
-											formDashboard.GetEnrollFingerPanel().Hide();
-											formDashboard.GetEmployeeRegisterPanel().Hide();
-											formDashboard.GetSalaryPanel().Hide();
-											formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-											dashBoard.isClickable = false;
-										}
-									}
-									else // Admin
-									{
-										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
-										dashBoard.isClickable = true;
-									}
-
-									formDashboard.Show();
-								}
-								else
-								{
-									MessageBox.Show("Login Failed! Invalid username or password.", "Error");
-								}
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show($"An error occurred: {ex.GetType().Name}\n\nDetails:\n{ex.Message}\n\nStack Trace:\n{ex.StackTrace}", "Error");
-					}
-				}
+                LogIN(tbUserName.Text, tbPassword.Text);
 			}
 		}
+        private bool LogInTester(string user, string password)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Username, Password FROM UserAccounts WHERE Username = @user AND Password = @pass";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", user);
+                    cmd.Parameters.AddWithValue("@pass", password);
 
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+		private bool LogIN(string user, string pass)
+		{
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.EmployeeID, " +
+                        "EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.DepartmentID, " +
+                        "EmployeeAccounts.Leaves, EmployeeAccounts.Absents, EmployeeAccounts.RoleID FROM UserAccounts " +
+                        "INNER JOIN EmployeeAccounts ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID WHERE " +
+                        "Username=@username AND Password=@password AND IsDeactivated = @status";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", user);
+                        cmd.Parameters.AddWithValue("@password", pass);
+                        cmd.Parameters.AddWithValue("@status", 0);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int userID = (int)reader["UserID"];
+                                int employeeID = (int)reader["EmployeeID"];
+                                int numLeaves = (int)reader["Leaves"];
+                                int numAbsents = (int)reader["Absents"];
+                                int totalEmployee = m.GetTotalEmployeeCount();
+
+                                string roleTitle = m.getRoleTitle((int)reader["RoleID"]);
+                                string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
+                                int departmentID = (int)reader["DepartmentID"];
+
+
+                                string username = reader["Username"].ToString();
+                                string fname = reader["FirstName"].ToString();
+                                string lname = reader["LastName"].ToString();  // LastName added
+
+
+                                // Log the login time
+                                LogLoginTime(employeeID, fname, lname, departmentID, numLeaves, numAbsents);
+
+                                this.Hide();
+                                formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
+                                formDashboard.formDashboardInstance.LoggedInFirstName = fname;
+                                formDashboard.formDashboardInstance.LoggedInDepartment = departmentName;
+                                formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
+
+                                // Disable function based on role/department
+                                if (roleTitle == "User")
+                                {
+                                    if (departmentName == "HR")
+                                    {
+                                        formDashboard.GetEnrollFingerPanel().Hide();
+                                        formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+                                        dashBoard.isClickable = true;
+                                    }
+                                    else if (departmentName == "Accountant")
+                                    {
+                                        formDashboard.GetUserAccountPanel().Hide();
+                                        formDashboard.GetEnrollFingerPanel().Hide();
+                                        formDashboard.GetLeaveTypePanel().Hide();
+                                        formDashboard.GetLeaveManagementPanel().Hide();
+                                        formDashboard.GetAccountArchivePanel().Hide();
+                                        formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+                                        dashBoard.isClickable = true;
+                                    }
+                                    else
+                                    {
+                                        formDashboard.GetUserAccountPanel().Hide();
+                                        formDashboard.GetLeaveTypePanel().Hide();
+                                        formDashboard.GetLeaveManagementPanel().Hide();
+                                        formDashboard.GetAccountArchivePanel().Hide();
+                                        formDashboard.GetEnrollFingerPanel().Hide();
+                                        formDashboard.GetEmployeeRegisterPanel().Hide();
+                                        formDashboard.GetSalaryPanel().Hide();
+                                        formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+                                        dashBoard.isClickable = false;
+                                    }
+                                }
+                                else // Admin
+                                {
+                                    formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+                                    dashBoard.isClickable = true;
+                                }
+
+                                formDashboard.Show();
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Login Failed! Invalid username or password.", "Error");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.GetType().Name}\n\nDetails:\n{ex.Message}\n\nStack Trace:\n{ex.StackTrace}", "Error");
+                    return false;
+                }
+            }
+        }
         private void loginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbUserName;
