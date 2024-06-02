@@ -29,46 +29,49 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbOT = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.tbAdjustment = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.tbSpeacialH = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.tbRegularH = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbIncentives = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbBasic = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.tbPTA = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.tbLoadA = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.tbTransA = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbTA = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tbSSS = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.tbPagibig = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.tbPH = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tbAbsent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbLate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbOBA = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnCompute = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -78,17 +81,17 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.tbOT);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox19);
+            this.groupBox1.Controls.Add(this.tbAdjustment);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.textBox18);
+            this.groupBox1.Controls.Add(this.tbSpeacialH);
             this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.textBox17);
+            this.groupBox1.Controls.Add(this.tbRegularH);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tbIncentives);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbBasic);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 112);
@@ -98,15 +101,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Income";
             // 
-            // textBox4
+            // tbOT
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(156, 231);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(94, 28);
-            this.textBox4.TabIndex = 12;
+            this.tbOT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOT.Location = new System.Drawing.Point(156, 231);
+            this.tbOT.Multiline = true;
+            this.tbOT.Name = "tbOT";
+            this.tbOT.ReadOnly = true;
+            this.tbOT.Size = new System.Drawing.Size(94, 28);
+            this.tbOT.TabIndex = 12;
             // 
             // label4
             // 
@@ -117,15 +120,15 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "OverTimePay:";
             // 
-            // textBox19
+            // tbAdjustment
             // 
-            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox19.Location = new System.Drawing.Point(156, 195);
-            this.textBox19.Multiline = true;
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(94, 28);
-            this.textBox19.TabIndex = 10;
+            this.tbAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAdjustment.Location = new System.Drawing.Point(156, 195);
+            this.tbAdjustment.Multiline = true;
+            this.tbAdjustment.Name = "tbAdjustment";
+            this.tbAdjustment.ReadOnly = true;
+            this.tbAdjustment.Size = new System.Drawing.Size(94, 28);
+            this.tbAdjustment.TabIndex = 10;
             // 
             // label20
             // 
@@ -136,15 +139,15 @@
             this.label20.TabIndex = 9;
             this.label20.Text = "Adjustment:";
             // 
-            // textBox18
+            // tbSpeacialH
             // 
-            this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox18.Location = new System.Drawing.Point(156, 161);
-            this.textBox18.Multiline = true;
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(94, 28);
-            this.textBox18.TabIndex = 8;
+            this.tbSpeacialH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSpeacialH.Location = new System.Drawing.Point(156, 161);
+            this.tbSpeacialH.Multiline = true;
+            this.tbSpeacialH.Name = "tbSpeacialH";
+            this.tbSpeacialH.ReadOnly = true;
+            this.tbSpeacialH.Size = new System.Drawing.Size(94, 28);
+            this.tbSpeacialH.TabIndex = 8;
             // 
             // label19
             // 
@@ -155,15 +158,15 @@
             this.label19.TabIndex = 7;
             this.label19.Text = "Special Holiday:";
             // 
-            // textBox17
+            // tbRegularH
             // 
-            this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox17.Location = new System.Drawing.Point(156, 121);
-            this.textBox17.Multiline = true;
-            this.textBox17.Name = "textBox17";
-            this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(94, 28);
-            this.textBox17.TabIndex = 6;
+            this.tbRegularH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRegularH.Location = new System.Drawing.Point(156, 121);
+            this.tbRegularH.Multiline = true;
+            this.tbRegularH.Name = "tbRegularH";
+            this.tbRegularH.ReadOnly = true;
+            this.tbRegularH.Size = new System.Drawing.Size(94, 28);
+            this.tbRegularH.TabIndex = 6;
             // 
             // label18
             // 
@@ -174,15 +177,15 @@
             this.label18.TabIndex = 5;
             this.label18.Text = "Reg. Holiday:";
             // 
-            // textBox2
+            // tbIncentives
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(156, 74);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(94, 28);
-            this.textBox2.TabIndex = 4;
+            this.tbIncentives.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIncentives.Location = new System.Drawing.Point(156, 74);
+            this.tbIncentives.Multiline = true;
+            this.tbIncentives.Name = "tbIncentives";
+            this.tbIncentives.ReadOnly = true;
+            this.tbIncentives.Size = new System.Drawing.Size(94, 28);
+            this.tbIncentives.TabIndex = 4;
             // 
             // label2
             // 
@@ -192,17 +195,16 @@
             this.label2.Size = new System.Drawing.Size(90, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Incentives:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // tbBasic
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(156, 35);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(94, 28);
-            this.textBox1.TabIndex = 2;
+            this.tbBasic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBasic.Location = new System.Drawing.Point(156, 35);
+            this.tbBasic.Multiline = true;
+            this.tbBasic.Name = "tbBasic";
+            this.tbBasic.ReadOnly = true;
+            this.tbBasic.Size = new System.Drawing.Size(94, 28);
+            this.tbBasic.TabIndex = 2;
             // 
             // label1
             // 
@@ -213,15 +215,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Basic:";
             // 
-            // textBox16
+            // tbPTA
             // 
-            this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox16.Location = new System.Drawing.Point(245, 173);
-            this.textBox16.Multiline = true;
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(94, 28);
-            this.textBox16.TabIndex = 12;
+            this.tbPTA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPTA.Location = new System.Drawing.Point(245, 173);
+            this.tbPTA.Multiline = true;
+            this.tbPTA.Name = "tbPTA";
+            this.tbPTA.ReadOnly = true;
+            this.tbPTA.Size = new System.Drawing.Size(94, 28);
+            this.tbPTA.TabIndex = 12;
             // 
             // label17
             // 
@@ -232,15 +234,15 @@
             this.label17.TabIndex = 11;
             this.label17.Text = "Provision Transportation \r\nAllowance :";
             // 
-            // textBox15
+            // tbLoadA
             // 
-            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox15.Location = new System.Drawing.Point(245, 123);
-            this.textBox15.Multiline = true;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(94, 28);
-            this.textBox15.TabIndex = 10;
+            this.tbLoadA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbLoadA.Location = new System.Drawing.Point(245, 123);
+            this.tbLoadA.Multiline = true;
+            this.tbLoadA.Name = "tbLoadA";
+            this.tbLoadA.ReadOnly = true;
+            this.tbLoadA.Size = new System.Drawing.Size(94, 28);
+            this.tbLoadA.TabIndex = 10;
             // 
             // label16
             // 
@@ -251,15 +253,15 @@
             this.label16.TabIndex = 9;
             this.label16.Text = "Load Allowance :";
             // 
-            // textBox14
+            // tbTransA
             // 
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox14.Location = new System.Drawing.Point(245, 81);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(94, 28);
-            this.textBox14.TabIndex = 8;
+            this.tbTransA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTransA.Location = new System.Drawing.Point(245, 81);
+            this.tbTransA.Multiline = true;
+            this.tbTransA.Name = "tbTransA";
+            this.tbTransA.ReadOnly = true;
+            this.tbTransA.Size = new System.Drawing.Size(94, 28);
+            this.tbTransA.TabIndex = 8;
             // 
             // label14
             // 
@@ -270,15 +272,15 @@
             this.label14.TabIndex = 7;
             this.label14.Text = "Transportation Allowance :";
             // 
-            // textBox3
+            // tbTA
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(245, 26);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(94, 28);
-            this.textBox3.TabIndex = 6;
+            this.tbTA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTA.Location = new System.Drawing.Point(245, 26);
+            this.tbTA.Multiline = true;
+            this.tbTA.Name = "tbTA";
+            this.tbTA.ReadOnly = true;
+            this.tbTA.Size = new System.Drawing.Size(94, 28);
+            this.tbTA.TabIndex = 6;
             // 
             // label3
             // 
@@ -291,11 +293,11 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox11);
+            this.groupBox4.Controls.Add(this.tbSSS);
             this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.textBox12);
+            this.groupBox4.Controls.Add(this.tbPagibig);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.textBox13);
+            this.groupBox4.Controls.Add(this.tbPH);
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(740, 112);
@@ -305,15 +307,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Mandatory Deductions";
             // 
-            // textBox11
+            // tbSSS
             // 
-            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox11.Location = new System.Drawing.Point(186, 105);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(94, 28);
-            this.textBox11.TabIndex = 9;
+            this.tbSSS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSSS.Location = new System.Drawing.Point(186, 105);
+            this.tbSSS.Multiline = true;
+            this.tbSSS.Name = "tbSSS";
+            this.tbSSS.ReadOnly = true;
+            this.tbSSS.Size = new System.Drawing.Size(94, 28);
+            this.tbSSS.TabIndex = 9;
             // 
             // label11
             // 
@@ -324,15 +326,15 @@
             this.label11.TabIndex = 8;
             this.label11.Text = "SSS:";
             // 
-            // textBox12
+            // tbPagibig
             // 
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox12.Location = new System.Drawing.Point(186, 71);
-            this.textBox12.Multiline = true;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(94, 28);
-            this.textBox12.TabIndex = 9;
+            this.tbPagibig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPagibig.Location = new System.Drawing.Point(186, 71);
+            this.tbPagibig.Multiline = true;
+            this.tbPagibig.Name = "tbPagibig";
+            this.tbPagibig.ReadOnly = true;
+            this.tbPagibig.Size = new System.Drawing.Size(94, 28);
+            this.tbPagibig.TabIndex = 9;
             // 
             // label12
             // 
@@ -343,15 +345,15 @@
             this.label12.TabIndex = 8;
             this.label12.Text = "Pag-ibig:";
             // 
-            // textBox13
+            // tbPH
             // 
-            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox13.Location = new System.Drawing.Point(186, 36);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(94, 28);
-            this.textBox13.TabIndex = 9;
+            this.tbPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPH.Location = new System.Drawing.Point(186, 36);
+            this.tbPH.Multiline = true;
+            this.tbPH.Name = "tbPH";
+            this.tbPH.ReadOnly = true;
+            this.tbPH.Size = new System.Drawing.Size(94, 28);
+            this.tbPH.TabIndex = 9;
             // 
             // label13
             // 
@@ -364,9 +366,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this.tbAbsent);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.tbLate);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(740, 264);
@@ -376,15 +378,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Deductions";
             // 
-            // textBox8
+            // tbAbsent
             // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Location = new System.Drawing.Point(190, 71);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(94, 28);
-            this.textBox8.TabIndex = 9;
+            this.tbAbsent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAbsent.Location = new System.Drawing.Point(190, 71);
+            this.tbAbsent.Multiline = true;
+            this.tbAbsent.Name = "tbAbsent";
+            this.tbAbsent.ReadOnly = true;
+            this.tbAbsent.Size = new System.Drawing.Size(94, 28);
+            this.tbAbsent.TabIndex = 9;
             // 
             // label8
             // 
@@ -395,15 +397,15 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "Absent:";
             // 
-            // textBox6
+            // tbLate
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.Location = new System.Drawing.Point(190, 29);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(94, 28);
-            this.textBox6.TabIndex = 9;
+            this.tbLate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbLate.Location = new System.Drawing.Point(190, 29);
+            this.tbLate.Multiline = true;
+            this.tbLate.Name = "tbLate";
+            this.tbLate.ReadOnly = true;
+            this.tbLate.Size = new System.Drawing.Size(94, 28);
+            this.tbLate.TabIndex = 9;
             // 
             // label6
             // 
@@ -421,34 +423,22 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgFullName,
-            this.dgBasic});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 398);
+            this.dgBasic,
+            this.dgTHW,
+            this.dgOT});
+            this.dataGridView1.Location = new System.Drawing.Point(22, 426);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1021, 258);
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1021, 237);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "EmployeeID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgBasic
-            // 
-            this.dgBasic.HeaderText = "Basic";
-            this.dgBasic.Name = "dgBasic";
-            this.dgBasic.ReadOnly = true;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // label15
             // 
@@ -464,16 +454,16 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.tbOBA);
             this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.textBox16);
+            this.groupBox5.Controls.Add(this.tbPTA);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.textBox15);
+            this.groupBox5.Controls.Add(this.tbTA);
+            this.groupBox5.Controls.Add(this.tbLoadA);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Controls.Add(this.textBox14);
+            this.groupBox5.Controls.Add(this.tbTransA);
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(333, 112);
             this.groupBox5.Name = "groupBox5";
@@ -482,15 +472,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Allowances";
             // 
-            // textBox5
+            // tbOBA
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.Location = new System.Drawing.Point(245, 223);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(94, 28);
-            this.textBox5.TabIndex = 14;
+            this.tbOBA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOBA.Location = new System.Drawing.Point(245, 223);
+            this.tbOBA.Multiline = true;
+            this.tbOBA.Name = "tbOBA";
+            this.tbOBA.ReadOnly = true;
+            this.tbOBA.Size = new System.Drawing.Size(94, 28);
+            this.tbOBA.TabIndex = 14;
             // 
             // label5
             // 
@@ -501,12 +491,59 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "OB Allowance :";
             // 
+            // btnCompute
+            // 
+            this.btnCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCompute.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCompute.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCompute.Location = new System.Drawing.Point(923, 37);
+            this.btnCompute.Name = "btnCompute";
+            this.btnCompute.Size = new System.Drawing.Size(120, 47);
+            this.btnCompute.TabIndex = 34;
+            this.btnCompute.Text = "Compute";
+            this.btnCompute.UseVisualStyleBackColor = false;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgBasic
+            // 
+            this.dgBasic.HeaderText = "Basic Rate";
+            this.dgBasic.Name = "dgBasic";
+            this.dgBasic.ReadOnly = true;
+            // 
+            // dgTHW
+            // 
+            this.dgTHW.HeaderText = "TotalHoursWorked";
+            this.dgTHW.Name = "dgTHW";
+            this.dgTHW.ReadOnly = true;
+            this.dgTHW.Visible = false;
+            // 
+            // dgOT
+            // 
+            this.dgOT.HeaderText = "OvertimeHours";
+            this.dgOT.Name = "dgOT";
+            this.dgOT.ReadOnly = true;
+            this.dgOT.Visible = false;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1137, 910);
+            this.Controls.Add(this.btnCompute);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label15);
@@ -517,6 +554,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "employeeSalary";
             this.Text = "employeeSalary";
+            this.Load += new System.EventHandler(this.employeeSalary_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -535,44 +573,47 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox tbSSS;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox tbPagibig;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox tbPH;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox tbAbsent;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbLate;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbTA;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbIncentives;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbBasic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox tbPTA;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox tbLoadA;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox tbTransA;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox tbSpeacialH;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox tbRegularH;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox tbAdjustment;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbOT;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbOBA;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCompute;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTHW;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
     }
 }

@@ -139,7 +139,7 @@ namespace payrollsystemsti.Tabs
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["DeductionID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["DeductionType"].ToString();
-                        dataGridView1.Rows[n].Cells["dg3rd"].Value = hasProof(row["Amount"].ToString());
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Amount"].ToString();
                     }
                 }
             }
@@ -169,6 +169,7 @@ namespace payrollsystemsti.Tabs
                         break;
                     case "Deductions":
                         m.insertToDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
+                        tbAmount.Clear();
                         LoadDeductionData();
                         break;
                 }
@@ -186,7 +187,7 @@ namespace payrollsystemsti.Tabs
 
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (!m.ifDepartmentNameExist(tbTitle.Text.ToString()) && !m.ifRoleTitleExist(tbTitle.Text.ToString()) && !m.ifPositionTitleExist(tbTitle.Text.ToString()))
@@ -211,6 +212,7 @@ namespace payrollsystemsti.Tabs
                             break;
                         case "Deductions":
                             updateDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
+                            tbAmount.Clear();
                             LoadDeductionData();
                             break;
                     }
@@ -413,10 +415,12 @@ namespace payrollsystemsti.Tabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "UPDATE Deductions SET DeductionType = @type WHERE DeductionID = @ID";
+                string query = "UPDATE Deductions SET DeductionType = @type, Amount = @amount " +
+                    "WHERE DeductionID = @ID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
                     cmd.Parameters.AddWithValue("@ID", titleID);
 
                     try
@@ -565,6 +569,12 @@ namespace payrollsystemsti.Tabs
 
             titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
             tbTitle.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+
+            if(cbMaintenance.Text == "Deductions")
+            {
+                tbAmount.Text = dataGridView1.SelectedRows[0].Cells["dg3rd"].Value.ToString();
+            }
+            
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)

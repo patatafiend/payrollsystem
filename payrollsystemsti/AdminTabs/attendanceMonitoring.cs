@@ -56,7 +56,6 @@ namespace payrollsystemsti.AdminTabs
             btnTimeIN.Enabled = true;
 
             LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
-            Console.WriteLine(date.Value.Date.ToString("MM/dd/yyyy"));
 
         }
 
@@ -182,9 +181,9 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 string query;
                 
-                if (!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM) || !IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
+                if ((!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
                 {
-                    if (timeIn != null && timeOut == null)
+                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date))
                     {
                         TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -195,11 +194,19 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@timeInAM", timeInString);
                             cmd.Parameters.AddWithValue("@fingerID", fingerID);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        return true;
                     }
-                    else if (timeIn == null && timeOut != null && IsTimedInAM(fingerID, date))
+                    else if ((timeIn == null && timeOut != null) && IsTimedInAM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -210,9 +217,22 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeOutAM", timeOutString);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        return true;
+                    }
+                    else if(IsTimedInAM(fingerID, date) || IsTimedOutAM(fingerID, date))
+                    {
+                        MessageBox.Show("You already have a that attendance");
+                        return false;
                     }
                     else
                     {
@@ -222,7 +242,7 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else if (IsTimedOutAM(fingerID, date))
                 {
-                    if (timeIn != null && timeOut == null)
+                    if ((timeIn != null && timeOut == null) && !IsTimedInPM(fingerID, date))
                     {
                         TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -233,11 +253,19 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeInPM", timeInString);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        return true;
                     }
-                    else if(timeIn == null && timeOut != null && IsTimedInPM(fingerID, date))
+                    else if((timeIn == null && timeOut != null) && IsTimedInPM(fingerID, date) && !IsTimedOutPM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -248,19 +276,37 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        return true;
+                    }
+                    else if (IsTimedInPM(fingerID, date) || IsTimedOutPM(fingerID, date))
+                    {
+                        MessageBox.Show("you already have that attedance");
+                        return false;
+                    }
+                    else if (IsTimedOutAM(fingerID, date))
+                    {
+                        MessageBox.Show("you already have that attedance");
+                        return false;
                     }
                     else
                     {
-                        MessageBox.Show("you dont have a time-in(PM) record yet");
+                        MessageBox.Show("You dont have a time-in(PM) record yet");
                         return false;
                     }
                 }
                 else if((timeNow >= startTimePM && timeNow <= endTimePM) && !IsTimedInAM(fingerID, date))
                 {
-                    if(timeIn != null && timeOut == null)
+                    if((timeIn != null && timeOut == null) && !IsTimedInPM(fingerID, date))
                     {
                         TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -271,12 +317,20 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeInPM", timeInString);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                Console.WriteLine("first Time in afternoon");
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        Console.WriteLine("first Time in afternoon");
-                        return true;
                     }
-                    else if(timeIn == null && timeOut != null && IsTimedInPM(fingerID, date))
+                    else if((timeIn == null && timeOut != null) && IsTimedInPM(fingerID, date))
                     {
                         TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
                         string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
@@ -287,17 +341,29 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
 
-                            cmd.ExecuteNonQuery();
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                Console.WriteLine("first time out afternoon");
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
                         }
-                        Console.WriteLine("first time out afternoon");
-                        return true;
+                    }
+                    else if(IsTimedInPM(fingerID, date) || IsTimedOutPM(fingerID, date))
+                    {
+                        MessageBox.Show("You already have that attendnace");
+                        return false;
                     }
                     else
                     {
                         MessageBox.Show("you dont have a time-in(PM) record");
                         return false;
                     }
-                    
                 }
                 else
                 {
@@ -319,11 +385,11 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", date);
 
                     object result = cmd.ExecuteScalar();
-                    if(result == null)
+                    if (result == null)
                     {
                         return false;
                     }
-                    else if(result.ToString() == "00:00:00")
+                    else if (result.ToString() == "00:00:00")
                     {
                         return false;
                     }
@@ -347,7 +413,6 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", date);
 
                     object result = cmd.ExecuteScalar();
-
                     if (result == null)
                     {
                         return false;
@@ -376,7 +441,6 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", currentDate);
 
                     object result = cmd.ExecuteScalar();
-
                     if (result == null)
                     {
                         return false;
@@ -405,7 +469,6 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@date", currentDate);
 
                     object result = cmd.ExecuteScalar();
-
                     if (result == null)
                     {
                         return false;
