@@ -81,6 +81,7 @@
             this.pbEmployee = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.empID = new System.Windows.Forms.TextBox();
+            this.btnCreate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -625,12 +626,28 @@
             this.empID.TabIndex = 8;
             this.empID.Visible = false;
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreate.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCreate.Location = new System.Drawing.Point(304, 363);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(153, 44);
+            this.btnCreate.TabIndex = 33;
+            this.btnCreate.Text = "Create Account";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // employeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1053, 700);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox3);
@@ -715,5 +732,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.TextBox empID;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCreate;
     }
 }

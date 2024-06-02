@@ -125,8 +125,6 @@ namespace payrollsystemsti.AdminTabs
                         dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
                         tbMob.Text, 0, 5, 0))
                     {
-                        string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
-                        CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[3]);
                         ClearData();
                         LoadData();
                         LoadDepartments();
@@ -765,6 +763,34 @@ namespace payrollsystemsti.AdminTabs
             if (!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
+            {
+                string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
+                CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[3]);
+            }
+            else
+            {
+                MessageBox.Show("User account already exist");
+            }
+            
+        }
+        public bool ifUserAlreadyExist(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM UserAccounts WHERE EmployeeID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", empID);
+                    int count = 0;
+                    return count > 0;
+                }
             }
         }
     }
