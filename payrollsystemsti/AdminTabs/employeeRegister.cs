@@ -768,7 +768,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
+            if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
             {
                 string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
                 CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[3]);
