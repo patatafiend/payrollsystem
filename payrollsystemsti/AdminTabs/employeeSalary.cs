@@ -61,7 +61,7 @@ namespace payrollsystemsti.AdminTabs
             tbOT.Text = calOvertimePay(totalOvertime, basicRate).ToString();
             tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
             tbSSS.Text = calSSS(setDeductions(2), 0).ToString();
-            tbPagibig.Text = calPagIbig(setDeductions(3), Convert.ToDouble(tbBasic.Text)).ToString();
+            tbPagibig.Text = calPagIbig().ToString();
         }
 
         private double calBasicSalary(double basicRate, double tHW)
@@ -85,9 +85,9 @@ namespace payrollsystemsti.AdminTabs
             return (sss / 100) * gross;
         }
 
-        private double calPagIbig(double pag, double basicSalary)
+        private double calPagIbig()
         {
-            return basicSalary - pag;
+            return 100;
         }
 
         public double setDeductions(int id)
@@ -103,7 +103,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (reader.Read())
                     {
-                        return (double)reader["Amount"];
+                        return Convert.ToDouble((int)reader["Amount"]);
                     }
                     else
                     {
