@@ -240,18 +240,47 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
+            {
+                string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
+                CreateUser(info.Split(' ')[2], info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[1]);
+                btnCreate.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("User account already exist");
+            }
 
-        private bool CreateUser(string user, string password)
+        }
+        public bool ifUserAlreadyExist(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO UserAccounts(UserName, Password) VALUES(@username, @password)";
+                string query = "SELECT COUNT(*) FROM UserAccounts WHERE EmployeeID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", empID);
+                    int count = 0;
+                    return count > 0;
+                }
+            }
+        }
+
+        private bool CreateUser(string user, string password, string empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO UserAccounts(UserName, Password, EmployeeID) VALUES(@username, @password, @empID)";
 
                 using (SqlCommand cmd = new SqlCommand(query,conn))
                 {
                     cmd.Parameters.AddWithValue("@username", user);
                     cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@empID", password);
 
                     try
                     {
@@ -768,33 +797,6 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
-            {
-                string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
-                CreateUser(info.Split(' ')[0] + Convert.ToInt32(info.Split(' ')[1]), info.Split(' ')[2]);
-                btnCreate.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("User account already exist");
-            }
-            
-        }
-        public bool ifUserAlreadyExist(int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM UserAccounts WHERE EmployeeID = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", empID);
-                    int count = 0;
-                    return count > 0;
-                }
-            }
-        }
+        
     }
 }
