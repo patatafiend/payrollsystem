@@ -246,7 +246,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO UserAccounts(UserName, Password) VALUES(@username, password)";
+                string query = "INSERT INTO UserAccounts(UserName, Password) VALUES(@username, @password)";
 
                 using (SqlCommand cmd = new SqlCommand(query,conn))
                 {
