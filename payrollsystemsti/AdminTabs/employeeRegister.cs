@@ -151,7 +151,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 conn.Open();
                 string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
-                           "Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, " +
+                           "DepartmentID, PositionID, SSN, Email, Address, Dob, BasicRate, FileName, " +
                            "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
                            "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
