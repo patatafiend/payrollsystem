@@ -245,14 +245,22 @@ namespace payrollsystemsti.AdminTabs
             if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
             {
                 string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
-                CreateUser(info.Split(' ')[2], info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[1]);
+                string email = info.Split(' ')[2];
+                string password = info.Split(' ')[0] + info.Split(' ')[1];
+                string id = info.Split(' ')[1];
+
+                if(CreateUser(email, password, Convert.ToInt32(id)))
+                {
+                    MessageBox.Show("Created User Succesfully");
+                }
+
                 btnCreate.Enabled = false;
+
             }
             else
             {
                 MessageBox.Show("User account already exist");
             }
-
         }
         public bool ifUserAlreadyExist(int empID)
         {
@@ -263,24 +271,25 @@ namespace payrollsystemsti.AdminTabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", empID);
-                    int count = 0;
+                    int count = (int)cmd.ExecuteScalar();
                     return count > 0;
                 }
             }
         }
 
-        private bool CreateUser(string user, string password, string empID)
+        private bool CreateUser(string user, string password, int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO UserAccounts(UserName, Password, EmployeeID) VALUES(@username, @password, @empID)";
+                string query = "INSERT INTO UserAccounts(Username, Password, EmployeeID) " +
+                    "VALUES(@username, @password, @empID)";
 
                 using (SqlCommand cmd = new SqlCommand(query,conn))
                 {
                     cmd.Parameters.AddWithValue("@username", user);
                     cmd.Parameters.AddWithValue("@password", password);
-                    cmd.Parameters.AddWithValue("@empID", password);
+                    cmd.Parameters.AddWithValue("@empID", empID);
 
                     try
                     {
