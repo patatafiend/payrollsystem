@@ -280,10 +280,19 @@ namespace payrollsystemsti.Tabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
-                    cmd.ExecuteNonQuery();
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Departments: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool insertToPositions(string title)
@@ -294,11 +303,18 @@ namespace payrollsystemsti.Tabs
                 string query = "INSERT INTO Positions(PositionTitle) VALUES(@title)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@title", title);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Positions: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
         public bool insertToRoles(string title)
         {
@@ -309,10 +325,19 @@ namespace payrollsystemsti.Tabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
-                    cmd.ExecuteNonQuery();
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Roles: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool insertToLeaves(string title, bool hasProof)
@@ -326,10 +351,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@catname", title);
                     cmd.Parameters.AddWithValue("@proof", hasProof);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Leaves: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool updateDepartments(string title)
@@ -342,11 +375,19 @@ namespace payrollsystemsti.Tabs
                 {
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@departmentName", title);
-                    
-                    cmd.ExecuteNonQuery();
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Departments: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
         public bool updatePositions(string title)
         {
@@ -358,11 +399,19 @@ namespace payrollsystemsti.Tabs
                 {
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@position", title);
-                    
-                    cmd.ExecuteNonQuery();
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Positions: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
         public bool updateRoles(string title)
         {
@@ -375,10 +424,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@role", title);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Roles: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool updateLeaves(string title)
@@ -392,10 +449,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@name", title);
                     cmd.Parameters.AddWithValue("@ID", titleID);
 
-                    cmd.ExecuteNonQuery ();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Leaves: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool deactivateRole()
@@ -409,10 +474,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@status", 1);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Role: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool deactivateDepartment()
@@ -426,10 +499,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@status", 1);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Department: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool deactivatePosition()
@@ -443,10 +524,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@status", 1);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Position: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
         
         public bool deactivateLeave()
@@ -460,10 +549,18 @@ namespace payrollsystemsti.Tabs
                     cmd.Parameters.AddWithValue("@ID", titleID);
                     cmd.Parameters.AddWithValue("@status", 1);
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Leave: " + ex.Message);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public bool ifRoleTitleExist(string title)

@@ -48,6 +48,20 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -65,23 +79,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.pbEmployee = new System.Windows.Forms.PictureBox();
-            this.stipayrolldbDataSet = new payrollsystemsti.stipayrolldbDataSet();
-            this.departmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.departmentsTableAdapter = new payrollsystemsti.stipayrolldbDataSetTableAdapters.DepartmentsTableAdapter();
-            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.empID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -89,8 +86,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lbFileName
@@ -329,6 +324,98 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
+            // dgEmp
+            // 
+            this.dgEmp.HeaderText = "ID";
+            this.dgEmp.Name = "dgEmp";
+            this.dgEmp.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgDepartment
+            // 
+            this.dgDepartment.HeaderText = "Department";
+            this.dgDepartment.Name = "dgDepartment";
+            this.dgDepartment.ReadOnly = true;
+            // 
+            // dgPosition
+            // 
+            this.dgPosition.HeaderText = "Position";
+            this.dgPosition.Name = "dgPosition";
+            this.dgPosition.ReadOnly = true;
+            // 
+            // dgBasicRate
+            // 
+            this.dgBasicRate.HeaderText = "Basic Rate";
+            this.dgBasicRate.Name = "dgBasicRate";
+            this.dgBasicRate.ReadOnly = true;
+            // 
+            // dgRole
+            // 
+            this.dgRole.HeaderText = "Role";
+            this.dgRole.Name = "dgRole";
+            this.dgRole.ReadOnly = true;
+            // 
+            // dgDoB
+            // 
+            this.dgDoB.HeaderText = "DoB";
+            this.dgDoB.Name = "dgDoB";
+            this.dgDoB.ReadOnly = true;
+            this.dgDoB.Visible = false;
+            // 
+            // dgMobile
+            // 
+            this.dgMobile.HeaderText = "Mobile";
+            this.dgMobile.Name = "dgMobile";
+            this.dgMobile.ReadOnly = true;
+            this.dgMobile.Visible = false;
+            // 
+            // dgEmail
+            // 
+            this.dgEmail.HeaderText = "Email";
+            this.dgEmail.Name = "dgEmail";
+            this.dgEmail.ReadOnly = true;
+            this.dgEmail.Visible = false;
+            // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Address";
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
+            // dgSSN
+            // 
+            this.dgSSN.HeaderText = "SSN";
+            this.dgSSN.Name = "dgSSN";
+            this.dgSSN.ReadOnly = true;
+            this.dgSSN.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "FileName";
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgIsDeleted
+            // 
+            this.dgIsDeleted.HeaderText = "IsDeleted";
+            this.dgIsDeleted.Name = "dgIsDeleted";
+            this.dgIsDeleted.ReadOnly = true;
+            this.dgIsDeleted.Visible = false;
+            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -496,7 +583,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(59, 22);
+            this.label11.Location = new System.Drawing.Point(51, 22);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(255, 32);
@@ -517,112 +604,6 @@
             this.pbEmployee.TabIndex = 0;
             this.pbEmployee.TabStop = false;
             // 
-            // stipayrolldbDataSet
-            // 
-            this.stipayrolldbDataSet.DataSetName = "stipayrolldbDataSet";
-            this.stipayrolldbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // departmentsBindingSource
-            // 
-            this.departmentsBindingSource.DataMember = "Departments";
-            this.departmentsBindingSource.DataSource = this.stipayrolldbDataSet;
-            // 
-            // departmentsTableAdapter
-            // 
-            this.departmentsTableAdapter.ClearBeforeFill = true;
-            // 
-            // dgEmp
-            // 
-            this.dgEmp.HeaderText = "ID";
-            this.dgEmp.Name = "dgEmp";
-            this.dgEmp.ReadOnly = true;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgDepartment
-            // 
-            this.dgDepartment.HeaderText = "Department";
-            this.dgDepartment.Name = "dgDepartment";
-            this.dgDepartment.ReadOnly = true;
-            // 
-            // dgPosition
-            // 
-            this.dgPosition.HeaderText = "Position";
-            this.dgPosition.Name = "dgPosition";
-            this.dgPosition.ReadOnly = true;
-            // 
-            // dgBasicRate
-            // 
-            this.dgBasicRate.HeaderText = "Basic Rate";
-            this.dgBasicRate.Name = "dgBasicRate";
-            this.dgBasicRate.ReadOnly = true;
-            // 
-            // dgRole
-            // 
-            this.dgRole.HeaderText = "Role";
-            this.dgRole.Name = "dgRole";
-            this.dgRole.ReadOnly = true;
-            // 
-            // dgDoB
-            // 
-            this.dgDoB.HeaderText = "DoB";
-            this.dgDoB.Name = "dgDoB";
-            this.dgDoB.ReadOnly = true;
-            this.dgDoB.Visible = false;
-            // 
-            // dgMobile
-            // 
-            this.dgMobile.HeaderText = "Mobile";
-            this.dgMobile.Name = "dgMobile";
-            this.dgMobile.ReadOnly = true;
-            this.dgMobile.Visible = false;
-            // 
-            // dgEmail
-            // 
-            this.dgEmail.HeaderText = "Email";
-            this.dgEmail.Name = "dgEmail";
-            this.dgEmail.ReadOnly = true;
-            this.dgEmail.Visible = false;
-            // 
-            // dgAdd
-            // 
-            this.dgAdd.HeaderText = "Address";
-            this.dgAdd.Name = "dgAdd";
-            this.dgAdd.ReadOnly = true;
-            this.dgAdd.Visible = false;
-            // 
-            // dgSSN
-            // 
-            this.dgSSN.HeaderText = "SSN";
-            this.dgSSN.Name = "dgSSN";
-            this.dgSSN.ReadOnly = true;
-            this.dgSSN.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "FileName";
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgIsDeleted
-            // 
-            this.dgIsDeleted.HeaderText = "IsDeleted";
-            this.dgIsDeleted.Name = "dgIsDeleted";
-            this.dgIsDeleted.ReadOnly = true;
-            this.dgIsDeleted.Visible = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -640,7 +621,7 @@
             this.empID.Multiline = true;
             this.empID.Name = "empID";
             this.empID.ReadOnly = true;
-            this.empID.Size = new System.Drawing.Size(172, 28);
+            this.empID.Size = new System.Drawing.Size(41, 15);
             this.empID.TabIndex = 8;
             this.empID.Visible = false;
             // 
@@ -675,8 +656,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -720,9 +699,6 @@
         private System.Windows.Forms.ComboBox cbDeparment;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label label12;
-        private stipayrolldbDataSet stipayrolldbDataSet;
-        private System.Windows.Forms.BindingSource departmentsBindingSource;
-        private stipayrolldbDataSetTableAdapters.DepartmentsTableAdapter departmentsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmp;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;

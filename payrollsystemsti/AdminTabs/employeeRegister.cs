@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -119,50 +120,73 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else
                 {
-                    using (SqlConnection conn = new SqlConnection(m.connStr))
+                    if (insertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
+                        getPositionID(cbPosition.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
+                        tbMob.Text, 0, 5, 0))
                     {
-                        conn.Open();
-                        string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
-                                   "Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, " +
-                                   "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
-                                   "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
-                                   "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
-                                   "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@FirstName", tbFirstName.Text);
-                            cmd.Parameters.AddWithValue("@LastName", tbLastName.Text);
-                            cmd.Parameters.AddWithValue("@Departments", getDepartmentID(cbDeparment.Text));
-                            cmd.Parameters.AddWithValue("@Positions", getPositionID(cbPosition.Text));
-                            cmd.Parameters.AddWithValue("@SSN", tbSSN.Text);
-                            cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
-                            cmd.Parameters.AddWithValue("@Address", tbAddress.Text);
-                            cmd.Parameters.AddWithValue("@Dob", dtDob.Value.ToString("MM/dd/yyyy"));
-                            cmd.Parameters.AddWithValue("@BasicRate", tbBasicRate.Text);
-                            cmd.Parameters.AddWithValue("@FileName", fileName);
-                            cmd.Parameters.AddWithValue("@ImageData", m.ConvertImageToBinary(pbEmployee.Image));
-                            cmd.Parameters.AddWithValue("@Mobile", tbMob.Text);
-                            cmd.Parameters.AddWithValue("@IsDeleted", '0');
-							cmd.Parameters.AddWithValue("@Leaves", 5);
-							cmd.Parameters.AddWithValue("@Absents", 0);
-
-                            cmd.ExecuteNonQuery();
-                        }
+                        ClearData();
+                        LoadData();
+                        LoadDepartments();
+                        LoadPositions();
+                        LoadRoles();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error");
                     }
 
                 }
 
             }
-            ClearData();
-            LoadData();
-            LoadDepartments();
-            LoadPositions();
-            LoadRoles();
+            
 
         }
 
-        
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private bool insertToEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
+                           "Department, Position, SSN, Email, Address, Dob, BasicRate, FileName, " +
+                           "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
+                           "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
+                           "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
+                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+                    cmd.Parameters.AddWithValue("@Departments", department);
+                    cmd.Parameters.AddWithValue("@Positions", position);
+                    cmd.Parameters.AddWithValue("@SSN", ssn);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@Dob", dob);
+                    cmd.Parameters.AddWithValue("@BasicRate", basic);
+                    cmd.Parameters.AddWithValue("@FileName", fileName);
+                    cmd.Parameters.AddWithValue("@ImageData", imageData);
+                    cmd.Parameters.AddWithValue("@Mobile", mobile);
+                    cmd.Parameters.AddWithValue("@IsDeleted", isDeleted);
+                    cmd.Parameters.AddWithValue("@Leaves", leaves);
+                    cmd.Parameters.AddWithValue("@Absents", absents);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Employee Accounts: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        private bool updateEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -214,6 +238,13 @@ namespace payrollsystemsti.AdminTabs
                 LoadPositions();
                 LoadRoles();
             }
+        }
+
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            
         }
         private void btnDeactivate_Click(object sender, EventArgs e)
         {

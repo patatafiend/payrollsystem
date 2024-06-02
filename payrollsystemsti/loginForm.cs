@@ -49,11 +49,11 @@ namespace payrollsystemsti
 					try
 					{
 						conn.Open();
-						string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, UserAccounts.Username, " +
-									   "EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.Department, " +
-									   "EmployeeAccounts.Leaves, EmployeeAccounts.Absents " +
-									   "FROM UserAccounts " +
-									   "INNER JOIN EmployeeAccounts ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID " +
+						string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, " +
+							           "UserAccounts.Username, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
+									   "EmployeeAccounts.Department, EmployeeAccounts.Leaves, EmployeeAccounts.Absents " +
+									   "FROM UserAccounts INNER JOIN EmployeeAccounts " +
+									   "ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID " +
 									   "WHERE Username=@username AND Password=@password";
 
 						using (SqlCommand cmd = new SqlCommand(query, conn))
