@@ -40,7 +40,7 @@ namespace payrollsystemsti
 				dashBoard.isClickable = true;
 
 				// Log the login time for the tester user
-				LogLoginTime(0, "Tester", "User", "Testing", 0, 0); // Assuming 0 or dummy values for tester
+				LogLoginTime(0, "Tester", "User", 0, 0, 0); // Assuming 0 or dummy values for tester
 			}
 			else
 			{
@@ -49,10 +49,10 @@ namespace payrollsystemsti
 					try
 					{
 						conn.Open();
-						string query = "SELECT UserAccounts.UserID, UserAccounts.Role, UserAccounts.EmployeeID, " +
+						string query = "SELECT UserAccounts.UserID, UserAccounts.EmployeeID, " +
 							           "UserAccounts.Username, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
-									   "EmployeeAccounts.Department, EmployeeAccounts.Leaves, EmployeeAccounts.Absents " +
-									   "FROM UserAccounts INNER JOIN EmployeeAccounts " +
+									   "EmployeeAccounts.DepartmentID, EmployeeAccounts.Leaves, EmployeeAccounts.Absents " +
+									   "EmployeeAccounts.RoleID FROM UserAccounts INNER JOIN EmployeeAccounts " +
 									   "ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID " +
 									   "WHERE Username=@username AND Password=@password";
 
@@ -71,31 +71,35 @@ namespace payrollsystemsti
 									int numAbsents = (int)reader["Absents"];
 									int totalEmployee = m.GetTotalEmployeeCount();
 
-									string role = reader["Role"].ToString();
-									string username = reader["Username"].ToString();
+									string roleTitle = m.getRoleTitle((int)reader["RoleID"]);
+                                    string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
+                                    int departmentID = (int)reader["DepartmentID"];
+
+
+                                    string username = reader["Username"].ToString();
 									string fname = reader["FirstName"].ToString();
 									string lname = reader["LastName"].ToString();  // LastName added
-									string department = reader["Department"].ToString();
+									
 
 									// Log the login time
-									LogLoginTime(employeeID, fname, lname, department, numLeaves, numAbsents);
+									LogLoginTime(employeeID, fname, lname, departmentID, numLeaves, numAbsents);
 
 									this.Hide();
 									formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
 									formDashboard.formDashboardInstance.LoggedInFirstName = fname;
-									formDashboard.formDashboardInstance.LoggedInDepartment = department;
+									formDashboard.formDashboardInstance.LoggedInDepartment = departmentName;
 									formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
 
 									// Disable function based on role/department
-									if (role == "Employee")
+									if (roleTitle == "User")
 									{
-										if (department == "HR")
+										if (departmentName == "HR")
 										{
 											formDashboard.GetEnrollFingerPanel().Hide();
 											formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
 											dashBoard.isClickable = true;
 										}
-										else if (department == "Accountant")
+										else if (departmentName == "Accountant")
 										{
 											formDashboard.GetUserAccountPanel().Hide();
 											formDashboard.GetEnrollFingerPanel().Hide();
@@ -215,7 +219,7 @@ namespace payrollsystemsti
             attedanceMonitoring.Show();
 
         }
-		private void LogLoginTime(int employeeID, string firstName, string lastName, string department, int leaves, int absents)
+		private void LogLoginTime(int employeeID, string firstName, string lastName, int department, int leaves, int absents)
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{

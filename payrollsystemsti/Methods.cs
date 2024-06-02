@@ -187,5 +187,53 @@ namespace payrollsystemsti
 			}
 			return totalCount;
 		}
-	}
+
+        public string getDepartmentName(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+
+        public string getPositionTitle(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT PositionTitle FROM Positions WHERE PositionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+
+        public string getRoleTitle(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT RoleTitle FROM Roles WHERE RoleID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    string name = (string)cmd.ExecuteScalar();
+                    return name;
+                }
+            }
+        }
+    }
 }

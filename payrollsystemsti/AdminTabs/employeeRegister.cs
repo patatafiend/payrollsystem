@@ -120,11 +120,13 @@ namespace payrollsystemsti.AdminTabs
                 }
                 else
                 {
-                    if (insertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
+                    if (InsertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
                         getPositionID(cbPosition.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
                         dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
                         tbMob.Text, 0, 5, 0))
                     {
+                        string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
+                        CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[3]);
                         ClearData();
                         LoadData();
                         LoadDepartments();
@@ -143,7 +145,7 @@ namespace payrollsystemsti.AdminTabs
 
         }
 
-        private bool insertToEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -186,65 +188,138 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool updateEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+        private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeAccounts SET FirstName = @firstName, LastName = @lastName," +
+                       "DepartmentID = @department, PositionID = @position, SSN = @ssn, Email = @email, " +
+                       "Address = @address, Dob = @dob, BasicRate = @basicRate, ImageData = @imageData, " +
+                       "Mobile = @mobile, RoleID = @role";
+
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    query += ", FileName = @FileName ";
+                }
+
+                query += " WHERE EmployeeID = @employeeId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@department", department);
+                    cmd.Parameters.AddWithValue("@position", position);
+                    cmd.Parameters.AddWithValue("@ssn", ssn);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@address", address);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+                    cmd.Parameters.AddWithValue("@basicRate", basic);
+                    cmd.Parameters.AddWithValue("@fileName", fileName);
+                    cmd.Parameters.AddWithValue("@imageData", imageData);
+                    cmd.Parameters.AddWithValue("@mobile", mobile);
+                    cmd.Parameters.AddWithValue("@employeeId", empID);
+
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        cmd.Parameters.AddWithValue("@FileName", fileName);
+                    }
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Updating Employee: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        private bool CreateUser(string user, string password)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO EmployeeAccounts(UserName, Password) VALUES(@username, password)";
+
+                using (SqlCommand cmd = new SqlCommand(query,conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", user);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Updating Employee: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        private string GetEmployeeInfo(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT FirstName, Email FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string fname = reader["FirstName"].ToString();
+                            string email = reader["Email"].ToString();
+                            int employeeID = (int)reader["EmployeeID"];
+
+                            string info = fname + " " + employeeID + " " + email;
+                            return info;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Employee doesn't exist");
+                            return " ";
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                using (SqlConnection conn = new SqlConnection(m.connStr))
+                if (UpdateEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
+                        getPositionID(cbPosition.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
+                        tbMob.Text, Convert.ToInt32(empID.Text)))
                 {
-                    conn.Open();
-                    string query = "UPDATE EmployeeAccounts SET FirstName = @FirstName, LastName = @LastName," +
-                           "DepartmentID = @Department, PositionID = @Position, SSN = @SSN, Email = @Email, " +
-                           "Address = @Address, Dob = @Dob, BasicRate = @BasicRate, ImageData = @ImageData, " +
-                           "Mobile = @Mobile, RoleID = @role";
-
-                    if (!string.IsNullOrEmpty(fileName))
-                    {
-                        query += ", FileName = @FileName ";
-                    }
-
-                    query += " WHERE EmployeeID = @employeeId";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@FirstName", tbFirstName.Text);
-                        cmd.Parameters.AddWithValue("@LastName", tbLastName.Text);
-                        cmd.Parameters.AddWithValue("@Department", getDepartmentID(cbDeparment.Text));
-                        cmd.Parameters.AddWithValue("@Position", getPositionID(cbPosition.Text));
-                        cmd.Parameters.AddWithValue("@role", getRoleID(cbRole.Text));
-                        cmd.Parameters.AddWithValue("@SSN", tbSSN.Text);
-                        cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
-                        cmd.Parameters.AddWithValue("@Address", tbAddress.Text);
-                        cmd.Parameters.AddWithValue("@Dob", dtDob.Value.ToString("MM/dd/yyyy"));
-                        cmd.Parameters.AddWithValue("@BasicRate", tbBasicRate.Text);
-                        cmd.Parameters.AddWithValue("@ImageData", m.ConvertImageToBinary(pbEmployee.Image));
-                        cmd.Parameters.AddWithValue("@Mobile", tbMob.Text);
-                        cmd.Parameters.AddWithValue("@employeeId", empID.Text);
-
-                        if (!string.IsNullOrEmpty(fileName))
-                        {
-                            cmd.Parameters.AddWithValue("@FileName", fileName);
-                        }
-
-                        cmd.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearData();
+                    LoadData();
+                    LoadDepartments();
+                    LoadPositions();
+                    LoadRoles();
                 }
-
-                MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearData();
-                LoadData();
-                LoadDepartments();
-                LoadPositions();
-                LoadRoles();
             }
-        }
-
-
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            
+            else
+            {
+                btnUpdate.Enabled = false;
+                btnDeactivate.Enabled = false;
+            }
         }
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
@@ -334,9 +409,9 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgAdd"].Value = row["Address"].ToString();
                         dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
                         dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
-                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = getDepartmentName(Convert.ToInt32(row["DepartmentID"].ToString()));
-                        dataGridView1.Rows[n].Cells["dgPosition"].Value = getPositionTitle(Convert.ToInt32(row["PositionID"].ToString()));
-                        dataGridView1.Rows[n].Cells["dgRole"].Value = getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = m.getDepartmentName(Convert.ToInt32(row["DepartmentID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgPosition"].Value = m.getPositionTitle(Convert.ToInt32(row["PositionID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgRole"].Value = m.getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
                         dataGridView1.Rows[n].Cells["dgBasicRate"].Value = row["BasicRate"].ToString();
                     }
                 }
@@ -437,55 +512,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-
-        public string getDepartmentName(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentID = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    string name = (string)cmd.ExecuteScalar();
-                    return name;
-                }
-            }
-        }
-
-        public string getPositionTitle(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT PositionTitle FROM Positions WHERE PositionID = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    string name = (string)cmd.ExecuteScalar();
-                    return name;
-                }
-            }
-        }
-
-        public string getRoleTitle(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT RoleTitle FROM Roles WHERE RoleID = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    string name = (string)cmd.ExecuteScalar();
-                    return name;
-                }
-            }
-        }
-
 
         private void LoadDepartments()
         {
