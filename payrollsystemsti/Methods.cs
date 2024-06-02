@@ -4,16 +4,17 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace payrollsystemsti
 {
     internal class Methods
     {
         //random password generator variables
-        private const string LowerCase = "abcdefghijklmnopqrstuvwxyz";
-        private const string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private const string Digits = "0123456789";
-        private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
+        //private const string LowerCase = "abcdefghijklmnopqrstuvwxyz";
+        //private const string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //private const string Digits = "0123456789";
+        //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
         //Connection String
         public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
 
@@ -74,33 +75,33 @@ namespace payrollsystemsti
             return imageData;
         }
 
-        public string passwordGenerator(int passlength = 12)
-        {
-            string validChars = LowerCase + UpperCase + Digits + SpecialChars;
-            Random random = new Random();
+        //public string passwordGenerator(int passlength = 12)
+        //{
+        //    string validChars = LowerCase + UpperCase + Digits + SpecialChars;
+        //    Random random = new Random();
 
-            // Ensure the password has at least one character of each type
-            string mandatoryChars =
-                LowerCase[random.Next(LowerCase.Length)].ToString() +
-                UpperCase[random.Next(UpperCase.Length)].ToString() +
-                Digits[random.Next(Digits.Length)].ToString() +
-                SpecialChars[random.Next(SpecialChars.Length)].ToString();
+        //    // Ensure the password has at least one character of each type
+        //    string mandatoryChars =
+        //        LowerCase[random.Next(LowerCase.Length)].ToString() +
+        //        UpperCase[random.Next(UpperCase.Length)].ToString() +
+        //        Digits[random.Next(Digits.Length)].ToString() +
+        //        SpecialChars[random.Next(SpecialChars.Length)].ToString();
 
-            // Fill the rest of the password length with random characters from the combined set
-            string remainingChars = new string(Enumerable.Repeat(validChars, passlength - mandatoryChars.Length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+        //    // Fill the rest of the password length with random characters from the combined set
+        //    string remainingChars = new string(Enumerable.Repeat(validChars, passlength - mandatoryChars.Length)
+        //        .Select(s => s[random.Next(s.Length)]).ToArray());
 
-            // Combine and shuffle mandatory and remaining characters to ensure randomness
-            string unshuffledPassword = mandatoryChars + remainingChars;
+        //    // Combine and shuffle mandatory and remaining characters to ensure randomness
+        //    string unshuffledPassword = mandatoryChars + remainingChars;
 
-            // Shuffle the resultant password to ensure mandatory characters are randomly distributed
-            string shuffledPassword = new string(unshuffledPassword.ToCharArray().OrderBy(s => (random.Next(2) % 2) == 0).ToArray());
+        //    // Shuffle the resultant password to ensure mandatory characters are randomly distributed
+        //    string shuffledPassword = new string(unshuffledPassword.ToCharArray().OrderBy(s => (random.Next(2) % 2) == 0).ToArray());
 
-            // Escape single quotes to prevent SQL injection issues
-            string sqlSafePassword = shuffledPassword.Replace("'", "''");
+        //    // Escape single quotes to prevent SQL injection issues
+        //    string sqlSafePassword = shuffledPassword.Replace("'", "''");
 
-            return sqlSafePassword;
-        }
+        //    return sqlSafePassword;
+        //}
 
         public bool ValidateEmail(string email)
         {
@@ -232,6 +233,173 @@ namespace payrollsystemsti
 
                     string name = (string)cmd.ExecuteScalar();
                     return name;
+                }
+            }
+        }
+
+        public bool ifRoleTitleExist(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Roles WHERE IsDeactivated = 0 AND RoleTitle = @role";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@role", title);
+                    int result = (int)cmd.ExecuteScalar();
+
+                    return result > 0;
+                }
+            }
+        }
+        public bool ifDepartmentNameExist(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Departments WHERE IsDeactivated = 0 AND DepartmentName = @department";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@department", title);
+                    int result = (int)cmd.ExecuteScalar();
+
+                    return result > 0;
+                }
+            }
+        }
+        public bool ifPositionTitleExist(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Positions WHERE IsDeactivated = 0 AND PositionTitle = @position";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@position", title);
+                    int result = (int)cmd.ExecuteScalar();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        public bool insertToDepartments(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Departments(DepartmentName) VALUES(@title)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Departments: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool insertToPositions(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Positions(PositionTitle) VALUES(@title)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Positions: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool insertToRoles(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Roles(RoleTitle) VALUES(@title)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Roles: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool insertToLeaves(string title, bool hasProof)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO LeaveCategory (CategoryName, hasProof) VALUES (@catname, @proof)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@catname", title);
+                    cmd.Parameters.AddWithValue("@proof", hasProof);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Leaves: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool insertToDeductions(string title, int amount)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Deductions (DeductionType, Amount) VALUES (@type, @amount)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Deductions: " + ex.Message);
+                        return false;
+                    }
                 }
             }
         }

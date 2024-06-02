@@ -147,33 +147,33 @@ namespace payrollsystemsti.Tabs
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!ifDepartmentNameExist(tbTitle.Text.ToString()) && !ifRoleTitleExist(tbTitle.Text.ToString()) && !ifPositionTitleExist(tbTitle.Text.ToString()))
+            if (!m.ifDepartmentNameExist(tbTitle.Text.ToString()) && !m.ifRoleTitleExist(tbTitle.Text.ToString()) && !m.ifPositionTitleExist(tbTitle.Text.ToString()))
             {
                 switch (cbMaintenance.Text.ToString())
                 {
                     case "Departments":
-                        insertToDepartments(tbTitle.Text);
+                        m.insertToDepartments(tbTitle.Text);
                         LoadDepartmentData();
                         break;
                     case "Positions":
-                        insertToPositions(tbTitle.Text);
+                        m.insertToPositions(tbTitle.Text);
                         LoadPositionData();
                         break;
                     case "Roles":
-                        insertToRoles(tbTitle.Text);
+                        m.insertToRoles(tbTitle.Text);
                         LoadRoleData();
                         break;
                     case "Leaves":
-                        insertToLeaves(tbTitle.Text, checkBox());
+                        m.insertToLeaves(tbTitle.Text, checkBox());
                         LoadLeaveCategoryData();
                         break;
                     case "Deductions":
-                        insertToDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
+                        m.insertToDeductions(tbTitle.Text, Convert.ToInt32(tbAmount.Text));
                         LoadDeductionData();
                         break;
                 }
             }
-            else if (ifDepartmentNameExist(tbTitle.Text.ToString()) || ifRoleTitleExist(tbTitle.Text.ToString()) || ifPositionTitleExist(tbTitle.Text.ToString()))
+            else if (m.ifDepartmentNameExist(tbTitle.Text.ToString()) || m.ifRoleTitleExist(tbTitle.Text.ToString()) || m.ifPositionTitleExist(tbTitle.Text.ToString()))
             {
                 MessageBox.Show("Title already exists");
             }
@@ -189,7 +189,7 @@ namespace payrollsystemsti.Tabs
             DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (!ifDepartmentNameExist(tbTitle.Text.ToString()) && !ifRoleTitleExist(tbTitle.Text.ToString()) && !ifPositionTitleExist(tbTitle.Text.ToString()))
+                if (!m.ifDepartmentNameExist(tbTitle.Text.ToString()) && !m.ifRoleTitleExist(tbTitle.Text.ToString()) && !m.ifPositionTitleExist(tbTitle.Text.ToString()))
                 {
                     switch (cbMaintenance.Text.ToString())
                     {
@@ -215,7 +215,7 @@ namespace payrollsystemsti.Tabs
                             break;
                     }
                 }
-                else if (ifDepartmentNameExist(tbTitle.Text.ToString()) || ifRoleTitleExist(tbTitle.Text.ToString()) || ifPositionTitleExist(tbTitle.Text.ToString()))
+                else if (m.ifDepartmentNameExist(tbTitle.Text.ToString()) || m.ifRoleTitleExist(tbTitle.Text.ToString()) || m.ifPositionTitleExist(tbTitle.Text.ToString()))
                 {
                     MessageBox.Show("Title already exists");
                 }
@@ -305,124 +305,7 @@ namespace payrollsystemsti.Tabs
             }
         }
 
-        public bool insertToDepartments(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO Departments(DepartmentName) VALUES(@title)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@title", title);
-
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Departments: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
-
-        public bool insertToPositions(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO Positions(PositionTitle) VALUES(@title)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Positions: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
-        public bool insertToRoles(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO Roles(RoleTitle) VALUES(@title)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@title", title);
-
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Roles: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
-
-        public bool insertToLeaves(string title, bool hasProof)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO LeaveCategory (CategoryName, hasProof) VALUES (@catname, @proof)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@catname", title);
-                    cmd.Parameters.AddWithValue("@proof", hasProof);
-
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Leaves: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
-
-        public bool insertToDeductions(string title, int amount)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO Deductions (DeductionType, Amount) VALUES (@type, @amount)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@type", title);
-                    cmd.Parameters.AddWithValue("@amount", amount);
-
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Deductions: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
+        
 
         public bool updateDepartments(string title)
         {
@@ -671,52 +554,6 @@ namespace payrollsystemsti.Tabs
                         MessageBox.Show("Error deactivating the Deduction: " + ex.Message);
                         return false;
                     }
-                }
-            }
-        }
-
-        public bool ifRoleTitleExist(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Roles WHERE IsDeactivated = 0 AND RoleTitle = @role";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@role", title);
-                    int result = (int)cmd.ExecuteScalar();
-
-                    return result > 0;
-                }
-            }
-        }
-        public bool ifDepartmentNameExist(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Departments WHERE IsDeactivated = 0 AND DepartmentName = @department";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@department", title);
-                    int result = (int)cmd.ExecuteScalar();
-
-                    return result > 0;
-                }
-            }
-        }
-        public bool ifPositionTitleExist(string title)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Positions WHERE IsDeactivated = 0 AND PositionTitle = @position";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@position", title);
-                    int result = (int)cmd.ExecuteScalar();
-
-                    return result > 0;
                 }
             }
         }
