@@ -154,7 +154,7 @@ namespace payrollsystemsti.AdminTabs
                            "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
                            "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
-                           "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
+                           "@Department, @Position, @Role, @SSN, @Email, @Address, @Dob, @BasicRate, " +
                            "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -195,7 +195,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 conn.Open();
                 string query = "UPDATE EmployeeAccounts SET FirstName = @firstName, LastName = @lastName," +
-                       "DepartmentID = @department, PositionID = @position, SSN = @ssn, Email = @email, " +
+                       "DepartmentID = @department, PositionID = @position, RoleID = @role, SSN = @ssn, Email = @email, " +
                        "Address = @address, Dob = @dob, BasicRate = @basicRate, ImageData = @imageData, " +
                        "Mobile = @mobile, RoleID = @role";
 
