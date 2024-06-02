@@ -271,7 +271,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT FirstName, Email FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                string query = "SELECT FirstName, Email, EmployeeID FROM EmployeeAccounts WHERE EmployeeID = @empID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
