@@ -46,6 +46,7 @@ namespace payrollsystemsti.AdminTabs
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
+            btnCreate.Enabled = false;
         }
         
         // checks if textboxes are filled
@@ -245,7 +246,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO EmployeeAccounts(UserName, Password) VALUES(@username, password)";
+                string query = "INSERT INTO UserAccounts(UserName, Password) VALUES(@username, password)";
 
                 using (SqlCommand cmd = new SqlCommand(query,conn))
                 {
@@ -454,6 +455,7 @@ namespace payrollsystemsti.AdminTabs
 
             btnSave.Enabled = false;
             btnUpdate.Enabled = true;
+            btnCreate.Enabled = true;
             btnDeactivate.Enabled = false;
         }
         //gets the value in the combo box role
@@ -772,6 +774,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
                 CreateUser(info.Split(' ')[0] + info.Split(' ')[1], info.Split(' ')[2]);
+                btnCreate.Enabled = false;
             }
             else
             {
