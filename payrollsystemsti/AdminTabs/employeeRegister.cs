@@ -249,7 +249,7 @@ namespace payrollsystemsti.AdminTabs
                 string password = info.Split(' ')[0] + info.Split(' ')[1];
                 string id = info.Split(' ')[1];
 
-                if(CreateUser(email, password, Convert.ToInt32(id)))
+                if(CreateUser(email, password.ToLower(), Convert.ToInt32(id)))
                 {
                     MessageBox.Show("Created User Succesfully");
                 }
