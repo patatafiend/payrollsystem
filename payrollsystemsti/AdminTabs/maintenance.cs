@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace payrollsystemsti.Tabs
 {
-    public partial class manageEmployee : Form
+    public partial class maintenance : Form
     {
 
         Methods m = new Methods();
         int titleID = 0;
 
-        public manageEmployee()
+        public maintenance()
         {
             InitializeComponent();
         }

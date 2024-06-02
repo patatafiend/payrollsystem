@@ -1,6 +1,6 @@
 ﻿namespace payrollsystemsti.Tabs
 {
-    partial class manageEmployee
+    partial class maintenance
     {
         /// <summary>
         /// Required designer variable.

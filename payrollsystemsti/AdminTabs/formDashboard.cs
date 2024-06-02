@@ -16,7 +16,7 @@ namespace payrollsystemsti
         public static formDashboard formDashboardInstance;
         // Declare form instances
         private dashBoard dashboard;
-        private manageEmployee userRegister;
+        private maintenance userRegister;
         private formSettings fSettings;
         private employeeRegister empRegister;
         private employeeSalary employeeSalary;
@@ -261,7 +261,7 @@ namespace payrollsystemsti
 			// Show user registration form or activate if already open
 			if (userRegister == null)
             {
-                userRegister = new manageEmployee();
+                userRegister = new maintenance();
                 userRegister.FormClosed += userRegister_FormClosed;
                 userRegister.MdiParent = this;
                 userRegister.Dock = DockStyle.Fill;

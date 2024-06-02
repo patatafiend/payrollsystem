@@ -49,19 +49,19 @@ namespace payrollsystemsti
 					try
 					{
 						conn.Open();
-						string query = "SELECT UserAccounts.UserID, UserAccounts.EmployeeID, " +
-							           "UserAccounts.Username, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
-									   "EmployeeAccounts.DepartmentID, EmployeeAccounts.Leaves, EmployeeAccounts.Absents " +
-									   "EmployeeAccounts.RoleID FROM UserAccounts INNER JOIN EmployeeAccounts " +
-									   "ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID " +
-									   "WHERE Username=@username AND Password=@password";
+						string query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.EmployeeID, " +
+							"EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.DepartmentID, " +
+							"EmployeeAccounts.Leaves, EmployeeAccounts.Absents, EmployeeAccounts.RoleID FROM UserAccounts " +
+							"INNER JOIN EmployeeAccounts ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID WHERE " +
+							"Username=@username AND Password=@password AND IsDeactivated = @status";
 
 						using (SqlCommand cmd = new SqlCommand(query, conn))
 						{
 							cmd.Parameters.AddWithValue("@username", tbUserName.Text);
 							cmd.Parameters.AddWithValue("@password", tbPassword.Text);
+                            cmd.Parameters.AddWithValue("@status", 0);
 
-							using (SqlDataReader reader = cmd.ExecuteReader())
+                            using (SqlDataReader reader = cmd.ExecuteReader())
 							{
 								if (reader.Read())
 								{
