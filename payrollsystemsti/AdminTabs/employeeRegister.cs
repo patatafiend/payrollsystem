@@ -121,7 +121,7 @@ namespace payrollsystemsti.AdminTabs
                 else
                 {
                     if (InsertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
-                        getPositionID(cbPosition.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+                        getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
                         dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
                         tbMob.Text, 0, 5, 0))
                     {
@@ -145,13 +145,13 @@ namespace payrollsystemsti.AdminTabs
 
         }
 
-        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
-                           "DepartmentID, PositionID, SSN, Email, Address, Dob, BasicRate, FileName, " +
+                           "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
                            "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
                            "@Department, @Position, @SSN, @Email, @Address, @Dob, @BasicRate, " +
@@ -160,8 +160,9 @@ namespace payrollsystemsti.AdminTabs
                 {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
                     cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Departments", department);
-                    cmd.Parameters.AddWithValue("@Positions", position);
+                    cmd.Parameters.AddWithValue("@Department", department);
+                    cmd.Parameters.AddWithValue("@Position", position);
+                    cmd.Parameters.AddWithValue("@Role", role);
                     cmd.Parameters.AddWithValue("@SSN", ssn);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Address", address);
@@ -188,7 +189,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID)
+        private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -211,6 +212,7 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@department", department);
                     cmd.Parameters.AddWithValue("@position", position);
+                    cmd.Parameters.AddWithValue("@role", role);
                     cmd.Parameters.AddWithValue("@ssn", ssn);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@address", address);
@@ -303,7 +305,7 @@ namespace payrollsystemsti.AdminTabs
             if (dialogResult == DialogResult.Yes)
             {
                 if (UpdateEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
-                        getPositionID(cbPosition.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+                        getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
                         dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
                         tbMob.Text, Convert.ToInt32(empID.Text)))
                 {
