@@ -52,7 +52,7 @@
             </Paragraphs>
             <rd:DefaultName>pName</rd:DefaultName>
             <Top>0.20833in</Top>
-            <Left>1.52653in</Left>
+            <Left>1.78694in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <Style>
@@ -72,7 +72,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Employee Name</Value>
+                    <Value>Employee Name:</Value>
                     <Style>
                       <FontFamily>Poppins</FontFamily>
                     </Style>
@@ -85,7 +85,7 @@
             <Top>0.20833in</Top>
             <Left>0.37375in</Left>
             <Height>0.25in</Height>
-            <Width>1.08333in</Width>
+            <Width>1.27083in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -245,7 +245,7 @@
             <Top>0.84722in</Top>
             <Left>4.78125in</Left>
             <Height>0.25in</Height>
-            <Width>1.08333in</Width>
+            <Width>1.16889in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -273,7 +273,7 @@
             </Paragraphs>
             <rd:DefaultName>SM</rd:DefaultName>
             <Top>0.52778in</Top>
-            <Left>1.52653in</Left>
+            <Left>1.78694in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>7</ZIndex>
@@ -333,7 +333,7 @@
             </Paragraphs>
             <rd:DefaultName>DR</rd:DefaultName>
             <Top>0.84722in</Top>
-            <Left>1.52653in</Left>
+            <Left>1.78694in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>9</ZIndex>
