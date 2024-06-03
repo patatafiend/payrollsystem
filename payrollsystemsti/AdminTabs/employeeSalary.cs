@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -59,10 +60,38 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        public void LoadComputedPayrollData()
+        {
+            dataGridView1.Rows.Clear();
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Payroll";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["BasicRate"].ToString(); ;
+                        dataGridView1.Rows[n].Cells["dgOT"].Value = row["BasicRate"].ToString(); ;
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = row["BasicRate"].ToString(); ;
+                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = row["BasicRate"].ToString(); ;
+                    }
+                }
+            }
+        }
+
         private void employeeSalary_Load(object sender, System.EventArgs e)
         {
             LoadPayrollData();
-
+            firsInterface();
             SetPayPeriodDefaults();
         }
 
@@ -324,6 +353,78 @@ namespace payrollsystemsti.AdminTabs
                 Convert.ToDouble(tbAdjustment.Text));
 
             tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+        }
+
+        public void setPaySlipInfo(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
+                    "Payroll.PayPeriodStart, Payroll.PayPeriodEnd, Payroll.GrossPay, Payroll.NetPay FROM EmployeeAccounts INNER JOIN" +
+                    "Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    
+                }
+            }
+        }
+
+        private void btnPayslip_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbPayroll_SelectedValueChanged(object sender, EventArgs e)
+        {
+            switch (cbPayroll.Text)
+            {
+                case "Payroll Computation":
+                    hidePayrollComputation();
+                    break;
+                case "Printing":
+                    firsInterface();
+                    break;
+                default:
+                    firsInterface();
+                    break;
+            }
+        }
+
+        public void hidePayrollComputation()
+        {
+            lbStart.Visible = false;
+            lbEnd.Visible = false;
+
+            dtStart.Visible = false;
+            dtEnd.Visible = false;
+
+            gb1.Visible = false;
+            gb2.Visible = false;
+            gb3.Visible = false;
+            gb4.Visible = false;
+
+            btnCompute.Visible = false;
+            btnPayslip.Visible = true;
+        }
+        public void firsInterface()
+        {
+            
+            lbStart.Visible = true;
+            lbEnd.Visible = true;
+
+            dtStart.Visible = true;
+            dtEnd.Visible = true;
+
+            gb1.Visible = true;
+            gb2.Visible = true;
+            gb3.Visible = true;
+            gb4.Visible = true;
+
+            btnCompute.Visible = true;
+            btnPayslip.Visible = false;
         }
     }
 }
