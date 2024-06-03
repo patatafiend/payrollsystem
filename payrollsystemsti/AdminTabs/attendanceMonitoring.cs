@@ -73,7 +73,7 @@ namespace payrollsystemsti.AdminTabs
 
                 string status = "Time IN";
                 int currentTime = time.Value.Hour;
-                int late = time.Value.Minute;
+                int currentMinute = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("HH:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
@@ -88,6 +88,11 @@ namespace payrollsystemsti.AdminTabs
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+
+                            if(checkIfLate(currentTime, currentMinute))
+                            {
+                                insertLateToAttedance(getEmpID(fID), currentMinute);
+                            }
                         }
                     }
                     else
@@ -115,6 +120,42 @@ namespace payrollsystemsti.AdminTabs
                 loadingIndicator.Visible = false;
             }
             LoadAtttendanceData(date.Value.ToString());
+        }
+
+        public bool insertLateToAttedance(int empID, int minutes)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Attedance(Late) VALUES (@minutes) WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@minutes", minutes);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Late: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+        private bool checkIfLate(int hour, int minute)
+        {
+            if(hour == 9 && minute > 15)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         private async void btnTimeOUT_Click(object sender, EventArgs e)
         {

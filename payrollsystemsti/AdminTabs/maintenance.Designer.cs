@@ -39,14 +39,25 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbMaintenance = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.tbTitle = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tb1 = new System.Windows.Forms.TextBox();
+            this.lb1 = new System.Windows.Forms.Label();
             this.cbPicture = new System.Windows.Forms.CheckBox();
-            this.lbAmount = new System.Windows.Forms.Label();
-            this.tbAmount = new System.Windows.Forms.TextBox();
+            this.lb2 = new System.Windows.Forms.Label();
+            this.tb2 = new System.Windows.Forms.TextBox();
+            this.lb4 = new System.Windows.Forms.Label();
+            this.tb4 = new System.Windows.Forms.TextBox();
+            this.lb3 = new System.Windows.Forms.Label();
+            this.tb3 = new System.Windows.Forms.TextBox();
+            this.lb5 = new System.Windows.Forms.Label();
+            this.tb5 = new System.Windows.Forms.TextBox();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -106,6 +117,11 @@
             this.dg1st,
             this.dg2nd,
             this.dg3rd,
+            this.dg4th,
+            this.dg5th,
+            this.dg6th,
+            this.dg7th,
+            this.dg8th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -166,7 +182,8 @@
             "Positions",
             "Roles",
             "Leaves",
-            "Deductions"});
+            "Deductions",
+            "Allowances"});
             this.cbMaintenance.Location = new System.Drawing.Point(824, 246);
             this.cbMaintenance.Name = "cbMaintenance";
             this.cbMaintenance.Size = new System.Drawing.Size(121, 24);
@@ -187,26 +204,26 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // tbTitle
+            // tb1
             // 
-            this.tbTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTitle.Location = new System.Drawing.Point(63, 143);
-            this.tbTitle.Multiline = true;
-            this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(172, 28);
-            this.tbTitle.TabIndex = 43;
-            this.tbTitle.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
+            this.tb1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb1.Location = new System.Drawing.Point(63, 143);
+            this.tb1.Multiline = true;
+            this.tb1.Name = "tb1";
+            this.tb1.Size = new System.Drawing.Size(150, 25);
+            this.tb1.TabIndex = 43;
+            this.tb1.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
             // 
-            // label6
+            // lb1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(60, 118);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 19);
-            this.label6.TabIndex = 45;
-            this.label6.Text = "Title";
+            this.lb1.AutoSize = true;
+            this.lb1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb1.Location = new System.Drawing.Point(60, 118);
+            this.lb1.Name = "lb1";
+            this.lb1.Size = new System.Drawing.Size(38, 19);
+            this.lb1.TabIndex = 45;
+            this.lb1.Text = "Title";
             // 
             // cbPicture
             // 
@@ -221,27 +238,93 @@
             this.cbPicture.UseVisualStyleBackColor = true;
             this.cbPicture.Visible = false;
             // 
-            // lbAmount
+            // lb2
             // 
-            this.lbAmount.AutoSize = true;
-            this.lbAmount.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAmount.Location = new System.Drawing.Point(273, 118);
-            this.lbAmount.Name = "lbAmount";
-            this.lbAmount.Size = new System.Drawing.Size(62, 19);
-            this.lbAmount.TabIndex = 48;
-            this.lbAmount.Text = "Amount";
-            this.lbAmount.Visible = false;
+            this.lb2.AutoSize = true;
+            this.lb2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb2.Location = new System.Drawing.Point(245, 118);
+            this.lb2.Name = "lb2";
+            this.lb2.Size = new System.Drawing.Size(62, 19);
+            this.lb2.TabIndex = 48;
+            this.lb2.Text = "Amount";
+            this.lb2.Visible = false;
             // 
-            // tbAmount
+            // tb2
             // 
-            this.tbAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAmount.Location = new System.Drawing.Point(276, 143);
-            this.tbAmount.Multiline = true;
-            this.tbAmount.Name = "tbAmount";
-            this.tbAmount.Size = new System.Drawing.Size(172, 28);
-            this.tbAmount.TabIndex = 47;
-            this.tbAmount.Visible = false;
+            this.tb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb2.Location = new System.Drawing.Point(248, 143);
+            this.tb2.Multiline = true;
+            this.tb2.Name = "tb2";
+            this.tb2.Size = new System.Drawing.Size(150, 25);
+            this.tb2.TabIndex = 47;
+            this.tb2.Visible = false;
+            // 
+            // lb4
+            // 
+            this.lb4.AutoSize = true;
+            this.lb4.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb4.Location = new System.Drawing.Point(615, 118);
+            this.lb4.Name = "lb4";
+            this.lb4.Size = new System.Drawing.Size(62, 19);
+            this.lb4.TabIndex = 52;
+            this.lb4.Text = "Amount";
+            this.lb4.Visible = false;
+            // 
+            // tb4
+            // 
+            this.tb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(618, 143);
+            this.tb4.Multiline = true;
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(150, 25);
+            this.tb4.TabIndex = 51;
+            this.tb4.Visible = false;
+            // 
+            // lb3
+            // 
+            this.lb3.AutoSize = true;
+            this.lb3.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb3.Location = new System.Drawing.Point(432, 118);
+            this.lb3.Name = "lb3";
+            this.lb3.Size = new System.Drawing.Size(38, 19);
+            this.lb3.TabIndex = 50;
+            this.lb3.Text = "Title";
+            this.lb3.Visible = false;
+            // 
+            // tb3
+            // 
+            this.tb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(435, 143);
+            this.tb3.Multiline = true;
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(150, 25);
+            this.tb3.TabIndex = 49;
+            this.tb3.Visible = false;
+            // 
+            // lb5
+            // 
+            this.lb5.AutoSize = true;
+            this.lb5.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb5.Location = new System.Drawing.Point(792, 118);
+            this.lb5.Name = "lb5";
+            this.lb5.Size = new System.Drawing.Size(62, 19);
+            this.lb5.TabIndex = 54;
+            this.lb5.Text = "Amount";
+            this.lb5.Visible = false;
+            // 
+            // tb5
+            // 
+            this.tb5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb5.Location = new System.Drawing.Point(795, 143);
+            this.tb5.Multiline = true;
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(150, 25);
+            this.tb5.TabIndex = 53;
+            this.tb5.Visible = false;
             // 
             // dg1st
             // 
@@ -262,6 +345,41 @@
             this.dg3rd.ReadOnly = true;
             this.dg3rd.Visible = false;
             // 
+            // dg4th
+            // 
+            this.dg4th.HeaderText = "4th";
+            this.dg4th.Name = "dg4th";
+            this.dg4th.ReadOnly = true;
+            this.dg4th.Visible = false;
+            // 
+            // dg5th
+            // 
+            this.dg5th.HeaderText = "5th";
+            this.dg5th.Name = "dg5th";
+            this.dg5th.ReadOnly = true;
+            this.dg5th.Visible = false;
+            // 
+            // dg6th
+            // 
+            this.dg6th.HeaderText = "6th";
+            this.dg6th.Name = "dg6th";
+            this.dg6th.ReadOnly = true;
+            this.dg6th.Visible = false;
+            // 
+            // dg7th
+            // 
+            this.dg7th.HeaderText = "7th";
+            this.dg7th.Name = "dg7th";
+            this.dg7th.ReadOnly = true;
+            this.dg7th.Visible = false;
+            // 
+            // dg8th
+            // 
+            this.dg8th.HeaderText = "8th";
+            this.dg8th.Name = "dg8th";
+            this.dg8th.ReadOnly = true;
+            this.dg8th.Visible = false;
+            // 
             // dgIsDeactivated
             // 
             this.dgIsDeactivated.HeaderText = "IsDeactivated";
@@ -275,11 +393,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1018, 642);
-            this.Controls.Add(this.lbAmount);
-            this.Controls.Add(this.tbAmount);
+            this.Controls.Add(this.lb5);
+            this.Controls.Add(this.tb5);
+            this.Controls.Add(this.lb4);
+            this.Controls.Add(this.tb4);
+            this.Controls.Add(this.lb3);
+            this.Controls.Add(this.tb3);
+            this.Controls.Add(this.lb2);
+            this.Controls.Add(this.tb2);
             this.Controls.Add(this.cbPicture);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.tbTitle);
+            this.Controls.Add(this.lb1);
+            this.Controls.Add(this.tb1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cbMaintenance);
             this.Controls.Add(this.btnCancel);
@@ -308,14 +432,25 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox cbMaintenance;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox tbTitle;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tb1;
+        private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.CheckBox cbPicture;
-        private System.Windows.Forms.Label lbAmount;
-        private System.Windows.Forms.TextBox tbAmount;
+        private System.Windows.Forms.Label lb2;
+        private System.Windows.Forms.TextBox tb2;
+        private System.Windows.Forms.Label lb4;
+        private System.Windows.Forms.TextBox tb4;
+        private System.Windows.Forms.Label lb3;
+        private System.Windows.Forms.TextBox tb3;
+        private System.Windows.Forms.Label lb5;
+        private System.Windows.Forms.TextBox tb5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg5th;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg7th;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg8th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }

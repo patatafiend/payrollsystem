@@ -403,5 +403,347 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        public bool insertToAllowances(int empID, int training, int trans, int load, int provision, int oba)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Allowance (EmployeeID, TrainingA, TransportationA, LoadA, ProvisionTA, OBA) " +
+                    "VALUES (@empID, @training, @trans, @load, @provision, @oba)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@training", training);
+                    cmd.Parameters.AddWithValue("@trans", trans);
+                    cmd.Parameters.AddWithValue("@load", load);
+                    cmd.Parameters.AddWithValue("@provision", provision);
+                    cmd.Parameters.AddWithValue("@oba", oba);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Deductions: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateDepartments(string title, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Departments SET DepartmentName = @departmentName WHERE DepartmentID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@departmentName", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Departments: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool updatePositions(string title, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Positions SET PositionTitle = @position WHERE PositionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@position", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Positions: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool updateRoles(string title, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Roles SET RoleTitle = @role WHERE RoleID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@role", title);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Roles: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateLeaves(string title, bool hasProof, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE LeaveCategory SET CategoryName = @name, IsDeactivated = @status " +
+                    "WHERE CategoryID = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", title);
+                    cmd.Parameters.AddWithValue("@status", hasProof);
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Leaves: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateDeductions(string title, int amount, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET DeductionType = @type, Amount = @amount " +
+                    "WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateAllowance(int training, int trans, int load, int provision, int oba, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Allowance SET TrainingA = @training, TransportationA = @trans, " +
+                    "LoadA = @load, ProvisionTA = @provision, OBA = @oba WHERE AllowanceID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@training", training);
+                    cmd.Parameters.AddWithValue("@trans", trans);
+                    cmd.Parameters.AddWithValue("@load", load);
+                    cmd.Parameters.AddWithValue("@provision", provision);
+                    cmd.Parameters.AddWithValue("@oba", oba);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateRole(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Roles SET IsDeactivated = @status WHERE RoleID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Role: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateDepartment(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Departments SET IsDeactivated = @status WHERE DepartmentID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Department: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivatePosition(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Positions SET IsDeactivated = @status WHERE PositionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Position: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateLeave(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE LeaveCategory SET IsDeactivated = @status WHERE CategoryID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Leave: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateDeduction(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET IsDeactivated = @status WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateAllowance(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Allowance SET IsDeactivated = @status WHERE AllowanceID = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+
+                    cmd.Parameters.AddWithValue("@status", 1);
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
     }
 }

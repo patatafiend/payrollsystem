@@ -33,7 +33,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbAdjustment = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.tbSpeacialH = new System.Windows.Forms.TextBox();
+            this.tbSpecialH = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tbRegularH = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -67,11 +67,17 @@
             this.tbOBA = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
+            this.dtStart = new System.Windows.Forms.DateTimePicker();
+            this.dtEnd = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,7 +91,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tbAdjustment);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.tbSpeacialH);
+            this.groupBox1.Controls.Add(this.tbSpecialH);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.tbRegularH);
             this.groupBox1.Controls.Add(this.label18);
@@ -94,7 +100,7 @@
             this.groupBox1.Controls.Add(this.tbBasic);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(22, 112);
+            this.groupBox1.Location = new System.Drawing.Point(22, 125);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(287, 271);
             this.groupBox1.TabIndex = 0;
@@ -129,6 +135,7 @@
             this.tbAdjustment.ReadOnly = true;
             this.tbAdjustment.Size = new System.Drawing.Size(94, 28);
             this.tbAdjustment.TabIndex = 10;
+            this.tbAdjustment.Text = "0";
             // 
             // label20
             // 
@@ -139,15 +146,16 @@
             this.label20.TabIndex = 9;
             this.label20.Text = "Adjustment:";
             // 
-            // tbSpeacialH
+            // tbSpecialH
             // 
-            this.tbSpeacialH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSpeacialH.Location = new System.Drawing.Point(156, 161);
-            this.tbSpeacialH.Multiline = true;
-            this.tbSpeacialH.Name = "tbSpeacialH";
-            this.tbSpeacialH.ReadOnly = true;
-            this.tbSpeacialH.Size = new System.Drawing.Size(94, 28);
-            this.tbSpeacialH.TabIndex = 8;
+            this.tbSpecialH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSpecialH.Location = new System.Drawing.Point(156, 161);
+            this.tbSpecialH.Multiline = true;
+            this.tbSpecialH.Name = "tbSpecialH";
+            this.tbSpecialH.ReadOnly = true;
+            this.tbSpecialH.Size = new System.Drawing.Size(94, 28);
+            this.tbSpecialH.TabIndex = 8;
+            this.tbSpecialH.Text = "0";
             // 
             // label19
             // 
@@ -167,6 +175,7 @@
             this.tbRegularH.ReadOnly = true;
             this.tbRegularH.Size = new System.Drawing.Size(94, 28);
             this.tbRegularH.TabIndex = 6;
+            this.tbRegularH.Text = "0";
             // 
             // label18
             // 
@@ -186,6 +195,7 @@
             this.tbIncentives.ReadOnly = true;
             this.tbIncentives.Size = new System.Drawing.Size(94, 28);
             this.tbIncentives.TabIndex = 4;
+            this.tbIncentives.Text = "0";
             // 
             // label2
             // 
@@ -300,7 +310,7 @@
             this.groupBox4.Controls.Add(this.tbPH);
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(740, 112);
+            this.groupBox4.Location = new System.Drawing.Point(740, 125);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(303, 149);
             this.groupBox4.TabIndex = 8;
@@ -371,7 +381,7 @@
             this.groupBox3.Controls.Add(this.tbLate);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(740, 264);
+            this.groupBox3.Location = new System.Drawing.Point(740, 277);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(303, 119);
             this.groupBox3.TabIndex = 7;
@@ -412,9 +422,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(22, 31);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 19);
+            this.label6.Size = new System.Drawing.Size(117, 19);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Lates:";
+            this.label6.Text = "Late(minutes):";
             // 
             // dataGridView1
             // 
@@ -430,8 +440,10 @@
             this.dgFullName,
             this.dgBasic,
             this.dgTHW,
-            this.dgOT});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 426);
+            this.dgOT,
+            this.dgLate,
+            this.dgAbsent});
+            this.dataGridView1.Location = new System.Drawing.Point(22, 448);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -465,7 +477,7 @@
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.tbTransA);
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(333, 112);
+            this.groupBox5.Location = new System.Drawing.Point(333, 125);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(383, 271);
             this.groupBox5.TabIndex = 11;
@@ -504,6 +516,51 @@
             this.btnCompute.TabIndex = 34;
             this.btnCompute.Text = "Compute";
             this.btnCompute.UseVisualStyleBackColor = false;
+            this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
+            // 
+            // dtStart
+            // 
+            this.dtStart.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtStart.CustomFormat = "MMMM,dd,yyyy";
+            this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStart.Location = new System.Drawing.Point(333, 80);
+            this.dtStart.Name = "dtStart";
+            this.dtStart.Size = new System.Drawing.Size(210, 26);
+            this.dtStart.TabIndex = 35;
+            this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
+            // 
+            // dtEnd
+            // 
+            this.dtEnd.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
+            this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtEnd.Location = new System.Drawing.Point(578, 80);
+            this.dtEnd.Name = "dtEnd";
+            this.dtEnd.Size = new System.Drawing.Size(210, 26);
+            this.dtEnd.TabIndex = 36;
+            this.dtEnd.ValueChanged += new System.EventHandler(this.dtEnd_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(330, 60);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 16);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Pay Period Start";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(575, 61);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(115, 16);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "Pay Period End";
             // 
             // dgEmpID
             // 
@@ -537,12 +594,30 @@
             this.dgOT.ReadOnly = true;
             this.dgOT.Visible = false;
             // 
+            // dgLate
+            // 
+            this.dgLate.HeaderText = "TotalLate";
+            this.dgLate.Name = "dgLate";
+            this.dgLate.ReadOnly = true;
+            this.dgLate.Visible = false;
+            // 
+            // dgAbsent
+            // 
+            this.dgAbsent.HeaderText = "TotalAbsent";
+            this.dgAbsent.Name = "dgAbsent";
+            this.dgAbsent.ReadOnly = true;
+            this.dgAbsent.Visible = false;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1137, 910);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dtEnd);
+            this.Controls.Add(this.dtStart);
             this.Controls.Add(this.btnCompute);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -599,7 +674,7 @@
         private System.Windows.Forms.TextBox tbTransA;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox tbSpeacialH;
+        private System.Windows.Forms.TextBox tbSpecialH;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox tbRegularH;
         private System.Windows.Forms.Label label18;
@@ -610,10 +685,16 @@
         private System.Windows.Forms.TextBox tbOBA;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCompute;
+        private System.Windows.Forms.DateTimePicker dtStart;
+        private System.Windows.Forms.DateTimePicker dtEnd;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTHW;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
     }
 }
