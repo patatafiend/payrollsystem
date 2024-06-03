@@ -92,9 +92,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label59
@@ -681,6 +683,7 @@
             this.label5.Size = new System.Drawing.Size(97, 20);
             this.label5.TabIndex = 69;
             this.label5.Text = "Daily Rate:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -691,6 +694,7 @@
             this.label4.Size = new System.Drawing.Size(122, 20);
             this.label4.TabIndex = 68;
             this.label4.Text = "Semi-Monthly:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -733,11 +737,16 @@
             this.pictureBox1.TabIndex = 65;
             this.pictureBox1.TabStop = false;
             // 
+            // stipayrolldbDataSet1
+            // 
+            this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet";
+            this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // payslip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 887);
+            this.ClientSize = new System.Drawing.Size(1112, 887);
             this.Controls.Add(this.label59);
             this.Controls.Add(this.label60);
             this.Controls.Add(this.label61);
@@ -801,11 +810,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "payslip";
             this.Text = "payslip";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -877,5 +888,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private stipayrolldbDataSet stipayrolldbDataSet1;
     }
 }

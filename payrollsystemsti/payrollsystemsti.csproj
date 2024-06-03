@@ -158,6 +158,12 @@
     <Compile Include="AdminTabs\payslip.Designer.cs">
       <DependentUpon>payslip.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\PaySlipReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\PaySlipReport.Designer.cs">
+      <DependentUpon>PaySlipReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArduinoComms.cs" />
     <Compile Include="changePass.cs">
       <SubType>Form</SubType>
@@ -258,6 +264,10 @@
     <EmbeddedResource Include="AdminTabs\payslip.resx">
       <DependentUpon>payslip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\PaySlipReport.resx">
+      <DependentUpon>PaySlipReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\Report1.rdlc" />
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
