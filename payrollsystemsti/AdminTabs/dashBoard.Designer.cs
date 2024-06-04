@@ -39,10 +39,10 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.lbWelcome = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lb_EmpPosition = new System.Windows.Forms.Label();
+			this.lb_EmpEmail = new System.Windows.Forms.Label();
+			this.lb_EmpPhoNum = new System.Windows.Forms.Label();
+			this.lb_EmpName = new System.Windows.Forms.Label();
 			this.lb_absents = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
@@ -74,7 +74,6 @@
 			this.lb_DashBoard.Size = new System.Drawing.Size(156, 31);
 			this.lb_DashBoard.TabIndex = 0;
 			this.lb_DashBoard.Text = "Dashboard";
-			this.lb_DashBoard.Click += new System.EventHandler(this.lb_DashBoard_Click);
 			// 
 			// pnl_Employee
 			// 
@@ -132,7 +131,6 @@
 			this.lb_Employee.Size = new System.Drawing.Size(104, 24);
 			this.lb_Employee.TabIndex = 0;
 			this.lb_Employee.Text = "Employee";
-			this.lb_Employee.Click += new System.EventHandler(this.lb_Employee_Click);
 			// 
 			// panel2
 			// 
@@ -168,16 +166,15 @@
 			this.lbWelcome.Size = new System.Drawing.Size(150, 31);
 			this.lbWelcome.TabIndex = 6;
 			this.lbWelcome.Text = "Welcome !";
-			this.lbWelcome.Click += new System.EventHandler(this.lbWelcome_Click);
 			// 
 			// panel1
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel1.Controls.Add(this.label9);
-			this.panel1.Controls.Add(this.label6);
-			this.panel1.Controls.Add(this.label4);
-			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.lb_EmpPosition);
+			this.panel1.Controls.Add(this.lb_EmpEmail);
+			this.panel1.Controls.Add(this.lb_EmpPhoNum);
+			this.panel1.Controls.Add(this.lb_EmpName);
 			this.panel1.Controls.Add(this.lb_absents);
 			this.panel1.Controls.Add(this.panel3);
 			this.panel1.Controls.Add(this.lbEmployeeID);
@@ -188,47 +185,45 @@
 			this.panel1.Size = new System.Drawing.Size(279, 670);
 			this.panel1.TabIndex = 4;
 			// 
-			// label9
+			// lb_EmpPosition
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(20, 353);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(60, 13);
-			this.label9.TabIndex = 12;
-			this.label9.Text = "Position :";
-			this.label9.Click += new System.EventHandler(this.label9_Click);
+			this.lb_EmpPosition.AutoSize = true;
+			this.lb_EmpPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_EmpPosition.Location = new System.Drawing.Point(20, 353);
+			this.lb_EmpPosition.Name = "lb_EmpPosition";
+			this.lb_EmpPosition.Size = new System.Drawing.Size(60, 13);
+			this.lb_EmpPosition.TabIndex = 12;
+			this.lb_EmpPosition.Text = "Position :";
 			// 
-			// label6
+			// lb_EmpEmail
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(20, 302);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(93, 13);
-			this.label6.TabIndex = 10;
-			this.label6.Text = "Email address :";
+			this.lb_EmpEmail.AutoSize = true;
+			this.lb_EmpEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_EmpEmail.Location = new System.Drawing.Point(20, 302);
+			this.lb_EmpEmail.Name = "lb_EmpEmail";
+			this.lb_EmpEmail.Size = new System.Drawing.Size(93, 13);
+			this.lb_EmpEmail.TabIndex = 10;
+			this.lb_EmpEmail.Text = "Email address :";
 			// 
-			// label4
+			// lb_EmpPhoNum
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(20, 277);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(75, 13);
-			this.label4.TabIndex = 9;
-			this.label4.Text = "Phone No. :";
-			this.label4.Click += new System.EventHandler(this.label4_Click);
+			this.lb_EmpPhoNum.AutoSize = true;
+			this.lb_EmpPhoNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_EmpPhoNum.Location = new System.Drawing.Point(20, 277);
+			this.lb_EmpPhoNum.Name = "lb_EmpPhoNum";
+			this.lb_EmpPhoNum.Size = new System.Drawing.Size(75, 13);
+			this.lb_EmpPhoNum.TabIndex = 9;
+			this.lb_EmpPhoNum.Text = "Phone No. :";
 			// 
-			// label1
+			// lb_EmpName
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(20, 252);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(47, 13);
-			this.label1.TabIndex = 8;
-			this.label1.Text = "Name :";
+			this.lb_EmpName.AutoSize = true;
+			this.lb_EmpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_EmpName.Location = new System.Drawing.Point(20, 252);
+			this.lb_EmpName.Name = "lb_EmpName";
+			this.lb_EmpName.Size = new System.Drawing.Size(47, 13);
+			this.lb_EmpName.TabIndex = 8;
+			this.lb_EmpName.Text = "Name :";
 			// 
 			// lb_absents
 			// 
@@ -344,7 +339,6 @@
 			this.notifContainer.Name = "notifContainer";
 			this.notifContainer.Size = new System.Drawing.Size(671, 356);
 			this.notifContainer.TabIndex = 6;
-			this.notifContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.notifContainer_Paint);
 			// 
 			// dashBoard
 			// 
@@ -405,9 +399,9 @@
         private System.Windows.Forms.Panel notifContainer;
         private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label lb_absents;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lb_EmpName;
+        private System.Windows.Forms.Label lb_EmpEmail;
+        private System.Windows.Forms.Label lb_EmpPhoNum;
+        private System.Windows.Forms.Label lb_EmpPosition;
     }
 }

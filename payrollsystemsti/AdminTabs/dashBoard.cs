@@ -72,7 +72,7 @@ namespace payrollsystemsti
         }
 
         //employee list
-        private void Pnl_Employee_Click(object sender, EventArgs e) 
+        private void Pnl_Employee_Click(object sender, EventArgs e)
         {
 			
 			if (isClickable)
@@ -126,39 +126,6 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Employee_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_DashBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void notifContainer_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbWelcome_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+		
+	}
 }
