@@ -120,13 +120,13 @@ namespace payrollsystemsti
                                 // Disable function based on role/department
                                 if (roleTitle == "User")
                                 {
-                                    if (departmentName == "HR")
+                                    if (departmentName == "HumanResource Department")
                                     {
                                         formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                         dashBoard.isClickable = true;
                                     }
-                                    else if (departmentName == "Accountant")
+                                    else if (departmentName == "Accountanting Department")
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetEnrollFingerPanel().Hide();
