@@ -138,7 +138,6 @@
             this.tbAdjustment.ReadOnly = true;
             this.tbAdjustment.Size = new System.Drawing.Size(94, 28);
             this.tbAdjustment.TabIndex = 10;
-            this.tbAdjustment.Text = "0";
             // 
             // label20
             // 
@@ -158,7 +157,6 @@
             this.tbSpecialH.ReadOnly = true;
             this.tbSpecialH.Size = new System.Drawing.Size(94, 28);
             this.tbSpecialH.TabIndex = 8;
-            this.tbSpecialH.Text = "0";
             // 
             // label19
             // 
@@ -178,7 +176,6 @@
             this.tbRegularH.ReadOnly = true;
             this.tbRegularH.Size = new System.Drawing.Size(94, 28);
             this.tbRegularH.TabIndex = 6;
-            this.tbRegularH.Text = "0";
             // 
             // label18
             // 
@@ -198,7 +195,6 @@
             this.tbIncentives.ReadOnly = true;
             this.tbIncentives.Size = new System.Drawing.Size(94, 28);
             this.tbIncentives.TabIndex = 4;
-            this.tbIncentives.Text = "0";
             // 
             // label2
             // 
@@ -452,7 +448,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1021, 237);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dgEmpID

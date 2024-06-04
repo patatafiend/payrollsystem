@@ -152,10 +152,42 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            double incentives = Convert.ToDouble(tbIncentives.Text);
+            double regH = Convert.ToDouble(tbIncentives.Text);
+            double specialH = Convert.ToDouble(tbIncentives.Text);
+            double adj = Convert.ToDouble(tbIncentives.Text);
+
+            double trainA = Convert.ToDouble(tbTA.Text);
+            double transA = Convert.ToDouble(tbTransA.Text);
+            double loadA = Convert.ToDouble(tbLoadA.Text);
+            double provA = Convert.ToDouble(tbPTA.Text);
+            double obA = Convert.ToDouble(tbOBA.Text);
+
+            double phil = Convert.ToDouble(tbPH.Text);
+            double pagibig = Convert.ToDouble(tbPagibig.Text);
+            double sss = Convert.ToDouble(tbSSS.Text);
+
+            double deductionT = phil + pagibig + sss;
+            double netpay = gross - deductionT;
+            double totalHP = (totalHoursW / 8) * basicRate;
+            double semiM = basicRate * 15; 
+
             DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
             DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
 
-            insertToPayroll(empID, dateStart, dateEnd, gross, 0, gross);
+            if (!ifPaySlipExist(empID))
+            {
+                InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
+                totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
+                0, 0, gross, netpay, phil, pagibig, sss, deductionT , totalHP);
+
+                MessageBox.Show("Payslip Recorded!");
+            }
+            else
+            {
+                MessageBox.Show("payslip already exist");
+            }
+            
         }
 
         private double calBasicSalary(double basicRate, double tHW)
@@ -242,6 +274,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void dtEnd_ValueChanged(object sender, EventArgs e)
         {
+            LoadPayrollData();
             DateTime endDate = dtEnd.Value.Date;
             dtStart.Value = endDate.AddDays(-14);
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
@@ -476,35 +509,123 @@ namespace payrollsystemsti.AdminTabs
             btnPayslip.Visible = false;
         }
 
-        public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
+        //public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "INSERT INTO Payroll(EmployeeID, PayPeriodStart, PayPeriodEnd, GrossPay, DeductionID, NetPay) " +
+        //            "VALUES(@empID, @payStart, @payEnd, @gross, @deductionID, @netpay)";
+        //        using (SqlCommand cmd = new SqlCommand(query,conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@empID", empID);
+        //            cmd.Parameters.AddWithValue("@payStart", payStart);
+        //            cmd.Parameters.AddWithValue("@payEnd", payEnd);
+        //            cmd.Parameters.AddWithValue("@gross", gross);
+        //            cmd.Parameters.AddWithValue("@deductionID", deductionID);
+        //            cmd.Parameters.AddWithValue("@netpay", netPay);
+
+        //            try
+        //            {
+        //                int rowsAffected = cmd.ExecuteNonQuery();
+        //                return rowsAffected > 0;
+        //            }
+        //            catch (SqlException ex)
+        //            {
+        //                MessageBox.Show("Error inserting into Payroll: " + ex.Message);
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //}
+
+        public bool ifPaySlipExist(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Payroll(EmployeeID, PayPeriodStart, PayPeriodEnd, GrossPay, DeductionID, NetPay) " +
-                    "VALUES(@empID, @payStart, @payEnd, @gross, @deductionID, @netpay)";
-                using (SqlCommand cmd = new SqlCommand(query,conn))
+                string query = "SELECT COUNT(*) FROM Payroll WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@gross", gross);
-                    cmd.Parameters.AddWithValue("@deductionID", deductionID);
-                    cmd.Parameters.AddWithValue("@netpay", netPay);
 
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Payroll: " + ex.Message);
-                        return false;
-                    }
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
                 }
             }
         }
+        public bool InsertIntoPayroll(int empID, double semiP, double dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
+                              double totalH, double ot, double regh, double specialh, double oba, double rest, double loadA,
+                              double transA, double adj, double incentives, double trainA, double provTA, double late, double savings,
+                              double cashA, double gross, double netPay, double philHealth, double pagIbig, double sss,
+                              double dtotal, double thp)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                INSERT INTO Payroll (
+                    EmployeeID, SemiMonthly, DailyRate, PayPeriodStart, PayPeriodEnd, PayOutDate, 
+                    TotalHours, OverTimePay, RegularH, SpecialH, OBA, RestDay, LoadA, TransA, 
+                    Adjustments, Incentives, TrainA, ProvTA, Late, Savings, CashA, GrossPay, 
+                    NetPay, PhilHealth, PagIbig, SSS, DeductionTotal, TotalHoursPay
+                )
+                VALUES (
+                    @EmployeeID, @SemiMonthly, @DailyRate, @PayPeriodStart, @PayPeriodEnd, @PayOutDate, 
+                    @TotalHours, @OverTimePay, @RegularH, @SpecialH, @OBA, @RestDay, @LoadA, @TransA, 
+                    @Adjustments, @Incentives, @TrainA, @ProvTA, @Late, @Savings, @CashA, @GrossPay, 
+                    @NetPay, @PhilHealth, @PagIbig, @SSS, @dtotal, @thp
+                );";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // Parameterized Query for All Columns
+                        cmd.Parameters.AddWithValue("@EmployeeID", empID);
+                        cmd.Parameters.AddWithValue("@SemiMonthly", semiP);
+                        cmd.Parameters.AddWithValue("@DailyRate", dailyR);
+                        cmd.Parameters.AddWithValue("@PayPeriodStart", payStart);
+                        cmd.Parameters.AddWithValue("@PayPeriodEnd", payEnd);
+                        cmd.Parameters.AddWithValue("@PayOutDate", payOut);
+                        cmd.Parameters.AddWithValue("@TotalHours", totalH);
+                        cmd.Parameters.AddWithValue("@OverTimePay", ot);
+                        cmd.Parameters.AddWithValue("@RegularH", regh);
+                        cmd.Parameters.AddWithValue("@SpecialH", specialh);
+                        cmd.Parameters.AddWithValue("@OBA", oba);
+                        cmd.Parameters.AddWithValue("@RestDay", rest);
+                        cmd.Parameters.AddWithValue("@LoadA", loadA);
+                        cmd.Parameters.AddWithValue("@TransA", transA);
+                        cmd.Parameters.AddWithValue("@Adjustments", adj);
+                        cmd.Parameters.AddWithValue("@Incentives", incentives);
+                        cmd.Parameters.AddWithValue("@TrainA", trainA);
+                        cmd.Parameters.AddWithValue("@ProvTA", provTA);
+                        cmd.Parameters.AddWithValue("@Late", late);
+                        cmd.Parameters.AddWithValue("@Savings", savings);
+                        cmd.Parameters.AddWithValue("@CashA", cashA);
+                        cmd.Parameters.AddWithValue("@GrossPay", gross);
+                        cmd.Parameters.AddWithValue("@NetPay", netPay);
+                        cmd.Parameters.AddWithValue("@PhilHealth", philHealth);
+                        cmd.Parameters.AddWithValue("@PagIbig", pagIbig);
+                        cmd.Parameters.AddWithValue("@SSS", sss);
+                        cmd.Parameters.AddWithValue("@dtotal", dtotal);
+                        cmd.Parameters.AddWithValue("@thp", thp);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    // Error Handling
+                    MessageBox.Show($"Error inserting into Payroll: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Consider logging the exception for further analysis
+                    return false;
+                }
+            }
+        }
+
+
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {

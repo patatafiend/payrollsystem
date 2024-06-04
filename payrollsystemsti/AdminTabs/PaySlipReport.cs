@@ -36,16 +36,62 @@ namespace payrollsystemsti.AdminTabs
             
         }
 
+        //public void SetPaySlipInfo(int empID)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
+        //                       "Payroll.PayPeriodStart, Payroll.PayPeriodEnd, Payroll.GrossPay, Payroll.NetPay " +
+        //                       "FROM EmployeeAccounts " +
+        //                       "INNER JOIN Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID " +
+        //                       "WHERE EmployeeAccounts.EmployeeID = @empID";
+
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@empID", empID);
+
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read()) 
+        //                {
+        //                    ReportParameter[] parameters = new ReportParameter[]
+        //                    {
+        //                        new ReportParameter("ID_NO", reader["EmployeeID"].ToString()),
+        //                        new ReportParameter("pName", reader["FirstName"].ToString() + " " + reader["LastName"].ToString()),
+        //                        new ReportParameter("Cp_Start", Convert.ToDateTime(reader["PayPeriodStart"]).ToString("yyyy-MM-dd")),
+        //                        new ReportParameter("Cp_End", Convert.ToDateTime(reader["PayPeriodEnd"]).ToString("yyyy-MM-dd")),
+        //                        new ReportParameter("Total_A", Convert.ToDecimal(reader["GrossPay"]).ToString("C")),
+        //                        new ReportParameter("Total_Netpay", Convert.ToDecimal(reader["NetPay"]).ToString("C"))
+        //                    };
+
+        //                    reportViewer1.LocalReport.SetParameters(parameters);
+
+        //                    reportViewer1.RefreshReport();
+        //                }
+        //                else
+        //                {
+        //                    MessageBox.Show("No payroll data found for this employee.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         public void SetPaySlipInfo(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
-                               "Payroll.PayPeriodStart, Payroll.PayPeriodEnd, Payroll.GrossPay, Payroll.NetPay " +
-                               "FROM EmployeeAccounts " +
-                               "INNER JOIN Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID " +
-                               "WHERE EmployeeAccounts.EmployeeID = @empID";
+                string query = @"SELECT ea.EmployeeID, ea.FirstName, ea.LastName, p.SemiMonthly, p.DailyRate,
+                        p.PayPeriodStart, p.PayPeriodEnd, p.PayOutDate, p.TotalHours, p.TotalHoursPay,
+                        p.OverTimePay, p.RegularH, p.SpecialH, p.OBA, p.RestDay, p.LoadA, 
+                        p.TransA, p.Adjustments, p.Incentives, p.TrainA, p.ProvTA, p.Late, 
+                        p.Savings, p.CashA, p.GrossPay, p.NetPay, p.PhilHealth, p.PagIbig, p.SSS, 
+                        p.DeductionTotal
+                        FROM EmployeeAccounts ea 
+                        INNER JOIN Payroll p ON ea.EmployeeID = p.EmployeeID 
+                        WHERE ea.EmployeeID = @empID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -53,20 +99,46 @@ namespace payrollsystemsti.AdminTabs
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read()) 
+                        if (reader.Read())
                         {
                             ReportParameter[] parameters = new ReportParameter[]
                             {
+                                // Existing parameters (ID_NO, pName, Cp_Start, Cp_End, Total_A, Total_Netpay)
                                 new ReportParameter("ID_NO", reader["EmployeeID"].ToString()),
                                 new ReportParameter("pName", reader["FirstName"].ToString() + " " + reader["LastName"].ToString()),
                                 new ReportParameter("Cp_Start", Convert.ToDateTime(reader["PayPeriodStart"]).ToString("yyyy-MM-dd")),
                                 new ReportParameter("Cp_End", Convert.ToDateTime(reader["PayPeriodEnd"]).ToString("yyyy-MM-dd")),
                                 new ReportParameter("Total_A", Convert.ToDecimal(reader["GrossPay"]).ToString("C")),
-                                new ReportParameter("Total_Netpay", Convert.ToDecimal(reader["NetPay"]).ToString("C"))
+                                new ReportParameter("Total_Netpay", Convert.ToDecimal(reader["NetPay"]).ToString("C")),
+
+                                // Added parameters based on the Payroll table
+                                new ReportParameter("SM", reader["SemiMonthly"].ToString()),
+                                new ReportParameter("DR", Convert.ToDecimal(reader["DailyRate"]).ToString("C")),
+                                new ReportParameter("POD", Convert.ToDateTime(reader["PayOutDate"]).ToString("yyyy-MM-dd")),
+                                new ReportParameter("NODW", reader["TotalHours"].ToString()),
+                                new ReportParameter("NO_OTP", reader["OverTimePay"].ToString()),
+                                new ReportParameter("A_NODW", Convert.ToDecimal(reader["TotalHoursPay"]).ToString()), // Assuming this is what you meant by "totalHoursPay"
+                                new ReportParameter("A_OTP", Convert.ToDecimal(reader["OverTimePay"]).ToString()),
+                                new ReportParameter("A_LH", Convert.ToDecimal(reader["RegularH"]).ToString()),
+                                new ReportParameter("A_SH", Convert.ToDecimal(reader["SpecialH"]).ToString()),
+                                new ReportParameter("A_OBA", Convert.ToDecimal(reader["OBA"]).ToString()),
+                                new ReportParameter("A_RD", Convert.ToDecimal(reader["RestDay"]).ToString()),
+                                new ReportParameter("A_LA", Convert.ToDecimal(reader["LoadA"]).ToString()),
+                                new ReportParameter("A_TA", Convert.ToDecimal(reader["TransA"]).ToString()),
+                                new ReportParameter("A_ADJ", Convert.ToDecimal(reader["Adjustments"]).ToString()),
+                                new ReportParameter("A_INC", Convert.ToDecimal(reader["Incentives"]).ToString()),
+                                new ReportParameter("A_TRNGA", Convert.ToDecimal(reader["TrainA"]).ToString()),
+                                new ReportParameter("A_PTA", Convert.ToDecimal(reader["ProvTA"]).ToString()),
+                                new ReportParameter("D_LU", Convert.ToDecimal(reader["Late"]).ToString()),
+                                new ReportParameter("D_SVNGS", Convert.ToDecimal(reader["Savings"]).ToString()),
+                                new ReportParameter("D_CA", Convert.ToDecimal(reader["CashA"]).ToString()),
+                                new ReportParameter("D_SSS", Convert.ToDecimal(reader["SSS"]).ToString()),
+                                new ReportParameter("D_PHLHLTH", Convert.ToDecimal(reader["PhilHealth"]).ToString()),
+                                new ReportParameter("D_PI", Convert.ToDecimal(reader["PagIbig"]).ToString()),
+                                new ReportParameter("Total_D", Convert.ToDecimal(reader["DeductionTotal"]).ToString())
                             };
 
                             reportViewer1.LocalReport.SetParameters(parameters);
-
                             reportViewer1.RefreshReport();
                         }
                         else
@@ -77,6 +149,7 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
 
         public void dataSource(int empID)
         {
