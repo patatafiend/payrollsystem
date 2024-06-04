@@ -840,5 +840,219 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        public decimal GetTotalHours(DateTime payStart, DateTime payEnd, int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(TotalHours) AS TotalHours " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@payStart", payStart);
+                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        public decimal GetTotalHoursOT(DateTime payStart, DateTime payEnd, int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(TotalOvertime) AS TotalOvertime " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@payStart", payStart);
+                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetTotalLateMin(DateTime payStart, DateTime payEnd, int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(Late) AS Late " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@payStart", payStart);
+                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetAbsents(DateTime payStart, DateTime payEnd, int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID AND TotalHours = @thw";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@payStart", payStart);
+                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@thw", 0);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetTotalHours(int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(TotalHours) AS TotalHours " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        public decimal GetTotalHoursOT(int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(TotalOvertime) AS TotalOvertime " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetTotalLateMin(int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SUM(Late) AS Late " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetAbsents(int employeeID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) " +
+                               "FROM Attendance " +
+                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID AND TotalHours = @thw";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@thw", 0);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
     }
 }

@@ -52,10 +52,10 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgOT"].Value = GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgLate"].Value = GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
                     }
                 }
             }
@@ -282,117 +282,7 @@ namespace payrollsystemsti.AdminTabs
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
         }
 
-        private decimal GetTotalHours(DateTime payStart, DateTime payEnd, int employeeID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT SUM(TotalHours) AS TotalHours " +
-                               "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToDecimal(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-        private decimal GetTotalHoursOT(DateTime payStart, DateTime payEnd, int employeeID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT SUM(TotalOvertime) AS TotalOvertime " +
-                               "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToDecimal(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        private decimal GetTotalLateMin(DateTime payStart, DateTime payEnd, int employeeID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT SUM(Late) AS Late " +
-                               "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToDecimal(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        private decimal GetAbsents(DateTime payStart, DateTime payEnd, int employeeID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) " +
-                               "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID AND TotalHours = @thw";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
-                    cmd.Parameters.AddWithValue("@thw", 0);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToDecimal(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
+        
 
         private void setAllowance(int empID)
         {
