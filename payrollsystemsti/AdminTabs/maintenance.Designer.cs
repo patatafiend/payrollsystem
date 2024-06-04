@@ -35,6 +35,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbMaintenance = new System.Windows.Forms.ComboBox();
@@ -50,15 +59,6 @@
             this.tb3 = new System.Windows.Forms.TextBox();
             this.lb5 = new System.Windows.Forms.Label();
             this.tb5 = new System.Windows.Forms.TextBox();
-            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -142,6 +142,67 @@
             this.dataGridView1.TabIndex = 38;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Title";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Picture Required";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            this.dg3rd.Visible = false;
+            // 
+            // dg4th
+            // 
+            this.dg4th.HeaderText = "4th";
+            this.dg4th.Name = "dg4th";
+            this.dg4th.ReadOnly = true;
+            this.dg4th.Visible = false;
+            // 
+            // dg5th
+            // 
+            this.dg5th.HeaderText = "5th";
+            this.dg5th.Name = "dg5th";
+            this.dg5th.ReadOnly = true;
+            this.dg5th.Visible = false;
+            // 
+            // dg6th
+            // 
+            this.dg6th.HeaderText = "6th";
+            this.dg6th.Name = "dg6th";
+            this.dg6th.ReadOnly = true;
+            this.dg6th.Visible = false;
+            // 
+            // dg7th
+            // 
+            this.dg7th.HeaderText = "7th";
+            this.dg7th.Name = "dg7th";
+            this.dg7th.ReadOnly = true;
+            this.dg7th.Visible = false;
+            // 
+            // dg8th
+            // 
+            this.dg8th.HeaderText = "8th";
+            this.dg8th.Name = "dg8th";
+            this.dg8th.ReadOnly = true;
+            this.dg8th.Visible = false;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
+            // 
             // btnDeactivate
             // 
             this.btnDeactivate.BackColor = System.Drawing.Color.Crimson;
@@ -183,7 +244,8 @@
             "Roles",
             "Leaves",
             "Deductions",
-            "Allowances"});
+            "Allowances",
+            "Others"});
             this.cbMaintenance.Location = new System.Drawing.Point(824, 246);
             this.cbMaintenance.Name = "cbMaintenance";
             this.cbMaintenance.Size = new System.Drawing.Size(121, 24);
@@ -325,67 +387,6 @@
             this.tb5.Size = new System.Drawing.Size(150, 25);
             this.tb5.TabIndex = 53;
             this.tb5.Visible = false;
-            // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Title";
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Picture Required";
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            this.dg3rd.Visible = false;
-            // 
-            // dg4th
-            // 
-            this.dg4th.HeaderText = "4th";
-            this.dg4th.Name = "dg4th";
-            this.dg4th.ReadOnly = true;
-            this.dg4th.Visible = false;
-            // 
-            // dg5th
-            // 
-            this.dg5th.HeaderText = "5th";
-            this.dg5th.Name = "dg5th";
-            this.dg5th.ReadOnly = true;
-            this.dg5th.Visible = false;
-            // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "6th";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
-            // 
-            // dg7th
-            // 
-            this.dg7th.HeaderText = "7th";
-            this.dg7th.Name = "dg7th";
-            this.dg7th.ReadOnly = true;
-            this.dg7th.Visible = false;
-            // 
-            // dg8th
-            // 
-            this.dg8th.HeaderText = "8th";
-            this.dg8th.Name = "dg8th";
-            this.dg8th.ReadOnly = true;
-            this.dg8th.Visible = false;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
             // 
             // maintenance
             // 
