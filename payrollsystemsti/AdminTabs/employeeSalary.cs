@@ -495,10 +495,11 @@ namespace payrollsystemsti.AdminTabs
             // Resize the combo box
            
             cbPayroll.Top = 415;
-            cbPayroll.Left = 780;
+            cbPayroll.Left = 850;
             cbPayroll.Width = 160;
 
             dataGridView1.Location =  new System.Drawing.Point(24, 450);
+            dataGridView1.Width = 1000;
 
             btnCompute.Location = new System.Drawing.Point(768, 34);
             btnSave.Location = new System.Drawing.Point(906, 35);
