@@ -84,7 +84,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, currentTime, null, fID))
+                        if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
@@ -181,7 +181,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, null, currentTime, fID))
+                        if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"We are sad to see you go {getEmpName(fID)} :(");
@@ -214,7 +214,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAtttendanceData(date.Value.ToString());
         }
 
-        public bool insertAttendance(string date, int? timeIn, int? timeOut, int fingerID)
+        public bool insertAttendance(string date, int? timeIn, int? timeOut, int fingerID, int empID)
         {
             TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -228,12 +228,14 @@ namespace payrollsystemsti.AdminTabs
                     {
                         TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID) VALUES (@Date, @timeInAM, @fingerID)";
+                        query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeInAM", timeInString);
                             cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@empID", getEmpID(fingerID));
+
 
                             try
                             {

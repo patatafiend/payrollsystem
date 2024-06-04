@@ -32,19 +32,19 @@ namespace payrollsystemsti
 
         private void bt_login_Click(object sender, EventArgs e)
         {
-			if (LogInTester(tbUserName.Text, tbPassword.Text))
+			if (LogIN(tbUserName.Text, tbPassword.Text))
 			{
-				this.Hide();
-				formDashboard.Show();
-				formDashboard.formDashboardInstance.LoggedInLeaves = m.GetTotalEmployeeCount();
-				dashBoard.isClickable = true;
+                MessageBox.Show("Login Successful");
+			}
+			if(LogInTester(tbUserName.Text, tbPassword.Text))
+			{
+                this.Hide();
+                formDashboard.Show();
+                formDashboard.formDashboardInstance.LoggedInLeaves = m.GetTotalEmployeeCount();
+                dashBoard.isClickable = true;
 
-				LogLoginTime(0, "Tester", "User", 0, 0, 0); // Assuming 0 or dummy values for tester
-			}
-			else
-			{
-                LogIN(tbUserName.Text, tbPassword.Text);
-			}
+                LogLoginTime(0, "Tester", "User", 0, 0, 0); // Assuming 0 or dummy values for tester
+            }
 		}
         private bool LogInTester(string user, string password)
         {
@@ -54,8 +54,8 @@ namespace payrollsystemsti
                 string query = "SELECT Username, Password FROM UserAccounts WHERE Username = @user AND Password = @pass";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@user", user);
-                    cmd.Parameters.AddWithValue("@pass", password);
+                    cmd.Parameters.AddWithValue("@user", "tester");
+                    cmd.Parameters.AddWithValue("@pass", "tester");
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -98,9 +98,11 @@ namespace payrollsystemsti
                                 int numAbsents = (int)reader["Absents"];
                                 int totalEmployee = m.GetTotalEmployeeCount();
 
-                                string roleTitle = m.getRoleTitle((int)reader["RoleID"]);
+                                int roleID = (int)reader["RoleID"];
                                 string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
                                 int departmentID = (int)reader["DepartmentID"];
+
+                                
 
 
                                 string username = reader["Username"].ToString();
@@ -109,7 +111,7 @@ namespace payrollsystemsti
 
 
                                 // Log the login time
-                                LogLoginTime(employeeID, fname, lname, departmentID, numLeaves, numAbsents);
+                                LogLoginTime(employeeID, fname, lname, 0, numLeaves, numAbsents);
 
                                 this.Hide();
                                 formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
@@ -118,15 +120,16 @@ namespace payrollsystemsti
                                 formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
 
                                 // Disable function based on role/department
-                                if (roleTitle == "User")
+                                if (roleID == 4)
                                 {
-                                    if (departmentName == "HumanResource Department")
+                                    
+                                    if (departmentID == 2)
                                     {
                                         formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                         dashBoard.isClickable = true;
                                     }
-                                    else if (departmentName == "Accountanting Department")
+                                    else if (departmentID == 4)
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetEnrollFingerPanel().Hide();
@@ -136,7 +139,7 @@ namespace payrollsystemsti
                                         formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                         dashBoard.isClickable = true;
                                     }
-                                    else
+                                    else if(departmentID == 1)
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetLeaveTypePanel().Hide();
@@ -151,10 +154,12 @@ namespace payrollsystemsti
                                 }
                                 else // Admin
                                 {
+                                    Console.WriteLine("fdSfsdfsdfsdf" + departmentID);
                                     formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                     dashBoard.isClickable = true;
                                 }
-
+                                MessageBox.Show("ssadasdssdsasadAASDASDASDASDASD " + departmentID);
+                                Console.WriteLine("fdSfsdfsdfsdf" + departmentID);
                                 formDashboard.Show();
                                 return true;
                             }

@@ -31,9 +31,22 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+        public void fileNameM()
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    fileName = ofd.FileName;
+                    lbFileName.Text = fileName;
+                    pbEmployee.Image = Image.FromFile(fileName);
+                }
+            }
+        }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            lbFileName.Text = "";
             pbEmployee.Image = null;
         }
         private void employeeRegister_Load(object sender, EventArgs e)
@@ -123,7 +136,7 @@ namespace payrollsystemsti.AdminTabs
                 {
                     if (InsertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
                         getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
-                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
+                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
                         tbMob.Text, 0, 5, 0))
                     {
                         ClearData();
@@ -187,6 +200,30 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (UpdateEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
+                        getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
+                        tbMob.Text, Convert.ToInt32(empID.Text)))
+                {
+                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearData();
+                    LoadData();
+                    LoadDepartments();
+                    LoadPositions();
+                    LoadRoles();
+                }
+            }
+            else
+            {
+                btnUpdate.Enabled = false;
+                btnDeactivate.Enabled = false;
+            }
+        }
 
         private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID)
         {
@@ -196,14 +233,8 @@ namespace payrollsystemsti.AdminTabs
                 string query = "UPDATE EmployeeAccounts SET FirstName = @firstName, LastName = @lastName," +
                        "DepartmentID = @department, PositionID = @position, RoleID = @role, SSN = @ssn, Email = @email, " +
                        "Address = @address, Dob = @dob, BasicRate = @basicRate, ImageData = @imageData, " +
-                       "Mobile = @mobile, RoleID = @role";
+                       "Mobile = @mobile, @FileName = @fileName WHERE EmployeeID = @employeeId";
 
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    query += ", FileName = @FileName ";
-                }
-
-                query += " WHERE EmployeeID = @employeeId";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -221,11 +252,6 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@imageData", imageData);
                     cmd.Parameters.AddWithValue("@mobile", mobile);
                     cmd.Parameters.AddWithValue("@employeeId", empID);
-
-                    if (!string.IsNullOrEmpty(fileName))
-                    {
-                        cmd.Parameters.AddWithValue("@FileName", fileName);
-                    }
 
                     try
                     {
@@ -337,30 +363,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (UpdateEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
-                        getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
-                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, fileName, m.ConvertImageToBinary(pbEmployee.Image),
-                        tbMob.Text, Convert.ToInt32(empID.Text)))
-                {
-                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearData();
-                    LoadData();
-                    LoadDepartments();
-                    LoadPositions();
-                    LoadRoles();
-                }
-            }
-            else
-            {
-                btnUpdate.Enabled = false;
-                btnDeactivate.Enabled = false;
-            }
-        }
+        
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
@@ -463,6 +466,7 @@ namespace payrollsystemsti.AdminTabs
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string fullName = dataGridView1.SelectedRows[0].Cells["dgFullName"].Value.ToString();
+
             string firstName = fullName.Split(' ')[0];
             string lastName = fullName.Split(' ')[1];
             tbFirstName.Text = firstName;
@@ -807,6 +811,13 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        
+        private void tbFirstName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void lbFileName_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

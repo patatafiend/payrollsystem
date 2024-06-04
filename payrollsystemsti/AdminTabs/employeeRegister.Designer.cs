@@ -98,7 +98,7 @@
             this.lbFileName.Size = new System.Drawing.Size(92, 19);
             this.lbFileName.TabIndex = 1;
             this.lbFileName.Text = "File Name:";
-            this.lbFileName.Visible = false;
+            this.lbFileName.TextChanged += new System.EventHandler(this.lbFileName_TextChanged);
             // 
             // btnAdd
             // 
@@ -181,6 +181,7 @@
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(172, 28);
             this.tbFirstName.TabIndex = 16;
+            this.tbFirstName.TextChanged += new System.EventHandler(this.tbFirstName_TextChanged);
             this.tbFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbFirstName_KeyDown);
             // 
             // label6

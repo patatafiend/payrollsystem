@@ -62,13 +62,6 @@
             this.tbLate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label15 = new System.Windows.Forms.Label();
             this.gb2 = new System.Windows.Forms.GroupBox();
             this.tbOBA = new System.Windows.Forms.TextBox();
@@ -81,6 +74,13 @@
             this.btnPayslip = new System.Windows.Forms.Button();
             this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -449,57 +449,11 @@
             this.dataGridView1.Location = new System.Drawing.Point(24, 450);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1021, 237);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "EmployeeID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgBasic
-            // 
-            this.dgBasic.HeaderText = "Basic Rate";
-            this.dgBasic.Name = "dgBasic";
-            this.dgBasic.ReadOnly = true;
-            // 
-            // dgTHW
-            // 
-            this.dgTHW.HeaderText = "TotalHoursWorked";
-            this.dgTHW.Name = "dgTHW";
-            this.dgTHW.ReadOnly = true;
-            this.dgTHW.Visible = false;
-            // 
-            // dgOT
-            // 
-            this.dgOT.HeaderText = "OvertimeHours";
-            this.dgOT.Name = "dgOT";
-            this.dgOT.ReadOnly = true;
-            this.dgOT.Visible = false;
-            // 
-            // dgLate
-            // 
-            this.dgLate.HeaderText = "TotalLate";
-            this.dgLate.Name = "dgLate";
-            this.dgLate.ReadOnly = true;
-            this.dgLate.Visible = false;
-            // 
-            // dgAbsent
-            // 
-            this.dgAbsent.HeaderText = "TotalAbsent";
-            this.dgAbsent.Name = "dgAbsent";
-            this.dgAbsent.ReadOnly = true;
-            this.dgAbsent.Visible = false;
             // 
             // label15
             // 
@@ -655,6 +609,51 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgBasic
+            // 
+            this.dgBasic.HeaderText = "Basic Rate";
+            this.dgBasic.Name = "dgBasic";
+            this.dgBasic.ReadOnly = true;
+            // 
+            // dgTHW
+            // 
+            this.dgTHW.HeaderText = "TotalHoursWorked";
+            this.dgTHW.Name = "dgTHW";
+            this.dgTHW.ReadOnly = true;
+            // 
+            // dgOT
+            // 
+            this.dgOT.HeaderText = "OvertimeHours";
+            this.dgOT.Name = "dgOT";
+            this.dgOT.ReadOnly = true;
+            this.dgOT.Visible = false;
+            // 
+            // dgLate
+            // 
+            this.dgLate.HeaderText = "TotalLate";
+            this.dgLate.Name = "dgLate";
+            this.dgLate.ReadOnly = true;
+            this.dgLate.Visible = false;
+            // 
+            // dgAbsent
+            // 
+            this.dgAbsent.HeaderText = "TotalAbsent";
+            this.dgAbsent.Name = "dgAbsent";
+            this.dgAbsent.ReadOnly = true;
+            this.dgAbsent.Visible = false;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,6 +738,9 @@
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.Label lbStart;
         private System.Windows.Forms.Label lbEnd;
+        private System.Windows.Forms.Button btnPayslip;
+        private System.Windows.Forms.ComboBox cbPayroll;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
@@ -746,8 +748,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
-        private System.Windows.Forms.Button btnPayslip;
-        private System.Windows.Forms.ComboBox cbPayroll;
-        private System.Windows.Forms.Button btnSave;
     }
 }

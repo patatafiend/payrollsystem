@@ -122,7 +122,7 @@ namespace payrollsystemsti.AdminTabs
             }
             else
             {
-                LoadPayrollData();
+                //
 
                 empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
                 basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
@@ -233,6 +233,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
+            LoadPayrollData();
             DateTime startDate = dtStart.Value.Date;
             dtEnd.Value = startDate.AddDays(14);
             dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
@@ -481,6 +482,10 @@ namespace payrollsystemsti.AdminTabs
                     }
                 }
             }
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
         }
     }
 }
