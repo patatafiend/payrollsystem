@@ -432,13 +432,30 @@ namespace payrollsystemsti.AdminTabs
                     break;
                 case "Printing":
                     LoadComputedPayrollData();
-                    hidePayrollComputation();
+                    // Resize the combo box
+                    cbPayroll.Width = 200;
+                    cbPayroll.Height = 80;
+                    cbPayroll.Top = 100;
+                    cbPayroll.Left = 750;
+
+
+                    dataGridView1.Top = 150;
+                    dataGridView1.Height = 500;
+                    
+
+                    // Relocate the print button
+                    btnPayslip.Left = 30;
+                    btnPayslip.Top = 80;
+                    hidePayrollComputation();               
                     break;
                 default:
                     firsInterface();
                     break;
             }
         }
+
+      
+
 
         public void hidePayrollComputation()
         {
@@ -474,9 +491,26 @@ namespace payrollsystemsti.AdminTabs
             btnCompute.Visible = true;
             btnSave.Visible = true;
             btnPayslip.Visible = false;
+
+            // Resize the combo box
+           
+            cbPayroll.Top = 415;
+            cbPayroll.Left = 780;
+            cbPayroll.Width = 160;
+
+            dataGridView1.Location =  new System.Drawing.Point(24, 450);
+
+            btnCompute.Location = new System.Drawing.Point(768, 34);
+            btnSave.Location = new System.Drawing.Point(906, 35);
+
+           
+
         }
 
-        public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
+     
+
+
+            public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -508,6 +542,24 @@ namespace payrollsystemsti.AdminTabs
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
+            // Set the size of the form
+            this.Width = 800; // Width in pixels
+            this.Height = 600; // Height in pixels
+
+            // Set the location of the form on the screen
+            this.Left = 100; // Distance from left edge of the screen
+            this.Top = 50;  // Distance from top edge of the screen
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Set the size of the form
+            this.Width = 800; // Width in pixels
+            this.Height = 600; // Height in pixels
+
+            // Set the location of the form on the screen
+            this.Left = 100; // Distance from left edge of the screen
+            this.Top = 50;  // Distance from top edge of the screen
         }
     }
 }

@@ -602,7 +602,7 @@ namespace payrollsystemsti
 			HistoyLogForm = null;
 		}
 
-		private void btnMin_Click(object sender, EventArgs e)
+        private void btnMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
