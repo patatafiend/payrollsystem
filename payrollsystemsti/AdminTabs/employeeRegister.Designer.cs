@@ -82,6 +82,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.empID = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -196,11 +198,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 98);
+            this.label7.Location = new System.Drawing.Point(53, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 19);
             this.label7.TabIndex = 17;
             this.label7.Text = "DoB:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // dtDob
             // 
@@ -225,7 +228,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(30, 136);
+            this.label8.Location = new System.Drawing.Point(30, 149);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 19);
             this.label8.TabIndex = 19;
@@ -425,6 +428,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tbLastName);
             this.groupBox1.Controls.Add(this.label3);
@@ -488,6 +492,7 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.cbRole);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.cbDeparment);
@@ -642,6 +647,26 @@
             this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(31, 118);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 15);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "(Date of Birth)";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(14, 215);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 30);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "(Social Security \r\nNumber)";
+            // 
             // employeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -734,5 +759,7 @@
         private System.Windows.Forms.TextBox empID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }
