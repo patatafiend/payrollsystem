@@ -1015,6 +1015,7 @@ namespace payrollsystemsti
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     object result = cmd.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
                     {

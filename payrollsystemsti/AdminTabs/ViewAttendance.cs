@@ -63,7 +63,6 @@ namespace payrollsystemsti.AdminTabs
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
             LoadAttedance(empID);
-            MessageBox.Show(empID.ToString());
         }
     }
 }

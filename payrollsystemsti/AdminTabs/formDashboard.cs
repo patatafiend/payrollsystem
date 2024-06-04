@@ -531,6 +531,7 @@ namespace payrollsystemsti
                 viewA.FormClosed += ViewAttedance_FormClosed;
                 viewA.MdiParent = this;
                 viewA.Dock = DockStyle.Fill;
+                ViewAttendance.va.employeeID = loggedInEmployeeID;
                 viewA.Show();
             }
             else
@@ -538,7 +539,6 @@ namespace payrollsystemsti
                 viewA.Activate();
             }
 
-            ViewAttendance.va.employeeID = loggedInEmployeeID;
         }
 
         private void ViewAttedance_FormClosed(object sender, FormClosedEventArgs e)
