@@ -128,11 +128,11 @@
     <Compile Include="AdminTabs\leaveManagement.Designer.cs">
       <DependentUpon>leaveManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminTabs\manageDP.cs">
+    <Compile Include="AdminTabs\viewAttedance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminTabs\manageDP.Designer.cs">
-      <DependentUpon>manageDP.cs</DependentUpon>
+    <Compile Include="AdminTabs\viewAttedance.Designer.cs">
+      <DependentUpon>viewAttedance.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminTabs\managePositions.cs">
       <SubType>Form</SubType>
@@ -265,8 +265,8 @@
     <EmbeddedResource Include="AdminTabs\leaveManagement.resx">
       <DependentUpon>leaveManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminTabs\manageDP.resx">
-      <DependentUpon>manageDP.cs</DependentUpon>
+    <EmbeddedResource Include="AdminTabs\viewAttedance.resx">
+      <DependentUpon>viewAttedance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
       <DependentUpon>overtimeApplication.cs</DependentUpon>

@@ -386,16 +386,27 @@ namespace payrollsystemsti.Tabs
 
         public string hasProof(string yesno)
         {
-            if (yesno == "True")
+            switch (yesno)
             {
-                return "Yes";
-            }
-            else
-            {
-                return "No";
+                case "True":
+                    return "Yes";
+                default:
+                    return "No";
             }
         }
-        
+        public void passProof(string yesno)
+        {
+            switch (yesno)
+            {
+                case "Yes":
+                    cbPicture.Checked = true;
+                    break;
+                default:
+                    cbPicture.Checked = false;
+                    break;
+            }
+        }
+
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             btnUpdate.Enabled = true;
@@ -424,6 +435,11 @@ namespace payrollsystemsti.Tabs
                     tb2.Text = dataGridView1.SelectedRows[0].Cells["dg4th"].Value.ToString();
                     tb3.Text = dataGridView1.SelectedRows[0].Cells["dg5th"].Value.ToString();
                     tb4.Text = dataGridView1.SelectedRows[0].Cells["dg6th"].Value.ToString();
+                    break;
+                case "Leaves":
+                    titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+                    tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+                    passProof(dataGridView1.SelectedRows[0].Cells["dg3rd"].Value.ToString());
                     break;
                 default:
                     titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
@@ -522,6 +538,7 @@ namespace payrollsystemsti.Tabs
         }
         public void changeToLeaves()
         {
+            cbPicture.Visible = true;
             dataGridView1.Columns["dg2nd"].HeaderText = "Leave Type";
             dataGridView1.Columns["dg3rd"].Visible = true;
         }

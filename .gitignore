@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/payrollsystemsti/AdminTabs/viewAttedance.cs
+/payrollsystemsti/AdminTabs/viewAttedance.Designer.cs
+/payrollsystemsti/AdminTabs/viewAttedance.resx
+/.gitignore
+/.gitignore

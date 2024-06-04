@@ -583,7 +583,7 @@ namespace payrollsystemsti
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "UPDATE LeaveCategory SET CategoryName = @name, IsDeactivated = @status " +
+                string query = "UPDATE LeaveCategory SET CategoryName = @name, hasProof= @status " +
                     "WHERE CategoryID = @ID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))

@@ -37,7 +37,7 @@ namespace payrollsystemsti.EmployeeTabs
         private void leaveApplication_Load(object sender, EventArgs e)
         {
             loadLeaveCB();
-            LoadData();
+            LoadData(loggedInID);
         }
 
         private void loadLeaveCB()
@@ -118,7 +118,7 @@ namespace payrollsystemsti.EmployeeTabs
                     MessageBox.Show("Leave Application Submitted Successfully");
                     ClearLeaveApplicationForm();
                 }
-                LoadData();
+                LoadData(loggedInID);
                 ClearData();
             }
         }
@@ -161,16 +161,17 @@ namespace payrollsystemsti.EmployeeTabs
             }
         }
 
-        private void LoadData()
+        private void LoadData(int empID)
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT * FROM LeaveApplications";
+            string query = "SELECT * FROM LeaveApplications WHERE EmployeeID = @empID";
 
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@empID", empID);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
 
@@ -230,7 +231,7 @@ namespace payrollsystemsti.EmployeeTabs
                     }
                 }
             }
-            LoadData();
+            LoadData(loggedInID);
             ClearData();
         }
 
