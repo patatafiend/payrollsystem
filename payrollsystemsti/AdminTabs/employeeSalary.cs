@@ -145,6 +145,7 @@ namespace payrollsystemsti.AdminTabs
 
 
                 setAllowance(empID);
+                setOthers(empID);
             }
             
         }
@@ -376,6 +377,27 @@ namespace payrollsystemsti.AdminTabs
                         tbLoadA.Text = reader["LoadA"].ToString();
                         tbPTA.Text = reader["ProvisionTA"].ToString();
                         tbOBA.Text = reader["OBA"].ToString();
+                    }
+                }
+            }
+        }
+        private void setOthers(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Others WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tbIncentives.Text = reader["Incentives"].ToString();
+                        tbRegularH.Text = reader["RegularH"].ToString();
+                        tbSpecialH.Text = reader["SpecialH"].ToString();
+                        tbAdjustment.Text = reader["Adjustment"].ToString();
                     }
                 }
             }

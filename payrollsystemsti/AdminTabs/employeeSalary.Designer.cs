@@ -62,6 +62,13 @@
             this.tbLate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label15 = new System.Windows.Forms.Label();
             this.gb2 = new System.Windows.Forms.GroupBox();
             this.tbOBA = new System.Windows.Forms.TextBox();
@@ -74,13 +81,6 @@
             this.btnPayslip = new System.Windows.Forms.Button();
             this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -455,6 +455,51 @@
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgBasic
+            // 
+            this.dgBasic.HeaderText = "Basic Rate";
+            this.dgBasic.Name = "dgBasic";
+            this.dgBasic.ReadOnly = true;
+            // 
+            // dgTHW
+            // 
+            this.dgTHW.HeaderText = "TotalHoursWorked";
+            this.dgTHW.Name = "dgTHW";
+            this.dgTHW.ReadOnly = true;
+            // 
+            // dgOT
+            // 
+            this.dgOT.HeaderText = "OvertimeHours";
+            this.dgOT.Name = "dgOT";
+            this.dgOT.ReadOnly = true;
+            this.dgOT.Visible = false;
+            // 
+            // dgLate
+            // 
+            this.dgLate.HeaderText = "TotalLate";
+            this.dgLate.Name = "dgLate";
+            this.dgLate.ReadOnly = true;
+            this.dgLate.Visible = false;
+            // 
+            // dgAbsent
+            // 
+            this.dgAbsent.HeaderText = "TotalAbsent";
+            this.dgAbsent.Name = "dgAbsent";
+            this.dgAbsent.ReadOnly = true;
+            this.dgAbsent.Visible = false;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -571,7 +616,7 @@
             this.btnPayslip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPayslip.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayslip.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnPayslip.Location = new System.Drawing.Point(22, 397);
+            this.btnPayslip.Location = new System.Drawing.Point(24, 397);
             this.btnPayslip.Name = "btnPayslip";
             this.btnPayslip.Size = new System.Drawing.Size(120, 47);
             this.btnPayslip.TabIndex = 39;
@@ -608,51 +653,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "EmployeeID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgBasic
-            // 
-            this.dgBasic.HeaderText = "Basic Rate";
-            this.dgBasic.Name = "dgBasic";
-            this.dgBasic.ReadOnly = true;
-            // 
-            // dgTHW
-            // 
-            this.dgTHW.HeaderText = "TotalHoursWorked";
-            this.dgTHW.Name = "dgTHW";
-            this.dgTHW.ReadOnly = true;
-            // 
-            // dgOT
-            // 
-            this.dgOT.HeaderText = "OvertimeHours";
-            this.dgOT.Name = "dgOT";
-            this.dgOT.ReadOnly = true;
-            this.dgOT.Visible = false;
-            // 
-            // dgLate
-            // 
-            this.dgLate.HeaderText = "TotalLate";
-            this.dgLate.Name = "dgLate";
-            this.dgLate.ReadOnly = true;
-            this.dgLate.Visible = false;
-            // 
-            // dgAbsent
-            // 
-            this.dgAbsent.HeaderText = "TotalAbsent";
-            this.dgAbsent.Name = "dgAbsent";
-            this.dgAbsent.ReadOnly = true;
-            this.dgAbsent.Visible = false;
             // 
             // employeeSalary
             // 
