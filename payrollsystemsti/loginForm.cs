@@ -36,7 +36,7 @@ namespace payrollsystemsti
 			{
                 MessageBox.Show("Login Successful");
 			}
-			if(LogInTester(tbUserName.Text, tbPassword.Text))
+            else if(LogInTester(tbUserName.Text, tbPassword.Text))
 			{
                 this.Hide();
                 formDashboard.Show();
@@ -113,6 +113,7 @@ namespace payrollsystemsti
                                 // Log the login time
                                 LogLoginTime(employeeID, fname, lname, 0, numLeaves, numAbsents);
 
+
                                 this.Hide();
                                 formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
                                 formDashboard.formDashboardInstance.LoggedInFirstName = fname;
@@ -123,23 +124,24 @@ namespace payrollsystemsti
                                 if (roleID == 4)
                                 {
                                     
-                                    if (departmentID == 2)
+                                    if (departmentID == 2)//hr
                                     {
                                         formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                         dashBoard.isClickable = true;
                                     }
-                                    else if (departmentID == 4)
+                                    else if (departmentID == 4) //accounting
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.GetLeaveTypePanel().Hide();
                                         formDashboard.GetLeaveManagementPanel().Hide();
                                         formDashboard.GetAccountArchivePanel().Hide();
-                                        formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+                                        formDashboard.GetHistoryPanel().Hide();
+										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
                                         dashBoard.isClickable = true;
                                     }
-                                    else if(departmentID == 1)
+                                    else if(departmentID == 1) // SalesDepartment
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetLeaveTypePanel().Hide();
@@ -148,18 +150,37 @@ namespace payrollsystemsti
                                         formDashboard.GetEnrollFingerPanel().Hide();
                                         formDashboard.GetEmployeeRegisterPanel().Hide();
                                         formDashboard.GetSalaryPanel().Hide();
-                                        formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+										formDashboard.GetHistoryPanel().Hide();
+										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
                                         dashBoard.isClickable = false;
-                                    }
-                                }
+                                    }else if (departmentID == 3) // logistics
+                                    {
+										formDashboard.GetEnrollFingerPanel().Hide();
+										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										dashBoard.isClickable = true;
+
+									}
+									else if (departmentID == 5)
+									{
+										formDashboard.GetEnrollFingerPanel().Hide();
+										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										dashBoard.isClickable = true;
+
+									}
+									else if(departmentID == 6)
+                                    {
+										formDashboard.GetEnrollFingerPanel().Hide();
+										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										dashBoard.isClickable = true;
+
+									}
+								}
                                 else // Admin
                                 {
-                                    Console.WriteLine("fdSfsdfsdfsdf" + departmentID);
+                                    
                                     formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
                                     dashBoard.isClickable = true;
                                 }
-                                MessageBox.Show("ssadasdssdsasadAASDASDASDASDASD " + departmentID);
-                                Console.WriteLine("fdSfsdfsdfsdf" + departmentID);
                                 formDashboard.Show();
                                 return true;
                             }

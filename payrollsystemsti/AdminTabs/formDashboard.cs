@@ -183,6 +183,11 @@ namespace payrollsystemsti
             return salaryPnl;
         }
 
+        public Panel GetHistoryPanel()
+		{
+			return HIstoryLogPnl;
+		}
+
 
 
 
