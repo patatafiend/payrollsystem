@@ -13,15 +13,11 @@ namespace payrollsystemsti.AdminTabs
 {
     public partial class ViewAttendance : Form
     {
+
         Methods m = new Methods();
         public ViewAttendance()
         {
             InitializeComponent();
-        }
-
-        private void ViewAttendance_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void LoadAttedance(int empID)
