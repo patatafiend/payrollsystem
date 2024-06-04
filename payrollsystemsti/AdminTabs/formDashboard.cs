@@ -27,6 +27,7 @@ namespace payrollsystemsti
         private attendanceMonitoring am;
         private enrollFingerprint ef;
         private HistoryLogForm HistoyLogForm;
+        private ViewAttendance viewA;
 
         
         //draggable panel shit
@@ -523,7 +524,26 @@ namespace payrollsystemsti
 
         private void employeeAttendance_Click(object sender, EventArgs e)
         {
+            panelContainerToBackOrToFront(false);
+            if (viewA == null)
+            {
+                viewA = new ViewAttendance();
+                viewA.FormClosed += ViewAttedance_FormClosed;
+                viewA.MdiParent = this;
+                viewA.Dock = DockStyle.Fill;
+                viewA.Show();
+            }
+            else
+            {
+                viewA.Activate();
+            }
 
+            ViewAttendance.va.employeeID = loggedInEmployeeID;
+        }
+
+        private void ViewAttedance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            viewA = null;
         }
 
         private void btnEnrollFinger_Click(object sender, EventArgs e)

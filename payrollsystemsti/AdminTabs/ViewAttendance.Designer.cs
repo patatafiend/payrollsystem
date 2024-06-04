@@ -33,6 +33,7 @@
             this.dgAbsents = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLates = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgED = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,17 +86,31 @@
             this.dgED.Name = "dgED";
             this.dgED.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 71);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 24);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Attedance History";
+            // 
             // ViewAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(866, 541);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ViewAttendance";
             this.Text = "ViewAttendance";
+            this.Load += new System.EventHandler(this.ViewAttendance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -106,5 +121,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsents;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLates;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgED;
+        private System.Windows.Forms.Label label1;
     }
 }

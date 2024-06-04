@@ -15,9 +15,24 @@ namespace payrollsystemsti.AdminTabs
     {
 
         Methods m = new Methods();
+        public static ViewAttendance va;
+        public static int empID;
         public ViewAttendance()
         {
             InitializeComponent();
+            va = this;
+        }
+
+        public int employeeID
+        {
+            set
+            {
+                empID = value;
+            }
+            get
+            {
+                return empID;
+            }
         }
 
         private void LoadAttedance(int empID)
@@ -36,13 +51,18 @@ namespace payrollsystemsti.AdminTabs
                     foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add(row);
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours((int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT((int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin((int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents((int)row["EmployeeID"]).ToString();
+                        double totalWD = ((double)m.GetTotalHours((int)row["EmployeeID"])) / 24;
+                        dataGridView1.Rows[n].Cells["dgNWD"].Value = totalWD.ToString();
+                        dataGridView1.Rows[n].Cells["dgLates"].Value = m.GetTotalLateMin((int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgAbsents"].Value = m.GetAbsents((int)row["EmployeeID"]).ToString();
                     }
                 }
             }
+        }
+
+        private void ViewAttendance_Load(object sender, EventArgs e)
+        {
+            LoadAttedance(empID);
         }
     }
 }
