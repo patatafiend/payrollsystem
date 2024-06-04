@@ -89,10 +89,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 71);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Crimson;
+            this.label1.Location = new System.Drawing.Point(37, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 24);
+            this.label1.Size = new System.Drawing.Size(247, 32);
             this.label1.TabIndex = 29;
             this.label1.Text = "Attedance History";
             // 
