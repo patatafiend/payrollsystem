@@ -960,7 +960,7 @@ namespace payrollsystemsti
                 conn.Open();
                 string query = "SELECT SUM(TotalHours) AS TotalHours " +
                                "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+                               "WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -985,7 +985,7 @@ namespace payrollsystemsti
                 conn.Open();
                 string query = "SELECT SUM(TotalOvertime) AS TotalOvertime " +
                                "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+                               "WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -1011,7 +1011,7 @@ namespace payrollsystemsti
                 conn.Open();
                 string query = "SELECT SUM(Late) AS Late " +
                                "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID";
+                               "WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -1035,7 +1035,7 @@ namespace payrollsystemsti
                 conn.Open();
                 string query = "SELECT COUNT(*) " +
                                "FROM Attendance " +
-                               "WHERE Date >= @payStart AND Date <= @payEnd AND EmployeeID = @employeeID AND TotalHours = @thw";
+                               "WHERE EmployeeID = @employeeID AND TotalHours = @thw";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
