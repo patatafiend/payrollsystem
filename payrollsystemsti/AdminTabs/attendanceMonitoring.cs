@@ -274,7 +274,7 @@ namespace payrollsystemsti.AdminTabs
                     }
                     else if(IsTimedInAM(fingerID, date) || IsTimedOutAM(fingerID, date))
                     {
-                        MessageBox.Show("You already have a that attendance");
+                        MessageBox.Show("Duplicated attendance");
                         return false;
                     }
                     else

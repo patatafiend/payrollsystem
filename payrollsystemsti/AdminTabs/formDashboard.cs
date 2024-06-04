@@ -312,7 +312,7 @@ namespace payrollsystemsti
 				}
 				else
 				{
-					dashBoard.dashboardInstance.lbPanelName1.Text = "Available Leaves";
+					dashBoard.dashboardInstance.lbPanelName1.Text = "Available Paid Leaves";
 				}
 			}
 			else
