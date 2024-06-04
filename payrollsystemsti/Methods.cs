@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace payrollsystemsti
 {
@@ -435,6 +436,75 @@ namespace payrollsystemsti
             }
         }
 
+        public bool InsertOtherData(int employeeID, int incentives, int regularH, int specialH, int adjustment)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = @"
+            INSERT INTO Others (EmployeeID, Incentives, RegularH, SpecialH, Adjustment) 
+            VALUES (@employeeID, @incentives, @regularH, @specialH, @adjustment);";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@incentives", incentives);
+                    cmd.Parameters.AddWithValue("@regularH", regularH);
+                    cmd.Parameters.AddWithValue("@specialH", specialH);
+                    cmd.Parameters.AddWithValue("@adjustment", adjustment);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; // Return true if insert was successful
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception (e.g., log, display error message)
+                        MessageBox.Show($"Error inserting into Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateOtherData(int employeeID, int incentives, int regularH, int specialH, int adjustment)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = @"
+            UPDATE Others 
+            SET Incentives = @incentives, RegularH = @regularH, SpecialH = @specialH, Adjustment = @adjustment
+            WHERE EmployeeID = @employeeID;";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Add all the parameters here (including @otherID to identify the record)
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@incentives", incentives);
+                    cmd.Parameters.AddWithValue("@regularH", regularH);
+                    cmd.Parameters.AddWithValue("@specialH", specialH);
+                    cmd.Parameters.AddWithValue("@adjustment", adjustment);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception (e.g., log, display error message)
+                        MessageBox.Show($"Error updating Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+
+
         public bool updateDepartments(string title, int id)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -700,6 +770,31 @@ namespace payrollsystemsti
             {
                 conn.Open();
                 string query = "UPDATE Deductions SET IsDeactivated = @status WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool deactivateOthers(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Others SET IsDeactivated = @status WHERE OthersID = @ID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);

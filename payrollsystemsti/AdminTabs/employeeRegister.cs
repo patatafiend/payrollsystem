@@ -278,6 +278,7 @@ namespace payrollsystemsti.AdminTabs
                 if(CreateUser(email, password.ToLower(), Convert.ToInt32(id)))
                 {
                     m.insertToAllowances(Convert.ToInt32(id),0,0,0,0,0);
+                    m.InsertOtherData(Convert.ToInt32(id), 0, 0, 0, 0);
                     MessageBox.Show("Created User Succesfully");
                 }
 

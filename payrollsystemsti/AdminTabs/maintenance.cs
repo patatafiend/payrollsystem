@@ -176,6 +176,36 @@ namespace payrollsystemsti.Tabs
             }
         }
 
+        private void LoadOthersData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, Others.Incentives, " +
+                "Others.RegularH, Others.SpecialH, Others.Adjustment FROM EmployeeAccounts " +
+                "INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID WHERE IsDeactivated = @status";
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Incentives"].ToString();
+                        dataGridView1.Rows[n].Cells["dg4th"].Value = row["RegularH"].ToString();
+                        dataGridView1.Rows[n].Cells["dg5th"].Value = row["SpecialH"].ToString();
+                        dataGridView1.Rows[n].Cells["dg6th"].Value = row["Adjustment"].ToString();
+                    }
+                }
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!m.ifDepartmentNameExist(tb1.Text.ToString()) && !m.ifRoleTitleExist(tb1.Text.ToString()) && !m.ifPositionTitleExist(tb1.Text.ToString()))
@@ -260,6 +290,12 @@ namespace payrollsystemsti.Tabs
                             tbClear();
                             LoadAllowanceData();
                             break;
+                        case "Others":
+                            m.UpdateOtherData(titleID, Convert.ToInt32(tb1.Text), Convert.ToInt32(tb2.Text), Convert.ToInt32(tb3.Text),
+                                Convert.ToInt32(tb4.Text));
+                            tbClear();
+                            LoadAllowanceData();
+                            break;
                     }
                 }
                 else if (m.ifDepartmentNameExist(tb1.Text.ToString()) || m.ifRoleTitleExist(tb1.Text.ToString()) || m.ifPositionTitleExist(tb1.Text.ToString()))
@@ -316,6 +352,10 @@ namespace payrollsystemsti.Tabs
                         case "Allowances":
                             m.deactivateDeduction(titleID);
                             LoadAllowanceData();
+                            break;
+                        case "Others":
+                            m.deactivateOthers(titleID);
+                            LoadOthersData();
                             break;
                     }
                 }
@@ -377,6 +417,14 @@ namespace payrollsystemsti.Tabs
                     tb4.Text = dataGridView1.SelectedRows[0].Cells["dg6th"].Value.ToString();
                     tb5.Text = dataGridView1.SelectedRows[0].Cells["dg7th"].Value.ToString();
                     break;
+                case "Others":
+                    titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+
+                    tb1.Text = dataGridView1.SelectedRows[0].Cells["dg3rd"].Value.ToString();
+                    tb2.Text = dataGridView1.SelectedRows[0].Cells["dg4th"].Value.ToString();
+                    tb3.Text = dataGridView1.SelectedRows[0].Cells["dg5th"].Value.ToString();
+                    tb4.Text = dataGridView1.SelectedRows[0].Cells["dg6th"].Value.ToString();
+                    break;
                 default:
                     titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
                     tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
@@ -426,7 +474,38 @@ namespace payrollsystemsti.Tabs
                     changeToAllowances();
                     LoadAllowanceData();
                     break;
+                case "Others":
+                    changeToOthers();
+                    LoadOthersData();
+                    break;
             }
+        }
+
+        private void changeToOthers()
+        {
+            tb2.Visible = true;
+            tb3.Visible = true;
+            tb4.Visible = true;
+
+            lb1.Text = "Incentives";
+            lb2.Text = "Regular Holiday";
+            lb3.Text = "Special Holiday";
+            lb4.Text = "Adjustment";
+
+            lb2.Visible = true;
+            lb3.Visible = true;
+            lb4.Visible = true;
+
+            dataGridView1.Columns["dg2nd"].HeaderText = "Employee Name";
+            dataGridView1.Columns["dg3rd"].HeaderText = "Incentives";
+            dataGridView1.Columns["dg4th"].HeaderText = "Regular Holiday";
+            dataGridView1.Columns["dg5th"].HeaderText = "Special Holiday";
+            dataGridView1.Columns["dg6th"].HeaderText = "Adjustment";
+
+            dataGridView1.Columns["dg3rd"].Visible = true;
+            dataGridView1.Columns["dg4th"].Visible = true;
+            dataGridView1.Columns["dg5th"].Visible = true;
+            dataGridView1.Columns["dg6th"].Visible = true;
         }
 
         public void changeToDepartment()
