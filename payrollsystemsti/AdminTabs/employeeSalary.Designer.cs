@@ -80,6 +80,7 @@
             this.lbEnd = new System.Windows.Forms.Label();
             this.btnPayslip = new System.Windows.Forms.Button();
             this.cbPayroll = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -558,7 +559,7 @@
             this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompute.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCompute.Location = new System.Drawing.Point(906, 35);
+            this.btnCompute.Location = new System.Drawing.Point(768, 34);
             this.btnCompute.Name = "btnCompute";
             this.btnCompute.Size = new System.Drawing.Size(120, 47);
             this.btnCompute.TabIndex = 34;
@@ -639,12 +640,28 @@
             this.cbPayroll.TabIndex = 42;
             this.cbPayroll.SelectedValueChanged += new System.EventHandler(this.cbPayroll_SelectedValueChanged);
             // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSave.Location = new System.Drawing.Point(906, 35);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 47);
+            this.btnSave.TabIndex = 43;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1137, 910);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbPayroll);
             this.Controls.Add(this.btnPayslip);
             this.Controls.Add(this.lbEnd);
@@ -731,5 +748,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.ComboBox cbPayroll;
+        private System.Windows.Forms.Button btnSave;
     }
 }

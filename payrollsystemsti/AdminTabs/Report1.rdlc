@@ -17,18 +17,46 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="DepartmentName">
-          <DataField>DepartmentName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="PayrollID">
+          <DataField>PayrollID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PayPeriodStart">
+          <DataField>PayPeriodStart</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="PayPeriodEnd">
+          <DataField>PayPeriodEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="GrossPay">
+          <DataField>GrossPay</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NetPay">
+          <DataField>NetPay</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DeductionID">
+          <DataField>DeductionID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PaymentDate">
+          <DataField>PaymentDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>stipayrolldbDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Imalay\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\stipayrolldbDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>Departments</rd:TableName>
+        <rd:DataSetName>payrollTable</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\payrollTable.xsd</rd:SchemaPath>
+        <rd:TableName>Payroll</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>DepartmentsTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>PayrollTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

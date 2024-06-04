@@ -9,6 +9,7 @@ namespace payrollsystemsti.AdminTabs
     public partial class employeeSalary : Form
     {
         Methods m = new Methods();
+        public static employeeSalary es;
         private double basicRate = 0;
         private double totalHoursW = 0;
         private double totalOvertime = 0;
@@ -66,7 +67,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT * FROM Payroll";
+                string query = "SELECT EmployeeID FROM Payroll";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -77,16 +78,34 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["BasicRate"].ToString(); ;
-                        dataGridView1.Rows[n].Cells["dgOT"].Value = row["BasicRate"].ToString(); ;
-                        dataGridView1.Rows[n].Cells["dgLate"].Value = row["BasicRate"].ToString(); ;
-                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = row["BasicRate"].ToString(); ;
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = getEmpName((int)row["EmployeeID"]);
                     }
                 }
             }
         }
+
+        public string getEmpName(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["FirstName"].ToString()+ " " + reader["LastName"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
 
         private void employeeSalary_Load(object sender, System.EventArgs e)
         {
@@ -97,29 +116,45 @@ namespace payrollsystemsti.AdminTabs
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            LoadPayrollData();
+            if(cbPayroll.Text == "Printing")
+            {
+                empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
+            }
+            else
+            {
+                LoadPayrollData();
 
-            empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
-            basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
-            totalHoursW = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
-            totalOvertime = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
-            totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
-            totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
+                empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
+                basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
+                totalHoursW = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
+                totalOvertime = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
+                totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
+                totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
-            tbBasic.Text = basicSalary.ToString();
-            tbOT.Text = overtimePay.ToString();
-            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+                tbBasic.Text = basicSalary.ToString();
+                tbOT.Text = overtimePay.ToString();
+                tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
 
-            basicSalary = calBasicSalary(basicRate, totalHoursW);
-            overtimePay = calOvertimePay(totalOvertime, basicRate);
+                basicSalary = calBasicSalary(basicRate, totalHoursW);
+                overtimePay = calOvertimePay(totalOvertime, basicRate);
 
-            tbPagibig.Text = calPagIbig().ToString();
-            tbLate.Text = totalLate.ToString();
-            tbAbsent.Text = totalAbsent.ToString();
+                tbPagibig.Text = calPagIbig().ToString();
+                tbLate.Text = totalLate.ToString();
+                tbAbsent.Text = totalAbsent.ToString();
 
+
+
+                setAllowance(empID);
+            }
             
+        }
 
-            setAllowance(empID);
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
+            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+
+            insertToPayroll(empID, dateStart, dateEnd, gross, 0, gross);
         }
 
         private double calBasicSalary(double basicRate, double tHW)
@@ -355,26 +390,13 @@ namespace payrollsystemsti.AdminTabs
             tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
         }
 
-        public void setPaySlipInfo(int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, " +
-                    "Payroll.PayPeriodStart, Payroll.PayPeriodEnd, Payroll.GrossPay, Payroll.NetPay FROM EmployeeAccounts INNER JOIN" +
-                    "Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-
-                    
-                }
-            }
-        }
+        
 
         private void btnPayslip_Click(object sender, EventArgs e)
         {
-            
+            PaySlipReport ps = new PaySlipReport();
+            PaySlipReport.pr.empID = empID;
+            ps.Show();
         }
 
         private void cbPayroll_SelectedValueChanged(object sender, EventArgs e)
@@ -382,10 +404,12 @@ namespace payrollsystemsti.AdminTabs
             switch (cbPayroll.Text)
             {
                 case "Payroll Computation":
-                    hidePayrollComputation();
+                    LoadPayrollData();
+                    firsInterface();
                     break;
                 case "Printing":
-                    firsInterface();
+                    LoadComputedPayrollData();
+                    hidePayrollComputation();
                     break;
                 default:
                     firsInterface();
@@ -407,6 +431,7 @@ namespace payrollsystemsti.AdminTabs
             gb4.Visible = false;
 
             btnCompute.Visible = false;
+            btnSave.Visible = false;
             btnPayslip.Visible = true;
         }
         public void firsInterface()
@@ -424,7 +449,38 @@ namespace payrollsystemsti.AdminTabs
             gb4.Visible = true;
 
             btnCompute.Visible = true;
+            btnSave.Visible = true;
             btnPayslip.Visible = false;
+        }
+
+        public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Payroll(EmployeeID, PayPeriodStart, PayPeriodEnd, GrossPay, DeductionID, NetPay) " +
+                    "VALUES(@empID, @payStart, @payEnd, @gross, @deductionID, @netpay)";
+                using (SqlCommand cmd = new SqlCommand(query,conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@payStart", payStart);
+                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
+                    cmd.Parameters.AddWithValue("@gross", gross);
+                    cmd.Parameters.AddWithValue("@deductionID", deductionID);
+                    cmd.Parameters.AddWithValue("@netpay", netPay);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Payroll: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
         }
     }
 }
