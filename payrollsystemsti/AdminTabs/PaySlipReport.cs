@@ -108,12 +108,12 @@ namespace payrollsystemsti.AdminTabs
                                 new ReportParameter("pName", reader["FirstName"].ToString() + " " + reader["LastName"].ToString()),
                                 new ReportParameter("Cp_Start", Convert.ToDateTime(reader["PayPeriodStart"]).ToString("yyyy-MM-dd")),
                                 new ReportParameter("Cp_End", Convert.ToDateTime(reader["PayPeriodEnd"]).ToString("yyyy-MM-dd")),
-                                new ReportParameter("Total_A", Convert.ToDecimal(reader["GrossPay"]).ToString("C")),
-                                new ReportParameter("Total_Netpay", Convert.ToDecimal(reader["NetPay"]).ToString("C")),
+                                new ReportParameter("Total_A", Convert.ToDecimal(reader["GrossPay"]).ToString("")),
+                                new ReportParameter("Total_Netpay", Convert.ToDecimal(reader["NetPay"]).ToString("")),
 
                                 // Added parameters based on the Payroll table
                                 new ReportParameter("SM", reader["SemiMonthly"].ToString()),
-                                new ReportParameter("DR", Convert.ToDecimal(reader["DailyRate"]).ToString("C")),
+                                new ReportParameter("DR", Convert.ToDecimal(reader["DailyRate"]).ToString("")),
                                 new ReportParameter("POD", Convert.ToDateTime(reader["PayOutDate"]).ToString("yyyy-MM-dd")),
                                 new ReportParameter("NODW", reader["TotalHours"].ToString()),
                                 new ReportParameter("NO_OTP", reader["OverTimePay"].ToString()),
