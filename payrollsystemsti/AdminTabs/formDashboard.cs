@@ -310,6 +310,7 @@ namespace payrollsystemsti
 				dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
 				dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
 				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
+                dashBoard.dashboardInstance.lbEmpName.Text = "Name: " + fnameC;
 
 				if (LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
 				{
