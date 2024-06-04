@@ -52,7 +52,7 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add(row);
                         double totalWD = ((double)m.GetTotalHours((int)row["EmployeeID"])) / 24;
-                        dataGridView1.Rows[n].Cells["dgNWD"].Value = totalWD.ToString();
+                        dataGridView1.Rows[n].Cells["dgNDW"].Value = totalWD.ToString();
                         dataGridView1.Rows[n].Cells["dgLates"].Value = m.GetTotalLateMin((int)row["EmployeeID"]).ToString();
                         dataGridView1.Rows[n].Cells["dgAbsents"].Value = m.GetAbsents((int)row["EmployeeID"]).ToString();
                     }
@@ -63,6 +63,7 @@ namespace payrollsystemsti.AdminTabs
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
             LoadAttedance(empID);
+            MessageBox.Show(empID.ToString());
         }
     }
 }
