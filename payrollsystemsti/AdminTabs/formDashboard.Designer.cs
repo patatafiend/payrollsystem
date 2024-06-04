@@ -418,6 +418,7 @@
             // 
             // sideBar
             // 
+            this.sideBar.AutoScroll = true;
             this.sideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.sideBar.Controls.Add(this.panel3);
             this.sideBar.Controls.Add(this.userAccountPnl);
@@ -759,5 +760,5 @@
         private System.Windows.Forms.Button btnEnrollFinger;
 		private System.Windows.Forms.Panel HIstoryLogPnl;
 		private System.Windows.Forms.Button BtnHistoryLog;
-	}
+    }
 }

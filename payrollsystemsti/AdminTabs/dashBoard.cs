@@ -22,6 +22,10 @@ namespace payrollsystemsti
         public Label lbLeaves;
         public Label lbAbsents;
 		public Label lbPanelName1;
+		public Label lbPhone;
+		public Label lbEmail;
+		public Label lbposition;
+		public Label lbEmpName;
 
 		public static Boolean isClickable;
 
@@ -37,6 +41,11 @@ namespace payrollsystemsti
 			lbLeaves = lb_EmployeeNum;
 			lbAbsents = lb_absents;
 			lbPanelName1 = lb_Total;
+			lbPhone = lb_EmpPhoNum;
+			lbEmail = lb_EmpEmail;
+			lbposition = lb_EmpPosition;
+			lbEmpName = lb_EmpName;
+
 		}
 
 		private void dashBoard_Load(object sender, EventArgs e)
@@ -72,7 +81,7 @@ namespace payrollsystemsti
         }
 
         //employee list
-        private void Pnl_Employee_Click(object sender, EventArgs e) 
+        private void Pnl_Employee_Click(object sender, EventArgs e)
         {
 			
 			if (isClickable)
@@ -126,39 +135,6 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Employee_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_DashBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void notifContainer_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbWelcome_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+		
+	}
 }

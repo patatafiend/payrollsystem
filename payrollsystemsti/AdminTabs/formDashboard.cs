@@ -183,6 +183,11 @@ namespace payrollsystemsti
             return salaryPnl;
         }
 
+        public Panel GetHistoryPanel()
+		{
+			return HIstoryLogPnl;
+		}
+
 
 
 
@@ -305,6 +310,7 @@ namespace payrollsystemsti
 				dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
 				dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
 				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
+                dashBoard.dashboardInstance.lbEmpName.Text = "Name: " + fnameC;
 
 				if (LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
 				{
@@ -597,7 +603,7 @@ namespace payrollsystemsti
 			HistoyLogForm = null;
 		}
 
-		private void btnMin_Click(object sender, EventArgs e)
+        private void btnMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
