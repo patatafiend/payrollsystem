@@ -40,7 +40,7 @@ namespace payrollsystemsti.AdminTabs
         private void ShowData()
         {
             string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
-                " EmployeeAccounts.Department, EmployeeAccounts.Position, LeaveApplications.DateStart, LeaveApplications.DateEnd" +
+                " EmployeeAccounts.DepartmentID, EmployeeAccounts.PositionID, LeaveApplications.DateStart, LeaveApplications.DateEnd" +
                 ", LeaveApplications.CategoryName, LeaveApplications.Reason FROM EmployeeAccounts JOIN LeaveApplications" +
                 " ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -54,8 +54,8 @@ namespace payrollsystemsti.AdminTabs
                         {
                             lbEmpID.Text = reader["EmployeeID"].ToString();
                             lbFullName.Text = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                            lbDepartment.Text = reader["Department"].ToString();
-                            lbPosition.Text = reader["Position"].ToString();
+                            lbDepartment.Text = reader["DepartmentID"].ToString();
+                            lbPosition.Text = reader["PositionID"].ToString();
                             lbDateRange.Text = "Starting from " + reader["DateStart"].ToString() + " to " + reader["DateEnd"].ToString();
                             lbLeaveType.Text = reader["CategoryName"].ToString();
                             lbReason.Text = reader["Reason"].ToString();

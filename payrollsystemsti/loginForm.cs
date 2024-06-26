@@ -35,15 +35,10 @@ namespace payrollsystemsti
 			if (LogIN(tbUserName.Text, tbPassword.Text))
 			{
                 MessageBox.Show("Login Successful");
-			}
-            else if(LogInTester(tbUserName.Text, tbPassword.Text))
-			{
-                this.Hide();
-                formDashboard.Show();
-                formDashboard.formDashboardInstance.LoggedInLeaves = m.GetTotalEmployeeCount();
-                dashBoard.isClickable = true;
-
-                LogLoginTime(0, "Tester", "User", 0, 0, 0); // Assuming 0 or dummy values for tester
+            }
+            else
+            {
+                MessageBox.Show("login failed");
             }
 		}
         private bool LogInTester(string user, string password)
@@ -156,21 +151,21 @@ namespace payrollsystemsti
                                     }else if (departmentID == 3) // logistics
                                     {
 										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
 										dashBoard.isClickable = true;
 
 									}
 									else if (departmentID == 5)
 									{
 										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
 										dashBoard.isClickable = true;
 
 									}
 									else if(departmentID == 6)
                                     {
 										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
 										dashBoard.isClickable = true;
 
 									}

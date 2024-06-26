@@ -444,6 +444,7 @@ namespace payrollsystemsti
                 leaveApplication.FormClosed += LeaveApplication_FormClosed;
                 leaveApplication.MdiParent = this;
                 leaveApplication.Dock = DockStyle.Fill;
+                leaveApplication.leaveApplicationInstance.LoggedInEmpID = loggedInEmployeeID;
                 leaveApplication.Show();
             }
             else
@@ -487,6 +488,7 @@ namespace payrollsystemsti
                 lm.FormClosed += LeaveManagement_FormClosed;
                 lm.MdiParent = this;
                 lm.Dock = DockStyle.Fill;
+                
                 lm.Show();
             }
             else

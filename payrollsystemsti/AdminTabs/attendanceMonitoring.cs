@@ -52,7 +52,6 @@ namespace payrollsystemsti.AdminTabs
         private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
             ac = new ArduinoComms("COM4");
-            btnOvertime.Enabled = true;
             btnTimeIN.Enabled = true;
 
             LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
@@ -68,7 +67,6 @@ namespace payrollsystemsti.AdminTabs
                 loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
-                btnOvertime.Enabled = false;
 
 
                 string status = "Time IN";
@@ -108,7 +106,6 @@ namespace payrollsystemsti.AdminTabs
                 {
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
-                    btnOvertime.Enabled = true;
                     loadingIndicator.Visible = false;
                 }
             }
@@ -116,7 +113,6 @@ namespace payrollsystemsti.AdminTabs
             {
                 btnTimeIN.Enabled = true;
                 btnTimeOUT.Enabled = true;
-                btnOvertime.Enabled = true;
                 loadingIndicator.Visible = false;
             }
             LoadAtttendanceData(date.Value.ToString());
@@ -166,7 +162,6 @@ namespace payrollsystemsti.AdminTabs
                 loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
-                btnOvertime.Enabled = false;
 
                 string status = "Time OUT";
                 int currentTime = time.Value.Hour;
@@ -184,7 +179,7 @@ namespace payrollsystemsti.AdminTabs
                         if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                            MessageBox.Show($"We are sad to see you go {getEmpName(fID)} :(");
+                            MessageBox.Show($"check out of {getEmpName(fID)} ");
                         }
                     }
                     else
@@ -200,7 +195,6 @@ namespace payrollsystemsti.AdminTabs
                 {
                     btnTimeIN.Enabled = true;
                     btnTimeOUT.Enabled = true;
-                    btnOvertime.Enabled = true;
                     loadingIndicator.Visible = false;
                 }
             }
@@ -208,7 +202,6 @@ namespace payrollsystemsti.AdminTabs
             {
                 btnTimeIN.Enabled = true;
                 btnTimeOUT.Enabled = true;
-                btnOvertime.Enabled = true;
                 loadingIndicator.Visible = false;
             }
             LoadAtttendanceData(date.Value.ToString());

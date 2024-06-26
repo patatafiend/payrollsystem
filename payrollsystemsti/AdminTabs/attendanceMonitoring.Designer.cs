@@ -38,7 +38,6 @@
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
-            this.btnOvertime = new System.Windows.Forms.Button();
             this.btnTimeOUT = new System.Windows.Forms.Button();
             this.attendanceHeader = new System.Windows.Forms.Panel();
             this.controlBox = new System.Windows.Forms.Panel();
@@ -141,21 +140,6 @@
             this.btnTimeIN.Text = "Time IN";
             this.btnTimeIN.UseVisualStyleBackColor = false;
             this.btnTimeIN.Click += new System.EventHandler(this.btnTimeIN_Click);
-            // 
-            // btnOvertime
-            // 
-            this.btnOvertime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOvertime.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btnOvertime.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOvertime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOvertime.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOvertime.Location = new System.Drawing.Point(366, 125);
-            this.btnOvertime.Name = "btnOvertime";
-            this.btnOvertime.Size = new System.Drawing.Size(118, 44);
-            this.btnOvertime.TabIndex = 33;
-            this.btnOvertime.Text = "Overtime";
-            this.btnOvertime.UseVisualStyleBackColor = false;
-            this.btnOvertime.Click += new System.EventHandler(this.btnOvertime_Click);
             // 
             // btnTimeOUT
             // 
@@ -301,7 +285,6 @@
             this.Controls.Add(this.time);
             this.Controls.Add(this.attendanceHeader);
             this.Controls.Add(this.btnTimeOUT);
-            this.Controls.Add(this.btnOvertime);
             this.Controls.Add(this.btnTimeIN);
             this.Controls.Add(this.date);
             this.Controls.Add(this.dataGridView1);
@@ -327,7 +310,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker date;
         private System.Windows.Forms.Button btnTimeIN;
-        private System.Windows.Forms.Button btnOvertime;
         private System.Windows.Forms.Button btnTimeOUT;
         private System.Windows.Forms.Panel attendanceHeader;
         private System.Windows.Forms.Panel controlBox;
