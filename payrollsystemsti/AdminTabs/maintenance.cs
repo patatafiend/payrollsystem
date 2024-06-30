@@ -614,5 +614,10 @@ namespace payrollsystemsti.Tabs
         {
             btnCancel.Visible = btnUpdate.Enabled; 
         }
+
+        private void tb5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

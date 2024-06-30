@@ -129,7 +129,7 @@ namespace payrollsystemsti
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
                                         formDashboard.GetEnrollFingerPanel().Hide();
-                                        formDashboard.GetLeaveTypePanel().Hide();
+                                        
                                         formDashboard.GetLeaveManagementPanel().Hide();
                                         formDashboard.GetAccountArchivePanel().Hide();
                                         formDashboard.GetHistoryPanel().Hide();
@@ -139,7 +139,7 @@ namespace payrollsystemsti
                                     else if(departmentID == 1) // SalesDepartment
                                     {
                                         formDashboard.GetUserAccountPanel().Hide();
-                                        formDashboard.GetLeaveTypePanel().Hide();
+                                        
                                         formDashboard.GetLeaveManagementPanel().Hide();
                                         formDashboard.GetAccountArchivePanel().Hide();
                                         formDashboard.GetEnrollFingerPanel().Hide();

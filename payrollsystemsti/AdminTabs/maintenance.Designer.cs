@@ -387,6 +387,7 @@
             this.tb5.Size = new System.Drawing.Size(150, 25);
             this.tb5.TabIndex = 53;
             this.tb5.Visible = false;
+            this.tb5.TextChanged += new System.EventHandler(this.tb5_TextChanged);
             // 
             // maintenance
             // 

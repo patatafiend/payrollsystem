@@ -12,7 +12,7 @@ namespace payrollsystemsti
 {
     public partial class formDashboard : Form
     {
-		Methods m = new Methods();
+        Methods m = new Methods();
         public static formDashboard formDashboardInstance;
         // Declare form instances
         private dashBoard dashboard;
@@ -29,61 +29,71 @@ namespace payrollsystemsti
         private HistoryLogForm HistoyLogForm;
         private ViewAttendance viewA;
 
-        
+        private DepartmentMain DepartmentMain;
+        private Position Position;
+        private Roles Roles;
+        private LeavesM LeavesM;
+        private Deduction Deduction;
+        private Allowance Allowance;
+        private OthersM OthersM;
+
+
+
+
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
         [DllImport("User32.dll")]
         public static extern bool ReleaseCapture();
         [DllImport("User32.dll")]
-        public static extern int SendMessage(IntPtr hWnd,int Msg, int wParam, int lParam);
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
 
         // Logged-in user name property
         private string loggedInFirstName, loggedInDepartment;
-        
+
         private int loggedInEmployeeID, loggedInLeaves, loggedInAbsents;
 
-		static formDashboard _obj;
+        static formDashboard _obj;
 
-		public static formDashboard Instance
-		{
-			get
-			{
-				if (_obj == null)
-				{
-					_obj = new formDashboard();
-				}
-				return _obj;
-			}
-		}
+        public static formDashboard Instance
+        {
+            get
+            {
+                if (_obj == null)
+                {
+                    _obj = new formDashboard();
+                }
+                return _obj;
+            }
+        }
 
-		public Panel PnlContainer
-		{
-			get { return panelContainer; }
-			set { panelContainer = value; }
+        public Panel PnlContainer
+        {
+            get { return panelContainer; }
+            set { panelContainer = value; }
 
-		}
+        }
 
         public Button BackButton
         {
             get { return btn_back; }
-            set {  btn_back = value; }
+            set { btn_back = value; }
         }
 
 
-		// Form constructor
-		public formDashboard()
+        // Form constructor
+        public formDashboard()
         {
             InitializeComponent();
             formDashboardInstance = this;
-		}
+        }
 
         private void btn_back_Click(object sender, EventArgs e)
         {
             panelContainer.Controls["dashBoard"].BringToFront();
-			btn_back.Visible = false;
-		}
+            btn_back.Visible = false;
+        }
         public string LoggedInFirstName
         {
             get { return loggedInFirstName; }
@@ -92,15 +102,15 @@ namespace payrollsystemsti
                 loggedInFirstName = value;
             }
         }
-		public string LoggedInDepartment
-		{
-			get { return loggedInDepartment; }
-			set
-			{
-				loggedInDepartment = value;
-			}
-		}
-		public int LoggedInEmployeeID
+        public string LoggedInDepartment
+        {
+            get { return loggedInDepartment; }
+            set
+            {
+                loggedInDepartment = value;
+            }
+        }
+        public int LoggedInEmployeeID
         {
             get { return loggedInEmployeeID; }
             set
@@ -109,55 +119,51 @@ namespace payrollsystemsti
             }
         }
 
-		public int LoggedInLeaves
-		{
-			get { return loggedInLeaves; }
-			set
-			{
-				loggedInLeaves = value;
-			}
-		}
+        public int LoggedInLeaves
+        {
+            get { return loggedInLeaves; }
+            set
+            {
+                loggedInLeaves = value;
+            }
+        }
 
         public int LoggedInAbsents
-		{
-			get { return loggedInAbsents; }
-			set
-			{
-				loggedInAbsents = value;
-			}
-		}
+        {
+            get { return loggedInAbsents; }
+            set
+            {
+                loggedInAbsents = value;
+            }
+        }
 
-		public Button GetUserAccountButton()
+        public Button GetUserAccountButton()
         {
             return btn_useraccount;
         }
 
         public Button GetEnrollFingerButton()
-		{
-			return btnEnrollFinger;
-		}
+        {
+            return btnEnrollFinger;
+        }
 
 
         public Panel GetUserAccountPanel()
-		{
-			return userAccountPnl;
-		}
+        {
+            return userAccountPnl;
+        }
 
         public Panel GetLeavePanel()
         {
             return LeaveApplicationPnl;
 
-		}
+        }
 
-        public Panel GetLeaveTypePanel()
-        {
-            return leaveTypeManagementPnl;
-		}
 
         public Panel GetLeaveManagementPanel()
-		{
-			return leaveManagementPnl;
-		}
+        {
+            return leaveManagementPnl;
+        }
 
         public Panel GetAccountArchivePanel()
         {
@@ -167,12 +173,12 @@ namespace payrollsystemsti
         public Panel GetEnrollFingerPanel()
         {
             return enrollFingerprintPnl;
-		}
+        }
 
-       public Panel GetEmployeePanel()
+        public Panel GetEmployeePanel()
         {
             return employeePnl;
-		}
+        }
 
         public Panel GetEmployeeRegisterPanel()
         {
@@ -185,16 +191,17 @@ namespace payrollsystemsti
         }
 
         public Panel GetHistoryPanel()
-		{
-			return HIstoryLogPnl;
-		}
+        {
+            return HIstoryLogPnl;
+        }
 
 
 
 
-		// Employee panel expand/collapse transition flags
-		private bool employeeExpand = false;
+        // Employee panel expand/collapse transition flags
+        private bool employeeExpand = false;
         private bool sideBarExpand = true;
+        private bool maintinanceExpand = false;
 
         // Click event for employee button
         private void employee_Click(object sender, EventArgs e)
@@ -225,10 +232,11 @@ namespace payrollsystemsti
             }
         }
 
+
         // Sidebar expand/collapse transition
         private void sideBarTransition_Tick(object sender, EventArgs e)
         {
-            
+
             if (sideBarExpand == false)
             {
                 sideBar.Width += 100;
@@ -258,21 +266,27 @@ namespace payrollsystemsti
         // Click event for user account button
         private void userAccount_btn(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			// Show user registration form or activate if already open
-			if (userRegister == null)
-            {
-                userRegister = new maintenance();
-                userRegister.FormClosed += userRegister_FormClosed;
-                userRegister.MdiParent = this;
-                userRegister.Dock = DockStyle.Fill;
-                userRegister.Show();
-            }
-            else
-            {
-                userRegister.Activate();
-            }
+            mtransition.Start();
+            //panelContainerToBackOrToFront(false);
+            // Show user registration form or activate if already open
+            //if (userRegister == null)
+            //         {
+            //             userRegister = new maintenance();
+            //             userRegister.FormClosed += userRegister_FormClosed;
+            //             userRegister.MdiParent = this;
+            //             userRegister.Dock = DockStyle.Fill;
+            //             userRegister.Show();
+            //         }
+            //         else
+            //         {
+            //             userRegister.Activate();
+            //         }
+
         }
+
+
+
+
 
         // FormClosed event for user registration form
         private void userRegister_FormClosed(object sender, FormClosedEventArgs e)
@@ -283,66 +297,66 @@ namespace payrollsystemsti
         // Click event for dashboard button
         private void dashBoard_btn(object sender, EventArgs e)
         {
-			
-			panelContainerToBackOrToFront(true);
 
-			
-			if (dashboard == null)
-			{
-				
-				dashboard = new dashBoard();
-				dashboard.FormClosed += Dashboard_FormClosed;
-				dashboard.MdiParent = this;
-				dashboard.Dock = DockStyle.Fill;
-				dashboard.Show();
-			}
-			else
-			{
-				
-				dashboard.BringToFront();
-				dashboard.Activate();
-			}
+            panelContainerToBackOrToFront(true);
 
-			// Update the dashboard labels with the logged-in user details
-			if (!string.IsNullOrEmpty(loggedInFirstName))
-			{
-				String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
-				dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
-				dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
-				dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
-				dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
+
+            if (dashboard == null)
+            {
+
+                dashboard = new dashBoard();
+                dashboard.FormClosed += Dashboard_FormClosed;
+                dashboard.MdiParent = this;
+                dashboard.Dock = DockStyle.Fill;
+                dashboard.Show();
+            }
+            else
+            {
+
+                dashboard.BringToFront();
+                dashboard.Activate();
+            }
+
+            // Update the dashboard labels with the logged-in user details
+            if (!string.IsNullOrEmpty(loggedInFirstName))
+            {
+                String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
+                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
+                dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
+                dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
+                dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
                 dashBoard.dashboardInstance.lbEmpName.Text = "Name: " + fnameC;
 
-				if (LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
-				{
-					dashBoard.dashboardInstance.lbPanelName1.Text = "Total Employee";
-				}
-				else
-				{
-					dashBoard.dashboardInstance.lbPanelName1.Text = "Available Paid Leaves";
-				}
-			}
-			else
-			{
-				dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
-			}
+                if (LoggedInDepartment == "HR" || LoggedInDepartment == "Accountant")
+                {
+                    dashBoard.dashboardInstance.lbPanelName1.Text = "Total Employee";
+                }
+                else
+                {
+                    dashBoard.dashboardInstance.lbPanelName1.Text = "Available Paid Leaves";
+                }
+            }
+            else
+            {
+                dashBoard.dashboardInstance.lbGetName.Text = "Welcome , Tester <3";
+            }
 
-			byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
-			dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
-			dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
+            byte[] imageData = m.RetrieveEmployeeImageData(loggedInEmployeeID);
+            dashBoard.dashboardInstance.pbGetImageUser.Image = m.ConvertToImage(imageData);
+            dashBoard.dashboardInstance.lbGetDepartment.Text = loggedInDepartment;
 
-			// Ensure the dashboard is added to the panelContainer
-			if (!panelContainer.Controls.Contains(dashboard))
-			{
-				panelContainer.Controls.Add(dashboard);
-			}
+            // Ensure the dashboard is added to the panelContainer
+            if (!panelContainer.Controls.Contains(dashboard))
+            {
+                panelContainer.Controls.Add(dashboard);
+            }
 
-			// Hide the back button when the dashboard is displayed
-			btn_back.Visible = false;
+            // Hide the back button when the dashboard is displayed
+            btn_back.Visible = false;
 
 
 
-		}
+        }
 
         // FormClosed event for dashboard form
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -360,22 +374,22 @@ namespace payrollsystemsti
         // Click event for settings button
         private void settings_Click(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			if (fSettings == null)
-			{
-				fSettings = new formSettings();
-				fSettings.FormClosed += Settings_FormClosed;
-				fSettings.MdiParent = this;
-				fSettings.Dock = DockStyle.Fill;
-				fSettings.Show();
-			}
-			else
-			{
-				fSettings.Activate();
-			}
-			
+            panelContainerToBackOrToFront(false);
+            if (fSettings == null)
+            {
+                fSettings = new formSettings();
+                fSettings.FormClosed += Settings_FormClosed;
+                fSettings.MdiParent = this;
+                fSettings.Dock = DockStyle.Fill;
+                fSettings.Show();
+            }
+            else
+            {
+                fSettings.Activate();
+            }
+
             // Show settings form or activate if already open
-            
+
         }
 
         // FormClosed event for settings form
@@ -388,10 +402,10 @@ namespace payrollsystemsti
         private void employee_Register(object sender, EventArgs e)
         {
 
-			panelContainerToBackOrToFront(false);
+            panelContainerToBackOrToFront(false);
 
-			// Show employee registration form or activate if already open
-			if (empRegister == null)
+            // Show employee registration form or activate if already open
+            if (empRegister == null)
             {
                 empRegister = new employeeRegister();
                 empRegister.FormClosed += EmployeeRegister_FormClosed;
@@ -414,9 +428,9 @@ namespace payrollsystemsti
         // Click event for employee salary button
         private void employee_Salary(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			// Show employee salary form or activate if already open
-			if (employeeSalary == null)
+            panelContainerToBackOrToFront(false);
+            // Show employee salary form or activate if already open
+            if (employeeSalary == null)
             {
                 employeeSalary = new employeeSalary();
                 employeeSalary.FormClosed += EmployeeSalary_FormClosed;
@@ -437,8 +451,8 @@ namespace payrollsystemsti
         }
         private void btnLeave_Click(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			if (leaveApplication == null)
+            panelContainerToBackOrToFront(false);
+            if (leaveApplication == null)
             {
                 leaveApplication = new leaveApplication();
                 leaveApplication.FormClosed += LeaveApplication_FormClosed;
@@ -460,8 +474,8 @@ namespace payrollsystemsti
 
         private void btnLTM_Click(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			if (ltm == null)
+            panelContainerToBackOrToFront(false);
+            if (ltm == null)
             {
                 ltm = new leaveCategoriesManagement();
                 ltm.FormClosed += LeaveTypeManagement_FormClosed;
@@ -481,14 +495,14 @@ namespace payrollsystemsti
 
         private void btnLM_Click(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
-			if (lm == null)
+            panelContainerToBackOrToFront(false);
+            if (lm == null)
             {
                 lm = new leaveManagement();
                 lm.FormClosed += LeaveManagement_FormClosed;
                 lm.MdiParent = this;
                 lm.Dock = DockStyle.Fill;
-                
+
                 lm.Show();
             }
             else
@@ -503,7 +517,7 @@ namespace payrollsystemsti
         }
         private void btnArchive_Click(object sender, EventArgs e)
         {
-			panelContainerToBackOrToFront(false);
+            panelContainerToBackOrToFront(false);
 
             if (aa == null)
             {
@@ -551,7 +565,7 @@ namespace payrollsystemsti
         private void btnEnrollFinger_Click(object sender, EventArgs e)
         {
             panelContainerToBackOrToFront(false);
-            if(am != null)
+            if (am != null)
             {
                 am.Close();
             }
@@ -595,35 +609,287 @@ namespace payrollsystemsti
             }
         }
 
-		private void BtnHistoryLog_Click(object sender, EventArgs e)
-		{
-			panelContainerToBackOrToFront(true);
-
-			
-			if (HistoyLogForm == null || HistoyLogForm.IsDisposed)
-			{
-				
-				HistoyLogForm = new HistoryLogForm();
-				HistoyLogForm.FormClosed += HistoyLogForm_FormClosed;
-				HistoyLogForm.MdiParent = this;
-				HistoyLogForm.Dock = DockStyle.Fill;
-				panelContainer.Controls.Add(HistoyLogForm);
-				HistoyLogForm.Show();
-			}
-			else
-			{
-				
-				HistoyLogForm.BringToFront();
-				HistoyLogForm.Activate();
-		}
+        private void BtnHistoryLog_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(true);
 
 
-		}
+            if (HistoyLogForm == null || HistoyLogForm.IsDisposed)
+            {
 
-		private void HistoyLogForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			HistoyLogForm = null;
-		}
+                HistoyLogForm = new HistoryLogForm();
+                HistoyLogForm.FormClosed += HistoyLogForm_FormClosed;
+                HistoyLogForm.MdiParent = this;
+                HistoyLogForm.Dock = DockStyle.Fill;
+                panelContainer.Controls.Add(HistoyLogForm);
+                HistoyLogForm.Show();
+            }
+            else
+            {
+
+                HistoyLogForm.BringToFront();
+                HistoyLogForm.Activate();
+            }
+
+
+        }
+
+        private void HistoyLogForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            HistoyLogForm = null;
+        }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void employeePnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (DepartmentMain == null)
+            {
+                DepartmentMain = new DepartmentMain();
+                DepartmentMain.FormClosed += Department_FormClosed;
+                DepartmentMain.MdiParent = this;
+                DepartmentMain.Dock = DockStyle.Fill;
+                DepartmentMain.Show();
+            }
+            else
+            {
+                DepartmentMain.Activate();
+
+            }
+        }
+        private void Department_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DepartmentMain = null;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void mtransition_Tick(object sender, EventArgs e)
+        {
+            if (maintinanceExpand == false)
+            {
+                maintinanceC.Height += 10;
+                if (maintinanceC.Height >= 500)
+                {
+                    mtransition.Stop();
+                    maintinanceExpand = true;
+                }
+            }
+            else
+            {
+                maintinanceC.Height -= 10;
+                if (maintinanceC.Height <= 52)
+                {
+                    mtransition.Stop();
+                    maintinanceExpand = false;
+                }
+            }
+        }
+
+        private void maintinanceC_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (OthersM == null)
+            {
+                OthersM = new OthersM();
+                OthersM.FormClosed += OthersM_FormClosed;
+                OthersM.MdiParent = this;
+                OthersM.Dock = DockStyle.Fill;
+                OthersM.Show();
+            }
+            else
+            {
+                OthersM.Activate();
+
+            }
+        }
+        private void OthersM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OthersM = null;
+        }
+
+    
+
+        private void header_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            panelContainerToBackOrToFront(false);
+
+            if (Position == null)
+            {
+                Position = new Position();
+                Position.FormClosed += Position_FormClosed;
+                Position.MdiParent = this;
+                Position.Dock = DockStyle.Fill;
+                Position.Show();
+            }
+            else
+            {
+                Position.Activate();
+
+            }
+        }
+        private void Position_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Position = null;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (Roles == null)
+            {
+                Roles  = new Roles();
+                Roles.FormClosed += Roles_FormClosed;
+                Roles.MdiParent = this;
+                Roles.Dock = DockStyle.Fill;
+                Roles.Show();
+            }
+            else
+            {
+                Roles.Activate();
+
+            }
+        } 
+    
+        private void Roles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Roles = null;
+        
+    }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (LeavesM == null)
+            {
+                LeavesM = new LeavesM();
+                LeavesM.FormClosed += LeavesM_FormClosed;
+                LeavesM.MdiParent = this;
+                LeavesM.Dock = DockStyle.Fill;
+                LeavesM.Show();
+            }
+            else
+            {
+                LeavesM.Activate();
+
+            }
+        }
+        private void LeavesM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LeavesM = null;
+        
+    }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (Deduction == null)
+            {
+                Deduction = new Deduction();
+                Deduction.FormClosed += Deduction_FormClosed;
+                Deduction.MdiParent = this;
+                Deduction.Dock = DockStyle.Fill;
+                Deduction.Show();
+            }
+            else
+            {
+                Deduction.Activate();
+
+            }
+        }
+        private void Deduction_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Deduction = null;
+
+        
+    }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (Allowance == null)
+            {
+                Allowance = new Allowance();
+                Allowance.FormClosed += Allowance_FormClosed;
+                Allowance.MdiParent = this;
+                Allowance.Dock = DockStyle.Fill;
+                Allowance.Show();
+            }
+            else
+            {
+                Deduction.Activate();
+
+            }
+        }
+        private void Allowance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Allowance = null;
+        }
 
         private void btnMin_Click(object sender, EventArgs e)
         {

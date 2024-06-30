@@ -164,6 +164,12 @@
     <Compile Include="AdminTabs\ViewAttendance.Designer.cs">
       <DependentUpon>ViewAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Allowance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Allowance.Designer.cs">
+      <DependentUpon>Allowance.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArduinoComms.cs" />
     <Compile Include="changePass.cs">
       <SubType>Form</SubType>
@@ -183,6 +189,18 @@
     <Compile Include="AdminTabs\employeeList.Designer.cs">
       <DependentUpon>employeeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Deduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deduction.Designer.cs">
+      <DependentUpon>Deduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentMain.Designer.cs">
+      <DependentUpon>DepartmentMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeTabs\leaveApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +212,12 @@
     </Compile>
     <Compile Include="enrollFingerprint.Designer.cs">
       <DependentUpon>enrollFingerprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeavesM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeavesM.Designer.cs">
+      <DependentUpon>LeavesM.cs</DependentUpon>
     </Compile>
     <Compile Include="loginForm.cs">
       <SubType>Form</SubType>
@@ -214,10 +238,22 @@
       <DependentUpon>formSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Methods.cs" />
+    <Compile Include="OthersM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OthersM.Designer.cs">
+      <DependentUpon>OthersM.cs</DependentUpon>
+    </Compile>
     <Compile Include="payrollTable.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>payrollTable.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Position.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Position.Designer.cs">
+      <DependentUpon>Position.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +262,12 @@
     </Compile>
     <Compile Include="AdminTabs\maintenance.Designer.cs">
       <DependentUpon>maintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles.Designer.cs">
+      <DependentUpon>Roles.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="stipayrolldbDataSet.Designer.cs">
@@ -278,17 +320,29 @@
     <EmbeddedResource Include="AdminTabs\ViewAttendance.resx">
       <DependentUpon>ViewAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Allowance.resx">
+      <DependentUpon>Allowance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeList.resx">
       <DependentUpon>employeeList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Deduction.resx">
+      <DependentUpon>Deduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentMain.resx">
+      <DependentUpon>DepartmentMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeTabs\leaveApplication.resx">
       <DependentUpon>leaveApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="enrollFingerprint.resx">
       <DependentUpon>enrollFingerprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeavesM.resx">
+      <DependentUpon>LeavesM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="loginForm.resx">
       <DependentUpon>loginForm.cs</DependentUpon>
@@ -298,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formSettings.resx">
       <DependentUpon>formSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OthersM.resx">
+      <DependentUpon>OthersM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Position.resx">
+      <DependentUpon>Position.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -314,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\maintenance.resx">
       <DependentUpon>maintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles.resx">
+      <DependentUpon>Roles.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="payrollTable.xsc">
