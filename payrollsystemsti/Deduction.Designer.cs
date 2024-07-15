@@ -35,20 +35,14 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb2 = new System.Windows.Forms.TextBox();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,6 +78,7 @@
             this.btnAdd.TabIndex = 75;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDeactivate
             // 
@@ -97,6 +92,7 @@
             this.btnDeactivate.TabIndex = 74;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // dataGridView1
             // 
@@ -120,13 +116,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dg1st,
             this.dg2nd,
-            this.Amount,
             this.dg3rd,
-            this.dg4th,
-            this.dg5th,
-            this.dg6th,
-            this.dg7th,
-            this.dg8th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -145,74 +135,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(709, 306);
             this.dataGridView1.TabIndex = 73;
-            // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            this.dg1st.Visible = false;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Deduction Name";
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Picture Required";
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            this.dg3rd.Visible = false;
-            // 
-            // dg4th
-            // 
-            this.dg4th.HeaderText = "4th";
-            this.dg4th.Name = "dg4th";
-            this.dg4th.ReadOnly = true;
-            this.dg4th.Visible = false;
-            // 
-            // dg5th
-            // 
-            this.dg5th.HeaderText = "5th";
-            this.dg5th.Name = "dg5th";
-            this.dg5th.ReadOnly = true;
-            this.dg5th.Visible = false;
-            // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "6th";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
-            // 
-            // dg7th
-            // 
-            this.dg7th.HeaderText = "7th";
-            this.dg7th.Name = "dg7th";
-            this.dg7th.ReadOnly = true;
-            this.dg7th.Visible = false;
-            // 
-            // dg8th
-            // 
-            this.dg8th.HeaderText = "8th";
-            this.dg8th.Name = "dg8th";
-            this.dg8th.ReadOnly = true;
-            this.dg8th.Visible = false;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // btnUpdate
             // 
@@ -226,6 +149,7 @@
             this.btnUpdate.TabIndex = 72;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label11
             // 
@@ -249,15 +173,41 @@
             this.label1.TabIndex = 79;
             this.label1.Text = "Amount :";
             // 
-            // textBox1
+            // tb2
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(300, 139);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 32);
-            this.textBox1.TabIndex = 78;
+            this.tb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb2.Location = new System.Drawing.Point(300, 139);
+            this.tb2.Multiline = true;
+            this.tb2.Name = "tb2";
+            this.tb2.Size = new System.Drawing.Size(232, 32);
+            this.tb2.TabIndex = 78;
+            // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            this.dg1st.Visible = false;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Deduction Name";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Amount";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
             // 
             // Deduction
             // 
@@ -265,7 +215,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 644);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb2);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.tb1);
             this.Controls.Add(this.btnAdd);
@@ -276,6 +226,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Deduction";
             this.Text = "Deduction";
+            this.Load += new System.EventHandler(this.Deduction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -291,17 +242,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg5th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg7th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg8th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

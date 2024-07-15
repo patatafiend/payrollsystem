@@ -34,30 +34,23 @@
             this.tb2 = new System.Windows.Forms.TextBox();
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb5 = new System.Windows.Forms.TextBox();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrainingAllowance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -104,31 +97,19 @@
             this.tb1.Size = new System.Drawing.Size(150, 25);
             this.tb1.TabIndex = 62;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Location = new System.Drawing.Point(76, 242);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(118, 44);
-            this.btnAdd.TabIndex = 61;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            // 
             // btnDeactivate
             // 
             this.btnDeactivate.BackColor = System.Drawing.Color.Crimson;
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(324, 242);
+            this.btnDeactivate.Location = new System.Drawing.Point(197, 253);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 58;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // dataGridView1
             // 
@@ -152,17 +133,11 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dg1st,
             this.dg2nd,
-            this.Column3,
-            this.Column2,
-            this.Column1,
-            this.TrainingAllowance,
-            this.Column4,
             this.dg3rd,
             this.dg4th,
             this.dg5th,
             this.dg6th,
             this.dg7th,
-            this.dg8th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -181,6 +156,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(882, 278);
             this.dataGridView1.TabIndex = 57;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // btnUpdate
             // 
@@ -188,12 +164,13 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(200, 242);
+            this.btnUpdate.Location = new System.Drawing.Point(73, 253);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 56;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label11
             // 
@@ -218,16 +195,16 @@
             this.label1.Text = "Provision :";
             this.label1.Visible = false;
             // 
-            // textBox1
+            // tb4
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(591, 174);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 25);
-            this.textBox1.TabIndex = 69;
-            this.textBox1.Visible = false;
+            this.tb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(591, 174);
+            this.tb4.Multiline = true;
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(150, 25);
+            this.tb4.TabIndex = 69;
+            this.tb4.Visible = false;
             // 
             // label2
             // 
@@ -239,15 +216,15 @@
             this.label2.TabIndex = 68;
             this.label2.Text = "Load :";
             // 
-            // textBox2
+            // tb3
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(419, 174);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 25);
-            this.textBox2.TabIndex = 67;
+            this.tb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(419, 174);
+            this.tb3.Multiline = true;
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(150, 25);
+            this.tb3.TabIndex = 67;
             // 
             // label3
             // 
@@ -259,19 +236,17 @@
             this.label3.TabIndex = 74;
             this.label3.Text = "OB :";
             this.label3.Visible = false;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // textBox3
+            // tb5
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(763, 174);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(150, 25);
-            this.textBox3.TabIndex = 73;
-            this.textBox3.Visible = false;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.tb5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb5.Location = new System.Drawing.Point(763, 174);
+            this.tb5.Multiline = true;
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(150, 25);
+            this.tb5.TabIndex = 73;
+            this.tb5.Visible = false;
             // 
             // dg1st
             // 
@@ -287,77 +262,35 @@
             this.dg2nd.Name = "dg2nd";
             this.dg2nd.ReadOnly = true;
             // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Training Allowance";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Transportation Allowance";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Load Allowance";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // TrainingAllowance
-            // 
-            this.TrainingAllowance.HeaderText = "Provision Allowance";
-            this.TrainingAllowance.Name = "TrainingAllowance";
-            this.TrainingAllowance.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "OB Allawance";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // dg3rd
             // 
-            this.dg3rd.HeaderText = "Picture Required";
+            this.dg3rd.HeaderText = "Training Allowance";
             this.dg3rd.Name = "dg3rd";
             this.dg3rd.ReadOnly = true;
-            this.dg3rd.Visible = false;
             // 
             // dg4th
             // 
-            this.dg4th.HeaderText = "4th";
+            this.dg4th.HeaderText = "Transportation Allowance";
             this.dg4th.Name = "dg4th";
             this.dg4th.ReadOnly = true;
-            this.dg4th.Visible = false;
             // 
             // dg5th
             // 
-            this.dg5th.HeaderText = "5th";
+            this.dg5th.HeaderText = "Load Allowance";
             this.dg5th.Name = "dg5th";
             this.dg5th.ReadOnly = true;
-            this.dg5th.Visible = false;
             // 
             // dg6th
             // 
-            this.dg6th.HeaderText = "6th";
+            this.dg6th.HeaderText = "Provision Allowance";
             this.dg6th.Name = "dg6th";
             this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
             // 
             // dg7th
             // 
-            this.dg7th.HeaderText = "7th";
+            this.dg7th.HeaderText = "OB Allawance";
             this.dg7th.Name = "dg7th";
             this.dg7th.ReadOnly = true;
-            this.dg7th.Visible = false;
-            // 
-            // dg8th
-            // 
-            this.dg8th.HeaderText = "8th";
-            this.dg8th.Name = "dg8th";
-            this.dg8th.ReadOnly = true;
-            this.dg8th.Visible = false;
             // 
             // dgIsDeactivated
             // 
@@ -372,16 +305,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 674);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tb5);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb3);
             this.Controls.Add(this.lb2);
             this.Controls.Add(this.tb2);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.tb1);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdate);
@@ -389,6 +321,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Allowance";
             this.Text = "Allowance";
+            this.Load += new System.EventHandler(this.Allowance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -400,30 +333,23 @@
         private System.Windows.Forms.TextBox tb2;
         private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.TextBox tb1;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrainingAllowance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg5th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg7th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg8th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }

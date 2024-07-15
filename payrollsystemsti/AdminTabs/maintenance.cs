@@ -446,7 +446,6 @@ namespace payrollsystemsti.Tabs
                     tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
                     break;
             }
-            
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)

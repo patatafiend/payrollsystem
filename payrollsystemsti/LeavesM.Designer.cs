@@ -39,11 +39,6 @@
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg7th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg8th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -95,6 +90,7 @@
             this.btnAdd.TabIndex = 61;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDeactivate
             // 
@@ -108,6 +104,7 @@
             this.btnDeactivate.TabIndex = 58;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // dataGridView1
             // 
@@ -132,11 +129,6 @@
             this.dg1st,
             this.dg2nd,
             this.dg3rd,
-            this.dg4th,
-            this.dg5th,
-            this.dg6th,
-            this.dg7th,
-            this.dg8th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -155,6 +147,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(882, 278);
             this.dataGridView1.TabIndex = 57;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dg1st
             // 
@@ -175,41 +168,6 @@
             this.dg3rd.Name = "dg3rd";
             this.dg3rd.ReadOnly = true;
             // 
-            // dg4th
-            // 
-            this.dg4th.HeaderText = "4th";
-            this.dg4th.Name = "dg4th";
-            this.dg4th.ReadOnly = true;
-            this.dg4th.Visible = false;
-            // 
-            // dg5th
-            // 
-            this.dg5th.HeaderText = "5th";
-            this.dg5th.Name = "dg5th";
-            this.dg5th.ReadOnly = true;
-            this.dg5th.Visible = false;
-            // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "6th";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
-            // 
-            // dg7th
-            // 
-            this.dg7th.HeaderText = "7th";
-            this.dg7th.Name = "dg7th";
-            this.dg7th.ReadOnly = true;
-            this.dg7th.Visible = false;
-            // 
-            // dg8th
-            // 
-            this.dg8th.HeaderText = "8th";
-            this.dg8th.Name = "dg8th";
-            this.dg8th.ReadOnly = true;
-            this.dg8th.Visible = false;
-            // 
             // dgIsDeactivated
             // 
             this.dgIsDeactivated.HeaderText = "IsDeactivated";
@@ -229,6 +187,7 @@
             this.btnUpdate.TabIndex = 56;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label11
             // 
@@ -276,11 +235,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg5th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg7th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg8th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }

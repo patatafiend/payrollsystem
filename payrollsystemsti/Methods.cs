@@ -284,6 +284,38 @@ namespace payrollsystemsti
             }
         }
 
+        public bool ifDeductionExist(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Deductions WHERE IsDeactivated = 0 AND DeductionType = @deduction";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@deduction", title);
+                    int result = (int)cmd.ExecuteScalar();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        public bool ifLeaveCategoryExist(string title)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM LeaveCategory WHERE IsDeactivated = 0 AND DeductionType = @deduction";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@deduction", title);
+                    int result = (int)cmd.ExecuteScalar();
+
+                    return result > 0;
+                }
+            }
+        }
+
         public bool insertToDepartments(string title)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
