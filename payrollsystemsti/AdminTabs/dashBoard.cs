@@ -2,8 +2,12 @@
 using payrollsystemsti.EmployeeTabs;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace payrollsystemsti
 {
@@ -28,8 +32,12 @@ namespace payrollsystemsti
 		public Label lbEmpName;
 
 		public static Boolean isClickable;
+        private Color gradientBottomColor;
+        private Color gradientAngle;
 
-		public dashBoard()
+        public PointF GradientTopColor { get; private set; }
+
+        public dashBoard()
         {
             InitializeComponent();
             InitializeEventHandlers();
@@ -135,6 +143,41 @@ namespace payrollsystemsti
             DepartmentList = null;
         }
 
-		
-	}
-}
+        private void lb_curDepartment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_DashBoard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_Employee_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void lb_EmployeeNum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_Total_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void lb_absents_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
+
+    }
+
