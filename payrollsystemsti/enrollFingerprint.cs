@@ -102,10 +102,17 @@ namespace payrollsystemsti
             }
         }
 
+
         private async void btnEnrollFinger_Click(object sender, EventArgs e)
         {
-            fingerID = Convert.ToInt32(tbFingerID.Text.ToString());
+            int maxAttempts = 128;
             btnEnrollFinger.Enabled = false;
+
+            while (isfingerIDExist(fingerID) && maxAttempts > 0)
+            {
+                fingerID++;
+                maxAttempts--;
+            }
 
             if (!isfingerIDExist(fingerID))
             {
@@ -147,16 +154,17 @@ namespace payrollsystemsti
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            btnRemove.Enabled = true;
-            
-            if (!string.IsNullOrEmpty(tbFingerID.Text))
+            switch (cbFilterID.SelectedIndex)
             {
-                btnRemove.Enabled = true;
-                btnEnrollFinger.Enabled = true;
-
-                string fingerID = dataGridView1.SelectedRows[0].Cells["dgFingerID"].Value.ToString();
-                empID = Int32.Parse(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
+                case 0:
+                    btnRemove.Enabled = true;
+                    break;
+                case 1:
+                    btnEnrollFinger.Enabled= true;
+                    break;
             }
+
+            empID = Int32.Parse(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
         }
 
         private void LoadData()
@@ -214,6 +222,7 @@ namespace payrollsystemsti
 
         private void cbFilterID_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DisableButtons();
             try
             {
                 switch (cbFilterID.SelectedIndex)
@@ -235,12 +244,31 @@ namespace payrollsystemsti
             }
             
         }
+        private void DisableButtons()
+        {
+            btnEnrollFinger.Enabled = false;
+            btnRemove.Enabled = false;
+        }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-
+            RemoveFID(empID);
+            btnRemove.Enabled = false;
+            LoadDataFingerID();
         }
-
+        public void RemoveFID(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeAccounts SET fingerID = NULL WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         private void enrollFingerprint_FormClosed(object sender, FormClosedEventArgs e)
         {
             ac.closePort();

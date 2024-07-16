@@ -271,9 +271,10 @@ namespace payrollsystemsti.AdminTabs
         }
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (!ifUserAlreadyExist(Convert.ToInt32(empID.Text)))
+            int NempID = Convert.ToInt32(empID.Text);
+            if (!ifUserAlreadyExist(NempID))
             {
-                string info = GetEmployeeInfo(Convert.ToInt32(empID.Text));
+                string info = GetEmployeeInfo(NempID);
                 string email = info.Split(' ')[2];
                 string password = info.Split(' ')[0] + info.Split(' ')[1];
                 string id = info.Split(' ')[1];
@@ -288,9 +289,32 @@ namespace payrollsystemsti.AdminTabs
                 btnCreate.Enabled = false;
 
             }
-            else
+            else if(ifUserAlreadyExist(NempID))
             {
                 MessageBox.Show("User account already exist");
+            }
+        }
+
+        public bool ifUserHasFID(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT fingerID FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    object result = cmd.ExecuteScalar();
+
+                    if(result != DBNull.Value)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
         public bool ifUserAlreadyExist(int empID)
@@ -460,6 +484,7 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgPosition"].Value = m.getPositionTitle(Convert.ToInt32(row["PositionID"].ToString()));
                         dataGridView1.Rows[n].Cells["dgRole"].Value = m.getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
                         dataGridView1.Rows[n].Cells["dgBasicRate"].Value = row["BasicRate"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFID"].Value = row["fingerID"].ToString();
                     }
                 }
 
@@ -488,14 +513,6 @@ namespace payrollsystemsti.AdminTabs
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
             pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
 
-            object fID = dataGridView1.SelectedRows[0].Cells["dgFID"].Value;
-
-            if (fID != null)
-            {
-                fingeID = (int)fID;
-            }
-
-
 
             string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
             DateTime dob;
@@ -511,7 +528,17 @@ namespace payrollsystemsti.AdminTabs
 
             btnSave.Enabled = false;
             btnUpdate.Enabled = true;
-            btnCreate.Enabled = true;
+
+            if (ifUserHasFID(Convert.ToInt32(empID.Text)))
+            {
+                btnCreate.Enabled = true;
+                MessageBox.Show("this printed");
+            }
+            else
+            {
+                btnCreate.Enabled = false;
+            }
+
             btnDeactivate.Enabled = false;
         }
         //gets the value in the combo box role
