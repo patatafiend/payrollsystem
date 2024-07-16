@@ -43,8 +43,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbFilterID = new System.Windows.Forms.ComboBox();
             this.loadingIndicator = new System.Windows.Forms.PictureBox();
+            this.loginHeader = new System.Windows.Forms.Panel();
+            this.controlBox = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btnMin = new System.Windows.Forms.Button();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.btnMax = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).BeginInit();
+            this.loginHeader.SuspendLayout();
+            this.controlBox.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEnrollFinger
@@ -64,7 +77,7 @@
             // tbFingerID
             // 
             this.tbFingerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFingerID.Location = new System.Drawing.Point(55, 33);
+            this.tbFingerID.Location = new System.Drawing.Point(55, 50);
             this.tbFingerID.Multiline = true;
             this.tbFingerID.Name = "tbFingerID";
             this.tbFingerID.Size = new System.Drawing.Size(168, 22);
@@ -150,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 17);
+            this.label1.Location = new System.Drawing.Point(52, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 38;
@@ -181,12 +194,105 @@
             this.loadingIndicator.TabIndex = 40;
             this.loadingIndicator.TabStop = false;
             // 
+            // loginHeader
+            // 
+            this.loginHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loginHeader.BackColor = System.Drawing.Color.LavenderBlush;
+            this.loginHeader.Controls.Add(this.controlBox);
+            this.loginHeader.Location = new System.Drawing.Point(0, -2);
+            this.loginHeader.Name = "loginHeader";
+            this.loginHeader.Size = new System.Drawing.Size(839, 33);
+            this.loginHeader.TabIndex = 41;
+            this.loginHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.loginHeader_MouseDown);
+            // 
+            // controlBox
+            // 
+            this.controlBox.Controls.Add(this.panel17);
+            this.controlBox.Controls.Add(this.panel12);
+            this.controlBox.Controls.Add(this.panel16);
+            this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.controlBox.Location = new System.Drawing.Point(699, 0);
+            this.controlBox.Name = "controlBox";
+            this.controlBox.Size = new System.Drawing.Size(140, 33);
+            this.controlBox.TabIndex = 6;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.btnClose);
+            this.panel17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel17.Location = new System.Drawing.Point(93, 3);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(44, 30);
+            this.panel17.TabIndex = 31;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(3, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(36, 27);
+            this.btnClose.TabIndex = 30;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.btnMin);
+            this.panel12.Location = new System.Drawing.Point(3, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(44, 30);
+            this.panel12.TabIndex = 0;
+            // 
+            // btnMin
+            // 
+            this.btnMin.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMin.FlatAppearance.BorderSize = 0;
+            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMin.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMin.Image = ((System.Drawing.Image)(resources.GetObject("btnMin.Image")));
+            this.btnMin.Location = new System.Drawing.Point(3, 3);
+            this.btnMin.Name = "btnMin";
+            this.btnMin.Size = new System.Drawing.Size(36, 27);
+            this.btnMin.TabIndex = 30;
+            this.btnMin.UseVisualStyleBackColor = false;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.btnMax);
+            this.panel16.Location = new System.Drawing.Point(48, 3);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(44, 30);
+            this.panel16.TabIndex = 30;
+            // 
+            // btnMax
+            // 
+            this.btnMax.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMax.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMax.FlatAppearance.BorderSize = 0;
+            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMax.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMax.Image = ((System.Drawing.Image)(resources.GetObject("btnMax.Image")));
+            this.btnMax.Location = new System.Drawing.Point(3, 3);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(36, 27);
+            this.btnMax.TabIndex = 30;
+            this.btnMax.UseVisualStyleBackColor = false;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
+            // 
             // enrollFingerprint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(838, 544);
+            this.Controls.Add(this.loginHeader);
             this.Controls.Add(this.loadingIndicator);
             this.Controls.Add(this.cbFilterID);
             this.Controls.Add(this.label1);
@@ -201,6 +307,11 @@
             this.Load += new System.EventHandler(this.enrollFingerprint_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).EndInit();
+            this.loginHeader.ResumeLayout(false);
+            this.controlBox.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +332,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.ComboBox cbFilterID;
         private System.Windows.Forms.PictureBox loadingIndicator;
+        private System.Windows.Forms.Panel loginHeader;
+        private System.Windows.Forms.Panel controlBox;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btnMin;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Button btnMax;
     }
 }

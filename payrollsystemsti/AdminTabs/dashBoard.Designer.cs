@@ -48,6 +48,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.notifContainer = new System.Windows.Forms.Panel();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.lb_EmployeeNum = new System.Windows.Forms.Label();
             this.lb_Total = new System.Windows.Forms.Label();
             this.pnl_Employee = new System.Windows.Forms.Panel();
@@ -67,7 +68,6 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
@@ -244,7 +244,6 @@
             // 
             // pnl_Department
             // 
-            this.pnl_Department.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnl_Department.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(225)))), ((int)(((byte)(228)))));
             this.pnl_Department.Controls.Add(this.lb_curDepartment);
             this.pnl_Department.Controls.Add(this.pictureBox2);
@@ -297,6 +296,12 @@
             this.notifContainer.Name = "notifContainer";
             this.notifContainer.Size = new System.Drawing.Size(621, 212);
             this.notifContainer.TabIndex = 6;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(14, 9);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
             // 
             // lb_EmployeeNum
             // 
@@ -514,12 +519,6 @@
             this.label10.Size = new System.Drawing.Size(101, 16);
             this.label10.TabIndex = 4;
             this.label10.Text = "Total Employees";
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(14, 9);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
             // 
             // dashBoard
             // 

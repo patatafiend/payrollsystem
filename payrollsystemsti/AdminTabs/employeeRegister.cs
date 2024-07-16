@@ -14,6 +14,9 @@ namespace payrollsystemsti.AdminTabs
     {
         Methods m = new Methods();
         private string fileName;
+        enrollFingerprint ef = new enrollFingerprint();
+
+        int fingeID = 0;
         public employeeRegister()
         {
             InitializeComponent();
@@ -485,6 +488,15 @@ namespace payrollsystemsti.AdminTabs
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
             pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
 
+            object fID = dataGridView1.SelectedRows[0].Cells["dgFID"].Value;
+
+            if (fID != null)
+            {
+                fingeID = (int)fID;
+            }
+
+
+
             string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
             DateTime dob;
 
@@ -812,18 +824,9 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void tbFirstName_TextChanged(object sender, EventArgs e)
+        private void btnEnrollFinger_Click(object sender, EventArgs e)
         {
-        }
-
-        private void lbFileName_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            ef.Show();
         }
     }
 }
