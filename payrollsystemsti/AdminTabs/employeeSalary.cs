@@ -26,6 +26,41 @@ namespace payrollsystemsti.AdminTabs
             InitializeComponent();
         }
 
+        //public void LoadPayrollData()
+        //{
+        //    DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
+        //    DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+
+        //    dataGridView1.Rows.Clear();
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
+        //            "SUM(a.TotalOvertime) AS TotalOvertime, " +
+        //            "SUM(a.TotalHours) AS TotalHours FROM EmployeeAccounts ea " +
+        //            "INNER JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
+        //            "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+
+        //            sda.Fill(dt);
+        //            foreach(DataRow row in dt.Rows)
+        //            {
+        //                int n = dataGridView1.Rows.Add();
+        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+        //                dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+        //                dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+        //                dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+        //            }
+        //        }
+        //    }
+        //}
+
         public void LoadPayrollData()
         {
             DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
@@ -35,18 +70,26 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
+
+                // Use LEFT JOIN instead of INNER JOIN to include all employees
                 string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
-                    "SUM(a.TotalOvertime) AS TotalOvertime, " +
-                    "SUM(a.TotalHours) AS TotalHours FROM EmployeeAccounts ea " +
-                    "INNER JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
-                    "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
+                                "ISNULL(SUM(a.TotalOvertime), 0) AS TotalOvertime, " +
+                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours " +
+                                "FROM EmployeeAccounts ea " +
+                                "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
+                                "WHERE a.Date BETWEEN @dateStart AND @dateEnd " + // Filter by date range
+                                "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@dateStart", dateStart);
+                    cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
 
                     sda.Fill(dt);
-                    foreach(DataRow row in dt.Rows)
+                    foreach (DataRow row in dt.Rows)
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
@@ -60,6 +103,21 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        public void LoadALLPayrollData()
+        {
+            dataGridView1.Rows.Clear();
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT ea.FirstName, ea.LastName FROM EmployeeAccounts";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+
+                }
+            }
+        }
+
 
         public void LoadComputedPayrollData()
         {

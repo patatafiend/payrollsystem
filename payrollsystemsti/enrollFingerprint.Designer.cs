@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(enrollFingerprint));
             this.btnEnrollFinger = new System.Windows.Forms.Button();
-            this.tbFingerID = new System.Windows.Forms.TextBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +39,6 @@
             this.dgFingerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.cbFilterID = new System.Windows.Forms.ComboBox();
             this.loadingIndicator = new System.Windows.Forms.PictureBox();
             this.loginHeader = new System.Windows.Forms.Panel();
@@ -73,15 +71,6 @@
             this.btnEnrollFinger.Text = "Enroll Finger\r\nFingerprint";
             this.btnEnrollFinger.UseVisualStyleBackColor = false;
             this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
-            // 
-            // tbFingerID
-            // 
-            this.tbFingerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFingerID.Location = new System.Drawing.Point(55, 50);
-            this.tbFingerID.Multiline = true;
-            this.tbFingerID.Name = "tbFingerID";
-            this.tbFingerID.Size = new System.Drawing.Size(168, 22);
-            this.tbFingerID.TabIndex = 35;
             // 
             // btnRemove
             // 
@@ -130,6 +119,7 @@
             this.dgEmpID.HeaderText = "Emp ID";
             this.dgEmpID.Name = "dgEmpID";
             this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
             // 
             // dgLastName
             // 
@@ -159,15 +149,6 @@
             // serialPort1
             // 
             this.serialPort1.PortName = "COM4";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "FINGER ID";
             // 
             // cbFilterID
             // 
@@ -295,10 +276,8 @@
             this.Controls.Add(this.loginHeader);
             this.Controls.Add(this.loadingIndicator);
             this.Controls.Add(this.cbFilterID);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.tbFingerID);
             this.Controls.Add(this.btnEnrollFinger);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "enrollFingerprint";
@@ -320,16 +299,9 @@
         #endregion
 
         private System.Windows.Forms.Button btnEnrollFinger;
-        private System.Windows.Forms.TextBox tbFingerID;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgFingerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.ComboBox cbFilterID;
         private System.Windows.Forms.PictureBox loadingIndicator;
         private System.Windows.Forms.Panel loginHeader;
@@ -340,5 +312,10 @@
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Button btnMax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFingerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
     }
 }
