@@ -123,5 +123,34 @@ namespace payrollsystemsti
             tb4.Text = dataGridView1.SelectedRows[0].Cells["dg6th"].Value.ToString();
             tb5.Text = dataGridView1.SelectedRows[0].Cells["dg7th"].Value.ToString();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            tb1.Clear();
+            tb2.Clear();
+            tb3.Clear();
+            tb4.Clear();
+            tb5.Clear();
+            
+            btnDeactivate.Enabled = false;
+            btnUpdate.Enabled = false;
+        }
+
+        private void tb1_TextChanged(object sender, EventArgs e)
+        {
+            if (tb1.Text.Length > 0)
+            {
+                btnCancel.Visible = true;
+            }
+            else
+            {
+                btnCancel.Visible = false;
+            }
+        }
     }
 }

@@ -46,6 +46,9 @@ namespace payrollsystemsti
         private void DepartmentMain_Load(object sender, EventArgs e)
         {
             LoadDepartmentData();
+            btnAdd.Enabled = false;
+            btnUpdate.Enabled = false;
+            btnDeactivate.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -114,6 +117,35 @@ namespace payrollsystemsti
 
             titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
             tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            tb1.Clear();
+            btnAdd.Enabled = false;
+            btnDeactivate.Enabled = false;
+            btnUpdate.Enabled = false;
+        }
+
+        private void tb1_TextChanged(object sender, EventArgs e)
+        {
+            if (tb1.Text.Length > 0)
+            {
+                btnCancel.Visible = true;
+                if(tb1.Text.Length > 3 && !btnUpdate.Enabled)
+                {
+                    btnAdd.Enabled = true;
+                }
+            }
+            else
+            {
+                btnCancel.Visible = false;
+            }
         }
     }
 }

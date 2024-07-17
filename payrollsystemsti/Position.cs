@@ -123,5 +123,34 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            tb1.Clear();
+            btnAdd.Enabled = false;
+            btnDeactivate.Enabled = false;
+            btnUpdate.Enabled = false;
+        }
+
+        private void tb1_TextChanged(object sender, EventArgs e)
+        {
+            if (tb1.Text.Length > 0)
+            {
+                btnCancel.Visible = true;
+                if (tb1.Text.Length > 3 && !btnUpdate.Enabled)
+                {
+                    btnAdd.Enabled = true;
+                }
+            }
+            else
+            {
+                btnCancel.Visible = false;
+            }
+        }
     }
 }

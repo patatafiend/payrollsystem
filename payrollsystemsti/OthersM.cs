@@ -127,5 +127,31 @@ namespace payrollsystemsti
         {
             LoadOthersData();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+        public void Reset()
+        {
+            tb1.Clear();
+            tb2.Clear();
+            tb3.Clear();
+            tb4.Clear();
+            btnDeactivate.Enabled = false;
+            btnUpdate.Enabled = false;
+        }
+
+        private void tb1_TextChanged(object sender, EventArgs e)
+        {
+            if (tb1.Text.Length > 0)
+            {
+                btnCancel.Visible = true;
+            }
+            else
+            {
+                btnCancel.Visible = false;
+            }
+        }
     }
 }
