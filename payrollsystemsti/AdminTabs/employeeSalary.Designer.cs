@@ -78,7 +78,6 @@
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.lbStart = new System.Windows.Forms.Label();
             this.lbEnd = new System.Windows.Forms.Label();
-            this.btnPayslip = new System.Windows.Forms.Button();
             this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet();
@@ -105,7 +104,7 @@
             this.gb1.Controls.Add(this.tbBasic);
             this.gb1.Controls.Add(this.label1);
             this.gb1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb1.Location = new System.Drawing.Point(24, 118);
+            this.gb1.Location = new System.Drawing.Point(54, 89);
             this.gb1.Name = "gb1";
             this.gb1.Size = new System.Drawing.Size(287, 271);
             this.gb1.TabIndex = 0;
@@ -315,7 +314,7 @@
             this.gb3.Controls.Add(this.tbPH);
             this.gb3.Controls.Add(this.label13);
             this.gb3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb3.Location = new System.Drawing.Point(742, 118);
+            this.gb3.Location = new System.Drawing.Point(772, 89);
             this.gb3.Name = "gb3";
             this.gb3.Size = new System.Drawing.Size(303, 149);
             this.gb3.TabIndex = 8;
@@ -386,7 +385,7 @@
             this.gb4.Controls.Add(this.tbLate);
             this.gb4.Controls.Add(this.label6);
             this.gb4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb4.Location = new System.Drawing.Point(742, 270);
+            this.gb4.Location = new System.Drawing.Point(772, 241);
             this.gb4.Name = "gb4";
             this.gb4.Size = new System.Drawing.Size(303, 119);
             this.gb4.TabIndex = 7;
@@ -435,7 +434,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -448,11 +448,11 @@
             this.dgOT,
             this.dgLate,
             this.dgAbsent});
-            this.dataGridView1.Location = new System.Drawing.Point(24, 450);
+            this.dataGridView1.Location = new System.Drawing.Point(41, 472);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1021, 237);
+            this.dataGridView1.Size = new System.Drawing.Size(1058, 399);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -508,7 +508,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Crimson;
-            this.label15.Location = new System.Drawing.Point(35, 20);
+            this.label15.Location = new System.Drawing.Point(35, 28);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(233, 32);
@@ -528,7 +528,7 @@
             this.gb2.Controls.Add(this.label16);
             this.gb2.Controls.Add(this.tbTransA);
             this.gb2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb2.Location = new System.Drawing.Point(335, 118);
+            this.gb2.Location = new System.Drawing.Point(365, 89);
             this.gb2.Name = "gb2";
             this.gb2.Size = new System.Drawing.Size(383, 271);
             this.gb2.TabIndex = 11;
@@ -556,12 +556,11 @@
             // 
             // btnCompute
             // 
-            this.btnCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCompute.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompute.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCompute.Location = new System.Drawing.Point(768, 34);
+            this.btnCompute.Location = new System.Drawing.Point(45, 410);
             this.btnCompute.Name = "btnCompute";
             this.btnCompute.Size = new System.Drawing.Size(120, 47);
             this.btnCompute.TabIndex = 34;
@@ -571,11 +570,12 @@
             // 
             // dtStart
             // 
+            this.dtStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtStart.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.CustomFormat = "MMMM,dd,yyyy";
             this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(296, 85);
+            this.dtStart.Location = new System.Drawing.Point(473, 429);
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
@@ -583,11 +583,12 @@
             // 
             // dtEnd
             // 
+            this.dtEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtEnd.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnd.Location = new System.Drawing.Point(541, 85);
+            this.dtEnd.Location = new System.Drawing.Point(718, 429);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 36;
@@ -595,9 +596,10 @@
             // 
             // lbStart
             // 
+            this.lbStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStart.AutoSize = true;
             this.lbStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStart.Location = new System.Drawing.Point(293, 65);
+            this.lbStart.Location = new System.Drawing.Point(470, 409);
             this.lbStart.Name = "lbStart";
             this.lbStart.Size = new System.Drawing.Size(120, 16);
             this.lbStart.TabIndex = 37;
@@ -605,27 +607,14 @@
             // 
             // lbEnd
             // 
+            this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEnd.Location = new System.Drawing.Point(538, 66);
+            this.lbEnd.Location = new System.Drawing.Point(715, 410);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(115, 16);
             this.lbEnd.TabIndex = 38;
             this.lbEnd.Text = "Pay Period End";
-            // 
-            // btnPayslip
-            // 
-            this.btnPayslip.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btnPayslip.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPayslip.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayslip.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnPayslip.Location = new System.Drawing.Point(24, 397);
-            this.btnPayslip.Name = "btnPayslip";
-            this.btnPayslip.Size = new System.Drawing.Size(120, 47);
-            this.btnPayslip.TabIndex = 39;
-            this.btnPayslip.Text = "Print";
-            this.btnPayslip.UseVisualStyleBackColor = false;
-            this.btnPayslip.Click += new System.EventHandler(this.btnPayslip_Click);
             // 
             // cbPayroll
             // 
@@ -636,7 +625,7 @@
             this.cbPayroll.Items.AddRange(new object[] {
             "Payroll Computation",
             "Printing"});
-            this.cbPayroll.Location = new System.Drawing.Point(897, 411);
+            this.cbPayroll.Location = new System.Drawing.Point(951, 433);
             this.cbPayroll.Name = "cbPayroll";
             this.cbPayroll.Size = new System.Drawing.Size(148, 24);
             this.cbPayroll.TabIndex = 42;
@@ -644,12 +633,11 @@
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(906, 35);
+            this.btnSave.Location = new System.Drawing.Point(183, 410);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 47);
             this.btnSave.TabIndex = 43;
@@ -667,10 +655,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1137, 910);
+            this.ClientSize = new System.Drawing.Size(1140, 910);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbPayroll);
-            this.Controls.Add(this.btnPayslip);
             this.Controls.Add(this.lbEnd);
             this.Controls.Add(this.lbStart);
             this.Controls.Add(this.dtEnd);
@@ -747,7 +734,6 @@
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.Label lbStart;
         private System.Windows.Forms.Label lbEnd;
-        private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.ComboBox cbPayroll;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;

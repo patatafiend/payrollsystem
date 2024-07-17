@@ -168,7 +168,7 @@ namespace payrollsystemsti.AdminTabs
         private void employeeSalary_Load(object sender, System.EventArgs e)
         {
             LoadPayrollData();
-            firsInterface();
+            //firsInterface();
             SetPayPeriodDefaults();
         }
 
@@ -396,8 +396,6 @@ namespace payrollsystemsti.AdminTabs
             tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
         }
 
-        
-
         private void btnPayslip_Click(object sender, EventArgs e)
         {
             PaySlipReport ps = new PaySlipReport();
@@ -411,7 +409,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 case "Payroll Computation":
                     LoadPayrollData();
-                    firsInterface();
+                    //firsInterface();
                     break;
                 case "Printing":
                     LoadComputedPayrollData();
@@ -427,77 +425,72 @@ namespace payrollsystemsti.AdminTabs
                     
 
                     // Relocate the print button
-                    btnPayslip.Left = 30;
-                    btnPayslip.Top = 80;
-                    hidePayrollComputation();               
+                    //btnPayslip.Left = 30;
+                    //btnPayslip.Top = 80;
+                    //hidePayrollComputation();               
                     break;
                 default:
-                    firsInterface();
+                    //firsInterface();
                     break;
             }
         }
 
-      
+        //public void hidePayrollComputation()
+        //{
+        //    lbStart.Visible = false;
+        //    lbEnd.Visible = false;
 
+        //    dtStart.Visible = false;
+        //    dtEnd.Visible = false;
 
-        public void hidePayrollComputation()
-        {
-            lbStart.Visible = false;
-            lbEnd.Visible = false;
+        //    gb1.Visible = false;
+        //    gb2.Visible = false;
+        //    gb3.Visible = false;
+        //    gb4.Visible = false;
 
-            dtStart.Visible = false;
-            dtEnd.Visible = false;
+        //    btnCompute.Visible = false;
+        //    btnSave.Visible = false;
+        //    //btnPayslip.Visible = true;
 
-            gb1.Visible = false;
-            gb2.Visible = false;
-            gb3.Visible = false;
-            gb4.Visible = false;
+        //    dataGridView1.Columns["dgTHW"].Visible = false;
+        //    dataGridView1.Columns["dgBasic"].Visible = false;
+        //}
 
-            btnCompute.Visible = false;
-            btnSave.Visible = false;
-            btnPayslip.Visible = true;
-
-            dataGridView1.Columns["dgTHW"].Visible = false;
-            dataGridView1.Columns["dgBasic"].Visible = false;
-        }
-        public void firsInterface()
-        {
+        //public void firsInterface()
+        //{
             
-            lbStart.Visible = true;
-            lbEnd.Visible = true;
+        //    lbStart.Visible = true;
+        //    lbEnd.Visible = true;
 
-            dtStart.Visible = true;
-            dtEnd.Visible = true;
+        //    dtStart.Visible = true;
+        //    dtEnd.Visible = true;
 
-            gb1.Visible = true;
-            gb2.Visible = true;
-            gb3.Visible = true;
-            gb4.Visible = true;
+        //    gb1.Visible = true;
+        //    gb2.Visible = true;
+        //    gb3.Visible = true;
+        //    gb4.Visible = true;
 
-            btnCompute.Visible = true;
-            btnSave.Visible = true;
-            btnPayslip.Visible = false;
+        //    btnCompute.Visible = true;
+        //    btnSave.Visible = true;
+        //    //btnPayslip.Visible = false;
 
-            // Resize the combo box
+        //    // Resize the combo box
            
-            cbPayroll.Top = 415;
-            cbPayroll.Left = 850;
-            cbPayroll.Width = 160;
+        //    cbPayroll.Top = 415;
+        //    cbPayroll.Left = 850;
+        //    cbPayroll.Width = 160;
 
-            dataGridView1.Location =  new System.Drawing.Point(24, 450);
-            dataGridView1.Width = 1000;
+        //    dataGridView1.Location =  new System.Drawing.Point(24, 450);
+        //    dataGridView1.Width = 1000;
 
-            btnCompute.Location = new System.Drawing.Point(768, 34);
-            btnSave.Location = new System.Drawing.Point(906, 35);
+        //    btnCompute.Location = new System.Drawing.Point(768, 34);
+        //    btnSave.Location = new System.Drawing.Point(906, 35);
 
-            dataGridView1.Columns["dgTHW"].Visible = true;
-            dataGridView1.Columns["dgBasic"].Visible = true;
-        }
+        //    dataGridView1.Columns["dgTHW"].Visible = true;
+        //    dataGridView1.Columns["dgBasic"].Visible = true;
+        //}
 
-     
-
-
-            public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
+        public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -529,24 +522,24 @@ namespace payrollsystemsti.AdminTabs
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            // Set the size of the form
-            this.Width = 800; // Width in pixels
-            this.Height = 600; // Height in pixels
+            //// Set the size of the form
+            //this.Width = 800; // Width in pixels
+            //this.Height = 600; // Height in pixels
 
-            // Set the location of the form on the screen
-            this.Left = 100; // Distance from left edge of the screen
-            this.Top = 50;  // Distance from top edge of the screen
+            //// Set the location of the form on the screen
+            //this.Left = 100; // Distance from left edge of the screen
+            //this.Top = 50;  // Distance from top edge of the screen
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Set the size of the form
-            this.Width = 800; // Width in pixels
-            this.Height = 600; // Height in pixels
+            //// Set the size of the form
+            //this.Width = 800; // Width in pixels
+            //this.Height = 600; // Height in pixels
 
-            // Set the location of the form on the screen
-            this.Left = 100; // Distance from left edge of the screen
-            this.Top = 50;  // Distance from top edge of the screen
+            //// Set the location of the form on the screen
+            //this.Left = 100; // Distance from left edge of the screen
+            //this.Top = 50;  // Distance from top edge of the screen
         }
 
         public bool InsertIntoPayroll(int empID, double semiP, double dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,

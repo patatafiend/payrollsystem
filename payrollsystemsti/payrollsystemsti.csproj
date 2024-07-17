@@ -158,6 +158,12 @@
     <Compile Include="AdminTabs\PaySlipReport.Designer.cs">
       <DependentUpon>PaySlipReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\Printing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\Printing.Designer.cs">
+      <DependentUpon>Printing.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\ViewAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\PaySlipReport.resx">
       <DependentUpon>PaySlipReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\Printing.resx">
+      <DependentUpon>Printing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\Report1.rdlc" />
     <EmbeddedResource Include="AdminTabs\ViewAttendance.resx">
