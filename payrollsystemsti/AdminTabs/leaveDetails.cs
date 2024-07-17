@@ -64,5 +64,10 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        private void lbDateRange_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
