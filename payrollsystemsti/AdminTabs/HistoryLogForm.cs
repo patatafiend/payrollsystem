@@ -23,9 +23,6 @@ namespace payrollsystemsti.AdminTabs
 		{
 			this.Close();
 		}
-
-
-		
 		
 
 		private void HistoryLogForm_Load_1(object sender, EventArgs e)
