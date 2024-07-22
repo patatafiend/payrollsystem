@@ -258,10 +258,10 @@
             // 
             this.lb_curDepartment.AutoSize = true;
             this.lb_curDepartment.BackColor = System.Drawing.Color.Transparent;
-            this.lb_curDepartment.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_curDepartment.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_curDepartment.Location = new System.Drawing.Point(75, 35);
             this.lb_curDepartment.Name = "lb_curDepartment";
-            this.lb_curDepartment.Size = new System.Drawing.Size(123, 23);
+            this.lb_curDepartment.Size = new System.Drawing.Size(107, 19);
             this.lb_curDepartment.TabIndex = 1;
             this.lb_curDepartment.Text = "Department";
             this.lb_curDepartment.Click += new System.EventHandler(this.lb_curDepartment_Click);
@@ -440,6 +440,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(203, 79);
             this.panel6.TabIndex = 10;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // label8
             // 
