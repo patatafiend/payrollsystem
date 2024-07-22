@@ -8,11 +8,18 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace payrollsystemsti
 {
     public partial class dashBoard : Form
     {
+
+        List<Control> panels;
+        List<Control> buttons;
+        List<Control> textboxes;
+        List<Control> label;
+
         Methods m = new Methods();
 
         
@@ -177,6 +184,14 @@ namespace payrollsystemsti
         {
 
         }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
     }
 
     }
