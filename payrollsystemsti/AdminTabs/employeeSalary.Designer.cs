@@ -81,6 +81,8 @@
             this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet();
+            this.btnPayslip = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -650,12 +652,42 @@
             this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet";
             this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // btnPayslip
+            // 
+            this.btnPayslip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPayslip.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnPayslip.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPayslip.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPayslip.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnPayslip.Location = new System.Drawing.Point(951, 24);
+            this.btnPayslip.Name = "btnPayslip";
+            this.btnPayslip.Size = new System.Drawing.Size(120, 47);
+            this.btnPayslip.TabIndex = 44;
+            this.btnPayslip.Text = "Payslip";
+            this.btnPayslip.UseVisualStyleBackColor = false;
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReport.Location = new System.Drawing.Point(808, 24);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(120, 47);
+            this.btnReport.TabIndex = 45;
+            this.btnReport.Text = "Reports";
+            this.btnReport.UseVisualStyleBackColor = false;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1140, 910);
+            this.Controls.Add(this.btnReport);
+            this.Controls.Add(this.btnPayslip);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbPayroll);
             this.Controls.Add(this.lbEnd);
@@ -744,5 +776,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
         private stipayrolldbDataSet stipayrolldbDataSet1;
+        private System.Windows.Forms.Button btnPayslip;
+        private System.Windows.Forms.Button btnReport;
     }
 }

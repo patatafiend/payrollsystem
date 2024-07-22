@@ -24,6 +24,7 @@ namespace payrollsystemsti
         {
             if (img == null)
             {
+                MessageBox.Show("its nullllll");
                 return null;
             }
             else

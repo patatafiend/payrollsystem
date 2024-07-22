@@ -70,6 +70,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.empID = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,7 +86,7 @@
             this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEnrollFinger = new System.Windows.Forms.Button();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -319,7 +320,8 @@
             this.dgFileName,
             this.dgImageData,
             this.dgFID,
-            this.dgIsDeleted});
+            this.dgIsDeleted,
+            this.dgImage});
             this.dataGridView1.Location = new System.Drawing.Point(54, 508);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -575,6 +577,21 @@
             this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
+            // btnEnrollFinger
+            // 
+            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnrollFinger.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnrollFinger.Location = new System.Drawing.Point(597, 402);
+            this.btnEnrollFinger.Name = "btnEnrollFinger";
+            this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
+            this.btnEnrollFinger.TabIndex = 34;
+            this.btnEnrollFinger.Text = "Enroll Finger";
+            this.btnEnrollFinger.UseVisualStyleBackColor = false;
+            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
+            // 
             // dgEmp
             // 
             this.dgEmp.HeaderText = "ID";
@@ -674,20 +691,11 @@
             this.dgIsDeleted.ReadOnly = true;
             this.dgIsDeleted.Visible = false;
             // 
-            // btnEnrollFinger
+            // dgImage
             // 
-            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnrollFinger.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(597, 402);
-            this.btnEnrollFinger.Name = "btnEnrollFinger";
-            this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
-            this.btnEnrollFinger.TabIndex = 34;
-            this.btnEnrollFinger.Text = "Enroll Finger";
-            this.btnEnrollFinger.UseVisualStyleBackColor = false;
-            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
+            this.dgImage.HeaderText = "Image";
+            this.dgImage.Name = "dgImage";
+            this.dgImage.ReadOnly = true;
             // 
             // employeeRegister
             // 
@@ -770,6 +778,7 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnEnrollFinger;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmp;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;
@@ -785,6 +794,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgImageData;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
-        private System.Windows.Forms.Button btnEnrollFinger;
+        private System.Windows.Forms.DataGridViewImageColumn dgImage;
     }
 }

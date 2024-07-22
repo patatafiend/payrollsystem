@@ -34,18 +34,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        public void fileNameM()
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    fileName = ofd.FileName;
-                    lbFileName.Text = fileName;
-                    pbEmployee.Image = Image.FromFile(fileName);
-                }
-            }
-        }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -485,6 +473,7 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgRole"].Value = m.getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
                         dataGridView1.Rows[n].Cells["dgBasicRate"].Value = row["BasicRate"].ToString();
                         dataGridView1.Rows[n].Cells["dgFID"].Value = row["fingerID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImage"].Value = row["ImageData"];
                     }
                 }
 
@@ -511,7 +500,7 @@ namespace payrollsystemsti.AdminTabs
             cbDeparment.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
             cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
-            pbEmployee.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
+            pbEmployee.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImageData"].Value);
 
 
             string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();

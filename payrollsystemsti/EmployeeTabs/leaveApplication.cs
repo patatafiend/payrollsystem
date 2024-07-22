@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace payrollsystemsti.EmployeeTabs
 {
@@ -15,8 +16,10 @@ namespace payrollsystemsti.EmployeeTabs
         Methods m = new Methods();
         string fileName;
         int leaveID = 0;
+        byte[] medicalCertificate;
 
         private int loggedInID;
+
         public leaveApplication()
         {
             InitializeComponent();
@@ -38,16 +41,18 @@ namespace payrollsystemsti.EmployeeTabs
         private void leaveApplication_Load(object sender, EventArgs e)
         {
             loadLeaveCB();
+            cbLeaves.SelectedIndex = 0;
             LoadData(loggedInID);
+            //LoadData();
+            
         }
 
         private void loadLeaveCB()
         {
-            string query = "SELECT * FROM LeaveCategory";
-
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
+                string query = "SELECT * FROM LeaveCategory";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -79,11 +84,9 @@ namespace payrollsystemsti.EmployeeTabs
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Validate input fields
             if (Validation())
             {
-                // Convert medical certificate image to binary
-                byte[] medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
+                medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
 
                 using (SqlConnection sqlConn = new SqlConnection(m.connStr))
                 {
@@ -91,7 +94,7 @@ namespace payrollsystemsti.EmployeeTabs
 
                     string query = "INSERT INTO LeaveApplications (CategoryName, " +
                         "DateStart, DateEnd, AppliedDate, Status, Reason,  EmployeeID) VALUES (@CategoryName, @DateStart, " +
-                        "@DateEnd, @AppliedDate, @Status, @Reason ,@EmployeeID)";
+                        "@DateEnd, @AppliedDate, @Status, @Reason, @MedicalCert ,@EmployeeID)";
 
                     using (SqlCommand cmd = new SqlCommand(query, sqlConn))
                     {
@@ -103,6 +106,8 @@ namespace payrollsystemsti.EmployeeTabs
                         cmd.Parameters.AddWithValue("@AppliedDate", DateTime.Now.ToString("MM/dd/yyyy"));
                         cmd.Parameters.AddWithValue("@Status", "Pending");
                         cmd.Parameters.AddWithValue("@Reason", tbReason.Text);
+                        cmd.Parameters.AddWithValue("@MedicalCert", medicalCertificate);
+
 
                         try
                         {
@@ -123,6 +128,33 @@ namespace payrollsystemsti.EmployeeTabs
                 ClearData();
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
+            
+            string query = "UPDATE LeaveApplications SET CategoryName = @categoryName, DateStart = @dateStart, DateEnd = @dateEnd" +
+                ", Reason = @reason, MedicalCert = @medcert WHERE EmployeeID = @empID";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@categoryName", cbLeaves.Text);
+                    cmd.Parameters.AddWithValue("@dateStart", dtStart.Value.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue("@dateEnd", dtEnd.Value.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue("@reason", tbReason.Text);
+                    cmd.Parameters.AddWithValue("@empID", loggedInID);
+                    cmd.Parameters.AddWithValue("@medcert", medicalCertificate);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            LoadData(loggedInID);
+            loadLeaveCB();
+            ClearData();
+        }
+
         private bool Validation()
         {
             bool result = false;
@@ -131,11 +163,11 @@ namespace payrollsystemsti.EmployeeTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbReason, "Please provide a reason..");
             }
-            //else if (pbMedCert.Image == null)
-            //{
-            //    errorProvider1.Clear();
-            //    errorProvider1.SetError(pbMedCert, "Please provide a Medical Certificate");
-            //}
+            else if (pbMedCert.Image == null)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(pbMedCert, "Please provide a Medical Certificate");
+            }
             else if (cbLeaves.SelectedIndex == -1)
             {
                 errorProvider1.Clear();
@@ -189,6 +221,38 @@ namespace payrollsystemsti.EmployeeTabs
                         dataGridView1.Rows[n].Cells["dgReason"].Value = row["Reason"].ToString();
                         dataGridView1.Rows[n].Cells["dgImageData"].Value = row["MedicalCert"].ToString();
                         dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImage"].Value = row["MedicalCert"];
+                    }
+                }
+            }
+        }
+        private void LoadData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT * FROM LeaveApplications";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    adapter.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveCategory"].Value = row["CategoryName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
+                        dataGridView1.Rows[n].Cells["dgReason"].Value = row["Reason"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImageData"].Value = row["MedicalCert"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImage"].Value = row["MedicalCert"];
                     }
                 }
             }
@@ -196,63 +260,23 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void ClearData()
         {
-            cbLeaves.Items.Clear();
+            cbLeaves.SelectedIndex = -1;
             dtStart.Value = DateTime.Now;
             dtEnd.Value = DateTime.Now;
             tbReason.Clear();
-            pbMedCert = null;
+            pbMedCert.Image = null;
             lbFileName.Text = string.Empty;
         }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            // Convert medical certificate image to binary
-            byte[] medicalCertificate = m.ConvertImageToBinary(pbMedCert.Image);
-            string query = "UPDATE LeaveApplications SET CategoryName = @categoryName, DateStart = @dateStart, DateEnd = @dateEnd" +
-                ", Reason = @reason, MedicalCert = @medcert, FileName = @filename WHERE EmployeeID = @empID";
-
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@categoryName", cbLeaves.Text);
-                    cmd.Parameters.AddWithValue("@dateStart", dtStart.Value.ToString("MM/dd/yyyy"));
-                    cmd.Parameters.AddWithValue("@dateEnd", dtEnd.Value.ToString("MM/dd/yyyy"));
-                    cmd.Parameters.AddWithValue("@reason", tbReason.Text);
-                    cmd.Parameters.AddWithValue("@empID", loggedInID);
-                    if (medicalCertificate != null)
-                    {
-                        cmd.Parameters.AddWithValue("@MedicalCert", medicalCertificate);
-                        cmd.Parameters.AddWithValue("@FileName", fileName);
-                    }
-                    else
-                    {
-                        cmd.Parameters.Add("@MedicalCert", SqlDbType.Image).Value = DBNull.Value;
-                        cmd.Parameters.AddWithValue("@FileName", DBNull.Value);
-                    }
-                }
-            }
-            LoadData(loggedInID);
-            ClearData();
-        }
-
-        string[] leavesMed = { "Paternity Leave", "Maternity Leave", "Sick Leave" };
-
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
-
-                cbLeaves.Text = getLeaveName(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgLeaveID"].Value.ToString()));
+                cbLeaves.Text = dataGridView1.SelectedRows[0].Cells["dgLeaveCategory"].Value.ToString();
                 tbReason.Text = dataGridView1.SelectedRows[0].Cells["dgReason"].Value.ToString();
+                pbMedCert.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImage"].Value);
 
-                //if (!dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.Equals(null))
-                //{
-                //    pbMedCert.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString());
-                //}
-                
+
 
                 string startCellValue = dataGridView1.SelectedRows[0].Cells["dgStart"].Value.ToString();
                 string endCellValue = dataGridView1.SelectedRows[0].Cells["dgEnd"].Value.ToString();
@@ -285,7 +309,7 @@ namespace payrollsystemsti.EmployeeTabs
             }
         }
 
-        public string getLeaveName(int leaveID)
+        public string GetLeaveName(int leaveID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -307,19 +331,42 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void cbLeaves_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            bool isMedicalLeave = false;
-
-            for (int i = 0; i < leavesMed.Length; i++)
+            if(hasProof(cbLeaves.Text) == true)
             {
-                if (cbLeaves.Text == leavesMed[i])
+                pbMedCert.Visible = true;
+                btnAdd.Visible = true;
+                btnRemove.Visible = true;
+            }
+            else
+            {
+                pbMedCert.Visible = false;
+                btnAdd.Visible = false;
+                btnRemove.Visible = false;
+            }
+        }
+        
+        private bool hasProof(string category)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT hasProof FROM LeaveCategory WHERE CategoryName = @category";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    isMedicalLeave = true;
-                    break;
+                    cmd.Parameters.AddWithValue("@category", category);
+                    try
+                    {
+                        bool result = (bool)cmd.ExecuteScalar();
+                        return result;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return false;
+                    }
+                    
                 }
             }
-            //pbMedCert.Visible = isMedicalLeave;
-            //btnAdd.Visible = isMedicalLeave;
-            //btnRemove.Visible = isMedicalLeave;
         }
     }
 }
