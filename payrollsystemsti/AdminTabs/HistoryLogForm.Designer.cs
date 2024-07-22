@@ -35,6 +35,7 @@
 			this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.LoginTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -111,9 +112,17 @@
 			// LoginTime
 			// 
 			this.LoginTime.DataPropertyName = "LoginTime";
-			this.LoginTime.HeaderText = "Login Time";
+			this.LoginTime.HeaderText = "Time";
 			this.LoginTime.Name = "LoginTime";
 			this.LoginTime.ReadOnly = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(33, 142);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 21);
+			this.comboBox1.TabIndex = 31;
 			// 
 			// HistoryLogForm
 			// 
@@ -121,6 +130,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
 			this.ClientSize = new System.Drawing.Size(1052, 636);
+			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.btnExit);
 			this.Controls.Add(this.dgv_HistoryLog);
@@ -144,5 +154,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Department;
 		private System.Windows.Forms.DataGridViewTextBoxColumn LoginTime;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }
