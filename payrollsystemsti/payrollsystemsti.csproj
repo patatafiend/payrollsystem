@@ -147,12 +147,6 @@
     <Compile Include="AdminTabs\overtimeApplication.Designer.cs">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminTabs\payslip.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminTabs\payslip.Designer.cs">
-      <DependentUpon>payslip.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminTabs\PaySlipReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +189,11 @@
     </Compile>
     <Compile Include="AdminTabs\employeeList.Designer.cs">
       <DependentUpon>employeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Deduction.cs">
       <SubType>Form</SubType>
@@ -289,16 +288,6 @@
       <DependentUpon>Roles.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="stipayrolldbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>stipayrolldbDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="stipayrolldbDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,9 +317,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminTabs\payslip.resx">
-      <DependentUpon>payslip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\PaySlipReport.resx">
       <DependentUpon>PaySlipReport.cs</DependentUpon>
@@ -406,6 +392,17 @@
     <EmbeddedResource Include="Roles.resx">
       <DependentUpon>Roles.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="payrollTable.xsc">
       <DependentUpon>payrollTable.xsd</DependentUpon>
@@ -428,28 +425,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="stipayrolldbDataSet.xsc">
-      <DependentUpon>stipayrolldbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="stipayrolldbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>stipayrolldbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="stipayrolldbDataSet.xss">
-      <DependentUpon>stipayrolldbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="stipayrolldbDataSet1.xsc">
-      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="stipayrolldbDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>stipayrolldbDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="stipayrolldbDataSet1.xss">
-      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

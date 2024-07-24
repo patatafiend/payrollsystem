@@ -56,7 +56,10 @@ namespace payrollsystemsti
 
         static formDashboard _obj;
 
-        public static formDashboard Instance
+		
+		
+
+		public static formDashboard Instance
         {
             get
             {
@@ -194,6 +197,8 @@ namespace payrollsystemsti
         {
             return HIstoryLogPnl;
         }
+
+
 
 
 
