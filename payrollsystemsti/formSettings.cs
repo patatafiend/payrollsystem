@@ -9,8 +9,8 @@ namespace payrollsystemsti
 {
     public partial class formSettings : Form
     {
-        private formSettings form;
-        private Profile Profile;
+
+       
 
 
         public formSettings()
@@ -62,28 +62,15 @@ namespace payrollsystemsti
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-
-            // Show employee salary form or activate if already open
-            if (Profile == null)
-            {
-                Profile = new Profile();
-                Profile.FormClosed += Profile_FormClosed;
-                Profile.Dock = DockStyle.Fill;
-                Profile.Show();
-            }
-            else
-            {
-                Profile.Activate();
-            }
-
+            profile11.Hide();
+            profile11.Show();
+            
 
         }
-        private void Profile_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void profile11_Load(object sender, EventArgs e)
         {
-            Profile = null;
+
         }
-       
     }
 }
-
