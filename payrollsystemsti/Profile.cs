@@ -26,11 +26,16 @@ namespace payrollsystemsti
             InitializeComponent();
         }
 
+
         private void back_Click(object sender, EventArgs e)
         {
+            
             this.Close();
-            formSettings back = new formSettings();
-            back.Show();
+         
+        }
+
+        private void lb_curDepartment_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -7,6 +7,7 @@ using System.IO.Ports;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static payrollsystemsti.Methods;
 
 namespace payrollsystemsti.AdminTabs
 {
@@ -109,46 +110,51 @@ namespace payrollsystemsti.AdminTabs
             }
             return result;
         }
-        
-        //saves inputed data in the textbox
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (Validation())
-            {
-                if (m.ifEmployeeExists(tbFirstName.Text, tbLastName.Text))
-                {
-                    MessageBox.Show("User Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (m.ifSSNExists(tbSSN.Text))
-                {
-                    MessageBox.Show("SSN Aready Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    if (InsertToEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
-                        getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
-                        dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-                        tbMob.Text, 0, 5, 0))
-                    {
-                        ClearData();
-                        LoadData();
-                        LoadDepartments();
-                        LoadPositions();
-                        LoadRoles();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error");
-                    }
 
-                }
+		//saves inputed data in the textbox
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			if (Validation())
+			{
+				if (m.ifEmployeeExists(tbFirstName.Text, tbLastName.Text))
+				{
+					MessageBox.Show("User Already Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else if (m.ifSSNExists(tbSSN.Text))
+				{
+					MessageBox.Show("SSN Already Exists", "Failed to create", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					bool isInserted = InsertToEmployeeAccounts(
+						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
+						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
+						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
+						tbMob.Text, 0, 5, 0);
 
-            }
-            
+					if (isInserted)
+					{
+						RegisterHistory(
+							cbDeparment.Text, cbPosition.Text, cbRole.Text, CurrentUser.Username, CurrentUser.UserID,
+							$"{tbFirstName.Text} {tbLastName.Text}", 0);
 
-        }
+						ClearData();
+						LoadData();
+						LoadDepartments();
+						LoadPositions();
+						LoadRoles();
+					}
+					else
+					{
+						MessageBox.Show("Error inserting data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
 
-        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+
+
+		private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -178,7 +184,10 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@Leaves", leaves);
                     cmd.Parameters.AddWithValue("@Absents", absents);
 
-                    try
+					
+
+
+					try
                     {
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -188,10 +197,43 @@ namespace payrollsystemsti.AdminTabs
                         MessageBox.Show("Error inserting into Employee Accounts: " + ex.Message);
                         return false;
                     }
+
+
                 }
             }
         }
-        private void btnUpdate_Click(object sender, EventArgs e)
+
+		private void RegisterHistory(string department, string position, string role, string adder, int adderID, string addedName, int addedID)
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				string query = "INSERT INTO RegisterHistory (Department, Position, Role, Addedby, AdderID, EmployeeName, EmployeeID, time) " +
+							   "VALUES(@department, @position, @role, @adder, @adderID, @addedName, @addedID, @dateAdded)";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@department", department);
+					cmd.Parameters.AddWithValue("@position", position);
+					cmd.Parameters.AddWithValue("@role", role);
+					cmd.Parameters.AddWithValue("@adder", adder);
+					cmd.Parameters.AddWithValue("@adderID", adderID);
+					cmd.Parameters.AddWithValue("@addedName", addedName);
+					cmd.Parameters.AddWithValue("@addedID", addedID); 
+					cmd.Parameters.AddWithValue("@dateAdded", DateTime.Now);
+
+					try
+					{
+						cmd.ExecuteNonQuery();
+					}
+					catch (SqlException ex)
+					{
+						MessageBox.Show("Error inserting into Register History: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
+		private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)

@@ -1088,5 +1088,13 @@ namespace payrollsystemsti
                 }
             }
         }
-    }
+
+        public static class CurrentUser
+        {
+            public static int UserID { get; set; }
+            public static string FirstName { get; set; }
+            public static string LastName { get; set; }
+            public static string Username { get; set; }
+        }
+		}
 }

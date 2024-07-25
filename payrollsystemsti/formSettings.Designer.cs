@@ -34,16 +34,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.profile11 = new payrollsystemsti.Profile1();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // changePassword
             // 
             this.changePassword.AutoSize = true;
-            this.changePassword.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.changePassword.Location = new System.Drawing.Point(18, 6);
+            this.changePassword.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changePassword.Location = new System.Drawing.Point(38, 7);
             this.changePassword.Name = "changePassword";
-            this.changePassword.Size = new System.Drawing.Size(153, 25);
+            this.changePassword.Size = new System.Drawing.Size(126, 23);
             this.changePassword.TabIndex = 0;
             this.changePassword.Text = "Change Password";
             this.changePassword.UseCompatibleTextRendering = true;
@@ -92,20 +93,32 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(169, 152);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 33);
             this.button1.TabIndex = 5;
             this.button1.Text = "View Profile";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // profile11
+            // 
+            this.profile11.BackColor = System.Drawing.Color.LavenderBlush;
+            this.profile11.Location = new System.Drawing.Point(-1, -1);
+            this.profile11.Name = "profile11";
+            this.profile11.Size = new System.Drawing.Size(738, 543);
+            this.profile11.TabIndex = 6;
+            this.profile11.Load += new System.EventHandler(this.profile11_Load);
             // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(795, 577);
+            this.Controls.Add(this.profile11);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -130,5 +143,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private Profile1 profile11;
     }
 }

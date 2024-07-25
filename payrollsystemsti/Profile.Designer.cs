@@ -157,10 +157,11 @@
             this.lb_curDepartment.Size = new System.Drawing.Size(98, 19);
             this.lb_curDepartment.TabIndex = 23;
             this.lb_curDepartment.Text = "Department:";
+            this.lb_curDepartment.Click += new System.EventHandler(this.lb_curDepartment_Click);
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(724, 518);
+            this.back.Location = new System.Drawing.Point(561, 446);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(90, 29);
             this.back.TabIndex = 0;
