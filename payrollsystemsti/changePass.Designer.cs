@@ -41,7 +41,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label11 = new System.Windows.Forms.Label();
-            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,22 +171,12 @@
             this.label11.TabIndex = 34;
             this.label11.Text = "Change Password";
             // 
-            // back
-            // 
-            this.back.Location = new System.Drawing.Point(467, 396);
-            this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 35;
-            this.back.Text = "back";
-            this.back.UseVisualStyleBackColor = true;
-            // 
             // changePass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(590, 441);
-            this.Controls.Add(this.back);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -223,6 +212,5 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button back;
     }
 }

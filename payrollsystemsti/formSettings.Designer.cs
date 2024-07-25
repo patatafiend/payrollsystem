@@ -70,6 +70,7 @@
             this.Settings.Size = new System.Drawing.Size(121, 31);
             this.Settings.TabIndex = 2;
             this.Settings.Text = "Settings";
+            this.Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
             // label1
             // 
@@ -106,7 +107,7 @@
             // profile11
             // 
             this.profile11.BackColor = System.Drawing.Color.LavenderBlush;
-            this.profile11.Location = new System.Drawing.Point(-1, -1);
+            this.profile11.Location = new System.Drawing.Point(2, -2);
             this.profile11.Name = "profile11";
             this.profile11.Size = new System.Drawing.Size(738, 543);
             this.profile11.TabIndex = 6;
@@ -127,7 +128,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "formSettings";
             this.Text = "formSettings";
-            this.Load += new System.EventHandler(this.formSettings_Load);
+            this.Load += new System.EventHandler(this.FormSettings_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
