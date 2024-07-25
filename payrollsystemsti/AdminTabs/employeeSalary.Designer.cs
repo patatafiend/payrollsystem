@@ -80,7 +80,6 @@
             this.lbEnd = new System.Windows.Forms.Label();
             this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet();
             this.btnPayslip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
@@ -88,7 +87,6 @@
             this.gb4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gb2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // gb1
@@ -577,7 +575,7 @@
             this.dtStart.CustomFormat = "MMMM,dd,yyyy";
             this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(473, 429);
+            this.dtStart.Location = new System.Drawing.Point(701, 431);
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
@@ -590,10 +588,11 @@
             this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnd.Location = new System.Drawing.Point(718, 429);
+            this.dtEnd.Location = new System.Drawing.Point(319, 33);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 36;
+            this.dtEnd.Visible = false;
             this.dtEnd.ValueChanged += new System.EventHandler(this.dtEnd_ValueChanged);
             // 
             // lbStart
@@ -601,22 +600,23 @@
             this.lbStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStart.AutoSize = true;
             this.lbStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStart.Location = new System.Drawing.Point(470, 409);
+            this.lbStart.Location = new System.Drawing.Point(698, 412);
             this.lbStart.Name = "lbStart";
-            this.lbStart.Size = new System.Drawing.Size(120, 16);
+            this.lbStart.Size = new System.Drawing.Size(84, 16);
             this.lbStart.TabIndex = 37;
-            this.lbStart.Text = "Pay Period Start";
+            this.lbStart.Text = "Pay Period";
             // 
             // lbEnd
             // 
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEnd.Location = new System.Drawing.Point(715, 410);
+            this.lbEnd.Location = new System.Drawing.Point(316, 14);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(115, 16);
             this.lbEnd.TabIndex = 38;
             this.lbEnd.Text = "Pay Period End";
+            this.lbEnd.Visible = false;
             // 
             // cbPayroll
             // 
@@ -647,11 +647,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // stipayrolldbDataSet1
-            // 
-            this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet";
-            this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btnPayslip
             // 
             this.btnPayslip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -665,6 +660,7 @@
             this.btnPayslip.TabIndex = 44;
             this.btnPayslip.Text = "Payslip";
             this.btnPayslip.UseVisualStyleBackColor = false;
+            this.btnPayslip.Click += new System.EventHandler(this.btnPayslip_Click_1);
             // 
             // btnReport
             // 
@@ -715,7 +711,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -775,7 +770,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
-        private stipayrolldbDataSet stipayrolldbDataSet1;
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.Button btnReport;
     }

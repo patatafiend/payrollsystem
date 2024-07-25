@@ -2285,7 +2285,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Parameters!Total_Netpay.Value</Value>
+                                      <Value />
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -2316,6 +2316,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

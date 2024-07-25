@@ -48,6 +48,22 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -71,22 +87,6 @@
             this.empID = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
-            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -330,6 +330,111 @@
             this.dataGridView1.Size = new System.Drawing.Size(962, 206);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgEmp
+            // 
+            this.dgEmp.HeaderText = "ID";
+            this.dgEmp.Name = "dgEmp";
+            this.dgEmp.ReadOnly = true;
+            this.dgEmp.Visible = false;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgDepartment
+            // 
+            this.dgDepartment.HeaderText = "Department";
+            this.dgDepartment.Name = "dgDepartment";
+            this.dgDepartment.ReadOnly = true;
+            // 
+            // dgPosition
+            // 
+            this.dgPosition.HeaderText = "Position";
+            this.dgPosition.Name = "dgPosition";
+            this.dgPosition.ReadOnly = true;
+            // 
+            // dgBasicRate
+            // 
+            this.dgBasicRate.HeaderText = "Basic Rate";
+            this.dgBasicRate.Name = "dgBasicRate";
+            this.dgBasicRate.ReadOnly = true;
+            // 
+            // dgRole
+            // 
+            this.dgRole.HeaderText = "Role";
+            this.dgRole.Name = "dgRole";
+            this.dgRole.ReadOnly = true;
+            // 
+            // dgDoB
+            // 
+            this.dgDoB.HeaderText = "DoB";
+            this.dgDoB.Name = "dgDoB";
+            this.dgDoB.ReadOnly = true;
+            this.dgDoB.Visible = false;
+            // 
+            // dgMobile
+            // 
+            this.dgMobile.HeaderText = "Mobile";
+            this.dgMobile.Name = "dgMobile";
+            this.dgMobile.ReadOnly = true;
+            this.dgMobile.Visible = false;
+            // 
+            // dgEmail
+            // 
+            this.dgEmail.HeaderText = "Email";
+            this.dgEmail.Name = "dgEmail";
+            this.dgEmail.ReadOnly = true;
+            this.dgEmail.Visible = false;
+            // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Address";
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
+            // dgSSN
+            // 
+            this.dgSSN.HeaderText = "SSN";
+            this.dgSSN.Name = "dgSSN";
+            this.dgSSN.ReadOnly = true;
+            this.dgSSN.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "FileName";
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFID
+            // 
+            this.dgFID.HeaderText = "Finger ID";
+            this.dgFID.Name = "dgFID";
+            this.dgFID.ReadOnly = true;
+            // 
+            // dgIsDeleted
+            // 
+            this.dgIsDeleted.HeaderText = "IsDeleted";
+            this.dgIsDeleted.Name = "dgIsDeleted";
+            this.dgIsDeleted.ReadOnly = true;
+            this.dgIsDeleted.Visible = false;
+            // 
+            // dgImage
+            // 
+            this.dgImage.HeaderText = "Image";
+            this.dgImage.Name = "dgImage";
+            this.dgImage.ReadOnly = true;
             // 
             // errorProvider1
             // 
@@ -591,111 +696,6 @@
             this.btnEnrollFinger.Text = "Enroll Finger";
             this.btnEnrollFinger.UseVisualStyleBackColor = false;
             this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
-            // 
-            // dgEmp
-            // 
-            this.dgEmp.HeaderText = "ID";
-            this.dgEmp.Name = "dgEmp";
-            this.dgEmp.ReadOnly = true;
-            this.dgEmp.Visible = false;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgDepartment
-            // 
-            this.dgDepartment.HeaderText = "Department";
-            this.dgDepartment.Name = "dgDepartment";
-            this.dgDepartment.ReadOnly = true;
-            // 
-            // dgPosition
-            // 
-            this.dgPosition.HeaderText = "Position";
-            this.dgPosition.Name = "dgPosition";
-            this.dgPosition.ReadOnly = true;
-            // 
-            // dgBasicRate
-            // 
-            this.dgBasicRate.HeaderText = "Basic Rate";
-            this.dgBasicRate.Name = "dgBasicRate";
-            this.dgBasicRate.ReadOnly = true;
-            // 
-            // dgRole
-            // 
-            this.dgRole.HeaderText = "Role";
-            this.dgRole.Name = "dgRole";
-            this.dgRole.ReadOnly = true;
-            // 
-            // dgDoB
-            // 
-            this.dgDoB.HeaderText = "DoB";
-            this.dgDoB.Name = "dgDoB";
-            this.dgDoB.ReadOnly = true;
-            this.dgDoB.Visible = false;
-            // 
-            // dgMobile
-            // 
-            this.dgMobile.HeaderText = "Mobile";
-            this.dgMobile.Name = "dgMobile";
-            this.dgMobile.ReadOnly = true;
-            this.dgMobile.Visible = false;
-            // 
-            // dgEmail
-            // 
-            this.dgEmail.HeaderText = "Email";
-            this.dgEmail.Name = "dgEmail";
-            this.dgEmail.ReadOnly = true;
-            this.dgEmail.Visible = false;
-            // 
-            // dgAdd
-            // 
-            this.dgAdd.HeaderText = "Address";
-            this.dgAdd.Name = "dgAdd";
-            this.dgAdd.ReadOnly = true;
-            this.dgAdd.Visible = false;
-            // 
-            // dgSSN
-            // 
-            this.dgSSN.HeaderText = "SSN";
-            this.dgSSN.Name = "dgSSN";
-            this.dgSSN.ReadOnly = true;
-            this.dgSSN.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "FileName";
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFID
-            // 
-            this.dgFID.HeaderText = "Finger ID";
-            this.dgFID.Name = "dgFID";
-            this.dgFID.ReadOnly = true;
-            // 
-            // dgIsDeleted
-            // 
-            this.dgIsDeleted.HeaderText = "IsDeleted";
-            this.dgIsDeleted.Name = "dgIsDeleted";
-            this.dgIsDeleted.ReadOnly = true;
-            this.dgIsDeleted.Visible = false;
-            // 
-            // dgImage
-            // 
-            this.dgImage.HeaderText = "Image";
-            this.dgImage.Name = "dgImage";
-            this.dgImage.ReadOnly = true;
             // 
             // employeeRegister
             // 

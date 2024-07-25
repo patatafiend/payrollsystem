@@ -167,45 +167,38 @@ namespace payrollsystemsti.AdminTabs
 
         private void employeeSalary_Load(object sender, System.EventArgs e)
         {
+            btnCompute.Enabled = false;
+            btnSave.Enabled = false;
             LoadPayrollData();
-            //firsInterface();
             SetPayPeriodDefaults();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(cbPayroll.Text == "Printing")
-            {
-                empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
-            }
-            else
-            {
-                //
+            empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
+            basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
+            totalHoursW = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
+            totalOvertime = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
+            totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
+            totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
-                empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
-                basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
-                totalHoursW = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
-                totalOvertime = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
-                totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
-                totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
+            tbBasic.Text = basicSalary.ToString();
+            tbOT.Text = overtimePay.ToString();
+            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
 
-                tbBasic.Text = basicSalary.ToString();
-                tbOT.Text = overtimePay.ToString();
-                tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+            basicSalary = calBasicSalary(basicRate, totalHoursW);
+            overtimePay = calOvertimePay(totalOvertime, basicRate);
 
-                basicSalary = calBasicSalary(basicRate, totalHoursW);
-                overtimePay = calOvertimePay(totalOvertime, basicRate);
-
-                tbPagibig.Text = calPagIbig().ToString();
-                tbLate.Text = totalLate.ToString();
-                tbAbsent.Text = totalAbsent.ToString();
+            tbPagibig.Text = calPagIbig().ToString();
+            tbLate.Text = totalLate.ToString();
+            tbAbsent.Text = totalAbsent.ToString();
 
 
 
-                setAllowance(empID);
-                setOthers(empID);
-            }
-            
+            setAllowance(empID);
+            setOthers(empID);
+
+            btnCompute.Enabled = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -241,10 +234,12 @@ namespace payrollsystemsti.AdminTabs
                 0, 0, gross, netpay, phil, pagibig, sss, deductionT, totalHP);
 
                 MessageBox.Show("Payslip Recorded!");
+                btnSave.Enabled = false;
             }
             else
             {
                 MessageBox.Show("payslip already exist");
+                btnSave.Enabled = false;
             }
         }
 
@@ -394,13 +389,7 @@ namespace payrollsystemsti.AdminTabs
                 Convert.ToDouble(tbAdjustment.Text));
 
             tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
-        }
-
-        private void btnPayslip_Click(object sender, EventArgs e)
-        {
-            PaySlipReport ps = new PaySlipReport();
-            PaySlipReport.pr.empID = empID;
-            ps.Show();
+            btnCompute.Enabled = false;
         }
 
         private void cbPayroll_SelectedValueChanged(object sender, EventArgs e)
@@ -409,28 +398,11 @@ namespace payrollsystemsti.AdminTabs
             {
                 case "Payroll Computation":
                     LoadPayrollData();
-                    //firsInterface();
                     break;
                 case "Printing":
-                    LoadComputedPayrollData();
-                    // Resize the combo box
-                    cbPayroll.Width = 200;
-                    cbPayroll.Height = 80;
-                    cbPayroll.Top = 100;
-                    cbPayroll.Left = 750;
-
-
-                    dataGridView1.Top = 150;
-                    dataGridView1.Height = 500;
-                    
-
-                    // Relocate the print button
-                    //btnPayslip.Left = 30;
-                    //btnPayslip.Top = 80;
-                    //hidePayrollComputation();               
+                    LoadComputedPayrollData();     
                     break;
                 default:
-                    //firsInterface();
                     break;
             }
         }
@@ -625,6 +597,12 @@ namespace payrollsystemsti.AdminTabs
                     return count > 0;
                 }
             }
+        }
+
+        private void btnPayslip_Click_1(object sender, EventArgs e)
+        {
+            PaySlipReport pr = new PaySlipReport();
+            pr.Show();
         }
     }
 }

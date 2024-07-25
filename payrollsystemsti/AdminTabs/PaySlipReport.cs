@@ -26,16 +26,56 @@ namespace payrollsystemsti.AdminTabs
 
         private void PaySlipReport_Load(object sender, EventArgs e)
         {
-            dataSource(empID);
-            SetPaySlipInfo(empID);
+            this.reportViewer1.RefreshReport();
+            SetPayPeriodDefaults();
+            loadReport();
+
+            
         }
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
             
         }
+        private void loadReport()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Payroll";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter d = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    d.Fill(dt);
 
-        
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    ReportDataSource source = new ReportDataSource("DataSet1", dt);
+                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.DataSources.Add(source);
+                    reportViewer1.RefreshReport();
+                }
+            }
+        }
+        private void SetPayPeriodDefaults()
+        {
+            DateTime today = DateTime.Today;
+            DateTime payPeriodStart, payPeriodEnd;
+
+            if (today.Day <= 15)
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 1);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 15);
+            }
+            else
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 16);
+                payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+            }
+
+            dtStart.Value = payPeriodStart;
+            dtEnd.Value = payPeriodEnd;
+        }
 
         public void SetPaySlipInfo(int empID)
         {
@@ -134,6 +174,21 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        private void dtStart_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime startDate = dtStart.Value.Date;
+            dtEnd.Value = startDate.AddDays(14);
+            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
+        }
+
+        private void dtEnd_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime endDate = dtEnd.Value.Date;
+            dtStart.Value = endDate.AddDays(-14);
+            dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
+        }
+
         //public void SetPaySlipInfo(int empID)
         //{
         //    using (SqlConnection conn = new SqlConnection(m.connStr))
