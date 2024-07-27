@@ -91,39 +91,47 @@ namespace payrollsystemsti.AdminTabs
             dtStart.Value = endDate.AddDays(-14);
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
         }
-        private AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection suggest = new AutoCompleteStringCollection();
 
-        public void searchForName()
+        public void SearchForName()
         {
-            using (stipayrolldbEntities db = new stipayrolldbEntities())
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                string searchTerm = tbSearch.Text.Trim();
+                conn.Open();
 
-                if (searchTerm.Length >= 3)
-                {
-                    var employees = db.EmployeeAccounts
-                                      .Where(e => e.FirstName.StartsWith(searchTerm) || e.LastName.StartsWith(searchTerm))
-                                      .Select(e => new { FullName = e.FirstName + " " + e.LastName })
-                                      .ToList();
+                // Improved query: Use OR instead of AND for searching first or last name
+                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE FirstName LIKE @SearchTerm + '%' OR LastName LIKE @SearchTerm + '%'";
 
-                    autoCompleteStringCollection.Clear(); // Clear previous suggestions
-                    autoCompleteStringCollection.AddRange((string[])employees.Select(e => e.FullName));
-                    tbSearch.AutoCompleteCustomSource = autoCompleteStringCollection;
-                    tbSearch.Refresh(); // Force UI update
-                }
-                else
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    autoCompleteStringCollection.Clear(); // Clear suggestions when search term is too short
-                    tbSearch.AutoCompleteCustomSource = autoCompleteStringCollection;
+                    cmd.Parameters.AddWithValue("@SearchTerm",tbSearch.Text);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Improved readability: Use string formatting
+                            suggest.Add(string.Format("{0} {1}", reader["FirstName"], reader["LastName"]));
+                            //MessageBox.Show("yessssir");
+                        }
+                    }
+                    tbSearch.AutoCompleteCustomSource = suggest;
+                    
                 }
             }
         }
 
 
 
+
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
-            searchForName();
+            SearchForName();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
 
         //public void SetPaySlipInfo(int empID)
