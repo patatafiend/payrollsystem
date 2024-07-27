@@ -675,6 +675,7 @@
             this.btnReport.TabIndex = 45;
             this.btnReport.Text = "Reports";
             this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // employeeSalary
             // 
