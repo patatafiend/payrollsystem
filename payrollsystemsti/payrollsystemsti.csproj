@@ -108,6 +108,12 @@
     <Compile Include="AdminTabs\employeeRegister.Designer.cs">
       <DependentUpon>employeeRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\EmployeeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\EmployeeReport.Designer.cs">
+      <DependentUpon>EmployeeReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\employeeSalary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeRegister.resx">
       <DependentUpon>employeeRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\EmployeeReport.resx">
+      <DependentUpon>EmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeSalary.resx">
       <DependentUpon>employeeSalary.cs</DependentUpon>
