@@ -31,7 +31,7 @@
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
-            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
             this.btnSingle = new System.Windows.Forms.Button();
@@ -43,10 +43,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "payrollsystemsti.AdminTabs.Report1.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 53);
+            this.reportViewer1.Location = new System.Drawing.Point(0, 163);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(972, 531);
+            this.reportViewer1.Size = new System.Drawing.Size(972, 421);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
@@ -77,15 +77,17 @@
             this.dtEnd.Visible = false;
             this.dtEnd.ValueChanged += new System.EventHandler(this.dtEnd_ValueChanged);
             // 
-            // tbFirstName
+            // tbSearch
             // 
-            this.tbFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFirstName.Location = new System.Drawing.Point(788, 12);
-            this.tbFirstName.Multiline = true;
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(172, 28);
-            this.tbFirstName.TabIndex = 38;
+            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSearch.Location = new System.Drawing.Point(788, 12);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(172, 20);
+            this.tbSearch.TabIndex = 38;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // btnLoad
             // 
@@ -135,7 +137,7 @@
             this.Controls.Add(this.btnBatch);
             this.Controls.Add(this.btnSingle);
             this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.tbFirstName);
+            this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.dtEnd);
             this.Controls.Add(this.dtStart);
             this.Controls.Add(this.reportViewer1);
@@ -152,7 +154,7 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.DateTimePicker dtStart;
         private System.Windows.Forms.DateTimePicker dtEnd;
-        private System.Windows.Forms.TextBox tbFirstName;
+        private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnBatch;
         private System.Windows.Forms.Button btnSingle;

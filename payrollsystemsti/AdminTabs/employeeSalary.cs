@@ -203,6 +203,11 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            SavePayroll();
+        }
+        
+        private void SavePayroll()
+        {
             double incentives = Convert.ToDouble(tbIncentives.Text);
             double regH = Convert.ToDouble(tbIncentives.Text);
             double specialH = Convert.ToDouble(tbIncentives.Text);
@@ -226,8 +231,8 @@ namespace payrollsystemsti.AdminTabs
             DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
             DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
 
-            
-            if (!ifPaySlipExist(empID))
+
+            if (!IfPaySlipExist(empID))
             {
                 InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
                 totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
@@ -383,6 +388,11 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
+            ComputePayroll();
+        }
+
+        private void ComputePayroll()
+        {
             gross = grossPay(basicSalary, Convert.ToDouble(tbIncentives.Text), Convert.ToDouble(tbTA.Text),
                 Convert.ToDouble(tbTransA.Text), Convert.ToDouble(tbLoadA.Text), Convert.ToDouble(tbPTA.Text),
                 overtimePay, Convert.ToDouble(tbRegularH.Text), Convert.ToDouble(tbSpecialH.Text),
@@ -462,57 +472,29 @@ namespace payrollsystemsti.AdminTabs
         //    dataGridView1.Columns["dgBasic"].Visible = true;
         //}
 
-        public bool insertToPayroll(int empID, DateTime payStart, DateTime payEnd, double gross, double deductionID, double netPay)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO Payroll(EmployeeID, PayPeriodStart, PayPeriodEnd, GrossPay, DeductionID, NetPay) " +
-                    "VALUES(@empID, @payStart, @payEnd, @gross, @deductionID, @netpay)";
-                using (SqlCommand cmd = new SqlCommand(query,conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-                    cmd.Parameters.AddWithValue("@payStart", payStart);
-                    cmd.Parameters.AddWithValue("@payEnd", payEnd);
-                    cmd.Parameters.AddWithValue("@gross", gross);
-                    cmd.Parameters.AddWithValue("@deductionID", deductionID);
-                    cmd.Parameters.AddWithValue("@netpay", netPay);
+        
 
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error inserting into Payroll: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
+        //private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    // Set the size of the form
+        //    this.Width = 800; // Width in pixels
+        //    this.Height = 600; // Height in pixels
 
-        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        {
-            //// Set the size of the form
-            //this.Width = 800; // Width in pixels
-            //this.Height = 600; // Height in pixels
+        //    // Set the location of the form on the screen
+        //    this.Left = 100; // Distance from left edge of the screen
+        //    this.Top = 50;  // Distance from top edge of the screen
+        //}
 
-            //// Set the location of the form on the screen
-            //this.Left = 100; // Distance from left edge of the screen
-            //this.Top = 50;  // Distance from top edge of the screen
-        }
+        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    // Set the size of the form
+        //    this.Width = 800; // Width in pixels
+        //    this.Height = 600; // Height in pixels
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //// Set the size of the form
-            //this.Width = 800; // Width in pixels
-            //this.Height = 600; // Height in pixels
-
-            //// Set the location of the form on the screen
-            //this.Left = 100; // Distance from left edge of the screen
-            //this.Top = 50;  // Distance from top edge of the screen
-        }
+        //    // Set the location of the form on the screen
+        //    this.Left = 100; // Distance from left edge of the screen
+        //    this.Top = 50;  // Distance from top edge of the screen
+        //}
 
         public bool InsertIntoPayroll(int empID, double semiP, double dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
                               double totalH, double ot, double regh, double specialh, double oba, double rest, double loadA,
@@ -583,7 +565,8 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public bool ifPaySlipExist(int empID)
+        
+        public bool IfPaySlipExist(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -603,6 +586,11 @@ namespace payrollsystemsti.AdminTabs
         {
             PaySlipReport pr = new PaySlipReport();
             pr.Show();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
