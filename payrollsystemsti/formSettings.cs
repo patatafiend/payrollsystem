@@ -41,14 +41,10 @@ namespace payrollsystemsti
             changeForm = null;
         }
 
-        private void formSettings_Load(object sender, EventArgs e)
+        private void FormSettings_Load(object sender, EventArgs e)
         {
-
-
-
+            
         }
-
-
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -62,13 +58,21 @@ namespace payrollsystemsti
 
         private void button1_Click(object sender, EventArgs e)
         {
-            profile11.Hide();
+           
             profile11.Show();
+            
+            
             
 
         }
 
         private void profile11_Load(object sender, EventArgs e)
+        {
+            profile11.Hide();
+           
+        }
+
+        private void Settings_Click(object sender, EventArgs e)
         {
 
         }

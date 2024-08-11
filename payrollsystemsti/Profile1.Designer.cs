@@ -150,6 +150,7 @@
             this.label3.Size = new System.Drawing.Size(144, 31);
             this.label3.TabIndex = 24;
             this.label3.Text = "My Profile";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pbCurrentUser
             // 
