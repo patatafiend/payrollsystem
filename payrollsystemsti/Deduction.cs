@@ -1,4 +1,5 @@
-﻿using payrollsystemsti.Tabs;
+﻿using payrollsystemsti.AdminTabs;
+using payrollsystemsti.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,6 +157,17 @@ namespace payrollsystemsti
             {
                 btnCancel.Visible = false;
             }
+        }
+
+        private void btnLoan_Click(object sender, EventArgs e)
+        {
+            OpenLoanForm();
+        }
+
+        private void OpenLoanForm()
+        {
+            Loan loan = new Loan();
+            loan.Show();
         }
     }
 }

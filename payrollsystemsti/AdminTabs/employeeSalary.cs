@@ -136,33 +136,13 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgFullName"].Value = getEmpName((int)row["EmployeeID"]);
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = m.GetEmpName((int)row["EmployeeID"]);
                     }
                 }
             }
         }
 
-        public string getEmpName(int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        return reader["FirstName"].ToString()+ " " + reader["LastName"].ToString();
-                    }
-                    else
-                    {
-                        return " ";
-                    }
-                }
-            }
-        }
+        
 
 
         private void employeeSalary_Load(object sender, System.EventArgs e)
@@ -507,19 +487,14 @@ namespace payrollsystemsti.AdminTabs
                 try
                 {
                     conn.Open();
-                    string query = @"
-                INSERT INTO Payroll (
-                    EmployeeID, SemiMonthly, DailyRate, PayPeriodStart, PayPeriodEnd, PayOutDate, 
-                    TotalHours, OverTimePay, RegularH, SpecialH, OBA, RestDay, LoadA, TransA, 
-                    Adjustments, Incentives, TrainA, ProvTA, Late, Savings, CashA, GrossPay, 
-                    NetPay, PhilHealth, PagIbig, SSS, DeductionTotal, TotalHoursPay
-                )
-                VALUES (
-                    @EmployeeID, @SemiMonthly, @DailyRate, @PayPeriodStart, @PayPeriodEnd, @PayOutDate, 
-                    @TotalHours, @OverTimePay, @RegularH, @SpecialH, @OBA, @RestDay, @LoadA, @TransA, 
-                    @Adjustments, @Incentives, @TrainA, @ProvTA, @Late, @Savings, @CashA, @GrossPay, 
-                    @NetPay, @PhilHealth, @PagIbig, @SSS, @dtotal, @thp
-                );";
+                    string query = @"INSERT INTO Payroll (EmployeeID, SemiMonthly, DailyRate, PayPeriodStart, 
+                    PayPeriodEnd, PayOutDate, TotalHours, OverTimePay, RegularH, SpecialH, OBA, RestDay, LoadA, TransA, 
+                    Adjustments, Incentives, TrainA, ProvTA, Late, Savings, CashA, GrossPay, NetPay, PhilHealth, PagIbig, 
+                    SSS, DeductionTotal, TotalHoursPay, SSSLoan, PagIbigLoan, CompanyLoan) VALUES (@EmployeeID, @SemiMonthly,
+                    @DailyRate, @PayPeriodStart, @PayPeriodEnd, @PayOutDate,@TotalHours, @OverTimePay, @RegularH, @SpecialH, 
+                    @OBA, @RestDay, @LoadA, @TransA, @Adjustments, @Incentives, @TrainA, @ProvTA, @Late, @Savings, @CashA, 
+                    @GrossPay, @NetPay, @PhilHealth, @PagIbig, @SSS, @dtotal, @thp, @sssl, @pagibigl, @companyl)";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         // Parameterized Query for All Columns
@@ -551,6 +526,9 @@ namespace payrollsystemsti.AdminTabs
                         cmd.Parameters.AddWithValue("@SSS", sss);
                         cmd.Parameters.AddWithValue("@dtotal", dtotal);
                         cmd.Parameters.AddWithValue("@thp", thp);
+                        cmd.Parameters.AddWithValue("@sssl", m.GetSSSLoan(empID));
+                        cmd.Parameters.AddWithValue("@pagibigl", m.GetHDMFLoan(empID));
+                        cmd.Parameters.AddWithValue("@companyl", m.GetCompanyLoan(empID));
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -561,11 +539,12 @@ namespace payrollsystemsti.AdminTabs
                     MessageBox.Show("Error inserting into Payroll: " + ex.Message);
                     return false;
                 }
-                
             }
         }
 
         
+
+
         public bool IfPaySlipExist(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))

@@ -2423,6 +2423,12 @@ namespace payrollsystemsti {
             
             private global::System.Data.DataColumn columnDeductionTotal;
             
+            private global::System.Data.DataColumn columnSSSLoan;
+            
+            private global::System.Data.DataColumn columnPagIbigLoan;
+            
+            private global::System.Data.DataColumn columnCompanyLoan;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DataTable2DataTable() {
@@ -2714,6 +2720,30 @@ namespace payrollsystemsti {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SSSLoanColumn {
+                get {
+                    return this.columnSSSLoan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PagIbigLoanColumn {
+                get {
+                    return this.columnPagIbigLoan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CompanyLoanColumn {
+                get {
+                    return this.columnCompanyLoan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2780,7 +2810,10 @@ namespace payrollsystemsti {
                         int PhilHealth, 
                         int PagIbig, 
                         int SSS, 
-                        int DeductionTotal) {
+                        int DeductionTotal, 
+                        int SSSLoan, 
+                        int PagIbigLoan, 
+                        int CompanyLoan) {
                 DataTable2Row rowDataTable2Row = ((DataTable2Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FirstName,
@@ -2814,7 +2847,10 @@ namespace payrollsystemsti {
                         PhilHealth,
                         PagIbig,
                         SSS,
-                        DeductionTotal};
+                        DeductionTotal,
+                        SSSLoan,
+                        PagIbigLoan,
+                        CompanyLoan};
                 rowDataTable2Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable2Row);
                 return rowDataTable2Row;
@@ -2876,6 +2912,9 @@ namespace payrollsystemsti {
                 this.columnPagIbig = base.Columns["PagIbig"];
                 this.columnSSS = base.Columns["SSS"];
                 this.columnDeductionTotal = base.Columns["DeductionTotal"];
+                this.columnSSSLoan = base.Columns["SSSLoan"];
+                this.columnPagIbigLoan = base.Columns["PagIbigLoan"];
+                this.columnCompanyLoan = base.Columns["CompanyLoan"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2945,6 +2984,12 @@ namespace payrollsystemsti {
                 base.Columns.Add(this.columnSSS);
                 this.columnDeductionTotal = new global::System.Data.DataColumn("DeductionTotal", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDeductionTotal);
+                this.columnSSSLoan = new global::System.Data.DataColumn("SSSLoan", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSSLoan);
+                this.columnPagIbigLoan = new global::System.Data.DataColumn("PagIbigLoan", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPagIbigLoan);
+                this.columnCompanyLoan = new global::System.Data.DataColumn("CompanyLoan", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompanyLoan);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPayrollID}, true));
                 this.columnFirstName.AllowDBNull = false;
@@ -5619,6 +5664,54 @@ namespace payrollsystemsti {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int SSSLoan {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable2.SSSLoanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSSLoan\' in table \'DataTable2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.SSSLoanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PagIbigLoan {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable2.PagIbigLoanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PagIbigLoan\' in table \'DataTable2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.PagIbigLoanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int CompanyLoan {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable2.CompanyLoanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CompanyLoan\' in table \'DataTable2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.CompanyLoanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAbsentsNull() {
                 return this.IsNull(this.tableDataTable2.AbsentsColumn);
             }
@@ -5963,6 +6056,42 @@ namespace payrollsystemsti {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDeductionTotalNull() {
                 this[this.tableDataTable2.DeductionTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSSSLoanNull() {
+                return this.IsNull(this.tableDataTable2.SSSLoanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSSSLoanNull() {
+                this[this.tableDataTable2.SSSLoanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPagIbigLoanNull() {
+                return this.IsNull(this.tableDataTable2.PagIbigLoanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPagIbigLoanNull() {
+                this[this.tableDataTable2.PagIbigLoanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCompanyLoanNull() {
+                return this.IsNull(this.tableDataTable2.CompanyLoanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCompanyLoanNull() {
+                this[this.tableDataTable2.CompanyLoanColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8820,6 +8949,9 @@ SELECT PayrollID, EmployeeID, SemiMonthly, DailyRate, PayPeriodStart, PayPeriodE
             tableMapping.ColumnMappings.Add("PagIbig", "PagIbig");
             tableMapping.ColumnMappings.Add("SSS", "SSS");
             tableMapping.ColumnMappings.Add("DeductionTotal", "DeductionTotal");
+            tableMapping.ColumnMappings.Add("SSSLoan", "SSSLoan");
+            tableMapping.ColumnMappings.Add("PagIbigLoan", "PagIbigLoan");
+            tableMapping.ColumnMappings.Add("CompanyLoan", "CompanyLoan");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -8836,9 +8968,12 @@ SELECT PayrollID, EmployeeID, SemiMonthly, DailyRate, PayPeriodStart, PayPeriodE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAcco" +
-                "unts.Absents, Payroll.*\r\nFROM            EmployeeAccounts INNER JOIN\r\n          " +
-                "               Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID";
+            this._commandCollection[0].CommandText = @"SELECT        EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.Absents, Payroll.PayrollID, Payroll.EmployeeID, Payroll.SemiMonthly, Payroll.DailyRate, Payroll.PayPeriodStart, Payroll.PayPeriodEnd, 
+                         Payroll.PayOutDate, Payroll.TotalHours, Payroll.TotalHoursPay, Payroll.OverTimePay, Payroll.RegularH, Payroll.SpecialH, Payroll.OBA, Payroll.RestDay, Payroll.LoadA, Payroll.TransA, Payroll.Adjustments, Payroll.Incentives, 
+                         Payroll.TrainA, Payroll.ProvTA, Payroll.Late, Payroll.Savings, Payroll.CashA, Payroll.GrossPay, Payroll.NetPay, Payroll.PhilHealth, Payroll.PagIbig, Payroll.SSS, Payroll.DeductionTotal, Payroll.SSSLoan, Payroll.PagIbigLoan, 
+                         Payroll.CompanyLoan
+FROM            EmployeeAccounts INNER JOIN
+                         Payroll ON EmployeeAccounts.EmployeeID = Payroll.EmployeeID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

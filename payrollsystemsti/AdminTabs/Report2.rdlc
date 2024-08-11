@@ -571,7 +571,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>SSS Loan</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -601,7 +601,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>HDMF Loans</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -631,7 +631,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Company Loans</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -691,7 +691,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Other Deductions</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -710,7 +710,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1409,6 +1408,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

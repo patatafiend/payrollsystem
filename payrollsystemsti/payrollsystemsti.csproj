@@ -108,12 +108,6 @@
     <Compile Include="AdminTabs\employeeRegister.Designer.cs">
       <DependentUpon>employeeRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminTabs\EmployeeReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminTabs\EmployeeReport.Designer.cs">
-      <DependentUpon>EmployeeReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminTabs\employeeSalary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +138,12 @@
     <Compile Include="AdminTabs\leaveManagement.Designer.cs">
       <DependentUpon>leaveManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\Loan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\Loan.Designer.cs">
+      <DependentUpon>Loan.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\managePositions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,12 +167,6 @@
     </Compile>
     <Compile Include="AdminTabs\PaySlipReport.Designer.cs">
       <DependentUpon>PaySlipReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminTabs\Printing.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminTabs\Printing.Designer.cs">
-      <DependentUpon>Printing.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminTabs\ViewAttendance.cs">
       <SubType>Form</SubType>
@@ -333,9 +327,6 @@
     <EmbeddedResource Include="AdminTabs\employeeRegister.resx">
       <DependentUpon>employeeRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminTabs\EmployeeReport.resx">
-      <DependentUpon>EmployeeReport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\employeeSalary.resx">
       <DependentUpon>employeeSalary.cs</DependentUpon>
     </EmbeddedResource>
@@ -351,14 +342,14 @@
     <EmbeddedResource Include="AdminTabs\leaveManagement.resx">
       <DependentUpon>leaveManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\Loan.resx">
+      <DependentUpon>Loan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\PaySlipReport.resx">
       <DependentUpon>PaySlipReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminTabs\Printing.resx">
-      <DependentUpon>Printing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\Report1.rdlc" />
     <EmbeddedResource Include="AdminTabs\Report2.rdlc" />

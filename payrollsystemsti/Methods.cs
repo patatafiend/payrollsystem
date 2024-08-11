@@ -501,6 +501,35 @@ namespace payrollsystemsti
             }
         }
 
+        public bool InsertLoan(int employeeId, int sss, int hdmf, int company)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                connection.Open();
+                string query = "INSERT INTO Loans (EmployeeID, SSS, HDMF, Company) VALUES (@employeeId, @sss, @hdmf, @company)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@employeeId", employeeId);
+                    command.Parameters.AddWithValue("@sss", sss);
+                    command.Parameters.AddWithValue("@hdmf", hdmf);
+                    command.Parameters.AddWithValue("@company", company);
+
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception appropriately
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool UpdateOtherData(int employeeID, int incentives, int regularH, int specialH, int adjustment)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -1080,6 +1109,92 @@ namespace payrollsystemsti
                     if (result != null && result != DBNull.Value)
                     {
                         return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public string GetEmpName(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public int GetSSSLoan(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT SSS FROM Loans WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["SSS"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        public int GetHDMFLoan(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT HDMF FROM Loans WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["HDMF"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        public int GetCompanyLoan(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Company FROM Loans WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["Company"];
                     }
                     else
                     {

@@ -29,8 +29,38 @@ namespace payrollsystemsti.AdminTabs
             this.reportViewer1.RefreshReport();
             SetPayPeriodDefaults();
             loadReport();
+            DateSource();
             
         }
+
+        private void DateSource()
+        {
+            List<DateTime> payPeriodEnds = new List<DateTime>();
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT DISTINCT PayPeriodEnd FROM Payroll";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!reader.IsDBNull(reader.GetOrdinal("PayPeriodEnd")))
+                            {
+                                payPeriodEnds.Add(Convert.ToDateTime(reader["PayPeriodEnd"]));
+                            }
+                        }
+                    }
+                }
+            }
+
+            payDates.DataSource = payPeriodEnds;
+            payDates.DisplayMember = "Date"; // Assuming payDates is a ComboBox
+            payDates.ValueMember = "Date";
+        }
+
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
@@ -41,8 +71,11 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName" +
-                    " FROM Payroll LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID";
+                string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
+                    " Loans.SSS AS LoanSSS, Loans.HDMF AS LoanHDMF, Loans.Company AS LoanCompany FROM Payroll " +
+                    "LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID LEFT JOIN " +
+                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     SqlDataAdapter d = new SqlDataAdapter(cmd);
@@ -74,22 +107,22 @@ namespace payrollsystemsti.AdminTabs
                 payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
             }
 
-            dtStart.Value = payPeriodStart;
-            dtEnd.Value = payPeriodEnd;
+            //dtStart.Value = payPeriodStart;
+            //dtEnd.Value = payPeriodEnd;
         }
 
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
-            DateTime startDate = dtStart.Value.Date;
-            dtEnd.Value = startDate.AddDays(14);
-            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
+            //DateTime startDate = dtStart.Value.Date;
+            //dtEnd.Value = startDate.AddDays(14);
+            //dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
         }
 
         private void dtEnd_ValueChanged(object sender, EventArgs e)
         {
-            DateTime endDate = dtEnd.Value.Date;
-            dtStart.Value = endDate.AddDays(-14);
-            dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
+            //DateTime endDate = dtEnd.Value.Date;
+            //dtStart.Value = endDate.AddDays(-14);
+            //dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
         }
         private AutoCompleteStringCollection suggest = new AutoCompleteStringCollection();
 
@@ -132,6 +165,21 @@ namespace payrollsystemsti.AdminTabs
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSingle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBatch_Click(object sender, EventArgs e)
+        {
+
         }
 
         //public void SetPaySlipInfo(int empID)

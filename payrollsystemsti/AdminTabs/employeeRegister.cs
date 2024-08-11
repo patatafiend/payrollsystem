@@ -313,6 +313,8 @@ namespace payrollsystemsti.AdminTabs
                 {
                     m.insertToAllowances(Convert.ToInt32(id),0,0,0,0,0);
                     m.InsertOtherData(Convert.ToInt32(id), 0, 0, 0, 0);
+                    m.InsertLoan(Convert.ToInt32(id), 0, 0, 0);
+                    
                     MessageBox.Show("Created User Succesfully");
                 }
 

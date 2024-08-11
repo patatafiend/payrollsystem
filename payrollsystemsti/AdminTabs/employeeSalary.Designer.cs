@@ -695,7 +695,6 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "employeeSalary";
-            this.Text = "employeeSalary";
             this.Load += new System.EventHandler(this.employeeSalary_Load);
             this.gb1.ResumeLayout(false);
             this.gb1.PerformLayout();
