@@ -20,14 +20,11 @@ namespace payrollsystemsti.AdminTabs
             InitializeComponent();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            btnSave.Enabled = false;
+            btnCancel.Visible = false;
         }
 
         private void Loan_Load(object sender, EventArgs e)

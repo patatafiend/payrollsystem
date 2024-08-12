@@ -78,7 +78,6 @@
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.lbStart = new System.Windows.Forms.Label();
             this.lbEnd = new System.Windows.Forms.Label();
-            this.cbPayroll = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPayslip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
@@ -215,6 +214,7 @@
             this.tbBasic.ReadOnly = true;
             this.tbBasic.Size = new System.Drawing.Size(94, 28);
             this.tbBasic.TabIndex = 2;
+            this.tbBasic.TextChanged += new System.EventHandler(this.tbBasic_TextChanged);
             // 
             // label1
             // 
@@ -569,10 +569,11 @@
             this.dtStart.CustomFormat = "MMMM,dd,yyyy";
             this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(701, 431);
+            this.dtStart.Location = new System.Drawing.Point(323, 43);
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
+            this.dtStart.Visible = false;
             this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
             // 
             // dtEnd
@@ -582,11 +583,10 @@
             this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnd.Location = new System.Drawing.Point(319, 33);
+            this.dtEnd.Location = new System.Drawing.Point(701, 431);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 36;
-            this.dtEnd.Visible = false;
             this.dtEnd.ValueChanged += new System.EventHandler(this.dtEnd_ValueChanged);
             // 
             // lbStart
@@ -594,43 +594,29 @@
             this.lbStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStart.AutoSize = true;
             this.lbStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStart.Location = new System.Drawing.Point(698, 412);
+            this.lbStart.Location = new System.Drawing.Point(320, 24);
             this.lbStart.Name = "lbStart";
             this.lbStart.Size = new System.Drawing.Size(84, 16);
             this.lbStart.TabIndex = 37;
             this.lbStart.Text = "Pay Period";
+            this.lbStart.Visible = false;
             // 
             // lbEnd
             // 
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEnd.Location = new System.Drawing.Point(316, 14);
+            this.lbEnd.Location = new System.Drawing.Point(698, 412);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(115, 16);
             this.lbEnd.TabIndex = 38;
             this.lbEnd.Text = "Pay Period End";
-            this.lbEnd.Visible = false;
-            // 
-            // cbPayroll
-            // 
-            this.cbPayroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPayroll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPayroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbPayroll.FormattingEnabled = true;
-            this.cbPayroll.Items.AddRange(new object[] {
-            "Payroll Computation",
-            "Printing"});
-            this.cbPayroll.Location = new System.Drawing.Point(951, 433);
-            this.cbPayroll.Name = "cbPayroll";
-            this.cbPayroll.Size = new System.Drawing.Size(148, 24);
-            this.cbPayroll.TabIndex = 42;
-            this.cbPayroll.SelectedValueChanged += new System.EventHandler(this.cbPayroll_SelectedValueChanged);
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSave.Location = new System.Drawing.Point(183, 410);
@@ -680,7 +666,6 @@
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnPayslip);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.cbPayroll);
             this.Controls.Add(this.lbEnd);
             this.Controls.Add(this.lbStart);
             this.Controls.Add(this.dtEnd);
@@ -755,7 +740,6 @@
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.Label lbStart;
         private System.Windows.Forms.Label lbEnd;
-        private System.Windows.Forms.ComboBox cbPayroll;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;

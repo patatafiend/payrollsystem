@@ -104,21 +104,6 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public void LoadALLPayrollData()
-        {
-            dataGridView1.Rows.Clear();
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT ea.FirstName, ea.LastName FROM EmployeeAccounts";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-
-                }
-            }
-        }
-
-
         public void LoadComputedPayrollData()
         {
             dataGridView1.Rows.Clear();
@@ -162,22 +147,6 @@ namespace payrollsystemsti.AdminTabs
             totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
             totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
-            tbBasic.Text = basicSalary.ToString();
-            tbOT.Text = overtimePay.ToString();
-            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
-
-            basicSalary = calBasicSalary(basicRate, totalHoursW);
-            overtimePay = calOvertimePay(totalOvertime, basicRate);
-
-            tbPagibig.Text = calPagIbig().ToString();
-            tbLate.Text = totalLate.ToString();
-            tbAbsent.Text = totalAbsent.ToString();
-
-
-
-            setAllowance(empID);
-            setOthers(empID);
-
             btnCompute.Enabled = true;
         }
 
@@ -186,123 +155,7 @@ namespace payrollsystemsti.AdminTabs
             SavePayroll();
         }
         
-        private void SavePayroll()
-        {
-            double incentives = Convert.ToDouble(tbIncentives.Text);
-            double regH = Convert.ToDouble(tbIncentives.Text);
-            double specialH = Convert.ToDouble(tbIncentives.Text);
-            double adj = Convert.ToDouble(tbIncentives.Text);
-
-            double trainA = Convert.ToDouble(tbTA.Text);
-            double transA = Convert.ToDouble(tbTransA.Text);
-            double loadA = Convert.ToDouble(tbLoadA.Text);
-            double provA = Convert.ToDouble(tbPTA.Text);
-            double obA = Convert.ToDouble(tbOBA.Text);
-
-            double phil = Convert.ToDouble(tbPH.Text);
-            double pagibig = Convert.ToDouble(tbPagibig.Text);
-            double sss = Convert.ToDouble(tbSSS.Text);
-
-            double deductionT = phil + pagibig + sss;
-            double netpay = gross - deductionT;
-            double totalHP = (totalHoursW / 8) * basicRate;
-            double semiM = basicRate * 15;
-
-            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
-            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
-
-
-            if (!IfPaySlipExist(empID))
-            {
-                InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
-                totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
-                0, 0, gross, netpay, phil, pagibig, sss, deductionT, totalHP);
-
-                MessageBox.Show("Payslip Recorded!");
-                btnSave.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("payslip already exist");
-                btnSave.Enabled = false;
-            }
-        }
-
-
-
-        private double calBasicSalary(double basicRate, double tHW)
-        {
-            return (basicRate / 8) * tHW;
-        }
-
-        private double calOvertimePay(double overtime, double basic)
-        {
-            double OvertimeRate = (basic / 8) * 1.25;
-            return OvertimeRate * overtime;
-        }
-
-        private double calPH(double ph, double basicSalary)
-        {
-           return (ph / 100) * basicSalary;
-        }
-
-        private double calSSS(double sss, double gross)
-        {
-            return (sss / 100) * gross;
-        }
-
-        private double calPagIbig()
-        {
-            return 100;
-        }
-
-        private double grossPay(double basicSalary, double incentives, double trainA, double transA, double loadA, double provA, double ot, double regH, double slH, double adj)
-        {
-            return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj;
-        }
-
-        public double setDeductions(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT Amount FROM Deductions WHERE DeductionID = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id ", id);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        return Convert.ToDouble((int)reader["Amount"]);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        private void SetPayPeriodDefaults()
-        {
-            DateTime today = DateTime.Today;
-            DateTime payPeriodStart, payPeriodEnd;
-
-            if (today.Day <= 15)
-            {
-                payPeriodStart = new DateTime(today.Year, today.Month, 1);
-                payPeriodEnd = new DateTime(today.Year, today.Month, 15);
-            }
-            else
-            {
-                payPeriodStart = new DateTime(today.Year, today.Month, 16);
-                payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-            }
-
-            dtStart.Value = payPeriodStart;
-            dtEnd.Value = payPeriodEnd;
-        }
+        
 
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
@@ -322,52 +175,17 @@ namespace payrollsystemsti.AdminTabs
 
         
 
-        private void setAllowance(int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT * FROM Allowance WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        tbTA.Text = reader["TrainingA"].ToString();
-                        tbTransA.Text = reader["TransportationA"].ToString();
-                        tbLoadA.Text = reader["LoadA"].ToString();
-                        tbPTA.Text = reader["ProvisionTA"].ToString();
-                        tbOBA.Text = reader["OBA"].ToString();
-                    }
-                }
-            }
-        }
-        private void setOthers(int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT * FROM Others WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        tbIncentives.Text = reader["Incentives"].ToString();
-                        tbRegularH.Text = reader["RegularH"].ToString();
-                        tbSpecialH.Text = reader["SpecialH"].ToString();
-                        tbAdjustment.Text = reader["Adjustment"].ToString();
-                    }
-                }
-            }
-        }
+       
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
+            basicSalary = calBasicSalary(basicRate, totalHoursW);
+            overtimePay = calOvertimePay(totalOvertime, basicRate);
+
+            tbBasic.Text = basicSalary.ToString();
+            tbOT.Text = overtimePay.ToString();
+            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+
             ComputePayroll();
         }
 
@@ -380,101 +198,30 @@ namespace payrollsystemsti.AdminTabs
 
             tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
             btnCompute.Enabled = false;
+            btnSave.Enabled = true;
         }
-
-        private void cbPayroll_SelectedValueChanged(object sender, EventArgs e)
-        {
-            switch (cbPayroll.Text)
-            {
-                case "Payroll Computation":
-                    LoadPayrollData();
-                    break;
-                case "Printing":
-                    LoadComputedPayrollData();     
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        //public void hidePayrollComputation()
-        //{
-        //    lbStart.Visible = false;
-        //    lbEnd.Visible = false;
-
-        //    dtStart.Visible = false;
-        //    dtEnd.Visible = false;
-
-        //    gb1.Visible = false;
-        //    gb2.Visible = false;
-        //    gb3.Visible = false;
-        //    gb4.Visible = false;
-
-        //    btnCompute.Visible = false;
-        //    btnSave.Visible = false;
-        //    //btnPayslip.Visible = true;
-
-        //    dataGridView1.Columns["dgTHW"].Visible = false;
-        //    dataGridView1.Columns["dgBasic"].Visible = false;
-        //}
-
-        //public void firsInterface()
-        //{
-            
-        //    lbStart.Visible = true;
-        //    lbEnd.Visible = true;
-
-        //    dtStart.Visible = true;
-        //    dtEnd.Visible = true;
-
-        //    gb1.Visible = true;
-        //    gb2.Visible = true;
-        //    gb3.Visible = true;
-        //    gb4.Visible = true;
-
-        //    btnCompute.Visible = true;
-        //    btnSave.Visible = true;
-        //    //btnPayslip.Visible = false;
-
-        //    // Resize the combo box
-           
-        //    cbPayroll.Top = 415;
-        //    cbPayroll.Left = 850;
-        //    cbPayroll.Width = 160;
-
-        //    dataGridView1.Location =  new System.Drawing.Point(24, 450);
-        //    dataGridView1.Width = 1000;
-
-        //    btnCompute.Location = new System.Drawing.Point(768, 34);
-        //    btnSave.Location = new System.Drawing.Point(906, 35);
-
-        //    dataGridView1.Columns["dgTHW"].Visible = true;
-        //    dataGridView1.Columns["dgBasic"].Visible = true;
-        //}
 
         
 
-        //private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    // Set the size of the form
-        //    this.Width = 800; // Width in pixels
-        //    this.Height = 600; // Height in pixels
+        private void btnPayslip_Click_1(object sender, EventArgs e)
+        {
+            PaySlipReport pr = new PaySlipReport();
+            pr.Show();
+        }
 
-        //    // Set the location of the form on the screen
-        //    this.Left = 100; // Distance from left edge of the screen
-        //    this.Top = 50;  // Distance from top edge of the screen
-        //}
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            
+        }
 
-        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    // Set the size of the form
-        //    this.Width = 800; // Width in pixels
-        //    this.Height = 600; // Height in pixels
-
-        //    // Set the location of the form on the screen
-        //    this.Left = 100; // Distance from left edge of the screen
-        //    this.Top = 50;  // Distance from top edge of the screen
-        //}
+        private void tbBasic_TextChanged(object sender, EventArgs e)
+        {
+            setAllowance(empID);
+            setOthers(empID);
+            tbPagibig.Text = calPagIbig().ToString();
+            tbLate.Text = totalLate.ToString();
+            tbAbsent.Text = totalAbsent.ToString();
+        }
 
         public bool InsertIntoPayroll(int empID, double semiP, double dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
                               double totalH, double ot, double regh, double specialh, double oba, double rest, double loadA,
@@ -542,8 +289,123 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        
+        private void SavePayroll()
+        {
+            double incentives = Convert.ToDouble(tbIncentives.Text);
+            double regH = Convert.ToDouble(tbIncentives.Text);
+            double specialH = Convert.ToDouble(tbIncentives.Text);
+            double adj = Convert.ToDouble(tbIncentives.Text);
 
+            double trainA = Convert.ToDouble(tbTA.Text);
+            double transA = Convert.ToDouble(tbTransA.Text);
+            double loadA = Convert.ToDouble(tbLoadA.Text);
+            double provA = Convert.ToDouble(tbPTA.Text);
+            double obA = Convert.ToDouble(tbOBA.Text);
+
+            double phil = Convert.ToDouble(tbPH.Text);
+            double pagibig = Convert.ToDouble(tbPagibig.Text);
+            double sss = Convert.ToDouble(tbSSS.Text);
+
+            double deductionT = phil + pagibig + sss;
+            double netpay = gross - deductionT;
+            double totalHP = (totalHoursW / 8) * basicRate;
+            double semiM = basicRate * 15;
+
+            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
+            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+
+
+            if (!IfPaySlipExist(empID))
+            {
+                InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
+                totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
+                0, 0, gross, netpay, phil, pagibig, sss, deductionT, totalHP);
+
+                MessageBox.Show("Payslip Recorded!");
+                btnSave.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("payslip already exist");
+                btnSave.Enabled = false;
+            }
+        }
+
+
+
+        private double calBasicSalary(double basicRate, double tHW)
+        {
+            return (basicRate / 8) * tHW;
+        }
+
+        private double calOvertimePay(double overtime, double basic)
+        {
+            double OvertimeRate = (basic / 8) * 1.25;
+            return OvertimeRate * overtime;
+        }
+
+        private double calPH(double ph, double basicSalary)
+        {
+            return (ph / 100) * basicSalary;
+        }
+
+        private double calSSS(double sss, double gross)
+        {
+            return (sss / 100) * gross;
+        }
+
+        private double calPagIbig()
+        {
+            return 100;
+        }
+
+        private double grossPay(double basicSalary, double incentives, double trainA, double transA, double loadA, double provA, double ot, double regH, double slH, double adj)
+        {
+            return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj;
+        }
+
+        public double setDeductions(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Amount FROM Deductions WHERE DeductionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id ", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return Convert.ToDouble((int)reader["Amount"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        private void SetPayPeriodDefaults()
+        {
+            DateTime today = DateTime.Today;
+            DateTime payPeriodStart, payPeriodEnd;
+
+            if (today.Day <= 15)
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 1);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 15);
+            }
+            else
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 16);
+                payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+            }
+
+            dtStart.Value = payPeriodStart;
+            dtEnd.Value = payPeriodEnd;
+        }
 
         public bool IfPaySlipExist(int empID)
         {
@@ -561,15 +423,48 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void btnPayslip_Click_1(object sender, EventArgs e)
+        private void setAllowance(int empID)
         {
-            PaySlipReport pr = new PaySlipReport();
-            pr.Show();
-        }
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Allowance WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
 
-        private void btnReport_Click(object sender, EventArgs e)
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tbTA.Text = reader["TrainingA"].ToString();
+                        tbTransA.Text = reader["TransportationA"].ToString();
+                        tbLoadA.Text = reader["LoadA"].ToString();
+                        tbPTA.Text = reader["ProvisionTA"].ToString();
+                        tbOBA.Text = reader["OBA"].ToString();
+                    }
+                }
+            }
+        }
+        private void setOthers(int empID)
         {
-            
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Others WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tbIncentives.Text = reader["Incentives"].ToString();
+                        tbRegularH.Text = reader["RegularH"].ToString();
+                        tbSpecialH.Text = reader["SpecialH"].ToString();
+                        tbAdjustment.Text = reader["Adjustment"].ToString();
+                    }
+                }
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ namespace payrollsystemsti.AdminTabs
         {
             this.reportViewer1.RefreshReport();
             SetPayPeriodDefaults();
-            loadReport();
             DateSource();
             
         }
@@ -164,7 +163,8 @@ namespace payrollsystemsti.AdminTabs
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
+            loadReport();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnSingle_Click(object sender, EventArgs e)
         {
-
+            tbSearch.Enabled = true;
         }
 
         private void btnBatch_Click(object sender, EventArgs e)
