@@ -18,14 +18,9 @@ namespace payrollsystemsti.AdminTabs
 		{
 			InitializeComponent();
 		}
-
-		private void btnExit_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
 		
 
-		private void HistoryLogForm_Load_1(object sender, EventArgs e)
+		/*private void HistoryLogForm_Load_1(object sender, EventArgs e)
 		{
 			LoadData();
 		}
@@ -43,7 +38,7 @@ namespace payrollsystemsti.AdminTabs
 				dgv_HistoryLog.AutoGenerateColumns = false;
 				dgv_HistoryLog.DataSource = dtbl;
 			}
-		}
+		}*/
 
 		
 	}

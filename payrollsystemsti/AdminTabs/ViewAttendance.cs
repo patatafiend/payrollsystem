@@ -35,7 +35,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void LoadAttedance(int empID)
+       /* private void LoadAttedance(int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -58,11 +58,30 @@ namespace payrollsystemsti.AdminTabs
                     }
                 }
             }
+        }*/
+
+        private void LoadAttendance(int empID)
+        {
+            
+            using (SqlConnection sqlCon = new SqlConnection(m.connStr))
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("Select * FROM HistoryTable", sqlCon);
+                DataTable dtbl = new DataTable();
+
+                sqlDa.Fill(dtbl);
+
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = dtbl;
+            }
+
         }
 
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
-            LoadAttedance(empID);
+            // TODO: This line of code loads data into the 'stipayrolldbDataSet.HistoryTable' table. You can move, or remove it, as needed.
+            this.historyTableTableAdapter.Fill(this.stipayrolldbDataSet.HistoryTable);
+            LoadAttendance(empID);
         }
     }
 }
