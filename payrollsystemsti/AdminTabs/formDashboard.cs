@@ -879,15 +879,19 @@ namespace payrollsystemsti
 
             if (Allowance == null)
             {
+                
                 Allowance = new Allowance();
                 Allowance.FormClosed += Allowance_FormClosed;
                 Allowance.MdiParent = this;
                 Allowance.Dock = DockStyle.Fill;
                 Allowance.Show();
+
+
+
             }
             else
             {
-                Deduction.Activate();
+                Allowance.Activate();
             }
         }
         private void Allowance_FormClosed(object sender, FormClosedEventArgs e)

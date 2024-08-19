@@ -53,9 +53,9 @@ namespace payrollsystemsti
             lbGetName = lbWelcome;
 			lbGetDepartment = lb_curDepartment;
             lbEmpID = lbEmployeeID;
-			lbLeaves = lb_EmployeeNum;
+			lbLeaves = lb_Total_Leaves;
 			lbAbsents = lb_absents;
-			lbPanelName1 = lb_Total;
+			lbPanelName1 = lb_TotalLeaves;
 			lbPhone = lb_EmpPhoNum;
 			lbEmail = lb_EmpEmail;
 			lbposition = lb_EmpPosition;
@@ -75,12 +75,12 @@ namespace payrollsystemsti
 
         public Label GetEmployeeLabel()
 		{
-			return lb_EmployeeNum;
+			return lb_Total_Leaves;
 		}
 
         public Label GetTotalLabel()
         {
-            return lb_Total;
+            return lb_TotalLeaves;
         }
 
 		private void InitializeEventHandlers()
@@ -149,49 +149,6 @@ namespace payrollsystemsti
         {
             DepartmentList = null;
         }
-
-        private void lb_curDepartment_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_DashBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_Employee_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        private void lb_EmployeeNum_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Total_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void lb_absents_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-
     }
 
     }
