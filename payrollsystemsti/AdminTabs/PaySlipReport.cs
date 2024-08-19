@@ -55,9 +55,9 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
 
-            payDates.DataSource = payPeriodEnds;
-            payDates.DisplayMember = "Date"; // Assuming payDates is a ComboBox
-            payDates.ValueMember = "Date";
+            cbPayDates.DataSource = payPeriodEnds;
+            cbPayDates.DisplayMember = "Date"; // Assuming payDates is a ComboBox
+            cbPayDates.ValueMember = "Date";
         }
 
 
@@ -65,7 +65,7 @@ namespace payrollsystemsti.AdminTabs
         {
             
         }
-        private void loadReport()
+        private void LoadReportBatch()
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -73,10 +73,38 @@ namespace payrollsystemsti.AdminTabs
                 string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
                     " Loans.SSS AS LoanSSS, Loans.HDMF AS LoanHDMF, Loans.Company AS LoanCompany FROM Payroll " +
                     "LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID LEFT JOIN " +
-                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID";
+                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE PayPeriodEnd = @payperiodend";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@payperiodend", cbPayDates.Text);
+
+                    SqlDataAdapter d = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    d.Fill(dt);
+
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    ReportDataSource source = new ReportDataSource("DataSet1", dt);
+                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.DataSources.Add(source);
+                    reportViewer1.RefreshReport();
+                }
+            }
+        }
+
+        private void LoadReportSingle()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
+                    " Loans.SSS AS LoanSSS, Loans.HDMF AS LoanHDMF, Loans.Company AS LoanCompany FROM Payroll " +
+                    "LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID LEFT JOIN " +
+                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE EmployeeAccounts.EmployeeID = @empID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", m.GetEmployeeIdByName(tbSearch.Text));
                     SqlDataAdapter d = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     d.Fill(dt);
@@ -164,22 +192,36 @@ namespace payrollsystemsti.AdminTabs
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            loadReport();
+            LoadReportBatch();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-
+            if (btnSingle.Enabled)
+            {
+                LoadReportSingle();
+            }
+            else if (!btnSingle.Enabled && btnBatch.Enabled)
+            {
+                LoadReportBatch();
+            }
+            else
+            {
+                MessageBox.Show("No payslip to load");
+            }
+            
         }
 
         private void btnSingle_Click(object sender, EventArgs e)
         {
             tbSearch.Enabled = true;
+            btnLoad.Enabled = true;
         }
 
         private void btnBatch_Click(object sender, EventArgs e)
         {
-
+            cbPayDates.Enabled = true;
+            btnLoad.Enabled = true;
         }
 
         //public void SetPaySlipInfo(int empID)

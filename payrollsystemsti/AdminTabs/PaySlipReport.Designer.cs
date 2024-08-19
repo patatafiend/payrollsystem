@@ -33,7 +33,7 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
             this.btnSingle = new System.Windows.Forms.Button();
-            this.payDates = new System.Windows.Forms.ComboBox();
+            this.cbPayDates = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -107,22 +107,22 @@
             this.btnSingle.UseVisualStyleBackColor = false;
             this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
-            // payDates
+            // cbPayDates
             // 
-            this.payDates.Enabled = false;
-            this.payDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.payDates.FormattingEnabled = true;
-            this.payDates.Location = new System.Drawing.Point(586, 16);
-            this.payDates.Name = "payDates";
-            this.payDates.Size = new System.Drawing.Size(179, 24);
-            this.payDates.TabIndex = 40;
+            this.cbPayDates.Enabled = false;
+            this.cbPayDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cbPayDates.FormattingEnabled = true;
+            this.cbPayDates.Location = new System.Drawing.Point(586, 16);
+            this.cbPayDates.Name = "cbPayDates";
+            this.cbPayDates.Size = new System.Drawing.Size(179, 24);
+            this.cbPayDates.TabIndex = 40;
             // 
             // PaySlipReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 584);
-            this.Controls.Add(this.payDates);
+            this.Controls.Add(this.cbPayDates);
             this.Controls.Add(this.btnBatch);
             this.Controls.Add(this.btnSingle);
             this.Controls.Add(this.btnLoad);
@@ -143,6 +143,6 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnBatch;
         private System.Windows.Forms.Button btnSingle;
-        private System.Windows.Forms.ComboBox payDates;
+        private System.Windows.Forms.ComboBox cbPayDates;
     }
 }

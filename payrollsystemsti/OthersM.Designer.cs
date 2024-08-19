@@ -32,24 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.tb4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tb3 = new System.Windows.Forms.TextBox();
-            this.lb2 = new System.Windows.Forms.Label();
-            this.tb2 = new System.Windows.Forms.TextBox();
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg5th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(547, 109);
+            this.label1.Location = new System.Drawing.Point(214, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 19);
             this.label1.TabIndex = 87;
@@ -67,51 +61,11 @@
             // 
             this.tb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb4.Location = new System.Drawing.Point(550, 134);
+            this.tb4.Location = new System.Drawing.Point(217, 134);
             this.tb4.Multiline = true;
             this.tb4.Name = "tb4";
             this.tb4.Size = new System.Drawing.Size(150, 25);
             this.tb4.TabIndex = 86;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(375, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 19);
-            this.label2.TabIndex = 85;
-            this.label2.Text = "Special Holiday :";
-            // 
-            // tb3
-            // 
-            this.tb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb3.Location = new System.Drawing.Point(378, 134);
-            this.tb3.Multiline = true;
-            this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(150, 25);
-            this.tb3.TabIndex = 84;
-            // 
-            // lb2
-            // 
-            this.lb2.AutoSize = true;
-            this.lb2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb2.Location = new System.Drawing.Point(202, 109);
-            this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(125, 19);
-            this.lb2.TabIndex = 83;
-            this.lb2.Text = "Regular Holiday :";
-            // 
-            // tb2
-            // 
-            this.tb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb2.Location = new System.Drawing.Point(205, 134);
-            this.tb2.Multiline = true;
-            this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(150, 25);
-            this.tb2.TabIndex = 82;
             // 
             // lb1
             // 
@@ -172,8 +126,6 @@
             this.dg1st,
             this.dg2nd,
             this.dg3rd,
-            this.dg4th,
-            this.dg5th,
             this.dg6th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -193,51 +145,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1013, 360);
             this.dataGridView1.TabIndex = 77;
-            // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg1st.Visible = false;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Employee Name";
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Incentives";
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            // 
-            // dg4th
-            // 
-            this.dg4th.HeaderText = "Regular Holiday";
-            this.dg4th.Name = "dg4th";
-            this.dg4th.ReadOnly = true;
-            // 
-            // dg5th
-            // 
-            this.dg5th.HeaderText = "Special Holiday";
-            this.dg5th.Name = "dg5th";
-            this.dg5th.ReadOnly = true;
-            // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "Adjustment";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
             // 
             // btnUpdate
             // 
@@ -280,6 +187,39 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg1st.Visible = false;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Employee Name";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Incentives";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            // 
+            // dg6th
+            // 
+            this.dg6th.HeaderText = "Adjustment";
+            this.dg6th.Name = "dg6th";
+            this.dg6th.ReadOnly = true;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
+            // 
             // OthersM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,10 +228,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tb3);
-            this.Controls.Add(this.lb2);
-            this.Controls.Add(this.tb2);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.tb1);
             this.Controls.Add(this.btnDeactivate);
@@ -312,23 +248,17 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb3;
-        private System.Windows.Forms.Label lb2;
-        private System.Windows.Forms.TextBox tb2;
         private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.TextBox tb1;
         private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg5th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
-        private System.Windows.Forms.Button btnCancel;
     }
 }

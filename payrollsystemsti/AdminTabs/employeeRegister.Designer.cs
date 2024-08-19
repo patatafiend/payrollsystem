@@ -48,6 +48,22 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -71,22 +87,10 @@
             this.empID = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
-            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cbGender = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -255,7 +259,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(557, 352);
+            this.btnSave.Location = new System.Drawing.Point(559, 440);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
             this.btnSave.TabIndex = 24;
@@ -270,7 +274,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(686, 352);
+            this.btnUpdate.Location = new System.Drawing.Point(688, 440);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 25;
@@ -286,7 +290,7 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(898, 458);
+            this.btnDeactivate.Location = new System.Drawing.Point(900, 536);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 26;
@@ -323,274 +327,14 @@
             this.dgFID,
             this.dgIsDeleted,
             this.dgImage});
-            this.dataGridView1.Location = new System.Drawing.Point(54, 508);
+            this.dataGridView1.Location = new System.Drawing.Point(38, 586);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(962, 206);
+            this.dataGridView1.Size = new System.Drawing.Size(980, 276);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.tbLastName);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.tbAddress);
-            this.groupBox1.Controls.Add(this.tbMob);
-            this.groupBox1.Controls.Add(this.tbEmail);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dtDob);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.tbFirstName);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(356, 77);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(319, 269);
-            this.groupBox1.TabIndex = 28;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Personal Information";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(31, 118);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 15);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "(Date of Birth)";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 19);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Last Name:";
-            // 
-            // tbLastName
-            // 
-            this.tbLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbLastName.Location = new System.Drawing.Point(129, 60);
-            this.tbLastName.Multiline = true;
-            this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(172, 28);
-            this.tbLastName.TabIndex = 22;
-            this.tbLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLastName_KeyDown);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 78);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 19);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Position:";
-            // 
-            // cbPosition
-            // 
-            this.cbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPosition.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPosition.FormattingEnabled = true;
-            this.cbPosition.Location = new System.Drawing.Point(132, 75);
-            this.cbPosition.Name = "cbPosition";
-            this.cbPosition.Size = new System.Drawing.Size(172, 24);
-            this.cbPosition.TabIndex = 18;
-            this.cbPosition.SelectedIndexChanged += new System.EventHandler(this.empPosition_SelectedIndexChanged);
-            this.cbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbPosition_KeyDown);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.cbRole);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.cbDeparment);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.tbBasicRate);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.tbSSN);
-            this.groupBox3.Controls.Add(this.cbPosition);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(697, 77);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 269);
-            this.groupBox3.TabIndex = 30;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Employee Details";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 215);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 30);
-            this.label15.TabIndex = 24;
-            this.label15.Text = "(Social Security \r\nNumber)";
-            // 
-            // cbRole
-            // 
-            this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRole.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(132, 114);
-            this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(172, 24);
-            this.cbRole.TabIndex = 35;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 117);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(46, 19);
-            this.label12.TabIndex = 34;
-            this.label12.Text = "Role:";
-            // 
-            // cbDeparment
-            // 
-            this.cbDeparment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDeparment.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbDeparment.FormattingEnabled = true;
-            this.cbDeparment.Location = new System.Drawing.Point(132, 35);
-            this.cbDeparment.Name = "cbDeparment";
-            this.cbDeparment.Size = new System.Drawing.Size(172, 24);
-            this.cbDeparment.TabIndex = 33;
-            this.cbDeparment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbDeparment_KeyDown);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 35);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 19);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "Department:";
-            // 
-            // tbBasicRate
-            // 
-            this.tbBasicRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBasicRate.Location = new System.Drawing.Point(132, 154);
-            this.tbBasicRate.Multiline = true;
-            this.tbBasicRate.Name = "tbBasicRate";
-            this.tbBasicRate.Size = new System.Drawing.Size(172, 28);
-            this.tbBasicRate.TabIndex = 31;
-            this.tbBasicRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBasicRate_KeyDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 156);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 19);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Basic Rate:";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.Crimson;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(898, 352);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 44);
-            this.btnCancel.TabIndex = 31;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Visible = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(51, 22);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(255, 32);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "Employee Register";
-            // 
-            // serialPort
-            // 
-            this.serialPort.PortName = "COM4";
-            // 
-            // pbEmployee
-            // 
-            this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbEmployee.Location = new System.Drawing.Point(57, 90);
-            this.pbEmployee.Name = "pbEmployee";
-            this.pbEmployee.Size = new System.Drawing.Size(177, 160);
-            this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbEmployee.TabIndex = 0;
-            this.pbEmployee.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(387, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Employee ID:";
-            this.label2.Visible = false;
-            // 
-            // empID
-            // 
-            this.empID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.empID.Location = new System.Drawing.Point(468, 22);
-            this.empID.Multiline = true;
-            this.empID.Name = "empID";
-            this.empID.ReadOnly = true;
-            this.empID.Size = new System.Drawing.Size(41, 15);
-            this.empID.TabIndex = 8;
-            this.empID.Visible = false;
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCreate.Location = new System.Drawing.Point(57, 458);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(153, 44);
-            this.btnCreate.TabIndex = 33;
-            this.btnCreate.Text = "Create Account";
-            this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
-            // btnEnrollFinger
-            // 
-            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnrollFinger.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(597, 402);
-            this.btnEnrollFinger.Name = "btnEnrollFinger";
-            this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
-            this.btnEnrollFinger.TabIndex = 34;
-            this.btnEnrollFinger.Text = "Enroll Finger";
-            this.btnEnrollFinger.UseVisualStyleBackColor = false;
-            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
             // 
             // dgEmp
             // 
@@ -698,12 +442,317 @@
             this.dgImage.ReadOnly = true;
             this.dgImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.cbGender);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.tbLastName);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.tbAddress);
+            this.groupBox1.Controls.Add(this.tbMob);
+            this.groupBox1.Controls.Add(this.tbEmail);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.dtDob);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.tbFirstName);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(358, 77);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(319, 357);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Personal Information";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(31, 118);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 15);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "(Date of Birth)";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(30, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 19);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Last Name:";
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbLastName.Location = new System.Drawing.Point(129, 60);
+            this.tbLastName.Multiline = true;
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(172, 28);
+            this.tbLastName.TabIndex = 22;
+            this.tbLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLastName_KeyDown);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 78);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 19);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Position:";
+            // 
+            // cbPosition
+            // 
+            this.cbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPosition.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPosition.FormattingEnabled = true;
+            this.cbPosition.Location = new System.Drawing.Point(132, 75);
+            this.cbPosition.Name = "cbPosition";
+            this.cbPosition.Size = new System.Drawing.Size(172, 24);
+            this.cbPosition.TabIndex = 18;
+            this.cbPosition.SelectedIndexChanged += new System.EventHandler(this.empPosition_SelectedIndexChanged);
+            this.cbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbPosition_KeyDown);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.cbRole);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.cbDeparment);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.tbBasicRate);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.tbSSN);
+            this.groupBox3.Controls.Add(this.cbPosition);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(699, 77);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(319, 269);
+            this.groupBox3.TabIndex = 30;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Employee Details";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(14, 215);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 30);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "(Social Security \r\nNumber)";
+            // 
+            // cbRole
+            // 
+            this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRole.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(132, 114);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(172, 24);
+            this.cbRole.TabIndex = 35;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(16, 117);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 19);
+            this.label12.TabIndex = 34;
+            this.label12.Text = "Role:";
+            // 
+            // cbDeparment
+            // 
+            this.cbDeparment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDeparment.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDeparment.FormattingEnabled = true;
+            this.cbDeparment.Location = new System.Drawing.Point(132, 35);
+            this.cbDeparment.Name = "cbDeparment";
+            this.cbDeparment.Size = new System.Drawing.Size(172, 24);
+            this.cbDeparment.TabIndex = 33;
+            this.cbDeparment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbDeparment_KeyDown);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 19);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Department:";
+            // 
+            // tbBasicRate
+            // 
+            this.tbBasicRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBasicRate.Location = new System.Drawing.Point(132, 154);
+            this.tbBasicRate.Multiline = true;
+            this.tbBasicRate.Name = "tbBasicRate";
+            this.tbBasicRate.Size = new System.Drawing.Size(172, 28);
+            this.tbBasicRate.TabIndex = 31;
+            this.tbBasicRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBasicRate_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 156);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 19);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Basic Rate:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.Color.Crimson;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCancel.Location = new System.Drawing.Point(900, 440);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(118, 44);
+            this.btnCancel.TabIndex = 31;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Crimson;
+            this.label11.Location = new System.Drawing.Point(51, 22);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(255, 32);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Employee Register";
+            // 
+            // serialPort
+            // 
+            this.serialPort.PortName = "COM4";
+            // 
+            // pbEmployee
+            // 
+            this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbEmployee.Location = new System.Drawing.Point(57, 90);
+            this.pbEmployee.Name = "pbEmployee";
+            this.pbEmployee.Size = new System.Drawing.Size(177, 160);
+            this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEmployee.TabIndex = 0;
+            this.pbEmployee.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(387, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Employee ID:";
+            this.label2.Visible = false;
+            // 
+            // empID
+            // 
+            this.empID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.empID.Location = new System.Drawing.Point(468, 22);
+            this.empID.Multiline = true;
+            this.empID.Name = "empID";
+            this.empID.ReadOnly = true;
+            this.empID.Size = new System.Drawing.Size(41, 15);
+            this.empID.TabIndex = 8;
+            this.empID.Visible = false;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCreate.Location = new System.Drawing.Point(35, 536);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(153, 44);
+            this.btnCreate.TabIndex = 33;
+            this.btnCreate.Text = "Create Account";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // btnEnrollFinger
+            // 
+            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnrollFinger.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnrollFinger.Location = new System.Drawing.Point(599, 490);
+            this.btnEnrollFinger.Name = "btnEnrollFinger";
+            this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
+            this.btnEnrollFinger.TabIndex = 34;
+            this.btnEnrollFinger.Text = "Enroll Finger";
+            this.btnEnrollFinger.UseVisualStyleBackColor = false;
+            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
+            // 
+            // cbGender
+            // 
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cbGender.Location = new System.Drawing.Point(129, 269);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(121, 27);
+            this.cbGender.TabIndex = 24;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(30, 269);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(72, 19);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "Gender:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Single",
+            "Married",
+            "Divorced"});
+            this.comboBox1.Location = new System.Drawing.Point(129, 313);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 27);
+            this.comboBox1.TabIndex = 26;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(30, 316);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(93, 19);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "Civil Status:";
+            // 
             // employeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1053, 726);
+            this.ClientSize = new System.Drawing.Size(1055, 825);
             this.Controls.Add(this.btnEnrollFinger);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label11);
@@ -722,7 +771,7 @@
             this.Controls.Add(this.pbEmployee);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "employeeRegister";
-            this.Text = "employeeRegister";
+            this.Text = "1`";
             this.Load += new System.EventHandler(this.employeeRegister_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -796,5 +845,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.DataGridViewImageColumn dgImage;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbGender;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

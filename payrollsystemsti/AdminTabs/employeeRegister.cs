@@ -18,6 +18,7 @@ namespace payrollsystemsti.AdminTabs
         enrollFingerprint ef = new enrollFingerprint();
 
         int fingeID = 0;
+        DateTime dateNow = DateTime.Now;
         public employeeRegister()
         {
             InitializeComponent();
@@ -130,7 +131,7 @@ namespace payrollsystemsti.AdminTabs
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
 						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, 5, 0);
+						tbMob.Text, 0, 5, 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text);
 
 					if (isInserted)
 					{
@@ -154,17 +155,17 @@ namespace payrollsystemsti.AdminTabs
 
 
 
-		private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents)
+		private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
                            "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
-                           "ImageData, Mobile, IsDeleted, Leaves, Absents) " +
+                           "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
                            "@Department, @Position, @Role, @SSN, @Email, @Address, @Dob, @BasicRate, " +
-                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents )";
+                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender )";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
@@ -183,7 +184,8 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@IsDeleted", isDeleted);
                     cmd.Parameters.AddWithValue("@Leaves", leaves);
                     cmd.Parameters.AddWithValue("@Absents", absents);
-
+                    cmd.Parameters.AddWithValue("@hireddate", hdate);
+                    cmd.Parameters.AddWithValue("@gender", gender);
 					
 
 
@@ -197,8 +199,6 @@ namespace payrollsystemsti.AdminTabs
                         MessageBox.Show("Error inserting into Employee Accounts: " + ex.Message);
                         return false;
                     }
-
-
                 }
             }
         }

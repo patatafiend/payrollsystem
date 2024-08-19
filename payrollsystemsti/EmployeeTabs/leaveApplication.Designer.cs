@@ -30,6 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cbLeaves = new System.Windows.Forms.ComboBox();
@@ -46,16 +56,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pbMedCert = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedCert)).BeginInit();
@@ -90,6 +90,77 @@
             this.dataGridView1.Size = new System.Drawing.Size(744, 175);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.MinimumWidth = 6;
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            // 
+            // dgLeaveCategory
+            // 
+            this.dgLeaveCategory.HeaderText = "Leave Category";
+            this.dgLeaveCategory.MinimumWidth = 6;
+            this.dgLeaveCategory.Name = "dgLeaveCategory";
+            this.dgLeaveCategory.ReadOnly = true;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "Date Applied";
+            this.dgAppliedDate.MinimumWidth = 6;
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
+            // 
+            // dgStart
+            // 
+            this.dgStart.HeaderText = "Date Start";
+            this.dgStart.MinimumWidth = 6;
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
+            // 
+            // dgEnd
+            // 
+            this.dgEnd.HeaderText = "Date End";
+            this.dgEnd.MinimumWidth = 6;
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            // 
+            // dgReason
+            // 
+            this.dgReason.HeaderText = "Reason";
+            this.dgReason.MinimumWidth = 6;
+            this.dgReason.Name = "dgReason";
+            this.dgReason.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.MinimumWidth = 6;
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.MinimumWidth = 6;
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "File Name";
+            this.dgFileName.MinimumWidth = 6;
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
+            // dgImage
+            // 
+            this.dgImage.HeaderText = "image";
+            this.dgImage.Name = "dgImage";
+            this.dgImage.ReadOnly = true;
             // 
             // btnSubmit
             // 
@@ -149,6 +220,7 @@
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(100, 23);
             this.dtStart.TabIndex = 5;
+            this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
             // 
             // dtEnd
             // 
@@ -272,77 +344,6 @@
             this.label6.Size = new System.Drawing.Size(323, 32);
             this.label6.TabIndex = 18;
             this.label6.Text = "Leave Form Application\r\n";
-            // 
-            // dgLeaveID
-            // 
-            this.dgLeaveID.HeaderText = "Leave ID";
-            this.dgLeaveID.MinimumWidth = 6;
-            this.dgLeaveID.Name = "dgLeaveID";
-            this.dgLeaveID.ReadOnly = true;
-            // 
-            // dgLeaveCategory
-            // 
-            this.dgLeaveCategory.HeaderText = "Leave Category";
-            this.dgLeaveCategory.MinimumWidth = 6;
-            this.dgLeaveCategory.Name = "dgLeaveCategory";
-            this.dgLeaveCategory.ReadOnly = true;
-            // 
-            // dgAppliedDate
-            // 
-            this.dgAppliedDate.HeaderText = "Date Applied";
-            this.dgAppliedDate.MinimumWidth = 6;
-            this.dgAppliedDate.Name = "dgAppliedDate";
-            this.dgAppliedDate.ReadOnly = true;
-            // 
-            // dgStart
-            // 
-            this.dgStart.HeaderText = "Date Start";
-            this.dgStart.MinimumWidth = 6;
-            this.dgStart.Name = "dgStart";
-            this.dgStart.ReadOnly = true;
-            // 
-            // dgEnd
-            // 
-            this.dgEnd.HeaderText = "Date End";
-            this.dgEnd.MinimumWidth = 6;
-            this.dgEnd.Name = "dgEnd";
-            this.dgEnd.ReadOnly = true;
-            // 
-            // dgReason
-            // 
-            this.dgReason.HeaderText = "Reason";
-            this.dgReason.MinimumWidth = 6;
-            this.dgReason.Name = "dgReason";
-            this.dgReason.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.MinimumWidth = 6;
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.MinimumWidth = 6;
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "File Name";
-            this.dgFileName.MinimumWidth = 6;
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
-            // 
-            // dgImage
-            // 
-            this.dgImage.HeaderText = "image";
-            this.dgImage.Name = "dgImage";
-            this.dgImage.ReadOnly = true;
             // 
             // leaveApplication
             // 

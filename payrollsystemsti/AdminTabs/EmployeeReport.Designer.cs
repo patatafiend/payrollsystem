@@ -29,25 +29,32 @@
         private void InitializeComponent()
         {
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.cbDates = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "payrollsystemsti.AdminTabs.Report2.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(6, 168);
+            this.reportViewer1.Location = new System.Drawing.Point(12, 38);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(782, 279);
+            this.reportViewer1.Size = new System.Drawing.Size(787, 400);
             this.reportViewer1.TabIndex = 0;
+            // 
+            // cbDates
+            // 
+            this.cbDates.FormattingEnabled = true;
+            this.cbDates.Location = new System.Drawing.Point(678, 11);
+            this.cbDates.Name = "cbDates";
+            this.cbDates.Size = new System.Drawing.Size(121, 21);
+            this.cbDates.TabIndex = 1;
             // 
             // EmployeeReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(812, 450);
+            this.Controls.Add(this.cbDates);
             this.Controls.Add(this.reportViewer1);
             this.Name = "EmployeeReport";
             this.Text = "EmployeeReport";
@@ -59,5 +66,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.ComboBox cbDates;
     }
 }

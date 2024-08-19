@@ -888,7 +888,6 @@ namespace payrollsystemsti
             else
             {
                 Deduction.Activate();
-
             }
         }
         private void Allowance_FormClosed(object sender, FormClosedEventArgs e)

@@ -23,69 +23,19 @@ namespace payrollsystemsti
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!m.ifPositionTitleExist(tb1.Text.ToString()))
-            {
-                m.insertToPositions(tb1.Text);
-                LoadPositionData();
-                tb1.Clear();
-            }
-            else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
-            {
-                MessageBox.Show("Leave already exists");
-            }
-            else
-            {
-                MessageBox.Show("Unknown Error");
-            }
+            AddPosition();
         }
+
+        
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (!m.ifPositionTitleExist(tb1.Text.ToString()))
-                {
-                    m.updatePositions(tb1.Text, titleID);
-                    LoadPositionData();
-                    tb1.Clear();
-                }
-                else if (m.ifPositionTitleExist(tb1.Text.ToString()))
-                {
-                    MessageBox.Show("Position already exists");
-                }
-                else
-                {
-                    MessageBox.Show("Unknown Error");
-                }
-            }
-            else
-            {
-                btnUpdate.Enabled = false;
-            }
+            UpdatePostion();
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    m.deactivatePosition(titleID);
-                    LoadPositionData();
-                    tb1.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                btnDeactivate.Enabled = false;
-            }
-            
+            DeactivatePositon();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -121,6 +71,72 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["PositionTitle"].ToString();
                     }
                 }
+            }
+        }
+
+        private void AddPosition()
+        {
+            if (!m.ifPositionTitleExist(tb1.Text.ToString()))
+            {
+                m.insertToPositions(tb1.Text);
+                LoadPositionData();
+                tb1.Clear();
+            }
+            else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
+            {
+                MessageBox.Show("Leave already exists");
+            }
+            else
+            {
+                MessageBox.Show("Unknown Error");
+            }
+        }
+
+        private void UpdatePostion()
+        {
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (!m.ifPositionTitleExist(tb1.Text.ToString()))
+                {
+                    m.updatePositions(tb1.Text, titleID);
+                    LoadPositionData();
+                    tb1.Clear();
+                }
+                else if (m.ifPositionTitleExist(tb1.Text.ToString()))
+                {
+                    MessageBox.Show("Position already exists");
+                }
+                else
+                {
+                    MessageBox.Show("Unknown Error");
+                }
+            }
+            else
+            {
+                btnUpdate.Enabled = false;
+            }
+        }
+
+        private void DeactivatePositon()
+        {
+            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    m.deactivatePosition(titleID);
+                    LoadPositionData();
+                    tb1.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                btnDeactivate.Enabled = false;
             }
         }
 

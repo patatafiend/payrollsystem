@@ -43,6 +43,7 @@ namespace payrollsystemsti.EmployeeTabs
             loadLeaveCB();
             cbLeaves.SelectedIndex = 0;
             LoadData(loggedInID);
+            dtStart.MinDate = DateTime.Now.AddDays(14);
             //LoadData();
             
         }
@@ -367,6 +368,11 @@ namespace payrollsystemsti.EmployeeTabs
                     
                 }
             }
+        }
+
+        private void dtStart_ValueChanged(object sender, EventArgs e)
+        {
+            dtEnd.MinDate = dtStart.Value;
         }
     }
 }

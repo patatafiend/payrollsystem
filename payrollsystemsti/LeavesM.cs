@@ -23,6 +23,11 @@ namespace payrollsystemsti
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            AddLeave();
+        }
+
+        private void AddLeave()
+        {
             if (!m.ifLeaveCategoryExist(tb1.Text.ToString()))
             {
                 m.insertToLeaves(tb1.Text, checkBox());
@@ -39,7 +44,7 @@ namespace payrollsystemsti
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void UpdateLeave()
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -66,7 +71,7 @@ namespace payrollsystemsti
             }
         }
 
-        private void btnDeactivate_Click(object sender, EventArgs e)
+        private void DeactivateLeave()
         {
             DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -86,6 +91,16 @@ namespace payrollsystemsti
             {
                 btnDeactivate.Enabled = false;
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateLeave();
+        }
+
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)

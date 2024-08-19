@@ -306,10 +306,10 @@ namespace payrollsystemsti
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM LeaveCategory WHERE IsDeactivated = 0 AND DeductionType = @deduction";
+                string query = "SELECT COUNT(*) FROM LeaveCategory WHERE IsDeactivated = 0 AND CategoryName = @catname";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@deduction", title);
+                    cmd.Parameters.AddWithValue("@catname", title);
                     int result = (int)cmd.ExecuteScalar();
 
                     return result > 0;
@@ -1140,6 +1140,40 @@ namespace payrollsystemsti
             }
         }
 
+        public int GetEmployeeIdByName(string fullName)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                connection.Open();
+                string query = "SELECT EmployeeID FROM EmployeeAccounts WHERE CONCAT(FirstName, ' ', LastName) = @fullName";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fullName", fullName);
+
+                    try
+                    {
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            return Convert.ToInt32(result);
+                        }
+                        else
+                        {
+                            // Handle case where no employee is found
+                            return -1; // Or throw an exception
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception appropriately
+                        Console.WriteLine(ex.Message);
+                        return -1; // Or throw an exception
+                    }
+                }
+            }
+        }
+
         public int GetSSSLoan(int empID)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -1203,6 +1237,7 @@ namespace payrollsystemsti
                 }
             }
         }
+
 
         public static class CurrentUser
         {

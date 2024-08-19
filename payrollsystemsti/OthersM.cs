@@ -30,7 +30,7 @@ namespace payrollsystemsti
                 {
                     if (IsTextBoxFilled())
                     {
-                        m.UpdateOtherData(Convert.ToInt32(tb1.Text), Convert.ToInt32(tb2.Text), Convert.ToInt32(tb3.Text),
+                        m.UpdateOtherData(Convert.ToInt32(tb1.Text), 0, 0,
                                     Convert.ToInt32(tb4.Text), titleID);
                         tbClear();
                         LoadOthersData();
@@ -54,7 +54,7 @@ namespace payrollsystemsti
 
         public bool IsTextBoxFilled()
         {
-            if (tb1.Text != null && tb2.Text != null && tb3.Text != null && tb4.Text != null)
+            if (tb1.Text != null && tb4.Text != null)
             {
                 return true;
             }
@@ -66,8 +66,6 @@ namespace payrollsystemsti
         public void tbClear()
         {
             tb1.Clear();
-            tb2.Clear();
-            tb3.Clear();
             tb4.Clear();
         }
 
@@ -135,8 +133,6 @@ namespace payrollsystemsti
         public void Reset()
         {
             tb1.Clear();
-            tb2.Clear();
-            tb3.Clear();
             tb4.Clear();
             btnDeactivate.Enabled = false;
             btnUpdate.Enabled = false;
