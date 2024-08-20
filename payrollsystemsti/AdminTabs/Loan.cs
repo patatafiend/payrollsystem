@@ -64,7 +64,7 @@ namespace payrollsystemsti.AdminTabs
             dataGridView1.Rows.Clear();
             string searchText = tbSearch.Text.Trim(); // Assuming txtSearchEmployee is your textbox
 
-            string query = "SELECT l.*, e.Name FROM Loans l " +
+            string query = "SELECT l.*, e.FirstName FROM Loans l " +
                             "INNER JOIN EmployeeAccounts e ON l.EmployeeID = e.EmployeeID " +
                             "WHERE IsDeactivated = 0 ";
 
@@ -86,7 +86,7 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["Name"].ToString(); // Use Name from the joined table
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString(); // Use Name from the joined table
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["SSS"].ToString();
                         dataGridView1.Rows[n].Cells["dg4th"].Value = row["HDMF"].ToString();
                         dataGridView1.Rows[n].Cells["dg5th"].Value = row["Company"].ToString();

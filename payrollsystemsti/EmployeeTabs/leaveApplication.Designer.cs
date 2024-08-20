@@ -275,7 +275,7 @@
             this.lbFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbFileName.AutoSize = true;
             this.lbFileName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFileName.Location = new System.Drawing.Point(489, 87);
+            this.lbFileName.Location = new System.Drawing.Point(643, 87);
             this.lbFileName.Name = "lbFileName";
             this.lbFileName.Size = new System.Drawing.Size(92, 19);
             this.lbFileName.TabIndex = 11;
