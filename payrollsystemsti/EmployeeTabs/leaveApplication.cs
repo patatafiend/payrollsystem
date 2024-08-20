@@ -403,7 +403,7 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
-            dtEnd.MinDate = dtStart.Value;
+            dtEnd.MinDate = dtStart.Value.AddDays(1);
         }
 
 		private void Add_Notification()
