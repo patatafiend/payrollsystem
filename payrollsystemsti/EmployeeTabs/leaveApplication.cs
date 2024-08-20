@@ -77,12 +77,26 @@ namespace payrollsystemsti.EmployeeTabs
         }
         private void ClearLeaveApplicationForm()
         {
-            cbLeaves.SelectedIndex = -1;
+			/*cbLeaves.SelectedIndex = -1;
             dtStart.Value = DateTime.Now;
             dtEnd.Value = DateTime.Now;
             tbReason.Clear();
-            pbMedCert.Image = null;
-        }
+            pbMedCert.Image = null;*/
+
+			cbLeaves.SelectedIndex = -1;
+
+			// Ensure MinDate and MaxDate can accommodate today's date
+			dtStart.MinDate = DateTimePicker.MinimumDateTime;
+			dtStart.MaxDate = DateTimePicker.MaximumDateTime;
+			dtStart.Value = DateTime.Now;
+
+			dtEnd.MinDate = DateTimePicker.MinimumDateTime;
+			dtEnd.MaxDate = DateTimePicker.MaximumDateTime;
+			dtEnd.Value = DateTime.Now;
+
+			tbReason.Clear();
+			pbMedCert.Image = null;
+		}
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (Validation())
@@ -93,11 +107,9 @@ namespace payrollsystemsti.EmployeeTabs
                 {
                     sqlConn.Open();
 
-                    string query = "INSERT INTO LeaveApplications (CategoryName, " +
-                        "DateStart, DateEnd, AppliedDate, Status, Reason,  EmployeeID) VALUES (@CategoryName, @DateStart, " +
-                        "@DateEnd, @AppliedDate, @Status, @Reason, @MedicalCert ,@EmployeeID)";
+					string query = "INSERT INTO LeaveApplications (CategoryName, DateStart, DateEnd, AppliedDate, Status, Reason, MedicalCert, EmployeeID) VALUES (@CategoryName, @DateStart, @DateEnd, @AppliedDate, @Status, @Reason, @MedicalCert, @EmployeeID)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+					using (SqlCommand cmd = new SqlCommand(query, sqlConn))
                     {
                         // Add parameters to prevent SQL injection
                         cmd.Parameters.AddWithValue("@EmployeeID", loggedInID);
@@ -113,6 +125,11 @@ namespace payrollsystemsti.EmployeeTabs
                         try
                         {
                             int rowsAffected = cmd.ExecuteNonQuery();
+                             if (rowsAffected > 0)
+                             {
+                                 
+                                 Add_Notification(); // Call to store the notification
+                             }
                         }
                         catch (SqlException ex)
                         {
@@ -357,9 +374,23 @@ namespace payrollsystemsti.EmployeeTabs
                     cmd.Parameters.AddWithValue("@category", category);
                     try
                     {
-                        bool result = (bool)cmd.ExecuteScalar();
-                        return result;
-                    }
+						/*bool result = (bool)cmd.ExecuteScalar();
+                        return result;*/
+
+						object result = cmd.ExecuteScalar();
+
+						// Check if the result is null
+						if (result != null && result != DBNull.Value)
+						{
+							return (bool)result;
+						}
+						else
+						{
+							// Handle the case where no result was found
+							MessageBox.Show("Category not found or hasProof is null.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							return false;
+						}
+					}
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
@@ -374,5 +405,48 @@ namespace payrollsystemsti.EmployeeTabs
         {
             dtEnd.MinDate = dtStart.Value;
         }
-    }
+
+		private void Add_Notification()
+		{
+			
+			string notificationMessage = "Leave Application Submitted Successfully";
+			DateTime notificationDate = DateTime.Now;
+
+			using (SqlConnection sqlConn = new SqlConnection(m.connStr))
+			{
+				sqlConn.Open();
+
+				
+				string query = "INSERT INTO Notifications (NotificationMessage, Date, EmployeeID) " +
+							   "VALUES (@NotificationMessage, @Date, @EmployeeID)";
+
+				using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+				{
+					
+					cmd.Parameters.AddWithValue("@NotificationMessage", notificationMessage);
+					cmd.Parameters.AddWithValue("@Date", notificationDate);
+					cmd.Parameters.AddWithValue("@EmployeeID", loggedInID);
+
+					try
+					{
+						
+						int rowsAffected = cmd.ExecuteNonQuery();
+
+						if (rowsAffected > 0)
+						{
+							MessageBox.Show("Notification Added Successfully");
+						}
+						else
+						{
+							MessageBox.Show("Failed to Add Notification");
+						}
+					}
+					catch (SqlException ex)
+					{
+						MessageBox.Show($"Error inserting into Notifications: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
+	}
 }

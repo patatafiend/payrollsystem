@@ -326,6 +326,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>stipayrolldbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="stipayrolldbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,6 +489,17 @@
     </None>
     <None Include="stipayrolldbDataSet.xss">
       <DependentUpon>stipayrolldbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet1.xsc">
+      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>stipayrolldbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="stipayrolldbDataSet1.xss">
+      <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

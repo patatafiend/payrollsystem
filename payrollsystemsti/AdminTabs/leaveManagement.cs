@@ -101,12 +101,26 @@ namespace payrollsystemsti.AdminTabs
 
 						// Commit the transaction if both updates are successful
 						transaction.Commit();
+
+						// Add notification
+						Add_Notification_AcceptedOrRejected(employeeID, "approved");
+
 						MessageBox.Show("Leave approved successfully.", "Success");
 					}
 					catch (Exception ex)
 					{
-						// Roll back the transaction if there's an error
-						transaction.Rollback();
+						// Roll back the transaction if there's an error and the transaction is still active
+						if (transaction != null && transaction.Connection != null)
+						{
+							try
+							{
+								transaction.Rollback();
+							}
+							catch (Exception rollbackEx)
+							{
+								MessageBox.Show($"Error during rollback: {rollbackEx.Message}", "Rollback Error");
+							}
+						}
 						MessageBox.Show($"Error updating tables: {ex.Message}", "Error");
 					}
 				}
@@ -119,29 +133,61 @@ namespace payrollsystemsti.AdminTabs
 		}
 
 
+
+
 		private void btnReject_Click(object sender, EventArgs e)
-        {
-            if (employeeID != "0")
-            {
-                string query = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
-                using (SqlConnection conn = new SqlConnection(m.connStr))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@status", "Rejected");
-                        cmd.Parameters.AddWithValue("@employeeID", employeeID);
+		{
+			if (!string.IsNullOrEmpty(employeeID))
+			{
+				string query = "UPDATE LeaveApplications SET Status = @status WHERE EmployeeID = @employeeID";
+				using (SqlConnection conn = new SqlConnection(m.connStr))
+				{
+					conn.Open();
+					using (SqlCommand cmd = new SqlCommand(query, conn))
+					{
+						cmd.Parameters.AddWithValue("@status", "Rejected");
+						cmd.Parameters.AddWithValue("@employeeID", employeeID);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                LoadData();
-            }
-        }
+						cmd.ExecuteNonQuery();
+					}
+				}
 
-        private void btnReload_Click(object sender, EventArgs e)
+				// Add notification
+				Add_Notification_AcceptedOrRejected(employeeID, "rejected");
+
+				LoadData();
+			}
+			else
+			{
+				MessageBox.Show("EmployeeID is invalid.", "Error");
+			}
+		}
+
+		private void btnReload_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-    }
+
+		private void Add_Notification_AcceptedOrRejected(string employeeID, string status)
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				string query = "INSERT INTO Notifications (EmployeeID, NotificationMessage, Date) VALUES (@employeeID, @notificationText, @dateCreated)";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					string notificationText = $"Your leave request has been {status}.";
+
+					cmd.Parameters.AddWithValue("@employeeID", employeeID);
+					cmd.Parameters.AddWithValue("@notificationText", notificationText);
+					cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+		}
+
+	}
 }

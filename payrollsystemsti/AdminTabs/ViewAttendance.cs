@@ -79,7 +79,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'stipayrolldbDataSet.HistoryTable' table. You can move, or remove it, as needed.
+            
             this.historyTableTableAdapter.Fill(this.stipayrolldbDataSet.HistoryTable);
             LoadAttendance(empID);
         }
