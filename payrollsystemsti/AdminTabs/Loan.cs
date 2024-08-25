@@ -70,7 +70,7 @@ namespace payrollsystemsti.AdminTabs
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                query += "AND (e.Name LIKE '%" + searchText + "%')";
+                query += "AND (e.FirstName LIKE '%" + searchText + "%')";
             }
 
             using (SqlConnection conn = new SqlConnection(m.connStr))

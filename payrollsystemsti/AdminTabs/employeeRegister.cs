@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO.Ports;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using static payrollsystemsti.Methods;
 
@@ -718,6 +719,50 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        private void SearchByName()
+        {
+            dataGridView1.Rows.Clear();
+            string searchText = tbSearch.Text.Trim(); // Assuming txtSearchEmployee is your textbox
+
+            string query = "SELECT * FROM EmployeeAccounts WHERE IsDeleted = 0";
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                query += "AND (FirstName LIKE '%" + searchText + "%')";
+            }
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgEmp"].Value = row["EmployeeID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgSSN"].Value = row["SSN"].ToString();
+                        dataGridView1.Rows[n].Cells["dgMobile"].Value = row["Mobile"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
+                        dataGridView1.Rows[n].Cells["dgAdd"].Value = row["Address"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDepartment"].Value = m.getDepartmentName(Convert.ToInt32(row["DepartmentID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgPosition"].Value = m.getPositionTitle(Convert.ToInt32(row["PositionID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgRole"].Value = m.getRoleTitle(Convert.ToInt32(row["RoleID"].ToString()));
+                        dataGridView1.Rows[n].Cells["dgBasicRate"].Value = row["BasicRate"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFID"].Value = row["fingerID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgImage"].Value = row["ImageData"];
+                    }
+                }
+            }
+        }
         private void btnUpdate_EnabledChanged(object sender, EventArgs e)
         {
             btnCancel.Visible = btnUpdate.Enabled;
@@ -887,6 +932,18 @@ namespace payrollsystemsti.AdminTabs
         private void btnEnrollFinger_Click(object sender, EventArgs e)
         {
             ef.Show();
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            if(tbSearch.Text.Length != 0)
+            {
+                SearchByName();
+            }
+            else
+            {
+                LoadData();
+            }
         }
     }
 }

@@ -104,6 +104,51 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        private void SearchByName()
+        {
+            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
+            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+
+            dataGridView1.Rows.Clear();
+            string searchText = tbSearch.Text.Trim(); // Assuming txtSearchEmployee is your textbox
+
+            string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
+                                "ISNULL(SUM(a.TotalOvertime), 0) AS TotalOvertime, " +
+                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours " +
+                                "FROM EmployeeAccounts ea " +
+                                "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
+                                "WHERE a.Date BETWEEN @dateStart AND @dateEnd AND (ea.FirstName LIKE '%" + searchText + "%') " + // Filter by date range
+                                "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
+
+            
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@dateStart", dateStart);
+                    cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                    }
+                }
+            }
+        }
+
         public void LoadComputedPayrollData()
         {
             dataGridView1.Rows.Clear();
@@ -211,7 +256,8 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            
+            EmployeeReport er = new EmployeeReport();
+            er.Show();
         }
 
         private void tbBasic_TextChanged(object sender, EventArgs e)
@@ -464,6 +510,18 @@ namespace payrollsystemsti.AdminTabs
                         tbAdjustment.Text = reader["Adjustment"].ToString();
                     }
                 }
+            }
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tbSearch.Text.Length != 0)
+            {
+                SearchByName();
+            }
+            else
+            {
+                LoadPayrollData();
             }
         }
     }

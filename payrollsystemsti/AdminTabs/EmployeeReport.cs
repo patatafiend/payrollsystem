@@ -50,8 +50,9 @@ namespace payrollsystemsti.AdminTabs
 
         private void EmployeeReport_Load(object sender, EventArgs e)
         {
-
             this.reportViewer1.RefreshReport();
+            LoadReportBatch();
+            DateSource();
         }
 
         private void LoadReportBatch()
@@ -73,12 +74,31 @@ namespace payrollsystemsti.AdminTabs
                     d.Fill(dt);
 
                     reportViewer1.LocalReport.DataSources.Clear();
-                    ReportDataSource source = new ReportDataSource("DataSet1", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    ReportDataSource source = new ReportDataSource("EmployeeReports", dt);
+                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report2.rdlc";
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
                 }
             }
         }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadReportBatch();
+        }
+
+        private void cbDates_TextChanged(object sender, EventArgs e)
+        {
+            if (cbDates.SelectedIndex == 0)
+            {
+                btnLoad.Enabled = true;
+            }
+            else
+            {
+                btnLoad.Enabled = false;
+            }
+        }
+
+
     }
 }

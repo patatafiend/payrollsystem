@@ -81,6 +81,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPayslip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -657,12 +658,26 @@
             this.btnReport.UseVisualStyleBackColor = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
+            // tbSearch
+            // 
+            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbSearch.Location = new System.Drawing.Point(927, 431);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(172, 23);
+            this.tbSearch.TabIndex = 46;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1140, 910);
+            this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnPayslip);
             this.Controls.Add(this.btnSave);
@@ -750,5 +765,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.TextBox tbSearch;
     }
 }

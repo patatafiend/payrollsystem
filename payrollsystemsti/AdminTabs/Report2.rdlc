@@ -6,73 +6,70 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.66848in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.66848in</Width>
+              <Width>0.99259in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -89,7 +86,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Employee Name</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -120,7 +120,7 @@
                             <TextRun>
                               <Value>Basic</Value>
                               <Style>
-                                <FontSize>25pt</FontSize>
+                                <FontSize>20pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
                             </TextRun>
@@ -152,7 +152,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Absents</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>15pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -182,7 +185,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Late</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>20pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -212,7 +218,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Incentives</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -242,7 +251,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Training Allowance</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -272,7 +284,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Transportation Allowance</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -302,7 +317,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Load Allowance</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -332,7 +350,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Provision Allowance</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -362,7 +383,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Overtime Allowance</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -392,7 +416,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Regular Holiday</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -422,7 +449,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Special Holiday</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -452,7 +482,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Adjustments</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -482,7 +515,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>SSS</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>20pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -512,7 +548,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>PhilHealth</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -542,7 +581,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Pag Ibig</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -572,7 +614,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>SSS Loan</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -602,7 +647,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>HDMF Loans</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -632,7 +680,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Company Loans</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -662,7 +713,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Savings</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -692,7 +746,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Other Deductions</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -722,43 +779,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Net Pay</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox31</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox29">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox29</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -786,7 +816,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!LastName.Value+ +Fields!FirstName.Value</Value>
+                              <Value>=Fields!FirstName.Value + " " + Fields!LastName.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -817,10 +847,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SemiMonthly.Value</Value>
-                              <Style>
-                                <FontSize>25pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -868,7 +895,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1441,43 +1467,12 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox30">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox30</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -1514,18 +1509,19 @@
         </TablixRowHierarchy>
         <DataSetName>EmployeeReports</DataSetName>
         <Height>3.28464in</Height>
-        <Width>38.37504in</Width>
+        <Width>21.83708in</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <FontWeight>SemiBold</FontWeight>
         </Style>
       </Tablix>
     </ReportItems>
     <Height>5in</Height>
     <Style />
   </Body>
-  <Width>38.44975in</Width>
+  <Width>21.98859in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -1676,6 +1672,18 @@
         </Field>
         <Field Name="DeductionTotal">
           <DataField>DeductionTotal</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SSSLoan">
+          <DataField>SSSLoan</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PagIbigLoan">
+          <DataField>PagIbigLoan</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CompanyLoan">
+          <DataField>CompanyLoan</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
