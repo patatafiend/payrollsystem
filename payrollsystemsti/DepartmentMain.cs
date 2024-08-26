@@ -1,4 +1,5 @@
-﻿using payrollsystemsti.Tabs;
+﻿using payrollsystemsti.AdminTabs;
+using payrollsystemsti.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,16 +98,25 @@ namespace payrollsystemsti
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (m.checkDepartmentCount(titleID))
             {
-                m.deactivateDepartment(titleID);
-                LoadDepartmentData();
-                tb1.Clear();
+                Transfer transfer = new Transfer();
+                Transfer.trans.DepartmentID = titleID;
+                transfer.Show();
             }
             else
             {
-                btnDeactivate.Enabled = false;
+                DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    m.deactivateDepartment(titleID);
+                    LoadDepartmentData();
+                    tb1.Clear();
+                }
+                else
+                {
+                    btnDeactivate.Enabled = false;
+                }
             }
         }
 
@@ -114,6 +124,7 @@ namespace payrollsystemsti
         {
             btnUpdate.Enabled = true;
             btnAdd.Enabled = false;
+            btnDeactivate.Enabled = true;
 
             titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
             tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();

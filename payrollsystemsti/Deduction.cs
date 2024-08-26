@@ -96,6 +96,7 @@ namespace payrollsystemsti
         {
             btnUpdate.Enabled = true;
             btnAdd.Enabled = false;
+            btnDeactivate.Enabled = true;
 
             titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
             tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();

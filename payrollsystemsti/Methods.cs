@@ -239,6 +239,22 @@ namespace payrollsystemsti
             }
         }
 
+        public int GetDepartmentID(string depName)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentID FROM Departments WHERE DepartmentName = @name";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", depName);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+        }
+
         public bool ifRoleTitleExist(string title)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -897,6 +913,31 @@ namespace payrollsystemsti
                     catch (SqlException ex)
                     {
                         MessageBox.Show("Error updating Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        public bool checkDepartmentCount(int departmentID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM EmployeeAccounts WHERE DepartmentID = @depID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@depID", departmentID);
+
+                    try
+                    {
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
                         return false;
                     }
                 }
