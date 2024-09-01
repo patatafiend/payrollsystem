@@ -113,8 +113,6 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Incentives"].ToString();
-                        dataGridView1.Rows[n].Cells["dg4th"].Value = row["RegularH"].ToString();
-                        dataGridView1.Rows[n].Cells["dg5th"].Value = row["SpecialH"].ToString();
                         dataGridView1.Rows[n].Cells["dg6th"].Value = row["Adjustment"].ToString();
                     }
                 }
