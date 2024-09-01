@@ -243,6 +243,18 @@
     <Compile Include="enrollFingerprint.Designer.cs">
       <DependentUpon>enrollFingerprint.cs</DependentUpon>
     </Compile>
+    <Compile Include="HolidaysM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HolidaysM.Designer.cs">
+      <DependentUpon>HolidaysM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncentivesM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IncentivesM.Designer.cs">
+      <DependentUpon>IncentivesM.cs</DependentUpon>
+    </Compile>
     <Compile Include="LeavesM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -404,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="enrollFingerprint.resx">
       <DependentUpon>enrollFingerprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HolidaysM.resx">
+      <DependentUpon>HolidaysM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncentivesM.resx">
+      <DependentUpon>IncentivesM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LeavesM.resx">
       <DependentUpon>LeavesM.cs</DependentUpon>
@@ -567,6 +585,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Untitled-1.png" />
+    <None Include="Resources\Untitled-11.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

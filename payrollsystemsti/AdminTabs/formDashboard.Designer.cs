@@ -64,16 +64,20 @@
             this.logoutPnl = new System.Windows.Forms.Panel();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.mtransition = new System.Windows.Forms.Timer(this.components);
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_useraccount = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.Departments = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Departments = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.employee = new System.Windows.Forms.Button();
             this.employeeRegister = new System.Windows.Forms.Button();
             this.employeeAttendance = new System.Windows.Forms.Button();
@@ -119,6 +123,8 @@
             this.AccountArchivePnl.SuspendLayout();
             this.settingsPnl.SuspendLayout();
             this.logoutPnl.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -319,13 +325,15 @@
             // 
             this.maintinanceC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.maintinanceC.Controls.Add(this.userAccountPnl);
-            this.maintinanceC.Controls.Add(this.panel1);
-            this.maintinanceC.Controls.Add(this.panel2);
-            this.maintinanceC.Controls.Add(this.panel4);
-            this.maintinanceC.Controls.Add(this.panel6);
-            this.maintinanceC.Controls.Add(this.panel7);
-            this.maintinanceC.Controls.Add(this.panel9);
             this.maintinanceC.Controls.Add(this.panel11);
+            this.maintinanceC.Controls.Add(this.panel1);
+            this.maintinanceC.Controls.Add(this.panel4);
+            this.maintinanceC.Controls.Add(this.panel2);
+            this.maintinanceC.Controls.Add(this.panel10);
+            this.maintinanceC.Controls.Add(this.panel14);
+            this.maintinanceC.Controls.Add(this.panel6);
+            this.maintinanceC.Controls.Add(this.panel9);
+            this.maintinanceC.Controls.Add(this.panel7);
             this.maintinanceC.Location = new System.Drawing.Point(3, 175);
             this.maintinanceC.Name = "maintinanceC";
             this.maintinanceC.Size = new System.Drawing.Size(192, 61);
@@ -335,7 +343,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button7);
-            this.panel1.Location = new System.Drawing.Point(3, 61);
+            this.panel1.Location = new System.Drawing.Point(3, 122);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(185, 55);
             this.panel1.TabIndex = 17;
@@ -344,7 +352,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.Departments);
-            this.panel2.Location = new System.Drawing.Point(3, 122);
+            this.panel2.Location = new System.Drawing.Point(3, 244);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(185, 55);
             this.panel2.TabIndex = 18;
@@ -362,7 +370,7 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.button5);
-            this.panel6.Location = new System.Drawing.Point(3, 244);
+            this.panel6.Location = new System.Drawing.Point(3, 427);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(185, 55);
             this.panel6.TabIndex = 20;
@@ -371,7 +379,7 @@
             // panel7
             // 
             this.panel7.Controls.Add(this.button3);
-            this.panel7.Location = new System.Drawing.Point(3, 305);
+            this.panel7.Location = new System.Drawing.Point(3, 549);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(185, 55);
             this.panel7.TabIndex = 21;
@@ -380,7 +388,7 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.button4);
-            this.panel9.Location = new System.Drawing.Point(3, 366);
+            this.panel9.Location = new System.Drawing.Point(3, 488);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(185, 55);
             this.panel9.TabIndex = 22;
@@ -389,7 +397,7 @@
             // panel11
             // 
             this.panel11.Controls.Add(this.button8);
-            this.panel11.Location = new System.Drawing.Point(3, 427);
+            this.panel11.Location = new System.Drawing.Point(3, 61);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(185, 55);
             this.panel11.TabIndex = 24;
@@ -475,6 +483,22 @@
             this.mtransition.Interval = 10;
             this.mtransition.Tick += new System.EventHandler(this.mtransition_Tick);
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.button9);
+            this.panel10.Location = new System.Drawing.Point(3, 305);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(186, 55);
+            this.panel10.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.button10);
+            this.panel14.Location = new System.Drawing.Point(3, 366);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(186, 55);
+            this.panel14.TabIndex = 1;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -522,6 +546,25 @@
             this.btn_useraccount.UseVisualStyleBackColor = false;
             this.btn_useraccount.Click += new System.EventHandler(this.userAccount_btn);
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Teal;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button8.ForeColor = System.Drawing.SystemColors.Control;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(-5, -6);
+            this.button8.Name = "button8";
+            this.button8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button8.Size = new System.Drawing.Size(227, 68);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "           Adjustment";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.Teal;
@@ -540,25 +583,6 @@
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // Departments
-            // 
-            this.Departments.BackColor = System.Drawing.Color.Teal;
-            this.Departments.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Departments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Departments.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Departments.ForeColor = System.Drawing.SystemColors.Control;
-            this.Departments.Image = ((System.Drawing.Image)(resources.GetObject("Departments.Image")));
-            this.Departments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Departments.Location = new System.Drawing.Point(-4, -14);
-            this.Departments.Name = "Departments";
-            this.Departments.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.Departments.Size = new System.Drawing.Size(230, 83);
-            this.Departments.TabIndex = 3;
-            this.Departments.Text = "           Department";
-            this.Departments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Departments.UseVisualStyleBackColor = false;
-            this.Departments.Click += new System.EventHandler(this.button2_Click);
             // 
             // button2
             // 
@@ -579,6 +603,57 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // Departments
+            // 
+            this.Departments.BackColor = System.Drawing.Color.Teal;
+            this.Departments.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Departments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Departments.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Departments.ForeColor = System.Drawing.SystemColors.Control;
+            this.Departments.Image = ((System.Drawing.Image)(resources.GetObject("Departments.Image")));
+            this.Departments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Departments.Location = new System.Drawing.Point(-4, -14);
+            this.Departments.Name = "Departments";
+            this.Departments.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.Departments.Size = new System.Drawing.Size(230, 83);
+            this.Departments.TabIndex = 3;
+            this.Departments.Text = "           Department";
+            this.Departments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Departments.UseVisualStyleBackColor = false;
+            this.Departments.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Teal;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button9.Image = global::payrollsystemsti.Properties.Resources.Untitled_1;
+            this.button9.Location = new System.Drawing.Point(-107, -12);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(299, 78);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "                                Holidays";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Teal;
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button10.Image = global::payrollsystemsti.Properties.Resources.Untitled_11;
+            this.button10.Location = new System.Drawing.Point(-106, -12);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(294, 78);
+            this.button10.TabIndex = 3;
+            this.button10.Text = "                                   Incentives";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Teal;
@@ -597,25 +672,6 @@
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Teal;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(-6, -22);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(227, 100);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "            Position\r\n\r\n";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -636,24 +692,24 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button8
+            // button3
             // 
-            this.button8.BackColor = System.Drawing.Color.Teal;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button8.ForeColor = System.Drawing.SystemColors.Control;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(-5, -6);
-            this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button8.Size = new System.Drawing.Size(227, 68);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "           Others";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button3.BackColor = System.Drawing.Color.Teal;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button3.ForeColor = System.Drawing.SystemColors.Control;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(-6, -22);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(227, 100);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "            Position\r\n\r\n";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // employee
             // 
@@ -964,6 +1020,8 @@
             this.AccountArchivePnl.ResumeLayout(false);
             this.settingsPnl.ResumeLayout(false);
             this.logoutPnl.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -1032,5 +1090,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button button9;
     }
 }

@@ -36,6 +36,8 @@ namespace payrollsystemsti
         private Deduction Deduction;
         private Allowance Allowance;
         private OthersM OthersM;
+        private IncentivesM Incentives;
+        private HolidaysM holidays;
 
 
 
@@ -718,7 +720,7 @@ namespace payrollsystemsti
             if (maintinanceExpand == false)
             {
                 maintinanceC.Height += 10;
-                if (maintinanceC.Height >= 500)
+                if (maintinanceC.Height >= 600)
                 {
                     mtransition.Stop();
                     maintinanceExpand = true;
@@ -898,6 +900,55 @@ namespace payrollsystemsti
         {
             Allowance = null;
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (holidays == null)
+            {
+                holidays = new HolidaysM();
+                holidays.FormClosed += HolidaysM_FormClosed;
+                holidays.MdiParent = this;
+                holidays.Dock = DockStyle.Fill;
+                holidays.Show();
+            }
+            else
+            {
+                holidays.Activate();
+            }
+        }
+        private void HolidaysM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            holidays = null;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            panelContainerToBackOrToFront(false);
+
+            if (Incentives == null)
+            {
+                Incentives = new IncentivesM();
+                Incentives.FormClosed += IncentivesM_FormClosed;
+                Incentives.MdiParent = this;
+                Incentives.Dock = DockStyle.Fill;
+                Incentives.Show();
+            }
+            else
+            {
+                Incentives.Activate();
+
+            }
+        }
+        private void IncentivesM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Incentives = null;
+        }
+
+
+
+
 
         private void btnMin_Click(object sender, EventArgs e)
         {
