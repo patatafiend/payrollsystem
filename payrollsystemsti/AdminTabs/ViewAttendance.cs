@@ -66,8 +66,8 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection sqlCon = new SqlConnection(m.connStr))
             {
                 sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("Select * FROM HistoryTable", sqlCon);
-                DataTable dtbl = new DataTable();
+				SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM HistoryTable WHERE Historyfrom = 'Login'", sqlCon);
+				DataTable dtbl = new DataTable();
 
                 sqlDa.Fill(dtbl);
 
@@ -79,8 +79,9 @@ namespace payrollsystemsti.AdminTabs
 
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
-            
-            this.historyTableTableAdapter.Fill(this.stipayrolldbDataSet.HistoryTable);
+			// TODO: This line of code loads data into the 'stipayrolldbDataSet3.HistoryTable' table. You can move, or remove it, as needed.
+			this.historyTableTableAdapter2.Fill(this.stipayrolldbDataSet3.HistoryTable);
+			
             LoadAttendance(empID);
         }
     }

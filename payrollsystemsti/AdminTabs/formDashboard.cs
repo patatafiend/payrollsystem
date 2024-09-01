@@ -305,7 +305,7 @@ namespace payrollsystemsti
         private void dashBoard_btn(object sender, EventArgs e)
         {
 
-            panelContainerToBackOrToFront(true);
+            
 
 
             if (dashboard == null)
@@ -357,9 +357,9 @@ namespace payrollsystemsti
             {
                 panelContainer.Controls.Add(dashboard);
             }
-
-            // Hide the back button when the dashboard is displayed
-            btn_back.Visible = false;
+			panelContainerToBackOrToFront(true);
+			// Hide the back button when the dashboard is displayed
+			btn_back.Visible = false;
 
 
 
@@ -616,32 +616,27 @@ namespace payrollsystemsti
             }
         }
 
-        private void BtnHistoryLog_Click(object sender, EventArgs e)
-        {
-            panelContainerToBackOrToFront(true);
+		private void BtnHistoryLog_Click(object sender, EventArgs e)
+		{
+			
+			if (HistoyLogForm == null || HistoyLogForm.IsDisposed)
+			{
+				HistoyLogForm = new HistoryLogForm();
+				HistoyLogForm.FormClosed += HistoyLogForm_FormClosed;
+				HistoyLogForm.MdiParent = this;
+				HistoyLogForm.Dock = DockStyle.Fill;
+				panelContainer.Controls.Add(HistoyLogForm);
+				HistoyLogForm.Show();
+			}
+			else
+			{
+				HistoyLogForm.BringToFront();
+				HistoyLogForm.Activate();
+			}
+			panelContainerToBackOrToFront(true);
+		}
 
-
-            if (HistoyLogForm == null || HistoyLogForm.IsDisposed)
-            {
-
-                HistoyLogForm = new HistoryLogForm();
-                HistoyLogForm.FormClosed += HistoyLogForm_FormClosed;
-                HistoyLogForm.MdiParent = this;
-                HistoyLogForm.Dock = DockStyle.Fill;
-                panelContainer.Controls.Add(HistoyLogForm);
-                HistoyLogForm.Show();
-            }
-            else
-            {
-
-                HistoyLogForm.BringToFront();
-                HistoyLogForm.Activate();
-            }
-
-
-        }
-
-        private void HistoyLogForm_FormClosed(object sender, FormClosedEventArgs e)
+		private void HistoyLogForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             HistoyLogForm = null;
         }

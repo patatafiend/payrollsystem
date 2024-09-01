@@ -68,6 +68,7 @@ namespace payrollsystemsti
 								Methods.CurrentUser.Username = reader["Username"].ToString();
 								Methods.CurrentUser.FirstName = reader["FirstName"].ToString();
 								Methods.CurrentUser.LastName = reader["LastName"].ToString();
+								Methods.CurrentUser.DepartmentID = reader["DepartmentID"].ToString();
 
 								int employeeID = (int)reader["EmployeeID"];
 								int numLeaves = (int)reader["Leaves"];
@@ -79,7 +80,7 @@ namespace payrollsystemsti
 								int departmentID = (int)reader["DepartmentID"];
 
 								// Log the login time
-								LogLoginTime(employeeID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, departmentID, numLeaves, numAbsents);
+								LogLoginTime(employeeID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, departmentID, "Login", numLeaves, numAbsents);
 
 								this.Hide();
 								formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;
@@ -235,15 +236,15 @@ namespace payrollsystemsti
 			attedanceMonitoring.Show();
 		}
 
-		private void LogLoginTime(int employeeID, string firstName, string lastName, int department, int leaves, int absents)
+		private void LogLoginTime(int employeeID, string firstName, string lastName, int department, string historytype, int leaves, int absents)
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				try
 				{
 					conn.Open();
-					string insertQuery = "INSERT INTO HistoryTable (EmployeeID, FirstName, LastName, Department, Leaves, Absents, LoginTime) " +
-										 "VALUES (@employeeID, @firstName, @lastName, @department, @leaves, @absents, @loginTime)";
+					string insertQuery = "INSERT INTO HistoryTable (EmployeeID, FirstName, LastName, Department, HistoryFrom, Leaves, Absents, TimeAdded) " +
+										 "VALUES (@employeeID, @firstName, @lastName, @department, @historytype, @leaves, @absents, @loginTime)";
 					using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
 					{
 						cmd.Parameters.AddWithValue("@employeeID", employeeID);
@@ -253,6 +254,7 @@ namespace payrollsystemsti
 						cmd.Parameters.AddWithValue("@leaves", leaves);
 						cmd.Parameters.AddWithValue("@absents", absents);
 						cmd.Parameters.AddWithValue("@loginTime", DateTime.Now);
+						cmd.Parameters.AddWithValue("@historytype", historytype);
 						cmd.ExecuteNonQuery();
 					}
 				}

@@ -26,7 +26,8 @@ namespace payrollsystemsti
             if (!m.ifRoleTitleExist(tb1.Text.ToString()))
             {
                 m.insertToRoles(tb1.Text);
-                LoadRoleData();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Role Added");
+				LoadRoleData();
                 tb1.Clear();
             }
             else if (m.ifRoleTitleExist(tb1.Text.ToString()))
@@ -46,8 +47,10 @@ namespace payrollsystemsti
             {
                 if (!m.ifRoleTitleExist(tb1.Text.ToString()))
                 {
+
                     m.updateRoles(tb1.Text, titleID);
-                    LoadRoleData();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Role edit");
+					LoadRoleData();
                     tb1.Clear();
                 }
                 else if (m.ifRoleTitleExist(tb1.Text.ToString()))

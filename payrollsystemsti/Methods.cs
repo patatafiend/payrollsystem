@@ -35,7 +35,7 @@ namespace payrollsystemsti
                     return ms.ToArray();
                 }
             }
-            
+
         }
         //convert binary image to image
         public Image ConvertToImage(byte[] imageData)
@@ -176,20 +176,20 @@ namespace payrollsystemsti
             return Regex.IsMatch(number, pattern);
         }
 
-		public int GetTotalEmployeeCount()
-		{
-			int totalCount = 0;
-			using (SqlConnection conn = new SqlConnection(connStr))
-			{
-				conn.Open();
-				string query = "SELECT COUNT(*) FROM EmployeeAccounts";
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					totalCount = (int)cmd.ExecuteScalar();
-				}
-			}
-			return totalCount;
-		}
+        public int GetTotalEmployeeCount()
+        {
+            int totalCount = 0;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM EmployeeAccounts";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    totalCount = (int)cmd.ExecuteScalar();
+                }
+            }
+            return totalCount;
+        }
 
         public string getDepartmentName(int id)
         {
@@ -918,7 +918,7 @@ namespace payrollsystemsti
                 }
             }
         }
-        
+
         public bool checkDepartmentCount(int departmentID)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -1286,6 +1286,34 @@ namespace payrollsystemsti
             public static string FirstName { get; set; }
             public static string LastName { get; set; }
             public static string Username { get; set; }
+
+            public static string DepartmentID { get; set; }
+
+
         }
+
+		public void Add_HistoryLog(int employeeID, string firstName, string lastName, string department, string historyfrom)
+		{
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				conn.Open();
+
+				string query = "INSERT INTO HistoryTable (EmployeeID, FirstName, LastName, Department, HistoryFrom,TimeAdded) " +
+							   "VALUES (@employeeID, @firstName, @lastName, @department, @historyfrom, @loginTime)";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@employeeID", employeeID);
+					cmd.Parameters.AddWithValue("@firstName", firstName);
+					cmd.Parameters.AddWithValue("@lastName", lastName);
+					cmd.Parameters.AddWithValue("@department", department);
+					cmd.Parameters.AddWithValue("@loginTime", DateTime.Now);
+					cmd.Parameters.AddWithValue("@historyfrom", historyfrom);
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+
 		}
+	}
 }

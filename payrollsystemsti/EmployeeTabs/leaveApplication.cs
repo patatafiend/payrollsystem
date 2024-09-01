@@ -280,8 +280,15 @@ namespace payrollsystemsti.EmployeeTabs
         {
             cbLeaves.SelectedIndex = -1;
             dtStart.Value = DateTime.Now;
-            dtEnd.Value = DateTime.Now;
-            tbReason.Clear();
+			if (DateTime.Now >= dtEnd.MinDate && DateTime.Now <= dtEnd.MaxDate)
+			{
+				dtEnd.Value = DateTime.Now;
+			}
+			else
+			{
+				dtEnd.Value = dtEnd.MinDate;
+			}
+			tbReason.Clear();
             pbMedCert.Image = null;
             lbFileName.Text = string.Empty;
         }

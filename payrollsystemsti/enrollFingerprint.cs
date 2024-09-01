@@ -127,7 +127,8 @@ namespace payrollsystemsti
                         bool insert = insertFID(fingerID, empID);
                         if (insert)
                         {
-                            LoadData();
+							
+							LoadData();
                             loadingIndicator.Visible = false;
                             MessageBox.Show("Enrollment Success");
                         }

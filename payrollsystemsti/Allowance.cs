@@ -38,7 +38,8 @@ namespace payrollsystemsti
                     {
                         m.updateAllowance(Convert.ToInt32(tb1.Text), Convert.ToInt32(tb2.Text), Convert.ToInt32(tb3.Text),
                                     Convert.ToInt32(tb4.Text), Convert.ToInt32(tb5.Text), titleID);
-                        tbClear();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Allowance edit");
+						tbClear();
                         LoadAllowanceData();
                     }
                     else

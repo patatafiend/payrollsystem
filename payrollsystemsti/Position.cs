@@ -23,14 +23,16 @@ namespace payrollsystemsti
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddPosition();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Position Added");
+			AddPosition();
         }
 
         
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            UpdatePostion();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Position edit");
+			UpdatePostion();
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)

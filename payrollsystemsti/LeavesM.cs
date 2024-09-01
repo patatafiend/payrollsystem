@@ -31,7 +31,8 @@ namespace payrollsystemsti
             if (!m.ifLeaveCategoryExist(tb1.Text.ToString()))
             {
                 m.insertToLeaves(tb1.Text, checkBox());
-                LoadLeaveCategoryData();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Added");
+				LoadLeaveCategoryData();
                 tb1.Clear();
             }
             else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
@@ -95,7 +96,8 @@ namespace payrollsystemsti
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateLeave();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave edit");
+			UpdateLeave();
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
