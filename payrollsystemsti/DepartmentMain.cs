@@ -57,7 +57,8 @@ namespace payrollsystemsti
             if (!m.ifDepartmentNameExist(tb1.Text.ToString()))
             {
                 m.insertToDepartments(tb1.Text);
-                LoadDepartmentData();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Department Add");
+				LoadDepartmentData();
                 tb1.Clear();
             }
             else if (m.ifDepartmentNameExist(tb1.Text.ToString()))
@@ -78,7 +79,8 @@ namespace payrollsystemsti
                 if (!m.ifDepartmentNameExist(tb1.Text.ToString()))
                 {
                     m.updateDepartments(tb1.Text, titleID);
-                    LoadDepartmentData();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Department edit");
+					LoadDepartmentData();
                     tb1.Clear();
                 }
                 else if (m.ifDepartmentNameExist(tb1.Text.ToString()))

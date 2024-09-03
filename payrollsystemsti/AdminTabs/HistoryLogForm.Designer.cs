@@ -28,93 +28,163 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.dgv_HistoryLog = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoginTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lb_HistoryLog = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // dgv_HistoryLog
-            // 
-            this.dgv_HistoryLog.AllowUserToAddRows = false;
-            this.dgv_HistoryLog.AllowUserToDeleteRows = false;
-            this.dgv_HistoryLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_HistoryLog.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dgv_HistoryLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_HistoryLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.FirstName,
+			this.components = new System.ComponentModel.Container();
+			this.dgv_HistoryLog = new System.Windows.Forms.DataGridView();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.lb_HistoryLog = new System.Windows.Forms.Label();
+			this.stipayrolldbDataSet4 = new payrollsystemsti.stipayrolldbDataSet4();
+			this.historyTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.historyTableTableAdapter = new payrollsystemsti.stipayrolldbDataSet4TableAdapters.HistoryTableTableAdapter();
+			this.historyFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.historyIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.timeAddedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).BeginInit();
+			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.historyTableBindingSource)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dgv_HistoryLog
+			// 
+			this.dgv_HistoryLog.AllowUserToAddRows = false;
+			this.dgv_HistoryLog.AllowUserToDeleteRows = false;
+			this.dgv_HistoryLog.AutoGenerateColumns = false;
+			this.dgv_HistoryLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgv_HistoryLog.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+			this.dgv_HistoryLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgv_HistoryLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.historyFromDataGridViewTextBoxColumn,
             this.Department,
-            this.LoginTime});
-            this.dgv_HistoryLog.Location = new System.Drawing.Point(33, 178);
-            this.dgv_HistoryLog.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_HistoryLog.Name = "dgv_HistoryLog";
-            this.dgv_HistoryLog.ReadOnly = true;
-            this.dgv_HistoryLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_HistoryLog.Size = new System.Drawing.Size(975, 417);
-            this.dgv_HistoryLog.TabIndex = 8;
-            // 
-            // FirstName
-            // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // Department
-            // 
-            this.Department.DataPropertyName = "Department";
-            this.Department.HeaderText = "Department";
-            this.Department.Name = "Department";
-            this.Department.ReadOnly = true;
-            // 
-            // LoginTime
-            // 
-            this.LoginTime.DataPropertyName = "LoginTime";
-            this.LoginTime.HeaderText = "Time";
-            this.LoginTime.Name = "LoginTime";
-            this.LoginTime.ReadOnly = true;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
-            this.panel2.Controls.Add(this.lb_HistoryLog);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1052, 45);
-            this.panel2.TabIndex = 30;
-            // 
-            // lb_HistoryLog
-            // 
-            this.lb_HistoryLog.AutoSize = true;
-            this.lb_HistoryLog.BackColor = System.Drawing.Color.Transparent;
-            this.lb_HistoryLog.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_HistoryLog.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lb_HistoryLog.Location = new System.Drawing.Point(3, 11);
-            this.lb_HistoryLog.Name = "lb_HistoryLog";
-            this.lb_HistoryLog.Size = new System.Drawing.Size(104, 23);
-            this.lb_HistoryLog.TabIndex = 0;
-            this.lb_HistoryLog.Text = "HistoryLog";
-            // 
-            // HistoryLogForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1052, 636);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.dgv_HistoryLog);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "HistoryLogForm";
-            this.Text = "HistoyLogForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.ResumeLayout(false);
+            this.FirstName,
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.firstNameDataGridViewTextBoxColumn,
+            this.lastNameDataGridViewTextBoxColumn,
+            this.historyIDDataGridViewTextBoxColumn,
+            this.timeAddedDataGridViewTextBoxColumn});
+			this.dgv_HistoryLog.DataSource = this.historyTableBindingSource;
+			this.dgv_HistoryLog.Location = new System.Drawing.Point(33, 178);
+			this.dgv_HistoryLog.Margin = new System.Windows.Forms.Padding(4);
+			this.dgv_HistoryLog.Name = "dgv_HistoryLog";
+			this.dgv_HistoryLog.ReadOnly = true;
+			this.dgv_HistoryLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgv_HistoryLog.Size = new System.Drawing.Size(975, 417);
+			this.dgv_HistoryLog.TabIndex = 8;
+			// 
+			// panel2
+			// 
+			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(156)))), ((int)(((byte)(194)))));
+			this.panel2.Controls.Add(this.lb_HistoryLog);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(0, 0);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(1052, 45);
+			this.panel2.TabIndex = 30;
+			// 
+			// lb_HistoryLog
+			// 
+			this.lb_HistoryLog.AutoSize = true;
+			this.lb_HistoryLog.BackColor = System.Drawing.Color.Transparent;
+			this.lb_HistoryLog.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_HistoryLog.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.lb_HistoryLog.Location = new System.Drawing.Point(3, 11);
+			this.lb_HistoryLog.Name = "lb_HistoryLog";
+			this.lb_HistoryLog.Size = new System.Drawing.Size(104, 23);
+			this.lb_HistoryLog.TabIndex = 0;
+			this.lb_HistoryLog.Text = "HistoryLog";
+			// 
+			// stipayrolldbDataSet4
+			// 
+			this.stipayrolldbDataSet4.DataSetName = "stipayrolldbDataSet4";
+			this.stipayrolldbDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// historyTableBindingSource
+			// 
+			this.historyTableBindingSource.DataMember = "HistoryTable";
+			this.historyTableBindingSource.DataSource = this.stipayrolldbDataSet4;
+			// 
+			// historyTableTableAdapter
+			// 
+			this.historyTableTableAdapter.ClearBeforeFill = true;
+			// 
+			// historyFromDataGridViewTextBoxColumn
+			// 
+			this.historyFromDataGridViewTextBoxColumn.DataPropertyName = "HistoryFrom";
+			this.historyFromDataGridViewTextBoxColumn.HeaderText = "HistoryFrom";
+			this.historyFromDataGridViewTextBoxColumn.Name = "historyFromDataGridViewTextBoxColumn";
+			this.historyFromDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// Department
+			// 
+			this.Department.DataPropertyName = "Department";
+			this.Department.HeaderText = "Department";
+			this.Department.Name = "Department";
+			this.Department.ReadOnly = true;
+			// 
+			// FirstName
+			// 
+			this.FirstName.DataPropertyName = "FirstName";
+			this.FirstName.HeaderText = "First Name";
+			this.FirstName.Name = "FirstName";
+			this.FirstName.ReadOnly = true;
+			// 
+			// employeeIDDataGridViewTextBoxColumn
+			// 
+			this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+			this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
+			this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+			this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// firstNameDataGridViewTextBoxColumn
+			// 
+			this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+			this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+			this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+			this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// lastNameDataGridViewTextBoxColumn
+			// 
+			this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+			this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+			this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+			this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// historyIDDataGridViewTextBoxColumn
+			// 
+			this.historyIDDataGridViewTextBoxColumn.DataPropertyName = "HistoryID";
+			this.historyIDDataGridViewTextBoxColumn.HeaderText = "HistoryID";
+			this.historyIDDataGridViewTextBoxColumn.Name = "historyIDDataGridViewTextBoxColumn";
+			this.historyIDDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// timeAddedDataGridViewTextBoxColumn
+			// 
+			this.timeAddedDataGridViewTextBoxColumn.DataPropertyName = "TimeAdded";
+			this.timeAddedDataGridViewTextBoxColumn.HeaderText = "TimeAdded";
+			this.timeAddedDataGridViewTextBoxColumn.Name = "timeAddedDataGridViewTextBoxColumn";
+			this.timeAddedDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// HistoryLogForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.LavenderBlush;
+			this.ClientSize = new System.Drawing.Size(1052, 636);
+			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.dgv_HistoryLog);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Name = "HistoryLogForm";
+			this.Text = "HistoyLogForm";
+			this.Load += new System.EventHandler(this.HistoryLogForm_Load);
+			((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).EndInit();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.historyTableBindingSource)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 
@@ -123,8 +193,16 @@
 		private System.Windows.Forms.DataGridView dgv_HistoryLog;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label lb_HistoryLog;
-		private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+		private stipayrolldbDataSet4 stipayrolldbDataSet4;
+		private System.Windows.Forms.BindingSource historyTableBindingSource;
+		private stipayrolldbDataSet4TableAdapters.HistoryTableTableAdapter historyTableTableAdapter;
+		private System.Windows.Forms.DataGridViewTextBoxColumn historyFromDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Department;
-		private System.Windows.Forms.DataGridViewTextBoxColumn LoginTime;
+		private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn historyIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn timeAddedDataGridViewTextBoxColumn;
 	}
 }

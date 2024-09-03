@@ -349,6 +349,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="stipayrolldbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>stipayrolldbDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="stipayrolldbDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>stipayrolldbDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="stipayrolldbDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>stipayrolldbDataSet4.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,6 +542,39 @@
     </None>
     <None Include="stipayrolldbDataSet1.xss">
       <DependentUpon>stipayrolldbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet2.xsc">
+      <DependentUpon>stipayrolldbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>stipayrolldbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="stipayrolldbDataSet2.xss">
+      <DependentUpon>stipayrolldbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet3.xsc">
+      <DependentUpon>stipayrolldbDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>stipayrolldbDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="stipayrolldbDataSet3.xss">
+      <DependentUpon>stipayrolldbDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet4.xsc">
+      <DependentUpon>stipayrolldbDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="stipayrolldbDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>stipayrolldbDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="stipayrolldbDataSet4.xss">
+      <DependentUpon>stipayrolldbDataSet4.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

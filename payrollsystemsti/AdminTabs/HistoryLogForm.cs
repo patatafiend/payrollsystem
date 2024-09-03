@@ -18,27 +18,22 @@ namespace payrollsystemsti.AdminTabs
 		{
 			InitializeComponent();
 		}
+
 		
-
-		/*private void HistoryLogForm_Load_1(object sender, EventArgs e)
+		private void HistoryLogForm_Load(object sender, EventArgs e)
 		{
-			LoadData();
-		}
+			SqlConnection con = new SqlConnection(m.connStr);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable WHERE HistoryFrom != 'Login'", con);
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			da.Fill(dt);
+			dgv_HistoryLog.DataSource = dt;
+			con.Close();
+			// TODO: This line of code loads data into the 'stipayrolldbDataSet4.HistoryTable' table. You can move, or remove it, as needed.
+			this.historyTableTableAdapter.Fill(this.stipayrolldbDataSet4.HistoryTable);
 
-		private void LoadData()
-		{
-			using (SqlConnection sqlCon = new SqlConnection(m.connStr))
-			{
-				sqlCon.Open();
-				SqlDataAdapter sqlDa = new SqlDataAdapter("Select * FROM HistoryTable", sqlCon);
-				DataTable dtbl = new DataTable();
-
-				sqlDa.Fill(dtbl);
-
-				dgv_HistoryLog.AutoGenerateColumns = false;
-				dgv_HistoryLog.DataSource = dtbl;
-			}
-		}*/
+        }
 
 		
 	}

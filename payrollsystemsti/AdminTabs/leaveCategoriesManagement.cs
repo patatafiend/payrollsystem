@@ -25,8 +25,9 @@ namespace payrollsystemsti.AdminTabs
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@catname", tbLeaveName.Text);
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Category Added");
 
-                    cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();
                 }
             }
             LoadData();
@@ -45,8 +46,9 @@ namespace payrollsystemsti.AdminTabs
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@catname", tbLeaveName);
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Category edit");
 
-                        cmd.ExecuteNonQuery();
+						cmd.ExecuteNonQuery();
                     }
                 }
             }
@@ -112,5 +114,10 @@ namespace payrollsystemsti.AdminTabs
 
             ClearData();
         }
-    }
+
+		private void btnDelete_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

@@ -28,7 +28,8 @@ namespace payrollsystemsti
             if (!m.ifDeductionExist(tb1.Text.ToString()))
             {
                 m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
-                LoadDeductionData();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction add");
+				LoadDeductionData();
                 tb1.Clear();
                 tb2.Clear();
             }
@@ -50,7 +51,8 @@ namespace payrollsystemsti
                 if (!m.ifDeductionExist(tb1.Text.ToString()))
                 {
                     m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
-                    LoadDeductionData();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction Edit");
+					LoadDeductionData();
                     tb1.Clear();
                     tb2.Clear();
                 }

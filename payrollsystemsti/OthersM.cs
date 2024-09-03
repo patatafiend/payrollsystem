@@ -33,7 +33,8 @@ namespace payrollsystemsti
                         m.UpdateOtherData(Convert.ToInt32(tb1.Text), 0, 0,
                                     Convert.ToInt32(tb4.Text), titleID);
                         tbClear();
-                        LoadOthersData();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Others Update");
+						LoadOthersData();
                     }
                     else
                     {

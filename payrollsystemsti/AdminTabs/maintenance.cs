@@ -214,25 +214,35 @@ namespace payrollsystemsti.Tabs
                 {
                     case "Departments":
                         m.insertToDepartments(tb1.Text);
-                        LoadDepartmentData();
-                        break;
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Department");
+						LoadDepartmentData();
+						
+						break;
                     case "Positions":
                         m.insertToPositions(tb1.Text);
-                        LoadPositionData();
-                        break;
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Position");
+						LoadPositionData();
+						
+						break;
                     case "Roles":
                         m.insertToRoles(tb1.Text);
-                        LoadRoleData();
-                        break;
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Roles");
+						LoadRoleData();
+						
+						break;
                     case "Leaves":
                         m.insertToLeaves(tb1.Text, checkBox());
-                        LoadLeaveCategoryData();
-                        break;
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Leaves");
+						LoadLeaveCategoryData();
+						
+						break;
                     case "Deductions":
                         m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
-                        tbClear();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Deductions");
+						tbClear();
                         LoadDeductionData();
-                        break;
+						
+						break;
                 }
             }
             else if (m.ifDepartmentNameExist(tb1.Text.ToString()) || m.ifRoleTitleExist(tb1.Text.ToString()) || m.ifPositionTitleExist(tb1.Text.ToString()))
@@ -266,11 +276,13 @@ namespace payrollsystemsti.Tabs
                         case "Departments":
                             m.updateDepartments(tb1.Text, titleID);
                             LoadDepartmentData();
-                            break;
+							
+							break;
                         case "Postions":
                             m.updatePositions(tb1.Text, titleID);
                             LoadPositionData();
-                            break;
+							
+							break;
                         case "Roles":
                             m.updateRoles(tb1.Text, titleID);
                             LoadRoleData();
@@ -618,5 +630,7 @@ namespace payrollsystemsti.Tabs
         {
 
         }
+
+        
     }
 }
