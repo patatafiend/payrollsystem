@@ -22,7 +22,9 @@ namespace payrollsystemsti.AdminTabs
 		
 		private void HistoryLogForm_Load(object sender, EventArgs e)
 		{
-			SqlConnection con = new SqlConnection(m.connStr);
+            // TODO: This line of code loads data into the 'stipayrolldbDataSet6.HistoryTable' table. You can move, or remove it, as needed.
+            this.historyTableTableAdapter1.Fill(this.stipayrolldbDataSet6.HistoryTable);
+            SqlConnection con = new SqlConnection(m.connStr);
 			con.Open();
 			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable WHERE HistoryFrom != 'Login'", con);
 			SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -30,9 +32,7 @@ namespace payrollsystemsti.AdminTabs
 			da.Fill(dt);
 			dgv_HistoryLog.DataSource = dt;
 			con.Close();
-			// TODO: This line of code loads data into the 'stipayrolldbDataSet4.HistoryTable' table. You can move, or remove it, as needed.
-			this.historyTableTableAdapter.Fill(this.stipayrolldbDataSet4.HistoryTable);
-
+			
         }
 
 		

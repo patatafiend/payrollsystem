@@ -40,6 +40,11 @@
 			this.lb_EmpPhoNum = new System.Windows.Forms.Label();
 			this.lb_EmpName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.notificationMessageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.notificationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet1();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
@@ -69,18 +74,19 @@
 			this.pictureBox7 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.stipayrolldbDataSet = new payrollsystemsti.stipayrolldbDataSet();
 			this.stipayrolldbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.stipayrolldbDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet1();
-			this.notificationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.notificationsTableAdapter = new payrollsystemsti.stipayrolldbDataSet1TableAdapters.NotificationsTableAdapter();
-			this.notificationMessageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.stipayrolldbDataSet5 = new payrollsystemsti.stipayrolldbDataSet5();
+			this.notificationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.notificationsTableAdapter1 = new payrollsystemsti.stipayrolldbDataSet5TableAdapters.NotificationsTableAdapter();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			this.pnl_Department.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -95,12 +101,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
 			this.panel7.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lb_DashBoard
@@ -214,6 +219,41 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(223, 304);
 			this.panel3.TabIndex = 6;
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.AutoGenerateColumns = false;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.notificationMessageDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn});
+			this.dataGridView1.DataSource = this.notificationsBindingSource1;
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(220, 265);
+			this.dataGridView1.TabIndex = 0;
+			// 
+			// notificationMessageDataGridViewTextBoxColumn
+			// 
+			this.notificationMessageDataGridViewTextBoxColumn.DataPropertyName = "NotificationMessage";
+			this.notificationMessageDataGridViewTextBoxColumn.HeaderText = "NotificationMessage";
+			this.notificationMessageDataGridViewTextBoxColumn.Name = "notificationMessageDataGridViewTextBoxColumn";
+			// 
+			// dateDataGridViewTextBoxColumn
+			// 
+			this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+			this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+			this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+			// 
+			// notificationsBindingSource
+			// 
+			this.notificationsBindingSource.DataMember = "Notifications";
+			this.notificationsBindingSource.DataSource = this.stipayrolldbDataSet1;
+			// 
+			// stipayrolldbDataSet1
+			// 
+			this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet1";
+			this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// lbEmployeeID
 			// 
@@ -531,19 +571,6 @@
 			this.label10.TabIndex = 4;
 			this.label10.Text = "Total Employees";
 			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.AutoGenerateColumns = false;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.notificationMessageDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn});
-			this.dataGridView1.DataSource = this.notificationsBindingSource;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(220, 265);
-			this.dataGridView1.TabIndex = 0;
-			// 
 			// stipayrolldbDataSet
 			// 
 			this.stipayrolldbDataSet.DataSetName = "stipayrolldbDataSet";
@@ -559,31 +586,23 @@
 			this.stipayrolldbDataSetBindingSource1.DataSource = this.stipayrolldbDataSet;
 			this.stipayrolldbDataSetBindingSource1.Position = 0;
 			// 
-			// stipayrolldbDataSet1
-			// 
-			this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet1";
-			this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// notificationsBindingSource
-			// 
-			this.notificationsBindingSource.DataMember = "Notifications";
-			this.notificationsBindingSource.DataSource = this.stipayrolldbDataSet1;
-			// 
 			// notificationsTableAdapter
 			// 
 			this.notificationsTableAdapter.ClearBeforeFill = true;
 			// 
-			// notificationMessageDataGridViewTextBoxColumn
+			// stipayrolldbDataSet5
 			// 
-			this.notificationMessageDataGridViewTextBoxColumn.DataPropertyName = "NotificationMessage";
-			this.notificationMessageDataGridViewTextBoxColumn.HeaderText = "NotificationMessage";
-			this.notificationMessageDataGridViewTextBoxColumn.Name = "notificationMessageDataGridViewTextBoxColumn";
+			this.stipayrolldbDataSet5.DataSetName = "stipayrolldbDataSet5";
+			this.stipayrolldbDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
-			// dateDataGridViewTextBoxColumn
+			// notificationsBindingSource1
 			// 
-			this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-			this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-			this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+			this.notificationsBindingSource1.DataMember = "Notifications";
+			this.notificationsBindingSource1.DataSource = this.stipayrolldbDataSet5;
+			// 
+			// notificationsTableAdapter1
+			// 
+			this.notificationsTableAdapter1.ClearBeforeFill = true;
 			// 
 			// dashBoard
 			// 
@@ -612,6 +631,9 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			this.pnl_Department.ResumeLayout(false);
 			this.pnl_Department.PerformLayout();
@@ -632,12 +654,11 @@
 			this.panel7.ResumeLayout(false);
 			this.panel7.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -693,5 +714,8 @@
 		private stipayrolldbDataSet1TableAdapters.NotificationsTableAdapter notificationsTableAdapter;
 		private System.Windows.Forms.DataGridViewTextBoxColumn notificationMessageDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+		private stipayrolldbDataSet5 stipayrolldbDataSet5;
+		private System.Windows.Forms.BindingSource notificationsBindingSource1;
+		private stipayrolldbDataSet5TableAdapters.NotificationsTableAdapter notificationsTableAdapter1;
 	}
 }
