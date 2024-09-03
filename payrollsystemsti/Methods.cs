@@ -16,9 +16,11 @@ namespace payrollsystemsti
         //private const string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         //private const string Digits = "0123456789";
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
-        //Connection String
-        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
 
+        //Connection String
+        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        //renz connection string
+        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -530,6 +532,62 @@ namespace payrollsystemsti
                     command.Parameters.AddWithValue("@sss", sss);
                     command.Parameters.AddWithValue("@hdmf", hdmf);
                     command.Parameters.AddWithValue("@company", company);
+
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception appropriately
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool InsertHoliday(string holidayName, DateTime date)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                connection.Open();
+                string query = "INSERT INTO Holidays (HolidayName, @date) VALUES (@holidayName, @date)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@holidayName", holidayName);
+                    command.Parameters.AddWithValue("@date", date);
+
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception appropriately
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateHoliday(int holidayId, string holidayName, DateTime date)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                connection.Open();
+                string query = "UPDATE Holidays SET HolidayName = @holidayName, HolidayDate = @date " +
+                    "WHERE HolidayID = @holidayId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@holidayId", holidayId);
+                    command.Parameters.AddWithValue("@holidayName", holidayName);
+                    command.Parameters.AddWithValue("@date", date);
 
                     try
                     {

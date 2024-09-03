@@ -12,9 +12,17 @@ namespace payrollsystemsti
 {
     public partial class IncentivesM : Form
     {
+        Methods m = new Methods();
         public IncentivesM()
         {
             InitializeComponent();
         }
+
+        private void IncentivesM_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
