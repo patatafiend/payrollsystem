@@ -34,13 +34,12 @@
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +56,7 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lb1
             // 
@@ -77,6 +77,7 @@
             this.tb1.Name = "tb1";
             this.tb1.Size = new System.Drawing.Size(150, 25);
             this.tb1.TabIndex = 93;
+            this.tb1.TextChanged += new System.EventHandler(this.tb1_TextChanged);
             // 
             // dataGridView1
             // 
@@ -101,7 +102,6 @@
             this.dg1st,
             this.dg2nd,
             this.dg3rd,
-            this.dg6th,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -118,8 +118,34 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(657, 237);
+            this.dataGridView1.Size = new System.Drawing.Size(802, 237);
             this.dataGridView1.TabIndex = 91;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUpdate.Location = new System.Drawing.Point(52, 222);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
+            this.btnUpdate.TabIndex = 90;
+            this.btnUpdate.Text = "Edit";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Crimson;
+            this.label11.Location = new System.Drawing.Point(46, 40);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(202, 44);
+            this.label11.TabIndex = 89;
+            this.label11.Text = "Incentives";
             // 
             // dg1st
             // 
@@ -141,44 +167,12 @@
             this.dg3rd.Name = "dg3rd";
             this.dg3rd.ReadOnly = true;
             // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "Adjustment";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
-            // 
             // dgIsDeactivated
             // 
             this.dgIsDeactivated.HeaderText = "IsDeactivated";
             this.dgIsDeactivated.Name = "dgIsDeactivated";
             this.dgIsDeactivated.ReadOnly = true;
             this.dgIsDeactivated.Visible = false;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(52, 222);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
-            this.btnUpdate.TabIndex = 90;
-            this.btnUpdate.Text = "Edit";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(46, 40);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(202, 44);
-            this.label11.TabIndex = 89;
-            this.label11.Text = "Incentives";
             // 
             // IncentivesM
             // 
@@ -212,7 +206,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }

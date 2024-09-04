@@ -20,7 +20,7 @@ namespace payrollsystemsti
         //Connection String
         //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -487,22 +487,47 @@ namespace payrollsystemsti
             }
         }
 
-        public bool InsertOtherData(int employeeID, int incentives, int regularH, int specialH, int adjustment)
+        public bool InsertIncentivesData(int employeeID, int incentives)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
                 string query = @"
-            INSERT INTO Others (EmployeeID, Incentives, RegularH, SpecialH, Adjustment) 
-            VALUES (@employeeID, @incentives, @regularH, @specialH, @adjustment);";
+            INSERT INTO Others (EmployeeID, Incentives) 
+            VALUES (@employeeID, @incentives);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@incentives", incentives);
-                    cmd.Parameters.AddWithValue("@regularH", regularH);
-                    cmd.Parameters.AddWithValue("@specialH", specialH);
-                    cmd.Parameters.AddWithValue("@adjustment", adjustment);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; // Return true if insert was successful
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception (e.g., log, display error message)
+                        MessageBox.Show($"Error inserting into Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool InsertAdjustmentData(int employeeID, int adjustment)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = @"
+            INSERT INTO Others (EmployeeID, Adjustment) 
+            VALUES (@employeeID, @adj);";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@adj", adjustment);
 
                     try
                     {
@@ -553,7 +578,7 @@ namespace payrollsystemsti
             using (SqlConnection connection = new SqlConnection(connStr))
             {
                 connection.Open();
-                string query = "INSERT INTO Holidays (HolidayName, @date) VALUES (@holidayName, @date)";
+                string query = "INSERT INTO Holidays (HolidayName, HolidayDate) VALUES (@holidayName, @date)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -604,24 +629,47 @@ namespace payrollsystemsti
             }
         }
 
-        public bool UpdateOtherData(int employeeID, int incentives, int regularH, int specialH, int adjustment)
+        public bool UpdateIncentivesData(int employeeID, int incentives)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = @"
-            UPDATE Others 
-            SET Incentives = @incentives, RegularH = @regularH, SpecialH = @specialH, Adjustment = @adjustment
-            WHERE EmployeeID = @employeeID;";
+                string query = @"UPDATE Others SET Incentives = @incentives
+                                 WHERE EmployeeID = @employeeID;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     // Add all the parameters here (including @otherID to identify the record)
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@incentives", incentives);
-                    cmd.Parameters.AddWithValue("@regularH", regularH);
-                    cmd.Parameters.AddWithValue("@specialH", specialH);
-                    cmd.Parameters.AddWithValue("@adjustment", adjustment);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception (e.g., log, display error message)
+                        MessageBox.Show($"Error updating Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool UpdateAdjustmentData(int employeeID, int adjustment)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = @"UPDATE Others SET Adjustment = @adj
+                                 WHERE EmployeeID = @employeeID;";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Add all the parameters here (including @otherID to identify the record)
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@adj", adjustment);
 
                     try
                     {
@@ -1029,6 +1077,9 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        //public decimal IsHoliday
+
         public decimal GetTotalHoursOT(DateTime payStart, DateTime payEnd, int employeeID)
         {
             using (SqlConnection conn = new SqlConnection(connStr))

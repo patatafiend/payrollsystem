@@ -15,7 +15,7 @@ namespace payrollsystemsti
     public partial class OthersM : Form
     {
         Methods m = new Methods();
-        int titleID = 0;
+        int AdjustmentID = 0;
         public OthersM()
         {
             InitializeComponent();
@@ -30,11 +30,10 @@ namespace payrollsystemsti
                 {
                     if (IsTextBoxFilled())
                     {
-                        m.UpdateOtherData(Convert.ToInt32(tb1.Text), 0, 0,
-                                    Convert.ToInt32(tb4.Text), titleID);
+                        m.UpdateAdjustmentData(AdjustmentID, Convert.ToInt32(tb1.Text));
                         tbClear();
 						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Others Update");
-						LoadOthersData();
+						LoadAdjustmentData();
                     }
                     else
                     {
@@ -55,7 +54,7 @@ namespace payrollsystemsti
 
         public bool IsTextBoxFilled()
         {
-            if (tb1.Text != null && tb4.Text != null)
+            if (tb1.Text != null)
             {
                 return true;
             }
@@ -67,7 +66,6 @@ namespace payrollsystemsti
         public void tbClear()
         {
             tb1.Clear();
-            tb4.Clear();
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
@@ -77,8 +75,8 @@ namespace payrollsystemsti
             {
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    m.deactivateOthers(titleID);
-                    LoadOthersData();
+                    m.deactivateOthers(AdjustmentID);
+                    LoadAdjustmentData();
                     tbClear();
                 }
                 else
@@ -92,12 +90,12 @@ namespace payrollsystemsti
             }
         }
 
-        private void LoadOthersData()
+        private void LoadAdjustmentData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, Others.Incentives, " +
-                "Others.RegularH, Others.SpecialH, Others.Adjustment FROM EmployeeAccounts " +
-                "INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID WHERE IsDeactivated = @status";
+            string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
+                "Others.Adjustment FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
+                "WHERE IsDeactivated = @status";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
@@ -113,8 +111,7 @@ namespace payrollsystemsti
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
-                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Incentives"].ToString();
-                        dataGridView1.Rows[n].Cells["dg6th"].Value = row["Adjustment"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Adjustment"].ToString();
                     }
                 }
             }
@@ -122,7 +119,7 @@ namespace payrollsystemsti
 
         private void OthersM_Load(object sender, EventArgs e)
         {
-            LoadOthersData();
+            LoadAdjustmentData();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -132,7 +129,6 @@ namespace payrollsystemsti
         public void Reset()
         {
             tb1.Clear();
-            tb4.Clear();
             btnDeactivate.Enabled = false;
             btnUpdate.Enabled = false;
         }
@@ -141,10 +137,12 @@ namespace payrollsystemsti
         {
             if (tb1.Text.Length > 0)
             {
+                btnUpdate.Enabled = true;
                 btnCancel.Visible = true;
             }
             else
             {
+                btnUpdate.Enabled = false;
                 btnCancel.Visible = false;
             }
         }

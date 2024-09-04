@@ -46,7 +46,7 @@ namespace payrollsystemsti
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["HolidayID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["HolidayName"].ToString();
-                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["HolidayDate"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = Convert.ToDateTime(row["HolidayDate"].ToString()).ToString("MMMM, dd");
                     }
                 }
             }
@@ -54,20 +54,66 @@ namespace payrollsystemsti
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            m.UpdateHoliday(holidayID, tb1.Text, dtDate.Value);
+            m.UpdateHoliday(holidayID, tb1.Text, dtDate.Value.Date);
+            LoadHolidayData();
+            Clear();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            m.InsertHoliday(tb1.Text, Convert.ToDateTime(dtDate.Value.ToString("MM/dd/yyyy")));
+            m.InsertHoliday(tb1.Text, Convert.ToDateTime(dtDate.Value.Date));
+            LoadHolidayData();
+            Clear();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            holidayID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["HolidayID"].Value);
-            tb1.Text = dataGridView1.SelectedRows[0].Cells["HolidayName"].ToString();
-            dtDate.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["HolidayDate"].Value);
+            holidayID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+            tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+            dtDate.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["dg3rd"].Value);
+
+            btnUpdate.Enabled = true;
         }
 
-	}
+        private void tb1_TextChanged(object sender, EventArgs e)
+        {
+            CheckTextBoxLength();
+        }
+
+        void CheckTextBoxLength()
+        {
+            if(tb1.Text.Length >= 3)
+            {
+                btnAdd.Enabled = true;
+                btnCancel.Visible = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+            }
+        }
+
+        void HideCancel()
+        {
+            btnCancel.Visible = false;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            HideCancel();
+        }
+
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            btnAdd.Enabled = !btnUpdate.Enabled;
+        }
+
+        void Clear()
+        {
+            btnUpdate.Enabled = false;
+            btnAdd.Enabled = false;
+            btnCancel.Visible = false;
+            tb1.Clear();
+        }
+    }
 }

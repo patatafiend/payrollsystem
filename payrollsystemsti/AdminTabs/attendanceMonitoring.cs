@@ -47,6 +47,9 @@ namespace payrollsystemsti.AdminTabs
         {
             InitializeComponent();
             AMinstance = this;
+            //Timer timer = new Timer() { Interval = 60000 }; // Check every minute
+            //timer.Tick += (sender, e) => CheckAndUpdateTimeouts();
+            //timer.Start();
         }
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
@@ -55,7 +58,6 @@ namespace payrollsystemsti.AdminTabs
             btnTimeIN.Enabled = true;
 
             LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
-
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -70,8 +72,8 @@ namespace payrollsystemsti.AdminTabs
 
 
                 string status = "Time IN";
-                int currentTime = time.Value.Hour;
-                int currentMinute = time.Value.Minute;
+                float currentTime = time.Value.Hour;
+                float currentMinute = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("HH:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
@@ -118,7 +120,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAtttendanceData(date.Value.ToString());
         }
 
-        public bool insertLateToAttedance(int empID, int minutes)
+        public bool insertLateToAttedance(int empID, float minutes)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -142,7 +144,8 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        private bool checkIfLate(int hour, int minute)
+
+        private bool checkIfLate(float hour, float minute)
         {
             if(hour == 9 && minute > 15)
             {
@@ -164,8 +167,8 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = false;
 
                 string status = "Time OUT";
-                int currentTime = time.Value.Hour;
-                int late = time.Value.Minute;
+                float currentTime = time.Value.Hour;
+                float late = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
@@ -207,7 +210,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAtttendanceData(date.Value.ToString());
         }
 
-        public bool insertAttendance(string date, int? timeIn, int? timeOut, int fingerID, int empID)
+        public bool insertAttendance(string date, float? timeIn, float? timeOut, int fingerID, int empID)
         {
             TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -671,6 +674,70 @@ namespace payrollsystemsti.AdminTabs
         private void date_ValueChanged(object sender, EventArgs e)
         {
             LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+        }
+
+        private void time_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CheckAndUpdateTimeouts()
+        {
+            if (DateTime.Now.Hour == 12 || DateTime.Now.Hour == 18)
+            {
+                UpdateTimedOutEmployees(DateTime.Now);
+            }
+        }
+
+        private void UpdateTimedOutEmployees(DateTime currentTime)
+        {
+            using (SqlConnection connection = new SqlConnection(m.connStr))
+            {
+                connection.Open();
+
+                string sql = @"UPDATE Attendance SET TimeOut_AM = @currentTime WHERE TimeIn_AM != '00:00:00' AND
+                               TimeOut_AM = '00:00:00' AND Date = @date UNION ALL 
+                               UPDATE Attendance SET 
+                               TimeOut_PM = @currentTime WHERE TimeIn_PM != '00:00:00' AND 
+                               TimeOut_PM = '00:00:00' AND Date = @date";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@currentTime", currentTime.TimeOfDay);
+                    command.Parameters.AddWithValue("@date", currentTime.Date);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void CheckForHolidayAndDoubleHours(string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Check if today is a holiday
+                string holidayCheckSql = @"SELECT COUNT(*) FROM Holidays WHERE HolidayDate = @today";
+
+                using (SqlCommand holidayCheckCommand = new SqlCommand(holidayCheckSql, connection))
+                {
+                    holidayCheckCommand.Parameters.AddWithValue("@today", DateTime.Now.Date);
+                    int holidayCount = (int)holidayCheckCommand.ExecuteScalar();
+
+                    if (holidayCount > 0)
+                    {
+                        // Today is a holiday, double the total hours
+                        string doubleHoursSql = @"UPDATE Attendance SET TotalHours = TotalHours * 2 
+                                                  WHERE Date = @today";
+
+                        using (SqlCommand doubleHoursCommand = new SqlCommand(doubleHoursSql, connection))
+                        {
+                            doubleHoursCommand.Parameters.AddWithValue("@today", DateTime.Now.Date);
+                            doubleHoursCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
         }
     }
 }

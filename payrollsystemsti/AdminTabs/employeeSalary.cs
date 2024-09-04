@@ -181,6 +181,7 @@ namespace payrollsystemsti.AdminTabs
             btnSave.Enabled = false;
             LoadPayrollData();
             SetPayPeriodDefaults();
+            //SetDateTimePickerDates();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -206,17 +207,22 @@ namespace payrollsystemsti.AdminTabs
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
             LoadPayrollData();
-            DateTime startDate = dtStart.Value.Date;
-            dtEnd.Value = startDate.AddDays(14);
-            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
+            //DateTime startDate = dtStart.Value.Date;
+            //dtEnd.Value = startDate.AddDays(12);
+            //dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
         }
 
         private void dtEnd_ValueChanged(object sender, EventArgs e)
         {
             LoadPayrollData();
             DateTime endDate = dtEnd.Value.Date;
-            dtStart.Value = endDate.AddDays(-14);
+            dtStart.Value = endDate.AddDays(-15);
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
+            if (dtEnd.Value.Day != 12 && dtEnd.Value.Day != 28)
+            {
+                MessageBox.Show("Only the 12th and 28th are allowed.");
+                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
+            }
         }
 
         
@@ -440,15 +446,15 @@ namespace payrollsystemsti.AdminTabs
             DateTime today = DateTime.Today;
             DateTime payPeriodStart, payPeriodEnd;
 
-            if (today.Day <= 15)
+            if (today.Day <= 12)
             {
                 payPeriodStart = new DateTime(today.Year, today.Month, 1);
-                payPeriodEnd = new DateTime(today.Year, today.Month, 15);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 12);
             }
             else
             {
-                payPeriodStart = new DateTime(today.Year, today.Month, 16);
-                payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+                payPeriodStart = new DateTime(today.Year, today.Month, 13);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 28);
             }
 
             dtStart.Value = payPeriodStart;
@@ -526,5 +532,27 @@ namespace payrollsystemsti.AdminTabs
                 LoadPayrollData();
             }
         }
+
+        //private void SetDateTimePickerDates()
+        //{
+        //    // Get the current year
+        //    int currentYear = DateTime.Now.Year;
+
+        //    // Set the minimum and maximum dates for each month
+        //    for (int month = 1; month <= 12; month++)
+        //    {
+        //        // Calculate the 12th day of the month
+        //        DateTime twelfthDay = new DateTime(currentYear, month, 12);
+
+        //        // Set the minimum and maximum dates for the DateTimePicker
+        //        dtEnd.MaxDate = twelfthDay;
+
+        //        // Break the loop if the current month is reached
+        //        if (month == DateTime.Now.Month)
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

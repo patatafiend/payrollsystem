@@ -258,6 +258,7 @@
             this.time.Size = new System.Drawing.Size(140, 30);
             this.time.TabIndex = 36;
             this.time.Value = new System.DateTime(2024, 5, 12, 9, 0, 0, 0);
+            this.time.ValueChanged += new System.EventHandler(this.time_ValueChanged);
             // 
             // timer
             // 

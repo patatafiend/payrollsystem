@@ -302,12 +302,6 @@ namespace payrollsystemsti.Tabs
                             tbClear();
                             LoadAllowanceData();
                             break;
-                        case "Others":
-                            m.UpdateOtherData(titleID, Convert.ToInt32(tb1.Text), Convert.ToInt32(tb2.Text), Convert.ToInt32(tb3.Text),
-                                Convert.ToInt32(tb4.Text));
-                            tbClear();
-                            LoadAllowanceData();
-                            break;
                     }
                 }
                 else if (m.ifDepartmentNameExist(tb1.Text.ToString()) || m.ifRoleTitleExist(tb1.Text.ToString()) || m.ifPositionTitleExist(tb1.Text.ToString()))
