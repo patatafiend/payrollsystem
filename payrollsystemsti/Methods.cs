@@ -1424,5 +1424,27 @@ namespace payrollsystemsti
 			}
 
 		}
+
+        public void Add_Overtimepay(int employeeID, TimeSpan StartTime , TimeSpan EndTime, string Justification, DateTime AppliedDate)
+		{
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				conn.Open();
+
+				string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime, Justification) " +
+							   "VALUES (@employeeID, @appliedDate,@startTime, @endTime,  @justification)";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@employeeID", employeeID);
+					cmd.Parameters.AddWithValue("@appliedDate", AppliedDate);
+					cmd.Parameters.AddWithValue("@startTime", StartTime);
+					cmd.Parameters.AddWithValue("@justification", Justification);
+					cmd.Parameters.AddWithValue("@endTime", EndTime);
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+		}
 	}
 }

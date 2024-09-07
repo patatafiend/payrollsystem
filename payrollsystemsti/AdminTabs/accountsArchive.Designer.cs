@@ -28,31 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.archives = new System.Windows.Forms.DataGridView();
 			this.dgEmployeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnActivate = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.searchbox = new System.Windows.Forms.TextBox();
+			this.btEnter = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.archives)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// dataGridView1
+			// archives
 			// 
-			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
-			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.archives.AllowUserToAddRows = false;
+			this.archives.AllowUserToDeleteRows = false;
+			this.archives.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.archives.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+			this.archives.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.archives.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmployeeID,
             this.dgFullName});
-			this.dataGridView1.Location = new System.Drawing.Point(97, 150);
-			this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(629, 268);
-			this.dataGridView1.TabIndex = 4;
+			this.archives.Location = new System.Drawing.Point(97, 150);
+			this.archives.Margin = new System.Windows.Forms.Padding(4);
+			this.archives.Name = "archives";
+			this.archives.ReadOnly = true;
+			this.archives.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.archives.Size = new System.Drawing.Size(629, 268);
+			this.archives.TabIndex = 4;
 			// 
 			// dgEmployeeID
 			// 
@@ -91,20 +93,43 @@
 			this.label11.TabIndex = 33;
 			this.label11.Text = "Archive";
 			// 
+			// searchbox
+			// 
+			this.searchbox.Location = new System.Drawing.Point(97, 114);
+			this.searchbox.Name = "searchbox";
+			this.searchbox.Size = new System.Drawing.Size(100, 20);
+			this.searchbox.TabIndex = 34;
+			// 
+			// btEnter
+			// 
+			this.btEnter.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btEnter.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btEnter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btEnter.ForeColor = System.Drawing.SystemColors.Control;
+			this.btEnter.Location = new System.Drawing.Point(203, 99);
+			this.btEnter.Name = "btEnter";
+			this.btEnter.Size = new System.Drawing.Size(118, 44);
+			this.btEnter.TabIndex = 36;
+			this.btEnter.Text = "Enter";
+			this.btEnter.UseVisualStyleBackColor = false;
+			this.btEnter.Click += new System.EventHandler(this.btEnter_Click);
+			// 
 			// accountsArchive
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
 			this.ClientSize = new System.Drawing.Size(824, 458);
+			this.Controls.Add(this.btEnter);
+			this.Controls.Add(this.searchbox);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.btnActivate);
-			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.archives);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "accountsArchive";
 			this.Text = "accountsArchive";
 			this.Load += new System.EventHandler(this.accountsArchive_Load);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.archives)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -112,10 +137,12 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView archives;
         private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmployeeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.Label label11;
-    }
+		private System.Windows.Forms.TextBox searchbox;
+		private System.Windows.Forms.Button btEnter;
+	}
 }

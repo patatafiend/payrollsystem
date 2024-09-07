@@ -42,7 +42,7 @@
 			this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.time = new System.Windows.Forms.DateTimePicker();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.timeout = new System.Windows.Forms.DateTimePicker();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -184,6 +184,7 @@
 			this.time.CustomFormat = "hh:mm tt";
 			this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.time.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.time.Location = new System.Drawing.Point(94, 53);
 			this.time.Name = "time";
 			this.time.ShowUpDown = true;
@@ -191,18 +192,18 @@
 			this.time.TabIndex = 37;
 			this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
 			// 
-			// dateTimePicker1
+			// timeout
 			// 
-			this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateTimePicker1.CustomFormat = "hh:mm tt";
-			this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.dateTimePicker1.Location = new System.Drawing.Point(94, 85);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.ShowUpDown = true;
-			this.dateTimePicker1.Size = new System.Drawing.Size(116, 26);
-			this.dateTimePicker1.TabIndex = 38;
-			this.dateTimePicker1.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+			this.timeout.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.timeout.CustomFormat = "hh:mm tt";
+			this.timeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.timeout.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.timeout.Location = new System.Drawing.Point(94, 85);
+			this.timeout.Name = "timeout";
+			this.timeout.ShowUpDown = true;
+			this.timeout.Size = new System.Drawing.Size(116, 26);
+			this.timeout.TabIndex = 38;
+			this.timeout.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
 			// 
 			// overtimeApplication
 			// 
@@ -210,7 +211,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
 			this.ClientSize = new System.Drawing.Size(902, 456);
-			this.Controls.Add(this.dateTimePicker1);
+			this.Controls.Add(this.timeout);
 			this.Controls.Add(this.time);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.label4);
@@ -244,6 +245,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DateTimePicker time;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker timeout;
     }
 }
