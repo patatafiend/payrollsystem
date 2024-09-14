@@ -54,10 +54,10 @@ namespace payrollsystemsti.AdminTabs
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
-            ac = new ArduinoComms("COM4");
+            ac = new ArduinoComms("COM3");
             btnTimeIN.Enabled = true;
 
-            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+            LoadAtttendanceData(date.Value);
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -88,6 +88,7 @@ namespace payrollsystemsti.AdminTabs
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+                            LoadAtttendanceData(date.Value);
 
                             if(checkIfLate(currentTime, currentMinute))
                             {
@@ -117,7 +118,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value.ToString());
+            LoadAtttendanceData(date.Value);
         }
 
         public bool insertLateToAttedance(int empID, float minutes)
@@ -207,7 +208,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value.ToString());
+            LoadAtttendanceData(date.Value);
         }
 
         public bool insertAttendance(string date, float? timeIn, float? timeOut, int fingerID, int empID)
@@ -597,7 +598,7 @@ namespace payrollsystemsti.AdminTabs
             
         }
 
-        public void LoadAtttendanceData(string date)
+        public void LoadAtttendanceData(DateTime date)
         {
             dataGridView1.Rows.Clear();
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -641,7 +642,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void btnMax_Click(object sender, EventArgs e)
@@ -673,7 +674,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void date_ValueChanged(object sender, EventArgs e)
         {
-            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+            LoadAtttendanceData(date.Value);
         }
 
         private void time_ValueChanged(object sender, EventArgs e)

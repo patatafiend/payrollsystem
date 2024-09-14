@@ -63,8 +63,8 @@ namespace payrollsystemsti.AdminTabs
 
         public void LoadPayrollData()
         {
-            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
-            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+            DateTime dateStart = Convert.ToDateTime(dtStart.Value);
+            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value);
 
             dataGridView1.Rows.Clear();
             using (SqlConnection conn = new SqlConnection(m.connStr))
