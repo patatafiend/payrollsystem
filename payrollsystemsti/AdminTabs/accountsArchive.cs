@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -8,21 +10,22 @@ namespace payrollsystemsti.AdminTabs
     {
 
         Methods m = new Methods();
+
+		int id = 0;
         public accountsArchive()
         {
             InitializeComponent();
         }
 
-        private void accountsArchive_Load(object sender, System.EventArgs e)
-        {
-            LoadData();
-        }
+       
 
         private void LoadData()
         {
-			string query = "SELECT * FROM EmployeeAccounts WHERE isDeleted = 1";
+			archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM EmployeeAccounts WHERE IsDeleted = 1";
 
-			using (SqlConnection conn = new SqlConnection(m.connStr))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
 				using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -42,49 +45,77 @@ namespace payrollsystemsti.AdminTabs
 			}
 
 
-
-
-
-
 		}
+        private void accountsArchive_Load(object sender, System.EventArgs e)
+        {
+            LoadData();
+        }
 
-		private void btnActivate_Click(object sender, System.EventArgs e)
-		{
+        private void searchfunction()
+        {
+            archives.Rows.Clear();
 
-		}
-		 private void searchfunction()
-		{
-			string query = "SELECT * FROM EmployeeAccounts WHERE isDeleted = 1 AND LastName LIKE '%" + searchbox.Text + "%' OR FirstName LIKE '%" + searchbox.Text + "%'";
+            string searchText = searchbox.Text.Trim(); // Assuming txtSearchEmployee is your textbox
 
-			using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					SqlDataAdapter sda = new SqlDataAdapter(cmd);
-					DataTable dt = new DataTable();
+            // Use parameterized query to prevent SQL injection
+            string query = "SELECT * FROM EmployeeAccounts WHERE IsDeleted = 1 AND FirstName LIKE @searchText";
 
-					sda.Fill(dt);
-					foreach (DataRow row in dt.Rows)
-					{
-						int n = archives.Rows.Add();
-						archives.SelectedRows[n].Cells["dgEmployeeID"].Value = row["EmployeeID"].ToString();
-						archives.SelectedRows[n].Cells["dgFullName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
-					}
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", "%" + searchText + "%"); // Add parameterized search text
 
-				}
-			}
-		}
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
 
-		private void tbSearch_TextChanged(object sender, System.EventArgs e)
-		{
-			archives.Rows.Clear();
-			searchfunction();
-		}
+                    sda.Fill(dt);
 
-		private void btEnter_Click(object sender, System.EventArgs e)
-		{
-			searchfunction();
-		}
-	}
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["EmployeeID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
+                    }
+                }
+            }
+        }
+
+
+        private void btnActivate_Click_1(object sender, EventArgs e)
+        {
+            m.activateAcc(id);
+			btnActivate.Enabled = false;
+			LoadData();
+
+        }
+
+        private void archives_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            btnActivate.Enabled = true;
+
+
+            id = Convert.ToInt32(archives.SelectedRows[0].Cells["dgEmployeeID"].Value.ToString());
+        }
+
+
+        private void searchbox_TextChanged(object sender, EventArgs e)
+        {
+            if (searchbox.Text.Length > 0)
+            {
+                searchfunction();
+            }
+            else
+            {
+                LoadData();
+            }
+        }
+
+        private void btnovertime_Click(object sender, EventArgs e)
+        {
+            overtimeApplication overtime = new overtimeApplication();
+            overtime.Show();
+        }
+    }
 }

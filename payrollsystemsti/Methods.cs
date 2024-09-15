@@ -849,6 +849,8 @@ namespace payrollsystemsti
             }
         }
 
+        
+
         public bool deactivateRole(int id)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -873,6 +875,32 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        public bool activateAcc(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeAccounts SET IsDeleted = @status WHERE EmployeeID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
 
         public bool deactivateDepartment(int id)
         {

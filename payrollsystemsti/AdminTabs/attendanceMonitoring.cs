@@ -31,7 +31,7 @@ namespace payrollsystemsti.AdminTabs
 
         public int loggedInEmpID;
         
-        TimeSpan startTimeAM = new TimeSpan(7, 0, 0);  // 7:00 AM
+        TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
@@ -84,25 +84,17 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        int empExist = getEmpID(fID);
-                        if(fID > 0 && empExist > 0)
+                        if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                         {
-                            if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
-                            {
-                                insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                                MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                            MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+                            LoadAtttendanceData(date.Value);
 
-                                if (checkIfLate(currentTime, currentMinute))
-                                {
-                                    insertLateToAttedance(getEmpID(fID), currentMinute);
-                                }
+                            if(checkIfLate(currentTime, currentMinute))
+                            {
+                                insertLateToAttedance(getEmpID(fID), currentMinute);
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Employee Doesnt Exist");
-                        }
-                        
                     }
                     else
                     {
@@ -188,18 +180,10 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        int empExist = getEmpID(fID);
-                        if (fID > 0 && empExist > 0)
+                        if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
                         {
-                            if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
-                            {
-                                insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                                MessageBox.Show($"check out of {getEmpName(fID)} ");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Employee Doesn't Exist");
+                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                            MessageBox.Show($"check out of {getEmpName(fID)} ");
                         }
                     }
                     else
@@ -237,9 +221,9 @@ namespace payrollsystemsti.AdminTabs
                 
                 if ((!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
                 {
-                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date) && empID != 0)
+                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date))
                     {
-                        TimeSpan timeInSpan = startTimeAM;
+                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
                         query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -633,7 +617,7 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
 
-                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = m.GetEmpName((int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgTime"].Value = row["Time"].ToString();
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
@@ -658,7 +642,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void btnMax_Click(object sender, EventArgs e)
