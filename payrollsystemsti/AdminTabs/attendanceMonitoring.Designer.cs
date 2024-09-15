@@ -32,10 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendanceMonitoring));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnTimeOUT = new System.Windows.Forms.Button();
@@ -50,6 +46,10 @@
             this.time = new System.Windows.Forms.DateTimePicker();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.loadingIndicator = new System.Windows.Forms.PictureBox();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -89,30 +89,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(911, 420);
             this.dataGridView1.TabIndex = 3;
             // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            // 
-            // dgTime
-            // 
-            this.dgTime.HeaderText = "Time";
-            this.dgTime.Name = "dgTime";
-            this.dgTime.ReadOnly = true;
-            // 
-            // dgDate
-            // 
-            this.dgDate.HeaderText = "Date";
-            this.dgDate.Name = "dgDate";
-            this.dgDate.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
             // date
             // 
             this.date.CustomFormat = "dddd, MM/dd/yyyy";
@@ -131,7 +107,7 @@
             this.btnTimeIN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimeIN.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnTimeIN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTimeIN.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimeIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeIN.ForeColor = System.Drawing.SystemColors.Control;
             this.btnTimeIN.Location = new System.Drawing.Point(49, 125);
             this.btnTimeIN.Name = "btnTimeIN";
@@ -146,7 +122,7 @@
             this.btnTimeOUT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimeOUT.BackColor = System.Drawing.Color.Red;
             this.btnTimeOUT.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTimeOUT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimeOUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeOUT.ForeColor = System.Drawing.SystemColors.Control;
             this.btnTimeOUT.Location = new System.Drawing.Point(206, 125);
             this.btnTimeOUT.Name = "btnTimeOUT";
@@ -276,6 +252,30 @@
             this.loadingIndicator.TabStop = false;
             this.loadingIndicator.Visible = false;
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee Name";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgTime
+            // 
+            this.dgTime.HeaderText = "Time";
+            this.dgTime.Name = "dgTime";
+            this.dgTime.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,12 +320,12 @@
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Button btnMax;
+        private System.Windows.Forms.DateTimePicker time;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.PictureBox loadingIndicator;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
-        private System.Windows.Forms.DateTimePicker time;
-        private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.PictureBox loadingIndicator;
     }
 }

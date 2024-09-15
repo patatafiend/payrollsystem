@@ -31,7 +31,7 @@ namespace payrollsystemsti.AdminTabs
 
         public int loggedInEmpID;
         
-        TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
+        TimeSpan startTimeAM = new TimeSpan(7, 0, 0);  // 7:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
@@ -54,10 +54,10 @@ namespace payrollsystemsti.AdminTabs
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
         {
-            ac = new ArduinoComms("COM4");
+            ac = new ArduinoComms("COM3");
             btnTimeIN.Enabled = true;
 
-            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+            LoadAtttendanceData(date.Value);
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -84,16 +84,25 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
+                        int empExist = getEmpID(fID);
+                        if(fID > 0 && empExist > 0)
                         {
-                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                            MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
-
-                            if(checkIfLate(currentTime, currentMinute))
+                            if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                             {
-                                insertLateToAttedance(getEmpID(fID), currentMinute);
+                                insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                                MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+
+                                if (checkIfLate(currentTime, currentMinute))
+                                {
+                                    insertLateToAttedance(getEmpID(fID), currentMinute);
+                                }
                             }
                         }
+                        else
+                        {
+                            MessageBox.Show("Employee Doesnt Exist");
+                        }
+                        
                     }
                     else
                     {
@@ -117,7 +126,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value.ToString());
+            LoadAtttendanceData(date.Value);
         }
 
         public bool insertLateToAttedance(int empID, float minutes)
@@ -179,10 +188,18 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
+                        int empExist = getEmpID(fID);
+                        if (fID > 0 && empExist > 0)
                         {
-                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                            MessageBox.Show($"check out of {getEmpName(fID)} ");
+                            if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
+                            {
+                                insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                                MessageBox.Show($"check out of {getEmpName(fID)} ");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Employee Doesn't Exist");
                         }
                     }
                     else
@@ -207,7 +224,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value.ToString());
+            LoadAtttendanceData(date.Value);
         }
 
         public bool insertAttendance(string date, float? timeIn, float? timeOut, int fingerID, int empID)
@@ -220,9 +237,9 @@ namespace payrollsystemsti.AdminTabs
                 
                 if ((!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
                 {
-                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date))
+                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date) && empID != 0)
                     {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
+                        TimeSpan timeInSpan = startTimeAM;
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
                         query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -597,7 +614,7 @@ namespace payrollsystemsti.AdminTabs
             
         }
 
-        public void LoadAtttendanceData(string date)
+        public void LoadAtttendanceData(DateTime date)
         {
             dataGridView1.Rows.Clear();
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -616,7 +633,7 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = dataGridView1.Rows.Add();
 
-                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = m.GetEmpName((int)row["EmployeeID"]).ToString();
                         dataGridView1.Rows[n].Cells["dgTime"].Value = row["Time"].ToString();
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
@@ -673,7 +690,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void date_ValueChanged(object sender, EventArgs e)
         {
-            LoadAtttendanceData(date.Value.Date.ToString("MM/dd/yyyy"));
+            LoadAtttendanceData(date.Value);
         }
 
         private void time_ValueChanged(object sender, EventArgs e)

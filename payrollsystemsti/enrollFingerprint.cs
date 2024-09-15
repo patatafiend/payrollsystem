@@ -37,12 +37,12 @@ namespace payrollsystemsti
         private void enrollFingerprint_Load(object sender, EventArgs e)
         {
             btnRemove.Enabled = false;
-            btnEnrollFinger.Enabled = false;
+            btnEnrollFinger.Enabled = true;
             cbFilterID.SelectedIndex = 1;
             loadingIndicator.Visible = false;
             //LoadData();
 
-            ac = new ArduinoComms("COM4");
+            ac = new ArduinoComms("COM3");
         }
 
         private bool updateFID(int fingerID, int empID)

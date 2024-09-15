@@ -18,9 +18,9 @@ namespace payrollsystemsti
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 
         //Connection String
-        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
+        //public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -35,6 +35,7 @@ namespace payrollsystemsti
                 {
                     img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     return ms.ToArray();
+
                 }
             }
 

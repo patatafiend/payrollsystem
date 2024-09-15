@@ -132,15 +132,18 @@ namespace payrollsystemsti.AdminTabs
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
 						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, 5, 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text);
+						tbMob.Text, 0, 5, 0, dateNow, cbGender.Text);
 
 					if (isInserted)
 					{
-						RegisterHistory(
-							cbDeparment.Text, cbPosition.Text, cbRole.Text, CurrentUser.Username, CurrentUser.UserID,
-							$"{tbFirstName.Text} {tbLastName.Text}", 0);
+						//RegisterHistory(
+						//	cbDeparment.Text, cbPosition.Text, cbRole.Text, CurrentUser.Username, CurrentUser.UserID,
+						//	$"{tbFirstName.Text} {tbLastName.Text}", 0);
 
-						ClearData();
+                        m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Employee Register Added");
+                        
+
+                        ClearData();
 						LoadData();
 						LoadDepartments();
 						LoadPositions();
@@ -204,36 +207,36 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-		private void RegisterHistory(string department, string position, string role, string adder, int adderID, string addedName, int addedID)
-		{
-			using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
-				string query = "INSERT INTO RegisterHistory (Department, Position, Role, Addedby, AdderID, EmployeeName, EmployeeID, time) " +
-							   "VALUES(@department, @position, @role, @adder, @adderID, @addedName, @addedID, @dateAdded)";
+		//private void RegisterHistory(string department, string position, string role, string adder, int adderID, string addedName, int addedID)
+		//{
+		//	using (SqlConnection conn = new SqlConnection(m.connStr))
+		//	{
+		//		conn.Open();
+		//		string query = "INSERT INTO RegisterHistory (Department, Position, Role, Addedby, AdderID, EmployeeName, EmployeeID, time) " +
+		//					   "VALUES(@department, @position, @role, @adder, @adderID, @addedName, @addedID, @dateAdded)";
 
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("@department", department);
-					cmd.Parameters.AddWithValue("@position", position);
-					cmd.Parameters.AddWithValue("@role", role);
-					cmd.Parameters.AddWithValue("@adder", adder);
-					cmd.Parameters.AddWithValue("@adderID", adderID);
-					cmd.Parameters.AddWithValue("@addedName", addedName);
-					cmd.Parameters.AddWithValue("@addedID", addedID); 
-					cmd.Parameters.AddWithValue("@dateAdded", DateTime.Now);
+		//		using (SqlCommand cmd = new SqlCommand(query, conn))
+		//		{
+		//			cmd.Parameters.AddWithValue("@department", department);
+		//			cmd.Parameters.AddWithValue("@position", position);
+		//			cmd.Parameters.AddWithValue("@role", role);
+		//			cmd.Parameters.AddWithValue("@adder", adder);
+		//			cmd.Parameters.AddWithValue("@adderID", adderID);
+		//			cmd.Parameters.AddWithValue("@addedName", addedName);
+		//			cmd.Parameters.AddWithValue("@addedID", addedID); 
+		//			cmd.Parameters.AddWithValue("@dateAdded", DateTime.Now);
 
-					try
-					{
-						cmd.ExecuteNonQuery();
-					}
-					catch (SqlException ex)
-					{
-						MessageBox.Show("Error inserting into Register History: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
-			}
-		}
+		//			try
+		//			{
+		//				cmd.ExecuteNonQuery();
+		//			}
+		//			catch (SqlException ex)
+		//			{
+		//				MessageBox.Show("Error inserting into Register History: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//			}
+		//		}
+		//	}
+		//}
 		private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
@@ -546,7 +549,7 @@ namespace payrollsystemsti.AdminTabs
             cbDeparment.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
             cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
-            pbEmployee.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImageData"].Value);
+            pbEmployee.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImage"].Value);
 
 
             string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
