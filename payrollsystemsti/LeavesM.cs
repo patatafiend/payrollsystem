@@ -30,10 +30,18 @@ namespace payrollsystemsti
         {
             if (!m.ifLeaveCategoryExist(tb1.Text.ToString()))
             {
-                m.insertToLeaves(tb1.Text, checkBox());
+				AddNewLeaveColumn(tb1.Text);
+
+
+				int numofLeaves = Int32.Parse(tb_numofLeaves.Text.ToString());
+				m.insertToLeaves(tb1.Text, checkBox(), numofLeaves);
 				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Added");
 				LoadLeaveCategoryData();
-                tb1.Clear();
+				tb1.Clear();
+
+                
+                
+                
             }
             else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
             {
@@ -45,7 +53,21 @@ namespace payrollsystemsti
             }
         }
 
-        private void UpdateLeave()
+		private void AddNewLeaveColumn(string columnName)
+		{
+			string query = $"ALTER TABLE LeaveTypeAvailable ADD [{columnName}] INT DEFAULT 0";
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.ExecuteNonQuery();
+				}
+			}
+		}
+
+
+		private void UpdateLeave()
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)

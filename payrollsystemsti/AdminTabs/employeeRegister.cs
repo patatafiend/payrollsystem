@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
+using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
@@ -140,6 +144,12 @@ namespace payrollsystemsti.AdminTabs
 							cbDeparment.Text, cbPosition.Text, cbRole.Text, CurrentUser.Username, CurrentUser.UserID,
 							$"{tbFirstName.Text} {tbLastName.Text}", 0);
 
+
+
+
+                        StoreUserLeaveTypeData();
+
+
 						ClearData();
 						LoadData();
 						LoadDepartments();
@@ -153,6 +163,232 @@ namespace payrollsystemsti.AdminTabs
 				}
 			}
 		}
+		private (string, int) GetCategoryNameAndLeaveDays(string tableName)
+		{
+			string categoryName = string.Empty;
+			int defaultAvailableLeaveDays = 0;
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Query to select CategoryName and DefaultAvailableLeaveDays from the specified table
+				string query = $"SELECT TOP 1 CategoryName, defaultAvailableLeaveDays FROM {tableName}";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.Read())
+				{
+					categoryName = reader["CategoryName"].ToString();
+					defaultAvailableLeaveDays = Convert.ToInt32(reader["defaultAvailableLeaveDays"]);
+				}
+
+				reader.Close();
+			}
+
+			return (categoryName, defaultAvailableLeaveDays);
+		}
+
+		private List<string> GetTableColumns(string tableName)
+		{
+			List<string> columns = new List<string>();
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Query to get the schema of the table
+				string query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					columns.Add(reader["COLUMN_NAME"].ToString());
+				}
+
+				reader.Close();
+			}
+
+			return columns;
+		}
+
+		private int GetLatestAddedEmployeeId()
+		{
+			int latestEmployeeId = -1;
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Query to get the latest added employee based on the highest ID
+				string query = "SELECT TOP 1 EmployeeID FROM EmployeeAccounts ORDER BY EmployeeID DESC";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.Read())
+				{
+					latestEmployeeId = Convert.ToInt32(reader["EmployeeID"]);
+				}
+
+				reader.Close();
+			}
+
+			return latestEmployeeId;
+		}
+
+        private void StoreLeaveCategoryData()
+        {
+            List<(string CategoryName, int DefaultAvailableLeaveDays)> leaveCategoryData = new List<(string, int)>();
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                // Query to select CategoryName and defaultAvailableLeaveDays from LeaveCategory table
+                string query = "SELECT CategoryName, defaultAvailableLeaveDays FROM LeaveCategory";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string categoryName = reader["CategoryName"].ToString();
+                    int defaultAvailableLeaveDays = Convert.ToInt32(reader["defaultAvailableLeaveDays"]);
+                    leaveCategoryData.Add((categoryName, defaultAvailableLeaveDays));
+                }
+
+                reader.Close();
+            }
+        }
+
+		
+		private List<(string CategoryName, int DefaultAvailableLeaveDays)> GetLeaveCategoryData()
+		{
+			List<(string CategoryName, int DefaultAvailableLeaveDays)> leaveCategoryData = new List<(string, int)>();
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Query to select CategoryName and defaultAvailableLeaveDays from LeaveCategory table
+				string query = "SELECT CategoryName, defaultAvailableLeaveDays FROM LeaveCategory";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					string categoryName = reader["CategoryName"].ToString();
+					int defaultAvailableLeaveDays = Convert.ToInt32(reader["defaultAvailableLeaveDays"]);
+					leaveCategoryData.Add((categoryName, defaultAvailableLeaveDays));
+				}
+
+				reader.Close();
+			}
+
+			return leaveCategoryData;
+		}
+
+		private List<string> StoreLeaveTypeAvailableColumn(string tableName)
+		{
+			List<string> columns = new List<string>();
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Query to get the schema of the table
+				string query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				int columnIndex = 0;
+				while (reader.Read())
+				{
+					if (columnIndex < 2)
+					{
+						// Skip the first two columns (assumed to be ID and EmployeeID)
+						columnIndex++;
+						continue;
+					}
+					columns.Add(reader["COLUMN_NAME"].ToString());
+					columnIndex++;
+				}
+
+				reader.Close();
+			}
+
+			return columns;
+		}
+
+		private void StoreUserLeaveTypeData()
+		{
+			int employeeId = GetLatestAddedEmployeeId();
+			if (employeeId == -1)
+			{
+				MessageBox.Show("Error retrieving the latest employee ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			List<(string CategoryName, int DefaultAvailableLeaveDays)> leaveCategoryData = GetLeaveCategoryData();
+			List<string> leaveTypeColumns = GetTableColumns("LeaveTypeAvailable");
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+
+				// Build the insert query dynamically
+				
+
+				StringBuilder queryBuilder = new StringBuilder("INSERT INTO LeaveTypeAvailable ([Employee ID]");
+				foreach (var column in leaveTypeColumns)
+				{
+					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					{
+						queryBuilder.Append($", [{column}]");
+					}
+				}
+				queryBuilder.Append(") VALUES (@EmployeeID");
+
+				foreach (var column in leaveTypeColumns)
+				{
+					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					{
+						queryBuilder.Append($", @{column.Replace(" ", "_")}");
+					}
+				}
+				queryBuilder.Append(")");
+
+				SqlCommand cmd = new SqlCommand(queryBuilder.ToString(), conn);
+				cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+
+				foreach (var column in leaveTypeColumns)
+				{
+					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					{
+						var leaveCategory = leaveCategoryData.FirstOrDefault(l => l.CategoryName == column);
+						int leaveDays = leaveCategory != default ? leaveCategory.DefaultAvailableLeaveDays : 0;
+						cmd.Parameters.AddWithValue($"@{column.Replace(" ", "_")}", leaveDays);
+					}
+				}
+
+				
+
+
+				cmd.ExecuteNonQuery();
+
+				
+
+
+
+			}
+		}
+
+
+
+
+
+
+
 
 
 
@@ -203,6 +439,8 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+
 
 		private void RegisterHistory(string department, string position, string role, string adder, int adderID, string addedName, int addedID)
 		{

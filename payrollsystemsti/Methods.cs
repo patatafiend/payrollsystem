@@ -406,16 +406,17 @@ namespace payrollsystemsti
             }
         }
 
-        public bool insertToLeaves(string title, bool hasProof)
+        public bool insertToLeaves(string title, bool hasProof, int defavailableleaves)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO LeaveCategory (CategoryName, hasProof) VALUES (@catname, @proof)";
+                string query = "INSERT INTO LeaveCategory (CategoryName, hasProof, defaultAvailableLeaveDays) VALUES (@catname, @proof, @catnumofleaves)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@catname", title);
                     cmd.Parameters.AddWithValue("@proof", hasProof);
+                    cmd.Parameters.AddWithValue("@catnumofleaves", defavailableleaves);
 
                     try
                     {

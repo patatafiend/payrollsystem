@@ -231,7 +231,7 @@ namespace payrollsystemsti.Tabs
 						
 						break;
                     case "Leaves":
-                        m.insertToLeaves(tb1.Text, checkBox());
+                        m.insertToLeaves(tb1.Text, checkBox(), Int32.Parse(tb2.Text.ToString()));
 						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Leaves");
 						LoadLeaveCategoryData();
 						

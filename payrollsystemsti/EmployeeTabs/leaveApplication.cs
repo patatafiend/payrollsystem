@@ -191,12 +191,40 @@ namespace payrollsystemsti.EmployeeTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(cbLeaves, "Please Select a Leave Category");
             }
+            else if (checkLeavePending())
+            {
+				errorProvider1.Clear();
+				errorProvider1.SetError(cbLeaves, "Please wait for approval of pending leave");
+			}
             else
             {
                 errorProvider1.Clear();
                 result = true;
             }
             return result;
+        }
+
+        private bool checkLeavePending()
+        {
+            
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				string query = "SELECT * FROM LeaveApplications WHERE EmployeeID = @empID AND Status = 'Pending'";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@empID", loggedInID);
+					SqlDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
