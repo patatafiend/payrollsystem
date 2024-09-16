@@ -18,9 +18,9 @@ namespace payrollsystemsti
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 
         //Connection String
-        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
+        //public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -35,6 +35,7 @@ namespace payrollsystemsti
                 {
                     img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     return ms.ToArray();
+
                 }
             }
 
@@ -849,6 +850,8 @@ namespace payrollsystemsti
             }
         }
 
+        
+
         public bool deactivateRole(int id)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -873,6 +876,32 @@ namespace payrollsystemsti
                 }
             }
         }
+
+        public bool activateAcc(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeAccounts SET IsDeleted = @status WHERE EmployeeID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
 
         public bool deactivateDepartment(int id)
         {

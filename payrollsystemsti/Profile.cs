@@ -24,6 +24,7 @@ namespace payrollsystemsti
         public Profile()
         {
             InitializeComponent();
+
         }
 
 

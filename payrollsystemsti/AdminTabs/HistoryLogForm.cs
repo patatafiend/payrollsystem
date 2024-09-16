@@ -22,8 +22,9 @@ namespace payrollsystemsti.AdminTabs
 		
 		private void HistoryLogForm_Load(object sender, EventArgs e)
 		{
-            // TODO: This line of code loads data into the 'stipayrolldbDataSet6.HistoryTable' table. You can move, or remove it, as needed.
-            this.historyTableTableAdapter1.Fill(this.stipayrolldbDataSet6.HistoryTable);
+            // TODO: This line of code loads data into the 'stipayrolldbDataSet8.HistoryTable' table. You can move, or remove it, as needed.
+            this.historyTableTableAdapter2.Fill(this.stipayrolldbDataSet8.HistoryTable);
+            
             SqlConnection con = new SqlConnection(m.connStr);
 			con.Open();
 			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable WHERE HistoryFrom != 'Login'", con);

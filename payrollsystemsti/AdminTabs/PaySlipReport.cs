@@ -189,11 +189,6 @@ namespace payrollsystemsti.AdminTabs
             SearchForName();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-            LoadReportBatch();
-        }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -222,6 +217,7 @@ namespace payrollsystemsti.AdminTabs
         {
             cbPayDates.Enabled = true;
             btnLoad.Enabled = true;
+            btnSingle.Enabled = false;
         }
 
         //public void SetPaySlipInfo(int empID)
