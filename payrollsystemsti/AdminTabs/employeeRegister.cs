@@ -140,14 +140,8 @@ namespace payrollsystemsti.AdminTabs
 
 					if (isInserted)
 					{
-						RegisterHistory(
-							cbDeparment.Text, cbPosition.Text, cbRole.Text, CurrentUser.Username, CurrentUser.UserID,
-							$"{tbFirstName.Text} {tbLastName.Text}", 0);
-
-
-
-
-                        StoreUserLeaveTypeData();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "New User Registered");
+						StoreUserLeaveTypeData();
 
 
 						ClearData();
@@ -172,7 +166,7 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Query to select CategoryName and DefaultAvailableLeaveDays from the specified table
+				
 				string query = $"SELECT TOP 1 CategoryName, defaultAvailableLeaveDays FROM {tableName}";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				SqlDataReader reader = cmd.ExecuteReader();
@@ -197,7 +191,7 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Query to get the schema of the table
+				
 				string query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				SqlDataReader reader = cmd.ExecuteReader();
@@ -221,7 +215,7 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Query to get the latest added employee based on the highest ID
+				
 				string query = "SELECT TOP 1 EmployeeID FROM EmployeeAccounts ORDER BY EmployeeID DESC";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				SqlDataReader reader = cmd.ExecuteReader();
@@ -245,7 +239,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 conn.Open();
 
-                // Query to select CategoryName and defaultAvailableLeaveDays from LeaveCategory table
+                
                 string query = "SELECT CategoryName, defaultAvailableLeaveDays FROM LeaveCategory";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -270,7 +264,7 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Query to select CategoryName and defaultAvailableLeaveDays from LeaveCategory table
+				
 				string query = "SELECT CategoryName, defaultAvailableLeaveDays FROM LeaveCategory";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				SqlDataReader reader = cmd.ExecuteReader();
@@ -296,7 +290,7 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Query to get the schema of the table
+				
 				string query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				SqlDataReader reader = cmd.ExecuteReader();
@@ -306,7 +300,7 @@ namespace payrollsystemsti.AdminTabs
 				{
 					if (columnIndex < 2)
 					{
-						// Skip the first two columns (assumed to be ID and EmployeeID)
+						
 						columnIndex++;
 						continue;
 					}
@@ -336,13 +330,13 @@ namespace payrollsystemsti.AdminTabs
 			{
 				conn.Open();
 
-				// Build the insert query dynamically
+				
 				
 
 				StringBuilder queryBuilder = new StringBuilder("INSERT INTO LeaveTypeAvailable ([Employee ID]");
 				foreach (var column in leaveTypeColumns)
 				{
-					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					if (column != "Employee ID" && column != "Id") 
 					{
 						queryBuilder.Append($", [{column}]");
 					}
@@ -351,7 +345,7 @@ namespace payrollsystemsti.AdminTabs
 
 				foreach (var column in leaveTypeColumns)
 				{
-					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					if (column != "Employee ID" && column != "Id") 
 					{
 						queryBuilder.Append($", @{column.Replace(" ", "_")}");
 					}
@@ -363,7 +357,7 @@ namespace payrollsystemsti.AdminTabs
 
 				foreach (var column in leaveTypeColumns)
 				{
-					if (column != "Employee ID" && column != "Id") // Exclude the identity column
+					if (column != "Employee ID" && column != "Id") 
 					{
 						var leaveCategory = leaveCategoryData.FirstOrDefault(l => l.CategoryName == column);
 						int leaveDays = leaveCategory != default ? leaveCategory.DefaultAvailableLeaveDays : 0;
@@ -392,7 +386,7 @@ namespace payrollsystemsti.AdminTabs
 
 
 
-		private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender)
+        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -423,10 +417,10 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@Absents", absents);
                     cmd.Parameters.AddWithValue("@hireddate", hdate);
                     cmd.Parameters.AddWithValue("@gender", gender);
-					
 
 
-					try
+
+                    try
                     {
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -439,39 +433,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-
-
-
-		private void RegisterHistory(string department, string position, string role, string adder, int adderID, string addedName, int addedID)
-		{
-			using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
-				string query = "INSERT INTO RegisterHistory (Department, Position, Role, Addedby, AdderID, EmployeeName, EmployeeID, time) " +
-							   "VALUES(@department, @position, @role, @adder, @adderID, @addedName, @addedID, @dateAdded)";
-
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("@department", department);
-					cmd.Parameters.AddWithValue("@position", position);
-					cmd.Parameters.AddWithValue("@role", role);
-					cmd.Parameters.AddWithValue("@adder", adder);
-					cmd.Parameters.AddWithValue("@adderID", adderID);
-					cmd.Parameters.AddWithValue("@addedName", addedName);
-					cmd.Parameters.AddWithValue("@addedID", addedID); 
-					cmd.Parameters.AddWithValue("@dateAdded", DateTime.Now);
-
-					try
-					{
-						cmd.ExecuteNonQuery();
-					}
-					catch (SqlException ex)
-					{
-						MessageBox.Show("Error inserting into Register History: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
-			}
-		}
 		private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
