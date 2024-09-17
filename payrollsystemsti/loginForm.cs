@@ -63,17 +63,23 @@ namespace payrollsystemsti
 						{
 							if (reader.Read())
 							{
-								// Set CurrentUser properties
-								Methods.CurrentUser.UserID = (int)reader["UserID"];
-								Methods.CurrentUser.Username = reader["Username"].ToString();
-								Methods.CurrentUser.FirstName = reader["FirstName"].ToString();
-								Methods.CurrentUser.LastName = reader["LastName"].ToString();
-								Methods.CurrentUser.DepartmentID = reader["DepartmentID"].ToString();
 
 								int employeeID = (int)reader["EmployeeID"];
 								int numLeaves = (int)reader["Leaves"];
 								int numAbsents = (int)reader["Absents"];
 								int totalEmployee = m.GetTotalEmployeeCount();
+
+								// Set CurrentUser properties
+								Methods.CurrentUser.UserID = (int)reader["UserID"];
+								Methods.CurrentUser.EmployeeID = (int)reader["EmployeeID"];
+								Methods.CurrentUser.Username = reader["Username"].ToString();
+								Methods.CurrentUser.FirstName = reader["FirstName"].ToString();
+								Methods.CurrentUser.LastName = reader["LastName"].ToString();
+								Methods.CurrentUser.DepartmentID = reader["DepartmentID"].ToString();
+								
+
+
+								
 
 								int roleID = (int)reader["RoleID"];
 								string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);

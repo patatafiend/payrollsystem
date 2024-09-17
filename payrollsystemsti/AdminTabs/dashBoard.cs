@@ -9,29 +9,30 @@ using System.Windows.Forms;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Data;
 
 namespace payrollsystemsti
 {
-    public partial class dashBoard : Form
-    {
+	public partial class dashBoard : Form
+	{
 
-        List<Control> panels;
-        List<Control> buttons;
-        List<Control> textboxes;
-        List<Control> label;
+		List<Control> panels;
+		List<Control> buttons;
+		List<Control> textboxes;
+		List<Control> label;
 
-        Methods m = new Methods();
+		Methods m = new Methods();
 
-        
-        private leaveApplication leaveApplication;
-        private departmentList DepartmentList;
-        public static dashBoard dashboardInstance;
-        public PictureBox pbGetImageUser;
-        public Label lbGetName;
-        public Label lbGetDepartment;
-        public Label lbEmpID;
-        public Label lbLeaves;
-        public Label lbAbsents;
+
+		private leaveApplication leaveApplication;
+		private departmentList DepartmentList;
+		public static dashBoard dashboardInstance;
+		public PictureBox pbGetImageUser;
+		public Label lbGetName;
+		public Label lbGetDepartment;
+		public Label lbEmpID;
+		public Label lbLeaves;
+		public Label lbAbsents;
 		public Label lbPanelName1;
 		public Label lbPhone;
 		public Label lbEmail;
@@ -39,20 +40,20 @@ namespace payrollsystemsti
 		public Label lbEmpName;
 
 		public static Boolean isClickable;
-        private Color gradientBottomColor;
-        private Color gradientAngle;
+		private Color gradientBottomColor;
+		private Color gradientAngle;
 
-        public PointF GradientTopColor { get; private set; }
+		public PointF GradientTopColor { get; private set; }
 
-        public dashBoard()
-        {
-            InitializeComponent();
-            InitializeEventHandlers();
-            dashboardInstance = this;
-            pbGetImageUser = pbCurrentUser;
-            lbGetName = lbWelcome;
+		public dashBoard()
+		{
+			InitializeComponent();
+			InitializeEventHandlers();
+			dashboardInstance = this;
+			pbGetImageUser = pbCurrentUser;
+			lbGetName = lbWelcome;
 			lbGetDepartment = lb_curDepartment;
-            lbEmpID = lbEmployeeID;
+			lbEmpID = lbEmployeeID;
 			lbLeaves = lb_Total_Leaves;
 			lbAbsents = lb_absents;
 			lbPanelName1 = lb_TotalLeaves;
@@ -65,10 +66,7 @@ namespace payrollsystemsti
 
 		private void dashBoard_Load(object sender, EventArgs e)
 		{
-            // TODO: This line of code loads data into the 'stipayrolldbDataSet7.Notifications' table. You can move, or remove it, as needed.
-            this.notificationsTableAdapter2.Fill(this.stipayrolldbDataSet7.Notifications);
-            
-           
+			findCurrentUserNotifications();
 		}
 
 		public Panel GetEmployeePanel()
@@ -76,34 +74,34 @@ namespace payrollsystemsti
 			return pnl_Employee;
 		}
 
-        public Label GetEmployeeLabel()
+		public Label GetEmployeeLabel()
 		{
 			return lb_Total_Leaves;
 		}
 
-        public Label GetTotalLabel()
-        {
-            return lb_TotalLeaves;
-        }
+		public Label GetTotalLabel()
+		{
+			return lb_TotalLeaves;
+		}
 
 		private void InitializeEventHandlers()
-        {
-            pnl_Employee.Click += Pnl_Employee_Click;
-            pnl_Department.Click += Pnl_Department_Click;
-        }
+		{
+			pnl_Employee.Click += Pnl_Employee_Click;
+			pnl_Department.Click += Pnl_Department_Click;
+		}
 
-        private void Pnl_leave_Click(object sender, EventArgs e) //Leave Application
-        {
-            leaveApplication = new leaveApplication();
-            leaveApplication.ShowDialog();
-        }
+		private void Pnl_leave_Click(object sender, EventArgs e) //Leave Application
+		{
+			leaveApplication = new leaveApplication();
+			leaveApplication.ShowDialog();
+		}
 
-        //employee list
-        private void Pnl_Employee_Click(object sender, EventArgs e)
-        {
-			
+		//employee list
+		private void Pnl_Employee_Click(object sender, EventArgs e)
+		{
+
 			if (isClickable)
-            {
+			{
 				var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
 
 				if (employeeListForm == null)
@@ -120,15 +118,15 @@ namespace payrollsystemsti
 				}
 
 				employeeListForm.BringToFront();
-            }
+			}
 		}
 
 		//department list
 
 		private void Pnl_Department_Click(object sender, EventArgs e)
-        {
-            if (isClickable)
-            {
+		{
+			if (isClickable)
+			{
 				var departmentListForm = formDashboard.Instance.PnlContainer.Controls.OfType<departmentList>().FirstOrDefault();
 
 				if (departmentListForm == null)
@@ -148,11 +146,45 @@ namespace payrollsystemsti
 			}
 		}
 
-        private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DepartmentList = null;
-        }
-    }
+		private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			DepartmentList = null;
+		}
 
-    }
+		private void findCurrentUserNotifications()
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				try
+				{
+					conn.Open();
+					string query = "SELECT NotificationID, NotificationMessage, Date FROM Notifications WHERE EmployeeID = @EmployeeID";
+					SqlCommand cmd = new SqlCommand(query, conn);
+					cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(Methods.CurrentUser.EmployeeID));
+
+					SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+					DataTable notificationsTable = new DataTable();
+					adapter.Fill(notificationsTable);
+
+					//load data
+					dgv_Mdashboardnotif.DataSource = notificationsTable;
+
+					//update the notification number
+					lb_notification_num.Text = notificationsTable.Rows.Count.ToString();
+
+
+					lb_notification_num.Text = notificationsTable.Rows.Count.ToString();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("An error occurred: " + ex.Message);
+				}
+				finally
+				{
+					conn.Close();
+				}
+			}
+		}
+	}
+}
 
