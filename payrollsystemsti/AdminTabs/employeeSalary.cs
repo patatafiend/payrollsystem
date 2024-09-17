@@ -193,6 +193,25 @@ namespace payrollsystemsti.AdminTabs
             totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
             totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
+            tbBasic.Text = basicRate.ToString();
+            basicSalary = calBasicSalary(basicRate, totalHoursW);
+            overtimePay = calOvertimePay(totalOvertime, basicRate);
+
+            tbBasic.Text = basicSalary.ToString();
+            tbOT.Text = overtimePay.ToString();
+            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+            
+
+            tbIncentives.Text = "0";
+            tbAdjustment.Text = "0";
+            tbRegularH.Text = "0";
+            tbSpecialH.Text = "0";
+            tbSSS.Text = "0";
+            
+            setAllowance(empID);
+            setOthers(empID);
+            
+            
             btnCompute.Enabled = true;
         }
 
@@ -231,13 +250,6 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
-            basicSalary = calBasicSalary(basicRate, totalHoursW);
-            overtimePay = calOvertimePay(totalOvertime, basicRate);
-
-            tbBasic.Text = basicSalary.ToString();
-            tbOT.Text = overtimePay.ToString();
-            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
-
             ComputePayroll();
         }
 
@@ -248,7 +260,15 @@ namespace payrollsystemsti.AdminTabs
                 overtimePay, Convert.ToDouble(tbRegularH.Text), Convert.ToDouble(tbSpecialH.Text),
                 Convert.ToDouble(tbAdjustment.Text));
 
-            tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+            if(dtEnd.Value.Day == 12)
+            {
+                tbSSS.Text = "0";
+            }
+            else
+            {
+                tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+            }
+
             btnCompute.Enabled = false;
             btnSave.Enabled = true;
 			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Payroll Computed");
