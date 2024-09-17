@@ -745,7 +745,7 @@ namespace payrollsystemsti.AdminTabs
             cbDeparment.Text = dataGridView1.SelectedRows[0].Cells["dgDepartment"].Value.ToString();
             cbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
             tbBasicRate.Text = dataGridView1.SelectedRows[0].Cells["dgBasicRate"].Value.ToString();
-            pbEmployee.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImageData"].Value);
+            pbEmployee.Image = m.ConvertToImage((byte[])dataGridView1.SelectedRows[0].Cells["dgImage"].Value);
 
 
             string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
