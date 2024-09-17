@@ -1425,8 +1425,8 @@ namespace payrollsystemsti
             public static string FirstName { get; set; }
             public static string LastName { get; set; }
             public static string Username { get; set; }
-
             public static string DepartmentID { get; set; }
+            public static int EmployeeID { get; set; }
 
 
         }
