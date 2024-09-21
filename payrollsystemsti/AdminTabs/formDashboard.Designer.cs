@@ -92,7 +92,6 @@
 			this.settings = new System.Windows.Forms.Button();
 			this.logoutPnl = new System.Windows.Forms.Panel();
 			this.button6 = new System.Windows.Forms.Button();
-			this.panelContainer = new System.Windows.Forms.Panel();
 			this.mtransition = new System.Windows.Forms.Timer(this.components);
 			this.header.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -960,16 +959,6 @@
 			this.button6.UseVisualStyleBackColor = false;
 			this.button6.Click += new System.EventHandler(this.btnLogout);
 			// 
-			// panelContainer
-			// 
-			this.panelContainer.BackColor = System.Drawing.Color.White;
-			this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelContainer.Location = new System.Drawing.Point(236, 81);
-			this.panelContainer.Name = "panelContainer";
-			this.panelContainer.Size = new System.Drawing.Size(1014, 659);
-			this.panelContainer.TabIndex = 5;
-			this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
-			// 
 			// mtransition
 			// 
 			this.mtransition.Interval = 10;
@@ -982,7 +971,6 @@
 			this.AutoSize = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
 			this.ClientSize = new System.Drawing.Size(1250, 740);
-			this.Controls.Add(this.panelContainer);
 			this.Controls.Add(this.sideBar);
 			this.Controls.Add(this.header);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1062,7 +1050,6 @@
         private System.Windows.Forms.Button btnMax;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Button btnClose;
-		private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Panel leaveManagementPnl;
         private System.Windows.Forms.Button btnLM;
         private System.Windows.Forms.Panel AccountArchivePnl;
