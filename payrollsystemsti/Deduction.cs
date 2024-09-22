@@ -48,22 +48,11 @@ namespace payrollsystemsti
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (!m.ifDeductionExist(tb1.Text.ToString()))
-                {
-                    m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
-					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction Edit");
-					LoadDeductionData();
-                    tb1.Clear();
-                    tb2.Clear();
-                }
-                else if (m.ifDeductionExist(tb1.Text.ToString()))
-                {
-                    MessageBox.Show("Deduction already exists");
-                }
-                else
-                {
-                    MessageBox.Show("Unknown Error");
-                }
+                m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
+                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction Edit");
+                LoadDeductionData();
+                tb1.Clear();
+                tb2.Clear();
             }
             else
             {
