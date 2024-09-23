@@ -3,26 +3,21 @@ using payrollsystemsti.EmployeeTabs;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Data;
+using System.Collections.Generic;
 
 namespace payrollsystemsti
 {
 	public partial class dashBoard : Form
 	{
-
 		List<Control> panels;
 		List<Control> buttons;
 		List<Control> textboxes;
 		List<Control> label;
 
 		Methods m = new Methods();
-
 
 		private leaveApplication leaveApplication;
 		private departmentList DepartmentList;
@@ -45,6 +40,8 @@ namespace payrollsystemsti
 
 		public PointF GradientTopColor { get; private set; }
 
+		
+
 		public dashBoard()
 		{
 			InitializeComponent();
@@ -52,42 +49,33 @@ namespace payrollsystemsti
 			dashboardInstance = this;
 			pbGetImageUser = pbCurrentUser;
 			lbGetName = lbWelcome;
-			lbGetDepartment = lb_curDepartment;
+			lbGetDepartment = lb_curDepartment_name;
 			lbEmpID = lbEmployeeID;
 			lbLeaves = lb_Total_Leaves;
-			lbAbsents = lb_absents;
+			lbAbsents = lb_absents_num;
 			lbPanelName1 = lb_TotalLeaves;
 			lbPhone = lb_EmpPhoNum;
 			lbEmail = lb_EmpEmail;
 			lbposition = lb_EmpPosition;
 			lbEmpName = lb_EmpName;
 
+			
 		}
 
 		private void dashBoard_Load(object sender, EventArgs e)
 		{
 			findCurrentUserNotifications();
-		}
 
-		public Panel GetEmployeePanel()
-		{
-			return pnl_Employee;
-		}
+			lb_EmpPhoNum.Text = "Phone No.: "+ Methods.CurrentUser.EmployeeNumber.ToString();
+			lb_EmpEmail.Text = "Email address: " + Methods.CurrentUser.EmailAddress.ToString();
+			lbEmployeeID.Text = "EmployeeID: " + Methods.CurrentUser.EmployeeID.ToString();
+			lb_EmpPosition.Text = "Position: " + Methods.CurrentUser.employeePosition.ToString();
 
-		public Label GetEmployeeLabel()
-		{
-			return lb_Total_Leaves;
-		}
 
-		public Label GetTotalLabel()
-		{
-			return lb_TotalLeaves;
 		}
-
 		private void InitializeEventHandlers()
 		{
-			pnl_Employee.Click += Pnl_Employee_Click;
-			pnl_Department.Click += Pnl_Department_Click;
+			
 		}
 
 		private void Pnl_leave_Click(object sender, EventArgs e) //Leave Application
@@ -96,61 +84,56 @@ namespace payrollsystemsti
 			leaveApplication.ShowDialog();
 		}
 
-		//employee list
-		private void Pnl_Employee_Click(object sender, EventArgs e)
-		{
-
-			//if (isClickable)
-			//{
-			//	var employeeListForm = formDashboard.Instance.PnlContainer.Controls.OfType<employeeList>().FirstOrDefault();
-
-			//	if (employeeListForm == null)
-			//	{
-			//		employeeListForm = new employeeList()
-			//		{
-			//			Dock = DockStyle.Fill,
-			//			Name = "employeeList",
-			//			TopLevel = false,
-
-			//		};
-			//		formDashboard.Instance.PnlContainer.Controls.Add(employeeListForm);
-			//		employeeListForm.Show();
-			//	}
-
-			//	employeeListForm.BringToFront();
-			//}
-		}
-
-		//department list
-
-		private void Pnl_Department_Click(object sender, EventArgs e)
-		{
-			//if (isClickable)
-			//{
-			//	var departmentListForm = formDashboard.Instance.PnlContainer.Controls.OfType<departmentList>().FirstOrDefault();
-
-			//	if (departmentListForm == null)
-			//	{
-			//		departmentListForm = new departmentList()
-			//		{
-			//			Dock = DockStyle.Fill,
-			//			Name = "departmentList",
-			//			TopLevel = false,
-
-			//		};
-			//		formDashboard.Instance.PnlContainer.Controls.Add(departmentListForm);
-			//		departmentListForm.Show();
-			//	}
-
-			//	departmentListForm.BringToFront();
-			//}
-		}
+		
 
 		private void DepartmentList_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			DepartmentList = null;
 		}
 
+		//notification panel
+		private void pnl_notification_DoubleClick(object sender, EventArgs e)
+		{
+
+			MessageBox.Show("Double Clicked notification");
+
+		}
+
+		//roles panel
+		private void pnl_roles_DoubleClick(object sender, EventArgs e)
+		{
+
+			manageRoles roles = new manageRoles();
+			roles.Show();
+		}
+		//department panel
+		private void pnl_Department_DoubleClick(object sender, EventArgs e)
+		{
+			departmentList departmentList = new departmentList();
+			departmentList.Show();
+		}
+
+		//employee panel
+		private void pnl_totalEmployee_DoubleClick(object sender, EventArgs e)
+		{
+			employeeList employeeList = new employeeList();
+			employeeList.Show();
+		}
+
+		//absent panel
+		private void pnl_totalAbsent_DoubleClick(object sender, EventArgs e)
+		{
+			MessageBox.Show("Double Clicked absent");
+		}
+
+		//leave panel
+		private void pnl_totalLeaves_DoubleClick(object sender, EventArgs e)
+		{
+			MessageBox.Show("Double Clicked leave");
+		}
+
+
+		//total notification current user
 		private void findCurrentUserNotifications()
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -172,7 +155,6 @@ namespace payrollsystemsti
 					//update the notification number
 					lb_notification_num.Text = notificationsTable.Rows.Count.ToString();
 
-
 					lb_notification_num.Text = notificationsTable.Rows.Count.ToString();
 				}
 				catch (Exception ex)
@@ -185,6 +167,7 @@ namespace payrollsystemsti
 				}
 			}
 		}
+
+		
 	}
 }
-

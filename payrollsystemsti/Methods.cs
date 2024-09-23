@@ -18,9 +18,9 @@ namespace payrollsystemsti
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 
         //Connection String
-        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        //public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
+        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -1421,12 +1421,20 @@ namespace payrollsystemsti
 
         public static class CurrentUser
         {
-            public static int UserID { get; set; }
+            
             public static string FirstName { get; set; }
             public static string LastName { get; set; }
             public static string Username { get; set; }
             public static string DepartmentID { get; set; }
-            public static int EmployeeID { get; set; }
+            public static string EmailAddress { get; set; }
+			public static string EmployeeNumber { get; set; }
+
+			public static int employeePosition { get; set; }
+			public static int UserID { get; set; }
+			public static int EmployeeID { get; set; }
+            
+
+            
 
 
         }

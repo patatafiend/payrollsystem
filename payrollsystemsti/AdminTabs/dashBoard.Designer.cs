@@ -41,41 +41,41 @@
 			this.lb_EmpName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.dgv_Mdashboardnotif = new System.Windows.Forms.DataGridView();
-			this.notificationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-			this.stipayrolldbDataSet7 = new payrollsystemsti.stipayrolldbDataSet7();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
+			this.notificationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+			this.stipayrolldbDataSet7 = new payrollsystemsti.stipayrolldbDataSet7();
 			this.notificationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.stipayrolldbDataSet5 = new payrollsystemsti.stipayrolldbDataSet5();
 			this.notificationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet1();
-			this.lb_absents = new System.Windows.Forms.Label();
+			this.lb_absents_num = new System.Windows.Forms.Label();
 			this.pnl_Department = new System.Windows.Forms.Panel();
-			this.lb_curDepartment = new System.Windows.Forms.Label();
+			this.lb_curDepartment_name = new System.Windows.Forms.Label();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.lb_currentDepartment = new System.Windows.Forms.Label();
 			this.notifContainer = new System.Windows.Forms.Panel();
 			this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
 			this.lb_Total_Leaves = new System.Windows.Forms.Label();
 			this.lb_TotalLeaves = new System.Windows.Forms.Label();
-			this.pnl_Employee = new System.Windows.Forms.Panel();
+			this.pnl_totalLeaves = new System.Windows.Forms.Panel();
 			this.pb_PaidLeaves = new System.Windows.Forms.PictureBox();
-			this.panel5 = new System.Windows.Forms.Panel();
-			this.label6 = new System.Windows.Forms.Label();
+			this.pnl_roles = new System.Windows.Forms.Panel();
+			this.lb_roles_name = new System.Windows.Forms.Label();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.panel4 = new System.Windows.Forms.Panel();
+			this.lb_roles = new System.Windows.Forms.Label();
+			this.pnl_totalAbsent = new System.Windows.Forms.Panel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.lb_totalAbsents = new System.Windows.Forms.Label();
 			this.pnl_notification = new System.Windows.Forms.Panel();
 			this.lb_notification_num = new System.Windows.Forms.Label();
 			this.pictureBox5 = new System.Windows.Forms.PictureBox();
 			this.lb_notification = new System.Windows.Forms.Label();
-			this.panel7 = new System.Windows.Forms.Panel();
+			this.pnl_totalEmployee = new System.Windows.Forms.Panel();
 			this.pictureBox7 = new System.Windows.Forms.PictureBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
+			this.lb_totalEmployee_num = new System.Windows.Forms.Label();
+			this.lb_totalEmployee = new System.Windows.Forms.Label();
 			this.stipayrolldbDataSet = new payrollsystemsti.stipayrolldbDataSet();
 			this.stipayrolldbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.stipayrolldbDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -86,9 +86,9 @@
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).BeginInit();
@@ -96,15 +96,15 @@
 			this.pnl_Department.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.notifContainer.SuspendLayout();
-			this.pnl_Employee.SuspendLayout();
+			this.pnl_totalLeaves.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pb_PaidLeaves)).BeginInit();
-			this.panel5.SuspendLayout();
+			this.pnl_roles.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-			this.panel4.SuspendLayout();
+			this.pnl_totalAbsent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.pnl_notification.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-			this.panel7.SuspendLayout();
+			this.pnl_totalEmployee.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).BeginInit();
@@ -231,16 +231,6 @@
 			this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(220, 265);
 			this.dgv_Mdashboardnotif.TabIndex = 0;
 			// 
-			// notificationsBindingSource2
-			// 
-			this.notificationsBindingSource2.DataMember = "Notifications";
-			this.notificationsBindingSource2.DataSource = this.stipayrolldbDataSet7;
-			// 
-			// stipayrolldbDataSet7
-			// 
-			this.stipayrolldbDataSet7.DataSetName = "stipayrolldbDataSet7";
-			this.stipayrolldbDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// lbEmployeeID
 			// 
 			this.lbEmployeeID.AutoSize = true;
@@ -274,6 +264,16 @@
 			this.pbCurrentUser.TabIndex = 3;
 			this.pbCurrentUser.TabStop = false;
 			// 
+			// notificationsBindingSource2
+			// 
+			this.notificationsBindingSource2.DataMember = "Notifications";
+			this.notificationsBindingSource2.DataSource = this.stipayrolldbDataSet7;
+			// 
+			// stipayrolldbDataSet7
+			// 
+			this.stipayrolldbDataSet7.DataSetName = "stipayrolldbDataSet7";
+			this.stipayrolldbDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
 			// notificationsBindingSource1
 			// 
 			this.notificationsBindingSource1.DataMember = "Notifications";
@@ -294,38 +294,39 @@
 			this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet1";
 			this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
-			// lb_absents
+			// lb_absents_num
 			// 
-			this.lb_absents.AutoSize = true;
-			this.lb_absents.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_absents.Location = new System.Drawing.Point(70, 35);
-			this.lb_absents.Name = "lb_absents";
-			this.lb_absents.Size = new System.Drawing.Size(22, 23);
-			this.lb_absents.TabIndex = 7;
-			this.lb_absents.Text = "5";
+			this.lb_absents_num.AutoSize = true;
+			this.lb_absents_num.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_absents_num.Location = new System.Drawing.Point(70, 35);
+			this.lb_absents_num.Name = "lb_absents_num";
+			this.lb_absents_num.Size = new System.Drawing.Size(22, 23);
+			this.lb_absents_num.TabIndex = 7;
+			this.lb_absents_num.Text = "5";
 			// 
 			// pnl_Department
 			// 
 			this.pnl_Department.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(225)))), ((int)(((byte)(228)))));
-			this.pnl_Department.Controls.Add(this.lb_curDepartment);
+			this.pnl_Department.Controls.Add(this.lb_curDepartment_name);
 			this.pnl_Department.Controls.Add(this.pictureBox2);
-			this.pnl_Department.Controls.Add(this.label5);
+			this.pnl_Department.Controls.Add(this.lb_currentDepartment);
 			this.pnl_Department.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pnl_Department.Location = new System.Drawing.Point(258, 140);
 			this.pnl_Department.Name = "pnl_Department";
 			this.pnl_Department.Size = new System.Drawing.Size(203, 79);
 			this.pnl_Department.TabIndex = 4;
+			this.pnl_Department.DoubleClick += new System.EventHandler(this.pnl_Department_DoubleClick);
 			// 
-			// lb_curDepartment
+			// lb_curDepartment_name
 			// 
-			this.lb_curDepartment.AutoSize = true;
-			this.lb_curDepartment.BackColor = System.Drawing.Color.Transparent;
-			this.lb_curDepartment.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_curDepartment.Location = new System.Drawing.Point(75, 35);
-			this.lb_curDepartment.Name = "lb_curDepartment";
-			this.lb_curDepartment.Size = new System.Drawing.Size(107, 19);
-			this.lb_curDepartment.TabIndex = 1;
-			this.lb_curDepartment.Text = "Department";
+			this.lb_curDepartment_name.AutoSize = true;
+			this.lb_curDepartment_name.BackColor = System.Drawing.Color.Transparent;
+			this.lb_curDepartment_name.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_curDepartment_name.Location = new System.Drawing.Point(75, 35);
+			this.lb_curDepartment_name.Name = "lb_curDepartment_name";
+			this.lb_curDepartment_name.Size = new System.Drawing.Size(107, 19);
+			this.lb_curDepartment_name.TabIndex = 1;
+			this.lb_curDepartment_name.Text = "Department";
 			// 
 			// pictureBox2
 			// 
@@ -337,17 +338,17 @@
 			this.pictureBox2.TabIndex = 2;
 			this.pictureBox2.TabStop = false;
 			// 
-			// label5
+			// lb_currentDepartment
 			// 
-			this.label5.AutoSize = true;
-			this.label5.BackColor = System.Drawing.Color.Transparent;
-			this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label5.Location = new System.Drawing.Point(75, 13);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(121, 16);
-			this.label5.TabIndex = 3;
-			this.label5.Text = "Current Department";
+			this.lb_currentDepartment.AutoSize = true;
+			this.lb_currentDepartment.BackColor = System.Drawing.Color.Transparent;
+			this.lb_currentDepartment.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_currentDepartment.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.lb_currentDepartment.Location = new System.Drawing.Point(75, 13);
+			this.lb_currentDepartment.Name = "lb_currentDepartment";
+			this.lb_currentDepartment.Size = new System.Drawing.Size(121, 16);
+			this.lb_currentDepartment.TabIndex = 3;
+			this.lb_currentDepartment.Text = "Current Department";
 			// 
 			// notifContainer
 			// 
@@ -387,17 +388,18 @@
 			this.lb_TotalLeaves.TabIndex = 3;
 			this.lb_TotalLeaves.Text = "Total of paid leaves";
 			// 
-			// pnl_Employee
+			// pnl_totalLeaves
 			// 
-			this.pnl_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(220)))), ((int)(((byte)(210)))));
-			this.pnl_Employee.Controls.Add(this.pb_PaidLeaves);
-			this.pnl_Employee.Controls.Add(this.lb_TotalLeaves);
-			this.pnl_Employee.Controls.Add(this.lb_Total_Leaves);
-			this.pnl_Employee.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pnl_Employee.Location = new System.Drawing.Point(258, 225);
-			this.pnl_Employee.Name = "pnl_Employee";
-			this.pnl_Employee.Size = new System.Drawing.Size(203, 79);
-			this.pnl_Employee.TabIndex = 1;
+			this.pnl_totalLeaves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(220)))), ((int)(((byte)(210)))));
+			this.pnl_totalLeaves.Controls.Add(this.pb_PaidLeaves);
+			this.pnl_totalLeaves.Controls.Add(this.lb_TotalLeaves);
+			this.pnl_totalLeaves.Controls.Add(this.lb_Total_Leaves);
+			this.pnl_totalLeaves.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pnl_totalLeaves.Location = new System.Drawing.Point(258, 225);
+			this.pnl_totalLeaves.Name = "pnl_totalLeaves";
+			this.pnl_totalLeaves.Size = new System.Drawing.Size(203, 79);
+			this.pnl_totalLeaves.TabIndex = 1;
+			this.pnl_totalLeaves.DoubleClick += new System.EventHandler(this.pnl_totalLeaves_DoubleClick);
 			// 
 			// pb_PaidLeaves
 			// 
@@ -409,28 +411,29 @@
 			this.pb_PaidLeaves.TabIndex = 6;
 			this.pb_PaidLeaves.TabStop = false;
 			// 
-			// panel5
+			// pnl_roles
 			// 
-			this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(223)))), ((int)(((byte)(245)))));
-			this.panel5.Controls.Add(this.label6);
-			this.panel5.Controls.Add(this.pictureBox4);
-			this.panel5.Controls.Add(this.label4);
-			this.panel5.Location = new System.Drawing.Point(49, 140);
-			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(203, 79);
-			this.panel5.TabIndex = 8;
+			this.pnl_roles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(223)))), ((int)(((byte)(245)))));
+			this.pnl_roles.Controls.Add(this.lb_roles_name);
+			this.pnl_roles.Controls.Add(this.pictureBox4);
+			this.pnl_roles.Controls.Add(this.lb_roles);
+			this.pnl_roles.Location = new System.Drawing.Point(49, 140);
+			this.pnl_roles.Name = "pnl_roles";
+			this.pnl_roles.Size = new System.Drawing.Size(203, 79);
+			this.pnl_roles.TabIndex = 8;
+			this.pnl_roles.DoubleClick += new System.EventHandler(this.pnl_roles_DoubleClick);
 			// 
-			// label6
+			// lb_roles_name
 			// 
-			this.label6.AutoSize = true;
-			this.label6.BackColor = System.Drawing.Color.Transparent;
-			this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.label6.Location = new System.Drawing.Point(70, 35);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(63, 23);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Roles";
+			this.lb_roles_name.AutoSize = true;
+			this.lb_roles_name.BackColor = System.Drawing.Color.Transparent;
+			this.lb_roles_name.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_roles_name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.lb_roles_name.Location = new System.Drawing.Point(70, 35);
+			this.lb_roles_name.Name = "lb_roles_name";
+			this.lb_roles_name.Size = new System.Drawing.Size(63, 23);
+			this.lb_roles_name.TabIndex = 5;
+			this.lb_roles_name.Text = "Roles";
 			// 
 			// pictureBox4
 			// 
@@ -442,28 +445,29 @@
 			this.pictureBox4.TabIndex = 4;
 			this.pictureBox4.TabStop = false;
 			// 
-			// label4
+			// lb_roles
 			// 
-			this.label4.AutoSize = true;
-			this.label4.BackColor = System.Drawing.Color.Transparent;
-			this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label4.Location = new System.Drawing.Point(70, 13);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(38, 16);
-			this.label4.TabIndex = 4;
-			this.label4.Text = "Roles";
+			this.lb_roles.AutoSize = true;
+			this.lb_roles.BackColor = System.Drawing.Color.Transparent;
+			this.lb_roles.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_roles.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.lb_roles.Location = new System.Drawing.Point(70, 13);
+			this.lb_roles.Name = "lb_roles";
+			this.lb_roles.Size = new System.Drawing.Size(38, 16);
+			this.lb_roles.TabIndex = 4;
+			this.lb_roles.Text = "Roles";
 			// 
-			// panel4
+			// pnl_totalAbsent
 			// 
-			this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(237)))), ((int)(((byte)(234)))));
-			this.panel4.Controls.Add(this.pictureBox3);
-			this.panel4.Controls.Add(this.label7);
-			this.panel4.Controls.Add(this.lb_absents);
-			this.panel4.Location = new System.Drawing.Point(49, 225);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(203, 79);
-			this.panel4.TabIndex = 9;
+			this.pnl_totalAbsent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(237)))), ((int)(((byte)(234)))));
+			this.pnl_totalAbsent.Controls.Add(this.pictureBox3);
+			this.pnl_totalAbsent.Controls.Add(this.lb_totalAbsents);
+			this.pnl_totalAbsent.Controls.Add(this.lb_absents_num);
+			this.pnl_totalAbsent.Location = new System.Drawing.Point(49, 225);
+			this.pnl_totalAbsent.Name = "pnl_totalAbsent";
+			this.pnl_totalAbsent.Size = new System.Drawing.Size(203, 79);
+			this.pnl_totalAbsent.TabIndex = 9;
+			this.pnl_totalAbsent.DoubleClick += new System.EventHandler(this.pnl_totalAbsent_DoubleClick);
 			// 
 			// pictureBox3
 			// 
@@ -475,17 +479,17 @@
 			this.pictureBox3.TabIndex = 4;
 			this.pictureBox3.TabStop = false;
 			// 
-			// label7
+			// lb_totalAbsents
 			// 
-			this.label7.AutoSize = true;
-			this.label7.BackColor = System.Drawing.Color.Transparent;
-			this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label7.Location = new System.Drawing.Point(70, 13);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(79, 16);
-			this.label7.TabIndex = 4;
-			this.label7.Text = "Total Absent";
+			this.lb_totalAbsents.AutoSize = true;
+			this.lb_totalAbsents.BackColor = System.Drawing.Color.Transparent;
+			this.lb_totalAbsents.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_totalAbsents.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.lb_totalAbsents.Location = new System.Drawing.Point(70, 13);
+			this.lb_totalAbsents.Name = "lb_totalAbsents";
+			this.lb_totalAbsents.Size = new System.Drawing.Size(79, 16);
+			this.lb_totalAbsents.TabIndex = 4;
+			this.lb_totalAbsents.Text = "Total Absent";
 			// 
 			// pnl_notification
 			// 
@@ -497,6 +501,7 @@
 			this.pnl_notification.Name = "pnl_notification";
 			this.pnl_notification.Size = new System.Drawing.Size(203, 79);
 			this.pnl_notification.TabIndex = 10;
+			this.pnl_notification.DoubleClick += new System.EventHandler(this.pnl_notification_DoubleClick);
 			// 
 			// lb_notification_num
 			// 
@@ -532,16 +537,17 @@
 			this.lb_notification.TabIndex = 4;
 			this.lb_notification.Text = "Notification";
 			// 
-			// panel7
+			// pnl_totalEmployee
 			// 
-			this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(244)))), ((int)(((byte)(221)))));
-			this.panel7.Controls.Add(this.pictureBox7);
-			this.panel7.Controls.Add(this.label1);
-			this.panel7.Controls.Add(this.label10);
-			this.panel7.Location = new System.Drawing.Point(467, 140);
-			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(203, 79);
-			this.panel7.TabIndex = 9;
+			this.pnl_totalEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(244)))), ((int)(((byte)(221)))));
+			this.pnl_totalEmployee.Controls.Add(this.pictureBox7);
+			this.pnl_totalEmployee.Controls.Add(this.lb_totalEmployee_num);
+			this.pnl_totalEmployee.Controls.Add(this.lb_totalEmployee);
+			this.pnl_totalEmployee.Location = new System.Drawing.Point(467, 140);
+			this.pnl_totalEmployee.Name = "pnl_totalEmployee";
+			this.pnl_totalEmployee.Size = new System.Drawing.Size(203, 79);
+			this.pnl_totalEmployee.TabIndex = 9;
+			this.pnl_totalEmployee.DoubleClick += new System.EventHandler(this.pnl_totalEmployee_DoubleClick);
 			// 
 			// pictureBox7
 			// 
@@ -553,29 +559,29 @@
 			this.pictureBox7.TabIndex = 4;
 			this.pictureBox7.TabStop = false;
 			// 
-			// label1
+			// lb_totalEmployee_num
 			// 
-			this.label1.AutoSize = true;
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.label1.Location = new System.Drawing.Point(100, 35);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(46, 23);
-			this.label1.TabIndex = 5;
-			this.label1.Text = "169";
+			this.lb_totalEmployee_num.AutoSize = true;
+			this.lb_totalEmployee_num.BackColor = System.Drawing.Color.Transparent;
+			this.lb_totalEmployee_num.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_totalEmployee_num.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.lb_totalEmployee_num.Location = new System.Drawing.Point(100, 35);
+			this.lb_totalEmployee_num.Name = "lb_totalEmployee_num";
+			this.lb_totalEmployee_num.Size = new System.Drawing.Size(46, 23);
+			this.lb_totalEmployee_num.TabIndex = 5;
+			this.lb_totalEmployee_num.Text = "169";
 			// 
-			// label10
+			// lb_totalEmployee
 			// 
-			this.label10.AutoSize = true;
-			this.label10.BackColor = System.Drawing.Color.Transparent;
-			this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label10.Location = new System.Drawing.Point(70, 13);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(101, 16);
-			this.label10.TabIndex = 4;
-			this.label10.Text = "Total Employees";
+			this.lb_totalEmployee.AutoSize = true;
+			this.lb_totalEmployee.BackColor = System.Drawing.Color.Transparent;
+			this.lb_totalEmployee.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_totalEmployee.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.lb_totalEmployee.Location = new System.Drawing.Point(70, 13);
+			this.lb_totalEmployee.Name = "lb_totalEmployee";
+			this.lb_totalEmployee.Size = new System.Drawing.Size(101, 16);
+			this.lb_totalEmployee.TabIndex = 4;
+			this.lb_totalEmployee.Text = "Total Employees";
 			// 
 			// stipayrolldbDataSet
 			// 
@@ -610,15 +616,15 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1063, 670);
-			this.Controls.Add(this.panel7);
+			this.Controls.Add(this.pnl_totalEmployee);
 			this.Controls.Add(this.pnl_notification);
-			this.Controls.Add(this.panel4);
-			this.Controls.Add(this.panel5);
+			this.Controls.Add(this.pnl_totalAbsent);
+			this.Controls.Add(this.pnl_roles);
 			this.Controls.Add(this.notifContainer);
 			this.Controls.Add(this.lb_DashBoard);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.pnl_Department);
-			this.Controls.Add(this.pnl_Employee);
+			this.Controls.Add(this.pnl_totalLeaves);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Location = new System.Drawing.Point(187, 70);
@@ -632,9 +638,9 @@
 			this.panel1.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).EndInit();
@@ -643,20 +649,20 @@
 			this.pnl_Department.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.notifContainer.ResumeLayout(false);
-			this.pnl_Employee.ResumeLayout(false);
-			this.pnl_Employee.PerformLayout();
+			this.pnl_totalLeaves.ResumeLayout(false);
+			this.pnl_totalLeaves.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pb_PaidLeaves)).EndInit();
-			this.panel5.ResumeLayout(false);
-			this.panel5.PerformLayout();
+			this.pnl_roles.ResumeLayout(false);
+			this.pnl_roles.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
+			this.pnl_totalAbsent.ResumeLayout(false);
+			this.pnl_totalAbsent.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.pnl_notification.ResumeLayout(false);
 			this.pnl_notification.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-			this.panel7.ResumeLayout(false);
-			this.panel7.PerformLayout();
+			this.pnl_totalEmployee.ResumeLayout(false);
+			this.pnl_totalEmployee.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).EndInit();
@@ -677,33 +683,33 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbEmployeeID;
 		private System.Windows.Forms.Panel pnl_Department;
-		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label lb_currentDepartment;
 		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.Label lb_curDepartment;
+		private System.Windows.Forms.Label lb_curDepartment_name;
         private System.Windows.Forms.Panel notifContainer;
         private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.Label lb_absents;
+		private System.Windows.Forms.Label lb_absents_num;
         private System.Windows.Forms.Label lb_EmpName;
         private System.Windows.Forms.Label lb_EmpEmail;
         private System.Windows.Forms.Label lb_EmpPhoNum;
         private System.Windows.Forms.Label lb_EmpPosition;
         private System.Windows.Forms.Label lb_Total_Leaves;
         private System.Windows.Forms.Label lb_TotalLeaves;
-        private System.Windows.Forms.Panel pnl_Employee;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnl_totalLeaves;
+        private System.Windows.Forms.Panel pnl_roles;
+        private System.Windows.Forms.Label lb_roles_name;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lb_roles;
+        private System.Windows.Forms.Panel pnl_totalAbsent;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lb_totalAbsents;
         private System.Windows.Forms.Panel pnl_notification;
         private System.Windows.Forms.Label lb_notification_num;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lb_notification;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel pnl_totalEmployee;
+        private System.Windows.Forms.Label lb_totalEmployee_num;
+        private System.Windows.Forms.Label lb_totalEmployee;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pb_PaidLeaves;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
