@@ -92,7 +92,6 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.lb_tester = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -779,22 +778,12 @@
             this.tbSearch.TabIndex = 39;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
-            // lb_tester
-            // 
-            this.lb_tester.AutoSize = true;
-            this.lb_tester.Location = new System.Drawing.Point(356, 464);
-            this.lb_tester.Name = "lb_tester";
-            this.lb_tester.Size = new System.Drawing.Size(62, 13);
-            this.lb_tester.TabIndex = 28;
-            this.lb_tester.Text = "Civil Status:";
-            // 
             // employeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1055, 715);
-            this.Controls.Add(this.lb_tester);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnEnrollFinger);
             this.Controls.Add(this.btnCreate);
@@ -893,6 +882,5 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cbCivil;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.Label lb_tester;
     }
 }
