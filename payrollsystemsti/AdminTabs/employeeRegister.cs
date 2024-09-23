@@ -28,7 +28,6 @@ namespace payrollsystemsti.AdminTabs
         public employeeRegister()
         {
             InitializeComponent();
-            lb_tester.Text = defaultAvailableTotalLeaves().ToString();
         }
         // adds image
         private void btnAdd_Click(object sender, EventArgs e)
