@@ -85,7 +85,7 @@ namespace payrollsystemsti.AdminTabs
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource source = new ReportDataSource("DataSet1", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.ReportPath = @"C:\Users\rnz\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
                 }
@@ -111,7 +111,7 @@ namespace payrollsystemsti.AdminTabs
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource source = new ReportDataSource("DataSet1", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\neil\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.ReportPath = @"C:\Users\trimi\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
                 }
