@@ -127,7 +127,7 @@
             // tbMob
             // 
             this.tbMob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbMob.Location = new System.Drawing.Point(129, 188);
+            this.tbMob.Location = new System.Drawing.Point(140, 188);
             this.tbMob.Multiline = true;
             this.tbMob.Name = "tbMob";
             this.tbMob.Size = new System.Drawing.Size(172, 28);
@@ -167,7 +167,7 @@
             // tbEmail
             // 
             this.tbEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbEmail.Location = new System.Drawing.Point(129, 226);
+            this.tbEmail.Location = new System.Drawing.Point(141, 226);
             this.tbEmail.Multiline = true;
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(172, 28);
@@ -186,7 +186,7 @@
             // tbFirstName
             // 
             this.tbFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFirstName.Location = new System.Drawing.Point(129, 26);
+            this.tbFirstName.Location = new System.Drawing.Point(140, 26);
             this.tbFirstName.Multiline = true;
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(172, 28);
@@ -215,7 +215,7 @@
             // 
             this.dtDob.CustomFormat = "dd/MM/yyyy";
             this.dtDob.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDob.Location = new System.Drawing.Point(129, 98);
+            this.dtDob.Location = new System.Drawing.Point(140, 98);
             this.dtDob.Name = "dtDob";
             this.dtDob.Size = new System.Drawing.Size(172, 26);
             this.dtDob.TabIndex = 18;
@@ -224,7 +224,7 @@
             // tbAddress
             // 
             this.tbAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddress.Location = new System.Drawing.Point(129, 136);
+            this.tbAddress.Location = new System.Drawing.Point(140, 136);
             this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(172, 46);
@@ -488,7 +488,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(358, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(319, 357);
+            this.groupBox1.Size = new System.Drawing.Size(335, 357);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Information";
@@ -509,7 +509,7 @@
             "Single",
             "Married",
             "Divorced"});
-            this.cbCivil.Location = new System.Drawing.Point(140, 316);
+            this.cbCivil.Location = new System.Drawing.Point(140, 313);
             this.cbCivil.Name = "cbCivil";
             this.cbCivil.Size = new System.Drawing.Size(121, 28);
             this.cbCivil.TabIndex = 26;
@@ -529,7 +529,7 @@
             this.cbGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cbGender.Location = new System.Drawing.Point(129, 269);
+            this.cbGender.Location = new System.Drawing.Point(140, 269);
             this.cbGender.Name = "cbGender";
             this.cbGender.Size = new System.Drawing.Size(121, 28);
             this.cbGender.TabIndex = 24;
@@ -556,7 +556,7 @@
             // tbLastName
             // 
             this.tbLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbLastName.Location = new System.Drawing.Point(129, 60);
+            this.tbLastName.Location = new System.Drawing.Point(140, 60);
             this.tbLastName.Multiline = true;
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(172, 28);
