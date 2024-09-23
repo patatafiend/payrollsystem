@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -26,19 +27,49 @@ namespace payrollsystemsti
         {
             if (img == null)
             {
-                MessageBox.Show("its nullllll");
-                return null;
+                throw new ArgumentNullException(nameof(img), "The image cannot be null.");
             }
-            else
+
+            using (var ms = new MemoryStream())
             {
-                using (MemoryStream ms = new MemoryStream())
+                // Determine a compatible format
+                ImageFormat format;
+
+                // Try commonly supported formats in order
+                if (TrySaveImage(img, ImageFormat.Jpeg, ms))
                 {
-                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    return ms.ToArray();
-
+                    format = ImageFormat.Jpeg;
                 }
-            }
+                else if (TrySaveImage(img, ImageFormat.Png, ms))
+                {
+                    format = ImageFormat.Png;
+                }
+                else if (TrySaveImage(img, ImageFormat.Gif, ms))
+                {
+                    format = ImageFormat.Gif;
+                }
+                else
+                {
+                    // Handle unsupported format scenario (throw exception, return null, etc.)
+                    throw new NotSupportedException("Image format not supported."); // Example handling
+                }
 
+                return ms.ToArray();
+            }
+        }
+
+        private bool TrySaveImage(Image img, ImageFormat format, MemoryStream ms)
+        {
+            try
+            {
+                img.Save(ms, format);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                // Handle potential exception when saving (e.g., invalid format)
+                return false;
+            }
         }
         //convert binary image to image
         public Image ConvertToImage(byte[] imageData)
@@ -1413,6 +1444,28 @@ namespace payrollsystemsti
                     else
                     {
                         return 0;
+                    }
+                }
+            }
+        }
+
+        public string GetGender(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Gender FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Gender"].ToString();
+                    }
+                    else
+                    {
+                        return "No Gender, Employee does not exist";
                     }
                 }
             }

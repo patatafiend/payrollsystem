@@ -48,15 +48,16 @@ namespace payrollsystemsti.EmployeeTabs
             
         }
 
-        private void loadLeaveCB()
+        private void loadLeaveCBmale()
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT * FROM LeaveCategory";
+                string query = "SELECT * FROM LeaveCategory WHERE CategoryName != @catName";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@catName", "Maternity Leave");
                     DataTable dt = new DataTable();
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
@@ -73,6 +74,48 @@ namespace payrollsystemsti.EmployeeTabs
                         }
                     }
                 }
+            }
+        }
+
+        private void loadLeaveCBfemale()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM LeaveCategory WHERE CategoryName != @catName";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@catName", "Paternity Leave");
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+
+                        // Clear existing items before adding new ones
+                        cbLeaves.Items.Clear();
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            // gets data in the 2nd Column of Category database
+                            string categoryName = row[1].ToString();
+                            cbLeaves.Items.Add(categoryName);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void loadLeaveCB()
+        {
+            string gender = m.GetGender(loggedInID);
+            if(gender == "Male")
+            {
+                loadLeaveCBmale();
+            }
+            else
+            {
+                loadLeaveCBfemale();
             }
         }
         private void ClearLeaveApplicationForm()
