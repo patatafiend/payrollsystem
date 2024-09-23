@@ -379,15 +379,6 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
-
-
-
-
-
-
-
-
-
         private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))

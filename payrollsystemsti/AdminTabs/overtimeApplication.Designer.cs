@@ -50,22 +50,19 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(64, 228);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(43, 148);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 29);
+            this.label4.Size = new System.Drawing.Size(111, 20);
             this.label4.TabIndex = 23;
             this.label4.Text = "Justification:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(69, 137);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(46, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 29);
+            this.label3.Size = new System.Drawing.Size(46, 20);
             this.label3.TabIndex = 22;
             this.label3.Text = "End:";
             // 
@@ -73,20 +70,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 89);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(43, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 29);
+            this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Start:";
             // 
             // tbReason
             // 
-            this.tbReason.Location = new System.Drawing.Point(70, 263);
-            this.tbReason.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbReason.Location = new System.Drawing.Point(47, 171);
             this.tbReason.Multiline = true;
             this.tbReason.Name = "tbReason";
-            this.tbReason.Size = new System.Drawing.Size(366, 141);
+            this.tbReason.Size = new System.Drawing.Size(245, 93);
             this.tbReason.TabIndex = 18;
             // 
             // btnUpdate
@@ -95,10 +90,9 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(261, 457);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUpdate.Location = new System.Drawing.Point(174, 297);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(177, 68);
+            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "Edit";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -109,10 +103,9 @@
             this.btnSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSubmit.Location = new System.Drawing.Point(70, 457);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSubmit.Location = new System.Drawing.Point(47, 297);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(177, 68);
+            this.btnSubmit.Size = new System.Drawing.Size(118, 44);
             this.btnSubmit.TabIndex = 16;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
@@ -135,14 +128,14 @@
             this.dgReason,
             this.dgStatus});
             this.overtimegrid.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.overtimegrid.Location = new System.Drawing.Point(488, 62);
-            this.overtimegrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.overtimegrid.Location = new System.Drawing.Point(325, 40);
             this.overtimegrid.Name = "overtimegrid";
             this.overtimegrid.ReadOnly = true;
             this.overtimegrid.RowHeadersWidth = 62;
             this.overtimegrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.overtimegrid.Size = new System.Drawing.Size(807, 586);
+            this.overtimegrid.Size = new System.Drawing.Size(538, 381);
             this.overtimegrid.TabIndex = 24;
+            this.overtimegrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.overtimegrid_CellContentClick);
             // 
             // dgOvertimeID
             // 
@@ -193,11 +186,10 @@
             this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.time.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.time.Location = new System.Drawing.Point(141, 82);
-            this.time.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.time.Location = new System.Drawing.Point(94, 53);
             this.time.Name = "time";
             this.time.ShowUpDown = true;
-            this.time.Size = new System.Drawing.Size(172, 35);
+            this.time.Size = new System.Drawing.Size(116, 26);
             this.time.TabIndex = 37;
             this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
             // 
@@ -207,20 +199,19 @@
             this.timeout.CustomFormat = "hh:mm tt";
             this.timeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.timeout.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeout.Location = new System.Drawing.Point(141, 131);
-            this.timeout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.timeout.Location = new System.Drawing.Point(94, 85);
             this.timeout.Name = "timeout";
             this.timeout.ShowUpDown = true;
-            this.timeout.Size = new System.Drawing.Size(172, 35);
+            this.timeout.Size = new System.Drawing.Size(116, 26);
             this.timeout.TabIndex = 38;
             this.timeout.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
             // 
             // overtimeApplication
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1353, 702);
+            this.ClientSize = new System.Drawing.Size(902, 456);
             this.Controls.Add(this.timeout);
             this.Controls.Add(this.time);
             this.Controls.Add(this.overtimegrid);
@@ -231,7 +222,6 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSubmit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "overtimeApplication";
             this.Text = "overtimeApplication";
             ((System.ComponentModel.ISupportInitialize)(this.overtimegrid)).EndInit();
