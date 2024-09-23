@@ -1081,5 +1081,5 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button button9;
-    }
+	}
 }

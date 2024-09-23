@@ -24,9 +24,11 @@ namespace payrollsystemsti.AdminTabs
 
         int fingeID = 0;
         DateTime dateNow = DateTime.Now;
+        
         public employeeRegister()
         {
             InitializeComponent();
+            lb_tester.Text = defaultAvailableTotalLeaves().ToString();
         }
         // adds image
         private void btnAdd_Click(object sender, EventArgs e)
@@ -136,7 +138,7 @@ namespace payrollsystemsti.AdminTabs
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
 						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, 5, 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text);
+						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text);
 
 					if (isInserted)
 					{
@@ -376,15 +378,6 @@ namespace payrollsystemsti.AdminTabs
 
 			}
 		}
-
-
-
-
-
-
-
-
-
 
         private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender)
         {
@@ -1145,5 +1138,25 @@ namespace payrollsystemsti.AdminTabs
                 LoadData();
             }
         }
-    }
+
+		private int defaultAvailableTotalLeaves()
+		{
+            int totaldefaultleave = 0;
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT defaultAvailableLeaveDays FROM LeaveCategory";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					SqlDataReader reader = cmd.ExecuteReader();
+					while (reader.Read())
+					{
+						totaldefaultleave += Convert.ToInt32(reader["defaultAvailableLeaveDays"]);
+					}
+				}
+            }
+
+            return totaldefaultleave;
+		}
+	}
 }

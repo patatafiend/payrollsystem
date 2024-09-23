@@ -90,14 +90,8 @@ namespace payrollsystemsti.AdminTabs
 							leaveCmd.ExecuteNonQuery();
 						}
 
-						// Update EmployeeAccounts table
-						string employeeQuery = "UPDATE EmployeeAccounts SET Leaves = Leaves - 1 WHERE EmployeeID = @employeeID";
-						using (SqlCommand employeeCmd = new SqlCommand(employeeQuery, conn, transaction))
-						{
-							employeeCmd.Parameters.AddWithValue("@employeeID", employeeID);
+						UpdateLeaveTypeAvailableTable(dataGridView1.SelectedRows[0].Cells["dgLeaveType"].Value.ToString(), Int32.Parse(employeeID));
 
-							employeeCmd.ExecuteNonQuery();
-						}
 
 						// Commit the transaction if both updates are successful
 						transaction.Commit();
@@ -207,5 +201,27 @@ namespace payrollsystemsti.AdminTabs
 		{
 
 		}
+
+		private void UpdateLeaveTypeAvailableTable(string leavecategory, int employeeid)
+		{
+			using(SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				try
+				{
+				conn.Open();
+				string query = $"UPDATE LeaveTypeAvailable SET [{leavecategory}] = [{leavecategory}] - 1 WHERE [Employee ID] = @employeeID";
+				using(SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@employeeID", employeeID);
+					cmd.ExecuteNonQuery();
+				}
+				}catch(Exception ex)
+				{
+					MessageBox.Show($"Error updating LeaveTypeAvailable table: {ex.Message}", "Error");
+				}
+			}
+		}
+		
+
 	}
 }

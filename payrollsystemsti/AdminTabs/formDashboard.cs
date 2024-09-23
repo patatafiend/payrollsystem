@@ -28,7 +28,6 @@ namespace payrollsystemsti
         private enrollFingerprint ef;
         private HistoryLogForm HistoyLogForm;
         private ViewAttendance viewA;
-
         private DepartmentMain DepartmentMain;
         private Position Position;
         private Roles Roles;

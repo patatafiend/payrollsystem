@@ -49,7 +49,7 @@ namespace payrollsystemsti
 					conn.Open();
 					string query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.EmployeeID, " +
 						"EmployeeAccounts.FirstName, EmployeeAccounts.LastName, EmployeeAccounts.DepartmentID, " +
-						"EmployeeAccounts.Leaves, EmployeeAccounts.Absents, EmployeeAccounts.RoleID FROM UserAccounts " +
+						"EmployeeAccounts.Leaves, EmployeeAccounts.Absents, EmployeeAccounts.RoleID, EmployeeAccounts.Mobile, EmployeeAccounts.Email, EmployeeAccounts.PositionID FROM UserAccounts " +
 						"INNER JOIN EmployeeAccounts ON UserAccounts.EmployeeID = EmployeeAccounts.EmployeeID WHERE " +
 						"Username=@username AND Password=@password AND IsDeactivated = @status";
 
@@ -72,14 +72,22 @@ namespace payrollsystemsti
 								// Set CurrentUser properties
 								Methods.CurrentUser.UserID = (int)reader["UserID"];
 								Methods.CurrentUser.EmployeeID = (int)reader["EmployeeID"];
+								Methods.CurrentUser.employeePosition = (int)reader["PositionID"];
+
 								Methods.CurrentUser.Username = reader["Username"].ToString();
 								Methods.CurrentUser.FirstName = reader["FirstName"].ToString();
 								Methods.CurrentUser.LastName = reader["LastName"].ToString();
 								Methods.CurrentUser.DepartmentID = reader["DepartmentID"].ToString();
-								
+								Methods.CurrentUser.EmailAddress = reader["Email"].ToString();
+								Methods.CurrentUser.EmployeeNumber = reader["Mobile"].ToString();
 
 
-								
+
+
+
+
+
+
 
 								int roleID = (int)reader["RoleID"];
 								string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
@@ -93,6 +101,7 @@ namespace payrollsystemsti
 								formDashboard.formDashboardInstance.LoggedInFirstName = Methods.CurrentUser.FirstName;
 								formDashboard.formDashboardInstance.LoggedInDepartment = departmentName;
 								formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
+								
 
 								// Disable function based on role/department
 								if (roleID == 4)
@@ -270,5 +279,7 @@ namespace payrollsystemsti
 				}
 			}
 		}
+
+
 	}
 }
