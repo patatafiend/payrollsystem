@@ -34,8 +34,7 @@ namespace payrollsystemsti
                 {
                     if (IsTextBoxFilled())
                     {
-                        m.UpdateIncentivesData(IncentiveID, Convert.ToInt32(tb1.Text));
-                        tbClear();
+                        UpdateAllIncentives();
                         m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Others Update");
                         LoadIncentivesData();
                     }
@@ -55,6 +54,31 @@ namespace payrollsystemsti
                 btnUpdate.Enabled = false;
             }
         }
+
+        private bool UpdateAllIncentives()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Others SET Incentives = @incentives";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@incentives", Convert.ToDouble(tb1.Text));
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show($"Error updating Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool IsTextBoxFilled()
         {
             if (tb1.Text != null)
