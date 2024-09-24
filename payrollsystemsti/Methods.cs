@@ -1471,6 +1471,28 @@ namespace payrollsystemsti
             }
         }
 
+        public int GetFingerID(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT fingerID FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["fingerID"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
 
         public static class CurrentUser
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Markup;
 
@@ -35,8 +36,8 @@ namespace payrollsystemsti.AdminTabs
 		{
 			dataGridView1.Rows.Clear();
 			string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-				", LeaveApplications.Status, LeaveApplications.CategoryName FROM EmployeeAccounts JOIN LeaveApplications" +
-				" ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
+				", LeaveApplications.Status, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd" +
+				" FROM EmployeeAccounts JOIN LeaveApplications ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
 
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
@@ -54,7 +55,9 @@ namespace payrollsystemsti.AdminTabs
 						dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
 						dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
 						dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
-					}
+                        dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEndS"].ToString()).ToString("dd/MM/yyyy");
+                    }
 				}
 			}
 		}
@@ -63,7 +66,32 @@ namespace payrollsystemsti.AdminTabs
 		{
 			employeeID = dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString();
 
-			btnUpdate.Enabled = true;
+            string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDateStart"].Value.ToString();
+            DateTime dob;
+
+            if (DateTime.TryParseExact(dobCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
+            {
+                dtStart.Value = dob;
+            }
+            else
+            {
+                MessageBox.Show("Invalid date format");
+            }
+
+            string dobCellValue1 = dataGridView1.SelectedRows[0].Cells["dgDateEnd"].Value.ToString();
+            DateTime dob1;
+
+            if (DateTime.TryParseExact(dobCellValue1, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob1))
+            {
+                dtEnd.Value = dob1;
+            }
+            else
+            {
+                MessageBox.Show("Invalid date format");
+            }
+
+
+            btnUpdate.Enabled = true;
 			btnView.Enabled = true;
 			btnApprove.Enabled = true;
 			btnReject.Enabled = true;
@@ -89,6 +117,8 @@ namespace payrollsystemsti.AdminTabs
 
 							leaveCmd.ExecuteNonQuery();
 						}
+
+						InsertApprovedLeaveDates();
 
 						UpdateLeaveTypeAvailableTable(dataGridView1.SelectedRows[0].Cells["dgLeaveType"].Value.ToString(), Int32.Parse(employeeID));
 
@@ -134,10 +164,60 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
+		private void InsertApprovedLeaveDates()
+		{
+			// Get leave application details (assuming you have access to them)
+			DateTime startDate = dtStart.Value;
+			DateTime endDate = dtEnd.Value;
+
+			// Calculate the number of days
+			int days = (endDate - startDate).Days + 1;
+
+			for (int i = 0; i < days; i++)
+			{
+				DateTime currentDate = startDate.AddDays(i);
+				bool success = InsertAttendance(Convert.ToInt32(employeeID), m.GetFingerID(Convert.ToInt32(employeeID)), 8, currentDate);
+				if (!success)
+				{
+					// Handle insertion failure (e.g., show error message)
+					MessageBox.Show("Error inserting attendance record for " + currentDate);
+					break;
+				}
+			}
+
+			// Show success message after successful insertion for all days
+			MessageBox.Show("Leave application approved and attendance records created successfully!");
+		}
+
+		private bool InsertAttendance(int empID, int fingerID, int hoursW, DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Attedance(EmployeeID, FingerID, TotalHours, Date) VALUES (@empID, @fingerID, @totalH, @date)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@totalH", hoursW);
+                    cmd.Parameters.AddWithValue("@date", date);
 
 
+                    try
+                    {
+                        int result = cmd.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Something went wrong");
+                        return false;
+                    }
+                }
+            }
+        }
 
-		private void btnReject_Click(object sender, EventArgs e)
+        private void btnReject_Click(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(employeeID))
 			{
