@@ -390,6 +390,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>stipayrolldbDataSet8.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAttendance.resx">
+      <DependentUpon>AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\accountsArchive.resx">
       <DependentUpon>accountsArchive.cs</DependentUpon>
     </EmbeddedResource>
