@@ -502,7 +502,7 @@
 			this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
 			this.sideBar.Location = new System.Drawing.Point(0, 81);
 			this.sideBar.Name = "sideBar";
-			this.sideBar.Size = new System.Drawing.Size(236, 659);
+			this.sideBar.Size = new System.Drawing.Size(236, 749);
 			this.sideBar.TabIndex = 3;
 			// 
 			// panel13

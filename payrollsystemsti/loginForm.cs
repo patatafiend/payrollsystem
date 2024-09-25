@@ -65,7 +65,7 @@ namespace payrollsystemsti
 							{
 
 								int employeeID = (int)reader["EmployeeID"];
-								int numLeaves = (int)reader["Leaves"];
+								
 								int numAbsents = (int)reader["Absents"];
 								int totalEmployee = m.GetTotalEmployeeCount();
 
@@ -80,6 +80,7 @@ namespace payrollsystemsti
 								Methods.CurrentUser.DepartmentID = reader["DepartmentID"].ToString();
 								Methods.CurrentUser.EmailAddress = reader["Email"].ToString();
 								Methods.CurrentUser.EmployeeNumber = reader["Mobile"].ToString();
+								Methods.CurrentUser.EmployeeRole = (int)reader["RoleID"];
 
 
 
@@ -92,6 +93,7 @@ namespace payrollsystemsti
 								int roleID = (int)reader["RoleID"];
 								string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
 								int departmentID = (int)reader["DepartmentID"];
+								int numLeaves = m.getTotalCurrentAvailableLeaves(Methods.CurrentUser.EmployeeID);
 
 								// Log the login time
 								LogLoginTime(employeeID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, departmentID, "Login", numLeaves, numAbsents);
@@ -279,6 +281,8 @@ namespace payrollsystemsti
 				}
 			}
 		}
+
+		
 
 
 	}

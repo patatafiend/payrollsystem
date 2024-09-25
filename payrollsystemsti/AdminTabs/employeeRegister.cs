@@ -365,14 +365,7 @@ namespace payrollsystemsti.AdminTabs
 						cmd.Parameters.AddWithValue($"@{column.Replace(" ", "_")}", leaveDays);
 					}
 				}
-
-				
-
-
 				cmd.ExecuteNonQuery();
-
-				
-
 
 
 			}

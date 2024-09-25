@@ -56,8 +56,8 @@ namespace payrollsystemsti.AdminTabs
 						dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
 						dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
                         dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
-                        dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEndS"].ToString()).ToString("dd/MM/yyyy");
-                    }
+						dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("dd/MM/yyyy");
+					}
 				}
 			}
 		}

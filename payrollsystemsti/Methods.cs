@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -19,9 +20,9 @@ namespace payrollsystemsti
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 
         //Connection String
-        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        //public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
+        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -1496,7 +1497,7 @@ namespace payrollsystemsti
 
         public static class CurrentUser
         {
-            
+            //strings
             public static string FirstName { get; set; }
             public static string LastName { get; set; }
             public static string Username { get; set; }
@@ -1504,9 +1505,13 @@ namespace payrollsystemsti
             public static string EmailAddress { get; set; }
 			public static string EmployeeNumber { get; set; }
 
+            //ints
+            public static int EmployeeRole { get; set; }
 			public static int employeePosition { get; set; }
 			public static int UserID { get; set; }
 			public static int EmployeeID { get; set; }
+
+            
             
 
             
@@ -1559,5 +1564,76 @@ namespace payrollsystemsti
 				}
 			}
 		}
+
+		public int getTotalemployee()
+		{
+			int totalemployee = 0;
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				try
+				{
+					conn.Open();
+					string query = "SELECT COUNT(*) FROM EmployeeAccounts";
+					using (SqlCommand cmd = new SqlCommand(query, conn))
+					{
+						totalemployee = (int)cmd.ExecuteScalar();
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show($"Error retrieving total employee count: {ex.Message}", "Error");
+				}
+			}
+
+			return totalemployee;
+		}
+
+		public int getTotalCurrentAvailableLeaves(int currentuserid)
+		{
+			int totalCurrentAvailableLeaves = 0;
+
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				try
+				{
+					conn.Open();
+
+					// Get the list of columns in the LeaveTypeAvailable table
+					DataTable schemaTable = conn.GetSchema("Columns", new[] { null, null, "LeaveTypeAvailable", null });
+					List<string> leaveColumns = new List<string>();
+
+					foreach (DataRow row in schemaTable.Rows)
+					{
+						string columnName = row["COLUMN_NAME"].ToString();
+						if (columnName != "Id" && columnName != "Employee ID")
+						{
+							leaveColumns.Add(columnName);
+						}
+					}
+
+					// Construct the dynamic SQL query
+					string sumColumns = string.Join(" + ", leaveColumns.Select(c => $"ISNULL(CAST([{c}] AS INT), 0)"));
+					string query = $"SELECT {sumColumns} AS TotalLeaves FROM LeaveTypeAvailable WHERE [Employee ID] = @currentuserid";
+
+					using (SqlCommand cmd = new SqlCommand(query, conn))
+					{
+						cmd.Parameters.AddWithValue("@currentuserid", currentuserid);
+						object result = cmd.ExecuteScalar();
+						if (result != DBNull.Value)
+						{
+							totalCurrentAvailableLeaves = Convert.ToInt32(result);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show($"Error retrieving total current available leaves: {ex.Message}", "Error");
+				}
+			}
+
+			return totalCurrentAvailableLeaves;
+		}
+
+
 	}
 }

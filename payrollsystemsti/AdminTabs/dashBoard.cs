@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace payrollsystemsti
 {
@@ -70,6 +71,10 @@ namespace payrollsystemsti
 			lb_EmpEmail.Text = "Email address: " + Methods.CurrentUser.EmailAddress.ToString();
 			lbEmployeeID.Text = "EmployeeID: " + Methods.CurrentUser.EmployeeID.ToString();
 			lb_EmpPosition.Text = "Position: " + Methods.CurrentUser.employeePosition.ToString();
+			lb_totalEmployee_num.Text = m.GetTotalEmployeeCount().ToString();
+			lb_Total_Leaves.Text = m.getTotalCurrentAvailableLeaves(Methods.CurrentUser.EmployeeID).ToString();
+			lb_roles_name.Text = getUserRole(Methods.CurrentUser.EmployeeRole);
+
 
 
 		}
@@ -168,6 +173,38 @@ namespace payrollsystemsti
 			}
 		}
 
-		
+		private string getUserRole(int userrole)
+		{
+			string role = "";
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				try
+				{
+					conn.Open();
+					string query = "SELECT RoleTitle FROM Roles WHERE RoleID = @userrole";
+					SqlCommand cmd = new SqlCommand(query, conn);
+					cmd.Parameters.AddWithValue("@userrole", userrole);
+
+					SqlDataReader reader = cmd.ExecuteReader();
+
+					if (reader.Read())
+					{
+						role = reader["RoleTitle"].ToString();
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("An error occurred: " + ex.Message);
+				}
+				finally
+				{
+					conn.Close();
+				}
+			}
+
+			return role;
+		}
+
+
 	}
 }

@@ -726,5 +726,5 @@
         private stipayrolldbDataSet7 stipayrolldbDataSet7;
         private System.Windows.Forms.BindingSource notificationsBindingSource2;
         private stipayrolldbDataSet7TableAdapters.NotificationsTableAdapter notificationsTableAdapter2;
-    }
+	}
 }
