@@ -224,7 +224,7 @@ namespace payrollsystemsti.EmployeeTabs
                 errorProvider1.Clear();
                 errorProvider1.SetError(tbReason, "Please provide a reason..");
             }
-            else if (pbMedCert.Image == null)
+            else if (pbMedCert.Image == null && pbMedCert.Visible)
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(pbMedCert, "Please provide a Medical Certificate");
