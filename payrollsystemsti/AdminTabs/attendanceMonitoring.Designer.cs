@@ -257,6 +257,7 @@
             this.dgEmpID.HeaderText = "Employee Name";
             this.dgEmpID.Name = "dgEmpID";
             this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
             // 
             // dgTime
             // 
