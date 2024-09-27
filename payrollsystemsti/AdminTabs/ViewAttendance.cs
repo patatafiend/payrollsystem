@@ -77,12 +77,45 @@ namespace payrollsystemsti.AdminTabs
 
         }
 
+        private void LoadData()
+        {
+            dataGridView1.Rows.Clear();
+            // gets all active employees in the database
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string queryActive = "SELECT * FROM Attendance WHERE EmployeeID = @empID";
+
+                using (SqlCommand cmd = new SqlCommand(queryActive, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    adapter.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+                        //dataGridView1.Rows[n].Cells["dgFirstName"].Value = m.GetEmpName(Convert.ToInt32(row["EmployeeID"].ToString()));
+                        //dataGridView1.Rows[n].Cells["dgAbsents"].Value = row["Absents"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTimeIn"].Value = row["TimeIn_AM"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTimeOut"].Value = row["TimeOut_AM"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("dd/MM/yyyy");
+                    }
+                }
+
+            }
+
+        }
+
         private void ViewAttendance_Load(object sender, EventArgs e)
         {
 			// TODO: This line of code loads data into the 'stipayrolldbDataSet3.HistoryTable' table. You can move, or remove it, as needed.
-			this.historyTableTableAdapter2.Fill(this.stipayrolldbDataSet3.HistoryTable);
+			//this.historyTableTableAdapter2.Fill(this.stipayrolldbDataSet3.HistoryTable);
 			
-            LoadAttendance(empID);
+            LoadData();
         }
     }
 }

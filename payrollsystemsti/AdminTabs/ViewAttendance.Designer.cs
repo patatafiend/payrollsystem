@@ -30,22 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
+            this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.historyTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stipayrolldbDataSet3 = new payrollsystemsti.stipayrolldbDataSet3();
             this.stipayrolldbDataSet = new payrollsystemsti.stipayrolldbDataSet();
-            this.label1 = new System.Windows.Forms.Label();
             this.historyTableTableAdapter = new payrollsystemsti.stipayrolldbDataSetTableAdapters.HistoryTableTableAdapter();
             this.stipayrolldbDataSet2 = new payrollsystemsti.stipayrolldbDataSet2();
             this.historyTableTableAdapter1 = new payrollsystemsti.stipayrolldbDataSet2TableAdapters.HistoryTableTableAdapter();
             this.historyTableTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet3TableAdapters.HistoryTableTableAdapter();
-            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.dtDate = new System.Windows.Forms.DateTimePicker();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.absentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAbsents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.historyTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet3)).BeginInit();
@@ -60,20 +59,17 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.firstNameDataGridViewTextBoxColumn,
-            this.lastNameDataGridViewTextBoxColumn,
-            this.absentsDataGridViewTextBoxColumn,
-            this.timeInDataGridViewTextBoxColumn,
-            this.timeOutDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.historyTableBindingSource;
+            this.dgEmpID,
+            this.dgDate,
+            this.dgAbsents,
+            this.dgTimeIn,
+            this.dgTimeOut});
             this.dataGridView1.Location = new System.Drawing.Point(43, 170);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -81,21 +77,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(770, 336);
             this.dataGridView1.TabIndex = 28;
-            // 
-            // historyTableBindingSource
-            // 
-            this.historyTableBindingSource.DataMember = "HistoryTable";
-            this.historyTableBindingSource.DataSource = this.stipayrolldbDataSet3;
-            // 
-            // stipayrolldbDataSet3
-            // 
-            this.stipayrolldbDataSet3.DataSetName = "stipayrolldbDataSet3";
-            this.stipayrolldbDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // stipayrolldbDataSet
-            // 
-            this.stipayrolldbDataSet.DataSetName = "stipayrolldbDataSet";
-            this.stipayrolldbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -107,23 +88,6 @@
             this.label1.Size = new System.Drawing.Size(247, 31);
             this.label1.TabIndex = 29;
             this.label1.Text = "Attedance History";
-            // 
-            // historyTableTableAdapter
-            // 
-            this.historyTableTableAdapter.ClearBeforeFill = true;
-            // 
-            // stipayrolldbDataSet2
-            // 
-            this.stipayrolldbDataSet2.DataSetName = "stipayrolldbDataSet2";
-            this.stipayrolldbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // historyTableTableAdapter1
-            // 
-            this.historyTableTableAdapter1.ClearBeforeFill = true;
-            // 
-            // historyTableTableAdapter2
-            // 
-            this.historyTableTableAdapter2.ClearBeforeFill = true;
             // 
             // entityCommand1
             // 
@@ -144,48 +108,69 @@
             this.dtDate.Size = new System.Drawing.Size(142, 26);
             this.dtDate.TabIndex = 102;
             // 
-            // employeeIDDataGridViewTextBoxColumn
+            // historyTableBindingSource
             // 
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.employeeIDDataGridViewTextBoxColumn.Visible = false;
+            this.historyTableBindingSource.DataMember = "HistoryTable";
+            this.historyTableBindingSource.DataSource = this.stipayrolldbDataSet3;
             // 
-            // firstNameDataGridViewTextBoxColumn
+            // stipayrolldbDataSet3
             // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stipayrolldbDataSet3.DataSetName = "stipayrolldbDataSet3";
+            this.stipayrolldbDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // lastNameDataGridViewTextBoxColumn
+            // stipayrolldbDataSet
             // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stipayrolldbDataSet.DataSetName = "stipayrolldbDataSet";
+            this.stipayrolldbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // absentsDataGridViewTextBoxColumn
+            // historyTableTableAdapter
             // 
-            this.absentsDataGridViewTextBoxColumn.DataPropertyName = "Absents";
-            this.absentsDataGridViewTextBoxColumn.HeaderText = "Absents";
-            this.absentsDataGridViewTextBoxColumn.Name = "absentsDataGridViewTextBoxColumn";
-            this.absentsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.historyTableTableAdapter.ClearBeforeFill = true;
             // 
-            // timeInDataGridViewTextBoxColumn
+            // stipayrolldbDataSet2
             // 
-            this.timeInDataGridViewTextBoxColumn.DataPropertyName = "TimeIn";
-            this.timeInDataGridViewTextBoxColumn.HeaderText = "TimeIn";
-            this.timeInDataGridViewTextBoxColumn.Name = "timeInDataGridViewTextBoxColumn";
-            this.timeInDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stipayrolldbDataSet2.DataSetName = "stipayrolldbDataSet2";
+            this.stipayrolldbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // timeOutDataGridViewTextBoxColumn
+            // historyTableTableAdapter1
             // 
-            this.timeOutDataGridViewTextBoxColumn.DataPropertyName = "TimeOut";
-            this.timeOutDataGridViewTextBoxColumn.HeaderText = "TimeOut";
-            this.timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
-            this.timeOutDataGridViewTextBoxColumn.ReadOnly = true;
+            this.historyTableTableAdapter1.ClearBeforeFill = true;
+            // 
+            // historyTableTableAdapter2
+            // 
+            this.historyTableTableAdapter2.ClearBeforeFill = true;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
+            // 
+            // dgDate
+            // 
+            this.dgDate.DataPropertyName = "EmployeeID";
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgAbsents
+            // 
+            this.dgAbsents.HeaderText = "Absents";
+            this.dgAbsents.Name = "dgAbsents";
+            this.dgAbsents.ReadOnly = true;
+            // 
+            // dgTimeIn
+            // 
+            this.dgTimeIn.HeaderText = "Time IN";
+            this.dgTimeIn.Name = "dgTimeIn";
+            this.dgTimeIn.ReadOnly = true;
+            // 
+            // dgTimeOut
+            // 
+            this.dgTimeOut.HeaderText = "Time OUT";
+            this.dgTimeOut.Name = "dgTimeOut";
+            this.dgTimeOut.ReadOnly = true;
             // 
             // ViewAttendance
             // 
@@ -223,11 +208,10 @@
 		private stipayrolldbDataSet3TableAdapters.HistoryTableTableAdapter historyTableTableAdapter2;
         private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
         private System.Windows.Forms.DateTimePicker dtDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn absentsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeInDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeOutDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeOut;
     }
 }
