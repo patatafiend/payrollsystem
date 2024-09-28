@@ -330,17 +330,17 @@ namespace payrollsystemsti.AdminTabs
                     }
                     else if (IsTimedInPM(fingerID, date) || IsTimedOutPM(fingerID, date))
                     {
-                        MessageBox.Show("you already have that attedance");
+                        MessageBox.Show("you already have that attendance");
                         return false;
                     }
                     else if (IsTimedOutAM(fingerID, date))
                     {
-                        MessageBox.Show("you already have that attedance");
+                        MessageBox.Show("you already have that attendance");
                         return false;
                     }
                     else
                     {
-                        MessageBox.Show("You dont have a time-in(PM) record yet");
+                        MessageBox.Show("You don't have a time-in(PM) record yet");
                         return false;
                     }
                 }
@@ -360,7 +360,7 @@ namespace payrollsystemsti.AdminTabs
                             try
                             {
                                 int rowsAffected = cmd.ExecuteNonQuery();
-                                Console.WriteLine("first Time in afternoon");
+                                Console.WriteLine("First Time in afternoon");
                                 return rowsAffected > 0;
                             }
                             catch (SqlException ex)

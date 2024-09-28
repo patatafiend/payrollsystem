@@ -84,11 +84,13 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string queryActive = "SELECT * FROM Attendance WHERE EmployeeID = @empID";
+                string queryActive = "SELECT * FROM Attendance WHERE EmployeeID = @empID AND MONTH(Date) = @date AND YEAR(Date) = @date1";
 
                 using (SqlCommand cmd = new SqlCommand(queryActive, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", dtDate.Value.Month);
+                    cmd.Parameters.AddWithValue("date1", dtDate.Value.Year);
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -105,7 +107,6 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("dd/MM/yyyy");
                     }
                 }
-
             }
 
         }
@@ -115,6 +116,11 @@ namespace payrollsystemsti.AdminTabs
 			// TODO: This line of code loads data into the 'stipayrolldbDataSet3.HistoryTable' table. You can move, or remove it, as needed.
 			//this.historyTableTableAdapter2.Fill(this.stipayrolldbDataSet3.HistoryTable);
 			
+            LoadData();
+        }
+
+        private void dtDate_ValueChanged(object sender, EventArgs e)
+        {
             LoadData();
         }
     }
