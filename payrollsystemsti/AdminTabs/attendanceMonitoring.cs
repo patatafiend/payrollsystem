@@ -57,7 +57,7 @@ namespace payrollsystemsti.AdminTabs
             ac = new ArduinoComms("COM3");
             btnTimeIN.Enabled = true;
 
-            LoadAtttendanceData(date.Value);
+            LoadAttendanceData(date.Value);
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace payrollsystemsti.AdminTabs
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
-                            LoadAtttendanceData(date.Value);
+                            LoadAttendanceData(date.Value);
 
                             if(checkIfLate(currentTime, currentMinute))
                             {
@@ -118,7 +118,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value);
+            LoadAttendanceData(date.Value);
         }
 
         public bool insertLateToAttedance(int empID, float minutes)
@@ -208,7 +208,7 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeOUT.Enabled = true;
                 loadingIndicator.Visible = false;
             }
-            LoadAtttendanceData(date.Value);
+            LoadAttendanceData(date.Value);
         }
 
         public bool insertAttendance(string date, float? timeIn, float? timeOut, int fingerID, int empID)
@@ -598,7 +598,7 @@ namespace payrollsystemsti.AdminTabs
             
         }
 
-        public void LoadAtttendanceData(DateTime date)
+        public void LoadAttendanceData(DateTime date)
         {
             dataGridView1.Rows.Clear();
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -618,7 +618,7 @@ namespace payrollsystemsti.AdminTabs
                         int n = dataGridView1.Rows.Add();
 
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTime"].Value = row["Time"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTime"].Value = Convert.ToDateTime(row["Time"].ToString()).ToString("hh:mm tt");
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
                     }
@@ -674,7 +674,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void date_ValueChanged(object sender, EventArgs e)
         {
-            LoadAtttendanceData(date.Value);
+            LoadAttendanceData(date.Value);
         }
 
         private void time_ValueChanged(object sender, EventArgs e)
