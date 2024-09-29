@@ -449,6 +449,9 @@
     <EmbeddedResource Include="Allowance.resx">
       <DependentUpon>Allowance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BackupRestore.resx">
+      <DependentUpon>BackupRestore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="changePass.resx">
       <DependentUpon>changePass.cs</DependentUpon>
     </EmbeddedResource>
