@@ -56,7 +56,9 @@ namespace payrollsystemsti.AdminTabs
                 LoadData();
 
                 MessageBox.Show("Overtime application submitted successfully.");
-            }
+
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Overtime Submitted by " + Methods.CurrentUser.LastName + ", "+ Methods.CurrentUser.FirstName);
+			}
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
@@ -94,27 +96,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                TimeSpan time = this.time.Value.TimeOfDay;
-                TimeSpan timeout = this.timeout.Value.TimeOfDay;
-
-                if (UpdateOvertimeTable(selectedOvertimeID, time, timeout, tbReason.Text))
-                {
-                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                btnSubmit.Enabled = true;
-            }
-
-        }
-
         private void overtimegrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -131,34 +112,81 @@ namespace payrollsystemsti.AdminTabs
             btnSubmit.Enabled = false;
         }
 
-        private bool UpdateOvertimeTable(int overtimeID, TimeSpan starttm, TimeSpan endtm, string reason)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "UPDATE OvertimeApplications SET StartTime = @starttime, EndTime = @endtime, Justification = @justification WHERE OvertimeID = @OvertimeID";
+        
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@starttime", starttm);
-                    cmd.Parameters.AddWithValue("@endtime", endtm);
-                    cmd.Parameters.AddWithValue("@justification", reason);
-                    cmd.Parameters.AddWithValue("@OvertimeID", overtimeID);
+		private void btnUpdate_Click_1(object sender, EventArgs e)
+		{
+			DialogResult dialogResult = MessageBox.Show("Update this row?", "Update", MessageBoxButtons.YesNo);
+			if (dialogResult == DialogResult.Yes)
+			{
+				TimeSpan time = this.time.Value.TimeOfDay;
+				TimeSpan timeout = this.timeout.Value.TimeOfDay;
 
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error Updating Overtime Application: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
+				if (UpdateOvertimeTable(selectedOvertimeID, time, timeout, tbReason.Text))
+				{
+					MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Overtime Edited by " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName);
+				}
+				btnSubmit.Enabled = true;
+                btnUpdate.Enabled = false;
+				
+			}
+			else
+			{
+				btnSubmit.Enabled = true;
+                btnUpdate.Enabled = false;
+			}
+
+			LoadData();
+
+		}
+
+		private bool UpdateOvertimeTable(int overtimeID, TimeSpan starttm, TimeSpan endtm, string reason)
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				string query = "UPDATE OvertimeApplications SET StartTime = @starttime, EndTime = @endtime, Justification = @justification WHERE OvertimeID = @OvertimeID";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@starttime", starttm);
+					cmd.Parameters.AddWithValue("@endtime", endtm);
+					cmd.Parameters.AddWithValue("@justification", reason);
+					cmd.Parameters.AddWithValue("@OvertimeID", overtimeID);
+
+					try
+					{
+						int rowsAffected = cmd.ExecuteNonQuery();
+						return rowsAffected > 0;
+					}
+					catch (SqlException ex)
+					{
+						MessageBox.Show("Error Updating Overtime Application: " + ex.Message);
+						return false;
+					}
+				}
+			}
+
+		}
+
+        
+
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+            
+            if(btnSubmit.Enabled == false)
+			{
+				btnSubmit.Enabled = true;
+				btnUpdate.Enabled = false;
+			}
+			else
+			{
+				MessageBox.Show("No row selected to cancel.");
+			}
+
+		}
 
 
-    }
+	}
 }

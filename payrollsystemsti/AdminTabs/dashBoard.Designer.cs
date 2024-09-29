@@ -84,7 +84,6 @@
 			this.notificationsTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet7TableAdapters.NotificationsTableAdapter();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.panel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).BeginInit();
@@ -217,7 +216,6 @@
 			// 
 			// panel3
 			// 
-			this.panel3.Controls.Add(this.dgv_Mdashboardnotif);
 			this.panel3.Location = new System.Drawing.Point(23, 402);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(223, 304);
@@ -226,9 +224,9 @@
 			// dgv_Mdashboardnotif
 			// 
 			this.dgv_Mdashboardnotif.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(0, 0);
+			this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(253, 9);
 			this.dgv_Mdashboardnotif.Name = "dgv_Mdashboardnotif";
-			this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(220, 265);
+			this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(351, 162);
 			this.dgv_Mdashboardnotif.TabIndex = 0;
 			// 
 			// lbEmployeeID
@@ -353,6 +351,7 @@
 			// notifContainer
 			// 
 			this.notifContainer.BackColor = System.Drawing.Color.LavenderBlush;
+			this.notifContainer.Controls.Add(this.dgv_Mdashboardnotif);
 			this.notifContainer.Controls.Add(this.monthCalendar1);
 			this.notifContainer.Location = new System.Drawing.Point(49, 326);
 			this.notifContainer.Name = "notifContainer";
@@ -636,7 +635,6 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).EndInit();
