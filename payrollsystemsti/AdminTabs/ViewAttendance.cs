@@ -104,6 +104,9 @@ namespace payrollsystemsti.AdminTabs
                         //dataGridView1.Rows[n].Cells["dgAbsents"].Value = row["Absents"].ToString();
                         dataGridView1.Rows[n].Cells["dgTimeIn"].Value = row["TimeIn_AM"].ToString();
                         dataGridView1.Rows[n].Cells["dgTimeOut"].Value = row["TimeOut_AM"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTimeInPm"].Value = row["TimeIn_PM"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTimeOutPM"].Value = row["TimeOut_PM"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = row["Late"].ToString();
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"].ToString()).ToString("dd/MM/yyyy");
                     }
                 }

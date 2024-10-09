@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAbsents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTimeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTimeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
@@ -45,6 +40,13 @@
             this.stipayrolldbDataSet2 = new payrollsystemsti.stipayrolldbDataSet2();
             this.historyTableTableAdapter1 = new payrollsystemsti.stipayrolldbDataSet2TableAdapters.HistoryTableTableAdapter();
             this.historyTableTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet3TableAdapters.HistoryTableTableAdapter();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeInPm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTimeOutPM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.historyTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet3)).BeginInit();
@@ -67,65 +69,28 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgDate,
-            this.dgAbsents,
+            this.dgLate,
             this.dgTimeIn,
-            this.dgTimeOut});
-            this.dataGridView1.Location = new System.Drawing.Point(64, 262);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgTimeOut,
+            this.dgTimeInPm,
+            this.dgTimeOutPM});
+            this.dataGridView1.Location = new System.Drawing.Point(43, 170);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1155, 517);
+            this.dataGridView1.Size = new System.Drawing.Size(770, 336);
             this.dataGridView1.TabIndex = 28;
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "EmployeeID";
-            this.dgEmpID.MinimumWidth = 8;
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            this.dgEmpID.Visible = false;
-            // 
-            // dgDate
-            // 
-            this.dgDate.DataPropertyName = "EmployeeID";
-            this.dgDate.HeaderText = "Date";
-            this.dgDate.MinimumWidth = 8;
-            this.dgDate.Name = "dgDate";
-            this.dgDate.ReadOnly = true;
-            // 
-            // dgAbsents
-            // 
-            this.dgAbsents.HeaderText = "Absents";
-            this.dgAbsents.MinimumWidth = 8;
-            this.dgAbsents.Name = "dgAbsents";
-            this.dgAbsents.ReadOnly = true;
-            // 
-            // dgTimeIn
-            // 
-            this.dgTimeIn.HeaderText = "Time IN";
-            this.dgTimeIn.MinimumWidth = 8;
-            this.dgTimeIn.Name = "dgTimeIn";
-            this.dgTimeIn.ReadOnly = true;
-            // 
-            // dgTimeOut
-            // 
-            this.dgTimeOut.HeaderText = "Time OUT";
-            this.dgTimeOut.MinimumWidth = 8;
-            this.dgTimeOut.Name = "dgTimeOut";
-            this.dgTimeOut.ReadOnly = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Crimson;
-            this.label1.Location = new System.Drawing.Point(56, 102);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(37, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(363, 47);
+            this.label1.Size = new System.Drawing.Size(247, 31);
             this.label1.TabIndex = 29;
             this.label1.Text = "Attedance History";
             // 
@@ -143,10 +108,9 @@
             this.dtDate.CustomFormat = "MMMM";
             this.dtDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDate.Location = new System.Drawing.Point(64, 189);
-            this.dtDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtDate.Location = new System.Drawing.Point(43, 123);
             this.dtDate.Name = "dtDate";
-            this.dtDate.Size = new System.Drawing.Size(211, 35);
+            this.dtDate.Size = new System.Drawing.Size(142, 26);
             this.dtDate.TabIndex = 102;
             this.dtDate.ValueChanged += new System.EventHandler(this.dtDate_ValueChanged);
             // 
@@ -182,17 +146,65 @@
             // 
             this.historyTableTableAdapter2.ClearBeforeFill = true;
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.MinimumWidth = 8;
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
+            // 
+            // dgDate
+            // 
+            this.dgDate.DataPropertyName = "EmployeeID";
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.MinimumWidth = 8;
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgLate
+            // 
+            this.dgLate.HeaderText = "Late";
+            this.dgLate.MinimumWidth = 8;
+            this.dgLate.Name = "dgLate";
+            this.dgLate.ReadOnly = true;
+            // 
+            // dgTimeIn
+            // 
+            this.dgTimeIn.HeaderText = "Time IN";
+            this.dgTimeIn.MinimumWidth = 8;
+            this.dgTimeIn.Name = "dgTimeIn";
+            this.dgTimeIn.ReadOnly = true;
+            // 
+            // dgTimeOut
+            // 
+            this.dgTimeOut.HeaderText = "Time OUT";
+            this.dgTimeOut.MinimumWidth = 8;
+            this.dgTimeOut.Name = "dgTimeOut";
+            this.dgTimeOut.ReadOnly = true;
+            // 
+            // dgTimeInPm
+            // 
+            this.dgTimeInPm.HeaderText = "Time IN(PM)";
+            this.dgTimeInPm.Name = "dgTimeInPm";
+            this.dgTimeInPm.ReadOnly = true;
+            // 
+            // dgTimeOutPM
+            // 
+            this.dgTimeOutPM.HeaderText = "Time OUT(PM)";
+            this.dgTimeOutPM.Name = "dgTimeOutPM";
+            this.dgTimeOutPM.ReadOnly = true;
+            // 
             // ViewAttendance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1299, 832);
+            this.ClientSize = new System.Drawing.Size(866, 541);
             this.Controls.Add(this.dtDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ViewAttendance";
             this.Text = "ViewAttendance";
             this.Load += new System.EventHandler(this.ViewAttendance_Load);
@@ -221,8 +233,10 @@
         private System.Windows.Forms.DateTimePicker dtDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeInPm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTimeOutPM;
     }
 }

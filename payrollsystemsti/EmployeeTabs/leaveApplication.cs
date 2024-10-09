@@ -43,7 +43,15 @@ namespace payrollsystemsti.EmployeeTabs
             loadLeaveCB();
             cbLeaves.SelectedIndex = 0;
             LoadData(loggedInID);
-            dtStart.MinDate = DateTime.Now.AddDays(14);
+            if(cbLeaves.Text == "Sick Leave" || cbLeaves.Text == "Emergency Leave")
+            {
+                dtStart.MinDate = DateTime.Now.AddDays(1);
+            }
+            else
+            {
+                dtStart.MinDate = DateTime.Now.AddDays(14);
+            }
+            
             //LoadData();
             
         }
@@ -427,6 +435,19 @@ namespace payrollsystemsti.EmployeeTabs
 
         private void cbLeaves_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            switch (cbLeaves.Text)
+            {
+                case "Sick Leave":
+                    dtStart.MinDate = DateTime.Now.AddDays(1);
+                    break;
+                case "Emergency Leave":
+                    dtStart.MinDate = DateTime.Now.AddDays(1);
+                    break;
+                default:
+                    dtStart.MinDate = DateTime.Now.AddDays(14);
+                    break;
+            }
+
             if(hasProof(cbLeaves.Text) == true)
             {
                 pbMedCert.Visible = true;

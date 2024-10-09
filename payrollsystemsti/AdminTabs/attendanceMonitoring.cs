@@ -92,7 +92,7 @@ namespace payrollsystemsti.AdminTabs
 
                             if(checkIfLate(currentTime, currentMinute))
                             {
-                                insertLateToAttedance(getEmpID(fID), currentMinute);
+                                UpdateAttendanceForLate(getEmpID(fID), Convert.ToDateTime(currentDate), currentMinute);
                             }
                         }
                     }
@@ -121,27 +121,54 @@ namespace payrollsystemsti.AdminTabs
             LoadAttendanceData(date.Value);
         }
 
-        public bool insertLateToAttedance(int empID, float minutes)
+        public bool UpdateAttendanceForLate(int empID, DateTime date, double minutes)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Attedance(Late) VALUES (@minutes) WHERE EmployeeID = @empID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-                    cmd.Parameters.AddWithValue("@minutes", minutes);
 
-                    try
+                try
+                {
+                    string query = "UPDATE Attendance SET Late = @minutes WHERE EmployeeID = @empID AND Date = @date";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@minutes", minutes);
+                        cmd.Parameters.AddWithValue("@empID", empID);
+                        cmd.Parameters.AddWithValue("@date", date);
+
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
-                    catch (SqlException ex)
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error updating attendance: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool CheckAttendanceRecord(int empID, DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                try
+                {
+                    string query = "SELECT EmployeeID WHERE Date = @date";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        MessageBox.Show("Error Inserting Late: " + ex.Message);
-                        return false;
+                        cmd.Parameters.AddWithValue("@empID", empID);
+                        cmd.Parameters.AddWithValue("@date", date);
+
+                        object result = cmd.ExecuteScalar();
+                        return result != null && result != DBNull.Value;
                     }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error updating attendance: " + ex.Message);
+                    return false;
                 }
             }
         }
