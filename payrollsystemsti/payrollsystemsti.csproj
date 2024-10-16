@@ -717,6 +717,9 @@
     </Content>
     <None Include="Resources\Untitled-1.png" />
     <None Include="Resources\Untitled-11.png" />
+    <None Include="Resources\backres.png" />
+    <None Include="Resources\backres1.png" />
+    <None Include="Resources\backres11.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

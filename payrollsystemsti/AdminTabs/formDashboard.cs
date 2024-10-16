@@ -37,6 +37,7 @@ namespace payrollsystemsti
         private OthersM OthersM;
         private IncentivesM Incentives;
         private HolidaysM holidays;
+        private BackupRestore BRestore;
 
 
 
@@ -921,6 +922,44 @@ namespace payrollsystemsti
 
             }
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (BRestore == null)
+            {
+                BRestore = new BackupRestore();
+                BRestore.FormClosed += BackupRestore_FormClosed;
+                BRestore.MdiParent = this;
+                BRestore.Dock = DockStyle.Fill;
+                BRestore.Show();
+            }
+            else
+            {
+                BRestore.BringToFront();
+                BRestore.Activate();
+            }
+
+        }
+        private void BackupRestore_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            BRestore = null;
+        }
+
+            private void panel15_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logoutPnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void settingsPnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void IncentivesM_FormClosed(object sender, FormClosedEventArgs e)
         {
             Incentives = null;
