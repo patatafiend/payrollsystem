@@ -1642,35 +1642,7 @@ namespace payrollsystemsti
             return totalCurrentAvailableLeaves;
         }
 
-        public void rolePermission(int roleID)
-        {
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                conn.Open();
-                string query = "SELECT * FROM Roles WHERE RoleID = @roleID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@roleID", roleID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-						bool maintenance = reader["Maintenance"] != DBNull.Value && (bool)reader["Maintenance"];
-						bool viewHistory = reader["ViewHistory"] != DBNull.Value && (bool)reader["ViewHistory"];
-						bool leaveManagement = reader["LeaveManagement"] != DBNull.Value && (bool)reader["LeaveManagement"];
-						bool accountArchive = reader["AccountArchive"] != DBNull.Value && (bool)reader["AccountArchive"];
-						bool backupRestore = reader["BackupRestore"] != DBNull.Value && (bool)reader["BackupRestore"];
-						bool employeeManagement = reader["EmployeeManagement"] != DBNull.Value && (bool)reader["EmployeeManagement"];
-						bool attendance = reader["Attendance"] != DBNull.Value && (bool)reader["Attendance"];
-
-                        if (maintenance)
-                        {
-                            
-                        }
-
-					}
-                }
-            }
-        }
+        
 
 
 

@@ -195,6 +195,17 @@ namespace payrollsystemsti
             return HIstoryLogPnl;
         }
 
+        public Panel GetMaintenancePanel()
+		{
+			return maintinanceC;
+		}
+
+        public Panel GetBackupAndRestorePanel()
+        {
+            return panel15;
+
+		}
+
 
 
 

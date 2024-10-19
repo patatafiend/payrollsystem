@@ -96,63 +96,65 @@ namespace payrollsystemsti
 								formDashboard.formDashboardInstance.LoggedInFirstName = Methods.CurrentUser.FirstName;
 								formDashboard.formDashboardInstance.LoggedInDepartment = departmentName;
 								formDashboard.formDashboardInstance.LoggedInAbsents = numAbsents;
-								
+
 
 								// Disable function based on role/department
-								if (roleID == 4)
-								{
-									if (departmentID == 2) // HR
-									{
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
-										dashBoard.isClickable = true;
-									}
-									else if (departmentID == 4) // Accounting
-									{
-										formDashboard.GetUserAccountPanel().Hide();
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.GetLeaveManagementPanel().Hide();
-										formDashboard.GetAccountArchivePanel().Hide();
-										formDashboard.GetHistoryPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-										dashBoard.isClickable = true;
-									}
-									else if (departmentID == 1) // Sales
-									{
-										formDashboard.GetUserAccountPanel().Hide();
-										formDashboard.GetLeaveManagementPanel().Hide();
-										formDashboard.GetAccountArchivePanel().Hide();
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.GetEmployeeRegisterPanel().Hide();
-										formDashboard.GetSalaryPanel().Hide();
-										formDashboard.GetHistoryPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-										dashBoard.isClickable = false;
-									}
-									else if (departmentID == 3) // Logistics
-									{
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-										dashBoard.isClickable = true;
-									}
-									else if (departmentID == 5) // Another Department
-									{
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-										dashBoard.isClickable = true;
-									}
-									else if (departmentID == 6) // Another Department
-									{
-										formDashboard.GetEnrollFingerPanel().Hide();
-										formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
-										dashBoard.isClickable = true;
-									}
-								}
-								else // Admin
-								{
-									formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
-									dashBoard.isClickable = true;
-								}
+								//if (roleID == 4)
+								//{
+								//	if (departmentID == 2) // HR
+								//	{
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+								//		dashBoard.isClickable = true;
+								//	}
+								//	else if (departmentID == 4) // Accounting
+								//	{
+								//		formDashboard.GetUserAccountPanel().Hide();
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.GetLeaveManagementPanel().Hide();
+								//		formDashboard.GetAccountArchivePanel().Hide();
+								//		formDashboard.GetHistoryPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+								//		dashBoard.isClickable = true;
+								//	}
+								//	else if (departmentID == 1) // Sales
+								//	{
+								//		formDashboard.GetUserAccountPanel().Hide();
+								//		formDashboard.GetLeaveManagementPanel().Hide();
+								//		formDashboard.GetAccountArchivePanel().Hide();
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.GetEmployeeRegisterPanel().Hide();
+								//		formDashboard.GetSalaryPanel().Hide();
+								//		formDashboard.GetHistoryPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+								//		dashBoard.isClickable = false;
+								//	}
+								//	else if (departmentID == 3) // Logistics
+								//	{
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+								//		dashBoard.isClickable = true;
+								//	}
+								//	else if (departmentID == 5) // Another Department
+								//	{
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+								//		dashBoard.isClickable = true;
+								//	}
+								//	else if (departmentID == 6) // Another Department
+								//	{
+								//		formDashboard.GetEnrollFingerPanel().Hide();
+								//		formDashboard.formDashboardInstance.LoggedInLeaves = numLeaves;
+								//		dashBoard.isClickable = true;
+								//	}
+								//}
+								//else // Admin
+								//{
+								//	formDashboard.formDashboardInstance.LoggedInLeaves = totalEmployee;
+								//	dashBoard.isClickable = true;
+								//}
+
+								rolePermission(Methods.CurrentUser.EmployeeRole);
 								formDashboard.Show();
 								return true;
 							}
@@ -275,7 +277,71 @@ namespace payrollsystemsti
 			}
 		}
 
-		
+		public void rolePermission(int roleID)
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				string query = "SELECT * FROM Roles WHERE RoleID = @roleID";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@roleID", roleID);
+					SqlDataReader reader = cmd.ExecuteReader();
+					if (reader.Read())
+					{
+						bool maintenance = reader["Maintenance"] != DBNull.Value && (bool)reader["Maintenance"];
+						bool viewHistory = reader["ViewHistory"] != DBNull.Value && (bool)reader["ViewHistory"];
+						bool leaveManagement = reader["LeaveManagement"] != DBNull.Value && (bool)reader["LeaveManagement"];
+						bool accountArchive = reader["AccountArchive"] != DBNull.Value && (bool)reader["AccountArchive"];
+						bool backupRestore = reader["BackupRestore"] != DBNull.Value && (bool)reader["BackupRestore"];
+						bool employeeManagement = reader["EmployeeManagement"] != DBNull.Value && (bool)reader["EmployeeManagement"];
+						bool attendance = reader["Attendance"] != DBNull.Value && (bool)reader["Attendance"];
+
+						if (!maintenance)
+						{
+							formDashboard.GetMaintenancePanel().Hide();
+						}
+
+						if (!viewHistory)
+						{
+							formDashboard.GetHistoryPanel().Hide();
+						}
+
+						if (!leaveManagement)
+						{
+							formDashboard.GetLeaveManagementPanel().Hide();
+						}
+
+						if(!accountArchive)
+						{
+							formDashboard.GetAccountArchivePanel().Hide();
+						}
+
+						if (!backupRestore)
+						{
+							formDashboard.GetBackupAndRestorePanel().Hide();
+						}
+
+						if (!employeeManagement)
+						{
+							formDashboard.GetEmployeeRegisterPanel().Hide();
+						}
+
+						//if (!attendance)
+						//{
+						//	formDashboard.GetAttendancePanel().Hide();
+						//}
+
+						
+
+						
+
+					}
+				}
+			}
+		}
+
+
 
 
 	}
