@@ -882,7 +882,7 @@ namespace payrollsystemsti
             }
         }
 
-        
+
 
         public bool deactivateRole(int id)
         {
@@ -1503,136 +1503,168 @@ namespace payrollsystemsti
             public static string Username { get; set; }
             public static string DepartmentID { get; set; }
             public static string EmailAddress { get; set; }
-			public static string EmployeeNumber { get; set; }
+            public static string EmployeeNumber { get; set; }
 
             //ints
             public static int EmployeeRole { get; set; }
-			public static int employeePosition { get; set; }
-			public static int UserID { get; set; }
-			public static int EmployeeID { get; set; }
+            public static int employeePosition { get; set; }
+            public static int UserID { get; set; }
+            public static int EmployeeID { get; set; }
 
-            
-            
 
-            
+
+
+
 
 
         }
 
-		public void Add_HistoryLog(int employeeID, string firstName, string lastName, string department, string historyfrom)
-		{
-			using (SqlConnection conn = new SqlConnection(connStr))
-			{
-				conn.Open();
+        public void Add_HistoryLog(int employeeID, string firstName, string lastName, string department, string historyfrom)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
 
-				string query = "INSERT INTO HistoryTable (EmployeeID, FirstName, LastName, Department, HistoryFrom,TimeAdded) " +
-							   "VALUES (@employeeID, @firstName, @lastName, @department, @historyfrom, @loginTime)";
+                string query = "INSERT INTO HistoryTable (EmployeeID, FirstName, LastName, Department, HistoryFrom,TimeAdded) " +
+                               "VALUES (@employeeID, @firstName, @lastName, @department, @historyfrom, @loginTime)";
 
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("@employeeID", employeeID);
-					cmd.Parameters.AddWithValue("@firstName", firstName);
-					cmd.Parameters.AddWithValue("@lastName", lastName);
-					cmd.Parameters.AddWithValue("@department", department);
-					cmd.Parameters.AddWithValue("@loginTime", DateTime.Now);
-					cmd.Parameters.AddWithValue("@historyfrom", historyfrom);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@department", department);
+                    cmd.Parameters.AddWithValue("@loginTime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@historyfrom", historyfrom);
 
-					cmd.ExecuteNonQuery();
-				}
-			}
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
-		}
+        }
 
-        public void Add_Overtimepay(int employeeID, TimeSpan StartTime , TimeSpan EndTime, string Justification, DateTime AppliedDate)
-		{
-			using (SqlConnection conn = new SqlConnection(connStr))
-			{
-				conn.Open();
+        public void Add_Overtimepay(int employeeID, TimeSpan StartTime, TimeSpan EndTime, string Justification, DateTime AppliedDate)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
 
-				string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime, Justification) " +
-							   "VALUES (@employeeID, @appliedDate,@startTime, @endTime,  @justification)";
+                string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime, Justification) " +
+                               "VALUES (@employeeID, @appliedDate,@startTime, @endTime,  @justification)";
 
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("@employeeID", employeeID);
-					cmd.Parameters.AddWithValue("@appliedDate", AppliedDate);
-					cmd.Parameters.AddWithValue("@startTime", StartTime);
-					cmd.Parameters.AddWithValue("@justification", Justification);
-					cmd.Parameters.AddWithValue("@endTime", EndTime);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@appliedDate", AppliedDate);
+                    cmd.Parameters.AddWithValue("@startTime", StartTime);
+                    cmd.Parameters.AddWithValue("@justification", Justification);
+                    cmd.Parameters.AddWithValue("@endTime", EndTime);
 
-					cmd.ExecuteNonQuery();
-				}
-			}
-		}
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
-		public int getTotalemployee()
-		{
-			int totalemployee = 0;
-			using (SqlConnection conn = new SqlConnection(connStr))
-			{
-				try
-				{
-					conn.Open();
-					string query = "SELECT COUNT(*) FROM EmployeeAccounts";
-					using (SqlCommand cmd = new SqlCommand(query, conn))
-					{
-						totalemployee = (int)cmd.ExecuteScalar();
+        public int getTotalemployee()
+        {
+            int totalemployee = 0;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM EmployeeAccounts";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        totalemployee = (int)cmd.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error retrieving total employee count: {ex.Message}", "Error");
+                }
+            }
+
+            return totalemployee;
+        }
+
+        public int getTotalCurrentAvailableLeaves(int currentuserid)
+        {
+            int totalCurrentAvailableLeaves = 0;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Get the list of columns in the LeaveTypeAvailable table
+                    DataTable schemaTable = conn.GetSchema("Columns", new[] { null, null, "LeaveTypeAvailable", null });
+                    List<string> leaveColumns = new List<string>();
+
+                    foreach (DataRow row in schemaTable.Rows)
+                    {
+                        string columnName = row["COLUMN_NAME"].ToString();
+                        if (columnName != "Id" && columnName != "Employee ID")
+                        {
+                            leaveColumns.Add(columnName);
+                        }
+                    }
+
+                    // Construct the dynamic SQL query
+                    string sumColumns = string.Join(" + ", leaveColumns.Select(c => $"ISNULL(CAST([{c}] AS INT), 0)"));
+                    string query = $"SELECT {sumColumns} AS TotalLeaves FROM LeaveTypeAvailable WHERE [Employee ID] = @currentuserid";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@currentuserid", currentuserid);
+                        object result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            totalCurrentAvailableLeaves = Convert.ToInt32(result);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error retrieving total current available leaves: {ex.Message}", "Error");
+                }
+            }
+
+            return totalCurrentAvailableLeaves;
+        }
+
+        public void rolePermission(int roleID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Roles WHERE RoleID = @roleID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@roleID", roleID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+						bool maintenance = reader["Maintenance"] != DBNull.Value && (bool)reader["Maintenance"];
+						bool viewHistory = reader["ViewHistory"] != DBNull.Value && (bool)reader["ViewHistory"];
+						bool leaveManagement = reader["LeaveManagement"] != DBNull.Value && (bool)reader["LeaveManagement"];
+						bool accountArchive = reader["AccountArchive"] != DBNull.Value && (bool)reader["AccountArchive"];
+						bool backupRestore = reader["BackupRestore"] != DBNull.Value && (bool)reader["BackupRestore"];
+						bool employeeManagement = reader["EmployeeManagement"] != DBNull.Value && (bool)reader["EmployeeManagement"];
+						bool attendance = reader["Attendance"] != DBNull.Value && (bool)reader["Attendance"];
+
+                        if (maintenance)
+                        {
+                            
+                        }
+
 					}
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show($"Error retrieving total employee count: {ex.Message}", "Error");
-				}
-			}
+                }
+            }
+        }
 
-			return totalemployee;
-		}
 
-		public int getTotalCurrentAvailableLeaves(int currentuserid)
-		{
-			int totalCurrentAvailableLeaves = 0;
-
-			using (SqlConnection conn = new SqlConnection(connStr))
-			{
-				try
-				{
-					conn.Open();
-
-					// Get the list of columns in the LeaveTypeAvailable table
-					DataTable schemaTable = conn.GetSchema("Columns", new[] { null, null, "LeaveTypeAvailable", null });
-					List<string> leaveColumns = new List<string>();
-
-					foreach (DataRow row in schemaTable.Rows)
-					{
-						string columnName = row["COLUMN_NAME"].ToString();
-						if (columnName != "Id" && columnName != "Employee ID")
-						{
-							leaveColumns.Add(columnName);
-						}
-					}
-
-					// Construct the dynamic SQL query
-					string sumColumns = string.Join(" + ", leaveColumns.Select(c => $"ISNULL(CAST([{c}] AS INT), 0)"));
-					string query = $"SELECT {sumColumns} AS TotalLeaves FROM LeaveTypeAvailable WHERE [Employee ID] = @currentuserid";
-
-					using (SqlCommand cmd = new SqlCommand(query, conn))
-					{
-						cmd.Parameters.AddWithValue("@currentuserid", currentuserid);
-						object result = cmd.ExecuteScalar();
-						if (result != DBNull.Value)
-						{
-							totalCurrentAvailableLeaves = Convert.ToInt32(result);
-						}
-					}
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show($"Error retrieving total current available leaves: {ex.Message}", "Error");
-				}
-			}
-
-			return totalCurrentAvailableLeaves;
-		}
 
 
 	}

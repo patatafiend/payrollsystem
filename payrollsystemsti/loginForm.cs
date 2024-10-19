@@ -83,13 +83,6 @@ namespace payrollsystemsti
 								Methods.CurrentUser.EmployeeRole = (int)reader["RoleID"];
 
 
-
-
-
-
-
-
-
 								int roleID = (int)reader["RoleID"];
 								string departmentName = m.getDepartmentName((int)reader["DepartmentID"]);
 								int departmentID = (int)reader["DepartmentID"];
