@@ -25,7 +25,7 @@ namespace payrollsystemsti
         {
             if (!m.ifRoleTitleExist(tb1.Text.ToString()))
             {
-                m.insertToRoles(tb1.Text);
+                m.insertToRoles(tb1.Text, checkBox1(), checkBox2(), checkBox3(), checkBox4(), checkBox5(), checkBox6(), checkBox7());
 				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Role Added");
 				LoadRoleData();
                 tb1.Clear();
@@ -104,6 +104,94 @@ namespace payrollsystemsti
             LoadRoleData();
         }
 
+        public bool checkBox1()
+        {
+            switch (mBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+        public bool checkBox2()
+        {
+            switch (vhBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+        public bool checkBox3()
+        {
+            switch (lmBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        public bool checkBox4()
+        {
+            switch (aaBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        public bool checkBox5()
+        {
+            switch (brBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        public bool checkBox6()
+        {
+            switch (emBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        public bool checkBox7()
+        {
+            switch (aBox.CheckState)
+            {
+                case CheckState.Checked:
+                    return true;
+                case CheckState.Unchecked:
+                    return false;
+                default:
+                    return false;
+            }
+        }
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
