@@ -366,7 +366,8 @@ namespace payrollsystemsti
         {
             this.Close();
             formLogin fm_Login = new formLogin();
-            fm_Login.Show();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName + "Logged out.");
+			fm_Login.Show();
         }
         // Click event for settings button
         private void settings_Click(object sender, EventArgs e)
@@ -603,7 +604,10 @@ namespace payrollsystemsti
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
-            }
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName + "Logged out.");
+
+
+			}
         }
 
 		private void BtnHistoryLog_Click(object sender, EventArgs e)
