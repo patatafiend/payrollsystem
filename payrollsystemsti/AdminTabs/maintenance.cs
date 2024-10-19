@@ -225,7 +225,7 @@ namespace payrollsystemsti.Tabs
 						
 						break;
                     case "Roles":
-                        m.insertToRoles(tb1.Text);
+                        //m.insertToRoles(tb1.Text);
 						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Maintenance Add Roles");
 						LoadRoleData();
 						

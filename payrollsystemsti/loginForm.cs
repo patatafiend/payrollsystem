@@ -324,7 +324,7 @@ namespace payrollsystemsti
 
 						if (!employeeManagement)
 						{
-							formDashboard.GetEmployeeRegisterPanel().Hide();
+							formDashboard.GetEmployeePanel().Hide();
 						}
 
 						//if (!attendance)
