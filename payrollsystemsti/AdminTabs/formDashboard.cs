@@ -1,6 +1,5 @@
 ﻿using payrollsystemsti.AdminTabs;
 using payrollsystemsti.EmployeeTabs;
-using payrollsystemsti.Tabs;
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -16,7 +15,6 @@ namespace payrollsystemsti
         public static formDashboard formDashboardInstance;
         // Declare form instances
         private dashBoard dashboard;
-        private maintenance userRegister;
         private formSettings fSettings;
         private employeeRegister empRegister;
         private employeeSalary employeeSalary;

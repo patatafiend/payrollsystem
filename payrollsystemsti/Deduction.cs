@@ -1,5 +1,4 @@
 ﻿using payrollsystemsti.AdminTabs;
-using payrollsystemsti.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
