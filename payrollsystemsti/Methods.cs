@@ -415,15 +415,23 @@ namespace payrollsystemsti
                 }
             }
         }
-        public bool insertToRoles(string title)
+        public bool insertToRoles(string title, bool m, bool vh, bool lm, bool aa, bool br, bool em, bool a)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Roles(RoleTitle) VALUES(@title)";
+                string query = "INSERT INTO Roles(RoleTitle, Maintenance, ViewHistory, LeaveManagement, AccountArchive," +
+                    " BackupRestore, EmployeeManagement, Attendance) VALUES(@title, @m, @vh, @lm, @aa, @br, @em, @a)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@m", m);
+                    cmd.Parameters.AddWithValue("@vh", vh);
+                    cmd.Parameters.AddWithValue("@lm", lm);
+                    cmd.Parameters.AddWithValue("@aa", aa);
+                    cmd.Parameters.AddWithValue("@br", br);
+                    cmd.Parameters.AddWithValue("@em", em);
+                    cmd.Parameters.AddWithValue("@a", a);
 
                     try
                     {

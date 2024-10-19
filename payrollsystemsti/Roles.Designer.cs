@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -37,13 +37,13 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.cbPicture = new System.Windows.Forms.CheckBox();
+            this.aBox = new System.Windows.Forms.CheckBox();
+            this.emBox = new System.Windows.Forms.CheckBox();
+            this.brBox = new System.Windows.Forms.CheckBox();
+            this.aaBox = new System.Windows.Forms.CheckBox();
+            this.lmBox = new System.Windows.Forms.CheckBox();
+            this.vhBox = new System.Windows.Forms.CheckBox();
+            this.mBox = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,7 +83,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Location = new System.Drawing.Point(41, 324);
+            this.btnAdd.Location = new System.Drawing.Point(27, 303);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(118, 44);
             this.btnAdd.TabIndex = 75;
@@ -97,7 +97,7 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(916, 358);
+            this.btnDeactivate.Location = new System.Drawing.Point(917, 314);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 74;
@@ -111,7 +111,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(165, 324);
+            this.btnUpdate.Location = new System.Drawing.Point(151, 303);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 72;
@@ -137,7 +137,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(289, 324);
+            this.btnCancel.Location = new System.Drawing.Point(275, 303);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 78;
@@ -146,96 +146,96 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // checkBox7
+            // aBox
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox7.Location = new System.Drawing.Point(296, 256);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(121, 24);
-            this.checkBox7.TabIndex = 90;
-            this.checkBox7.Text = "Attendance";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            this.checkBox7.Visible = false;
+            this.aBox.AutoSize = true;
+            this.aBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.aBox.Location = new System.Drawing.Point(296, 256);
+            this.aBox.Name = "aBox";
+            this.aBox.Size = new System.Drawing.Size(121, 24);
+            this.aBox.TabIndex = 90;
+            this.aBox.Text = "Attendance";
+            this.aBox.UseVisualStyleBackColor = true;
+            this.aBox.Visible = false;
             // 
-            // checkBox5
+            // emBox
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox5.Location = new System.Drawing.Point(53, 256);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(215, 24);
-            this.checkBox5.TabIndex = 89;
-            this.checkBox5.Text = "Employee Management";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.Visible = false;
+            this.emBox.AutoSize = true;
+            this.emBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.emBox.Location = new System.Drawing.Point(53, 256);
+            this.emBox.Name = "emBox";
+            this.emBox.Size = new System.Drawing.Size(215, 24);
+            this.emBox.TabIndex = 89;
+            this.emBox.Text = "Employee Management";
+            this.emBox.UseVisualStyleBackColor = true;
+            this.emBox.Visible = false;
             // 
-            // checkBox4
+            // brBox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox4.Location = new System.Drawing.Point(736, 197);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(174, 24);
-            this.checkBox4.TabIndex = 88;
-            this.checkBox4.Text = "Backup && Restore";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.Visible = false;
+            this.brBox.AutoSize = true;
+            this.brBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.brBox.Location = new System.Drawing.Point(736, 197);
+            this.brBox.Name = "brBox";
+            this.brBox.Size = new System.Drawing.Size(174, 24);
+            this.brBox.TabIndex = 88;
+            this.brBox.Text = "Backup && Restore";
+            this.brBox.UseVisualStyleBackColor = true;
+            this.brBox.Visible = false;
             // 
-            // checkBox3
+            // aaBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox3.Location = new System.Drawing.Point(572, 197);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(158, 24);
-            this.checkBox3.TabIndex = 87;
-            this.checkBox3.Text = "Account Archive";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.Visible = false;
+            this.aaBox.AutoSize = true;
+            this.aaBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aaBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.aaBox.Location = new System.Drawing.Point(572, 197);
+            this.aaBox.Name = "aaBox";
+            this.aaBox.Size = new System.Drawing.Size(158, 24);
+            this.aaBox.TabIndex = 87;
+            this.aaBox.Text = "Account Archive";
+            this.aaBox.UseVisualStyleBackColor = true;
+            this.aaBox.Visible = false;
             // 
-            // checkBox2
+            // lmBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox2.Location = new System.Drawing.Point(370, 197);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(185, 24);
-            this.checkBox2.TabIndex = 86;
-            this.checkBox2.Text = "Leave Management";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Visible = false;
+            this.lmBox.AutoSize = true;
+            this.lmBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lmBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lmBox.Location = new System.Drawing.Point(370, 197);
+            this.lmBox.Name = "lmBox";
+            this.lmBox.Size = new System.Drawing.Size(185, 24);
+            this.lmBox.TabIndex = 86;
+            this.lmBox.Text = "Leave Management";
+            this.lmBox.UseVisualStyleBackColor = true;
+            this.lmBox.Visible = false;
             // 
-            // checkBox1
+            // vhBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox1.Location = new System.Drawing.Point(209, 197);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(127, 24);
-            this.checkBox1.TabIndex = 85;
-            this.checkBox1.Text = "View History";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
+            this.vhBox.AutoSize = true;
+            this.vhBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vhBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.vhBox.Location = new System.Drawing.Point(209, 197);
+            this.vhBox.Name = "vhBox";
+            this.vhBox.Size = new System.Drawing.Size(127, 24);
+            this.vhBox.TabIndex = 85;
+            this.vhBox.Text = "View History";
+            this.vhBox.UseVisualStyleBackColor = true;
+            this.vhBox.Visible = false;
             // 
-            // cbPicture
+            // mBox
             // 
-            this.cbPicture.AutoSize = true;
-            this.cbPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPicture.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cbPicture.Location = new System.Drawing.Point(51, 197);
-            this.cbPicture.Name = "cbPicture";
-            this.cbPicture.Size = new System.Drawing.Size(131, 24);
-            this.cbPicture.TabIndex = 84;
-            this.cbPicture.Text = "Maintenance";
-            this.cbPicture.UseVisualStyleBackColor = true;
-            this.cbPicture.Visible = false;
+            this.mBox.AutoSize = true;
+            this.mBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.mBox.Location = new System.Drawing.Point(51, 197);
+            this.mBox.Name = "mBox";
+            this.mBox.Size = new System.Drawing.Size(131, 24);
+            this.mBox.TabIndex = 84;
+            this.mBox.Text = "Maintenance";
+            this.mBox.UseVisualStyleBackColor = true;
+            this.mBox.Visible = false;
             // 
             // dataGridView1
             // 
@@ -247,14 +247,14 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dg1st,
@@ -265,15 +265,15 @@
             this.dg6th,
             this.dg7th,
             this.dgIsDeactivated});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 409);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Location = new System.Drawing.Point(25, 365);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -281,7 +281,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1027, 310);
+            this.dataGridView1.Size = new System.Drawing.Size(1027, 354);
             this.dataGridView1.TabIndex = 91;
             // 
             // dg1st
@@ -342,15 +342,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 755);
+            this.ClientSize = new System.Drawing.Size(1076, 747);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.cbPicture);
+            this.Controls.Add(this.aBox);
+            this.Controls.Add(this.emBox);
+            this.Controls.Add(this.brBox);
+            this.Controls.Add(this.aaBox);
+            this.Controls.Add(this.lmBox);
+            this.Controls.Add(this.vhBox);
+            this.Controls.Add(this.mBox);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.tb1);
@@ -377,13 +377,13 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox cbPicture;
+        private System.Windows.Forms.CheckBox aBox;
+        private System.Windows.Forms.CheckBox emBox;
+        private System.Windows.Forms.CheckBox brBox;
+        private System.Windows.Forms.CheckBox aaBox;
+        private System.Windows.Forms.CheckBox lmBox;
+        private System.Windows.Forms.CheckBox vhBox;
+        private System.Windows.Forms.CheckBox mBox;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
