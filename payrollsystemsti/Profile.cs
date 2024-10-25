@@ -13,6 +13,7 @@ namespace payrollsystemsti
 {
     public partial class Profile : Form
     {
+        Methods m = new Methods();
         //draggable panel shit
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -21,10 +22,14 @@ namespace payrollsystemsti
         [DllImport("User32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
+        int loggedInID = 0;
+
+        public static Profile profile;
+
         public Profile()
         {
             InitializeComponent();
-
+            profile = this;
         }
 
 
@@ -35,9 +40,28 @@ namespace payrollsystemsti
          
         }
 
+        public int LoggedInEmpID
+        {
+            set
+            {
+                loggedInID = value;
+            }
+            get
+            {
+                return loggedInID;
+            }
+        }
+
+
+
         private void lb_curDepartment_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Profile_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

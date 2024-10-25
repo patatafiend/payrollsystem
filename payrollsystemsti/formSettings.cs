@@ -9,16 +9,29 @@ namespace payrollsystemsti
 {
     public partial class formSettings : Form
     {
-
-       
-
-
+        public static formSettings fsettings;
+        Methods m = new Methods();
         public formSettings()
         {
             InitializeComponent();
+            fsettings = this;
         }
 
+        private int loggedInID;
+
         changePass changeForm;
+
+        public int LoggedInEmpID
+        {
+            set
+            {
+                loggedInID = value;
+            }
+            get
+            {
+                return loggedInID;
+            }
+        }
 
         private void changePassword_Click(object sender, EventArgs e)
         {
@@ -43,7 +56,7 @@ namespace payrollsystemsti
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            
+            label5.Text = m.GetEmpName(loggedInID);
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -58,23 +71,30 @@ namespace payrollsystemsti
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            profile11.Show();
-            
-            
-            
-
+            profile11.Visible = true;
         }
 
         private void profile11_Load(object sender, EventArgs e)
         {
             profile11.Hide();
-           
         }
 
         private void Settings_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void profile11_VisibleChanged(object sender, EventArgs e)
+        {
+            label5.Visible = profile11.Visible;
+            label6.Visible = profile11.Visible;
+            label7.Visible = profile11.Visible;
+            label8.Visible = profile11.Visible;
+            label9.Visible = profile11.Visible;
+            label10.Visible = profile11.Visible;
+            label11.Visible = profile11.Visible;
+            label12.Visible = profile11.Visible;
+            label13.Visible = profile11.Visible;
         }
     }
 }

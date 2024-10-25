@@ -302,7 +302,7 @@ namespace payrollsystemsti
         // FormClosed event for user registration form
         private void userRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
-            userRegister = null;
+            //userRegister = null;
         }
 
         // Click event for dashboard button
@@ -388,6 +388,7 @@ namespace payrollsystemsti
                 fSettings.FormClosed += Settings_FormClosed;
                 fSettings.MdiParent = this;
                 fSettings.Dock = DockStyle.Fill;
+                formSettings.fsettings.LoggedInEmpID = loggedInEmployeeID;
                 fSettings.Show();
             }
             else
