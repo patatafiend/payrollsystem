@@ -388,6 +388,7 @@ namespace payrollsystemsti
                 fSettings.FormClosed += Settings_FormClosed;
                 fSettings.MdiParent = this;
                 fSettings.Dock = DockStyle.Fill;
+                formSettings.fsettings.LoggedInEmpID = loggedInEmployeeID;
                 fSettings.Show();
             }
             else
