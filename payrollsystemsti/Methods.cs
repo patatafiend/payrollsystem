@@ -1360,6 +1360,148 @@ namespace payrollsystemsti
             }
         }
 
+        public string GetEmpNum(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Mobile FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Mobile"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+        public string GetEmpEmail(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Email FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Email"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public string GetEmpDob(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Dob FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Dob"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public string GetEmpGender(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Gender FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Gender"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public string GetEmpPositionID(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT PositionID FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["PositionID"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public string GetEmpDepartmentID(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT DepartmentID FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["DepartmentID"].ToString();
+                    }
+                    else
+                    {
+                        return " ";
+                    }
+                }
+            }
+        }
+
+        public int CalculateAge(DateTime birthDate)
+        {
+            int age = DateTime.Today.Year - birthDate.Year;
+            if (DateTime.Today < birthDate.AddYears(age))
+            {
+                age--;
+            }
+            return age;
+        }
+
+
         public int GetEmployeeIdByName(string fullName)
         {
             using (SqlConnection connection = new SqlConnection(connStr))
