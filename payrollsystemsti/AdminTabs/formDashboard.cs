@@ -302,7 +302,7 @@ namespace payrollsystemsti
         // FormClosed event for user registration form
         private void userRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
-            userRegister = null;
+            //userRegister = null;
         }
 
         // Click event for dashboard button
