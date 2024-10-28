@@ -44,6 +44,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnCompute = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -222,12 +223,27 @@
             this.label5.Text = "label5";
             this.label5.Visible = false;
             // 
+            // btnCompute
+            // 
+            this.btnCompute.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCompute.Location = new System.Drawing.Point(64, 485);
+            this.btnCompute.Name = "btnCompute";
+            this.btnCompute.Size = new System.Drawing.Size(120, 47);
+            this.btnCompute.TabIndex = 42;
+            this.btnCompute.Text = "ADD";
+            this.btnCompute.UseVisualStyleBackColor = false;
+            this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(795, 577);
+            this.Controls.Add(this.btnCompute);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -272,5 +288,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCompute;
     }
 }

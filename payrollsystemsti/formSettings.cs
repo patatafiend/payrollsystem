@@ -56,13 +56,22 @@ namespace payrollsystemsti
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
+            int p = Convert.ToInt32(m.GetEmpPositionID(loggedInID));
+            int d = Convert.ToInt32(m.GetEmpDepartmentID(loggedInID));
+
             label5.Text = m.GetEmpName(loggedInID);
+            label6.Text = m.GetEmpNum(loggedInID);
+            label7.Text = m.GetEmpEmail(loggedInID);
+            label8.Text = m.CalculateAge(Convert.ToDateTime(m.GetEmpDob(loggedInID))).ToString();
+            label9.Text = m.GetEmpGender(loggedInID);
+            label10.Text = m.GetEmpDob(loggedInID);
+            label11.Text = loggedInID.ToString();
+            label12.Text = m.getPositionTitle(p);
+            label13.Text = m.getDepartmentName(d);
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
-
         }
         Color zcolor(int r, int g, int b)
         {
@@ -95,6 +104,13 @@ namespace payrollsystemsti
             label11.Visible = profile11.Visible;
             label12.Visible = profile11.Visible;
             label13.Visible = profile11.Visible;
+        }
+
+        private void btnCompute_Click(object sender, EventArgs e)
+        {
+            AddAttendance attedance = new AddAttendance();
+            AddAttendance.add.EmployeeID = loggedInID;
+            attedance.Show();
         }
     }
 }
