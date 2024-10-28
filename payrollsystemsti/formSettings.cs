@@ -105,5 +105,12 @@ namespace payrollsystemsti
             label12.Visible = profile11.Visible;
             label13.Visible = profile11.Visible;
         }
+
+        private void btnCompute_Click(object sender, EventArgs e)
+        {
+            AddAttendance attedance = new AddAttendance();
+            AddAttendance.add.EmployeeID = loggedInID;
+            attedance.Show();
+        }
     }
 }
