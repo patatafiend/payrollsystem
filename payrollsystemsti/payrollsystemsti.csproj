@@ -102,6 +102,12 @@
     <Compile Include="AdminTabs\attendanceMonitoring.Designer.cs">
       <DependentUpon>attendanceMonitoring.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\employeeLeaves.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\employeeLeaves.Designer.cs">
+      <DependentUpon>employeeLeaves.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\departmentList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\attendanceMonitoring.resx">
       <DependentUpon>attendanceMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\employeeLeaves.resx">
+      <DependentUpon>employeeLeaves.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\departmentList.resx">
       <DependentUpon>departmentList.cs</DependentUpon>

@@ -40,10 +40,10 @@
 			this.lb_EmpPhoNum = new System.Windows.Forms.Label();
 			this.lb_EmpName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.dgv_Mdashboardnotif = new System.Windows.Forms.DataGridView();
 			this.lbEmployeeID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.pbCurrentUser = new System.Windows.Forms.PictureBox();
+			this.dgv_Mdashboardnotif = new System.Windows.Forms.DataGridView();
 			this.notificationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
 			this.stipayrolldbDataSet7 = new payrollsystemsti.stipayrolldbDataSet7();
 			this.notificationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -84,8 +84,8 @@
 			this.notificationsTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet7TableAdapters.NotificationsTableAdapter();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).BeginInit();
@@ -221,14 +221,6 @@
 			this.panel3.Size = new System.Drawing.Size(223, 304);
 			this.panel3.TabIndex = 6;
 			// 
-			// dgv_Mdashboardnotif
-			// 
-			this.dgv_Mdashboardnotif.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(253, 9);
-			this.dgv_Mdashboardnotif.Name = "dgv_Mdashboardnotif";
-			this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(351, 162);
-			this.dgv_Mdashboardnotif.TabIndex = 0;
-			// 
 			// lbEmployeeID
 			// 
 			this.lbEmployeeID.AutoSize = true;
@@ -261,6 +253,14 @@
 			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pbCurrentUser.TabIndex = 3;
 			this.pbCurrentUser.TabStop = false;
+			// 
+			// dgv_Mdashboardnotif
+			// 
+			this.dgv_Mdashboardnotif.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(253, 9);
+			this.dgv_Mdashboardnotif.Name = "dgv_Mdashboardnotif";
+			this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(351, 162);
+			this.dgv_Mdashboardnotif.TabIndex = 0;
 			// 
 			// notificationsBindingSource2
 			// 
@@ -420,6 +420,7 @@
 			this.pnl_roles.Name = "pnl_roles";
 			this.pnl_roles.Size = new System.Drawing.Size(203, 79);
 			this.pnl_roles.TabIndex = 8;
+			
 			this.pnl_roles.DoubleClick += new System.EventHandler(this.pnl_roles_DoubleClick);
 			// 
 			// lb_roles_name
@@ -635,8 +636,8 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).EndInit();

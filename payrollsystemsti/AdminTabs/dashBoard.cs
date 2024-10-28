@@ -22,7 +22,10 @@ namespace payrollsystemsti
 
 		private leaveApplication leaveApplication;
 		private departmentList DepartmentList;
+		private employeeLeaves employeeLeaves;
+
 		public static dashBoard dashboardInstance;
+
 		public PictureBox pbGetImageUser;
 		public Label lbGetName;
 		public Label lbGetDepartment;
@@ -134,7 +137,8 @@ namespace payrollsystemsti
 		//leave panel
 		private void pnl_totalLeaves_DoubleClick(object sender, EventArgs e)
 		{
-			MessageBox.Show("Double Clicked leave");
+			employeeLeaves employeeLeaves = new employeeLeaves();
+			employeeLeaves.Show();
 		}
 
 
@@ -205,6 +209,6 @@ namespace payrollsystemsti
 			return role;
 		}
 
-
+		
 	}
 }
