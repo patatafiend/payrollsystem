@@ -241,6 +241,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 MessageBox.Show("Only the 12th and 28th are allowed.");
                 dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
+
             }
         }
 
@@ -385,8 +386,8 @@ namespace payrollsystemsti.AdminTabs
             double totalHP = (totalHoursW / 8) * basicRate;
             double semiM = basicRate * 15;
 
-            DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
-            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
+            DateTime dateStart = Convert.ToDateTime(dtStart.Value);
+            DateTime dateEnd = Convert.ToDateTime(dtEnd.Value);
 
 
             if (!IfPaySlipExist(empID))

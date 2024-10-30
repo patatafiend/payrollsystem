@@ -30,18 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leaveManagement));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lbLM = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnApprove = new System.Windows.Forms.Button();
-            this.btnReject = new System.Windows.Forms.Button();
-            this.btnReload = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbLM = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
+            this.btnApprove = new System.Windows.Forms.Button();
+            this.btnReject = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,6 +74,45 @@
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
+            // 
+            // dgName
+            // 
+            this.dgName.HeaderText = "Name";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgLeaveType
+            // 
+            this.dgLeaveType.HeaderText = "Leave Type";
+            this.dgLeaveType.Name = "dgLeaveType";
+            this.dgLeaveType.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgDateStart
+            // 
+            this.dgDateStart.HeaderText = "DateStart";
+            this.dgDateStart.Name = "dgDateStart";
+            this.dgDateStart.ReadOnly = true;
+            this.dgDateStart.Visible = false;
+            // 
+            // dgDateEnd
+            // 
+            this.dgDateEnd.HeaderText = "DateEnd";
+            this.dgDateEnd.Name = "dgDateEnd";
+            this.dgDateEnd.ReadOnly = true;
+            this.dgDateEnd.Visible = false;
+            // 
             // lbLM
             // 
             this.lbLM.AutoSize = true;
@@ -100,20 +138,6 @@
             this.btnView.Text = "View Details";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(29, 421);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
-            this.btnUpdate.TabIndex = 26;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnApprove
             // 
@@ -157,45 +181,6 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            this.dgEmpID.Visible = false;
-            // 
-            // dgName
-            // 
-            this.dgName.HeaderText = "Name";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "Leave Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgDateStart
-            // 
-            this.dgDateStart.HeaderText = "DateStart";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            this.dgDateStart.Visible = false;
-            // 
-            // dgDateEnd
-            // 
-            this.dgDateEnd.HeaderText = "DateEnd";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            this.dgDateEnd.Visible = false;
-            // 
             // dtEnd
             // 
             this.dtEnd.CustomFormat = "dd/MM/yyyy";
@@ -231,7 +216,6 @@
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnReload);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lbLM);
             this.Controls.Add(this.dataGridView1);
@@ -252,7 +236,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lbLM;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Button btnReject;

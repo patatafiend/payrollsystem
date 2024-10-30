@@ -51,7 +51,6 @@ namespace payrollsystemsti.AdminTabs
         private void EmployeeReport_Load(object sender, EventArgs e)
         {
             this.reportViewer1.RefreshReport();
-            LoadReportBatch();
             DateSource();
         }
 
@@ -67,7 +66,7 @@ namespace payrollsystemsti.AdminTabs
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@payperiodend", cbDates.Text);
+                    cmd.Parameters.AddWithValue("@payperiodend", Convert.ToDateTime(cbDates.Text));
 
                     SqlDataAdapter d = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -89,16 +88,10 @@ namespace payrollsystemsti.AdminTabs
 
         private void cbDates_TextChanged(object sender, EventArgs e)
         {
-            if (cbDates.SelectedIndex == 0)
+            if (cbDates.SelectedIndex >= 0)
             {
                 btnLoad.Enabled = true;
             }
-            else
-            {
-                btnLoad.Enabled = false;
-            }
         }
-
-
     }
 }
