@@ -25,7 +25,16 @@ namespace payrollsystemsti.AdminTabs
 
 		private void departmentList_Load_1(object sender, EventArgs e)
 		{
-			availableLeaves();
+			if(checkifAdmin())
+			{
+				availableLeavesAdmin();
+			}
+			else
+			{
+				availableLeaveUser();
+			}
+			
+			
 		}
 
 		
@@ -35,7 +44,8 @@ namespace payrollsystemsti.AdminTabs
 			this.Close();
 		}
 
-		private void availableLeaves()
+		//all employees leaves
+		private void availableLeavesAdmin()
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
@@ -69,7 +79,61 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
+		//available leaves for the current user
+		private void availableLeaveUser()
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				// Show leave for only the logged-in user
+				string query = "SELECT * FROM LeaveTypeAvailable WHERE [Employee ID] = @UserID";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				cmd.Parameters.AddWithValue("@UserID", Methods.CurrentUser.EmployeeID);
 
+				// Execute the query and fill the DataTable
+				DataTable dt = new DataTable();
+				SqlDataAdapter da = new SqlDataAdapter(cmd);
+				da.Fill(dt);
 
+				// Bind the DataTable to the DataGridView
+				dgv_empLeaves.DataSource = dt;
+
+			}
+		}
+
+		private Boolean checkifAdmin()
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				// Query to get the RoleID of the current user from EmployeeAccounts
+				string query = "SELECT RoleID FROM EmployeeAccounts WHERE EmployeeID = @EmployeeID";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@EmployeeID", Methods.CurrentUser.EmployeeID);
+					SqlDataReader reader = cmd.ExecuteReader();
+					if (reader.Read())
+					{
+						int userRoleID = reader["RoleID"] != DBNull.Value ? (int)reader["RoleID"] : -1;
+						reader.Close();
+
+						// Query to check if the RoleID matches in the Roles table
+						string roleQuery = "SELECT Maintenance FROM Roles WHERE RoleID = @RoleID";
+						using (SqlCommand roleCmd = new SqlCommand(roleQuery, conn))
+						{
+							roleCmd.Parameters.AddWithValue("@RoleID", userRoleID);
+							SqlDataReader roleReader = roleCmd.ExecuteReader();
+							if (roleReader.Read())
+							{
+								// Check if the Maintenance role is true
+								return roleReader["Maintenance"] != DBNull.Value && (bool)roleReader["Maintenance"];
+							}
+						}
+					}
+				}
+			}
+			return false;
+		}
 	}
+
 }
