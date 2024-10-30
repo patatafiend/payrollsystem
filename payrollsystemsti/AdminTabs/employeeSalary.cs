@@ -213,6 +213,8 @@ namespace payrollsystemsti.AdminTabs
             
             
             btnCompute.Enabled = true;
+
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -261,7 +263,7 @@ namespace payrollsystemsti.AdminTabs
                 overtimePay, Convert.ToDouble(tbRegularH.Text), Convert.ToDouble(tbSpecialH.Text),
                 Convert.ToDouble(tbAdjustment.Text));
 
-            if(dtEnd.Value.Day == 12)
+            if (dtEnd.Value.Day == 12)
             {
                 tbSSS.Text = "0";
             }
