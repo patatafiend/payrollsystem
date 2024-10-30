@@ -30,8 +30,6 @@
 		{
 			this.btnExit = new System.Windows.Forms.Button();
 			this.dgv_DepartmentList = new System.Windows.Forms.DataGridView();
-			this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.lb_DepartmentList = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_DepartmentList)).BeginInit();
@@ -59,9 +57,6 @@
 			this.dgv_DepartmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgv_DepartmentList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
 			this.dgv_DepartmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgv_DepartmentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgEmpID,
-            this.dgDepartment});
 			this.dgv_DepartmentList.Location = new System.Drawing.Point(104, 214);
 			this.dgv_DepartmentList.Margin = new System.Windows.Forms.Padding(4);
 			this.dgv_DepartmentList.Name = "dgv_DepartmentList";
@@ -69,20 +64,6 @@
 			this.dgv_DepartmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgv_DepartmentList.Size = new System.Drawing.Size(833, 408);
 			this.dgv_DepartmentList.TabIndex = 30;
-			// 
-			// dgEmpID
-			// 
-			this.dgEmpID.DataPropertyName = "EmployeeID";
-			this.dgEmpID.HeaderText = "Employee ID";
-			this.dgEmpID.Name = "dgEmpID";
-			this.dgEmpID.ReadOnly = true;
-			// 
-			// dgDepartment
-			// 
-			this.dgDepartment.DataPropertyName = "Department";
-			this.dgDepartment.HeaderText = "Department";
-			this.dgDepartment.Name = "dgDepartment";
-			this.dgDepartment.ReadOnly = true;
 			// 
 			// panel2
 			// 
@@ -131,7 +112,5 @@
 		private System.Windows.Forms.DataGridView dgv_DepartmentList;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label lb_DepartmentList;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;
 	}
 }
