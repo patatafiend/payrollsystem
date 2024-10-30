@@ -223,5 +223,10 @@ namespace payrollsystemsti
                 btnCancel.Visible = false;
             }
         }
+
+        private void LeavesM_Load(object sender, EventArgs e)
+        {
+            LoadLeaveCategoryData();
+        }
     }
 }

@@ -11,7 +11,13 @@ namespace payrollsystemsti.AdminTabs
 	{
 		Methods m = new Methods();
 		private string employeeID;
-		public leaveManagement()
+
+        TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
+        TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
+
+        TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
+        TimeSpan endTimePM = new TimeSpan(18, 00, 0);
+        public leaveManagement()
 		{
 			InitializeComponent();
 		}
@@ -19,7 +25,6 @@ namespace payrollsystemsti.AdminTabs
 		private void leaveManagement_Load(object sender, System.EventArgs e)
 		{
 			LoadData();
-			btnUpdate.Enabled = false;
 			btnView.Enabled = false;
 			btnApprove.Enabled = false;
 			btnReject.Enabled = false;
@@ -90,11 +95,20 @@ namespace payrollsystemsti.AdminTabs
                 MessageBox.Show("Invalid date format");
             }
 
-
-            btnUpdate.Enabled = true;
-			btnView.Enabled = true;
-			btnApprove.Enabled = true;
-			btnReject.Enabled = true;
+			string status = dataGridView1.SelectedRows[0].Cells["dgStatus"].Value.ToString();
+            if(status == "Approved" || status == "Rejected")
+			{
+                btnView.Enabled = false;
+                btnApprove.Enabled = false;
+                btnReject.Enabled = false;
+			}
+			else
+			{
+                btnView.Enabled = true;
+                btnApprove.Enabled = true;
+                btnReject.Enabled = true;
+            }
+			
 		}
 
 		private void btnApprove_Click(object sender, EventArgs e)
@@ -164,44 +178,22 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
-		private void InsertApprovedLeaveDates()
-		{
-			// Get leave application details (assuming you have access to them)
-			DateTime startDate = dtStart.Value;
-			DateTime endDate = dtEnd.Value;
-
-			// Calculate the number of days
-			int days = (endDate - startDate).Days + 1;
-
-			for (int i = 0; i < days; i++)
-			{
-				DateTime currentDate = startDate.AddDays(i);
-				bool success = InsertAttendance(Convert.ToInt32(employeeID), m.GetFingerID(Convert.ToInt32(employeeID)), 8, currentDate);
-				if (!success)
-				{
-					// Handle insertion failure (e.g., show error message)
-					MessageBox.Show("Error inserting attendance record for " + currentDate);
-					break;
-				}
-			}
-
-			// Show success message after successful insertion for all days
-			MessageBox.Show("Leave application approved and attendance records created successfully!");
-		}
-
-		private bool InsertAttendance(int empID, int fingerID, int hoursW, DateTime date)
+        private bool InsertAttendance(int empID, int fingerID, DateTime timeInAM, DateTime timeOutAM, DateTime timeInPM, DateTime timeOutPM, DateTime date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Attedance(EmployeeID, FingerID, TotalHours, Date) VALUES (@empID, @fingerID, @totalH, @date)";
+                string query = "INSERT INTO Attendancee(EmployeeID, FingerID, TimeIn_AM, TimeOut_AM, TimeIn_PM, TimeOut_PM, Date) " +
+                    "VALUES  (@empID, @fingerID, @timeinAM , @timeoutAM , @timeinPM, @timeoutPM, @date)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                    cmd.Parameters.AddWithValue("@totalH", hoursW);
+                    cmd.Parameters.AddWithValue("@timeinAM", timeInAM);
+                    cmd.Parameters.AddWithValue("@timeoutAM", timeOutAM);
+                    cmd.Parameters.AddWithValue("@timeinPM", timeInPM);
+                    cmd.Parameters.AddWithValue("@timeoutPM", timeOutPM);
                     cmd.Parameters.AddWithValue("@date", date);
-
 
                     try
                     {
@@ -215,6 +207,37 @@ namespace payrollsystemsti.AdminTabs
                     }
                 }
             }
+        }
+
+        private void InsertApprovedLeaveDates()
+        {
+
+
+            // Get leave application details (assuming you have access to them)
+            DateTime startDate = dtStart.Value;
+            DateTime endDate = dtEnd.Value;
+
+            // Calculate the number of days
+            int days = (endDate - startDate).Days + 2;
+
+            for (int i = 0; i < days; i++)
+            {
+                DateTime currentDate = startDate.AddDays(i);
+                bool success = InsertAttendance(Convert.ToInt32(employeeID), m.GetFingerID(Convert.ToInt32(employeeID)), Convert.ToDateTime(startTimeAM.ToString("hh\\:mm\\:ss")), Convert.ToDateTime(endTimeAM.ToString("hh\\:mm\\:ss")), Convert.ToDateTime(startTimePM.ToString("hh\\:mm\\:ss")), Convert.ToDateTime(endTimePM.ToString("hh\\:mm\\:ss")), currentDate);
+                if (!success)
+                {
+                    // Handle insertion failure (e.g., show error message)
+                    MessageBox.Show("Error inserting attendance record for " + currentDate);
+                    break;
+                }
+                else if (success && i == (days - 1))
+                {
+                    MessageBox.Show("Leave application approved and attendance records created successfully!");
+                }
+            }
+
+            // Show success message after successful insertion for all days
+            //MessageBox.Show("Leave application approved and attendance records created successfully!");
         }
 
         private void btnReject_Click(object sender, EventArgs e)
