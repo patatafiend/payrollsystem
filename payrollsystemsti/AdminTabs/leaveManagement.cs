@@ -32,9 +32,10 @@ namespace payrollsystemsti.AdminTabs
 
 		private void btnView_Click(object sender, System.EventArgs e)
 		{
-			leaveDetails ld = new leaveDetails();
-			leaveDetails.ld.employeeID = Int32.Parse(employeeID);
+			LeaveDetails ld = new LeaveDetails();
+			LeaveDetails.ld.employeeID = Int32.Parse(employeeID);
 			ld.Show();
+
 		}
 
 		private void LoadData()
