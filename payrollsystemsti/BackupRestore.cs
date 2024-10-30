@@ -38,7 +38,7 @@ namespace payrollsystemsti
             }
             else
             {
-
+                Backup();
             }
         }
 
@@ -122,7 +122,14 @@ namespace payrollsystemsti
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            
+            if (tbLocationB.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter backup file location");
+            }
+            else
+            {
+                Restore();
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
