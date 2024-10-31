@@ -1536,6 +1536,28 @@ namespace payrollsystemsti
             }
         }
 
+        public byte[] GetEmpPicture(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (byte[])reader["ImageData"];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
         public int GetSSSLoan(int empID)
         {
             using (SqlConnection conn = new SqlConnection(connStr))

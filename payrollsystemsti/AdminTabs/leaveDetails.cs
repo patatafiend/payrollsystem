@@ -54,8 +54,8 @@ namespace payrollsystemsti.AdminTabs
                         {
                             lbEmpID.Text = reader["EmployeeID"].ToString();
                             lbFullName.Text = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                            lbDepartment.Text = reader["DepartmentID"].ToString();
-                            lbPosition.Text = reader["PositionID"].ToString();
+                            lbDepartment.Text = m.getDepartmentName((int)reader["DepartmentID"]);
+                            lbPosition.Text = m.getPositionTitle((int)reader["PositionID"]);
                             lbDateRange.Text = "Starting from " + reader["DateStart"].ToString() + " to " + reader["DateEnd"].ToString();
                             lbLeaveType.Text = reader["CategoryName"].ToString();
                             lbReason.Text = reader["Reason"].ToString();

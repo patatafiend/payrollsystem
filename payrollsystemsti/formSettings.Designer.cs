@@ -45,7 +45,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // changePassword
@@ -237,12 +239,22 @@
             this.btnCompute.UseVisualStyleBackColor = false;
             this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
             // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(56, 87);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(161, 150);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 43;
+            this.pbImage.TabStop = false;
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(795, 577);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.btnCompute);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -265,6 +277,7 @@
             this.Load += new System.EventHandler(this.FormSettings_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +302,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCompute;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }
