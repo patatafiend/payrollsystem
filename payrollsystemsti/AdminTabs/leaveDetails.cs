@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace payrollsystemsti.AdminTabs
 {
-    public partial class leaveDetails : Form
+    public partial class LeaveDetails : Form
     {
         Methods m = new Methods();
-        public static leaveDetails ld;
-        public leaveDetails()
+        public static LeaveDetails ld;
+        public LeaveDetails()
         {
             InitializeComponent();
             ld = this;
@@ -66,6 +66,31 @@ namespace payrollsystemsti.AdminTabs
         }
 
         private void lbDateRange_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbEmpID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbPosition_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbDepartment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
