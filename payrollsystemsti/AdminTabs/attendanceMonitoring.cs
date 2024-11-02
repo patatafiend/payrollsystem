@@ -81,13 +81,14 @@ namespace payrollsystemsti.AdminTabs
                 {
                     int fID = 0;
                     fID = await ac.SendTimeCommand(fID);
-
+                    
                     if (fID > 0)
                     {
                         if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+                            MessageBox.Show($"Welcome {fID}!!!");
                             LoadAttendanceData(date.Value);
 
                             if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))
@@ -120,9 +121,12 @@ namespace payrollsystemsti.AdminTabs
                             //bool iswhat = checkIfLate(time.Value.Hour, time.Value.Minute, 0);
                             //MessageBox.Show(iswhat.ToString());
                         }
+
+                        
                     }
                     else
                     {
+                        fID = 0;
                         MessageBox.Show("Failed to Time-In");
                     }
                 }
