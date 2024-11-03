@@ -74,8 +74,15 @@ namespace payrollsystemsti
 			lb_EmpEmail.Text = "Email address: " + Methods.CurrentUser.EmailAddress.ToString();
 			lbEmployeeID.Text = "EmployeeID: " + Methods.CurrentUser.EmployeeID.ToString();
 			lb_EmpPosition.Text = "Position: " + Methods.CurrentUser.employeePosition.ToString();
-			lb_totalEmployee_num.Text = m.GetTotalEmployeeCount().ToString();
 			lb_Total_Leaves.Text = m.getTotalCurrentAvailableLeaves(Methods.CurrentUser.EmployeeID).ToString();
+			if (checkifClickableOrViewable())
+			{
+				lb_totalEmployee_num.Text = m.GetTotalEmployeeCount().ToString();
+			}
+			else
+			{
+				lb_totalEmployee_num.Text = "N/A";
+			}
 			lb_roles_name.Text = getUserRole(Methods.CurrentUser.EmployeeRole);
 
 
@@ -125,7 +132,16 @@ namespace payrollsystemsti
 		private void pnl_totalEmployee_DoubleClick(object sender, EventArgs e)
 		{
 			employeeList employeeList = new employeeList();
-			employeeList.Show();
+			if (checkifClickableOrViewable())
+			{
+				employeeList.Show();
+			}
+			else
+			{
+
+				MessageBox.Show("You do not have permission to view this page.");
+			}
+			
 		}
 
 		//absent panel
@@ -209,6 +225,40 @@ namespace payrollsystemsti
 			return role;
 		}
 
-		
+		private Boolean checkifClickableOrViewable()
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				// Query to get the RoleID of the current user from EmployeeAccounts
+				string query = "SELECT RoleID FROM EmployeeAccounts WHERE EmployeeID = @EmployeeID";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@EmployeeID", Methods.CurrentUser.EmployeeID);
+					SqlDataReader reader = cmd.ExecuteReader();
+					if (reader.Read())
+					{
+						int userRoleID = reader["RoleID"] != DBNull.Value ? (int)reader["RoleID"] : -1;
+						reader.Close();
+
+						// Query to check if the RoleID matches in the Roles table
+						string roleQuery = "SELECT Maintenance FROM Roles WHERE RoleID = @RoleID";
+						using (SqlCommand roleCmd = new SqlCommand(roleQuery, conn))
+						{
+							roleCmd.Parameters.AddWithValue("@RoleID", userRoleID);
+							SqlDataReader roleReader = roleCmd.ExecuteReader();
+							if (roleReader.Read())
+							{
+								// Check if the Maintenance role is true
+								return roleReader["Maintenance"] != DBNull.Value && (bool)roleReader["Maintenance"];
+							}
+						}
+					}
+				}
+			}
+			return false;
+		}
+
+
 	}
 }

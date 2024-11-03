@@ -31,11 +31,10 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.lb_DashBoard = new System.Windows.Forms.Label();
 			this.dgv_EmployeeList = new System.Windows.Forms.DataGridView();
+			this.btnExit = new System.Windows.Forms.Button();
 			this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btnExit = new System.Windows.Forms.Button();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_EmployeeList)).BeginInit();
 			this.SuspendLayout();
@@ -72,7 +71,6 @@
 			this.dgv_EmployeeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgLastName,
-            this.dgDepartment,
             this.dgStatus});
 			this.dgv_EmployeeList.Location = new System.Drawing.Point(104, 214);
 			this.dgv_EmployeeList.Margin = new System.Windows.Forms.Padding(4);
@@ -81,6 +79,20 @@
 			this.dgv_EmployeeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgv_EmployeeList.Size = new System.Drawing.Size(833, 408);
 			this.dgv_EmployeeList.TabIndex = 7;
+			// 
+			// btnExit
+			// 
+			this.btnExit.BackColor = System.Drawing.Color.Crimson;
+			this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
+			this.btnExit.Location = new System.Drawing.Point(819, 163);
+			this.btnExit.Name = "btnExit";
+			this.btnExit.Size = new System.Drawing.Size(118, 44);
+			this.btnExit.TabIndex = 28;
+			this.btnExit.Text = "Exit";
+			this.btnExit.UseVisualStyleBackColor = false;
+			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 			// 
 			// dgEmpID
 			// 
@@ -96,33 +108,12 @@
 			this.dgLastName.Name = "dgLastName";
 			this.dgLastName.ReadOnly = true;
 			// 
-			// dgDepartment
-			// 
-			this.dgDepartment.DataPropertyName = "Department";
-			this.dgDepartment.HeaderText = "Department";
-			this.dgDepartment.Name = "dgDepartment";
-			this.dgDepartment.ReadOnly = true;
-			// 
 			// dgStatus
 			// 
 			this.dgStatus.DataPropertyName = "Position";
 			this.dgStatus.HeaderText = "Status";
 			this.dgStatus.Name = "dgStatus";
 			this.dgStatus.ReadOnly = true;
-			// 
-			// btnExit
-			// 
-			this.btnExit.BackColor = System.Drawing.Color.Crimson;
-			this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-			this.btnExit.Location = new System.Drawing.Point(819, 163);
-			this.btnExit.Name = "btnExit";
-			this.btnExit.Size = new System.Drawing.Size(118, 44);
-			this.btnExit.TabIndex = 28;
-			this.btnExit.Text = "Exit";
-			this.btnExit.UseVisualStyleBackColor = false;
-			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 			// 
 			// employeeList
 			// 
@@ -151,7 +142,6 @@
 		private System.Windows.Forms.Button btnExit;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgLastName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
 	}
 }
