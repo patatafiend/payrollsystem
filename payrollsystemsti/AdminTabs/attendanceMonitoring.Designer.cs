@@ -32,10 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendanceMonitoring));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DateTimePicker();
             this.btnTimeIN = new System.Windows.Forms.Button();
             this.btnTimeOUT = new System.Windows.Forms.Button();
@@ -50,6 +46,10 @@
             this.time = new System.Windows.Forms.DateTimePicker();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.loadingIndicator = new System.Windows.Forms.PictureBox();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -88,31 +88,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(911, 420);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee Name";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            this.dgEmpID.Visible = false;
-            // 
-            // dgTime
-            // 
-            this.dgTime.HeaderText = "Time";
-            this.dgTime.Name = "dgTime";
-            this.dgTime.ReadOnly = true;
-            // 
-            // dgDate
-            // 
-            this.dgDate.HeaderText = "Date";
-            this.dgDate.Name = "dgDate";
-            this.dgDate.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
             // 
             // date
             // 
@@ -276,6 +251,30 @@
             this.loadingIndicator.TabIndex = 41;
             this.loadingIndicator.TabStop = false;
             this.loadingIndicator.Visible = false;
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "EmployeeID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            // 
+            // dgTime
+            // 
+            this.dgTime.HeaderText = "Time";
+            this.dgTime.Name = "dgTime";
+            this.dgTime.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
             // 
             // attendanceMonitoring
             // 

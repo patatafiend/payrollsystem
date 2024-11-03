@@ -303,7 +303,17 @@ namespace payrollsystemsti
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ac.closePort();
+            this.Hide();
+        }
+
+        private void enrollFingerprint_VisibleChanged(object sender, EventArgs e)
+        {
+            //bool isClose = this.Visible = false;
+            //if (isClose)
+            //{
+            //    ac.closePort();
+            //}
         }
     }
 }

@@ -771,6 +771,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            ac.closePort();
             this.Hide();
         }
 

@@ -62,7 +62,7 @@
             // 
             this.btnEnrollFinger.BackColor = System.Drawing.Color.SkyBlue;
             this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnrollFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
             this.btnEnrollFinger.Location = new System.Drawing.Point(55, 87);
             this.btnEnrollFinger.Name = "btnEnrollFinger";
@@ -76,7 +76,7 @@
             // 
             this.btnRemove.BackColor = System.Drawing.Color.Crimson;
             this.btnRemove.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
             this.btnRemove.Location = new System.Drawing.Point(171, 87);
             this.btnRemove.Name = "btnRemove";
@@ -284,6 +284,7 @@
             this.Text = "Enroll Fingerprint";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.enrollFingerprint_FormClosed);
             this.Load += new System.EventHandler(this.enrollFingerprint_Load);
+            this.VisibleChanged += new System.EventHandler(this.enrollFingerprint_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).EndInit();
             this.loginHeader.ResumeLayout(false);
