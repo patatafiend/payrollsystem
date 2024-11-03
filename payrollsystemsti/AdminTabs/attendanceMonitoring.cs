@@ -72,8 +72,8 @@ namespace payrollsystemsti.AdminTabs
 
 
                 string status = "Time IN";
-                float currentTime = time.Value.Hour;
-                float currentMinute = time.Value.Minute;
+                double currentTime = time.Value.Hour;
+                double currentMinute = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("HH:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
@@ -81,7 +81,7 @@ namespace payrollsystemsti.AdminTabs
                 {
                     int fID = 0;
                     fID = await ac.SendTimeCommand(fID);
-
+                    
                     if (fID > 0)
                     {
                         if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
@@ -90,14 +90,42 @@ namespace payrollsystemsti.AdminTabs
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
                             LoadAttendanceData(date.Value);
 
-                            if(checkIfLate(currentTime, currentMinute))
+                            if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))
                             {
-                                UpdateAttendanceForLate(getEmpID(fID), Convert.ToDateTime(currentDate), currentMinute);
+                                DateTime timeIn = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, time.Value.Hour,time.Value.Minute, 0);
+                                DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 9, 15, 0);
+
+                                TimeSpan difference = timeIn - lateStartTime;
+                                double minutesLate = difference.TotalMinutes;
+
+                                UpdateAttendanceForLate(getEmpID(fID), currentDate, minutesLate);
+                                //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
+                                MessageBox.Show("Minutes late: " + minutesLate);
+
                             }
+
+                            if (checkIfLatePM(time.Value.Hour, time.Value.Minute, 0))
+                            {
+                                DateTime timeIn = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, time.Value.Hour, time.Value.Minute, 0);
+                                DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 1, 15, 0);
+
+                                TimeSpan difference = timeIn - lateStartTime;
+                                double minutesLate = difference.TotalMinutes;
+
+                                UpdateAttendanceForLate(getEmpID(fID), currentDate, minutesLate);
+                                //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
+                                MessageBox.Show("Minutes late: " + minutesLate);
+
+                            }
+                            //bool iswhat = checkIfLate(time.Value.Hour, time.Value.Minute, 0);
+                            //MessageBox.Show(iswhat.ToString());
                         }
+
+                        
                     }
                     else
                     {
+                        fID = 0;
                         MessageBox.Show("Failed to Time-In");
                     }
                 }
@@ -121,7 +149,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAttendanceData(date.Value);
         }
 
-        public bool UpdateAttendanceForLate(int empID, DateTime date, double minutes)
+        public bool UpdateAttendanceForLate(int empID, string date, double minutes)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -173,9 +201,29 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool checkIfLate(float hour, float minute)
+        private bool checkIfLate(int hour, int minute, int second)
         {
-            if(hour == 9 && minute > 15)
+            TimeSpan currentTime = new TimeSpan(hour, minute, second);
+            TimeSpan startTime = new TimeSpan(9, 15, 0);
+            TimeSpan endTime = new TimeSpan(11, 59, 0);
+
+            if (currentTime >= startTime && currentTime <= endTime)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool checkIfLatePM(int hour, int minute, int second)
+        {
+            TimeSpan currentTime = new TimeSpan(hour, minute, second);
+            TimeSpan startTime = new TimeSpan(1, 15, 0);
+            TimeSpan endTime = new TimeSpan(5, 59, 0);
+
+            if (currentTime >= startTime && currentTime <= endTime)
             {
                 return true;
             }
@@ -238,7 +286,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAttendanceData(date.Value);
         }
 
-        public bool insertAttendance(string date, float? timeIn, float? timeOut, int fingerID, int empID)
+        public bool insertAttendance(string date, double? timeIn, double? timeOut, int fingerID, int empID)
         {
             TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
             using (SqlConnection conn = new SqlConnection(m.connStr))

@@ -68,6 +68,8 @@ namespace payrollsystemsti
             label11.Text = loggedInID.ToString();
             label12.Text = m.getPositionTitle(p);
             label13.Text = m.getDepartmentName(d);
+
+            pbImage.Image = m.ConvertToImage(m.GetEmpPicture(loggedInID));
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -104,6 +106,7 @@ namespace payrollsystemsti
             label11.Visible = profile11.Visible;
             label12.Visible = profile11.Visible;
             label13.Visible = profile11.Visible;
+            pbImage.Visible = profile11.Visible;
         }
 
         private void btnCompute_Click(object sender, EventArgs e)

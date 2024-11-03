@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace payrollsystemsti.AdminTabs
 {
-    public partial class leaveDetails : Form
+    public partial class LeaveDetails : Form
     {
         Methods m = new Methods();
-        public static leaveDetails ld;
-        public leaveDetails()
+        public static LeaveDetails ld;
+        public LeaveDetails()
         {
             InitializeComponent();
             ld = this;
@@ -54,8 +54,8 @@ namespace payrollsystemsti.AdminTabs
                         {
                             lbEmpID.Text = reader["EmployeeID"].ToString();
                             lbFullName.Text = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                            lbDepartment.Text = reader["DepartmentID"].ToString();
-                            lbPosition.Text = reader["PositionID"].ToString();
+                            lbDepartment.Text = m.getDepartmentName((int)reader["DepartmentID"]);
+                            lbPosition.Text = m.getPositionTitle((int)reader["PositionID"]);
                             lbDateRange.Text = "Starting from " + reader["DateStart"].ToString() + " to " + reader["DateEnd"].ToString();
                             lbLeaveType.Text = reader["CategoryName"].ToString();
                             lbReason.Text = reader["Reason"].ToString();
@@ -66,6 +66,31 @@ namespace payrollsystemsti.AdminTabs
         }
 
         private void lbDateRange_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbEmpID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbPosition_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbDepartment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

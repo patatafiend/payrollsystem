@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,9 +86,12 @@ namespace payrollsystemsti.AdminTabs
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource source = new ReportDataSource("DataSet1", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\rnz\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    string userDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    string reportPath = userDirectory +@"\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
+                    MessageBox.Show(reportPath);
                 }
             }
         }
@@ -111,7 +115,9 @@ namespace payrollsystemsti.AdminTabs
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource source = new ReportDataSource("DataSet1", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\rnz\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    string userDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    string reportPath = userDirectory + @"\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
+                    reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
                 }

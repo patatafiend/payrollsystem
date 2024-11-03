@@ -20,9 +20,9 @@ namespace payrollsystemsti
         //private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:',.<>?";
 
         //Connection String
-        //public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
+        public string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=stipayrolldb;Integrated Security=True;TrustServerCertificate=True;Encrypt = false";
         //renz connection string
-        public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
+        //public string connStr = "Data Source=.;Initial Catalog=stipayrolldb;Integrated Security=True;Encrypt = false;TrustServerCertificate=True";
         //convert image to binaru
         public byte[] ConvertImageToBinary(Image img)
         {
@@ -1531,6 +1531,28 @@ namespace payrollsystemsti
                         // Handle exception appropriately
                         Console.WriteLine(ex.Message);
                         return -1; // Or throw an exception
+                    }
+                }
+            }
+        }
+
+        public byte[] GetEmpPicture(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT ImageData FROM EmployeeAccounts WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (byte[])reader["ImageData"];
+                    }
+                    else
+                    {
+                        return null;
                     }
                 }
             }

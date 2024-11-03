@@ -34,7 +34,6 @@
             this.lb_EmpName = new System.Windows.Forms.Label();
             this.lbEmployeeID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pbCurrentUser = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +48,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_EmpPosition
@@ -114,17 +112,6 @@
             this.label3.Size = new System.Drawing.Size(144, 31);
             this.label3.TabIndex = 13;
             this.label3.Text = "My Profile";
-            // 
-            // pbCurrentUser
-            // 
-            this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-            this.pbCurrentUser.Location = new System.Drawing.Point(55, 83);
-            this.pbCurrentUser.Name = "pbCurrentUser";
-            this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
-            this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCurrentUser.TabIndex = 14;
-            this.pbCurrentUser.TabStop = false;
             // 
             // label1
             // 
@@ -293,13 +280,11 @@
             this.Controls.Add(this.lb_EmpName);
             this.Controls.Add(this.lbEmployeeID);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pbCurrentUser);
             this.Controls.Add(this.back);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Profile";
             this.Text = "Profile";
             this.Load += new System.EventHandler(this.Profile_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,7 +297,6 @@
         private System.Windows.Forms.Label lb_EmpName;
         private System.Windows.Forms.Label lbEmployeeID;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pbCurrentUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
