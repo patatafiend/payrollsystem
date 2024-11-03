@@ -88,7 +88,6 @@ namespace payrollsystemsti.AdminTabs
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
-                            MessageBox.Show($"Welcome {fID}!!!");
                             LoadAttendanceData(date.Value);
 
                             if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))

@@ -74,7 +74,9 @@ namespace payrollsystemsti.AdminTabs
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource source = new ReportDataSource("EmployeeReports", dt);
-                    reportViewer1.LocalReport.ReportPath = @"C:\Users\rnz\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report2.rdlc";
+                    string userDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    string reportPath = userDirectory + @"\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report2.rdlc";
+                    reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
                 }
