@@ -184,7 +184,7 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Attendancee(EmployeeID, FingerID, TimeIn_AM, TimeOut_AM, TimeIn_PM, TimeOut_PM, Date) " +
+                string query = "INSERT INTO Attendance(EmployeeID, FingerID, TimeIn_AM, TimeOut_AM, TimeIn_PM, TimeOut_PM, Date) " +
                     "VALUES  (@empID, @fingerID, @timeinAM , @timeoutAM , @timeinPM, @timeoutPM, @date)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {

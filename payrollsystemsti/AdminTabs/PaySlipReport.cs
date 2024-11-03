@@ -91,7 +91,6 @@ namespace payrollsystemsti.AdminTabs
                     reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
                     reportViewer1.RefreshReport();
-                    MessageBox.Show(reportPath);
                 }
             }
         }

@@ -106,7 +106,6 @@ namespace payrollsystemsti
 
             string idS = await ReadLineAsync();
             int fID = Convert.ToInt32(idS);
-            MessageBox.Show("this is th fid "+ fID.ToString());
 
             return fID;
         }

@@ -31,7 +31,7 @@ namespace payrollsystemsti.AdminTabs
 
         public int loggedInEmpID;
         
-        TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
+        TimeSpan startTimeAM = new TimeSpan(6, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
@@ -58,6 +58,9 @@ namespace payrollsystemsti.AdminTabs
             btnTimeIN.Enabled = true;
 
             LoadAttendanceData(date.Value);
+
+            //time.Enabled = false;
+            //timer.Enabled = true;
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -87,6 +90,10 @@ namespace payrollsystemsti.AdminTabs
                         if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                            if (CheckForHoliday(Convert.ToDateTime(currentDate)))
+                            {
+                                InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
+                            }
                             MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
                             LoadAttendanceData(date.Value);
 
@@ -117,11 +124,14 @@ namespace payrollsystemsti.AdminTabs
                                 MessageBox.Show("Minutes late: " + minutesLate);
 
                             }
+
+                            if (checkIfEarly(time.Value.Hour, time.Value.Minute, 0))
+                            {
+                                UpdateAttendanceForEarly(getEmpID(fID), currentDate);
+                            }
                             //bool iswhat = checkIfLate(time.Value.Hour, time.Value.Minute, 0);
                             //MessageBox.Show(iswhat.ToString());
                         }
-
-                        
                     }
                     else
                     {
@@ -176,6 +186,34 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        public bool UpdateAttendanceForEarly(int empID, string date)
+        {
+            TimeSpan timeStart = new TimeSpan(9, 0, 0);
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                try
+                {
+                    string query = "UPDATE Attendance SET TimeIn_AM = @timein WHERE EmployeeID = @empID AND Date = @date";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@timein", timeStart);
+                        cmd.Parameters.AddWithValue("@empID", empID);
+                        cmd.Parameters.AddWithValue("@date", date);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error updating attendance: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
         public bool CheckAttendanceRecord(int empID, DateTime date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -206,6 +244,22 @@ namespace payrollsystemsti.AdminTabs
             TimeSpan currentTime = new TimeSpan(hour, minute, second);
             TimeSpan startTime = new TimeSpan(9, 15, 0);
             TimeSpan endTime = new TimeSpan(11, 59, 0);
+
+            if (currentTime >= startTime && currentTime <= endTime)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool checkIfEarly(int hour, int minute, int second)
+        {
+            TimeSpan currentTime = new TimeSpan(hour, minute, second);
+            TimeSpan startTime = new TimeSpan(6, 0, 0);
+            TimeSpan endTime = new TimeSpan(9, 14, 0);
 
             if (currentTime >= startTime && currentTime <= endTime)
             {
@@ -811,6 +865,78 @@ namespace payrollsystemsti.AdminTabs
                             doubleHoursCommand.Parameters.AddWithValue("@today", DateTime.Now.Date);
                             doubleHoursCommand.ExecuteNonQuery();
                         }
+                    }
+                }
+            }
+        }
+
+        private bool CheckForHoliday(DateTime date)
+        {
+            using (SqlConnection connection = new SqlConnection(m.connStr))
+            {
+                connection.Open();
+
+                // Check if today is a holiday
+                string holidayCheckSql = @"SELECT COUNT(*) FROM Holidays WHERE HolidayDate = @today";
+
+                using (SqlCommand holidayCheckCommand = new SqlCommand(holidayCheckSql, connection))
+                {
+                    holidayCheckCommand.Parameters.AddWithValue("@today", date);
+                    int holidayCount = (int)holidayCheckCommand.ExecuteScalar();
+
+                    return holidayCount > 0;
+                }
+            }
+        }
+
+        public int GetHolidayID(DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                // Check if today is a holiday
+                string query = @"SELECT HolidayID FROM Holidays WHERE HolidayDate = @today";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@today", date);
+                    
+                    try
+                    {
+                        int holidayCount = (int)cmd.ExecuteScalar();
+                        return holidayCount;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Departments: " + ex.Message);
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        private bool InsertToHoliday(int empID, DateTime date, int holiday)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = @"INSERT INTO HolidayAttendance(EmployeeID, Date, HolidayID) VALUES (@empID, @date, @holiday)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@holiday", holiday);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into holiday attendance: " + ex.Message);
+                        return false;
                     }
                 }
             }

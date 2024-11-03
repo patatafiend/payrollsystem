@@ -35,6 +35,9 @@
             // 
             // reportViewer1
             // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "payrollsystemsti.AdminTabs.Report2.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 58);
             this.reportViewer1.Name = "reportViewer1";
@@ -44,6 +47,7 @@
             // 
             // cbDates
             // 
+            this.cbDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbDates.FormattingEnabled = true;
             this.cbDates.Location = new System.Drawing.Point(678, 23);
             this.cbDates.Name = "cbDates";
@@ -53,7 +57,6 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnLoad.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btnLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLoad.Enabled = false;
