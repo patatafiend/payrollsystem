@@ -1331,7 +1331,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>No of Day / HRS</Value>
+                                      <Value>HRS</Value>
                                       <Style>
                                         <FontFamily>Poppins</FontFamily>
                                       </Style>
@@ -1342,9 +1342,9 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox11</rd:DefaultName>
                               <Top>2.45573in</Top>
-                              <Left>3.51996in</Left>
+                              <Left>3.88454in</Left>
                               <Height>0.26041in</Height>
-                              <Width>1.09374in</Width>
+                              <Width>0.53124in</Width>
                               <ZIndex>44</ZIndex>
                               <Style>
                                 <Border>
