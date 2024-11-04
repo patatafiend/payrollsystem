@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace payrollsystemsti
 
         private void LoadHolidayData()
         {
+            CultureInfo ci = new CultureInfo("en-US");
             dataGridView1.Rows.Clear();
             string query = "SELECT * FROM Holidays WHERE IsDeactivated = @status";
 
@@ -45,8 +47,11 @@ namespace payrollsystemsti
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["HolidayID"].ToString();
-                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["HolidayName"].ToString();
-                        dataGridView1.Rows[n].Cells["dg3rd"].Value = Convert.ToDateTime(row["HolidayDate"].ToString()).ToString("MMMM, dd");
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["HolidayType"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["HolidayName"].ToString();
+                        dataGridView1.Rows[n].Cells["dg4th"].Value = ci.DateTimeFormat.GetMonthName(Convert.ToInt32(row["HolidayMonth"])) +", "+ row["HolidayDay"].ToString();
+                        dataGridView1.Rows[n].Cells["dgMonth"].Value = row["HolidayMonth"].ToString();
+                        dataGridView1.Rows[n].Cells["dgDay"].Value = row["HolidayDay"].ToString();
                     }
                 }
             }
@@ -54,14 +59,15 @@ namespace payrollsystemsti
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            m.UpdateHoliday(holidayID, tb1.Text, dtDate.Value.Date);
+            m.UpdateHoliday(holidayID, cbHType.Text, tb1.Text, dtDate.Value.Month.ToString(), dtDate.Value.Day.ToString());
             LoadHolidayData();
             Clear();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            m.InsertHoliday(tb1.Text, Convert.ToDateTime(dtDate.Value.Date));
+            m.InsertHoliday(cbHType.Text, tb1.Text, dtDate.Value.Month.ToString(), dtDate.Value.Day.ToString());
+            //MessageBox.Show(dtDate.Value.Date.ToString("MM/dd"));
             LoadHolidayData();
             Clear();
         }
@@ -69,8 +75,11 @@ namespace payrollsystemsti
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             holidayID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
-            tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
-            dtDate.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["dg3rd"].Value);
+            cbHType.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+            tb1.Text = dataGridView1.SelectedRows[0].Cells["dg3rd"].Value.ToString();
+            int month = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgMonth"].Value);
+            int day = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgDay"].Value);
+            dtDate.Value = new DateTime(DateTime.Now.Year, month, day);
 
             btnUpdate.Enabled = true;
         }

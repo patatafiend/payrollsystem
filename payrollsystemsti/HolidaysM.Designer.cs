@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg6th = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbHType = new System.Windows.Forms.ComboBox();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg4th = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +54,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Crimson;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCancel.Location = new System.Drawing.Point(299, 225);
             this.btnCancel.Name = "btnCancel";
@@ -67,9 +71,9 @@
             this.lb1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb1.Location = new System.Drawing.Point(48, 121);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(75, 19);
+            this.lb1.Size = new System.Drawing.Size(115, 19);
             this.lb1.TabIndex = 94;
-            this.lb1.Text = "Holidays :";
+            this.lb1.Text = "Holidays Name:";
             // 
             // tb1
             // 
@@ -92,29 +96,31 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dg1st,
-            this.dg2nd,
             this.dg3rd,
-            this.dg6th,
-            this.dgIsDeactivated});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dg2nd,
+            this.dg4th,
+            this.dgIsDeactivated,
+            this.dgMonth,
+            this.dgDay});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(51, 276);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
@@ -126,46 +132,12 @@
             this.dataGridView1.TabIndex = 91;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg1st.Visible = false;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Holiday Name";
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Date";
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            // 
-            // dg6th
-            // 
-            this.dg6th.HeaderText = "Adjustment";
-            this.dg6th.Name = "dg6th";
-            this.dg6th.ReadOnly = true;
-            this.dg6th.Visible = false;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
-            // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Enabled = false;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
             this.btnUpdate.Location = new System.Drawing.Point(175, 225);
             this.btnUpdate.Name = "btnUpdate";
@@ -179,12 +151,12 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Crimson;
             this.label11.Location = new System.Drawing.Point(45, 43);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(171, 44);
+            this.label11.Size = new System.Drawing.Size(170, 42);
             this.label11.TabIndex = 89;
             this.label11.Text = "Holidays";
             // 
@@ -193,7 +165,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Enabled = false;
-            this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Location = new System.Drawing.Point(51, 225);
             this.btnAdd.Name = "btnAdd";
@@ -206,19 +178,89 @@
             // dtDate
             // 
             this.dtDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDate.CustomFormat = "MMMM,dd,yyyy";
+            this.dtDate.CustomFormat = "MMMM,dd";
             this.dtDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDate.Location = new System.Drawing.Point(51, 177);
             this.dtDate.Name = "dtDate";
-            this.dtDate.Size = new System.Drawing.Size(210, 26);
+            this.dtDate.Size = new System.Drawing.Size(150, 26);
             this.dtDate.TabIndex = 101;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(271, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 19);
+            this.label1.TabIndex = 102;
+            this.label1.Text = "Holidays Type:";
+            // 
+            // cbHType
+            // 
+            this.cbHType.FormattingEnabled = true;
+            this.cbHType.Items.AddRange(new object[] {
+            "Regular",
+            "Special"});
+            this.cbHType.Location = new System.Drawing.Point(275, 146);
+            this.cbHType.Name = "cbHType";
+            this.cbHType.Size = new System.Drawing.Size(121, 21);
+            this.cbHType.TabIndex = 103;
+            // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg1st.Visible = false;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Holiday Name";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Holiday Type";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg4th
+            // 
+            this.dg4th.HeaderText = "Date";
+            this.dg4th.Name = "dg4th";
+            this.dg4th.ReadOnly = true;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
+            // 
+            // dgMonth
+            // 
+            this.dgMonth.HeaderText = "Month";
+            this.dgMonth.Name = "dgMonth";
+            this.dgMonth.ReadOnly = true;
+            this.dgMonth.Visible = false;
+            // 
+            // dgDay
+            // 
+            this.dgDay.HeaderText = "Day";
+            this.dgDay.Name = "dgDay";
+            this.dgDay.ReadOnly = true;
+            this.dgDay.Visible = false;
             // 
             // HolidaysM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 625);
+            this.Controls.Add(this.cbHType);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dtDate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnCancel);
@@ -246,11 +288,15 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dg6th;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
         private System.Windows.Forms.DateTimePicker dtDate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbHType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dg4th;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgMonth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDay;
     }
 }

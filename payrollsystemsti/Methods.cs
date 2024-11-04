@@ -615,17 +615,19 @@ namespace payrollsystemsti
             }
         }
 
-        public bool InsertHoliday(string holidayName, DateTime date)
+        public bool InsertHoliday(string holidayType, string holidayName, string month, string day)
         {
             using (SqlConnection connection = new SqlConnection(connStr))
             {
                 connection.Open();
-                string query = "INSERT INTO Holidays (HolidayName, HolidayDate) VALUES (@holidayName, @date)";
+                string query = "INSERT INTO Holidays (HolidayType, HolidayName, HolidayMonth, HolidayDay) VALUES (@holidayT, @holidayName, @month, @day)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@holidayT", holidayType);
                     command.Parameters.AddWithValue("@holidayName", holidayName);
-                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@month", month);
+                    command.Parameters.AddWithValue("@day", day);
 
                     try
                     {
@@ -642,19 +644,21 @@ namespace payrollsystemsti
             }
         }
 
-        public bool UpdateHoliday(int holidayId, string holidayName, DateTime date)
+        public bool UpdateHoliday(int holidayId, string holidayType, string holidayName, string month, string day)
         {
             using (SqlConnection connection = new SqlConnection(connStr))
             {
                 connection.Open();
-                string query = "UPDATE Holidays SET HolidayName = @holidayName, HolidayDate = @date " +
+                string query = "UPDATE Holidays SET HolidayType = @holidayT, HolidayName = @holidayName, HolidayMonth = @month, HolidayDay = @day " +
                     "WHERE HolidayID = @holidayId";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@holidayId", holidayId);
+                    command.Parameters.AddWithValue("@holidayT", holidayType);
                     command.Parameters.AddWithValue("@holidayName", holidayName);
-                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@month", month);
+                    command.Parameters.AddWithValue("@day", day);
 
                     try
                     {

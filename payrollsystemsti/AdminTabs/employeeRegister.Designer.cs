@@ -48,22 +48,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -76,6 +60,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cbPosition = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -92,8 +78,22 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
-            this.label18 = new System.Windows.Forms.Label();
+            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -339,128 +339,6 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
-            // dgEmp
-            // 
-            this.dgEmp.HeaderText = "ID";
-            this.dgEmp.MinimumWidth = 8;
-            this.dgEmp.Name = "dgEmp";
-            this.dgEmp.ReadOnly = true;
-            this.dgEmp.Visible = false;
-            // 
-            // dgFullName
-            // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.MinimumWidth = 8;
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgDepartment
-            // 
-            this.dgDepartment.HeaderText = "Department";
-            this.dgDepartment.MinimumWidth = 8;
-            this.dgDepartment.Name = "dgDepartment";
-            this.dgDepartment.ReadOnly = true;
-            // 
-            // dgPosition
-            // 
-            this.dgPosition.HeaderText = "Position";
-            this.dgPosition.MinimumWidth = 8;
-            this.dgPosition.Name = "dgPosition";
-            this.dgPosition.ReadOnly = true;
-            // 
-            // dgBasicRate
-            // 
-            this.dgBasicRate.HeaderText = "Basic Rate";
-            this.dgBasicRate.MinimumWidth = 8;
-            this.dgBasicRate.Name = "dgBasicRate";
-            this.dgBasicRate.ReadOnly = true;
-            // 
-            // dgRole
-            // 
-            this.dgRole.HeaderText = "Role";
-            this.dgRole.MinimumWidth = 8;
-            this.dgRole.Name = "dgRole";
-            this.dgRole.ReadOnly = true;
-            // 
-            // dgDoB
-            // 
-            this.dgDoB.HeaderText = "DoB";
-            this.dgDoB.MinimumWidth = 8;
-            this.dgDoB.Name = "dgDoB";
-            this.dgDoB.ReadOnly = true;
-            this.dgDoB.Visible = false;
-            // 
-            // dgMobile
-            // 
-            this.dgMobile.HeaderText = "Mobile";
-            this.dgMobile.MinimumWidth = 8;
-            this.dgMobile.Name = "dgMobile";
-            this.dgMobile.ReadOnly = true;
-            this.dgMobile.Visible = false;
-            // 
-            // dgEmail
-            // 
-            this.dgEmail.HeaderText = "Email";
-            this.dgEmail.MinimumWidth = 8;
-            this.dgEmail.Name = "dgEmail";
-            this.dgEmail.ReadOnly = true;
-            this.dgEmail.Visible = false;
-            // 
-            // dgAdd
-            // 
-            this.dgAdd.HeaderText = "Address";
-            this.dgAdd.MinimumWidth = 8;
-            this.dgAdd.Name = "dgAdd";
-            this.dgAdd.ReadOnly = true;
-            this.dgAdd.Visible = false;
-            // 
-            // dgSSN
-            // 
-            this.dgSSN.HeaderText = "SSN";
-            this.dgSSN.MinimumWidth = 8;
-            this.dgSSN.Name = "dgSSN";
-            this.dgSSN.ReadOnly = true;
-            this.dgSSN.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "FileName";
-            this.dgFileName.MinimumWidth = 8;
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.MinimumWidth = 8;
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFID
-            // 
-            this.dgFID.HeaderText = "Finger ID";
-            this.dgFID.MinimumWidth = 8;
-            this.dgFID.Name = "dgFID";
-            this.dgFID.ReadOnly = true;
-            // 
-            // dgIsDeleted
-            // 
-            this.dgIsDeleted.HeaderText = "IsDeleted";
-            this.dgIsDeleted.MinimumWidth = 8;
-            this.dgIsDeleted.Name = "dgIsDeleted";
-            this.dgIsDeleted.ReadOnly = true;
-            this.dgIsDeleted.Visible = false;
-            // 
-            // dgImage
-            // 
-            this.dgImage.HeaderText = "Image";
-            this.dgImage.MinimumWidth = 8;
-            this.dgImage.Name = "dgImage";
-            this.dgImage.ReadOnly = true;
-            this.dgImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -607,6 +485,24 @@
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employee Details";
+            // 
+            // dtStartDate
+            // 
+            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
+            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStartDate.Location = new System.Drawing.Point(132, 258);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Size = new System.Drawing.Size(172, 26);
+            this.dtStartDate.TabIndex = 37;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 263);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(98, 20);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "Start Date:";
             // 
             // label15
             // 
@@ -781,23 +677,126 @@
             this.tbSearch.TabIndex = 39;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
-            // dtStartDate
+            // dgEmp
             // 
-            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
-            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStartDate.Location = new System.Drawing.Point(132, 258);
-            this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Size = new System.Drawing.Size(172, 26);
-            this.dtStartDate.TabIndex = 37;
+            this.dgEmp.HeaderText = "ID";
+            this.dgEmp.MinimumWidth = 8;
+            this.dgEmp.Name = "dgEmp";
+            this.dgEmp.ReadOnly = true;
             // 
-            // label18
+            // dgFullName
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(20, 263);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 20);
-            this.label18.TabIndex = 36;
-            this.label18.Text = "Start Date:";
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.MinimumWidth = 8;
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgDepartment
+            // 
+            this.dgDepartment.HeaderText = "Department";
+            this.dgDepartment.MinimumWidth = 8;
+            this.dgDepartment.Name = "dgDepartment";
+            this.dgDepartment.ReadOnly = true;
+            // 
+            // dgPosition
+            // 
+            this.dgPosition.HeaderText = "Position";
+            this.dgPosition.MinimumWidth = 8;
+            this.dgPosition.Name = "dgPosition";
+            this.dgPosition.ReadOnly = true;
+            // 
+            // dgBasicRate
+            // 
+            this.dgBasicRate.HeaderText = "Basic Rate";
+            this.dgBasicRate.MinimumWidth = 8;
+            this.dgBasicRate.Name = "dgBasicRate";
+            this.dgBasicRate.ReadOnly = true;
+            // 
+            // dgRole
+            // 
+            this.dgRole.HeaderText = "Role";
+            this.dgRole.MinimumWidth = 8;
+            this.dgRole.Name = "dgRole";
+            this.dgRole.ReadOnly = true;
+            // 
+            // dgDoB
+            // 
+            this.dgDoB.HeaderText = "DoB";
+            this.dgDoB.MinimumWidth = 8;
+            this.dgDoB.Name = "dgDoB";
+            this.dgDoB.ReadOnly = true;
+            this.dgDoB.Visible = false;
+            // 
+            // dgMobile
+            // 
+            this.dgMobile.HeaderText = "Mobile";
+            this.dgMobile.MinimumWidth = 8;
+            this.dgMobile.Name = "dgMobile";
+            this.dgMobile.ReadOnly = true;
+            this.dgMobile.Visible = false;
+            // 
+            // dgEmail
+            // 
+            this.dgEmail.HeaderText = "Email";
+            this.dgEmail.MinimumWidth = 8;
+            this.dgEmail.Name = "dgEmail";
+            this.dgEmail.ReadOnly = true;
+            this.dgEmail.Visible = false;
+            // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Address";
+            this.dgAdd.MinimumWidth = 8;
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
+            // dgSSN
+            // 
+            this.dgSSN.HeaderText = "SSN";
+            this.dgSSN.MinimumWidth = 8;
+            this.dgSSN.Name = "dgSSN";
+            this.dgSSN.ReadOnly = true;
+            this.dgSSN.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "FileName";
+            this.dgFileName.MinimumWidth = 8;
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.MinimumWidth = 8;
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFID
+            // 
+            this.dgFID.HeaderText = "Finger ID";
+            this.dgFID.MinimumWidth = 8;
+            this.dgFID.Name = "dgFID";
+            this.dgFID.ReadOnly = true;
+            // 
+            // dgIsDeleted
+            // 
+            this.dgIsDeleted.HeaderText = "IsDeleted";
+            this.dgIsDeleted.MinimumWidth = 8;
+            this.dgIsDeleted.Name = "dgIsDeleted";
+            this.dgIsDeleted.ReadOnly = true;
+            this.dgIsDeleted.Visible = false;
+            // 
+            // dgImage
+            // 
+            this.dgImage.HeaderText = "Image";
+            this.dgImage.MinimumWidth = 8;
+            this.dgImage.Name = "dgImage";
+            this.dgImage.ReadOnly = true;
+            this.dgImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // employeeRegister
             // 
@@ -882,6 +881,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnEnrollFinger;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbGender;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbCivil;
+        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.DateTimePicker dtStartDate;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmp;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDepartment;
@@ -898,12 +904,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.DataGridViewImageColumn dgImage;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox cbGender;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cbCivil;
-        private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.DateTimePicker dtStartDate;
-        private System.Windows.Forms.Label label18;
     }
 }

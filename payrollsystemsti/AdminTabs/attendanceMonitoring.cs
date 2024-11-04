@@ -77,7 +77,7 @@ namespace payrollsystemsti.AdminTabs
                 string status = "Time IN";
                 double currentTime = time.Value.Hour;
                 double currentMinute = time.Value.Minute;
-                string currentTimeString = time.Value.ToString("HH:mm tt");
+                string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
 
                 try
@@ -90,7 +90,8 @@ namespace payrollsystemsti.AdminTabs
                         if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
                         {
                             insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                            if (CheckForHoliday(Convert.ToDateTime(currentDate)))
+
+                            if (CheckForHoliday(time.Value.Month, time.Value.Day))
                             {
                                 InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
                             }
@@ -871,21 +872,22 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool CheckForHoliday(DateTime date)
+        private bool CheckForHoliday(int month, int day)
         {
             using (SqlConnection connection = new SqlConnection(m.connStr))
             {
                 connection.Open();
 
                 // Check if today is a holiday
-                string holidayCheckSql = @"SELECT COUNT(*) FROM Holidays WHERE HolidayDate = @today";
+                string query = @"SELECT COUNT(*) FROM Holidays WHERE HolidayMonth = @month AND HolidayDay = @day";
 
-                using (SqlCommand holidayCheckCommand = new SqlCommand(holidayCheckSql, connection))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    holidayCheckCommand.Parameters.AddWithValue("@today", date);
-                    int holidayCount = (int)holidayCheckCommand.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("@month", month);
+                    cmd.Parameters.AddWithValue("@day", day);
+                    int count = (int)cmd.ExecuteScalar();
 
-                    return holidayCount > 0;
+                    return count > 0;
                 }
             }
         }
