@@ -137,7 +137,7 @@ namespace payrollsystemsti.AdminTabs
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
 						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text, cbCivil.Text);
+						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text, cbCivil.Text, dtStartDate.Value);
 
 					if (isInserted)
 					{
@@ -371,17 +371,17 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
-        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil)
+        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil, DateTime sdate)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
                            "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
-                           "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender, CivilStatus) " +
+                           "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender, CivilStatus, StartDate) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
                            "@Department, @Position, @Role, @SSN, @Email, @Address, @Dob, @BasicRate, " +
-                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender, @civil)";
+                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender, @civil, @startdate)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
@@ -403,6 +403,7 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@hireddate", hdate);
                     cmd.Parameters.AddWithValue("@gender", gender);
                     cmd.Parameters.AddWithValue("@civil", civil);
+                    cmd.Parameters.AddWithValue("@startdate", sdate);
 
 
 

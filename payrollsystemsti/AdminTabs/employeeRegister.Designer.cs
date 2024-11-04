@@ -92,6 +92,8 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
+            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -260,7 +262,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(559, 440);
+            this.btnSave.Location = new System.Drawing.Point(756, 393);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
             this.btnSave.TabIndex = 24;
@@ -275,7 +277,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(688, 440);
+            this.btnUpdate.Location = new System.Drawing.Point(885, 393);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 25;
@@ -286,7 +288,6 @@
             // 
             // btnDeactivate
             // 
-            this.btnDeactivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeactivate.BackColor = System.Drawing.Color.Crimson;
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -586,6 +587,8 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.dtStartDate);
+            this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.cbRole);
             this.groupBox3.Controls.Add(this.label12);
@@ -600,7 +603,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(699, 77);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 269);
+            this.groupBox3.Size = new System.Drawing.Size(319, 307);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employee Details";
@@ -680,7 +683,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(900, 440);
+            this.btnCancel.Location = new System.Drawing.Point(815, 493);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 31;
@@ -757,7 +760,7 @@
             this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEnrollFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(599, 490);
+            this.btnEnrollFinger.Location = new System.Drawing.Point(796, 443);
             this.btnEnrollFinger.Name = "btnEnrollFinger";
             this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
             this.btnEnrollFinger.TabIndex = 34;
@@ -777,6 +780,24 @@
             this.tbSearch.Size = new System.Drawing.Size(172, 23);
             this.tbSearch.TabIndex = 39;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            // 
+            // dtStartDate
+            // 
+            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
+            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStartDate.Location = new System.Drawing.Point(132, 258);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Size = new System.Drawing.Size(172, 26);
+            this.dtStartDate.TabIndex = 37;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 263);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(98, 20);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "Start Date:";
             // 
             // employeeRegister
             // 
@@ -882,5 +903,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cbCivil;
         private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.DateTimePicker dtStartDate;
+        private System.Windows.Forms.Label label18;
     }
 }
