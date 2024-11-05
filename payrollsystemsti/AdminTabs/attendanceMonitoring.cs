@@ -30,7 +30,7 @@ namespace payrollsystemsti.AdminTabs
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         public int loggedInEmpID;
-        
+
         TimeSpan startTimeAM = new TimeSpan(6, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
@@ -41,7 +41,7 @@ namespace payrollsystemsti.AdminTabs
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
 
         TimeSpan timeOutBDYSS = new TimeSpan(13, 16, 0);  // 1:16 PM
-        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);    // 7:00 PM
+        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);
 
         public attendanceMonitoring()
         {
@@ -79,6 +79,8 @@ namespace payrollsystemsti.AdminTabs
                 double currentMinute = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
+                bool holiday = false;
+                string holidayT = "None";
 
                 try
                 {
@@ -87,15 +89,16 @@ namespace payrollsystemsti.AdminTabs
                     
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, currentTime, null, fID, getEmpID(fID)))
+                        if (insertAttendance(currentDate, currentTime, null, fID, m.getEmpID(fID)))
                         {
-                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
+                            m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
+                            //MessageBox.Show(date.Value.Month+" "+ date.Value.Day);
 
-                            if (CheckForHoliday(time.Value.Month, time.Value.Day))
-                            {
-                                InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
-                            }
-                            MessageBox.Show($"Welcome {getEmpName(fID)}!!!");
+                            //if (CheckForHoliday(time.Value.Month, time.Value.Day))
+                            //{
+                            //    InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
+                            //}
+                            MessageBox.Show($"Welcome {m.getEmpName(fID)}!!!");
                             LoadAttendanceData(date.Value);
 
                             if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))
@@ -106,7 +109,7 @@ namespace payrollsystemsti.AdminTabs
                                 TimeSpan difference = timeIn - lateStartTime;
                                 double minutesLate = difference.TotalMinutes;
 
-                                UpdateAttendanceForLate(getEmpID(fID), currentDate, minutesLate);
+                                UpdateAttendanceForLate(m.getEmpID(fID), currentDate, minutesLate);
                                 //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
                                 MessageBox.Show("Minutes late: " + minutesLate);
 
@@ -120,7 +123,7 @@ namespace payrollsystemsti.AdminTabs
                                 TimeSpan difference = timeIn - lateStartTime;
                                 double minutesLate = difference.TotalMinutes;
 
-                                UpdateAttendanceForLate(getEmpID(fID), currentDate, minutesLate);
+                                UpdateAttendanceForLate(m.getEmpID(fID), currentDate, minutesLate);
                                 //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
                                 MessageBox.Show("Minutes late: " + minutesLate);
 
@@ -128,10 +131,21 @@ namespace payrollsystemsti.AdminTabs
 
                             if (checkIfEarly(time.Value.Hour, time.Value.Minute, 0))
                             {
-                                UpdateAttendanceForEarly(getEmpID(fID), currentDate);
+                                UpdateAttendanceForEarly(m.getEmpID(fID), currentDate);
                             }
                             //bool iswhat = checkIfLate(time.Value.Hour, time.Value.Minute, 0);
                             //MessageBox.Show(iswhat.ToString());
+
+                            if (CheckForHoliday(date.Value.Month, date.Value.Day))
+                            {
+                                holiday = true;
+                                string holidayType = GetHolidayType(date.Value.Month, date.Value.Day);
+
+                                UpdateHoliday(m.getEmpID(fID), date.Value, holiday, holidayType);
+                                //MessageBox.Show("is this even printing");
+                            }
+                            //bool isTrue = CheckForHoliday(date.Value.Month, date.Value.Day);
+                            //MessageBox.Show(isTrue.ToString());
                         }
                     }
                     else
@@ -202,6 +216,34 @@ namespace payrollsystemsti.AdminTabs
                         cmd.Parameters.AddWithValue("@timein", timeStart);
                         cmd.Parameters.AddWithValue("@empID", empID);
                         cmd.Parameters.AddWithValue("@date", date);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error updating attendance: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool UpdateHoliday(int empID, DateTime date, bool isHoliday, string holidayType)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                try
+                {
+                    string query = "UPDATE Attendance SET IsHoliday = @ih , HolidayType = @ht WHERE EmployeeID = @empID AND Date = @date";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@empID", empID);
+                        cmd.Parameters.AddWithValue("@date", date);
+                        cmd.Parameters.AddWithValue("@ih", isHoliday);
+                        cmd.Parameters.AddWithValue("@ht", holidayType);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -310,10 +352,10 @@ namespace payrollsystemsti.AdminTabs
 
                     if (fID > 0)
                     {
-                        if (insertAttendance(currentDate, null, currentTime, fID, getEmpID(fID)))
+                        if (insertAttendance(currentDate, null, currentTime, fID, m.getEmpID(fID)))
                         {
-                            insertAttedanceHistory(getEmpID(fID), currentTimeString, currentDate, status);
-                            MessageBox.Show($"check out of {getEmpName(fID)} ");
+                            m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
+                            MessageBox.Show($"check out of {m.getEmpName(fID)} ");
                         }
                     }
                     else
@@ -341,392 +383,7 @@ namespace payrollsystemsti.AdminTabs
             LoadAttendanceData(date.Value);
         }
 
-        public bool insertAttendance(string date, double? timeIn, double? timeOut, int fingerID, int empID)
-        {
-            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query;
-                
-                if ((!IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
-                {
-                    if ((timeIn != null && timeOut == null) && !IsTimedInAM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInAM", timeInString);
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@empID", getEmpID(fingerID));
 
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if ((timeIn == null && timeOut != null) && IsTimedInAM(fingerID, date))
-                    {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_AM = @timeOutAM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutAM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if(IsTimedInAM(fingerID, date) || IsTimedOutAM(fingerID, date))
-                    {
-                        MessageBox.Show("Duplicated attendance");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("you dont have a time-in(AM) record yet...");
-                        return false;
-                    }
-                }
-                else if (IsTimedOutAM(fingerID, date))
-                {
-                    if ((timeIn != null && timeOut == null) && !IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeIn_PM = @timeInPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if((timeIn == null && timeOut != null) && IsTimedInPM(fingerID, date) && !IsTimedOutPM(fingerID, date))
-                    {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if (IsTimedInPM(fingerID, date) || IsTimedOutPM(fingerID, date))
-                    {
-                        MessageBox.Show("you already have that attendance");
-                        return false;
-                    }
-                    else if (IsTimedOutAM(fingerID, date))
-                    {
-                        MessageBox.Show("you already have that attendance");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("You don't have a time-in(PM) record yet");
-                        return false;
-                    }
-                }
-                else if((timeNow >= startTimePM && timeNow <= endTimePM) && !IsTimedInAM(fingerID, date))
-                {
-                    if((timeIn != null && timeOut == null) && !IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID) VALUES (@Date, @timeInPM, @fingerID)";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                Console.WriteLine("First Time in afternoon");
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if((timeIn == null && timeOut != null) && IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                Console.WriteLine("first time out afternoon");
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if(IsTimedInPM(fingerID, date) || IsTimedOutPM(fingerID, date))
-                    {
-                        MessageBox.Show("You already have that attendnace");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("you dont have a time-in(PM) record");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Failed to insert attendance...");
-                    return false;
-                }
-            }
-        }
-
-        public bool IsTimedOutAM(int fingerID, string date)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT TimeOut_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                    cmd.Parameters.AddWithValue("@date", date);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result == null)
-                    {
-                        return false;
-                    }
-                    else if (result.ToString() == "00:00:00")
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        public bool IsTimedInAM(int fingerID, string date)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT TimeIn_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                    cmd.Parameters.AddWithValue("@date", date);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result == null)
-                    {
-                        return false;
-                    }
-                    else if (result.ToString() == "00:00:00")
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        private bool IsTimedInPM(int fID, string currentDate)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT TimeIn_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
-                using (SqlCommand cmd = new SqlCommand (query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@fingerID", fID);
-                    cmd.Parameters.AddWithValue("@date", currentDate);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result == null)
-                    {
-                        return false;
-                    }
-                    else if (result.ToString() == "00:00:00")
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        private bool IsTimedOutPM(int fID, string currentDate)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT TimeOut_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@fingerID", fID);
-                    cmd.Parameters.AddWithValue("@date", currentDate);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result == null)
-                    {
-                        return false;
-                    }
-                    else if (result.ToString() == "00:00:00")
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-
-
-        public int getEmpID(int fingerID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT EmployeeID FROM EmployeeAccounts WHERE fingerID = @fingerID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
-
-                    object result = cmd.ExecuteScalar();
-                    
-                    if(result != null)
-                    {
-                        int empID = (int)result;
-                        return empID;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        public string getEmpName(int fingerID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@fingerID", SqlDbType.Int).Value = fingerID;
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                        }
-                    }
-                }
-            }
-            return "Employee Doesn't Exist";
-        }
-
-        public bool insertAttedanceHistory(int empID, string time, string date, string status)
-        {
-
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "INSERT INTO AttedanceHistory(EmployeeID, Date, Status, Time) " +
-                    "VALUES(@empID, @date, @status, @time)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@empID", empID);
-                    cmd.Parameters.AddWithValue("@time", time);
-                    cmd.Parameters.AddWithValue("@date", date);
-                    cmd.Parameters.AddWithValue("@status", status);
-
-                    cmd.ExecuteNonQuery();
-
-                    return true;
-                }
-            }
-            
-        }
 
         public void LoadAttendanceData(DateTime date)
         {
@@ -842,52 +499,56 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private void CheckForHolidayAndDoubleHours(string connectionString)
+       
+
+        public bool CheckForHoliday(int month, int day)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                connection.Open();
-
-                // Check if today is a holiday
-                string holidayCheckSql = @"SELECT COUNT(*) FROM Holidays WHERE HolidayDate = @today";
-
-                using (SqlCommand holidayCheckCommand = new SqlCommand(holidayCheckSql, connection))
-                {
-                    holidayCheckCommand.Parameters.AddWithValue("@today", DateTime.Now.Date);
-                    int holidayCount = (int)holidayCheckCommand.ExecuteScalar();
-
-                    if (holidayCount > 0)
-                    {
-                        // Today is a holiday, double the total hours
-                        string doubleHoursSql = @"UPDATE Attendance SET TotalHours = TotalHours * 2 
-                                                  WHERE Date = @today";
-
-                        using (SqlCommand doubleHoursCommand = new SqlCommand(doubleHoursSql, connection))
-                        {
-                            doubleHoursCommand.Parameters.AddWithValue("@today", DateTime.Now.Date);
-                            doubleHoursCommand.ExecuteNonQuery();
-                        }
-                    }
-                }
-            }
-        }
-
-        private bool CheckForHoliday(int month, int day)
-        {
-            using (SqlConnection connection = new SqlConnection(m.connStr))
-            {
-                connection.Open();
+                conn.Open();
 
                 // Check if today is a holiday
                 string query = @"SELECT COUNT(*) FROM Holidays WHERE HolidayMonth = @month AND HolidayDay = @day";
 
-                using (SqlCommand cmd = new SqlCommand(query, connection))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@day", day);
+                        int count = (int)cmd.ExecuteScalar();
+
+                        return count > 0;
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return false;
+                    }
+                    
+                }
+            }
+        }
+
+        public string GetHolidayType(int month, int day)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = @"SELECT HolidayType FROM Holidays WHERE HolidayMonth = @month AND HolidayDay = @day";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@month", month);
                     cmd.Parameters.AddWithValue("@day", day);
-                    int count = (int)cmd.ExecuteScalar();
-
-                    return count > 0;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if(reader.Read())
+                    {
+                        return reader["HolidayType"].ToString();
+                    }
+                    else
+                    {
+                        return "None";
+                    }
                 }
             }
         }
@@ -941,6 +602,208 @@ namespace payrollsystemsti.AdminTabs
                         MessageBox.Show("Error inserting into holiday attendance: " + ex.Message);
                         return false;
                     }
+                }
+            }
+        }
+
+        public bool insertAttendance(string date, double? timeIn, double? timeOut, int fingerID, int empID)
+        {
+            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query;
+
+                if ((!m.IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!m.IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
+                {
+                    if ((timeIn != null && timeOut == null) && !m.IsTimedInAM(fingerID, date))
+                    {
+                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
+                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInAM", timeInString);
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@empID", m.getEmpID(fingerID));
+
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if ((timeIn == null && timeOut != null) && m.IsTimedInAM(fingerID, date))
+                    {
+                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
+                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "UPDATE Attendance SET TimeOut_AM = @timeOutAM WHERE fingerID = @fingerID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutAM", timeOutString);
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if (m.IsTimedInAM(fingerID, date) || m.IsTimedOutAM(fingerID, date))
+                    {
+                        MessageBox.Show("Duplicated attendance");
+                        return false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("you dont have a time-in(AM) record yet...");
+                        return false;
+                    }
+                }
+                else if (m.IsTimedOutAM(fingerID, date))
+                {
+                    if ((timeIn != null && timeOut == null) && !m.IsTimedInPM(fingerID, date))
+                    {
+                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
+                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "UPDATE Attendance SET TimeIn_PM = @timeInPM WHERE fingerID = @fingerID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if ((timeIn == null && timeOut != null) && m.IsTimedInPM(fingerID, date) && !m.IsTimedOutPM(fingerID, date))
+                    {
+                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
+                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if (m.IsTimedInPM(fingerID, date) || m.IsTimedOutPM(fingerID, date))
+                    {
+                        MessageBox.Show("you already have that attendance");
+                        return false;
+                    }
+                    else if (m.IsTimedOutAM(fingerID, date))
+                    {
+                        MessageBox.Show("you already have that attendance");
+                        return false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have a time-in(PM) record yet");
+                        return false;
+                    }
+                }
+                else if ((timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInAM(fingerID, date))
+                {
+                    if ((timeIn != null && timeOut == null) && !m.IsTimedInPM(fingerID, date))
+                    {
+                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
+                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID) VALUES (@Date, @timeInPM, @fingerID)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                Console.WriteLine("First Time in afternoon");
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if ((timeIn == null && timeOut != null) && m.IsTimedInPM(fingerID, date))
+                    {
+                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
+                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
+                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
+
+                            try
+                            {
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                Console.WriteLine("first time out afternoon");
+                                return rowsAffected > 0;
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                                return false;
+                            }
+                        }
+                    }
+                    else if (m.IsTimedInPM(fingerID, date) || m.IsTimedOutPM(fingerID, date))
+                    {
+                        MessageBox.Show("You already have that attendnace");
+                        return false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("you dont have a time-in(PM) record");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Failed to insert attendance...");
+                    return false;
                 }
             }
         }

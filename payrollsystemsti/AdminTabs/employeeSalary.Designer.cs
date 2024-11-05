@@ -570,11 +570,10 @@
             this.dtStart.CustomFormat = "MMMM,dd,yyyy";
             this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(323, 43);
+            this.dtStart.Location = new System.Drawing.Point(460, 431);
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
-            this.dtStart.Visible = false;
             this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
             // 
             // dtEnd
@@ -595,12 +594,11 @@
             this.lbStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStart.AutoSize = true;
             this.lbStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStart.Location = new System.Drawing.Point(320, 24);
+            this.lbStart.Location = new System.Drawing.Point(457, 412);
             this.lbStart.Name = "lbStart";
-            this.lbStart.Size = new System.Drawing.Size(84, 16);
+            this.lbStart.Size = new System.Drawing.Size(120, 16);
             this.lbStart.TabIndex = 37;
-            this.lbStart.Text = "Pay Period";
-            this.lbStart.Visible = false;
+            this.lbStart.Text = "Pay Period Start";
             // 
             // lbEnd
             // 

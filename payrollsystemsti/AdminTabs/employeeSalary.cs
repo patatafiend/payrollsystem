@@ -1,5 +1,6 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -84,6 +85,7 @@ namespace payrollsystemsti.AdminTabs
                 {
                     cmd.Parameters.AddWithValue("@dateStart", dateStart);
                     cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+                    cmd.Parameters.AddWithValue("@holiday", false);
 
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -103,6 +105,73 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
+
+        public decimal GetHolidayRegularData(int empID, DateTime dateStart, DateTime dateEnd)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                // Use LEFT JOIN instead of INNER JOIN to include all employees
+                string query = "SELECT ISNULL(SUM(TotalOvertime), 0) AS TotalOvertime, " +
+                                "ISNULL(SUM(TotalHours), 0) AS TotalHours " +
+                                "FROM Attendance WHERE Date BETWEEN @dateStart AND @dateEnd AND EmployeeID = @empID AND" +
+                                " IsHoliday = @holiday AND HolidayType = @type ";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@dateStart", dateStart);
+                    cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+                    cmd.Parameters.AddWithValue("@holiday", true);
+                    cmd.Parameters.AddWithValue("@type", "Regular");
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return Convert.ToDecimal(reader["TotalHours"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetHolidaySpecialData(int empID, DateTime dateStart, DateTime dateEnd)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+
+                // Use LEFT JOIN instead of INNER JOIN to include all employees
+                string query = "SELECT ISNULL(SUM(TotalOvertime), 0) AS TotalOvertime, " +
+                                "ISNULL(SUM(TotalHours), 0) AS TotalHours " +
+                                "FROM Attendance WHERE Date BETWEEN @dateStart AND @dateEnd AND EmployeeID = @empID AND" +
+                                " IsHoliday = @holiday AND HolidayType = @type ";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@dateStart", dateStart);
+                    cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+                    cmd.Parameters.AddWithValue("@holiday", true);
+                    cmd.Parameters.AddWithValue("@type", "Special");
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return Convert.ToDecimal(reader["TotalHours"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
 
         private void SearchByName()
         {
@@ -201,21 +270,21 @@ namespace payrollsystemsti.AdminTabs
             tbOT.Text = overtimePay.ToString();
             tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
             
-
             tbIncentives.Text = "0";
             tbAdjustment.Text = "0";
-            tbRegularH.Text = "0";
-            tbSpecialH.Text = "0";
+            tbRegularH.Text = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value).ToString();
+            tbSpecialH.Text = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value).ToString();
             tbSSS.Text = "0";
             
             setAllowance(empID);
-            setOthers(empID);
+            //setOthers(empID);
             
             
             btnCompute.Enabled = true;
 
             
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -228,9 +297,9 @@ namespace payrollsystemsti.AdminTabs
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
             LoadPayrollData();
-            //DateTime startDate = dtStart.Value.Date;
-            //dtEnd.Value = startDate.AddDays(12);
-            //dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
+            DateTime startDate = dtStart.Value.Date;
+            dtEnd.Value = startDate.AddDays(15);
+            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
         }
 
         private void dtEnd_ValueChanged(object sender, EventArgs e)
@@ -239,17 +308,14 @@ namespace payrollsystemsti.AdminTabs
             DateTime endDate = dtEnd.Value.Date;
             dtStart.Value = endDate.AddDays(-15);
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
-            if (dtEnd.Value.Day != 12 && dtEnd.Value.Day != 28)
-            {
-                MessageBox.Show("Only the 12th and 28th are allowed.");
-                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
+            //if (dtEnd.Value.Day != 12 && dtEnd.Value.Day != 28)
+            //{
+            //    MessageBox.Show("Only the 12th and 28th are allowed.");
+            //    dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
 
-            }
+            //}
         }
 
-        
-
-       
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
@@ -294,7 +360,7 @@ namespace payrollsystemsti.AdminTabs
         private void tbBasic_TextChanged(object sender, EventArgs e)
         {
             setAllowance(empID);
-            setOthers(empID);
+            //setOthers(empID);
             tbPagibig.Text = calPagIbig().ToString();
             tbLate.Text = totalLate.ToString();
             tbAbsent.Text = totalAbsent.ToString();

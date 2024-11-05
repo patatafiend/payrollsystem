@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace payrollsystemsti
 {
@@ -529,19 +530,20 @@ namespace payrollsystemsti
             }
         }
 
-        public bool InsertIncentivesData(int employeeID, int incentives)
+        public bool InsertIncentivesData(int employeeID, int incentives, string remarks)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
                 string query = @"
-            INSERT INTO Others (EmployeeID, Incentives) 
-            VALUES (@employeeID, @incentives);";
+            INSERT INTO Others (EmployeeID, Incentives, ITremarks) 
+            VALUES (@employeeID, @incentives, @remarks);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@incentives", incentives);
+                    cmd.Parameters.AddWithValue("@remarks", remarks);
 
                     try
                     {
@@ -675,12 +677,12 @@ namespace payrollsystemsti
             }
         }
 
-        public bool UpdateIncentivesData(int employeeID, int incentives)
+        public bool UpdateIncentivesData(int employeeID, int incentives, string remarks)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = @"UPDATE Others SET Incentives = @incentives
+                string query = @"UPDATE Others SET Incentives = @incentives, ITremarks = @remarks
                                  WHERE EmployeeID = @employeeID;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -688,6 +690,7 @@ namespace payrollsystemsti
                     // Add all the parameters here (including @otherID to identify the record)
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@incentives", incentives);
+                    cmd.Parameters.AddWithValue("@remarks", remarks);
 
                     try
                     {
@@ -1810,10 +1813,193 @@ namespace payrollsystemsti
             return totalCurrentAvailableLeaves;
         }
 
-        
+
+         
+
+        public bool IsTimedOutAM(int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeOut_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        public bool IsTimedInAM(int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_AM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        public bool IsTimedInPM(int fID, string currentDate)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fID);
+                    cmd.Parameters.AddWithValue("@date", currentDate);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        public bool IsTimedOutPM(int fID, string currentDate)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeOut_PM FROM Attendance WHERE fingerID = @fingerID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fID);
+                    cmd.Parameters.AddWithValue("@date", currentDate);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        return false;
+                    }
+                    else if (result.ToString() == "00:00:00")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
 
 
 
+        public int getEmpID(int fingerID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT EmployeeID FROM EmployeeAccounts WHERE fingerID = @fingerID";
 
-	}
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        int empID = (int)result;
+                        return empID;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public string getEmpName(int fingerID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT FirstName, LastName FROM EmployeeAccounts WHERE fingerID = @fingerID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@fingerID", SqlDbType.Int).Value = fingerID;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                        }
+                    }
+                }
+            }
+            return "Employee Doesn't Exist";
+        }
+
+        public bool insertAttedanceHistory(int empID, string time, string date, string status)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO AttedanceHistory(EmployeeID, Date, Status, Time) " +
+                    "VALUES(@empID, @date, @status, @time)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@time", time);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@status", status);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+
+        }
+
+    }
 }
