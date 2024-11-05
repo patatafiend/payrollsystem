@@ -130,7 +130,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1063, 45);
+			this.panel2.Size = new System.Drawing.Size(1163, 45);
 			this.panel2.TabIndex = 5;
 			// 
 			// label2
@@ -169,9 +169,9 @@
 			this.panel1.Controls.Add(this.lbEmployeeID);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.pbCurrentUser);
-			this.panel1.Location = new System.Drawing.Point(784, 0);
+			this.panel1.Location = new System.Drawing.Point(937, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(279, 670);
+			this.panel1.Size = new System.Drawing.Size(226, 670);
 			this.panel1.TabIndex = 4;
 			// 
 			// lb_EmpPosition
@@ -247,7 +247,7 @@
 			// 
 			this.pbCurrentUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pbCurrentUser.Image = global::payrollsystemsti.Properties.Resources.renz;
-			this.pbCurrentUser.Location = new System.Drawing.Point(68, 87);
+			this.pbCurrentUser.Location = new System.Drawing.Point(45, 86);
 			this.pbCurrentUser.Name = "pbCurrentUser";
 			this.pbCurrentUser.Size = new System.Drawing.Size(152, 147);
 			this.pbCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -311,7 +311,7 @@
 			this.pnl_Department.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pnl_Department.Location = new System.Drawing.Point(258, 140);
 			this.pnl_Department.Name = "pnl_Department";
-			this.pnl_Department.Size = new System.Drawing.Size(203, 79);
+			this.pnl_Department.Size = new System.Drawing.Size(293, 79);
 			this.pnl_Department.TabIndex = 4;
 			this.pnl_Department.DoubleClick += new System.EventHandler(this.pnl_Department_DoubleClick);
 			// 
@@ -394,7 +394,7 @@
 			this.pnl_totalLeaves.Controls.Add(this.lb_TotalLeaves);
 			this.pnl_totalLeaves.Controls.Add(this.lb_Total_Leaves);
 			this.pnl_totalLeaves.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pnl_totalLeaves.Location = new System.Drawing.Point(258, 225);
+			this.pnl_totalLeaves.Location = new System.Drawing.Point(302, 225);
 			this.pnl_totalLeaves.Name = "pnl_totalLeaves";
 			this.pnl_totalLeaves.Size = new System.Drawing.Size(203, 79);
 			this.pnl_totalLeaves.TabIndex = 1;
@@ -420,7 +420,6 @@
 			this.pnl_roles.Name = "pnl_roles";
 			this.pnl_roles.Size = new System.Drawing.Size(203, 79);
 			this.pnl_roles.TabIndex = 8;
-			
 			this.pnl_roles.DoubleClick += new System.EventHandler(this.pnl_roles_DoubleClick);
 			// 
 			// lb_roles_name
@@ -497,7 +496,7 @@
 			this.pnl_notification.Controls.Add(this.lb_notification_num);
 			this.pnl_notification.Controls.Add(this.pictureBox5);
 			this.pnl_notification.Controls.Add(this.lb_notification);
-			this.pnl_notification.Location = new System.Drawing.Point(467, 225);
+			this.pnl_notification.Location = new System.Drawing.Point(557, 225);
 			this.pnl_notification.Name = "pnl_notification";
 			this.pnl_notification.Size = new System.Drawing.Size(203, 79);
 			this.pnl_notification.TabIndex = 10;
@@ -543,7 +542,7 @@
 			this.pnl_totalEmployee.Controls.Add(this.pictureBox7);
 			this.pnl_totalEmployee.Controls.Add(this.lb_totalEmployee_num);
 			this.pnl_totalEmployee.Controls.Add(this.lb_totalEmployee);
-			this.pnl_totalEmployee.Location = new System.Drawing.Point(467, 140);
+			this.pnl_totalEmployee.Location = new System.Drawing.Point(557, 140);
 			this.pnl_totalEmployee.Name = "pnl_totalEmployee";
 			this.pnl_totalEmployee.Size = new System.Drawing.Size(203, 79);
 			this.pnl_totalEmployee.TabIndex = 9;
@@ -615,7 +614,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1063, 670);
+			this.ClientSize = new System.Drawing.Size(1163, 755);
 			this.Controls.Add(this.pnl_totalEmployee);
 			this.Controls.Add(this.pnl_notification);
 			this.Controls.Add(this.pnl_totalAbsent);

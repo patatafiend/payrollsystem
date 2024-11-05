@@ -78,10 +78,12 @@ namespace payrollsystemsti
 			if (checkifClickableOrViewable())
 			{
 				lb_totalEmployee_num.Text = m.GetTotalEmployeeCount().ToString();
+				
 			}
 			else
 			{
 				lb_totalEmployee_num.Text = "N/A";
+				pnl_totalEmployee.Hide();
 			}
 			lb_roles_name.Text = getUserRole(Methods.CurrentUser.EmployeeRole);
 
