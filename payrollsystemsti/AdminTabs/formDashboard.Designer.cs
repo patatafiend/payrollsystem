@@ -31,71 +31,72 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDashboard));
             this.header = new System.Windows.Forms.Panel();
+            this.btn_back = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.controlBox = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.btnMin = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.btnMax = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.employeePnl = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.employee = new System.Windows.Forms.Button();
             this.registerPnl = new System.Windows.Forms.Panel();
+            this.employeeRegister = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.employeeAttendance = new System.Windows.Forms.Button();
             this.salaryPnl = new System.Windows.Forms.Panel();
+            this.empSalary = new System.Windows.Forms.Button();
             this.enrollFingerprintPnl = new System.Windows.Forms.Panel();
+            this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.employeeTransition = new System.Windows.Forms.Timer(this.components);
             this.sideBarTransition = new System.Windows.Forms.Timer(this.components);
             this.userAccountPnl = new System.Windows.Forms.Panel();
+            this.btn_useraccount = new System.Windows.Forms.Button();
             this.sideBar = new System.Windows.Forms.FlowLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.maintinanceC = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Departments = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.LeaveApplicationPnl = new System.Windows.Forms.Panel();
+            this.btnLeave = new System.Windows.Forms.Button();
             this.leaveManagementPnl = new System.Windows.Forms.Panel();
+            this.btnLM = new System.Windows.Forms.Button();
             this.HIstoryLogPnl = new System.Windows.Forms.Panel();
+            this.BtnHistoryLog = new System.Windows.Forms.Button();
             this.AccountArchivePnl = new System.Windows.Forms.Panel();
-            this.settingsPnl = new System.Windows.Forms.Panel();
-            this.logoutPnl = new System.Windows.Forms.Panel();
-            this.mtransition = new System.Windows.Forms.Timer(this.components);
+            this.btnArchive = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btn_useraccount = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.Departments = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.employee = new System.Windows.Forms.Button();
-            this.employeeRegister = new System.Windows.Forms.Button();
-            this.employeeAttendance = new System.Windows.Forms.Button();
-            this.empSalary = new System.Windows.Forms.Button();
-            this.btnEnrollFinger = new System.Windows.Forms.Button();
-            this.btnLeave = new System.Windows.Forms.Button();
-            this.btnLM = new System.Windows.Forms.Button();
-            this.BtnHistoryLog = new System.Windows.Forms.Button();
-            this.btnArchive = new System.Windows.Forms.Button();
-            this.btn_back = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnMin = new System.Windows.Forms.Button();
-            this.btnMax = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.settingsPnl = new System.Windows.Forms.Panel();
             this.settings = new System.Windows.Forms.Button();
+            this.logoutPnl = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.mtransition = new System.Windows.Forms.Timer(this.components);
             this.header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.controlBox.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -110,6 +111,7 @@
             this.userAccountPnl.SuspendLayout();
             this.sideBar.SuspendLayout();
             this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.maintinanceC.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -124,11 +126,9 @@
             this.leaveManagementPnl.SuspendLayout();
             this.HIstoryLogPnl.SuspendLayout();
             this.AccountArchivePnl.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.settingsPnl.SuspendLayout();
             this.logoutPnl.SuspendLayout();
-            this.panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // header
@@ -140,7 +140,7 @@
             this.header.Controls.Add(this.controlBox);
             this.header.Controls.Add(this.label1);
             this.header.Dock = System.Windows.Forms.DockStyle.Top;
-            this.header.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.SystemColors.Control;
             this.header.Location = new System.Drawing.Point(0, 0);
             this.header.Name = "header";
@@ -148,6 +148,33 @@
             this.header.TabIndex = 1;
             this.header.Paint += new System.Windows.Forms.PaintEventHandler(this.header_Paint);
             this.header.MouseDown += new System.Windows.Forms.MouseEventHandler(this.header_MouseDown);
+            // 
+            // btn_back
+            // 
+            this.btn_back.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btn_back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_back.BackgroundImage")));
+            this.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_back.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_back.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_back.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btn_back.Location = new System.Drawing.Point(371, 8);
+            this.btn_back.Name = "btn_back";
+            this.btn_back.Size = new System.Drawing.Size(65, 58);
+            this.btn_back.TabIndex = 6;
+            this.btn_back.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(7, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 46);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // controlBox
             // 
@@ -168,6 +195,20 @@
             this.panel17.Size = new System.Drawing.Size(44, 30);
             this.panel17.TabIndex = 31;
             // 
+            // btnClose
+            // 
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(3, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(36, 21);
+            this.btnClose.TabIndex = 30;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // panel12
             // 
             this.panel12.Controls.Add(this.btnMin);
@@ -175,6 +216,20 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(44, 30);
             this.panel12.TabIndex = 0;
+            // 
+            // btnMin
+            // 
+            this.btnMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMin.FlatAppearance.BorderSize = 0;
+            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMin.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMin.Image = ((System.Drawing.Image)(resources.GetObject("btnMin.Image")));
+            this.btnMin.Location = new System.Drawing.Point(3, 3);
+            this.btnMin.Name = "btnMin";
+            this.btnMin.Size = new System.Drawing.Size(36, 21);
+            this.btnMin.TabIndex = 30;
+            this.btnMin.UseVisualStyleBackColor = false;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
             // panel16
             // 
@@ -184,14 +239,28 @@
             this.panel16.Size = new System.Drawing.Size(44, 30);
             this.panel16.TabIndex = 30;
             // 
+            // btnMax
+            // 
+            this.btnMax.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMax.FlatAppearance.BorderSize = 0;
+            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMax.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMax.Image = ((System.Drawing.Image)(resources.GetObject("btnMax.Image")));
+            this.btnMax.Location = new System.Drawing.Point(3, 3);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(36, 21);
+            this.btnMax.TabIndex = 30;
+            this.btnMax.UseVisualStyleBackColor = false;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(63, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(302, 25);
+            this.label1.Size = new System.Drawing.Size(311, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Payroll Management System";
             // 
@@ -205,6 +274,25 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.panel3.Size = new System.Drawing.Size(185, 55);
             this.panel3.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(-7, -12);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(210, 80);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Dashboard";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.dashBoard_btn);
             // 
             // employeePnl
             // 
@@ -233,6 +321,24 @@
             this.panel8.TabIndex = 7;
             this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
+            // employee
+            // 
+            this.employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.employee.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.employee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.employee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employee.ForeColor = System.Drawing.SystemColors.Control;
+            this.employee.Image = ((System.Drawing.Image)(resources.GetObject("employee.Image")));
+            this.employee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.employee.Location = new System.Drawing.Point(-9, -7);
+            this.employee.Name = "employee";
+            this.employee.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.employee.Size = new System.Drawing.Size(213, 66);
+            this.employee.TabIndex = 3;
+            this.employee.Text = "Employee";
+            this.employee.UseVisualStyleBackColor = false;
+            this.employee.Click += new System.EventHandler(this.employee_Click);
+            // 
             // registerPnl
             // 
             this.registerPnl.BackColor = System.Drawing.Color.Transparent;
@@ -242,6 +348,23 @@
             this.registerPnl.Name = "registerPnl";
             this.registerPnl.Size = new System.Drawing.Size(185, 55);
             this.registerPnl.TabIndex = 8;
+            // 
+            // employeeRegister
+            // 
+            this.employeeRegister.BackColor = System.Drawing.Color.Teal;
+            this.employeeRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.employeeRegister.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employeeRegister.ForeColor = System.Drawing.SystemColors.Control;
+            this.employeeRegister.Image = ((System.Drawing.Image)(resources.GetObject("employeeRegister.Image")));
+            this.employeeRegister.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.employeeRegister.Location = new System.Drawing.Point(-12, -19);
+            this.employeeRegister.Name = "employeeRegister";
+            this.employeeRegister.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.employeeRegister.Size = new System.Drawing.Size(213, 88);
+            this.employeeRegister.TabIndex = 3;
+            this.employeeRegister.Text = "Register";
+            this.employeeRegister.UseVisualStyleBackColor = false;
+            this.employeeRegister.Click += new System.EventHandler(this.employee_Register);
             // 
             // panel5
             // 
@@ -253,6 +376,23 @@
             this.panel5.Size = new System.Drawing.Size(185, 55);
             this.panel5.TabIndex = 9;
             // 
+            // employeeAttendance
+            // 
+            this.employeeAttendance.BackColor = System.Drawing.Color.Teal;
+            this.employeeAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.employeeAttendance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employeeAttendance.ForeColor = System.Drawing.SystemColors.Control;
+            this.employeeAttendance.Image = ((System.Drawing.Image)(resources.GetObject("employeeAttendance.Image")));
+            this.employeeAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.employeeAttendance.Location = new System.Drawing.Point(-14, -15);
+            this.employeeAttendance.Name = "employeeAttendance";
+            this.employeeAttendance.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.employeeAttendance.Size = new System.Drawing.Size(209, 78);
+            this.employeeAttendance.TabIndex = 3;
+            this.employeeAttendance.Text = "Attendance";
+            this.employeeAttendance.UseVisualStyleBackColor = false;
+            this.employeeAttendance.Click += new System.EventHandler(this.employeeAttendance_Click);
+            // 
             // salaryPnl
             // 
             this.salaryPnl.BackColor = System.Drawing.Color.Transparent;
@@ -262,6 +402,23 @@
             this.salaryPnl.Name = "salaryPnl";
             this.salaryPnl.Size = new System.Drawing.Size(185, 55);
             this.salaryPnl.TabIndex = 10;
+            // 
+            // empSalary
+            // 
+            this.empSalary.BackColor = System.Drawing.Color.Teal;
+            this.empSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.empSalary.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.empSalary.ForeColor = System.Drawing.SystemColors.Control;
+            this.empSalary.Image = ((System.Drawing.Image)(resources.GetObject("empSalary.Image")));
+            this.empSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.empSalary.Location = new System.Drawing.Point(-14, -10);
+            this.empSalary.Name = "empSalary";
+            this.empSalary.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.empSalary.Size = new System.Drawing.Size(211, 76);
+            this.empSalary.TabIndex = 3;
+            this.empSalary.Text = "Salary";
+            this.empSalary.UseVisualStyleBackColor = false;
+            this.empSalary.Click += new System.EventHandler(this.employee_Salary);
             // 
             // enrollFingerprintPnl
             // 
@@ -273,6 +430,24 @@
             this.enrollFingerprintPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.enrollFingerprintPnl.Size = new System.Drawing.Size(185, 55);
             this.enrollFingerprintPnl.TabIndex = 13;
+            // 
+            // btnEnrollFinger
+            // 
+            this.btnEnrollFinger.BackColor = System.Drawing.Color.Teal;
+            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnrollFinger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnrollFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnrollFinger.Image = ((System.Drawing.Image)(resources.GetObject("btnEnrollFinger.Image")));
+            this.btnEnrollFinger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnrollFinger.Location = new System.Drawing.Point(-14, -13);
+            this.btnEnrollFinger.Name = "btnEnrollFinger";
+            this.btnEnrollFinger.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnEnrollFinger.Size = new System.Drawing.Size(210, 80);
+            this.btnEnrollFinger.TabIndex = 3;
+            this.btnEnrollFinger.Text = "Enroll\r\nFingerprint";
+            this.btnEnrollFinger.UseVisualStyleBackColor = false;
+            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
             // 
             // employeeTransition
             // 
@@ -294,6 +469,24 @@
             this.userAccountPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.userAccountPnl.Size = new System.Drawing.Size(196, 55);
             this.userAccountPnl.TabIndex = 4;
+            // 
+            // btn_useraccount
+            // 
+            this.btn_useraccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btn_useraccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_useraccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_useraccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_useraccount.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_useraccount.Image = ((System.Drawing.Image)(resources.GetObject("btn_useraccount.Image")));
+            this.btn_useraccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_useraccount.Location = new System.Drawing.Point(-10, -22);
+            this.btn_useraccount.Name = "btn_useraccount";
+            this.btn_useraccount.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btn_useraccount.Size = new System.Drawing.Size(220, 95);
+            this.btn_useraccount.TabIndex = 3;
+            this.btn_useraccount.Text = "Maintenance";
+            this.btn_useraccount.UseVisualStyleBackColor = false;
+            this.btn_useraccount.Click += new System.EventHandler(this.userAccount_btn);
             // 
             // sideBar
             // 
@@ -324,6 +517,16 @@
             this.panel13.Size = new System.Drawing.Size(203, 108);
             this.panel13.TabIndex = 0;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(21, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(142, 84);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // maintinanceC
             // 
             this.maintinanceC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
@@ -351,6 +554,25 @@
             this.panel11.Size = new System.Drawing.Size(185, 55);
             this.panel11.TabIndex = 24;
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Teal;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button8.ForeColor = System.Drawing.SystemColors.Control;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(-5, -6);
+            this.button8.Name = "button8";
+            this.button8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button8.Size = new System.Drawing.Size(227, 68);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "           Adjustment";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button7);
@@ -359,6 +581,25 @@
             this.panel1.Size = new System.Drawing.Size(185, 55);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Teal;
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.SystemColors.Control;
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(-3, -5);
+            this.button7.Name = "button7";
+            this.button7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button7.Size = new System.Drawing.Size(227, 68);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "           Allowance";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // panel4
             // 
@@ -369,6 +610,25 @@
             this.panel4.TabIndex = 19;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Teal;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.SystemColors.Control;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(-5, -14);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(227, 84);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "            Deduction";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.Departments);
@@ -378,6 +638,25 @@
             this.panel2.TabIndex = 18;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // Departments
+            // 
+            this.Departments.BackColor = System.Drawing.Color.Teal;
+            this.Departments.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Departments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Departments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Departments.ForeColor = System.Drawing.SystemColors.Control;
+            this.Departments.Image = ((System.Drawing.Image)(resources.GetObject("Departments.Image")));
+            this.Departments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Departments.Location = new System.Drawing.Point(-4, -14);
+            this.Departments.Name = "Departments";
+            this.Departments.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.Departments.Size = new System.Drawing.Size(230, 83);
+            this.Departments.TabIndex = 3;
+            this.Departments.Text = "           Department";
+            this.Departments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Departments.UseVisualStyleBackColor = false;
+            this.Departments.Click += new System.EventHandler(this.button2_Click);
+            // 
             // panel10
             // 
             this.panel10.Controls.Add(this.button9);
@@ -386,6 +665,22 @@
             this.panel10.Size = new System.Drawing.Size(186, 55);
             this.panel10.TabIndex = 0;
             // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Teal;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button9.Image = global::payrollsystemsti.Properties.Resources.Untitled_1;
+            this.button9.Location = new System.Drawing.Point(-107, -12);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(299, 78);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "                                Holidays";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // panel14
             // 
             this.panel14.Controls.Add(this.button10);
@@ -393,6 +688,22 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(186, 55);
             this.panel14.TabIndex = 1;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Teal;
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button10.Image = global::payrollsystemsti.Properties.Resources.Untitled_11;
+            this.button10.Location = new System.Drawing.Point(-106, -12);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(294, 78);
+            this.button10.TabIndex = 3;
+            this.button10.Text = "                                   Incentives";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // panel6
             // 
@@ -403,6 +714,25 @@
             this.panel6.TabIndex = 20;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Teal;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button5.ForeColor = System.Drawing.SystemColors.Control;
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(-5, -15);
+            this.button5.Name = "button5";
+            this.button5.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button5.Size = new System.Drawing.Size(227, 83);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "            Leaves";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.button4);
@@ -412,6 +742,25 @@
             this.panel9.TabIndex = 22;
             this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Teal;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button4.ForeColor = System.Drawing.SystemColors.Control;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(-6, -13);
+            this.button4.Name = "button4";
+            this.button4.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button4.Size = new System.Drawing.Size(227, 79);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "            Roles";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.button3);
@@ -420,6 +769,25 @@
             this.panel7.Size = new System.Drawing.Size(185, 55);
             this.panel7.TabIndex = 21;
             this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Teal;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button3.ForeColor = System.Drawing.SystemColors.Control;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(-6, -22);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(227, 100);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "            Position\r\n\r\n";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // LeaveApplicationPnl
             // 
@@ -432,6 +800,24 @@
             this.LeaveApplicationPnl.Size = new System.Drawing.Size(185, 55);
             this.LeaveApplicationPnl.TabIndex = 5;
             // 
+            // btnLeave
+            // 
+            this.btnLeave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btnLeave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLeave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeave.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLeave.Image = ((System.Drawing.Image)(resources.GetObject("btnLeave.Image")));
+            this.btnLeave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLeave.Location = new System.Drawing.Point(-10, -15);
+            this.btnLeave.Name = "btnLeave";
+            this.btnLeave.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnLeave.Size = new System.Drawing.Size(210, 80);
+            this.btnLeave.TabIndex = 3;
+            this.btnLeave.Text = "Leave \r\nApplication";
+            this.btnLeave.UseVisualStyleBackColor = false;
+            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
+            // 
             // leaveManagementPnl
             // 
             this.leaveManagementPnl.BackColor = System.Drawing.Color.Transparent;
@@ -442,6 +828,24 @@
             this.leaveManagementPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.leaveManagementPnl.Size = new System.Drawing.Size(185, 55);
             this.leaveManagementPnl.TabIndex = 10;
+            // 
+            // btnLM
+            // 
+            this.btnLM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btnLM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLM.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLM.Image = ((System.Drawing.Image)(resources.GetObject("btnLM.Image")));
+            this.btnLM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLM.Location = new System.Drawing.Point(-10, -11);
+            this.btnLM.Name = "btnLM";
+            this.btnLM.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnLM.Size = new System.Drawing.Size(210, 80);
+            this.btnLM.TabIndex = 3;
+            this.btnLM.Text = "Leave \r\nManagement";
+            this.btnLM.UseVisualStyleBackColor = false;
+            this.btnLM.Click += new System.EventHandler(this.btnLM_Click);
             // 
             // HIstoryLogPnl
             // 
@@ -454,6 +858,24 @@
             this.HIstoryLogPnl.Size = new System.Drawing.Size(185, 55);
             this.HIstoryLogPnl.TabIndex = 14;
             // 
+            // BtnHistoryLog
+            // 
+            this.BtnHistoryLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.BtnHistoryLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnHistoryLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnHistoryLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnHistoryLog.ForeColor = System.Drawing.SystemColors.Control;
+            this.BtnHistoryLog.Image = ((System.Drawing.Image)(resources.GetObject("BtnHistoryLog.Image")));
+            this.BtnHistoryLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnHistoryLog.Location = new System.Drawing.Point(-10, -13);
+            this.BtnHistoryLog.Name = "BtnHistoryLog";
+            this.BtnHistoryLog.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.BtnHistoryLog.Size = new System.Drawing.Size(210, 80);
+            this.BtnHistoryLog.TabIndex = 4;
+            this.BtnHistoryLog.Text = "View History";
+            this.BtnHistoryLog.UseVisualStyleBackColor = false;
+            this.BtnHistoryLog.Click += new System.EventHandler(this.BtnHistoryLog_Click);
+            // 
             // AccountArchivePnl
             // 
             this.AccountArchivePnl.BackColor = System.Drawing.Color.Transparent;
@@ -465,34 +887,23 @@
             this.AccountArchivePnl.Size = new System.Drawing.Size(185, 55);
             this.AccountArchivePnl.TabIndex = 11;
             // 
-            // settingsPnl
+            // btnArchive
             // 
-            this.settingsPnl.BackColor = System.Drawing.Color.Transparent;
-            this.settingsPnl.Controls.Add(this.settings);
-            this.settingsPnl.Location = new System.Drawing.Point(0, 591);
-            this.settingsPnl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.settingsPnl.Name = "settingsPnl";
-            this.settingsPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.settingsPnl.Size = new System.Drawing.Size(185, 55);
-            this.settingsPnl.TabIndex = 7;
-            this.settingsPnl.Paint += new System.Windows.Forms.PaintEventHandler(this.settingsPnl_Paint);
-            // 
-            // logoutPnl
-            // 
-            this.logoutPnl.BackColor = System.Drawing.Color.Transparent;
-            this.logoutPnl.Controls.Add(this.button6);
-            this.logoutPnl.Location = new System.Drawing.Point(0, 649);
-            this.logoutPnl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.logoutPnl.Name = "logoutPnl";
-            this.logoutPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.logoutPnl.Size = new System.Drawing.Size(185, 55);
-            this.logoutPnl.TabIndex = 8;
-            this.logoutPnl.Paint += new System.Windows.Forms.PaintEventHandler(this.logoutPnl_Paint);
-            // 
-            // mtransition
-            // 
-            this.mtransition.Interval = 10;
-            this.mtransition.Tick += new System.EventHandler(this.mtransition_Tick);
+            this.btnArchive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.btnArchive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnArchive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArchive.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnArchive.Image = ((System.Drawing.Image)(resources.GetObject("btnArchive.Image")));
+            this.btnArchive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnArchive.Location = new System.Drawing.Point(-11, -10);
+            this.btnArchive.Name = "btnArchive";
+            this.btnArchive.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnArchive.Size = new System.Drawing.Size(210, 80);
+            this.btnArchive.TabIndex = 3;
+            this.btnArchive.Text = "Account\r\nArchive";
+            this.btnArchive.UseVisualStyleBackColor = false;
+            this.btnArchive.Click += new System.EventHandler(this.btnArchive_Click);
             // 
             // panel15
             // 
@@ -509,7 +920,7 @@
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.button11.ForeColor = System.Drawing.SystemColors.Control;
             this.button11.Image = global::payrollsystemsti.Properties.Resources.backres11;
             this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -521,452 +932,54 @@
             this.button11.UseVisualStyleBackColor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // pictureBox2
+            // settingsPnl
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(21, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(142, 84);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.settingsPnl.BackColor = System.Drawing.Color.Transparent;
+            this.settingsPnl.Controls.Add(this.settings);
+            this.settingsPnl.Location = new System.Drawing.Point(0, 591);
+            this.settingsPnl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.settingsPnl.Name = "settingsPnl";
+            this.settingsPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.settingsPnl.Size = new System.Drawing.Size(185, 55);
+            this.settingsPnl.TabIndex = 7;
+            this.settingsPnl.Paint += new System.Windows.Forms.PaintEventHandler(this.settingsPnl_Paint);
             // 
-            // button1
+            // settings
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(-7, -12);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(210, 80);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Dashboard";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.dashBoard_btn);
+            this.settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
+            this.settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settings.ForeColor = System.Drawing.SystemColors.Control;
+            this.settings.Image = ((System.Drawing.Image)(resources.GetObject("settings.Image")));
+            this.settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.settings.Location = new System.Drawing.Point(-13, -10);
+            this.settings.Name = "settings";
+            this.settings.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.settings.Size = new System.Drawing.Size(210, 80);
+            this.settings.TabIndex = 3;
+            this.settings.Text = "Settings";
+            this.settings.UseVisualStyleBackColor = false;
+            this.settings.Click += new System.EventHandler(this.settings_Click);
             // 
-            // btn_useraccount
+            // logoutPnl
             // 
-            this.btn_useraccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btn_useraccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_useraccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_useraccount.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_useraccount.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_useraccount.Image = ((System.Drawing.Image)(resources.GetObject("btn_useraccount.Image")));
-            this.btn_useraccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_useraccount.Location = new System.Drawing.Point(-10, -22);
-            this.btn_useraccount.Name = "btn_useraccount";
-            this.btn_useraccount.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btn_useraccount.Size = new System.Drawing.Size(220, 95);
-            this.btn_useraccount.TabIndex = 3;
-            this.btn_useraccount.Text = "Maintenance";
-            this.btn_useraccount.UseVisualStyleBackColor = false;
-            this.btn_useraccount.Click += new System.EventHandler(this.userAccount_btn);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Teal;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button8.ForeColor = System.Drawing.SystemColors.Control;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(-5, -6);
-            this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button8.Size = new System.Drawing.Size(227, 68);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "           Adjustment";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.Teal;
-            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button7.ForeColor = System.Drawing.SystemColors.Control;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(-3, -5);
-            this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button7.Size = new System.Drawing.Size(227, 68);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "           Allowance";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Teal;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(-5, -14);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(227, 84);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "            Deduction";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // Departments
-            // 
-            this.Departments.BackColor = System.Drawing.Color.Teal;
-            this.Departments.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Departments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Departments.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Departments.ForeColor = System.Drawing.SystemColors.Control;
-            this.Departments.Image = ((System.Drawing.Image)(resources.GetObject("Departments.Image")));
-            this.Departments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Departments.Location = new System.Drawing.Point(-4, -14);
-            this.Departments.Name = "Departments";
-            this.Departments.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.Departments.Size = new System.Drawing.Size(230, 83);
-            this.Departments.TabIndex = 3;
-            this.Departments.Text = "           Department";
-            this.Departments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Departments.UseVisualStyleBackColor = false;
-            this.Departments.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.Teal;
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button9.Image = global::payrollsystemsti.Properties.Resources.Untitled_1;
-            this.button9.Location = new System.Drawing.Point(-107, -12);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(299, 78);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "                                Holidays";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Teal;
-            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button10.Image = global::payrollsystemsti.Properties.Resources.Untitled_11;
-            this.button10.Location = new System.Drawing.Point(-106, -12);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(294, 78);
-            this.button10.TabIndex = 3;
-            this.button10.Text = "                                   Incentives";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Teal;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button5.ForeColor = System.Drawing.SystemColors.Control;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(-5, -15);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(227, 83);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "            Leaves";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Teal;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(-6, -13);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(227, 79);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "            Roles";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Teal;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(-6, -22);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(227, 100);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "            Position\r\n\r\n";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // employee
-            // 
-            this.employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.employee.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.employee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employee.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employee.ForeColor = System.Drawing.SystemColors.Control;
-            this.employee.Image = ((System.Drawing.Image)(resources.GetObject("employee.Image")));
-            this.employee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.employee.Location = new System.Drawing.Point(-9, -7);
-            this.employee.Name = "employee";
-            this.employee.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.employee.Size = new System.Drawing.Size(213, 66);
-            this.employee.TabIndex = 3;
-            this.employee.Text = "Employee";
-            this.employee.UseVisualStyleBackColor = false;
-            this.employee.Click += new System.EventHandler(this.employee_Click);
-            // 
-            // employeeRegister
-            // 
-            this.employeeRegister.BackColor = System.Drawing.Color.Teal;
-            this.employeeRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employeeRegister.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeRegister.ForeColor = System.Drawing.SystemColors.Control;
-            this.employeeRegister.Image = ((System.Drawing.Image)(resources.GetObject("employeeRegister.Image")));
-            this.employeeRegister.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.employeeRegister.Location = new System.Drawing.Point(-12, -19);
-            this.employeeRegister.Name = "employeeRegister";
-            this.employeeRegister.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.employeeRegister.Size = new System.Drawing.Size(213, 88);
-            this.employeeRegister.TabIndex = 3;
-            this.employeeRegister.Text = "Register";
-            this.employeeRegister.UseVisualStyleBackColor = false;
-            this.employeeRegister.Click += new System.EventHandler(this.employee_Register);
-            // 
-            // employeeAttendance
-            // 
-            this.employeeAttendance.BackColor = System.Drawing.Color.Teal;
-            this.employeeAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employeeAttendance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeAttendance.ForeColor = System.Drawing.SystemColors.Control;
-            this.employeeAttendance.Image = ((System.Drawing.Image)(resources.GetObject("employeeAttendance.Image")));
-            this.employeeAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.employeeAttendance.Location = new System.Drawing.Point(-14, -15);
-            this.employeeAttendance.Name = "employeeAttendance";
-            this.employeeAttendance.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.employeeAttendance.Size = new System.Drawing.Size(209, 78);
-            this.employeeAttendance.TabIndex = 3;
-            this.employeeAttendance.Text = "Attendance";
-            this.employeeAttendance.UseVisualStyleBackColor = false;
-            this.employeeAttendance.Click += new System.EventHandler(this.employeeAttendance_Click);
-            // 
-            // empSalary
-            // 
-            this.empSalary.BackColor = System.Drawing.Color.Teal;
-            this.empSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.empSalary.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.empSalary.ForeColor = System.Drawing.SystemColors.Control;
-            this.empSalary.Image = ((System.Drawing.Image)(resources.GetObject("empSalary.Image")));
-            this.empSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.empSalary.Location = new System.Drawing.Point(-14, -10);
-            this.empSalary.Name = "empSalary";
-            this.empSalary.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.empSalary.Size = new System.Drawing.Size(211, 76);
-            this.empSalary.TabIndex = 3;
-            this.empSalary.Text = "Salary";
-            this.empSalary.UseVisualStyleBackColor = false;
-            this.empSalary.Click += new System.EventHandler(this.employee_Salary);
-            // 
-            // btnEnrollFinger
-            // 
-            this.btnEnrollFinger.BackColor = System.Drawing.Color.Teal;
-            this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnrollFinger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnrollFinger.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Image = ((System.Drawing.Image)(resources.GetObject("btnEnrollFinger.Image")));
-            this.btnEnrollFinger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(-14, -13);
-            this.btnEnrollFinger.Name = "btnEnrollFinger";
-            this.btnEnrollFinger.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnEnrollFinger.Size = new System.Drawing.Size(210, 80);
-            this.btnEnrollFinger.TabIndex = 3;
-            this.btnEnrollFinger.Text = "Enroll\r\nFingerprint";
-            this.btnEnrollFinger.UseVisualStyleBackColor = false;
-            this.btnEnrollFinger.Click += new System.EventHandler(this.btnEnrollFinger_Click);
-            // 
-            // btnLeave
-            // 
-            this.btnLeave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btnLeave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLeave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeave.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnLeave.Image = ((System.Drawing.Image)(resources.GetObject("btnLeave.Image")));
-            this.btnLeave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLeave.Location = new System.Drawing.Point(-10, -15);
-            this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnLeave.Size = new System.Drawing.Size(210, 80);
-            this.btnLeave.TabIndex = 3;
-            this.btnLeave.Text = "Leave \r\nApplication";
-            this.btnLeave.UseVisualStyleBackColor = false;
-            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
-            // 
-            // btnLM
-            // 
-            this.btnLM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btnLM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLM.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLM.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnLM.Image = ((System.Drawing.Image)(resources.GetObject("btnLM.Image")));
-            this.btnLM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLM.Location = new System.Drawing.Point(-10, -11);
-            this.btnLM.Name = "btnLM";
-            this.btnLM.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnLM.Size = new System.Drawing.Size(210, 80);
-            this.btnLM.TabIndex = 3;
-            this.btnLM.Text = "Leave \r\nManagement";
-            this.btnLM.UseVisualStyleBackColor = false;
-            this.btnLM.Click += new System.EventHandler(this.btnLM_Click);
-            // 
-            // BtnHistoryLog
-            // 
-            this.BtnHistoryLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.BtnHistoryLog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnHistoryLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnHistoryLog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnHistoryLog.ForeColor = System.Drawing.SystemColors.Control;
-            this.BtnHistoryLog.Image = ((System.Drawing.Image)(resources.GetObject("BtnHistoryLog.Image")));
-            this.BtnHistoryLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnHistoryLog.Location = new System.Drawing.Point(-10, -13);
-            this.BtnHistoryLog.Name = "BtnHistoryLog";
-            this.BtnHistoryLog.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.BtnHistoryLog.Size = new System.Drawing.Size(210, 80);
-            this.BtnHistoryLog.TabIndex = 4;
-            this.BtnHistoryLog.Text = "View History";
-            this.BtnHistoryLog.UseVisualStyleBackColor = false;
-            this.BtnHistoryLog.Click += new System.EventHandler(this.BtnHistoryLog_Click);
-            // 
-            // btnArchive
-            // 
-            this.btnArchive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btnArchive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArchive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnArchive.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnArchive.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnArchive.Image = ((System.Drawing.Image)(resources.GetObject("btnArchive.Image")));
-            this.btnArchive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArchive.Location = new System.Drawing.Point(-11, -10);
-            this.btnArchive.Name = "btnArchive";
-            this.btnArchive.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnArchive.Size = new System.Drawing.Size(210, 80);
-            this.btnArchive.TabIndex = 3;
-            this.btnArchive.Text = "Account\r\nArchive";
-            this.btnArchive.UseVisualStyleBackColor = false;
-            this.btnArchive.Click += new System.EventHandler(this.btnArchive_Click);
-            // 
-            // btn_back
-            // 
-            this.btn_back.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btn_back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_back.BackgroundImage")));
-            this.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_back.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_back.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_back.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.btn_back.Location = new System.Drawing.Point(371, 8);
-            this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(65, 58);
-            this.btn_back.TabIndex = 6;
-            this.btn_back.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 46);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ForeColor = System.Drawing.Color.Transparent;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(3, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(36, 21);
-            this.btnClose.TabIndex = 30;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnMin
-            // 
-            this.btnMin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMin.FlatAppearance.BorderSize = 0;
-            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMin.ForeColor = System.Drawing.Color.Transparent;
-            this.btnMin.Image = ((System.Drawing.Image)(resources.GetObject("btnMin.Image")));
-            this.btnMin.Location = new System.Drawing.Point(3, 3);
-            this.btnMin.Name = "btnMin";
-            this.btnMin.Size = new System.Drawing.Size(36, 21);
-            this.btnMin.TabIndex = 30;
-            this.btnMin.UseVisualStyleBackColor = false;
-            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
-            // 
-            // btnMax
-            // 
-            this.btnMax.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMax.FlatAppearance.BorderSize = 0;
-            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMax.ForeColor = System.Drawing.Color.Transparent;
-            this.btnMax.Image = ((System.Drawing.Image)(resources.GetObject("btnMax.Image")));
-            this.btnMax.Location = new System.Drawing.Point(3, 3);
-            this.btnMax.Name = "btnMax";
-            this.btnMax.Size = new System.Drawing.Size(36, 21);
-            this.btnMax.TabIndex = 30;
-            this.btnMax.UseVisualStyleBackColor = false;
-            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
+            this.logoutPnl.BackColor = System.Drawing.Color.Transparent;
+            this.logoutPnl.Controls.Add(this.button6);
+            this.logoutPnl.Location = new System.Drawing.Point(0, 649);
+            this.logoutPnl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.logoutPnl.Name = "logoutPnl";
+            this.logoutPnl.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.logoutPnl.Size = new System.Drawing.Size(185, 55);
+            this.logoutPnl.TabIndex = 8;
+            this.logoutPnl.Paint += new System.Windows.Forms.PaintEventHandler(this.logoutPnl_Paint);
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
             this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.button6.ForeColor = System.Drawing.SystemColors.Control;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -979,23 +992,10 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.btnLogout);
             // 
-            // settings
+            // mtransition
             // 
-            this.settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(143)))), ((int)(((byte)(161)))));
-            this.settings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settings.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settings.ForeColor = System.Drawing.SystemColors.Control;
-            this.settings.Image = ((System.Drawing.Image)(resources.GetObject("settings.Image")));
-            this.settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.settings.Location = new System.Drawing.Point(-13, -10);
-            this.settings.Name = "settings";
-            this.settings.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.settings.Size = new System.Drawing.Size(210, 80);
-            this.settings.TabIndex = 3;
-            this.settings.Text = "Settings";
-            this.settings.UseVisualStyleBackColor = false;
-            this.settings.Click += new System.EventHandler(this.settings_Click);
+            this.mtransition.Interval = 10;
+            this.mtransition.Tick += new System.EventHandler(this.mtransition_Tick);
             // 
             // formDashboard
             // 
@@ -1013,6 +1013,7 @@
             this.Load += new System.EventHandler(this.dashBoard_btn);
             this.header.ResumeLayout(false);
             this.header.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.controlBox.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
@@ -1027,6 +1028,7 @@
             this.userAccountPnl.ResumeLayout(false);
             this.sideBar.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.maintinanceC.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1041,11 +1043,9 @@
             this.leaveManagementPnl.ResumeLayout(false);
             this.HIstoryLogPnl.ResumeLayout(false);
             this.AccountArchivePnl.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
             this.settingsPnl.ResumeLayout(false);
             this.logoutPnl.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
