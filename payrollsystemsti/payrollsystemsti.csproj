@@ -720,6 +720,8 @@
     <None Include="Resources\backres.png" />
     <None Include="Resources\backres1.png" />
     <None Include="Resources\backres11.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\search1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

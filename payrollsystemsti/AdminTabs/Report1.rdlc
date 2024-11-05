@@ -1215,7 +1215,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Total</Value>
+                                      <Value>Gross Pay</Value>
                                       <Style>
                                         <FontFamily>Poppins</FontFamily>
                                       </Style>

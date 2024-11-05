@@ -48,6 +48,22 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -72,32 +88,18 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.pbEmployee = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.empID = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEnrollFinger = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.dgEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBasicRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbEmployee = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,7 +264,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(756, 393);
+            this.btnSave.Location = new System.Drawing.Point(776, 528);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
             this.btnSave.TabIndex = 24;
@@ -277,7 +279,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(885, 393);
+            this.btnUpdate.Location = new System.Drawing.Point(900, 528);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 25;
@@ -292,7 +294,7 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(235, 536);
+            this.btnDeactivate.Location = new System.Drawing.Point(194, 536);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 26;
@@ -338,6 +340,127 @@
             this.dataGridView1.Size = new System.Drawing.Size(980, 276);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgEmp
+            // 
+            this.dgEmp.HeaderText = "ID";
+            this.dgEmp.MinimumWidth = 8;
+            this.dgEmp.Name = "dgEmp";
+            this.dgEmp.ReadOnly = true;
+            // 
+            // dgFullName
+            // 
+            this.dgFullName.HeaderText = "Name";
+            this.dgFullName.MinimumWidth = 8;
+            this.dgFullName.Name = "dgFullName";
+            this.dgFullName.ReadOnly = true;
+            // 
+            // dgDepartment
+            // 
+            this.dgDepartment.HeaderText = "Department";
+            this.dgDepartment.MinimumWidth = 8;
+            this.dgDepartment.Name = "dgDepartment";
+            this.dgDepartment.ReadOnly = true;
+            // 
+            // dgPosition
+            // 
+            this.dgPosition.HeaderText = "Position";
+            this.dgPosition.MinimumWidth = 8;
+            this.dgPosition.Name = "dgPosition";
+            this.dgPosition.ReadOnly = true;
+            // 
+            // dgBasicRate
+            // 
+            this.dgBasicRate.HeaderText = "Basic Rate";
+            this.dgBasicRate.MinimumWidth = 8;
+            this.dgBasicRate.Name = "dgBasicRate";
+            this.dgBasicRate.ReadOnly = true;
+            // 
+            // dgRole
+            // 
+            this.dgRole.HeaderText = "Role";
+            this.dgRole.MinimumWidth = 8;
+            this.dgRole.Name = "dgRole";
+            this.dgRole.ReadOnly = true;
+            // 
+            // dgDoB
+            // 
+            this.dgDoB.HeaderText = "DoB";
+            this.dgDoB.MinimumWidth = 8;
+            this.dgDoB.Name = "dgDoB";
+            this.dgDoB.ReadOnly = true;
+            this.dgDoB.Visible = false;
+            // 
+            // dgMobile
+            // 
+            this.dgMobile.HeaderText = "Mobile";
+            this.dgMobile.MinimumWidth = 8;
+            this.dgMobile.Name = "dgMobile";
+            this.dgMobile.ReadOnly = true;
+            this.dgMobile.Visible = false;
+            // 
+            // dgEmail
+            // 
+            this.dgEmail.HeaderText = "Email";
+            this.dgEmail.MinimumWidth = 8;
+            this.dgEmail.Name = "dgEmail";
+            this.dgEmail.ReadOnly = true;
+            this.dgEmail.Visible = false;
+            // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Address";
+            this.dgAdd.MinimumWidth = 8;
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
+            // dgSSN
+            // 
+            this.dgSSN.HeaderText = "SSN";
+            this.dgSSN.MinimumWidth = 8;
+            this.dgSSN.Name = "dgSSN";
+            this.dgSSN.ReadOnly = true;
+            this.dgSSN.Visible = false;
+            // 
+            // dgFileName
+            // 
+            this.dgFileName.HeaderText = "FileName";
+            this.dgFileName.MinimumWidth = 8;
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.ReadOnly = true;
+            this.dgFileName.Visible = false;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "ImageData";
+            this.dgImageData.MinimumWidth = 8;
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.ReadOnly = true;
+            this.dgImageData.Visible = false;
+            // 
+            // dgFID
+            // 
+            this.dgFID.HeaderText = "Finger ID";
+            this.dgFID.MinimumWidth = 8;
+            this.dgFID.Name = "dgFID";
+            this.dgFID.ReadOnly = true;
+            // 
+            // dgIsDeleted
+            // 
+            this.dgIsDeleted.HeaderText = "IsDeleted";
+            this.dgIsDeleted.MinimumWidth = 8;
+            this.dgIsDeleted.Name = "dgIsDeleted";
+            this.dgIsDeleted.ReadOnly = true;
+            this.dgIsDeleted.Visible = false;
+            // 
+            // dgImage
+            // 
+            this.dgImage.HeaderText = "Image";
+            this.dgImage.MinimumWidth = 8;
+            this.dgImage.Name = "dgImage";
+            this.dgImage.ReadOnly = true;
+            this.dgImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // errorProvider1
             // 
@@ -579,7 +702,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(815, 493);
+            this.btnCancel.Location = new System.Drawing.Point(652, 528);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 31;
@@ -603,16 +726,6 @@
             // serialPort
             // 
             this.serialPort.PortName = "COM4";
-            // 
-            // pbEmployee
-            // 
-            this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbEmployee.Location = new System.Drawing.Point(57, 90);
-            this.pbEmployee.Name = "pbEmployee";
-            this.pbEmployee.Size = new System.Drawing.Size(177, 160);
-            this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbEmployee.TabIndex = 0;
-            this.pbEmployee.TabStop = false;
             // 
             // label2
             // 
@@ -651,12 +764,11 @@
             // 
             // btnEnrollFinger
             // 
-            this.btnEnrollFinger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnrollFinger.BackColor = System.Drawing.Color.DarkTurquoise;
             this.btnEnrollFinger.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEnrollFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnrollFinger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnrollFinger.Location = new System.Drawing.Point(796, 443);
+            this.btnEnrollFinger.Location = new System.Drawing.Point(35, 486);
             this.btnEnrollFinger.Name = "btnEnrollFinger";
             this.btnEnrollFinger.Size = new System.Drawing.Size(153, 44);
             this.btnEnrollFinger.TabIndex = 34;
@@ -671,132 +783,32 @@
             this.tbSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbSearch.Location = new System.Drawing.Point(846, 549);
+            this.tbSearch.Location = new System.Drawing.Point(815, 22);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(172, 23);
             this.tbSearch.TabIndex = 39;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
-            // dgEmp
+            // pictureBox1
             // 
-            this.dgEmp.HeaderText = "ID";
-            this.dgEmp.MinimumWidth = 8;
-            this.dgEmp.Name = "dgEmp";
-            this.dgEmp.ReadOnly = true;
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::payrollsystemsti.Properties.Resources.search1;
+            this.pictureBox1.Location = new System.Drawing.Point(993, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 40;
+            this.pictureBox1.TabStop = false;
             // 
-            // dgFullName
+            // pbEmployee
             // 
-            this.dgFullName.HeaderText = "Name";
-            this.dgFullName.MinimumWidth = 8;
-            this.dgFullName.Name = "dgFullName";
-            this.dgFullName.ReadOnly = true;
-            // 
-            // dgDepartment
-            // 
-            this.dgDepartment.HeaderText = "Department";
-            this.dgDepartment.MinimumWidth = 8;
-            this.dgDepartment.Name = "dgDepartment";
-            this.dgDepartment.ReadOnly = true;
-            // 
-            // dgPosition
-            // 
-            this.dgPosition.HeaderText = "Position";
-            this.dgPosition.MinimumWidth = 8;
-            this.dgPosition.Name = "dgPosition";
-            this.dgPosition.ReadOnly = true;
-            // 
-            // dgBasicRate
-            // 
-            this.dgBasicRate.HeaderText = "Basic Rate";
-            this.dgBasicRate.MinimumWidth = 8;
-            this.dgBasicRate.Name = "dgBasicRate";
-            this.dgBasicRate.ReadOnly = true;
-            // 
-            // dgRole
-            // 
-            this.dgRole.HeaderText = "Role";
-            this.dgRole.MinimumWidth = 8;
-            this.dgRole.Name = "dgRole";
-            this.dgRole.ReadOnly = true;
-            // 
-            // dgDoB
-            // 
-            this.dgDoB.HeaderText = "DoB";
-            this.dgDoB.MinimumWidth = 8;
-            this.dgDoB.Name = "dgDoB";
-            this.dgDoB.ReadOnly = true;
-            this.dgDoB.Visible = false;
-            // 
-            // dgMobile
-            // 
-            this.dgMobile.HeaderText = "Mobile";
-            this.dgMobile.MinimumWidth = 8;
-            this.dgMobile.Name = "dgMobile";
-            this.dgMobile.ReadOnly = true;
-            this.dgMobile.Visible = false;
-            // 
-            // dgEmail
-            // 
-            this.dgEmail.HeaderText = "Email";
-            this.dgEmail.MinimumWidth = 8;
-            this.dgEmail.Name = "dgEmail";
-            this.dgEmail.ReadOnly = true;
-            this.dgEmail.Visible = false;
-            // 
-            // dgAdd
-            // 
-            this.dgAdd.HeaderText = "Address";
-            this.dgAdd.MinimumWidth = 8;
-            this.dgAdd.Name = "dgAdd";
-            this.dgAdd.ReadOnly = true;
-            this.dgAdd.Visible = false;
-            // 
-            // dgSSN
-            // 
-            this.dgSSN.HeaderText = "SSN";
-            this.dgSSN.MinimumWidth = 8;
-            this.dgSSN.Name = "dgSSN";
-            this.dgSSN.ReadOnly = true;
-            this.dgSSN.Visible = false;
-            // 
-            // dgFileName
-            // 
-            this.dgFileName.HeaderText = "FileName";
-            this.dgFileName.MinimumWidth = 8;
-            this.dgFileName.Name = "dgFileName";
-            this.dgFileName.ReadOnly = true;
-            this.dgFileName.Visible = false;
-            // 
-            // dgImageData
-            // 
-            this.dgImageData.HeaderText = "ImageData";
-            this.dgImageData.MinimumWidth = 8;
-            this.dgImageData.Name = "dgImageData";
-            this.dgImageData.ReadOnly = true;
-            this.dgImageData.Visible = false;
-            // 
-            // dgFID
-            // 
-            this.dgFID.HeaderText = "Finger ID";
-            this.dgFID.MinimumWidth = 8;
-            this.dgFID.Name = "dgFID";
-            this.dgFID.ReadOnly = true;
-            // 
-            // dgIsDeleted
-            // 
-            this.dgIsDeleted.HeaderText = "IsDeleted";
-            this.dgIsDeleted.MinimumWidth = 8;
-            this.dgIsDeleted.Name = "dgIsDeleted";
-            this.dgIsDeleted.ReadOnly = true;
-            this.dgIsDeleted.Visible = false;
-            // 
-            // dgImage
-            // 
-            this.dgImage.HeaderText = "Image";
-            this.dgImage.MinimumWidth = 8;
-            this.dgImage.Name = "dgImage";
-            this.dgImage.ReadOnly = true;
-            this.dgImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbEmployee.Location = new System.Drawing.Point(57, 90);
+            this.pbEmployee.Name = "pbEmployee";
+            this.pbEmployee.Size = new System.Drawing.Size(177, 160);
+            this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEmployee.TabIndex = 0;
+            this.pbEmployee.TabStop = false;
             // 
             // employeeRegister
             // 
@@ -804,6 +816,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1055, 715);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnEnrollFinger);
             this.Controls.Add(this.btnCreate);
@@ -831,6 +844,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -904,5 +918,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeleted;
         private System.Windows.Forms.DataGridViewImageColumn dgImage;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
