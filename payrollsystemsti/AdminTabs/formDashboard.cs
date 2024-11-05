@@ -616,7 +616,6 @@ namespace payrollsystemsti
                 Application.Exit();
 				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Dashboard, Logged out.");
 
-
 			}
         }
 

@@ -51,11 +51,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.gb3 = new System.Windows.Forms.GroupBox();
             this.tbSSS = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tbPagibig = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.tbPH = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.gb4 = new System.Windows.Forms.GroupBox();
             this.tbAbsent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -82,6 +79,9 @@
             this.btnPayslip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
+            this.cbPH = new System.Windows.Forms.CheckBox();
+            this.cbPG = new System.Windows.Forms.CheckBox();
+            this.cbSSS = new System.Windows.Forms.CheckBox();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -304,16 +304,16 @@
             // 
             // gb3
             // 
-            this.gb3.Controls.Add(this.tbSSS);
-            this.gb3.Controls.Add(this.label11);
-            this.gb3.Controls.Add(this.tbPagibig);
-            this.gb3.Controls.Add(this.label12);
+            this.gb3.Controls.Add(this.cbSSS);
+            this.gb3.Controls.Add(this.cbPG);
+            this.gb3.Controls.Add(this.cbPH);
             this.gb3.Controls.Add(this.tbPH);
-            this.gb3.Controls.Add(this.label13);
+            this.gb3.Controls.Add(this.tbPagibig);
+            this.gb3.Controls.Add(this.tbSSS);
             this.gb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb3.Location = new System.Drawing.Point(772, 89);
             this.gb3.Name = "gb3";
-            this.gb3.Size = new System.Drawing.Size(303, 149);
+            this.gb3.Size = new System.Drawing.Size(303, 146);
             this.gb3.TabIndex = 8;
             this.gb3.TabStop = false;
             this.gb3.Text = "Mandatory Deductions";
@@ -321,59 +321,32 @@
             // tbSSS
             // 
             this.tbSSS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSSS.Location = new System.Drawing.Point(186, 105);
+            this.tbSSS.Location = new System.Drawing.Point(190, 95);
             this.tbSSS.Multiline = true;
             this.tbSSS.Name = "tbSSS";
             this.tbSSS.ReadOnly = true;
             this.tbSSS.Size = new System.Drawing.Size(94, 28);
             this.tbSSS.TabIndex = 9;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 108);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 20);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "SSS:";
-            // 
             // tbPagibig
             // 
             this.tbPagibig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPagibig.Location = new System.Drawing.Point(186, 71);
+            this.tbPagibig.Location = new System.Drawing.Point(190, 61);
             this.tbPagibig.Multiline = true;
             this.tbPagibig.Name = "tbPagibig";
             this.tbPagibig.ReadOnly = true;
             this.tbPagibig.Size = new System.Drawing.Size(94, 28);
             this.tbPagibig.TabIndex = 9;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(14, 73);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 20);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Pag-ibig:";
-            // 
             // tbPH
             // 
             this.tbPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPH.Location = new System.Drawing.Point(186, 36);
+            this.tbPH.Location = new System.Drawing.Point(190, 26);
             this.tbPH.Multiline = true;
             this.tbPH.Name = "tbPH";
             this.tbPH.ReadOnly = true;
             this.tbPH.Size = new System.Drawing.Size(94, 28);
             this.tbPH.TabIndex = 9;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 38);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 20);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "PhilHealth:";
             // 
             // gb4
             // 
@@ -669,6 +642,36 @@
             this.tbSearch.TabIndex = 46;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
+            // cbPH
+            // 
+            this.cbPH.AutoSize = true;
+            this.cbPH.Location = new System.Drawing.Point(37, 33);
+            this.cbPH.Name = "cbPH";
+            this.cbPH.Size = new System.Drawing.Size(115, 24);
+            this.cbPH.TabIndex = 50;
+            this.cbPH.Text = "PhilHealth:";
+            this.cbPH.UseVisualStyleBackColor = true;
+            // 
+            // cbPG
+            // 
+            this.cbPG.AutoSize = true;
+            this.cbPG.Location = new System.Drawing.Point(37, 63);
+            this.cbPG.Name = "cbPG";
+            this.cbPG.Size = new System.Drawing.Size(100, 24);
+            this.cbPG.TabIndex = 51;
+            this.cbPG.Text = "Pag-Ibig:";
+            this.cbPG.UseVisualStyleBackColor = true;
+            // 
+            // cbSSS
+            // 
+            this.cbSSS.AutoSize = true;
+            this.cbSSS.Location = new System.Drawing.Point(37, 95);
+            this.cbSSS.Name = "cbSSS";
+            this.cbSSS.Size = new System.Drawing.Size(69, 24);
+            this.cbSSS.TabIndex = 52;
+            this.cbSSS.Text = "SSS:";
+            this.cbSSS.UseVisualStyleBackColor = true;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,11 +716,8 @@
         private System.Windows.Forms.GroupBox gb1;
         private System.Windows.Forms.GroupBox gb3;
         private System.Windows.Forms.TextBox tbSSS;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbPagibig;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbPH;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox gb4;
         private System.Windows.Forms.TextBox tbAbsent;
         private System.Windows.Forms.Label label8;
@@ -764,5 +764,8 @@
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.CheckBox cbSSS;
+        private System.Windows.Forms.CheckBox cbPG;
+        private System.Windows.Forms.CheckBox cbPH;
     }
 }

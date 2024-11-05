@@ -27,7 +27,7 @@ namespace payrollsystemsti
             if (!m.ifDeductionExist(tb1.Text.ToString()))
             {
                 m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction add");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction, Add");
 				LoadDeductionData();
                 tb1.Clear();
                 tb2.Clear();

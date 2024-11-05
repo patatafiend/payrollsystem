@@ -268,7 +268,7 @@ namespace payrollsystemsti.AdminTabs
 
             tbBasic.Text = basicSalary.ToString();
             tbOT.Text = overtimePay.ToString();
-            tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+            
             
             tbIncentives.Text = "0";
             tbAdjustment.Text = "0";
@@ -329,13 +329,31 @@ namespace payrollsystemsti.AdminTabs
                 overtimePay, Convert.ToDouble(tbRegularH.Text), Convert.ToDouble(tbSpecialH.Text),
                 Convert.ToDouble(tbAdjustment.Text));
 
-            if (dtEnd.Value.Day == 12)
+            if (cbSSS.Checked)
+            {
+                tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+            }
+            else if (!cbSSS.Checked)
             {
                 tbSSS.Text = "0";
             }
-            else
+
+            if (cbPH.Checked)
             {
-                tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+                tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+            } 
+            else if (!cbPH.Checked)
+            {
+                tbPH.Text = "0";
+            }
+
+            if (cbPG.Checked)
+            {
+                tbPagibig.Text = calPagIbig().ToString();
+            } 
+            else if (!cbPG.Checked)
+            {
+                tbPagibig.Text = "0";
             }
 
             btnCompute.Enabled = false;
@@ -361,7 +379,6 @@ namespace payrollsystemsti.AdminTabs
         {
             setAllowance(empID);
             //setOthers(empID);
-            tbPagibig.Text = calPagIbig().ToString();
             tbLate.Text = totalLate.ToString();
             tbAbsent.Text = totalAbsent.ToString();
         }
@@ -621,6 +638,7 @@ namespace payrollsystemsti.AdminTabs
                 LoadPayrollData();
             }
         }
+
 
         //private void SetDateTimePickerDates()
         //{

@@ -27,7 +27,7 @@ namespace payrollsystemsti.AdminTabs
             
             SqlConnection con = new SqlConnection(m.connStr);
 			con.Open();
-			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable WHERE HistoryFrom != 'Login'", con);
+			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable ", con);
 			SqlDataAdapter da = new SqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
 			da.Fill(dt);
