@@ -28,7 +28,7 @@ namespace payrollsystemsti
             {
                 m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
 				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction, Add");
-				LoadDeductionData();
+				LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
             }
@@ -49,7 +49,7 @@ namespace payrollsystemsti
             {
                 m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
                 m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction Edit");
-                LoadDeductionData();
+                LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
             }
@@ -67,7 +67,7 @@ namespace payrollsystemsti
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
                     m.deactivateDeduction(titleID);
-                    LoadDeductionData();
+                    LoadContributionData();
                     tb1.Clear();
                     tb2.Clear();
                 }
@@ -90,12 +90,18 @@ namespace payrollsystemsti
 
             titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
             tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+            tb2.Text = dataGridView1.SelectedRows[0].Cells["dg3rd"].Value.ToString();
+            if (cbDeduct.Text == "Tax")
+            {
+                tbAdd.Text = dataGridView1.SelectedRows[0].Cells["dgAdd"].Value.ToString();
+            }
+            
         }
 
-        private void LoadDeductionData()
+        private void LoadContributionData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT * FROM Deductions WHERE IsDeactivated = 0";
+            string query = "SELECT * FROM Deductions WHERE Additional IS NULL AND IsDeactivated = 0";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
@@ -115,9 +121,34 @@ namespace payrollsystemsti
             }
         }
 
+        private void LoadTaxData()
+        {
+            dataGridView1.Rows.Clear();
+            string query = "SELECT * FROM Deductions WHERE Additional = 0 AND IsDeactivated = 0";
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dg1st"].Value = row["DeductionID"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["DeductionType"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Amount"].ToString();
+                        dataGridView1.Rows[n].Cells["dgAdd"].Value = row["Additional"].ToString();
+                    }
+                }
+            }
+        }
+
         private void Deduction_Load(object sender, EventArgs e)
         {
-            LoadDeductionData();
+            LoadContributionData();
+            cbDeduct.SelectedIndex = 0;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -159,6 +190,38 @@ namespace payrollsystemsti
         {
             Loan loan = new Loan();
             loan.Show();
+        }
+
+        private void cbDates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbDeduct.Text)
+            {
+                case "Contributions":
+                    LoadContributionData();
+                    interfaceOne();
+                    break;
+                case "Tax":
+                    LoadTaxData();
+                    interfaceTwo();
+                    break;
+                default:
+                    LoadContributionData();
+                    interfaceOne();
+                    break;
+            }
+        }
+
+        void interfaceOne()
+        {
+            tbAdd.Visible = false;
+            lbAdd.Visible = false;
+            dataGridView1.Columns["dgAdd"].Visible = false;
+        }
+        void interfaceTwo()
+        {
+            tbAdd.Visible = true;
+            lbAdd.Visible = true;
+            dataGridView1.Columns["dgAdd"].Visible = true;
         }
     }
 }

@@ -50,9 +50,12 @@
             this.tbTA = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gb3 = new System.Windows.Forms.GroupBox();
-            this.tbSSS = new System.Windows.Forms.TextBox();
-            this.tbPagibig = new System.Windows.Forms.TextBox();
+            this.cbSSS = new System.Windows.Forms.CheckBox();
+            this.cbPG = new System.Windows.Forms.CheckBox();
+            this.cbPH = new System.Windows.Forms.CheckBox();
             this.tbPH = new System.Windows.Forms.TextBox();
+            this.tbPagibig = new System.Windows.Forms.TextBox();
+            this.tbSSS = new System.Windows.Forms.TextBox();
             this.gb4 = new System.Windows.Forms.GroupBox();
             this.tbAbsent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -63,6 +66,7 @@
             this.dgFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBasic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTHW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgNetPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,14 +83,15 @@
             this.btnPayslip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.cbPH = new System.Windows.Forms.CheckBox();
-            this.cbPG = new System.Windows.Forms.CheckBox();
-            this.cbSSS = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbTax = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gb2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
@@ -318,15 +323,45 @@
             this.gb3.TabStop = false;
             this.gb3.Text = "Mandatory Deductions";
             // 
-            // tbSSS
+            // cbSSS
             // 
-            this.tbSSS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSSS.Location = new System.Drawing.Point(190, 95);
-            this.tbSSS.Multiline = true;
-            this.tbSSS.Name = "tbSSS";
-            this.tbSSS.ReadOnly = true;
-            this.tbSSS.Size = new System.Drawing.Size(94, 28);
-            this.tbSSS.TabIndex = 9;
+            this.cbSSS.AutoSize = true;
+            this.cbSSS.Location = new System.Drawing.Point(37, 95);
+            this.cbSSS.Name = "cbSSS";
+            this.cbSSS.Size = new System.Drawing.Size(69, 24);
+            this.cbSSS.TabIndex = 52;
+            this.cbSSS.Text = "SSS:";
+            this.cbSSS.UseVisualStyleBackColor = true;
+            // 
+            // cbPG
+            // 
+            this.cbPG.AutoSize = true;
+            this.cbPG.Location = new System.Drawing.Point(37, 63);
+            this.cbPG.Name = "cbPG";
+            this.cbPG.Size = new System.Drawing.Size(100, 24);
+            this.cbPG.TabIndex = 51;
+            this.cbPG.Text = "Pag-Ibig:";
+            this.cbPG.UseVisualStyleBackColor = true;
+            // 
+            // cbPH
+            // 
+            this.cbPH.AutoSize = true;
+            this.cbPH.Location = new System.Drawing.Point(37, 33);
+            this.cbPH.Name = "cbPH";
+            this.cbPH.Size = new System.Drawing.Size(115, 24);
+            this.cbPH.TabIndex = 50;
+            this.cbPH.Text = "PhilHealth:";
+            this.cbPH.UseVisualStyleBackColor = true;
+            // 
+            // tbPH
+            // 
+            this.tbPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPH.Location = new System.Drawing.Point(190, 26);
+            this.tbPH.Multiline = true;
+            this.tbPH.Name = "tbPH";
+            this.tbPH.ReadOnly = true;
+            this.tbPH.Size = new System.Drawing.Size(94, 28);
+            this.tbPH.TabIndex = 9;
             // 
             // tbPagibig
             // 
@@ -338,15 +373,15 @@
             this.tbPagibig.Size = new System.Drawing.Size(94, 28);
             this.tbPagibig.TabIndex = 9;
             // 
-            // tbPH
+            // tbSSS
             // 
-            this.tbPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPH.Location = new System.Drawing.Point(190, 26);
-            this.tbPH.Multiline = true;
-            this.tbPH.Name = "tbPH";
-            this.tbPH.ReadOnly = true;
-            this.tbPH.Size = new System.Drawing.Size(94, 28);
-            this.tbPH.TabIndex = 9;
+            this.tbSSS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSSS.Location = new System.Drawing.Point(190, 95);
+            this.tbSSS.Multiline = true;
+            this.tbSSS.Name = "tbSSS";
+            this.tbSSS.ReadOnly = true;
+            this.tbSSS.Size = new System.Drawing.Size(94, 28);
+            this.tbSSS.TabIndex = 9;
             // 
             // gb4
             // 
@@ -415,14 +450,15 @@
             this.dgFullName,
             this.dgBasic,
             this.dgTHW,
+            this.dgNetPay,
             this.dgOT,
             this.dgLate,
             this.dgAbsent});
-            this.dataGridView1.Location = new System.Drawing.Point(41, 472);
+            this.dataGridView1.Location = new System.Drawing.Point(42, 527);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1058, 229);
+            this.dataGridView1.Size = new System.Drawing.Size(1065, 217);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -450,19 +486,24 @@
             this.dgTHW.Name = "dgTHW";
             this.dgTHW.ReadOnly = true;
             // 
+            // dgNetPay
+            // 
+            this.dgNetPay.HeaderText = "NetPay";
+            this.dgNetPay.Name = "dgNetPay";
+            this.dgNetPay.ReadOnly = true;
+            this.dgNetPay.Visible = false;
+            // 
             // dgOT
             // 
             this.dgOT.HeaderText = "OvertimeHours";
             this.dgOT.Name = "dgOT";
             this.dgOT.ReadOnly = true;
-            this.dgOT.Visible = false;
             // 
             // dgLate
             // 
             this.dgLate.HeaderText = "TotalLate";
             this.dgLate.Name = "dgLate";
             this.dgLate.ReadOnly = true;
-            this.dgLate.Visible = false;
             // 
             // dgAbsent
             // 
@@ -528,7 +569,7 @@
             this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCompute.Location = new System.Drawing.Point(45, 410);
+            this.btnCompute.Location = new System.Drawing.Point(44, 474);
             this.btnCompute.Name = "btnCompute";
             this.btnCompute.Size = new System.Drawing.Size(120, 47);
             this.btnCompute.TabIndex = 34;
@@ -543,7 +584,7 @@
             this.dtStart.CustomFormat = "MMMM,dd,yyyy";
             this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(460, 431);
+            this.dtStart.Location = new System.Drawing.Point(466, 495);
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
@@ -556,7 +597,7 @@
             this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnd.Location = new System.Drawing.Point(701, 431);
+            this.dtEnd.Location = new System.Drawing.Point(707, 495);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 36;
@@ -567,7 +608,7 @@
             this.lbStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStart.AutoSize = true;
             this.lbStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStart.Location = new System.Drawing.Point(457, 412);
+            this.lbStart.Location = new System.Drawing.Point(463, 476);
             this.lbStart.Name = "lbStart";
             this.lbStart.Size = new System.Drawing.Size(120, 16);
             this.lbStart.TabIndex = 37;
@@ -578,7 +619,7 @@
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEnd.Location = new System.Drawing.Point(698, 412);
+            this.lbEnd.Location = new System.Drawing.Point(704, 476);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(115, 16);
             this.lbEnd.TabIndex = 38;
@@ -591,7 +632,7 @@
             this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(183, 410);
+            this.btnSave.Location = new System.Drawing.Point(182, 474);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 47);
             this.btnSave.TabIndex = 43;
@@ -606,7 +647,7 @@
             this.btnPayslip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPayslip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayslip.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnPayslip.Location = new System.Drawing.Point(951, 24);
+            this.btnPayslip.Location = new System.Drawing.Point(958, 24);
             this.btnPayslip.Name = "btnPayslip";
             this.btnPayslip.Size = new System.Drawing.Size(120, 47);
             this.btnPayslip.TabIndex = 44;
@@ -621,7 +662,7 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnReport.Location = new System.Drawing.Point(808, 24);
+            this.btnReport.Location = new System.Drawing.Point(815, 24);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(120, 47);
             this.btnReport.TabIndex = 45;
@@ -636,48 +677,50 @@
             this.tbSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbSearch.Location = new System.Drawing.Point(927, 431);
+            this.tbSearch.Location = new System.Drawing.Point(933, 495);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(172, 23);
             this.tbSearch.TabIndex = 46;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
-            // cbPH
+            // groupBox1
             // 
-            this.cbPH.AutoSize = true;
-            this.cbPH.Location = new System.Drawing.Point(37, 33);
-            this.cbPH.Name = "cbPH";
-            this.cbPH.Size = new System.Drawing.Size(115, 24);
-            this.cbPH.TabIndex = 50;
-            this.cbPH.Text = "PhilHealth:";
-            this.cbPH.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.tbTax);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(406, 366);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(287, 79);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tax";
             // 
-            // cbPG
+            // tbTax
             // 
-            this.cbPG.AutoSize = true;
-            this.cbPG.Location = new System.Drawing.Point(37, 63);
-            this.cbPG.Name = "cbPG";
-            this.cbPG.Size = new System.Drawing.Size(100, 24);
-            this.cbPG.TabIndex = 51;
-            this.cbPG.Text = "Pag-Ibig:";
-            this.cbPG.UseVisualStyleBackColor = true;
+            this.tbTax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTax.Location = new System.Drawing.Point(176, 35);
+            this.tbTax.Multiline = true;
+            this.tbTax.Name = "tbTax";
+            this.tbTax.ReadOnly = true;
+            this.tbTax.Size = new System.Drawing.Size(94, 28);
+            this.tbTax.TabIndex = 2;
             // 
-            // cbSSS
+            // label13
             // 
-            this.cbSSS.AutoSize = true;
-            this.cbSSS.Location = new System.Drawing.Point(37, 95);
-            this.cbSSS.Name = "cbSSS";
-            this.cbSSS.Size = new System.Drawing.Size(69, 24);
-            this.cbSSS.TabIndex = 52;
-            this.cbSSS.Text = "SSS:";
-            this.cbSSS.UseVisualStyleBackColor = true;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(26, 37);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 20);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Withholding Tax:";
             // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1140, 740);
+            this.ClientSize = new System.Drawing.Size(1147, 753);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnPayslip);
@@ -706,6 +749,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -754,18 +799,22 @@
         private System.Windows.Forms.Label lbStart;
         private System.Windows.Forms.Label lbEnd;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTHW;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.CheckBox cbSSS;
         private System.Windows.Forms.CheckBox cbPG;
         private System.Windows.Forms.CheckBox cbPH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTHW;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgNetPay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgOT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAbsent;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbTax;
+        private System.Windows.Forms.Label label13;
     }
 }

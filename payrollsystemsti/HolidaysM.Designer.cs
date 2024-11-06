@@ -34,12 +34,6 @@
             this.lb1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.dtDate = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbHType = new System.Windows.Forms.ComboBox();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +41,12 @@
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.dtDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbHType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,6 +132,53 @@
             this.dataGridView1.TabIndex = 91;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg1st.Visible = false;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Holiday Name";
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Holiday Type";
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg4th
+            // 
+            this.dg4th.HeaderText = "Date";
+            this.dg4th.Name = "dg4th";
+            this.dg4th.ReadOnly = true;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
+            // 
+            // dgMonth
+            // 
+            this.dgMonth.HeaderText = "Month";
+            this.dgMonth.Name = "dgMonth";
+            this.dgMonth.ReadOnly = true;
+            this.dgMonth.Visible = false;
+            // 
+            // dgDay
+            // 
+            this.dgDay.HeaderText = "Day";
+            this.dgDay.Name = "dgDay";
+            this.dgDay.ReadOnly = true;
+            this.dgDay.Visible = false;
+            // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -198,6 +245,7 @@
             // 
             // cbHType
             // 
+            this.cbHType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHType.FormattingEnabled = true;
             this.cbHType.Items.AddRange(new object[] {
             "Regular",
@@ -206,53 +254,6 @@
             this.cbHType.Name = "cbHType";
             this.cbHType.Size = new System.Drawing.Size(121, 21);
             this.cbHType.TabIndex = 103;
-            // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            this.dg1st.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg1st.Visible = false;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Holiday Name";
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Holiday Type";
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // dg4th
-            // 
-            this.dg4th.HeaderText = "Date";
-            this.dg4th.Name = "dg4th";
-            this.dg4th.ReadOnly = true;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
-            // 
-            // dgMonth
-            // 
-            this.dgMonth.HeaderText = "Month";
-            this.dgMonth.Name = "dgMonth";
-            this.dgMonth.ReadOnly = true;
-            this.dgMonth.Visible = false;
-            // 
-            // dgDay
-            // 
-            this.dgDay.HeaderText = "Day";
-            this.dgDay.Name = "dgDay";
-            this.dgDay.ReadOnly = true;
-            this.dgDay.Visible = false;
             // 
             // HolidaysM
             // 

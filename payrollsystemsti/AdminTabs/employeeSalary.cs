@@ -11,15 +11,15 @@ namespace payrollsystemsti.AdminTabs
     {
         Methods m = new Methods();
         public static employeeSalary es;
-        private double basicRate = 0;
-        private double totalHoursW = 0;
-        private double totalOvertime = 0;
-        private double totalLate = 0;
-        private double totalAbsent = 0;
+        private decimal basicRate = 0;
+        private decimal totalHoursW = 0;
+        private decimal totalOvertime = 0;
+        private decimal totalLate = 0;
+        private decimal totalAbsent = 0;
 
-        private double basicSalary = 0;
-        private double overtimePay = 0;
-        private double gross = 0;
+        private decimal basicSalary = 0;
+        private decimal overtimePay = 0;
+        private decimal gross = 0;
 
         private int empID = 0;
         public employeeSalary()
@@ -75,7 +75,8 @@ namespace payrollsystemsti.AdminTabs
                 // Use LEFT JOIN instead of INNER JOIN to include all employees
                 string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
                                 "ISNULL(SUM(a.TotalOvertime), 0) AS TotalOvertime, " +
-                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours " +
+                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours, " +
+                                "ISNULL(SUM(a.Late), 0) AS TotalLate " +
                                 "FROM EmployeeAccounts ea " +
                                 "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
                                 "WHERE a.Date BETWEEN @dateStart AND @dateEnd " + // Filter by date range
@@ -97,14 +98,59 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["TotalHours"].ToString();
+                        dataGridView1.Rows[n].Cells["dgOT"].Value = row["TotalOvertime"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = row["TotalLate"].ToString();
                         dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
                     }
                 }
             }
         }
+
+        //public void LoadPayrollData()
+        //{
+        //    DateTime dateStart = Convert.ToDateTime(dtStart.Value);
+        //    DateTime dateEnd = Convert.ToDateTime(dtEnd.Value);
+
+        //    dataGridView1.Rows.Clear();
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+
+        //        string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
+        //                       "SUM(CASE WHEN a.IsOvertime THEN a.TotalHours ELSE 0 END) AS TotalOvertime, " +
+        //                       "SUM(a.TotalHours) AS TotalHours, " +
+        //                       "(ea.BasicRate * SUM(a.TotalHours)) AS NetPay " +  // Include additional calculations
+        //                       "FROM EmployeeAccounts ea " +
+        //                       "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
+        //                       "WHERE a.Date BETWEEN @dateStart AND @dateEnd " +
+        //                       "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
+
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@dateStart", dateStart);
+        //            cmd.Parameters.AddWithValue("@dateEnd", dateEnd);
+
+        //            using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+        //            {
+        //                DataTable dt = new DataTable();
+        //                sda.Fill(dt);
+
+        //                foreach (DataRow row in dt.AsEnumerable())
+        //                {
+        //                    int n = dataGridView1.Rows.Add();
+        //                    dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"];
+        //                    dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"] + " " + row["LastName"];
+        //                    dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"];
+        //                    dataGridView1.Rows[n].Cells["dgTHW"].Value = row["TotalHours"];
+        //                    dataGridView1.Rows[n].Cells["dgOT"].Value = row["TotalOvertime"];
+        //                    dataGridView1.Rows[n].Cells["dgNetPay"].Value = row["NetPay"];
+        //                    // Add additional cells for calculations like Net Pay
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         public decimal GetHolidayRegularData(int empID, DateTime dateStart, DateTime dateEnd)
         {
@@ -256,11 +302,11 @@ namespace payrollsystemsti.AdminTabs
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString());
-            basicRate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
-            totalHoursW = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
-            totalOvertime = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
-            totalLate = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
-            totalAbsent = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
+            basicRate = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgBasic"].Value.ToString());
+            totalHoursW = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgTHW"].Value.ToString());
+            totalOvertime = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgOT"].Value.ToString());
+            totalLate = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
+            totalAbsent = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
             tbBasic.Text = basicRate.ToString();
             basicSalary = calBasicSalary(basicRate, totalHoursW);
@@ -274,7 +320,6 @@ namespace payrollsystemsti.AdminTabs
             tbAdjustment.Text = "0";
             tbRegularH.Text = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value).ToString();
             tbSpecialH.Text = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value).ToString();
-            tbSSS.Text = "0";
             
             setAllowance(empID);
             //setOthers(empID);
@@ -324,14 +369,14 @@ namespace payrollsystemsti.AdminTabs
 
         private void ComputePayroll()
         {
-            gross = grossPay(basicSalary, Convert.ToDouble(tbIncentives.Text), Convert.ToDouble(tbTA.Text),
-                Convert.ToDouble(tbTransA.Text), Convert.ToDouble(tbLoadA.Text), Convert.ToDouble(tbPTA.Text),
-                overtimePay, Convert.ToDouble(tbRegularH.Text), Convert.ToDouble(tbSpecialH.Text),
-                Convert.ToDouble(tbAdjustment.Text));
+            gross = grossPay(basicSalary, Convert.ToDecimal(tbIncentives.Text), Convert.ToDecimal(tbTA.Text),
+                Convert.ToDecimal(tbTransA.Text), Convert.ToDecimal(tbLoadA.Text), Convert.ToDecimal(tbPTA.Text),
+                overtimePay, Convert.ToDecimal(tbRegularH.Text), Convert.ToDecimal(tbSpecialH.Text),
+                Convert.ToDecimal(tbAdjustment.Text));
 
             if (cbSSS.Checked)
             {
-                tbSSS.Text = calSSS(setDeductions(2), gross).ToString();
+                tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
             }
             else if (!cbSSS.Checked)
             {
@@ -340,7 +385,7 @@ namespace payrollsystemsti.AdminTabs
 
             if (cbPH.Checked)
             {
-                tbPH.Text = calPH(setDeductions(1), Convert.ToDouble(tbBasic.Text)).ToString();
+                tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
             } 
             else if (!cbPH.Checked)
             {
@@ -349,12 +394,21 @@ namespace payrollsystemsti.AdminTabs
 
             if (cbPG.Checked)
             {
-                tbPagibig.Text = calPagIbig().ToString();
+                tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
             } 
             else if (!cbPG.Checked)
             {
                 tbPagibig.Text = "0";
             }
+
+            int taxID = isTaxID((decimal)basicSalary);
+            decimal tax = calWithholdingTax(GetWTaxAmount(taxID), GetWTaxAdditional(taxID), gross);
+
+
+            tbTax.Text = tax.ToString();
+
+            MessageBox.Show((gross - tax).ToString());
+            //gross = basicSalary - tax;
 
             btnCompute.Enabled = false;
             btnSave.Enabled = true;
@@ -383,11 +437,11 @@ namespace payrollsystemsti.AdminTabs
             tbAbsent.Text = totalAbsent.ToString();
         }
 
-        public bool InsertIntoPayroll(int empID, double semiP, double dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
-                              double totalH, double ot, double regh, double specialh, double oba, double rest, double loadA,
-                              double transA, double adj, double incentives, double trainA, double provTA, double late, double savings,
-                              double cashA, double gross, double netPay, double philHealth, double pagIbig, double sss,
-                              double dtotal, double thp)
+        public bool InsertIntoPayroll(int empID, decimal semiP, decimal dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
+                              decimal totalH, decimal ot, decimal regh, decimal specialh, decimal oba, decimal rest, decimal loadA,
+                              decimal transA, decimal adj, decimal incentives, decimal trainA, decimal provTA, decimal late, decimal savings,
+                              decimal cashA, decimal gross, decimal netPay, decimal philHealth, decimal pagIbig, decimal sss,
+                              decimal dtotal, decimal thp)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -451,31 +505,31 @@ namespace payrollsystemsti.AdminTabs
 
         private void SavePayroll()
         {
-            double incentives = Convert.ToDouble(tbIncentives.Text);
-            double regH = Convert.ToDouble(tbIncentives.Text);
-            double specialH = Convert.ToDouble(tbIncentives.Text);
-            double adj = Convert.ToDouble(tbIncentives.Text);
+            decimal incentives = Convert.ToDecimal(tbIncentives.Text);
+            decimal regH = Convert.ToDecimal(tbIncentives.Text);
+            decimal specialH = Convert.ToDecimal(tbIncentives.Text);
+            decimal adj = Convert.ToDecimal(tbIncentives.Text);
 
-            double trainA = Convert.ToDouble(tbTA.Text);
-            double transA = Convert.ToDouble(tbTransA.Text);
-            double loadA = Convert.ToDouble(tbLoadA.Text);
-            double provA = Convert.ToDouble(tbPTA.Text);
-            double obA = Convert.ToDouble(tbOBA.Text);
+            decimal trainA = Convert.ToDecimal(tbTA.Text);
+            decimal transA = Convert.ToDecimal(tbTransA.Text);
+            decimal loadA = Convert.ToDecimal(tbLoadA.Text);
+            decimal provA = Convert.ToDecimal(tbPTA.Text);
+            decimal obA = Convert.ToDecimal(tbOBA.Text);
 
-            double phil = Convert.ToDouble(tbPH.Text);
-            double pagibig = Convert.ToDouble(tbPagibig.Text);
-            double sss = Convert.ToDouble(tbSSS.Text);
+            decimal phil = Convert.ToDecimal(tbPH.Text);
+            decimal pagibig = Convert.ToDecimal(tbPagibig.Text);
+            decimal sss = Convert.ToDecimal(tbSSS.Text);
 
-            double deductionT = phil + pagibig + sss;
-            double netpay = gross - deductionT;
-            double totalHP = (totalHoursW / 8) * basicRate;
-            double semiM = basicRate * 15;
+            decimal deductionT = phil + pagibig + sss;
+            decimal netpay = gross - deductionT;
+            decimal totalHP = ((decimal)totalHoursW / 8) * basicRate;
+            decimal semiM = basicRate * 15;
 
             DateTime dateStart = Convert.ToDateTime(dtStart.Value);
             DateTime dateEnd = Convert.ToDateTime(dtEnd.Value);
 
 
-            if (!IfPaySlipExist(empID))
+            if (!IfPaySlipExist(empID, dateStart, dateEnd))
             {
                 InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
                 totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
@@ -491,40 +545,120 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        
+        public int isTaxID(decimal salary)
+        {
+            if (salary <= 10417)
+            {
+                return 1006;
+            }
+            else if (salary >= 10417 && salary <= 16666)
+            {
+                return 4;
+            }
+            else if (salary >= 16666 && salary <= 33332)
+            {
+                return 5;
+            }
+            else if (salary >= 33333 && salary <= 83332)
+            {
+                return 6;
+            }
+            else if (salary >= 83333 && salary <= 333332)
+            {
+                return 7;
+            }
+            else if (salary >= 333333)
+            {
+                return 1005;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public int GetWTaxAmount(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Amount FROM Deductions WHERE DeductionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
 
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["Amount"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        public decimal GetWTaxAdditional(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Additional FROM Deductions WHERE DeductionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
 
-        private double calBasicSalary(double basicRate, double tHW)
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (decimal)reader["Additional"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        private decimal calWithholdingTax(decimal percent, decimal adds, decimal gross)
+        {
+            return (gross * (percent / 100)) + adds;
+        }
+
+        private decimal calBasicSalary(decimal basicRate, decimal tHW)
         {
             return (basicRate / 8) * tHW;
         }
 
-        private double calOvertimePay(double overtime, double basic)
+        private decimal calOvertimePay(decimal overtime, decimal basic)
         {
-            double OvertimeRate = (basic / 8) * 1.25;
+            decimal OvertimeRate = (basic / 8m) * 1.25m;
             return OvertimeRate * overtime;
         }
 
-        private double calPH(double ph, double basicSalary)
+        private decimal calPH(decimal ph, decimal basicSalary)
         {
             return (ph / 100) * basicSalary;
         }
 
-        private double calSSS(double sss, double gross)
+        private decimal calSSS(decimal sss, decimal gross)
         {
             return (sss / 100) * gross;
         }
 
-        private double calPagIbig()
+        private decimal calPagIbig(decimal pagibig)
         {
-            return 100;
+            return pagibig;
         }
 
-        private double grossPay(double basicSalary, double incentives, double trainA, double transA, double loadA, double provA, double ot, double regH, double slH, double adj)
+        private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj)
         {
             return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj;
         }
 
-        public double setDeductions(int id)
+        public decimal setDeductions(int id)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -537,7 +671,7 @@ namespace payrollsystemsti.AdminTabs
 
                     if (reader.Read())
                     {
-                        return Convert.ToDouble((int)reader["Amount"]);
+                        return (decimal)reader["Amount"];
                     }
                     else
                     {
@@ -567,15 +701,20 @@ namespace payrollsystemsti.AdminTabs
             dtEnd.Value = payPeriodEnd;
         }
 
-        public bool IfPaySlipExist(int empID)
+        public bool IfPaySlipExist(int employeeID, DateTime dateFrom, DateTime dateTo)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Payroll WHERE EmployeeID = @empID";
+
+                string query = "SELECT COUNT(*) FROM Payroll " +
+                               "WHERE EmployeeID = @employeeID AND PayPeriodStart = @dateFrom AND PayPeriodEnd = @dateTo";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@employeeID", employeeID);
+                    cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+                    cmd.Parameters.AddWithValue("@dateTo", dateTo);
 
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;

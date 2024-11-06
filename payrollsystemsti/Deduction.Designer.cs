@@ -41,9 +41,13 @@
             this.tb2 = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnLoan = new System.Windows.Forms.Button();
+            this.cbDeduct = new System.Windows.Forms.ComboBox();
+            this.lbAdd = new System.Windows.Forms.Label();
+            this.tbAdd = new System.Windows.Forms.TextBox();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -90,7 +94,7 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(848, 186);
+            this.btnDeactivate.Location = new System.Drawing.Point(554, 186);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 74;
@@ -121,6 +125,7 @@
             this.dg1st,
             this.dg2nd,
             this.dg3rd,
+            this.dgAdd,
             this.dgIsDeactivated});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -131,7 +136,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(39, 237);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -217,6 +222,42 @@
             this.btnLoan.UseVisualStyleBackColor = false;
             this.btnLoan.Click += new System.EventHandler(this.btnLoan_Click);
             // 
+            // cbDeduct
+            // 
+            this.cbDeduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbDeduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDeduct.FormattingEnabled = true;
+            this.cbDeduct.Items.AddRange(new object[] {
+            "Contributions",
+            "Tax"});
+            this.cbDeduct.Location = new System.Drawing.Point(845, 209);
+            this.cbDeduct.Name = "cbDeduct";
+            this.cbDeduct.Size = new System.Drawing.Size(121, 21);
+            this.cbDeduct.TabIndex = 82;
+            this.cbDeduct.SelectedIndexChanged += new System.EventHandler(this.cbDates_SelectedIndexChanged);
+            // 
+            // lbAdd
+            // 
+            this.lbAdd.AutoSize = true;
+            this.lbAdd.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAdd.Location = new System.Drawing.Point(562, 114);
+            this.lbAdd.Name = "lbAdd";
+            this.lbAdd.Size = new System.Drawing.Size(101, 22);
+            this.lbAdd.TabIndex = 84;
+            this.lbAdd.Text = "Additional:";
+            this.lbAdd.Visible = false;
+            // 
+            // tbAdd
+            // 
+            this.tbAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAdd.Location = new System.Drawing.Point(565, 139);
+            this.tbAdd.Multiline = true;
+            this.tbAdd.Name = "tbAdd";
+            this.tbAdd.Size = new System.Drawing.Size(232, 32);
+            this.tbAdd.TabIndex = 83;
+            this.tbAdd.Visible = false;
+            // 
             // dg1st
             // 
             this.dg1st.HeaderText = "ID";
@@ -239,6 +280,13 @@
             this.dg3rd.Name = "dg3rd";
             this.dg3rd.ReadOnly = true;
             // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Additional";
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
             // dgIsDeactivated
             // 
             this.dgIsDeactivated.HeaderText = "IsDeactivated";
@@ -252,6 +300,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 644);
+            this.Controls.Add(this.lbAdd);
+            this.Controls.Add(this.tbAdd);
+            this.Controls.Add(this.cbDeduct);
             this.Controls.Add(this.btnLoan);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
@@ -286,9 +337,13 @@
         private System.Windows.Forms.TextBox tb2;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnLoan;
+        private System.Windows.Forms.ComboBox cbDeduct;
+        private System.Windows.Forms.Label lbAdd;
+        private System.Windows.Forms.TextBox tbAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg1st;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg2nd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg3rd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
     }
 }
