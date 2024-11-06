@@ -27,41 +27,6 @@ namespace payrollsystemsti.AdminTabs
             InitializeComponent();
         }
 
-        //public void LoadPayrollData()
-        //{
-        //    DateTime dateStart = Convert.ToDateTime(dtStart.Value.ToString("MM/dd/yyyy"));
-        //    DateTime dateEnd = Convert.ToDateTime(dtEnd.Value.ToString("MM/dd/yyyy"));
-
-        //    dataGridView1.Rows.Clear();
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
-        //            "SUM(a.TotalOvertime) AS TotalOvertime, " +
-        //            "SUM(a.TotalHours) AS TotalHours FROM EmployeeAccounts ea " +
-        //            "INNER JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
-        //            "GROUP BY ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate";
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-
-        //            sda.Fill(dt);
-        //            foreach(DataRow row in dt.Rows)
-        //            {
-        //                int n = dataGridView1.Rows.Add();
-        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-        //                dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-        //                dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-        //                dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-        //            }
-        //        }
-        //    }
-        //}
-
         public void LoadPayrollData()
         {
             DateTime dateStart = Convert.ToDateTime(dtStart.Value);
@@ -229,7 +194,8 @@ namespace payrollsystemsti.AdminTabs
 
             string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
                                 "ISNULL(SUM(a.TotalOvertime), 0) AS TotalOvertime, " +
-                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours " +
+                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours, " +
+                                "ISNULL(SUM(a.Late), 0) AS TotalLate " +
                                 "FROM EmployeeAccounts ea " +
                                 "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
                                 "WHERE a.Date BETWEEN @dateStart AND @dateEnd AND (ea.FirstName LIKE '%" + searchText + "%') " + // Filter by date range
@@ -255,9 +221,9 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = m.GetTotalHours(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgOT"].Value = m.GetTotalHoursOT(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
-                        dataGridView1.Rows[n].Cells["dgLate"].Value = m.GetTotalLateMin(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["TotalHours"].ToString();
+                        dataGridView1.Rows[n].Cells["dgOT"].Value = row["TotalOvertime"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLate"].Value = row["TotalLate"].ToString();
                         dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
                     }
                 }
@@ -613,6 +579,52 @@ namespace payrollsystemsti.AdminTabs
                     if (reader.Read())
                     {
                         return (decimal)reader["Additional"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetIncentives(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Incentives FROM Others WHERE EmployeeID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (decimal)reader["Incentives"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public decimal GetAdjustment(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Adjustment FROM Others WHERE EmployeeID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (decimal)reader["Adjustment"];
                     }
                     else
                     {
