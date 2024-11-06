@@ -1680,7 +1680,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!TotalHoursPay.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>0.00;(0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1710,7 +1712,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!OverTimePay.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1740,7 +1744,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!RegularH.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1770,7 +1776,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!SpecialH.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1800,7 +1808,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!OBA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1830,7 +1840,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!RestDay.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1860,7 +1872,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!LoadA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1890,7 +1904,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!TransA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1920,7 +1936,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!Adjustments.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1950,7 +1968,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!Incentives.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1980,7 +2000,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!TrainA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2010,7 +2032,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!ProvTA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2040,7 +2064,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!Late.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2070,7 +2096,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!Savings.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2100,7 +2128,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!CashA.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2130,7 +2160,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!SSS.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2160,7 +2192,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!PhilHealth.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2190,7 +2224,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!PagIbig.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2224,7 +2260,7 @@
 +Fields!TransA.Value+Fields!Adjustments.Value+Fields!Incentives.Value+Fields!TrainA.Value
 +Fields!ProvTA.Value</Value>
                                       <Style>
-                                        <Format>0.00;(0.00)</Format>
+                                        <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2256,7 +2292,9 @@
                                     <TextRun>
                                       <Value>=Fields!Late.Value+Fields!Savings.Value+Fields!CashA.Value+Fields!SSS.Value
 +Fields!PhilHealth.Value+Fields!PagIbig.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2286,7 +2324,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0.00;(#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
