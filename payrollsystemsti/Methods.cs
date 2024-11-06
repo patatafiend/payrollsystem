@@ -559,19 +559,20 @@ namespace payrollsystemsti
                 }
             }
         }
-        public bool InsertAdjustmentData(int employeeID, int adjustment)
+        public bool InsertAdjustmentData(int employeeID, int adjustment, string remarks)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
                 string query = @"
-            INSERT INTO Others (EmployeeID, Adjustment) 
-            VALUES (@employeeID, @adj);";
+            INSERT INTO Others (EmployeeID, Adjustment, ATremarks) 
+            VALUES (@employeeID, @adj, @remarks);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@adj", adjustment);
+                    cmd.Parameters.AddWithValue("@adj", remarks);
 
                     try
                     {
@@ -700,18 +701,18 @@ namespace payrollsystemsti
                     catch (SqlException ex)
                     {
                         // Handle the exception (e.g., log, display error message)
-                        MessageBox.Show($"Error updating Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error updating incentives: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }
             }
         }
-        public bool UpdateAdjustmentData(int employeeID, int adjustment)
+        public bool UpdateAdjustmentData(int employeeID, int adjustment, string remarks)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = @"UPDATE Others SET Adjustment = @adj
+                string query = @"UPDATE Others SET Adjustment = @adj, ATremarks = @remarks 
                                  WHERE EmployeeID = @employeeID;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -719,6 +720,7 @@ namespace payrollsystemsti
                     // Add all the parameters here (including @otherID to identify the record)
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@adj", adjustment);
+                    cmd.Parameters.AddWithValue("@remarks", remarks);
 
                     try
                     {
@@ -728,7 +730,7 @@ namespace payrollsystemsti
                     catch (SqlException ex)
                     {
                         // Handle the exception (e.g., log, display error message)
-                        MessageBox.Show($"Error updating Others: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error updating Adjustment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }

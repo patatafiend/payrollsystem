@@ -282,8 +282,8 @@ namespace payrollsystemsti.AdminTabs
             tbOT.Text = overtimePay.ToString();
             
             
-            tbIncentives.Text = "0";
-            tbAdjustment.Text = "0";
+            tbIncentives.Text = GetIncentives(empID).ToString();
+            tbAdjustment.Text = GetAdjustment(empID).ToString();
             tbRegularH.Text = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value).ToString();
             tbSpecialH.Text = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value).ToString();
             

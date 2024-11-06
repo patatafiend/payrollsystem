@@ -29,9 +29,9 @@ namespace payrollsystemsti
                 {
                     if (IsTextBoxFilled())
                     {
-                        m.UpdateAdjustmentData(AdjustmentID, Convert.ToInt32(tb1.Text));
+                        m.UpdateAdjustmentData(AdjustmentID, Convert.ToInt32(tb1.Text), tbRemarks.Text);
                         tbClear();
-						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Others Update");
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Adjustment Update");
 						LoadAdjustmentData();
                     }
                     else
@@ -93,7 +93,7 @@ namespace payrollsystemsti
         {
             dataGridView1.Rows.Clear();
             string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
-                "Others.Adjustment FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
+                "Others.Adjustment, Others.ATremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
                 "WHERE IsDeactivated = @status";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -111,6 +111,7 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Adjustment"].ToString();
+                        dataGridView1.Rows[n].Cells["dgRemarks"].Value = row["ATremarks"].ToString();
                     }
                 }
             }

@@ -501,7 +501,7 @@ namespace payrollsystemsti.AdminTabs
                 if(CreateUser(email, password.ToLower(), Convert.ToInt32(id)))
                 {
                     m.insertToAllowances(Convert.ToInt32(id),0,0,0,0,0);
-                    m.InsertAdjustmentData(Convert.ToInt32(id), 0);
+                    m.InsertAdjustmentData(Convert.ToInt32(id), 0, "");
                     m.InsertIncentivesData(Convert.ToInt32(id), 0, "");
                     m.InsertLoan(Convert.ToInt32(id), 0, 0, 0);
                     
