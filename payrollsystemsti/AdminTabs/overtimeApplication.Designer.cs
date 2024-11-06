@@ -138,7 +138,7 @@
             this.overtimegrid.ReadOnly = true;
             this.overtimegrid.RowHeadersWidth = 62;
             this.overtimegrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.overtimegrid.Size = new System.Drawing.Size(538, 381);
+            this.overtimegrid.Size = new System.Drawing.Size(568, 421);
             this.overtimegrid.TabIndex = 24;
             this.overtimegrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.overtimegrid_MouseDoubleClick);
             // 
@@ -218,7 +218,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(184, 381);
+            this.btnCancel.Location = new System.Drawing.Point(214, 381);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(102, 44);
@@ -236,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(902, 456);
+            this.ClientSize = new System.Drawing.Size(932, 496);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.timeout);
             this.Controls.Add(this.time);
