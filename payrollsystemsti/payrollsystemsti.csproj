@@ -313,11 +313,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OT Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OT Details.Designer.cs">
+      <DependentUpon>OT Details.cs</DependentUpon>
+    </Compile>
     <Compile Include="OthersM.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OthersM.Designer.cs">
       <DependentUpon>OthersM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OvertimeManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OvertimeManagement.Designer.cs">
+      <DependentUpon>OvertimeManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="payrollTable.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -491,8 +503,14 @@
     <EmbeddedResource Include="formSettings.resx">
       <DependentUpon>formSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OT Details.resx">
+      <DependentUpon>OT Details.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OthersM.resx">
       <DependentUpon>OthersM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvertimeManagement.resx">
+      <DependentUpon>OvertimeManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Position.resx">
       <DependentUpon>Position.cs</DependentUpon>
@@ -722,6 +740,8 @@
     <None Include="Resources\backres11.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\search1.png" />
+    <None Include="Resources\OT.png" />
+    <None Include="Resources\ot management.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -23,6 +23,7 @@ namespace payrollsystemsti
 		private leaveApplication leaveApplication;
 		private departmentList DepartmentList;
 		private employeeLeaves employeeLeaves;
+		
 
 		public static dashBoard dashboardInstance;
 
@@ -261,6 +262,11 @@ namespace payrollsystemsti
 			return false;
 		}
 
+        private void pnl_totalLeaves_Paint(object sender, PaintEventArgs e)
+        {
 
-	}
+
+      
+        }
+    }
 }

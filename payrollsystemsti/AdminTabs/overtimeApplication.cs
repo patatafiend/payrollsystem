@@ -187,6 +187,9 @@ namespace payrollsystemsti.AdminTabs
 
 		}
 
+        private void overtimeApplication_Load(object sender, EventArgs e)
+        {
 
-	}
+        }
+    }
 }

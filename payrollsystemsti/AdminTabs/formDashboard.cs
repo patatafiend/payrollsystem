@@ -36,7 +36,8 @@ namespace payrollsystemsti
         private IncentivesM Incentives;
         private HolidaysM holidays;
         private BackupRestore BRestore;
-
+        private overtimeApplication Overtime;
+        private OvertimeManagement OtManagement;
 
 
 
@@ -935,6 +936,11 @@ namespace payrollsystemsti
 
             }
         }
+        private void IncentivesM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Incentives = null;
+        }
+
 
         private void button11_Click(object sender, EventArgs e)
         {
@@ -973,11 +979,68 @@ namespace payrollsystemsti
 
         }
 
-        private void IncentivesM_FormClosed(object sender, FormClosedEventArgs e)
+        private void btnovertime_Click(object sender, EventArgs e)
         {
-            Incentives = null;
+            if (Overtime == null)
+            {
+                Overtime = new overtimeApplication();
+                Overtime.FormClosed += overtimeApplication_FormClosed;
+                Overtime.MdiParent = this;
+                Overtime.Dock = DockStyle.Fill;
+                Overtime.Show();
+            }
+            else
+            {
+                Overtime.BringToFront();
+                Overtime.Activate();
+            }
+
+
+
+        }
+        private void overtimeApplication_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Overtime = null;
         }
 
+        private void panel19_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void HIstoryLogPnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void AccountArchivePnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (OtManagement == null)
+            {
+                OtManagement = new OvertimeManagement();
+                OtManagement.FormClosed += OvertimeManagement_FormClosed;
+                OtManagement.MdiParent = this;
+                OtManagement.Dock = DockStyle.Fill;
+                OtManagement.Show();
+            }
+            else
+            {
+                OtManagement.BringToFront();
+                OtManagement.Activate();
+            }
+
+
+
+        }
+        private void OvertimeManagement_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OtManagement = null;
+        }
 
 
 

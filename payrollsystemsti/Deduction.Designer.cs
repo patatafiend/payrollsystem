@@ -35,6 +35,11 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,11 +49,6 @@
             this.cbDeduct = new System.Windows.Forms.ComboBox();
             this.lbAdd = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-            this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg3rd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsDeactivated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,6 +146,43 @@
             this.dataGridView1.Size = new System.Drawing.Size(927, 381);
             this.dataGridView1.TabIndex = 73;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dg1st
+            // 
+            this.dg1st.HeaderText = "ID";
+            this.dg1st.MinimumWidth = 8;
+            this.dg1st.Name = "dg1st";
+            this.dg1st.ReadOnly = true;
+            this.dg1st.Visible = false;
+            // 
+            // dg2nd
+            // 
+            this.dg2nd.HeaderText = "Deduction Name";
+            this.dg2nd.MinimumWidth = 8;
+            this.dg2nd.Name = "dg2nd";
+            this.dg2nd.ReadOnly = true;
+            // 
+            // dg3rd
+            // 
+            this.dg3rd.HeaderText = "Amount (%)";
+            this.dg3rd.MinimumWidth = 8;
+            this.dg3rd.Name = "dg3rd";
+            this.dg3rd.ReadOnly = true;
+            // 
+            // dgAdd
+            // 
+            this.dgAdd.HeaderText = "Additional";
+            this.dgAdd.Name = "dgAdd";
+            this.dgAdd.ReadOnly = true;
+            this.dgAdd.Visible = false;
+            // 
+            // dgIsDeactivated
+            // 
+            this.dgIsDeactivated.HeaderText = "IsDeactivated";
+            this.dgIsDeactivated.MinimumWidth = 8;
+            this.dgIsDeactivated.Name = "dgIsDeactivated";
+            this.dgIsDeactivated.ReadOnly = true;
+            this.dgIsDeactivated.Visible = false;
             // 
             // btnUpdate
             // 
@@ -258,47 +295,11 @@
             this.tbAdd.TabIndex = 83;
             this.tbAdd.Visible = false;
             // 
-            // dg1st
-            // 
-            this.dg1st.HeaderText = "ID";
-            this.dg1st.MinimumWidth = 8;
-            this.dg1st.Name = "dg1st";
-            this.dg1st.ReadOnly = true;
-            this.dg1st.Visible = false;
-            // 
-            // dg2nd
-            // 
-            this.dg2nd.HeaderText = "Deduction Name";
-            this.dg2nd.MinimumWidth = 8;
-            this.dg2nd.Name = "dg2nd";
-            this.dg2nd.ReadOnly = true;
-            // 
-            // dg3rd
-            // 
-            this.dg3rd.HeaderText = "Amount (%)";
-            this.dg3rd.MinimumWidth = 8;
-            this.dg3rd.Name = "dg3rd";
-            this.dg3rd.ReadOnly = true;
-            // 
-            // dgAdd
-            // 
-            this.dgAdd.HeaderText = "Additional";
-            this.dgAdd.Name = "dgAdd";
-            this.dgAdd.ReadOnly = true;
-            this.dgAdd.Visible = false;
-            // 
-            // dgIsDeactivated
-            // 
-            this.dgIsDeactivated.HeaderText = "IsDeactivated";
-            this.dgIsDeactivated.MinimumWidth = 8;
-            this.dgIsDeactivated.Name = "dgIsDeactivated";
-            this.dgIsDeactivated.ReadOnly = true;
-            this.dgIsDeactivated.Visible = false;
-            // 
             // Deduction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1002, 644);
             this.Controls.Add(this.lbAdd);
             this.Controls.Add(this.tbAdd);

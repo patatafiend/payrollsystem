@@ -48,10 +48,9 @@
             // 
             this.lb1.AutoSize = true;
             this.lb1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb1.Location = new System.Drawing.Point(164, 182);
-            this.lb1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb1.Location = new System.Drawing.Point(109, 118);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(207, 27);
+            this.lb1.Size = new System.Drawing.Size(137, 19);
             this.lb1.TabIndex = 63;
             this.lb1.Text = "Department Name:";
             // 
@@ -59,11 +58,10 @@
             // 
             this.tb1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb1.Location = new System.Drawing.Point(168, 220);
-            this.tb1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb1.Location = new System.Drawing.Point(112, 143);
             this.tb1.Multiline = true;
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(298, 50);
+            this.tb1.Size = new System.Drawing.Size(199, 33);
             this.tb1.TabIndex = 62;
             this.tb1.TextChanged += new System.EventHandler(this.tb1_TextChanged);
             // 
@@ -73,10 +71,9 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Location = new System.Drawing.Point(170, 298);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAdd.Location = new System.Drawing.Point(113, 194);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(177, 68);
+            this.btnAdd.Size = new System.Drawing.Size(118, 44);
             this.btnAdd.TabIndex = 61;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -89,10 +86,9 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(1314, 298);
-            this.btnDeactivate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDeactivate.Location = new System.Drawing.Point(876, 194);
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(177, 68);
+            this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 58;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
@@ -129,15 +125,15 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(168, 394);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView1.Location = new System.Drawing.Point(112, 256);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1323, 428);
+            this.dataGridView1.Size = new System.Drawing.Size(882, 278);
             this.dataGridView1.TabIndex = 57;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -169,10 +165,9 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(356, 298);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUpdate.Location = new System.Drawing.Point(237, 194);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(177, 68);
+            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 56;
             this.btnUpdate.Text = "Edit";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -183,10 +178,10 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(159, 62);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label11.Location = new System.Drawing.Point(106, 40);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(330, 64);
+            this.label11.Size = new System.Drawing.Size(222, 42);
             this.label11.TabIndex = 55;
             this.label11.Text = "Department";
             // 
@@ -196,10 +191,9 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(542, 298);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(361, 194);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(177, 68);
+            this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 64;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -208,9 +202,10 @@
             // 
             // DepartmentMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1652, 942);
+            this.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ClientSize = new System.Drawing.Size(1101, 612);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.tb1);
@@ -220,7 +215,6 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DepartmentMain";
             this.Text = "DepartmentMain";
             this.Load += new System.EventHandler(this.DepartmentMain_Load);

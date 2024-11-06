@@ -60,10 +60,9 @@
             // 
             this.lb2.AutoSize = true;
             this.lb2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb2.Location = new System.Drawing.Point(364, 229);
-            this.lb2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb2.Location = new System.Drawing.Point(243, 149);
             this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(174, 27);
+            this.lb2.Size = new System.Drawing.Size(116, 19);
             this.lb2.TabIndex = 66;
             this.lb2.Text = "Transportation :";
             // 
@@ -71,21 +70,19 @@
             // 
             this.tb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb2.Location = new System.Drawing.Point(369, 268);
-            this.tb2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb2.Location = new System.Drawing.Point(246, 174);
             this.tb2.Multiline = true;
             this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(224, 37);
+            this.tb2.Size = new System.Drawing.Size(150, 25);
             this.tb2.TabIndex = 65;
             // 
             // lb1
             // 
             this.lb1.AutoSize = true;
             this.lb1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb1.Location = new System.Drawing.Point(108, 229);
-            this.lb1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb1.Location = new System.Drawing.Point(72, 149);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(108, 27);
+            this.lb1.Size = new System.Drawing.Size(72, 19);
             this.lb1.TabIndex = 63;
             this.lb1.Text = "Training :";
             // 
@@ -93,11 +90,10 @@
             // 
             this.tb1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb1.Location = new System.Drawing.Point(112, 268);
-            this.tb1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb1.Location = new System.Drawing.Point(75, 174);
             this.tb1.Multiline = true;
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(224, 37);
+            this.tb1.Size = new System.Drawing.Size(150, 25);
             this.tb1.TabIndex = 62;
             this.tb1.TextChanged += new System.EventHandler(this.tb1_TextChanged);
             // 
@@ -108,10 +104,9 @@
             this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(1258, 389);
-            this.btnDeactivate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDeactivate.Location = new System.Drawing.Point(839, 253);
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(177, 68);
+            this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
             this.btnDeactivate.TabIndex = 58;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
@@ -153,15 +148,15 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(112, 468);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView1.Location = new System.Drawing.Point(75, 304);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1323, 428);
+            this.dataGridView1.Size = new System.Drawing.Size(882, 278);
             this.dataGridView1.TabIndex = 57;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -230,10 +225,9 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(110, 389);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUpdate.Location = new System.Drawing.Point(73, 253);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(177, 68);
+            this.btnUpdate.Size = new System.Drawing.Size(118, 44);
             this.btnUpdate.TabIndex = 56;
             this.btnUpdate.Text = "Edit";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -244,10 +238,10 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Crimson;
-            this.label11.Location = new System.Drawing.Point(104, 109);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label11.Location = new System.Drawing.Point(69, 71);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(291, 64);
+            this.label11.Size = new System.Drawing.Size(198, 42);
             this.label11.TabIndex = 55;
             this.label11.Text = "Allowance";
             // 
@@ -255,10 +249,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(882, 229);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(588, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 27);
+            this.label1.Size = new System.Drawing.Size(80, 19);
             this.label1.TabIndex = 70;
             this.label1.Text = "Provision :";
             // 
@@ -266,21 +259,19 @@
             // 
             this.tb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb4.Location = new System.Drawing.Point(886, 268);
-            this.tb4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb4.Location = new System.Drawing.Point(591, 174);
             this.tb4.Multiline = true;
             this.tb4.Name = "tb4";
-            this.tb4.Size = new System.Drawing.Size(224, 37);
+            this.tb4.Size = new System.Drawing.Size(150, 25);
             this.tb4.TabIndex = 69;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(624, 229);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(416, 149);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 27);
+            this.label2.Size = new System.Drawing.Size(50, 19);
             this.label2.TabIndex = 68;
             this.label2.Text = "Load :";
             // 
@@ -288,21 +279,19 @@
             // 
             this.tb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb3.Location = new System.Drawing.Point(628, 268);
-            this.tb3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb3.Location = new System.Drawing.Point(419, 174);
             this.tb3.Multiline = true;
             this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(224, 37);
+            this.tb3.Size = new System.Drawing.Size(150, 25);
             this.tb3.TabIndex = 67;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1140, 229);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(760, 149);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 27);
+            this.label3.Size = new System.Drawing.Size(37, 19);
             this.label3.TabIndex = 74;
             this.label3.Text = "OB :";
             // 
@@ -310,11 +299,10 @@
             // 
             this.tb5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb5.Location = new System.Drawing.Point(1144, 268);
-            this.tb5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb5.Location = new System.Drawing.Point(763, 174);
             this.tb5.Multiline = true;
             this.tb5.Name = "tb5";
-            this.tb5.Size = new System.Drawing.Size(224, 37);
+            this.tb5.Size = new System.Drawing.Size(150, 25);
             this.tb5.TabIndex = 73;
             // 
             // btnCancel
@@ -323,10 +311,9 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(296, 389);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(197, 253);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(177, 68);
+            this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 75;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -335,9 +322,10 @@
             // 
             // Allowance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1539, 1037);
+            this.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ClientSize = new System.Drawing.Size(1026, 674);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb5);
@@ -354,7 +342,6 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Allowance";
             this.Text = "Allowance";
             this.Load += new System.EventHandler(this.Allowance_Load);
