@@ -134,6 +134,11 @@ namespace payrollsystemsti.AdminTabs
 			}
 			return false;
 		}
-	}
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
 
 }
