@@ -177,10 +177,10 @@
             // 
             // pbProfile
             // 
-            this.pbProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbProfile.Location = new System.Drawing.Point(0, 0);
             this.pbProfile.Name = "pbProfile";
             this.pbProfile.Size = new System.Drawing.Size(134, 115);
+            this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfile.TabIndex = 0;
             this.pbProfile.TabStop = false;
             this.pbProfile.Click += new System.EventHandler(this.pictureBox1_Click);

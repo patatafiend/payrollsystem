@@ -47,16 +47,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.pbProof = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pbProof = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,10 +69,10 @@
             // 
             // pbProfile
             // 
-            this.pbProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbProfile.Location = new System.Drawing.Point(0, 0);
             this.pbProfile.Name = "pbProfile";
             this.pbProfile.Size = new System.Drawing.Size(134, 115);
+            this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfile.TabIndex = 0;
             this.pbProfile.TabStop = false;
             // 
@@ -250,27 +250,12 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Image Proof:";
             // 
-            // pbProof
-            // 
-            this.pbProof.BackColor = System.Drawing.Color.LavenderBlush;
-            this.pbProof.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbProof.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pbProof.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.pbProof.IconColor = System.Drawing.SystemColors.ControlText;
-            this.pbProof.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbProof.IconSize = 121;
-            this.pbProof.Location = new System.Drawing.Point(0, 0);
-            this.pbProof.Name = "pbProof";
-            this.pbProof.Size = new System.Drawing.Size(218, 121);
-            this.pbProof.TabIndex = 18;
-            this.pbProof.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.pbProof);
-            this.panel2.Location = new System.Drawing.Point(64, 520);
+            this.panel2.Location = new System.Drawing.Point(64, 511);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 121);
+            this.panel2.Size = new System.Drawing.Size(447, 253);
             this.panel2.TabIndex = 19;
             // 
             // label10
@@ -288,17 +273,33 @@
             this.groupBox2.Controls.Add(this.lbFullName);
             this.groupBox2.Location = new System.Drawing.Point(28, 72);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(861, 589);
+            this.groupBox2.Size = new System.Drawing.Size(861, 709);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profile:";
+            // 
+            // pbProof
+            // 
+            this.pbProof.BackColor = System.Drawing.Color.LavenderBlush;
+            this.pbProof.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbProof.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbProof.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.pbProof.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbProof.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbProof.IconSize = 250;
+            this.pbProof.Location = new System.Drawing.Point(3, 3);
+            this.pbProof.Name = "pbProof";
+            this.pbProof.Size = new System.Drawing.Size(440, 250);
+            this.pbProof.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProof.TabIndex = 18;
+            this.pbProof.TabStop = false;
             // 
             // LeaveDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(913, 689);
+            this.ClientSize = new System.Drawing.Size(983, 805);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label9);
@@ -323,10 +324,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,9 +354,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
-        private FontAwesome.Sharp.IconPictureBox pbProof;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
+        private FontAwesome.Sharp.IconPictureBox pbProof;
     }
 }

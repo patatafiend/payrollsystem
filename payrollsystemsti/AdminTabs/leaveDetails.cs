@@ -54,8 +54,9 @@ namespace payrollsystemsti.AdminTabs
             lbEmpID.Text = empID.ToString();
             lbDepartment.Text = m.getDepartmentName(depID);
             lbPosition.Text = m.getPositionTitle(position);
-            
             lbDateRange.Text = GetDateRange(empID, date);
+            lbLeaveType.Text = GetLeaveType(empID, date);
+            lbReason.Text = GetReason(empID, date);
 
             pbProfile.Image = m.ConvertToImage(m.GetEmpPicture(empID));
             pbProof.Image = m.ConvertToImage(GetEmpProof(empID));
@@ -108,6 +109,66 @@ namespace payrollsystemsti.AdminTabs
                         if (reader.Read())
                         {
                             return "Starting From " + Convert.ToDateTime(reader["DateStart"]).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(reader["DateEnd"]).ToString("MM/dd/yyyy");
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                }
+            }
+        }
+
+        public string GetReason(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Reason FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["Reason"].ToString();
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                }
+            }
+        }
+
+        public string GetLeaveType(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT CategoryName FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["CategoryName"].ToString();
                         }
                         else
                         {
