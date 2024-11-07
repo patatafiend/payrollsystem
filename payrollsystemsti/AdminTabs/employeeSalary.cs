@@ -39,8 +39,8 @@ namespace payrollsystemsti.AdminTabs
 
                 // Use LEFT JOIN instead of INNER JOIN to include all employees
                 string query = "SELECT ea.EmployeeID, ea.FirstName, ea.LastName, ea.BasicRate, " +
+                                "ISNULL(SUM(CASE WHEN a.TotalHours >= 0 THEN a.TotalHours ELSE 0 END), 0) AS TotalHours, " + // Filter negative TotalHours
                                 "ISNULL(SUM(a.TotalOvertime), 0) AS TotalOvertime, " +
-                                "ISNULL(SUM(a.TotalHours), 0) AS TotalHours, " +
                                 "ISNULL(SUM(a.Late), 0) AS TotalLate " +
                                 "FROM EmployeeAccounts ea " +
                                 "LEFT JOIN Attendance a ON ea.EmployeeID = a.EmployeeID " +
@@ -63,7 +63,7 @@ namespace payrollsystemsti.AdminTabs
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgFullName"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dgBasic"].Value = row["BasicRate"].ToString();
-                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["TotalHours"].ToString();
+                        dataGridView1.Rows[n].Cells["dgTHW"].Value = row["TotalHours"].ToString();  // Assuming "dgTHW" refers to TotalHours
                         dataGridView1.Rows[n].Cells["dgOT"].Value = row["TotalOvertime"].ToString();
                         dataGridView1.Rows[n].Cells["dgLate"].Value = row["TotalLate"].ToString();
                         dataGridView1.Rows[n].Cells["dgAbsent"].Value = m.GetAbsents(dateStart, dateEnd, (int)row["EmployeeID"]).ToString();
@@ -284,8 +284,12 @@ namespace payrollsystemsti.AdminTabs
             
             tbIncentives.Text = GetIncentives(empID).ToString();
             tbAdjustment.Text = GetAdjustment(empID).ToString();
-            tbRegularH.Text = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value).ToString();
-            tbSpecialH.Text = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value).ToString();
+
+            decimal thwRH = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value);
+            decimal thwSH = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value);
+
+            tbRegularH.Text = calBasicSalary(basicRate, thwRH).ToString();
+            tbSpecialH.Text = calSpecialH(basicRate, thwSH).ToString();
             
             setAllowance(empID);
             //setOthers(empID);
@@ -543,6 +547,19 @@ namespace payrollsystemsti.AdminTabs
                 return 0;
             }
         }
+
+        public decimal IfNegative(decimal thw, decimal value)
+        {
+            if (thw < 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
         public int GetWTaxAmount(int id)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -578,7 +595,7 @@ namespace payrollsystemsti.AdminTabs
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return (decimal)reader["Additional"];
+                        return Convert.ToDecimal(reader["Additional"]);
                     }
                     else
                     {
@@ -601,7 +618,7 @@ namespace payrollsystemsti.AdminTabs
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return (decimal)reader["Incentives"];
+                        return Convert.ToDecimal(reader["Incentives"]);
                     }
                     else
                     {
@@ -624,7 +641,7 @@ namespace payrollsystemsti.AdminTabs
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return (decimal)reader["Adjustment"];
+                        return Convert.ToDecimal(reader["Adjustment"]);
                     }
                     else
                     {
@@ -663,6 +680,11 @@ namespace payrollsystemsti.AdminTabs
         private decimal calPagIbig(decimal pagibig)
         {
             return pagibig;
+        }
+
+        private decimal calSpecialH(decimal basicRate, decimal thW)
+        {
+            return ((basicRate / 8) * thW) * 0.30m;
         }
 
         private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj)
