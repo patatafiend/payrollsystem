@@ -51,9 +51,9 @@
             this.btnReject.Enabled = false;
             this.btnReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReject.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnReject.Location = new System.Drawing.Point(332, 119);
+            this.btnReject.Location = new System.Drawing.Point(308, 130);
             this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(134, 56);
+            this.btnReject.Size = new System.Drawing.Size(122, 45);
             this.btnReject.TabIndex = 37;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = false;
@@ -66,9 +66,9 @@
             this.btnApprove.Enabled = false;
             this.btnApprove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApprove.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnApprove.Location = new System.Drawing.Point(192, 119);
+            this.btnApprove.Location = new System.Drawing.Point(180, 130);
             this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(134, 56);
+            this.btnApprove.Size = new System.Drawing.Size(122, 45);
             this.btnApprove.TabIndex = 36;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = false;
@@ -81,9 +81,9 @@
             this.btnView.Enabled = false;
             this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnView.Location = new System.Drawing.Point(52, 119);
+            this.btnView.Location = new System.Drawing.Point(52, 130);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(134, 56);
+            this.btnView.Size = new System.Drawing.Size(122, 45);
             this.btnView.TabIndex = 34;
             this.btnView.Text = "View Details";
             this.btnView.UseVisualStyleBackColor = false;
@@ -174,7 +174,7 @@
             this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
             this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.Location = new System.Drawing.Point(472, 130);
+            this.btnReload.Location = new System.Drawing.Point(445, 135);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(42, 34);
             this.btnReload.TabIndex = 35;

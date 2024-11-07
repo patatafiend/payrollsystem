@@ -56,7 +56,7 @@ namespace payrollsystemsti
             lbDepartment.Text = m.getDepartmentName(depID);
             lbPosition.Text = m.getPositionTitle(position);
             lbReason.Text = GetReason(empID, date);
-            lbAD.Text = GetAppliedDate(empID, date);
+           
             lbDate.Text = date;
             lbFrom.Text = GetFormattedTime(GetFrom(empID, date));
             lbTo.Text = GetFormattedTime(GetTo(empID, date));
@@ -196,6 +196,21 @@ namespace payrollsystemsti
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbTo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }

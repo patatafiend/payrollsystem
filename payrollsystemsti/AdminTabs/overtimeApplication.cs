@@ -245,5 +245,25 @@ namespace payrollsystemsti.AdminTabs
             empID = Methods.CurrentUser.UserID;
             LoadData();
         }
+
+        private void dtDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeout_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

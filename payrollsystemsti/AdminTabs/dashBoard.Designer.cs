@@ -46,6 +46,10 @@
             this.dgv_Mdashboardnotif = new System.Windows.Forms.DataGridView();
             this.notificationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.stipayrolldbDataSet7 = new payrollsystemsti.stipayrolldbDataSet7();
+            this.notificationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.stipayrolldbDataSet5 = new payrollsystemsti.stipayrolldbDataSet5();
+            this.notificationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet1();
             this.lb_absents_num = new System.Windows.Forms.Label();
             this.pnl_Department = new System.Windows.Forms.Panel();
             this.lb_curDepartment_name = new System.Windows.Forms.Label();
@@ -72,22 +76,22 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lb_totalEmployee_num = new System.Windows.Forms.Label();
             this.lb_totalEmployee = new System.Windows.Forms.Label();
-            this.notificationsTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet7TableAdapters.NotificationsTableAdapter();
-            this.notificationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.stipayrolldbDataSet5 = new payrollsystemsti.stipayrolldbDataSet5();
-            this.notificationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stipayrolldbDataSet1 = new payrollsystemsti.stipayrolldbDataSet1();
             this.stipayrolldbDataSet = new payrollsystemsti.stipayrolldbDataSet();
             this.stipayrolldbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stipayrolldbDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.notificationsTableAdapter = new payrollsystemsti.stipayrolldbDataSet1TableAdapters.NotificationsTableAdapter();
             this.notificationsTableAdapter1 = new payrollsystemsti.stipayrolldbDataSet5TableAdapters.NotificationsTableAdapter();
+            this.notificationsTableAdapter2 = new payrollsystemsti.stipayrolldbDataSet7TableAdapters.NotificationsTableAdapter();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
             this.pnl_Department.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.notifContainer.SuspendLayout();
@@ -101,10 +105,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnl_totalEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource1)).BeginInit();
@@ -257,10 +257,9 @@
             // dgv_Mdashboardnotif
             // 
             this.dgv_Mdashboardnotif.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Mdashboardnotif.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(253, 9);
+            this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(297, 9);
             this.dgv_Mdashboardnotif.Name = "dgv_Mdashboardnotif";
-            this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(562, 286);
+            this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(445, 258);
             this.dgv_Mdashboardnotif.TabIndex = 0;
             // 
             // notificationsBindingSource2
@@ -272,6 +271,26 @@
             // 
             this.stipayrolldbDataSet7.DataSetName = "stipayrolldbDataSet7";
             this.stipayrolldbDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // notificationsBindingSource1
+            // 
+            this.notificationsBindingSource1.DataMember = "Notifications";
+            this.notificationsBindingSource1.DataSource = this.stipayrolldbDataSet5;
+            // 
+            // stipayrolldbDataSet5
+            // 
+            this.stipayrolldbDataSet5.DataSetName = "stipayrolldbDataSet5";
+            this.stipayrolldbDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // notificationsBindingSource
+            // 
+            this.notificationsBindingSource.DataMember = "Notifications";
+            this.notificationsBindingSource.DataSource = this.stipayrolldbDataSet1;
+            // 
+            // stipayrolldbDataSet1
+            // 
+            this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet1";
+            this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lb_absents_num
             // 
@@ -336,12 +355,12 @@
             this.notifContainer.Controls.Add(this.monthCalendar1);
             this.notifContainer.Location = new System.Drawing.Point(49, 326);
             this.notifContainer.Name = "notifContainer";
-            this.notifContainer.Size = new System.Drawing.Size(834, 319);
+            this.notifContainer.Size = new System.Drawing.Size(756, 319);
             this.notifContainer.TabIndex = 6;
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(14, 9);
+            this.monthCalendar1.Location = new System.Drawing.Point(35, 9);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
@@ -564,30 +583,6 @@
             this.lb_totalEmployee.TabIndex = 4;
             this.lb_totalEmployee.Text = "Total Employees";
             // 
-            // notificationsTableAdapter2
-            // 
-            this.notificationsTableAdapter2.ClearBeforeFill = true;
-            // 
-            // notificationsBindingSource1
-            // 
-            this.notificationsBindingSource1.DataMember = "Notifications";
-            this.notificationsBindingSource1.DataSource = this.stipayrolldbDataSet5;
-            // 
-            // stipayrolldbDataSet5
-            // 
-            this.stipayrolldbDataSet5.DataSetName = "stipayrolldbDataSet5";
-            this.stipayrolldbDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // notificationsBindingSource
-            // 
-            this.notificationsBindingSource.DataMember = "Notifications";
-            this.notificationsBindingSource.DataSource = this.stipayrolldbDataSet1;
-            // 
-            // stipayrolldbDataSet1
-            // 
-            this.stipayrolldbDataSet1.DataSetName = "stipayrolldbDataSet1";
-            this.stipayrolldbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // stipayrolldbDataSet
             // 
             this.stipayrolldbDataSet.DataSetName = "stipayrolldbDataSet";
@@ -610,6 +605,10 @@
             // notificationsTableAdapter1
             // 
             this.notificationsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // notificationsTableAdapter2
+            // 
+            this.notificationsTableAdapter2.ClearBeforeFill = true;
             // 
             // dashBoard
             // 
@@ -641,6 +640,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Mdashboardnotif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
             this.pnl_Department.ResumeLayout(false);
             this.pnl_Department.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -660,10 +663,6 @@
             this.pnl_totalEmployee.ResumeLayout(false);
             this.pnl_totalEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSetBindingSource1)).EndInit();
