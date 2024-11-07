@@ -224,17 +224,6 @@ namespace payrollsystemsti.AdminTabs
 
 		}
 
-        private void overtimegrid_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            tbReason.Text = overtimegrid.SelectedRows[0].Cells["dgReason"].Value.ToString();
-            time.Text = overtimegrid.SelectedRows[0].Cells["dgStart"].Value.ToString();
-            timeout.Text = overtimegrid.SelectedRows[0].Cells["dgEnd"].Value.ToString();
-        }
 
-        private void overtimeApplication_Load(object sender, EventArgs e)
-        {
-            empID = Methods.CurrentUser.UserID;
-            LoadData();
-        }
-    }
+	}
 }
