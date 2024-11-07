@@ -25,7 +25,6 @@ namespace payrollsystemsti.AdminTabs
         public overtimeApplication()
         {
             InitializeComponent();
-            
         }
 
         private bool Validation()
@@ -51,14 +50,15 @@ namespace payrollsystemsti.AdminTabs
 
         private bool checkOvertimePending()
         {
-
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID AND Status = 'Pending'";
+                string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID AND Status = @status";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@status", "Pending");
+
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -74,7 +74,11 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            InsertToOvertimeApplications(empID);
+            if (Validation())
+            {
+                InsertToOvertimeApplications(empID);
+            }
+            
         }
 
         public void InsertToOvertimeApplications(int empID)
@@ -87,20 +91,21 @@ namespace payrollsystemsti.AdminTabs
 
                 TimeSpan totalHours = timeout.Value.TimeOfDay - time.Value.TimeOfDay;
 
-                string query = "INSERT INTO OvertimeApplications (AppliedDate, StartTime, EndTime , Justification, Status)" +
-                    " VALUES ( @AppliedDate, @StartTime, @EndTime, @Justification, @status)";
+                string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime , Justification, Status , Date)" +
+                    " VALUES (@empID,  @AppliedDate, @StartTime, @EndTime, @Justification, @status, @date)";
 
                 using (SqlConnection conn = new SqlConnection(m.connStr))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-
+                        cmd.Parameters.AddWithValue("@empID", empID);
                         cmd.Parameters.AddWithValue("@AppliedDate", DateTime.Now);
                         cmd.Parameters.AddWithValue("@StartTime", datetimestart);
                         cmd.Parameters.AddWithValue("@EndTime", datetimeout);
                         cmd.Parameters.AddWithValue("@Justification", justification);
                         cmd.Parameters.AddWithValue("@status", "Pending");
+                        cmd.Parameters.AddWithValue("@date", dtDate.Value);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -138,11 +143,12 @@ namespace payrollsystemsti.AdminTabs
                     {
                         int n = overtimegrid.Rows.Add();
                         overtimegrid.Rows[n].Cells["dgOvertimeID"].Value = row["OvertimeID"].ToString();
-                        overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("MM/dd/yyyy");
+                        overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"]).ToString("MM/dd/yyyy");
                         overtimegrid.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
                         overtimegrid.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
                         overtimegrid.Rows[n].Cells["dgReason"].Value = row["Justification"].ToString();
                         overtimegrid.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
+                        overtimegrid.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
                     }
                 }
             }
@@ -151,6 +157,7 @@ namespace payrollsystemsti.AdminTabs
 		private void btnUpdate_Click_1(object sender, EventArgs e)
 		{
             UpdateOvertime(empID);
+            btnUpdate.Enabled = false;
 		}
 
         public void UpdateOvertime(int empID)
@@ -161,7 +168,7 @@ namespace payrollsystemsti.AdminTabs
                 TimeSpan time = this.time.Value.TimeOfDay;
                 TimeSpan timeout = this.timeout.Value.TimeOfDay;
 
-                if (UpdateOvertimeTable(empID, time, timeout, tbReason.Text))
+                if (UpdateOvertimeTable(empID, time, timeout, tbReason.Text, dtDate.Value))
                 {
                     MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Overtime Edited by " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName);
@@ -178,12 +185,12 @@ namespace payrollsystemsti.AdminTabs
 
             LoadData();
         }
-		private bool UpdateOvertimeTable(int empID, TimeSpan starttm, TimeSpan endtm, string reason)
+		private bool UpdateOvertimeTable(int empID, TimeSpan starttm, TimeSpan endtm, string reason, DateTime date)
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
-				string query = "UPDATE OvertimeApplications SET StartTime = @starttime, EndTime = @endtime, Justification = @justification WHERE EmployeeID = @empID";
+				string query = "UPDATE OvertimeApplications SET StartTime = @starttime, EndTime = @endtime, Justification = @justification, Date = @date WHERE EmployeeID = @empID";
 
 				using (SqlCommand cmd = new SqlCommand(query, conn))
 				{
@@ -191,8 +198,9 @@ namespace payrollsystemsti.AdminTabs
 					cmd.Parameters.AddWithValue("@endtime", endtm);
 					cmd.Parameters.AddWithValue("@justification", reason);
 					cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
 
-					try
+                    try
 					{
 						int rowsAffected = cmd.ExecuteNonQuery();
 						return rowsAffected > 0;
@@ -224,6 +232,18 @@ namespace payrollsystemsti.AdminTabs
 
 		}
 
+        private void overtimegrid_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            tbReason.Text = overtimegrid.SelectedRows[0].Cells["dgReason"].Value.ToString();
+            time.Text = overtimegrid.SelectedRows[0].Cells["dgStart"].Value.ToString();
+            timeout.Text = overtimegrid.SelectedRows[0].Cells["dgEnd"].Value.ToString();
+            btnUpdate.Enabled = true;
+        }
 
-	}
+        private void overtimeApplication_Load(object sender, EventArgs e)
+        {
+            empID = Methods.CurrentUser.UserID;
+            LoadData();
+        }
+    }
 }

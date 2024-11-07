@@ -34,13 +34,13 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lbLM = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnReload = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +48,7 @@
             // 
             this.btnReject.BackColor = System.Drawing.Color.Crimson;
             this.btnReject.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReject.Enabled = false;
             this.btnReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReject.ForeColor = System.Drawing.SystemColors.Control;
             this.btnReject.Location = new System.Drawing.Point(332, 119);
@@ -56,11 +57,13 @@
             this.btnReject.TabIndex = 37;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = false;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // btnApprove
             // 
             this.btnApprove.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnApprove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnApprove.Enabled = false;
             this.btnApprove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApprove.ForeColor = System.Drawing.SystemColors.Control;
             this.btnApprove.Location = new System.Drawing.Point(192, 119);
@@ -69,11 +72,13 @@
             this.btnApprove.TabIndex = 36;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = false;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
             // btnView
             // 
             this.btnView.BackColor = System.Drawing.Color.Teal;
             this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnView.Enabled = false;
             this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.ForeColor = System.Drawing.SystemColors.Control;
             this.btnView.Location = new System.Drawing.Point(52, 119);
@@ -110,10 +115,10 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgName,
-            this.dgLeaveType,
             this.dgStatus,
-            this.dgDateStart,
-            this.dgDateEnd});
+            this.dgStart,
+            this.dgEnd,
+            this.dgDate});
             this.dataGridView1.Location = new System.Drawing.Point(52, 182);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
@@ -123,20 +128,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(755, 368);
             this.dataGridView1.TabIndex = 32;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // btnReload
-            // 
-            this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.Location = new System.Drawing.Point(472, 130);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(42, 34);
-            this.btnReload.TabIndex = 35;
-            this.btnReload.UseVisualStyleBackColor = false;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dgEmpID
             // 
@@ -151,31 +143,42 @@
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "OT Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
             // dgStatus
             // 
             this.dgStatus.HeaderText = "Status";
             this.dgStatus.Name = "dgStatus";
             this.dgStatus.ReadOnly = true;
             // 
-            // dgDateStart
+            // dgStart
             // 
-            this.dgDateStart.HeaderText = "DateStart";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            this.dgDateStart.Visible = false;
+            this.dgStart.HeaderText = "Start Time";
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
             // 
-            // dgDateEnd
+            // dgEnd
             // 
-            this.dgDateEnd.HeaderText = "DateEnd";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            this.dgDateEnd.Visible = false;
+            this.dgEnd.HeaderText = "End Time";
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(472, 130);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(42, 34);
+            this.btnReload.TabIndex = 35;
+            this.btnReload.UseVisualStyleBackColor = false;
             // 
             // OvertimeManagement
             // 
@@ -192,6 +195,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OvertimeManagement";
             this.Text = "OvertimeManagement";
+            this.Load += new System.EventHandler(this.OvertimeManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -207,9 +211,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateStart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
     }
 }

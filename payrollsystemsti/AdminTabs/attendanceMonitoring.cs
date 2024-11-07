@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
@@ -35,13 +36,13 @@ namespace payrollsystemsti.AdminTabs
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
-        TimeSpan endTimePM = new TimeSpan(19, 00, 0);    // 6:00 PM
+        TimeSpan endTimePM = new TimeSpan(18, 00, 0);    // 6:00 PM
 
         TimeSpan timeOutBDYS = new TimeSpan(9, 16, 0);  // 9:16 AM
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
 
         TimeSpan timeOutBDYSS = new TimeSpan(13, 16, 0);  // 1:16 PM
-        TimeSpan timeOutBDYEE = new TimeSpan(19, 0, 0);
+        TimeSpan timeOutBDYEE = new TimeSpan(18, 0, 0);  // 6 :00 PM
 
         public attendanceMonitoring()
         {
@@ -87,7 +88,7 @@ namespace payrollsystemsti.AdminTabs
                     int fID = 0;
                     fID = await ac.SendTimeCommand(fID);
                     
-                    if (fID > 0)
+                    if (isFingerIdExist(fID))
                     {
                         if (insertAttendance(currentDate, currentTime, null, fID, m.getEmpID(fID)))
                         {
@@ -172,6 +173,29 @@ namespace payrollsystemsti.AdminTabs
                 loadingIndicator.Visible = false;
             }
             LoadAttendanceData(date.Value);
+        }
+
+        public bool isFingerIdExist(int fID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM EmployeeAccounts WHERE fingerID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", fID);
+                    try
+                    {
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return false;
+                    }
+                }
+            }
         }
 
         public bool UpdateAttendanceForLate(int empID, string date, double minutes)
@@ -350,7 +374,7 @@ namespace payrollsystemsti.AdminTabs
                     int fID = 0;
                     fID = await ac.SendTimeCommand(fID);
 
-                    if (fID > 0)
+                    if (isFingerIdExist(fID))
                     {
                         if (insertAttendance(currentDate, null, currentTime, fID, m.getEmpID(fID)))
                         {
@@ -608,7 +632,7 @@ namespace payrollsystemsti.AdminTabs
 
         public bool insertAttendance(string date, double? timeIn, double? timeOut, int fingerID, int empID)
         {
-            TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
+            TimeSpan timeNow = new TimeSpan(time.Value.Hour, time.Value.Minute, time.Value.Second);
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
@@ -628,6 +652,7 @@ namespace payrollsystemsti.AdminTabs
                             cmd.Parameters.AddWithValue("@fingerID", fingerID);
                             cmd.Parameters.AddWithValue("@empID", m.getEmpID(fingerID));
 
+                            MessageBox.Show("this printed");
 
                             try
                             {
@@ -745,17 +770,19 @@ namespace payrollsystemsti.AdminTabs
                     {
                         TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
                         string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID) VALUES (@Date, @timeInPM, @fingerID)";
+                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID, EmployeeID) VALUES (@Date, @timeInPM, @fingerID, @empID)";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@fingerID", fingerID);
                             cmd.Parameters.AddWithValue("@Date", date);
                             cmd.Parameters.AddWithValue("@timeInPM", timeInString);
+                            cmd.Parameters.AddWithValue("@empID", empID);
 
                             try
                             {
                                 int rowsAffected = cmd.ExecuteNonQuery();
                                 Console.WriteLine("First Time in afternoon");
+                                Console.WriteLine("this printed");
                                 return rowsAffected > 0;
                             }
                             catch (SqlException ex)
@@ -804,6 +831,84 @@ namespace payrollsystemsti.AdminTabs
                 {
                     MessageBox.Show("Failed to insert attendance...");
                     return false;
+                }
+            }
+        }
+
+        public bool UpdateOvertimeTimeIn(string date, double? timeIn, int fingerID, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET OverTime_TimeIn = @timein WHERE fingerID = @fingerID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@timein", timeIn);
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("time in OT");
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateOvertimeTimeOut(string date, double? timeOut, int fingerID, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET OverTime_TimeOut = @timeout WHERE fingerID = @fingerID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@timeout", timeOut);
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("time out OT");
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool CheckIfAllowed(string fingerID, string empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT OvertimeApplications WHERE Status = @status AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@status", "Approved");
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("time out OT");
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
                 }
             }
         }
