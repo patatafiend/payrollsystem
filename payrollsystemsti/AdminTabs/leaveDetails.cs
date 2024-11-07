@@ -21,6 +21,7 @@ namespace payrollsystemsti.AdminTabs
             ld = this;
         }
         private int empID;
+        private string date;
         public int employeeID
         {
             set
@@ -33,66 +34,92 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        public string AppDate
+        {
+            set
+            {
+                date = value;
+            }
+            get
+            {
+                return date;
+            }
+        }
+
         private void leaveDetails_Load(object sender, EventArgs e)
         {
-            ShowData();
+            int depID = Convert.ToInt32(m.GetEmpDepartmentID(empID));
+            int position = Convert.ToInt32(m.GetEmpPositionID(empID));
+            lbFullName.Text = m.GetEmpName(empID);
+            lbEmpID.Text = empID.ToString();
+            lbDepartment.Text = m.getDepartmentName(depID);
+            lbPosition.Text = m.getPositionTitle(position);
+            
+            lbDateRange.Text = GetDateRange(empID, date);
+
+            pbProfile.Image = m.ConvertToImage(m.GetEmpPicture(empID));
+            pbProof.Image = m.ConvertToImage(GetEmpProof(empID));
         }
-        private void ShowData()
+
+        public byte[] GetEmpProof(int empID)
         {
-            string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
-                " EmployeeAccounts.DepartmentID, EmployeeAccounts.PositionID, LeaveApplications.DateStart, LeaveApplications.DateEnd" +
-                ", LeaveApplications.CategoryName, LeaveApplications.Reason FROM EmployeeAccounts JOIN LeaveApplications" +
-                " ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
+
+                string query = "SELECT MedicalCert FROM LeaveApplications WHERE EmployeeID = @empID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@empID", empID);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            lbEmpID.Text = reader["EmployeeID"].ToString();
-                            lbFullName.Text = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                            lbDepartment.Text = m.getDepartmentName((int)reader["DepartmentID"]);
-                            lbPosition.Text = m.getPositionTitle((int)reader["PositionID"]);
-                            lbDateRange.Text = "Starting from " + reader["DateStart"].ToString() + " to " + reader["DateEnd"].ToString();
-                            lbLeaveType.Text = reader["CategoryName"].ToString();
-                            lbReason.Text = reader["Reason"].ToString();
+                            if (reader["MedicalCert"] != DBNull.Value)
+                            {
+                                return (byte[])reader["MedicalCert"];
+                            }
+                            else
+                            {
+                                return null; // No proof document found (or null stored)
+                            }
+                        }
+                        else
+                        {
+                            return null; // No record found for the employee
                         }
                     }
                 }
             }
         }
-
-        private void lbDateRange_Click(object sender, EventArgs e)
+        public string GetDateRange(int empID, string date)
         {
-
-        }
-
-        private void lbEmpID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbPosition_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbDepartment_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT DateStart, DateEnd FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        if (reader.Read())
+                        {
+                            return "Starting From " + Convert.ToDateTime(reader["DateStart"]).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(reader["DateEnd"]).ToString("MM/dd/yyyy");
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                }
+            }
         }
     }
 }

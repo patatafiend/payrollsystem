@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbProfile = new System.Windows.Forms.PictureBox();
             this.lbFullName = new System.Windows.Forms.Label();
             this.lbDepartment = new System.Windows.Forms.Label();
             this.lbPosition = new System.Windows.Forms.Label();
@@ -47,34 +47,34 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.pbProof = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pbProfile);
             this.panel1.Location = new System.Drawing.Point(56, 126);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(134, 115);
             this.panel1.TabIndex = 1;
             // 
-            // pictureBox1
+            // pbProfile
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(134, 115);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbProfile.Location = new System.Drawing.Point(0, 0);
+            this.pbProfile.Name = "pbProfile";
+            this.pbProfile.Size = new System.Drawing.Size(134, 115);
+            this.pbProfile.TabIndex = 0;
+            this.pbProfile.TabStop = false;
             // 
             // lbFullName
             // 
@@ -95,7 +95,6 @@
             this.lbDepartment.Size = new System.Drawing.Size(117, 23);
             this.lbDepartment.TabIndex = 3;
             this.lbDepartment.Text = "Department:";
-            this.lbDepartment.Click += new System.EventHandler(this.lbDepartment_Click);
             // 
             // lbPosition
             // 
@@ -106,7 +105,6 @@
             this.lbPosition.Size = new System.Drawing.Size(80, 23);
             this.lbPosition.TabIndex = 4;
             this.lbPosition.Text = "Position:";
-            this.lbPosition.Click += new System.EventHandler(this.lbPosition_Click);
             // 
             // lbEmpID
             // 
@@ -117,7 +115,6 @@
             this.lbEmpID.Size = new System.Drawing.Size(124, 23);
             this.lbEmpID.TabIndex = 5;
             this.lbEmpID.Text = "Employee ID:";
-            this.lbEmpID.Click += new System.EventHandler(this.lbEmpID_Click);
             // 
             // lbLeaveType
             // 
@@ -148,7 +145,6 @@
             this.lbDateRange.Size = new System.Drawing.Size(56, 23);
             this.lbDateRange.TabIndex = 8;
             this.lbDateRange.Text = "Date:";
-            this.lbDateRange.Click += new System.EventHandler(this.lbDateRange_Click);
             // 
             // label1
             // 
@@ -170,7 +166,6 @@
             this.label2.Size = new System.Drawing.Size(72, 23);
             this.label2.TabIndex = 10;
             this.label2.Text = "Name:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -255,23 +250,24 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Image Proof:";
             // 
-            // iconPictureBox1
+            // pbProof
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 121;
-            this.iconPictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(218, 121);
-            this.iconPictureBox1.TabIndex = 18;
-            this.iconPictureBox1.TabStop = false;
+            this.pbProof.BackColor = System.Drawing.Color.LavenderBlush;
+            this.pbProof.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbProof.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbProof.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.pbProof.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbProof.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbProof.IconSize = 121;
+            this.pbProof.Location = new System.Drawing.Point(0, 0);
+            this.pbProof.Name = "pbProof";
+            this.pbProof.Size = new System.Drawing.Size(218, 121);
+            this.pbProof.TabIndex = 18;
+            this.pbProof.TabStop = false;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.iconPictureBox1);
+            this.panel2.Controls.Add(this.pbProof);
             this.panel2.Location = new System.Drawing.Point(64, 520);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(218, 121);
@@ -324,10 +320,10 @@
             this.Text = "leaveDetails";
             this.Load += new System.EventHandler(this.leaveDetails_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProof)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -338,7 +334,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbProfile;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbFullName;
         private System.Windows.Forms.Label lbDepartment;
@@ -357,7 +353,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox pbProof;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;

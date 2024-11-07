@@ -11,6 +11,7 @@ namespace payrollsystemsti.AdminTabs
 	{
 		Methods m = new Methods();
 		private string employeeID;
+		private string date;
 
         TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
@@ -34,6 +35,7 @@ namespace payrollsystemsti.AdminTabs
 		{
 			LeaveDetails ld = new LeaveDetails();
 			LeaveDetails.ld.employeeID = Int32.Parse(employeeID);
+			LeaveDetails.ld.AppDate = date;
 			ld.Show();
 
 		}
@@ -42,7 +44,7 @@ namespace payrollsystemsti.AdminTabs
 		{
 			dataGridView1.Rows.Clear();
 			string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-				", LeaveApplications.Status, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd" +
+				", LeaveApplications.Status, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd, LeaveApplications.AppliedDate" +
 				" FROM EmployeeAccounts JOIN LeaveApplications ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
 
 			using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -61,8 +63,9 @@ namespace payrollsystemsti.AdminTabs
 						dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
 						dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
 						dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
-                        dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("dd/MM/yyyy");
-						dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("MM/dd/yyyy");
+						dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("MM/dd/yyyy");
+						dataGridView1.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("MM/dd/yyyy");
 					}
 				}
 			}
@@ -72,34 +75,13 @@ namespace payrollsystemsti.AdminTabs
 		{
 			employeeID = dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString();
 
-            string dobCellValue = dataGridView1.SelectedRows[0].Cells["dgDateStart"].Value.ToString();
-            DateTime dob;
+            date = dataGridView1.SelectedRows[0].Cells["dgAppliedDate"].Value.ToString();
 
-            if (DateTime.TryParseExact(dobCellValue, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
-            {
-                dtStart.Value = dob;
-            }
-            else
-            {
-                MessageBox.Show("Invalid date format");
-            }
+            string status = dataGridView1.SelectedRows[0].Cells["dgStatus"].Value.ToString();
 
-            string dobCellValue1 = dataGridView1.SelectedRows[0].Cells["dgDateEnd"].Value.ToString();
-            DateTime dob1;
-
-            if (DateTime.TryParseExact(dobCellValue1, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob1))
-            {
-                dtEnd.Value = dob1;
-            }
-            else
-            {
-                MessageBox.Show("Invalid date format");
-            }
-
-			string status = dataGridView1.SelectedRows[0].Cells["dgStatus"].Value.ToString();
             if(status == "Approved" || status == "Rejected")
 			{
-                btnView.Enabled = false;
+                btnView.Enabled = true;
                 btnApprove.Enabled = false;
                 btnReject.Enabled = false;
 			}
