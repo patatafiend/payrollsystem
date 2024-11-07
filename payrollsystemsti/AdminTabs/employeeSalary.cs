@@ -280,7 +280,8 @@ namespace payrollsystemsti.AdminTabs
 
             tbBasic.Text = basicSalary.ToString();
             tbOT.Text = overtimePay.ToString();
-            
+            tbLate.Text = Math.Round(calLate(totalLate), 2).ToString();
+            MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
             
             tbIncentives.Text = GetIncentives(empID).ToString();
             tbAdjustment.Text = GetAdjustment(empID).ToString();
@@ -288,8 +289,8 @@ namespace payrollsystemsti.AdminTabs
             decimal thwRH = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value);
             decimal thwSH = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value);
 
-            tbRegularH.Text = calBasicSalary(basicRate, thwRH).ToString();
-            tbSpecialH.Text = calSpecialH(basicRate, thwSH).ToString();
+            tbRegularH.Text = Math.Round(calBasicSalary(basicRate, thwRH), 2).ToString();
+            tbSpecialH.Text = Math.Round(calSpecialH(basicRate, thwSH), 2).ToString();
             
             setAllowance(empID);
             //setOthers(empID);
@@ -380,6 +381,8 @@ namespace payrollsystemsti.AdminTabs
             MessageBox.Show((gross - tax).ToString());
             //gross = basicSalary - tax;
 
+            
+
             btnCompute.Enabled = false;
             btnSave.Enabled = true;
 			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Payroll Computed");
@@ -403,7 +406,6 @@ namespace payrollsystemsti.AdminTabs
         {
             setAllowance(empID);
             //setOthers(empID);
-            tbLate.Text = totalLate.ToString();
             tbAbsent.Text = totalAbsent.ToString();
         }
 
@@ -687,6 +689,11 @@ namespace payrollsystemsti.AdminTabs
             return ((basicRate / 8) * thW) * 0.30m;
         }
 
+        private decimal calLate(decimal late)
+        {
+            return late / 60;
+        }
+
         private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj)
         {
             return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj;
@@ -702,15 +709,22 @@ namespace payrollsystemsti.AdminTabs
                 {
                     cmd.Parameters.AddWithValue("@id ", id);
                     SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    try
                     {
-                        return (decimal)reader["Amount"];
+                        if (reader.Read())
+                        {
+                            return Convert.ToDecimal(reader["Amount"]);
+                        }
+                        else
+                        {
+                            return 0;
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
                         return 0;
                     }
+                    
                 }
             }
         }
