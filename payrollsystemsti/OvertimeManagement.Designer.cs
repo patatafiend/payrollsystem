@@ -37,10 +37,10 @@
             this.btnReload = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,10 +110,10 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
             this.dgName,
-            this.dgLeaveType,
             this.dgStatus,
-            this.dgDateStart,
-            this.dgDateEnd});
+            this.dgStart,
+            this.dgEnd,
+            this.dgDate});
             this.dataGridView1.Location = new System.Drawing.Point(52, 182);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
@@ -123,7 +123,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(755, 368);
             this.dataGridView1.TabIndex = 32;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // btnReload
             // 
@@ -151,31 +151,29 @@
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "OT Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
             // dgStatus
             // 
             this.dgStatus.HeaderText = "Status";
             this.dgStatus.Name = "dgStatus";
             this.dgStatus.ReadOnly = true;
             // 
-            // dgDateStart
+            // dgStart
             // 
-            this.dgDateStart.HeaderText = "DateStart";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            this.dgDateStart.Visible = false;
+            this.dgStart.HeaderText = "Start Time";
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
             // 
-            // dgDateEnd
+            // dgEnd
             // 
-            this.dgDateEnd.HeaderText = "DateEnd";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            this.dgDateEnd.Visible = false;
+            this.dgEnd.HeaderText = "End Time";
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
             // 
             // OvertimeManagement
             // 
@@ -207,9 +205,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateStart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
     }
 }
