@@ -113,7 +113,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.tbLocationR);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnBrowseR);
@@ -208,6 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1114, 622);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label11);

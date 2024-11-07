@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.profile11 = new payrollsystemsti.Profile1();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -44,8 +43,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnCompute = new System.Windows.Forms.Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
+            this.profile11 = new payrollsystemsti.Profile1();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -115,16 +114,6 @@
             this.button1.Text = "View Profile";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // profile11
-            // 
-            this.profile11.BackColor = System.Drawing.Color.LavenderBlush;
-            this.profile11.Location = new System.Drawing.Point(2, -2);
-            this.profile11.Name = "profile11";
-            this.profile11.Size = new System.Drawing.Size(738, 543);
-            this.profile11.TabIndex = 6;
-            this.profile11.Load += new System.EventHandler(this.profile11_Load);
-            this.profile11.VisibleChanged += new System.EventHandler(this.profile11_VisibleChanged);
             // 
             // label13
             // 
@@ -225,20 +214,6 @@
             this.label5.Text = "label5";
             this.label5.Visible = false;
             // 
-            // btnCompute
-            // 
-            this.btnCompute.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btnCompute.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompute.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCompute.Location = new System.Drawing.Point(64, 485);
-            this.btnCompute.Name = "btnCompute";
-            this.btnCompute.Size = new System.Drawing.Size(120, 47);
-            this.btnCompute.TabIndex = 42;
-            this.btnCompute.Text = "ADD";
-            this.btnCompute.UseVisualStyleBackColor = false;
-            this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
-            // 
             // pbImage
             // 
             this.pbImage.Location = new System.Drawing.Point(56, 87);
@@ -248,6 +223,16 @@
             this.pbImage.TabIndex = 43;
             this.pbImage.TabStop = false;
             // 
+            // profile11
+            // 
+            this.profile11.BackColor = System.Drawing.Color.LavenderBlush;
+            this.profile11.Location = new System.Drawing.Point(2, -2);
+            this.profile11.Name = "profile11";
+            this.profile11.Size = new System.Drawing.Size(794, 580);
+            this.profile11.TabIndex = 6;
+            this.profile11.Load += new System.EventHandler(this.profile11_Load);
+            this.profile11.VisibleChanged += new System.EventHandler(this.profile11_VisibleChanged);
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,7 +240,6 @@
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(795, 577);
             this.Controls.Add(this.pbImage);
-            this.Controls.Add(this.btnCompute);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -301,7 +285,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnCompute;
         private System.Windows.Forms.PictureBox pbImage;
     }
 }

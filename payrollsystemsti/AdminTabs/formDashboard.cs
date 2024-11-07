@@ -141,10 +141,7 @@ namespace payrollsystemsti
             return btn_useraccount;
         }
 
-        public Button GetEnrollFingerButton()
-        {
-            return btnEnrollFinger;
-        }
+       
 
 
         public Panel GetUserAccountPanel()
@@ -169,10 +166,6 @@ namespace payrollsystemsti
             return AccountArchivePnl;
         }
 
-        public Panel GetEnrollFingerPanel()
-        {
-            return enrollFingerprintPnl;
-        }
 
         public Panel GetEmployeePanel()
         {
@@ -227,7 +220,7 @@ namespace payrollsystemsti
             if (employeeExpand == false)
             {
                 employeePnl.Height += 10;
-                if (employeePnl.Height >= 300)
+                if (employeePnl.Height >= 220)
                 {
                     employeeTransition.Stop();
                     employeeExpand = true;
@@ -1037,6 +1030,12 @@ namespace payrollsystemsti
 
 
         }
+
+        private void sideBar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void OvertimeManagement_FormClosed(object sender, FormClosedEventArgs e)
         {
             OtManagement = null;

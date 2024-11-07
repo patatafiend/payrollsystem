@@ -257,9 +257,9 @@
             // dgv_Mdashboardnotif
             // 
             this.dgv_Mdashboardnotif.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(253, 9);
+            this.dgv_Mdashboardnotif.Location = new System.Drawing.Point(297, 9);
             this.dgv_Mdashboardnotif.Name = "dgv_Mdashboardnotif";
-            this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(562, 286);
+            this.dgv_Mdashboardnotif.Size = new System.Drawing.Size(445, 258);
             this.dgv_Mdashboardnotif.TabIndex = 0;
             // 
             // notificationsBindingSource2
@@ -355,12 +355,12 @@
             this.notifContainer.Controls.Add(this.monthCalendar1);
             this.notifContainer.Location = new System.Drawing.Point(49, 326);
             this.notifContainer.Name = "notifContainer";
-            this.notifContainer.Size = new System.Drawing.Size(834, 319);
+            this.notifContainer.Size = new System.Drawing.Size(756, 319);
             this.notifContainer.TabIndex = 6;
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(14, 9);
+            this.monthCalendar1.Location = new System.Drawing.Point(35, 9);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
