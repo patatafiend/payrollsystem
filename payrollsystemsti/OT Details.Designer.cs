@@ -40,20 +40,20 @@
             this.lbPosition = new System.Windows.Forms.Label();
             this.lbDepartment = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbProfile = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.lbTo = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lbFrom = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lbReason = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbFullName = new System.Windows.Forms.Label();
-            this.pbProfile = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -175,6 +175,16 @@
             this.panel1.Size = new System.Drawing.Size(134, 115);
             this.panel1.TabIndex = 22;
             // 
+            // pbProfile
+            // 
+            this.pbProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbProfile.Location = new System.Drawing.Point(0, 0);
+            this.pbProfile.Name = "pbProfile";
+            this.pbProfile.Size = new System.Drawing.Size(134, 115);
+            this.pbProfile.TabIndex = 0;
+            this.pbProfile.TabStop = false;
+            this.pbProfile.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
@@ -212,16 +222,6 @@
             this.lbTo.Text = "Date:";
             this.lbTo.Click += new System.EventHandler(this.lbTo_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(49, 375);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 23);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Reason:";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -242,6 +242,16 @@
             this.lbFrom.Size = new System.Drawing.Size(56, 23);
             this.lbFrom.TabIndex = 33;
             this.lbFrom.Text = "Date:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(49, 375);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 23);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Reason:";
             // 
             // lbReason
             // 
@@ -285,15 +295,6 @@
             this.lbFullName.TabIndex = 2;
             this.lbFullName.Text = "FullName:";
             // 
-            // pbProfile
-            // 
-            this.pbProfile.Location = new System.Drawing.Point(0, 0);
-            this.pbProfile.Name = "pbProfile";
-            this.pbProfile.Size = new System.Drawing.Size(134, 115);
-            this.pbProfile.TabIndex = 0;
-            this.pbProfile.TabStop = false;
-            this.pbProfile.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // OT_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,11 +308,11 @@
             this.Text = "Overtime Details";
             this.Load += new System.EventHandler(this.OT_Details_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
