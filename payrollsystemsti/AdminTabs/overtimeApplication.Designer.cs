@@ -36,16 +36,19 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.overtimegrid = new System.Windows.Forms.DataGridView();
+            this.time = new System.Windows.Forms.DateTimePicker();
+            this.timeout = new System.Windows.Forms.DateTimePicker();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dtDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgOvertimeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.time = new System.Windows.Forms.DateTimePicker();
-            this.timeout = new System.Windows.Forms.DateTimePicker();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.overtimegrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -131,7 +134,8 @@
             this.dgStart,
             this.dgEnd,
             this.dgReason,
-            this.dgStatus});
+            this.dgStatus,
+            this.dgDate});
             this.overtimegrid.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.overtimegrid.Location = new System.Drawing.Point(325, 40);
             this.overtimegrid.Name = "overtimegrid";
@@ -142,12 +146,78 @@
             this.overtimegrid.TabIndex = 24;
             this.overtimegrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.overtimegrid_MouseDoubleClick);
             // 
+            // time
+            // 
+            this.time.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.time.CustomFormat = "hh:mm tt";
+            this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.time.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.time.Location = new System.Drawing.Point(94, 53);
+            this.time.Name = "time";
+            this.time.ShowUpDown = true;
+            this.time.Size = new System.Drawing.Size(116, 26);
+            this.time.TabIndex = 37;
+            this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            // 
+            // timeout
+            // 
+            this.timeout.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeout.CustomFormat = "hh:mm tt";
+            this.timeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.timeout.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timeout.Location = new System.Drawing.Point(94, 85);
+            this.timeout.Name = "timeout";
+            this.timeout.ShowUpDown = true;
+            this.timeout.Size = new System.Drawing.Size(116, 26);
+            this.timeout.TabIndex = 38;
+            this.timeout.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Crimson;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCancel.Location = new System.Drawing.Point(63, 383);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(102, 44);
+            this.btnCancel.TabIndex = 39;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // dtDate
+            // 
+            this.dtDate.CustomFormat = "dd/MM/yyyy";
+            this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDate.Location = new System.Drawing.Point(94, 12);
+            this.dtDate.Name = "dtDate";
+            this.dtDate.Size = new System.Drawing.Size(107, 20);
+            this.dtDate.TabIndex = 40;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 20);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Date:";
+            // 
             // dgOvertimeID
             // 
             this.dgOvertimeID.HeaderText = "Overtime ID";
             this.dgOvertimeID.MinimumWidth = 8;
             this.dgOvertimeID.Name = "dgOvertimeID";
             this.dgOvertimeID.ReadOnly = true;
+            this.dgOvertimeID.Visible = false;
             // 
             // dgAppliedDate
             // 
@@ -184,52 +254,11 @@
             this.dgStatus.Name = "dgStatus";
             this.dgStatus.ReadOnly = true;
             // 
-            // time
+            // dgDate
             // 
-            this.time.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.time.CustomFormat = "hh:mm tt";
-            this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.time.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.time.Location = new System.Drawing.Point(94, 53);
-            this.time.Name = "time";
-            this.time.ShowUpDown = true;
-            this.time.Size = new System.Drawing.Size(116, 26);
-            this.time.TabIndex = 37;
-            this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
-            // 
-            // timeout
-            // 
-            this.timeout.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeout.CustomFormat = "hh:mm tt";
-            this.timeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.timeout.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeout.Location = new System.Drawing.Point(94, 85);
-            this.timeout.Name = "timeout";
-            this.timeout.ShowUpDown = true;
-            this.timeout.Size = new System.Drawing.Size(116, 26);
-            this.timeout.TabIndex = 38;
-            this.timeout.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.Crimson;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(214, 381);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(102, 44);
-            this.btnCancel.TabIndex = 39;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
             // 
             // overtimeApplication
             // 
@@ -237,6 +266,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(932, 496);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtDate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.timeout);
             this.Controls.Add(this.time);
@@ -267,15 +298,18 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.DataGridView overtimegrid;
+        private System.Windows.Forms.DateTimePicker time;
+        private System.Windows.Forms.DateTimePicker timeout;
+		private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DateTimePicker dtDate;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOvertimeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAppliedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
-        private System.Windows.Forms.DateTimePicker time;
-        private System.Windows.Forms.DateTimePicker timeout;
-		private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
     }
 }

@@ -15,6 +15,8 @@ namespace payrollsystemsti
     public partial class OvertimeManagement : Form
     {
         Methods m = new Methods();
+        int empID = 0;
+        string date;
         public OvertimeManagement()
         {
             InitializeComponent();
@@ -25,14 +27,12 @@ namespace payrollsystemsti
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            OT_Details OTD = new OT_Details();         
+            OT_Details OTD = new OT_Details();
+            OT_Details.ot.employeeID = empID;
+            OT_Details.ot.AppDate = date;
             OTD.Show();
         }
 
@@ -58,9 +58,9 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
-                        dataGridView1.Rows[n].Cells["dgDate"].Value = row["Date"].ToString();
-                        dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("dd/MM/yyyy");
-                        dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("dd/MM/yyyy");
+                        dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
+                        dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
+                        dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
                     }
                 }
             }
@@ -68,7 +68,75 @@ namespace payrollsystemsti
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value);
+            date = dataGridView1.SelectedRows[0].Cells["dgDate"].Value.ToString();
+            btnApprove.Enabled = true;
+            btnReject.Enabled = true;
+            btnView.Enabled = true;
+        }
 
+        private void OvertimeManagement_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Approve this application?", "Update", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Action("Approved", empID);
+                LoadData();
+            }
+            else
+            {
+                btnApprove.Enabled = false;
+                btnReject.Enabled = false;
+                btnView.Enabled = false;
+            }
+                
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Approve this application?", "Update", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Action("Rejected", empID);
+                LoadData();
+            }
+            else
+            {
+                btnApprove.Enabled = false;
+                btnReject.Enabled = false;
+                btnView.Enabled = false;
+            }
+        }
+
+        public bool Action(string action, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE OvertimeApplications SET Status = @status WHERE EmployeeID = @empID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", action);
+                    cmd.Parameters.AddWithValue("@empID", empID);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
+                }
+            }
+            
         }
     }
 }
