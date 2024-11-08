@@ -89,7 +89,7 @@ namespace payrollsystemsti
 								int numLeaves = m.getTotalCurrentAvailableLeaves(Methods.CurrentUser.EmployeeID);
 
 								// Log the login time
-								LogLoginTime(employeeID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, departmentID, "Login", numLeaves, numAbsents);
+								LogLoginTime(employeeID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, departmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Logged-In", numLeaves, numAbsents);
 
 								this.Hide();
 								formDashboard.formDashboardInstance.LoggedInEmployeeID = employeeID;

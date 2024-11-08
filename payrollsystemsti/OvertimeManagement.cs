@@ -12,11 +12,13 @@ using System.Windows.Forms;
 
 namespace payrollsystemsti
 {
-    public partial class OvertimeManagement : Form
+	public partial class OvertimeManagement : Form
     {
         Methods m = new Methods();
+        leaveManagement lm = new leaveManagement();
         int empID = 0;
         string date;
+        
         public OvertimeManagement()
         {
             InitializeComponent();
@@ -86,7 +88,8 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 Action("Approved", empID);
-                LoadData();
+				m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Approved");
+				LoadData();
             }
             else
             {
@@ -103,7 +106,8 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 Action("Rejected", empID);
-                LoadData();
+				m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Rejected");
+				LoadData();
             }
             else
             {

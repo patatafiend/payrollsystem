@@ -124,7 +124,7 @@ namespace payrollsystemsti.AdminTabs
 						transaction.Commit();
 
 						// Add notification
-						Add_Notification_AcceptedOrRejected(employeeID, "approved");
+						m.Add_Notification_AcceptedOrRejected(employeeID, "approved", "Leave");
 
 						MessageBox.Show("Leave approved successfully.", "Success");
 						
@@ -241,7 +241,7 @@ namespace payrollsystemsti.AdminTabs
 				}
 
 				// Add notification
-				Add_Notification_AcceptedOrRejected(employeeID, "rejected");
+				m.Add_Notification_AcceptedOrRejected(employeeID, "rejected", "Leave");
 
 				
 
@@ -260,26 +260,7 @@ namespace payrollsystemsti.AdminTabs
 			LoadData();
 		}
 
-		private void Add_Notification_AcceptedOrRejected(string employeeID, string status)
-		{
-			using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
-
-				string query = "INSERT INTO Notifications (EmployeeID, NotificationMessage, Date) VALUES (@employeeID, @notificationText, @dateCreated)";
-
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					string notificationText = $"Your leave request has been {status}.";
-
-					cmd.Parameters.AddWithValue("@employeeID", employeeID);
-					cmd.Parameters.AddWithValue("@notificationText", notificationText);
-					cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
-
-					cmd.ExecuteNonQuery();
-				}
-			}
-		}
+		
 
 		
 
