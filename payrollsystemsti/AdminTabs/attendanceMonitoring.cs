@@ -835,31 +835,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public bool UpdateOvertimeTimeIn(string date, double? timeIn, int fingerID, int empID)
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "UPDATE Attendance SET OverTime_TimeIn = @timein WHERE fingerID = @fingerID AND Date = @Date";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@timein", timeIn);
-                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                    cmd.Parameters.AddWithValue("@Date", date);
-                    try
-                    {
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        Console.WriteLine("time in OT");
-                        return rowsAffected > 0;
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                        return false;
-                    }
-                }
-            }
-        }
+        
 
         public bool UpdateOvertimeTimeOut(string date, double? timeOut, int fingerID, int empID)
         {

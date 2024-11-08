@@ -16,7 +16,7 @@ namespace payrollsystemsti
     {
         Methods m = new Methods();
         int empID = 0;
-        string date;
+        string date, timein, timeout;
         public OvertimeManagement()
         {
             InitializeComponent();
@@ -70,6 +70,8 @@ namespace payrollsystemsti
         {
             empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value);
             date = dataGridView1.SelectedRows[0].Cells["dgDate"].Value.ToString();
+            timein = dataGridView1.SelectedRows[0].Cells["dgStartTime"].Value.ToString();
+            timeout = dataGridView1.SelectedRows[0].Cells["dgEndTime"].Value.ToString();
             btnApprove.Enabled = true;
             btnReject.Enabled = true;
             btnView.Enabled = true;
@@ -103,6 +105,14 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 Action("Rejected", empID);
+                if(UpdateOvertimeTime(date, timein, timeout, empID))
+                {
+                    MessageBox.Show("Record Updated");
+                }
+                else
+                {
+                    MessageBox.Show("You dont have a record for this date.");
+                }
                 LoadData();
             }
             else
@@ -136,7 +146,34 @@ namespace payrollsystemsti
                     }
                 }
             }
-            
+        }
+
+        public bool UpdateOvertimeTime(string date, string start, string end, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET OverTime_TimeIn = @timein, OverTime_TimeOut = @timeout" +
+                    " WHERE EmployeeID = @empID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@timein", start);
+                    cmd.Parameters.AddWithValue("@timeout", end);
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("Time record updated for OT");
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
         }
     }
 }
