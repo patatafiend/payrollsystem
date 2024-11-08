@@ -369,7 +369,7 @@ namespace payrollsystemsti
         {
             this.Close();
             formLogin fm_Login = new formLogin();
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Dashboard, Logged out.");
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Logged-Out");
 			fm_Login.Show();
         }
         // Click event for settings button
@@ -608,7 +608,7 @@ namespace payrollsystemsti
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Dashboard, Logged out.");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Logged-Out");
 
 			}
         }

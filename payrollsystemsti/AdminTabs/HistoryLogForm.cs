@@ -36,6 +36,36 @@ namespace payrollsystemsti.AdminTabs
 			
         }
 
-		
+		private void btnSearch_Click(object sender, EventArgs e)
+		{
+			// Get the selected value from the combo box
+			string selectedValue = cb_HistoryLog.SelectedItem.ToString();
+
+			// Extract the part after the comma
+			string searchValue = selectedValue.Split(',')[0].Trim();
+
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				// Query to search for matching results in the HistoryFrom column
+				string query = "SELECT * FROM HistoryTable WHERE HistoryFrom LIKE @SearchValue";
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("@SearchValue", "%" + searchValue + "%");
+
+					// Execute the query and fill the DataTable
+					DataTable dt = new DataTable();
+					SqlDataAdapter da = new SqlDataAdapter(cmd);
+					da.Fill(dt);
+
+					// Bind the DataTable to a DataGridView or any other control to display the results
+					dgv_HistoryLog.DataSource = dt;
+				}
+			}
+
+
+
+		}
+
 	}
 }

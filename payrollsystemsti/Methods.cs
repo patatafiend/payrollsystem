@@ -2003,5 +2003,26 @@ namespace payrollsystemsti
 
         }
 
-    }
+		public void Add_Notification_AcceptedOrRejected(string employeeID, string status, string requestType)
+		{
+			using (SqlConnection conn = new SqlConnection(connStr))
+			{
+				conn.Open();
+
+				string query = "INSERT INTO Notifications (EmployeeID, NotificationMessage, Date) VALUES (@employeeID, @notificationText, @dateCreated)";
+
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					string notificationText = $"Your {requestType} request has been {status}.";
+
+					cmd.Parameters.AddWithValue("@employeeID", employeeID);
+					cmd.Parameters.AddWithValue("@notificationText", notificationText);
+					cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+		}
+
+	}
 }
