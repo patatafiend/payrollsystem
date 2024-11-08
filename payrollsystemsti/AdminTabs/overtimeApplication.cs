@@ -114,8 +114,8 @@ namespace payrollsystemsti.AdminTabs
 
                 MessageBox.Show("Overtime application submitted successfully.");
 
-                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Overtime Submitted by " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName);
-            }
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Overtime Submitted");
+			}
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
@@ -171,8 +171,8 @@ namespace payrollsystemsti.AdminTabs
                 if (UpdateOvertimeTable(empID, time, timeout, tbReason.Text, dtDate.Value))
                 {
                     MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Overtime Edited by " + Methods.CurrentUser.LastName + ", " + Methods.CurrentUser.FirstName);
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Overtime Edited");
+				}
                 btnSubmit.Enabled = true;
                 btnUpdate.Enabled = false;
 

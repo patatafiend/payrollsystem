@@ -60,7 +60,8 @@ namespace payrollsystemsti
                     }
 
                     MessageBox.Show("Database Backup Done!");
-                    btnBackup.Enabled = false;
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Backup");
+					btnBackup.Enabled = false;
                 }
                 catch (Exception ex)
                 {
@@ -100,7 +101,8 @@ namespace payrollsystemsti
                     }
 
                     MessageBox.Show("Database Restore Done!");
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Backup Restored");
+				}
                 catch (Exception ex)
                 {
                     MessageBox.Show("Restore failed: " + ex.Message);

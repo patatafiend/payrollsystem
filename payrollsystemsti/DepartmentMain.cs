@@ -56,7 +56,7 @@ namespace payrollsystemsti
             if (!m.ifDepartmentNameExist(tb1.Text.ToString()))
             {
                 m.insertToDepartments(tb1.Text);
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Department Add");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Department add");
 				LoadDepartmentData();
                 tb1.Clear();
             }
@@ -78,7 +78,7 @@ namespace payrollsystemsti
                 if (!m.ifDepartmentNameExist(tb1.Text.ToString()))
                 {
                     m.updateDepartments(tb1.Text, titleID);
-					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Department edit");
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Department edit");
 					LoadDepartmentData();
                     tb1.Clear();
                 }
@@ -113,7 +113,8 @@ namespace payrollsystemsti
                     m.deactivateDepartment(titleID);
                     LoadDepartmentData();
                     tb1.Clear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Department Deactivation");
+				}
                 else
                 {
                     btnDeactivate.Enabled = false;

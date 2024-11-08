@@ -191,7 +191,8 @@ namespace payrollsystemsti.EmployeeTabs
                     }
 
                     MessageBox.Show("Leave Application Submitted Successfully");
-                    ClearLeaveApplicationForm();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave Application Submitted");
+					ClearLeaveApplicationForm();
                 }
                 LoadData(loggedInID);
                 ClearData();
@@ -217,7 +218,8 @@ namespace payrollsystemsti.EmployeeTabs
                     cmd.Parameters.AddWithValue("@empID", loggedInID);
                     cmd.Parameters.AddWithValue("@medcert", medicalCertificate);
                     cmd.ExecuteNonQuery();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave Edited");
+				}
             }
             LoadData(loggedInID);
             loadLeaveCB();

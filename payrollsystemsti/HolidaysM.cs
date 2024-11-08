@@ -61,7 +61,8 @@ namespace payrollsystemsti
         {
             m.UpdateHoliday(holidayID, cbHType.Text, tb1.Text, dtDate.Value.Month.ToString(), dtDate.Value.Day.ToString());
             LoadHolidayData();
-            Clear();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Holiday Edit");
+			Clear();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -69,7 +70,8 @@ namespace payrollsystemsti
             m.InsertHoliday(cbHType.Text, tb1.Text, dtDate.Value.Month.ToString(), dtDate.Value.Day.ToString());
             //MessageBox.Show(dtDate.Value.Date.ToString("MM/dd"));
             LoadHolidayData();
-            Clear();
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Holiday Add");
+			Clear();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -110,7 +110,7 @@ namespace payrollsystemsti.AdminTabs
         private void btnSave_Click(object sender, EventArgs e)
         {
             UpdateLoan(empID, Convert.ToInt32(tbSSS.Text), Convert.ToInt32(tbHDMF.Text), Convert.ToInt32(tbCompany.Text));
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Load Saved");
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Loan saved");
 		}
 
         private void tbSearch_TextChanged(object sender, EventArgs e)

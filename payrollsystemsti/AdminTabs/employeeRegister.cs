@@ -141,7 +141,7 @@ namespace payrollsystemsti.AdminTabs
 
 					if (isInserted)
 					{
-						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "New User Registered");
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Registered");
 						StoreUserLeaveTypeData();
 
 
@@ -431,7 +431,8 @@ namespace payrollsystemsti.AdminTabs
                         tbMob.Text, Convert.ToInt32(empID.Text), cbGender.Text, cbCivil.Text));
                 {
                     MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearData();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Register Edit");
+					ClearData();
                     LoadData();
                     LoadDepartments();
                     LoadPositions();
@@ -506,7 +507,8 @@ namespace payrollsystemsti.AdminTabs
                     m.InsertLoan(Convert.ToInt32(id), 0, 0, 0);
                     
                     MessageBox.Show("Created User Succesfully");
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Registered Account created");
+				}
 
                 btnCreate.Enabled = false;
 
@@ -637,7 +639,8 @@ namespace payrollsystemsti.AdminTabs
                     }
 
                     MessageBox.Show("Employee Deactivated", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Registered Deactivated");
+					LoadData();
                     LoadDepartments();
                     LoadPositions();
                     LoadRoles();
