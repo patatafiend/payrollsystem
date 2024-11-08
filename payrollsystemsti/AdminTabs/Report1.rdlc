@@ -591,7 +591,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!PayPeriodStart.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>d MMM yyyy</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -681,7 +683,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!PayOutDate.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>d MMMM yyyy</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -711,7 +715,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!PayPeriodEnd.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>d MMM yyyy</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2316,14 +2322,14 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <Textbox Name="Total_Netpay">
+                            <Textbox Name="NetPay">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value />
+                                      <Value>=Fields!NetPay.Value</Value>
                                       <Style>
                                         <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
@@ -2332,7 +2338,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Total_Netpay</rd:DefaultName>
+                              <rd:DefaultName>NetPay</rd:DefaultName>
                               <Top>7.47656in</Top>
                               <Left>8.5269in</Left>
                               <Height>0.25in</Height>
@@ -2356,7 +2362,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
