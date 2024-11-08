@@ -31,7 +31,7 @@ namespace payrollsystemsti
                     {
                         m.UpdateAdjustmentData(AdjustmentID, Convert.ToInt32(tb1.Text), tbRemarks.Text);
                         tbClear();
-						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Adjustment Update");
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Adjustment");
 						LoadAdjustmentData();
                     }
                     else
@@ -77,7 +77,8 @@ namespace payrollsystemsti
                     m.deactivateOthers(AdjustmentID);
                     LoadAdjustmentData();
                     tbClear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Adjustment Deactivate");
+				}
                 else
                 {
                     MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);

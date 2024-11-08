@@ -22,7 +22,7 @@ namespace payrollsystemsti
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Position Added");
+			
 			AddPosition();
         }
 
@@ -30,7 +30,7 @@ namespace payrollsystemsti
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Position edit");
+			
 			UpdatePostion();
         }
 
@@ -81,7 +81,8 @@ namespace payrollsystemsti
             {
                 m.insertToPositions(tb1.Text);
                 LoadPositionData();
-                tb1.Clear();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Position Added");
+				tb1.Clear();
             }
             else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
             {
@@ -103,7 +104,8 @@ namespace payrollsystemsti
                     m.updatePositions(tb1.Text, titleID);
                     LoadPositionData();
                     tb1.Clear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Position Edited");
+				}
                 else if (m.ifPositionTitleExist(tb1.Text.ToString()))
                 {
                     MessageBox.Show("Position already exists");
@@ -129,7 +131,8 @@ namespace payrollsystemsti
                     m.deactivatePosition(titleID);
                     LoadPositionData();
                     tb1.Clear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Position Deactivated");
+				}
                 else
                 {
                     MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);

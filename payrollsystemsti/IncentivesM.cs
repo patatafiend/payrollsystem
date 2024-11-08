@@ -36,8 +36,8 @@ namespace payrollsystemsti
                     if (IsTextBoxFilled())
                     {
                         UpdateAllIncentives();
-                        m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Others Update");
-                        LoadIncentivesData();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Incentive Update Batch");
+						LoadIncentivesData();
                     }
                     else
                     {
@@ -177,8 +177,8 @@ namespace payrollsystemsti
                     if (IsTextBoxFilled())
                     {
                         m.UpdateIncentivesData(empID, Convert.ToInt32(tb1.Text), tbRemarks.Text);
-                        m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Incentives Update");
-                        LoadIncentivesData();
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Incentive Update Single");
+						LoadIncentivesData();
                     }
                     else
                     {

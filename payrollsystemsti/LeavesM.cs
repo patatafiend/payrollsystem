@@ -35,7 +35,7 @@ namespace payrollsystemsti
 
 				int numofLeaves = Int32.Parse(tb_numofLeaves.Text.ToString());
 				m.insertToLeaves(tb1.Text, checkBox(), numofLeaves);
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Added");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave Type Added");
 				LoadLeaveCategoryData();
 				tb1.Clear();
 
@@ -78,7 +78,8 @@ namespace payrollsystemsti
                     LoadLeaveCategoryData();
                     tb1.Clear();
                     cbPicture.Checked = false;
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave type Updated");
+				}
                 else if (m.ifLeaveCategoryExist(tb1.Text.ToString()))
                 {
                     MessageBox.Show("Leave already exists");
@@ -118,7 +119,7 @@ namespace payrollsystemsti
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave edit");
+			
 			UpdateLeave();
         }
 

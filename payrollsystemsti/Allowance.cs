@@ -37,7 +37,7 @@ namespace payrollsystemsti
                     {
                         m.updateAllowance(Convert.ToInt32(tb1.Text), Convert.ToInt32(tb2.Text), Convert.ToInt32(tb3.Text),
                                     Convert.ToInt32(tb4.Text), Convert.ToInt32(tb5.Text), titleID);
-						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Allowance edit");
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Allowance");
 						tbClear();
                         LoadAllowanceData();
                     }
@@ -78,8 +78,8 @@ namespace payrollsystemsti
         }
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-
-        }
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Allowance Deactivate");
+		}
 
         private void LoadAllowanceData()
         {

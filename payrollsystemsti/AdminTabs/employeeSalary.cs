@@ -305,7 +305,7 @@ namespace payrollsystemsti.AdminTabs
         private void btnSave_Click(object sender, EventArgs e)
         {
             SavePayroll();
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Payroll Saved");
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Salary Saved");
 		}
         
         
@@ -385,7 +385,7 @@ namespace payrollsystemsti.AdminTabs
 
             btnCompute.Enabled = false;
             btnSave.Enabled = true;
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Payroll Computed");
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Salary Computed");
 		}
 
         

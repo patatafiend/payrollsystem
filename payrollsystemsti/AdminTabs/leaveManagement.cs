@@ -127,12 +127,12 @@ namespace payrollsystemsti.AdminTabs
 						m.Add_Notification_AcceptedOrRejected(employeeID, "approved", "Leave");
 
 						MessageBox.Show("Leave approved successfully.", "Success");
-						
+
 						//add history log leave acceptance
-						m.Add_HistoryLog(Int32.Parse(employeeID), Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Approved");
+						m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave approved");
 
 
-						
+
 
 
 					}
@@ -243,9 +243,9 @@ namespace payrollsystemsti.AdminTabs
 				// Add notification
 				m.Add_Notification_AcceptedOrRejected(employeeID, "rejected", "Leave");
 
-				
 
-				m.Add_HistoryLog(Int32.Parse(employeeID), Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Leave Rejected");
+
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Leave Rejected");
 
 				LoadData();
 			}

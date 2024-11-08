@@ -27,7 +27,7 @@ namespace payrollsystemsti
             if (!m.ifDeductionExist(tb1.Text.ToString()))
             {
                 m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction, Add");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Add");
 				LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
@@ -48,8 +48,8 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
-                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Deduction Edit");
-                LoadContributionData();
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
+				LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
             }
@@ -70,7 +70,8 @@ namespace payrollsystemsti
                     LoadContributionData();
                     tb1.Clear();
                     tb2.Clear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Deactivate");
+				}
                 else
                 {
                     MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);

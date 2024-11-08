@@ -87,6 +87,7 @@ namespace payrollsystemsti.AdminTabs
         {
             m.activateAcc(id);
 			btnActivate.Enabled = false;
+			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
 			LoadData();
 
         }

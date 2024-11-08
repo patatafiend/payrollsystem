@@ -214,7 +214,23 @@
 			this.cb_HistoryLog.FormattingEnabled = true;
 			this.cb_HistoryLog.Items.AddRange(new object[] {
             "Logged-Out",
-            "Logged-In"});
+            "Logged-In",
+            "Register",
+            "Adjustment",
+            "Allowance",
+            "Deduction",
+            "Department",
+            "Holiday",
+            "Incentives",
+            "Leaves",
+            "Roles",
+            "Position",
+            "Attendance",
+            "Salary",
+            "Overtime",
+            "Account Archive",
+            "Backup",
+            "Loan"});
 			this.cb_HistoryLog.Location = new System.Drawing.Point(61, 134);
 			this.cb_HistoryLog.Name = "cb_HistoryLog";
 			this.cb_HistoryLog.Size = new System.Drawing.Size(141, 21);

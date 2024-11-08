@@ -25,7 +25,7 @@ namespace payrollsystemsti
             if (!m.ifRoleTitleExist(tb1.Text.ToString()))
             {
                 m.insertToRoles(tb1.Text, checkBox1(), checkBox2(), checkBox3(), checkBox4(), checkBox5(), checkBox6(), checkBox7());
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Role Added");
+				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Role Added");
 				LoadRoleData();
                 tb1.Clear();
             }
@@ -48,7 +48,7 @@ namespace payrollsystemsti
                 {
 
                     m.updateRoles(tb1.Text, titleID);
-					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "Role edit");
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Role Edited");
 					LoadRoleData();
                     tb1.Clear();
                 }
@@ -201,7 +201,8 @@ namespace payrollsystemsti
                     m.deactivateRole(titleID);
                     LoadRoleData();
                     tb1.Clear();
-                }
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Role Deactivated");
+				}
                 else
                 {
                     MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
