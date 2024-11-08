@@ -2254,17 +2254,14 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <Textbox Name="Total_A">
+                            <Textbox Name="GrossPay">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!TotalHoursPay.Value+Fields!OverTimePay.Value+Fields!RegularH.Value
-+Fields!SpecialH.Value+Fields!OBA.Value+Fields!RestDay.Value+Fields!LoadA.Value
-+Fields!TransA.Value+Fields!Adjustments.Value+Fields!Incentives.Value+Fields!TrainA.Value
-+Fields!ProvTA.Value</Value>
+                                      <Value>=Fields!GrossPay.Value</Value>
                                       <Style>
                                         <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
@@ -2273,7 +2270,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Total_A</rd:DefaultName>
+                              <rd:DefaultName>GrossPay</rd:DefaultName>
                               <Top>6.96267in</Top>
                               <Left>5.03856in</Left>
                               <Height>0.25in</Height>
@@ -2329,7 +2326,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!NetPay.Value</Value>
+                                      <Value>=Fields!GrossPay.Value-Fields!DeductionTotal.Value</Value>
                                       <Style>
                                         <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
@@ -2362,6 +2359,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

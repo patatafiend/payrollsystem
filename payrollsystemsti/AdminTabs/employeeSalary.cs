@@ -274,25 +274,8 @@ namespace payrollsystemsti.AdminTabs
             totalLate = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgLate"].Value.ToString());
             totalAbsent = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgAbsent"].Value.ToString());
 
-            tbBasic.Text = basicRate.ToString();
-            basicSalary = calBasicSalary(basicRate, totalHoursW);
-            overtimePay = calOvertimePay(totalOvertime, basicRate);
-
-            tbBasic.Text = basicSalary.ToString();
-            tbOT.Text = overtimePay.ToString();
-            tbLate.Text = Math.Round(calLate(totalLate), 2).ToString();
-            MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
             
-            tbIncentives.Text = GetIncentives(empID).ToString();
-            tbAdjustment.Text = GetAdjustment(empID).ToString();
-
-            decimal thwRH = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value);
-            decimal thwSH = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value);
-
-            tbRegularH.Text = Math.Round(calBasicSalary(basicRate, thwRH), 2).ToString();
-            tbSpecialH.Text = Math.Round(calSpecialH(basicRate, thwSH), 2).ToString();
             
-            setAllowance(empID);
             //setOthers(empID);
             
             
@@ -340,10 +323,30 @@ namespace payrollsystemsti.AdminTabs
 
         private void ComputePayroll()
         {
-            gross = grossPay(basicSalary, Convert.ToDecimal(tbIncentives.Text), Convert.ToDecimal(tbTA.Text),
+
+            basicSalary = calBasicSalary(basicRate, totalHoursW);
+            overtimePay = calOvertimePay(totalOvertime, basicRate);
+
+            tbBasic.Text = basicSalary.ToString();
+            tbOT.Text = overtimePay.ToString();
+            tbLate.Text = Math.Round(calLate(totalLate), 2).ToString();
+            //MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
+
+            tbIncentives.Text = GetIncentives(empID).ToString();
+            tbAdjustment.Text = GetAdjustment(empID).ToString();
+
+            decimal thwRH = GetHolidayRegularData(empID, dtStart.Value, dtEnd.Value);
+            decimal thwSH = GetHolidaySpecialData(empID, dtStart.Value, dtEnd.Value);
+
+            tbRegularH.Text = Math.Round(calBasicSalary(basicRate, thwRH), 2).ToString();
+            tbSpecialH.Text = Math.Round(calSpecialH(basicRate, thwSH), 2).ToString();
+
+            setAllowance(empID);
+
+            gross = grossPay(Convert.ToDecimal(tbBasic.Text), Convert.ToDecimal(tbIncentives.Text), Convert.ToDecimal(tbTA.Text),
                 Convert.ToDecimal(tbTransA.Text), Convert.ToDecimal(tbLoadA.Text), Convert.ToDecimal(tbPTA.Text),
                 overtimePay, Convert.ToDecimal(tbRegularH.Text), Convert.ToDecimal(tbSpecialH.Text),
-                Convert.ToDecimal(tbAdjustment.Text));
+                Convert.ToDecimal(tbAdjustment.Text), Convert.ToDecimal(tbOBA.Text));
 
             if (cbSSS.Checked)
             {
@@ -378,7 +381,7 @@ namespace payrollsystemsti.AdminTabs
 
             tbTax.Text = tax.ToString();
 
-            MessageBox.Show((gross - tax).ToString());
+            MessageBox.Show((gross).ToString());
             //gross = basicSalary - tax;
 
             
@@ -478,9 +481,9 @@ namespace payrollsystemsti.AdminTabs
         private void SavePayroll()
         {
             decimal incentives = Convert.ToDecimal(tbIncentives.Text);
-            decimal regH = Convert.ToDecimal(tbIncentives.Text);
-            decimal specialH = Convert.ToDecimal(tbIncentives.Text);
-            decimal adj = Convert.ToDecimal(tbIncentives.Text);
+            decimal regH = Convert.ToDecimal(tbRegularH.Text);
+            decimal specialH = Convert.ToDecimal(tbSpecialH.Text);
+            decimal adj = Convert.ToDecimal(tbAdjustment.Text);
 
             decimal trainA = Convert.ToDecimal(tbTA.Text);
             decimal transA = Convert.ToDecimal(tbTransA.Text);
@@ -694,9 +697,9 @@ namespace payrollsystemsti.AdminTabs
             return late / 60;
         }
 
-        private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj)
+        private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj ,decimal ob)
         {
-            return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj;
+            return basicSalary + incentives + trainA + transA + loadA + provA + ot + regH + slH + adj + ob;
         }
 
         public decimal setDeductions(int id)
