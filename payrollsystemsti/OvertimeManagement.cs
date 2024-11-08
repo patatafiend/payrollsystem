@@ -71,11 +71,26 @@ namespace payrollsystemsti
         {
             empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value);
             date = dataGridView1.SelectedRows[0].Cells["dgDate"].Value.ToString();
-            timein = dataGridView1.SelectedRows[0].Cells["dgStartTime"].Value.ToString();
-            timeout = dataGridView1.SelectedRows[0].Cells["dgEndTime"].Value.ToString();
+            timein = dataGridView1.SelectedRows[0].Cells["dgStart"].Value.ToString();
+            timeout = dataGridView1.SelectedRows[0].Cells["dgEnd"].Value.ToString();
             btnApprove.Enabled = true;
             btnReject.Enabled = true;
             btnView.Enabled = true;
+
+            string status = dataGridView1.SelectedRows[0].Cells["dgStatus"].Value.ToString();
+
+            if (status == "Approved" || status == "Rejected")
+            {
+                btnView.Enabled = true;
+                btnApprove.Enabled = false;
+                btnReject.Enabled = false;
+            }
+            else
+            {
+                btnView.Enabled = true;
+                btnApprove.Enabled = true;
+                btnReject.Enabled = true;
+            }
         }
 
         private void OvertimeManagement_Load(object sender, EventArgs e)
@@ -95,18 +110,15 @@ namespace payrollsystemsti
                 }
                 else
                 {
+                    Action("Pending", empID);
                     MessageBox.Show("You dont have a record for this date.");
                 }
                 m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Approved");
 				LoadData();
             }
-            else
-            {
-                btnApprove.Enabled = false;
-                btnReject.Enabled = false;
-                btnView.Enabled = false;
-            }
-                
+            btnApprove.Enabled = false;
+            btnReject.Enabled = false;
+            btnView.Enabled = false;
         }
 
         private void btnReject_Click(object sender, EventArgs e)
@@ -115,16 +127,19 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 Action("Rejected", empID);
+                MessageBox.Show("Application Rejected");
                 m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Rejected");
                 
                 LoadData();
             }
-            else
-            {
-                btnApprove.Enabled = false;
-                btnReject.Enabled = false;
-                btnView.Enabled = false;
-            }
+            btnApprove.Enabled = false;
+            btnReject.Enabled = false;
+            btnView.Enabled = false;
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         public bool Action(string action, int empID)
