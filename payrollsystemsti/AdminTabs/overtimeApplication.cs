@@ -21,7 +21,7 @@ namespace payrollsystemsti.AdminTabs
     public partial class overtimeApplication : Form
     {
         Methods m = new Methods();
-        private int empID = 0;
+        public int empID = 0;
         public overtimeApplication()
         {
             InitializeComponent();
@@ -83,6 +83,7 @@ namespace payrollsystemsti.AdminTabs
 
         public void InsertToOvertimeApplications(int empID)
         {
+            
             try
             {
                 TimeSpan datetimestart = time.Value.TimeOfDay;
@@ -91,7 +92,7 @@ namespace payrollsystemsti.AdminTabs
 
                 TimeSpan totalHours = timeout.Value.TimeOfDay - time.Value.TimeOfDay;
 
-                string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime , Justification, Status , Date)" +
+                string query = "INSERT INTO OvertimeApplications (EmployeeID, AppliedDate, StartTime, EndTime, Justification, Status , Date)" +
                     " VALUES (@empID,  @AppliedDate, @StartTime, @EndTime, @Justification, @status, @date)";
 
                 using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -243,7 +244,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void overtimeApplication_Load(object sender, EventArgs e)
         {
-            empID = Methods.CurrentUser.UserID;
+            empID = Methods.CurrentUser.EmployeeID;
             LoadData();
         }
 

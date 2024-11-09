@@ -37,18 +37,48 @@ namespace payrollsystemsti
             OTD.Show();
         }
 
+        //private void LoadData()
+        //{
+        //    dataGridView1.Rows.Clear();
+        //    string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
+        //        ", OvertimeApplications.Status, OvertimeApplications.Date, OvertimeApplications.StartTime, OvertimeApplications.EndTime" +
+        //        " FROM EmployeeAccounts JOIN OvertimeApplications ON EmployeeAccounts.EmployeeID = OvertimeApplications.EmployeeID";
+
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            sda.Fill(dt);
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                int n = dataGridView1.Rows.Add();
+        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
+        //                dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
+        //                dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
+        //                dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
+        //            }
+        //        }
+        //    }
+        //}
+
         private void LoadData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-                ", OvertimeApplications.Status, OvertimeApplications.Date, OvertimeApplications.StartTime, OvertimeApplications.EndTime" +
-                " FROM EmployeeAccounts JOIN OvertimeApplications ON EmployeeAccounts.EmployeeID = OvertimeApplications.EmployeeID";
+            string query = "SELECT * FROM OvertimeApplications WHERE Status = @status";
 
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@status", "Pending");
+
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
@@ -57,7 +87,7 @@ namespace payrollsystemsti
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-                        dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgName"].Value = m.GetEmpName(Convert.ToInt32(row["EmployeeID"])).ToString();
                         dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
