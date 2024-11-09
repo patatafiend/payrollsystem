@@ -24,11 +24,16 @@ namespace payrollsystemsti
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Insert();
+        }
+
+        public void insertDeductionC()
+        {
             if (!m.ifDeductionExist(tb1.Text.ToString()))
             {
                 m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Add");
-				LoadContributionData();
+                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Add");
+                LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
             }
@@ -41,17 +46,88 @@ namespace payrollsystemsti
                 MessageBox.Show("Unknown Error");
             }
         }
+        public void insertDeductionT()
+        {
+            if (!m.ifDeductionExist(tb1.Text.ToString()))
+            {
+                m.insertToDeductionsT(tb1.Text, Convert.ToInt32(tb2.Text), Convert.ToDecimal(tbAdd.Text));
+                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Add");
+                LoadContributionData();
+                tb1.Clear();
+                tb2.Clear();
+            }
+            else if (m.ifDeductionExist(tb1.Text.ToString()))
+            {
+                MessageBox.Show("Deduction already exists");
+            }
+            else
+            {
+                MessageBox.Show("Unknown Error");
+            }
+        }
+        public void Insert()
+        {
+            switch (cbDeduct.Text)
+            {
+                case "Contributions":
+                    insertDeductionC();
+                    break;
+                case "Tax":
+                    insertDeductionT();
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        public void Update()
+        {
+            switch (cbDeduct.Text)
+            {
+                case "Contributions":
+                    updateDeductionC();
+                    break;
+                case "Tax":
+                    updateDeductionT();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void updateDeductionC()
         {
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
-				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
-				LoadContributionData();
+                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
+                LoadContributionData();
                 tb1.Clear();
                 tb2.Clear();
+            }
+            else
+            {
+                btnUpdate.Enabled = false;
+            }
+        }
+
+        public void updateDeductionT()
+        {
+            DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                m.updateDeductionsT(tb1.Text, Convert.ToInt32(tb1.Text), Convert.ToDecimal(tbAdd.Text), titleID);
+                m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
+                LoadContributionData();
+                tb1.Clear();
+                tb2.Clear();
+                tbAdd.Clear();
             }
             else
             {
@@ -161,6 +237,7 @@ namespace payrollsystemsti
         {
             tb1.Clear();
             tb2.Clear();
+            tbAdd.Clear();
             btnAdd.Enabled = false;
             btnDeactivate.Enabled = false;
             btnUpdate.Enabled = false;
