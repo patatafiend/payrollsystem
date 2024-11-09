@@ -160,5 +160,10 @@ namespace payrollsystemsti
                 btnCancel.Visible = false;
             }
         }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadDepartmentData();
+        }
     }
 }

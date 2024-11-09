@@ -1157,5 +1157,10 @@ namespace payrollsystemsti.AdminTabs
 
             return totaldefaultleave;
 		}
-	}
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+    }
 }
