@@ -67,35 +67,35 @@ namespace payrollsystemsti
             tb1.Clear();
         }
 
-    //    private void btnDeactivate_Click(object sender, EventArgs e)
-    //    {
-    //        DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
-    //        if (dialogResult == DialogResult.Yes)
-    //        {
-    //            if (dataGridView1.SelectedRows.Count > 0)
-    //            {
-    //                m.deactivateOthers(AdjustmentID);
-    //                LoadAdjustmentData();
-    //                tbClear();
-				//	m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Adjustment Deactivate");
-				//}
-    //            else
-    //            {
-    //                MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            btnDeactivate.Enabled = false;
-    //        }
-    //    }
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    m.deactivateOthers(AdjustmentID);
+                    LoadAdjustmentData();
+                    tbClear();
+					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Adjustment Deactivate");
+				}
+                else
+                {
+                    MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                
+            }
+        }
 
         private void LoadAdjustmentData()
         {
             dataGridView1.Rows.Clear();
             string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
                 "Others.Adjustment, Others.ATremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
-                "WHERE EmployeeAccounts.IsDeactivated = @status";
+                "WHERE EmployeeAccounts.IsDeleted = @status";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
