@@ -88,6 +88,8 @@ namespace payrollsystemsti
 			}
 			lb_roles_name.Text = getUserRole(Methods.CurrentUser.EmployeeRole);
 
+			
+
 
 
 		}
@@ -113,7 +115,7 @@ namespace payrollsystemsti
 		private void pnl_notification_DoubleClick(object sender, EventArgs e)
 		{
 
-			MessageBox.Show("Double Clicked notification");
+			findCurrentUserNotifications();
 
 		}
 
@@ -262,7 +264,10 @@ namespace payrollsystemsti
 			return false;
 		}
 
-        private void pnl_totalLeaves_Paint(object sender, PaintEventArgs e)
+		
+
+
+		private void pnl_totalLeaves_Paint(object sender, PaintEventArgs e)
         {
 
 
