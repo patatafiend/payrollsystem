@@ -29,56 +29,82 @@ namespace payrollsystemsti.AdminTabs
         {
             this.reportViewer1.RefreshReport();
             SetPayPeriodDefaults();
-            DateSource();
+            //DateSource();
             
         }
 
-        private void DateSource()
-        {
-            List<DateTime> payPeriodEnds = new List<DateTime>();
+        //private void DateSource()
+        //{
+        //    List<DateTime> payPeriodEnds = new List<DateTime>();
 
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT DISTINCT PayPeriodEnd FROM Payroll";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if (!reader.IsDBNull(reader.GetOrdinal("PayPeriodEnd")))
-                            {
-                                payPeriodEnds.Add(Convert.ToDateTime(reader["PayPeriodEnd"]));
-                            }
-                        }
-                    }
-                }
-            }
+        //    using (SqlConnection conn = new SqlConnection(m.connStr))
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT DISTINCT PayPeriodEnd FROM Payroll";
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    if (!reader.IsDBNull(reader.GetOrdinal("PayPeriodEnd")))
+        //                    {
+        //                        payPeriodEnds.Add(Convert.ToDateTime(reader["PayPeriodEnd"]));
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-            cbPayDates.DataSource = payPeriodEnds;
-            cbPayDates.DisplayMember = "Date"; // Assuming payDates is a ComboBox
-            cbPayDates.ValueMember = "Date";
-        }
+        //    cbPayDates.DataSource = payPeriodEnds;
+        //    cbPayDates.DisplayMember = "Date"; // Assuming payDates is a ComboBox
+        //    cbPayDates.ValueMember = "Date";
+        //}
 
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
             
         }
+
+        private void SetPayPeriodDefaults()
+        {
+            DateTime today = DateTime.Today;
+            DateTime payPeriodStart, payPeriodEnd;
+
+            if (today.Day <= 12)
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 1);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 12);
+            }
+            else
+            {
+                payPeriodStart = new DateTime(today.Year, today.Month, 13);
+                payPeriodEnd = new DateTime(today.Year, today.Month, 28);
+            }
+
+            dtStart.Value = payPeriodStart;
+            dtEnd.Value = payPeriodEnd;
+        }
+
         private void LoadReportBatch()
         {
+            DateTime start = dtStart.Value;
+            DateTime end = dtEnd.Value;
+
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
                     " Loans.SSS AS LoanSSS, Loans.HDMF AS LoanHDMF, Loans.Company AS LoanCompany FROM Payroll " +
                     "LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID LEFT JOIN " +
-                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE PayPeriodEnd = @payperiodend";
+                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE PayPeriodStart = @start AND PayPeriodEnd = @end";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@payperiodend", Convert.ToDateTime(cbPayDates.Text));
+                    //cmd.Parameters.AddWithValue("@payperiodend", Convert.ToDateTime(cbPayDates.Text));
+                    cmd.Parameters.AddWithValue("@start", start);
+                    cmd.Parameters.AddWithValue("@end", end);
 
                     SqlDataAdapter d = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -90,6 +116,7 @@ namespace payrollsystemsti.AdminTabs
                     string reportPath = userDirectory +@"\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
                     reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
+                    reportViewer1.LocalReport.SetParameters(new ReportParameter("PreparedBy", m.GetEmpName(Methods.CurrentUser.UserID)));
                     reportViewer1.RefreshReport();
                 }
             }
@@ -97,17 +124,24 @@ namespace payrollsystemsti.AdminTabs
 
         private void LoadReportSingle()
         {
+            DateTime start = dtStart.Value;
+            DateTime end = dtEnd.Value;
+
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "SELECT Payroll.*, EmployeeAccounts.FirstName, EmployeeAccounts.LastName," +
                     " Loans.SSS AS LoanSSS, Loans.HDMF AS LoanHDMF, Loans.Company AS LoanCompany FROM Payroll " +
                     "LEFT JOIN EmployeeAccounts ON Payroll.EmployeeID = EmployeeAccounts.EmployeeID LEFT JOIN " +
-                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE EmployeeAccounts.EmployeeID = @empID";
+                    "Loans ON Payroll.EmployeeID = Loans.EmployeeID WHERE EmployeeAccounts.EmployeeID = @empID " +
+                    "AND PayPeriodStart = @start AND PayPeriodEnd = @end";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", m.GetEmployeeIdByName(tbSearch.Text));
+                    cmd.Parameters.AddWithValue("@start", start);
+                    cmd.Parameters.AddWithValue("@end", end);
+
                     SqlDataAdapter d = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     d.Fill(dt);
@@ -118,44 +152,12 @@ namespace payrollsystemsti.AdminTabs
                     string reportPath = userDirectory + @"\Source\Repos\patatafiend\payrollsystem\payrollsystemsti\AdminTabs\Report1.rdlc";
                     reportViewer1.LocalReport.ReportPath = reportPath;
                     reportViewer1.LocalReport.DataSources.Add(source);
+                    reportViewer1.LocalReport.SetParameters(new ReportParameter("PreparedBy", m.GetEmpName(Methods.CurrentUser.UserID)));
                     reportViewer1.RefreshReport();
                 }
             }
         }
 
-        private void SetPayPeriodDefaults()
-        {
-            DateTime today = DateTime.Today;
-            DateTime payPeriodStart, payPeriodEnd;
-
-            if (today.Day <= 15)
-            {
-                payPeriodStart = new DateTime(today.Year, today.Month, 1);
-                payPeriodEnd = new DateTime(today.Year, today.Month, 15);
-            }
-            else
-            {
-                payPeriodStart = new DateTime(today.Year, today.Month, 16);
-                payPeriodEnd = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-            }
-
-            //dtStart.Value = payPeriodStart;
-            //dtEnd.Value = payPeriodEnd;
-        }
-
-        private void dtStart_ValueChanged(object sender, EventArgs e)
-        {
-            //DateTime startDate = dtStart.Value.Date;
-            //dtEnd.Value = startDate.AddDays(14);
-            //dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
-        }
-
-        private void dtEnd_ValueChanged(object sender, EventArgs e)
-        {
-            //DateTime endDate = dtEnd.Value.Date;
-            //dtStart.Value = endDate.AddDays(-14);
-            //dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
-        }
         private AutoCompleteStringCollection suggest = new AutoCompleteStringCollection();
 
         public void SearchForName()
@@ -185,9 +187,6 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-
-
-
 
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
@@ -221,9 +220,22 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnBatch_Click(object sender, EventArgs e)
         {
-            cbPayDates.Enabled = true;
             btnLoad.Enabled = true;
             btnSingle.Enabled = false;
+        }
+
+        private void dtStart_ValueChanged_1(object sender, EventArgs e)
+        {
+            DateTime startDate = dtStart.Value.Date;
+            dtEnd.Value = startDate.AddDays(15);
+            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
+        }
+
+        private void dtEnd_ValueChanged_1(object sender, EventArgs e)
+        {
+            DateTime endDate = dtEnd.Value.Date;
+            dtStart.Value = endDate.AddDays(-15);
+            dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
         }
 
         //public void SetPaySlipInfo(int empID)

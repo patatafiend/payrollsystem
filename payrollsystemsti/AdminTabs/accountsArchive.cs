@@ -19,7 +19,7 @@ namespace payrollsystemsti.AdminTabs
 
        
 
-        private void LoadData()
+        private void LoadDataEmployee()
         {
 			archives.Rows.Clear();
             string searchText = searchbox.Text.Trim();
@@ -43,12 +43,171 @@ namespace payrollsystemsti.AdminTabs
 
 				}
 			}
-
-
+            archives.Columns["dgEmployeeID"].HeaderText = "EmployeeID";
 		}
+
+        private void LoadDataDeduction()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM Deductions WHERE IsDeactivated = 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["DeductionID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["DeductionType"].ToString() + ", " + row["Amount"].ToString();
+                    }
+
+                }
+            }
+            archives.Columns["dgEmployeeID"].HeaderText = "Deduction ID";
+        }
+
+        private void LoadDataDepartment()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM Departments WHERE IsDeactivated = 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["DepartmentID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["DepartmentName"].ToString();
+                    }
+
+                }
+            }
+            archives.Columns["dgEmployeeID"].HeaderText = "Department ID";
+        }
+
+        private void LoadDataHolidays()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM Holidays WHERE IsDeactivated = 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["HolidayID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["HolidayName"].ToString() + ", " + row["HolidayType"].ToString();
+                    }
+
+                }
+            }
+            archives.Columns["dgEmployeeID"].HeaderText = "Holiday ID";
+        }
+
+        private void LoadDataLeaves()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM LeaveCategory WHERE IsDeactivated= 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["CategoryID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["CategoryName"].ToString();
+                    }
+
+                }
+            }
+            archives.Columns["dgEmployeeID"].HeaderText = "Leave ID";
+        }
+
+        private void LoadDataRoles()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM Roles WHERE IsDeactivated = 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["RoleID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["RoleTitle"].ToString();
+                    }
+
+                }
+            }
+        }
+
+        private void LoadDataPosition()
+        {
+            archives.Rows.Clear();
+            string searchText = searchbox.Text.Trim();
+            string query = "SELECT * FROM Positions WHERE IsDeactivated = 1";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = archives.Rows.Add();
+                        archives.Rows[n].Cells["dgEmployeeID"].Value = row["PositionID"].ToString();
+                        archives.Rows[n].Cells["dgFullName"].Value = row["PositionTitle"].ToString();
+                    }
+                }
+            }
+            archives.Columns["dgEmployeeID"].HeaderText = "Position ID";
+        }
         private void accountsArchive_Load(object sender, System.EventArgs e)
         {
-            LoadData();
+            LoadDataEmployee();
         }
 
         private void searchfunction()
@@ -88,7 +247,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateAcc(id);
 			btnActivate.Enabled = false;
 			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-			LoadData();
+            LoadDataEmployee();
 
         }
 
@@ -109,7 +268,7 @@ namespace payrollsystemsti.AdminTabs
             }
             else
             {
-                LoadData();
+                LoadDataEmployee();
             }
         }
 
@@ -118,5 +277,34 @@ namespace payrollsystemsti.AdminTabs
             overtimeApplication overtime = new overtimeApplication();
             overtime.Show();
         }
+
+        private void cbPosition_TextChanged(object sender, EventArgs e)
+        {
+            switch (cbPosition.Text)
+            {
+                case "Employee Accounts":
+                    LoadDataEmployee();
+                    break;
+                case "Deduction":
+                    LoadDataDeduction();
+                    break;
+                case "Department":
+                    LoadDataDepartment();
+                    break;
+                case "Holidays":
+                    LoadDataHolidays();
+                    break;
+                case "Leaves":
+                    LoadDataLeaves();
+                    break;
+                case "Roles":
+                    LoadDataRoles();
+                    break;
+                case "Position":
+                    LoadDataPosition();
+                    break;
+            }
+        }
+
     }
 }

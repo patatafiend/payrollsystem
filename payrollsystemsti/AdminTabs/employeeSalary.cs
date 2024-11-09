@@ -21,6 +21,9 @@ namespace payrollsystemsti.AdminTabs
         private decimal overtimePay = 0;
         private decimal gross = 0;
 
+        private int taxID = 0;
+        private decimal tax = 0;
+
         private int empID = 0;
         public employeeSalary()
         {
@@ -375,8 +378,8 @@ namespace payrollsystemsti.AdminTabs
                 tbPagibig.Text = "0";
             }
 
-            int taxID = isTaxID((decimal)basicSalary);
-            decimal tax = calWithholdingTax(GetWTaxAmount(taxID), GetWTaxAdditional(taxID), gross);
+            taxID = isTaxID((decimal)basicSalary);
+            tax = calWithholdingTax(GetWTaxAmount(taxID), GetWTaxAdditional(taxID), gross);
 
 
             tbTax.Text = tax.ToString();
@@ -496,7 +499,8 @@ namespace payrollsystemsti.AdminTabs
             decimal sss = Convert.ToDecimal(tbSSS.Text);
 
             decimal deductionT = phil + pagibig + sss;
-            decimal netpay = gross - deductionT;
+            decimal grossPay = gross - tax;
+            decimal netpay = grossPay - deductionT;
             decimal totalHP = ((decimal)totalHoursW / 8) * basicRate;
             decimal semiM = basicRate * 15;
 
@@ -508,7 +512,7 @@ namespace payrollsystemsti.AdminTabs
             {
                 InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
                 totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
-                0, 0, gross, netpay, phil, pagibig, sss, deductionT, totalHP);
+                0, 0, grossPay, netpay, phil, pagibig, sss, deductionT, totalHP);
 
                 MessageBox.Show("Payslip Recorded!");
                 btnSave.Enabled = false;

@@ -229,7 +229,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Prepared by: Angel De Leon</Value>
+                                      <Value>Prepared by: </Value>
                                       <Style>
                                         <FontFamily>Poppins</FontFamily>
                                       </Style>
@@ -242,7 +242,7 @@
                               <Top>7.99913in</Top>
                               <Left>0.57206in</Left>
                               <Height>0.25in</Height>
-                              <Width>1.96527in</Width>
+                              <Width>0.95485in</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -339,6 +339,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!LastName.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>,</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -561,7 +565,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!SemiMonthly.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>'₱'#,0.00;('₱'#,0.00)</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -581,6 +587,7 @@
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
                                 <PaddingBottom>2pt</PaddingBottom>
+                                <rd:FormatSymbolCulture>en-PH</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                             <Textbox Name="PayPeriodStart">
@@ -623,7 +630,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!DailyRate.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>'₱'#,0.00;('₱'#,0.00)</Format>
+                                        <rd:FormatSymbolCulture>en-PH</rd:FormatSymbolCulture>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1687,7 +1697,7 @@
                                     <TextRun>
                                       <Value>=Fields!TotalHoursPay.Value</Value>
                                       <Style>
-                                        <Format>0.00;(0.00)</Format>
+                                        <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1708,6 +1718,7 @@
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
                                 <PaddingBottom>2pt</PaddingBottom>
+                                <rd:FormatSymbolCulture>en-PH</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                             <Textbox Name="OverTimePay1">
@@ -2351,6 +2362,66 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <Textbox Name="LastName2">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!FirstName.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>LastName</rd:DefaultName>
+                              <Top>1.2335in</Top>
+                              <Left>3.03036in</Left>
+                              <Height>0.25in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>76</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="PreparedBy">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Parameters!PreparedBy.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>PreparedBy</rd:DefaultName>
+                              <Top>7.99913in</Top>
+                              <Left>1.59636in</Left>
+                              <Height>0.25in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>77</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -2359,7 +2430,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2403,10 +2473,23 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="PreparedBy">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>8</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>PreparedBy</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
