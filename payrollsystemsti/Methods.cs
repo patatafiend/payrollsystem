@@ -29,7 +29,18 @@ namespace payrollsystemsti
         {
             if (img == null)
             {
-                throw new ArgumentNullException(nameof(img), "The image cannot be null.");
+                // Create a white image
+                Bitmap whiteImage = new Bitmap(100, 100);
+                using (Graphics g = Graphics.FromImage(whiteImage))
+                {
+                    g.Clear(Color.White);
+                }
+
+                using (var ms = new MemoryStream())
+                {
+                    whiteImage.Save(ms, ImageFormat.Png);
+                    return ms.ToArray();
+                }
             }
 
             using (var ms = new MemoryStream())

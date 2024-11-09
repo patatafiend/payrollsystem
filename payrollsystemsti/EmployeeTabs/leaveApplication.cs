@@ -488,7 +488,7 @@ namespace payrollsystemsti.EmployeeTabs
 						else
 						{
 							// Handle the case where no result was found
-							MessageBox.Show("Category not found or hasProof is null.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							//MessageBox.Show("Category not found or hasProof is null.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 							return false;
 						}
 					}
