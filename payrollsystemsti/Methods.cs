@@ -1349,7 +1349,7 @@ namespace payrollsystemsti
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "SELECT * FROM EmployeeAccounts WHERE DepartmentID = @depID";
+                string query = "SELECT COUNT(*) FROM EmployeeAccounts WHERE DepartmentID = @depID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
