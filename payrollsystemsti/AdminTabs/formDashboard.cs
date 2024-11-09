@@ -198,6 +198,11 @@ namespace payrollsystemsti
 
 		}
 
+        public Panel GetOvertimeManagementPanel()
+        {
+            return panel19;
+        }
+
 
 
 
