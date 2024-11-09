@@ -1005,6 +1005,156 @@ namespace payrollsystemsti
             }
         }
 
+        public bool activateDeduc(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET IsDeactivated = @status WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool activateDepartment(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Departments SET IsDeactivated = @status WHERE DepartmentID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool activateHoliday(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Holidays SET IsDeactivated = @status WHERE HolidayID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool activateLeave(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE LeaveCategory SET IsDeactivated = @status WHERE CategoryID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool activateRoles(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Roles SET IsDeactivated = @status WHERE RoleID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool activatePosition(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Positions SET IsDeactivated = @status WHERE PositionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Activating the Account: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
 
         public bool deactivateDepartment(int id)
         {

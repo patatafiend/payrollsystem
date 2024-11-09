@@ -244,11 +244,94 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnActivate_Click_1(object sender, EventArgs e)
         {
-            m.activateAcc(id);
-			btnActivate.Enabled = false;
-			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            
+        }
 
+        void activate()
+        {
+            switch (cbPosition.Text)
+            {
+                case "Employee Accounts":
+                    activateE();
+                    break;
+                case "Deduction":
+                    activateD();
+                    break;
+                case "Department":
+                    activateDep();
+                    break;
+                case "Holidays":
+                    activateHol();
+                    break;
+                case "Leaves":
+                    activateLeave();
+                    break;
+                case "Roles":
+                    activateRole();
+                    break;
+                case "Positon":
+                    activatePosition();
+                    break;
+                default:
+                    activateE();
+                    break;
+            }
+        }
+
+        void activateE()
+        {
+            m.activateAcc(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activateD()
+        {
+            m.activateDeduc(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activateDep()
+        {
+            m.activateDepartment(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activateHol()
+        {
+            m.activateHoliday(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activateLeave()
+        {
+            m.activateLeave(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activateRole()
+        {
+            m.activateRoles(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
+        }
+
+        void activatePosition()
+        {
+            m.activatePosition(id);
+            btnActivate.Enabled = false;
+            m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
+            LoadDataEmployee();
         }
 
         private void archives_MouseDoubleClick(object sender, MouseEventArgs e)
