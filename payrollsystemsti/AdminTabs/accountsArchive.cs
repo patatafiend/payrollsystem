@@ -244,7 +244,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void btnActivate_Click_1(object sender, EventArgs e)
         {
-            
+            activate();
         }
 
         void activate()
