@@ -126,5 +126,32 @@ namespace payrollsystemsti
             btnCancel.Visible = false;
             tb1.Clear();
         }
+
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            DeactivateHoliday();
+        }
+
+        private void DeactivateHoliday()
+        {
+            DialogResult dialogResult = MessageBox.Show("Deactivate this row?", "Deactivation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    m.deactivateHoliday(holidayID);
+                    LoadHolidayData();
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to deactivate", "Deactivation Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                btnDeactivate.Enabled = false;
+            }
+        }
     }
 }

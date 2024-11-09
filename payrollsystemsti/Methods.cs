@@ -977,6 +977,31 @@ namespace payrollsystemsti
             }
         }
 
+        public bool deactivateHoliday(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Holidays SET IsDeactivated = @status WHERE HolidayID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@status", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error deactivating the Department: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool deactivatePosition(int id)
         {
             using (SqlConnection conn = new SqlConnection(connStr))

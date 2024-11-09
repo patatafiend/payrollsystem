@@ -125,7 +125,7 @@ namespace payrollsystemsti
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            
+            DeactivateLeave();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)

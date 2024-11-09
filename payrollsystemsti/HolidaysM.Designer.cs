@@ -47,6 +47,7 @@
             this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cbHType = new System.Windows.Forms.ComboBox();
+            this.btnDeactivate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -255,12 +256,28 @@
             this.cbHType.Size = new System.Drawing.Size(121, 21);
             this.cbHType.TabIndex = 103;
             // 
+            // btnDeactivate
+            // 
+            this.btnDeactivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeactivate.BackColor = System.Drawing.Color.Crimson;
+            this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDeactivate.Location = new System.Drawing.Point(701, 216);
+            this.btnDeactivate.Name = "btnDeactivate";
+            this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
+            this.btnDeactivate.TabIndex = 104;
+            this.btnDeactivate.Text = "Deactivate";
+            this.btnDeactivate.UseVisualStyleBackColor = false;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
+            // 
             // HolidaysM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(876, 625);
+            this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.cbHType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtDate);
@@ -300,5 +317,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgIsDeactivated;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDay;
+        private System.Windows.Forms.Button btnDeactivate;
     }
 }
