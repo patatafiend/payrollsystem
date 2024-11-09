@@ -86,7 +86,7 @@ namespace payrollsystemsti
             }
             else
             {
-                btnDeactivate.Enabled = false;
+                
             }
         }
 
@@ -95,7 +95,7 @@ namespace payrollsystemsti
             dataGridView1.Rows.Clear();
             string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
                 "Others.Adjustment, Others.ATremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
-                "WHERE EmployeeAccounts.IsDeactivated = @status";
+                "WHERE EmployeeAccounts.IsDeleted = @status";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
@@ -130,7 +130,7 @@ namespace payrollsystemsti
         public void Reset()
         {
             tb1.Clear();
-            btnDeactivate.Enabled = false;
+            //btnDeactivate.Enabled = false;
             btnUpdate.Enabled = false;
         }
 
