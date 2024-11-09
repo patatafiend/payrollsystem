@@ -333,7 +333,7 @@ namespace payrollsystemsti
                 String fnameC = char.ToUpper(loggedInFirstName[0]) + loggedInFirstName.Substring(1);
                 dashBoard.dashboardInstance.lbGetName.Text = "Welcome , " + fnameC;
                 dashBoard.dashboardInstance.lbEmpID.Text = "EmployeeID: " + loggedInEmployeeID.ToString();
-                dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
+                //dashBoard.dashboardInstance.lbLeaves.Text = loggedInLeaves.ToString();
                 dashBoard.dashboardInstance.lbAbsents.Text = "Absents: " + loggedInAbsents.ToString();
                 dashBoard.dashboardInstance.lbEmpName.Text = "Name: " + fnameC;
 
