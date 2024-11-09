@@ -221,7 +221,7 @@
             "Deduction",
             "Department",
             "Holiday",
-            "Incentives",
+            "Incentive",
             "Leave",
             "Role",
             "Position",
