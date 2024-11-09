@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
-            this.btnDeactivate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dg1st = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg2nd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,21 +66,6 @@
             this.tb1.Size = new System.Drawing.Size(150, 25);
             this.tb1.TabIndex = 86;
             this.tb1.TextChanged += new System.EventHandler(this.tb1_TextChanged);
-            // 
-            // btnDeactivate
-            // 
-            this.btnDeactivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeactivate.BackColor = System.Drawing.Color.Crimson;
-            this.btnDeactivate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeactivate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDeactivate.Location = new System.Drawing.Point(929, 329);
-            this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(118, 44);
-            this.btnDeactivate.TabIndex = 78;
-            this.btnDeactivate.Text = "Deactivate";
-            this.btnDeactivate.UseVisualStyleBackColor = false;
-            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // dataGridView1
             // 
@@ -231,7 +215,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb1);
-            this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label11);
@@ -249,7 +232,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb1;
-        private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label11;

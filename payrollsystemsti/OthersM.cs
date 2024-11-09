@@ -95,7 +95,7 @@ namespace payrollsystemsti
             dataGridView1.Rows.Clear();
             string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
                 "Others.Adjustment, Others.ATremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
-                "WHERE IsDeactivated = @status";
+                "WHERE EmployeeAccounts.IsDeactivated = @status";
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
