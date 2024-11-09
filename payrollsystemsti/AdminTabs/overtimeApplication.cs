@@ -115,6 +115,7 @@ namespace payrollsystemsti.AdminTabs
                 MessageBox.Show("Overtime application submitted successfully.");
 
 				m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Overtime Submitted");
+                m.Add_Notification_AcceptedOrRejected(empID.ToString(), " Overtime Application ", "Pending");
 			}
             catch (Exception ex)
             {
