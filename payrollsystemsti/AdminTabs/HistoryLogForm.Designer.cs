@@ -52,7 +52,7 @@
 			this.cb_HistoryLog = new System.Windows.Forms.ComboBox();
 			this.btnSearch = new System.Windows.Forms.Button();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.label1 = new System.Windows.Forms.Label();
+			this.btnRefresh = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgv_HistoryLog)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.historyTableBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.stipayrolldbDataSet8)).BeginInit();
@@ -255,14 +255,19 @@
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
 			// 
-			// label1
+			// btnRefresh
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(369, 134);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(35, 13);
-			this.label1.TabIndex = 34;
-			this.label1.Text = "label1";
+			this.btnRefresh.BackColor = System.Drawing.Color.Teal;
+			this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnRefresh.ForeColor = System.Drawing.SystemColors.Control;
+			this.btnRefresh.Location = new System.Drawing.Point(325, 125);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(100, 35);
+			this.btnRefresh.TabIndex = 33;
+			this.btnRefresh.Text = "Refresh";
+			this.btnRefresh.UseVisualStyleBackColor = false;
+			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
 			// HistoryLogForm
 			// 
@@ -270,7 +275,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.LavenderBlush;
 			this.ClientSize = new System.Drawing.Size(1052, 636);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.btnRefresh);
 			this.Controls.Add(this.btnSearch);
 			this.Controls.Add(this.cb_HistoryLog);
 			this.Controls.Add(this.panel2);
@@ -289,7 +294,6 @@
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -318,6 +322,6 @@
 		private System.Windows.Forms.ComboBox cb_HistoryLog;
 		private System.Windows.Forms.Button btnSearch;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button btnRefresh;
 	}
 }

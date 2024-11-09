@@ -67,5 +67,16 @@ namespace payrollsystemsti.AdminTabs
 
 		}
 
+		private void btnRefresh_Click(object sender, EventArgs e)
+		{
+			SqlConnection con = new SqlConnection(m.connStr);
+			con.Open();
+			SqlCommand cmd = new SqlCommand("SELECT * FROM HistoryTable ", con);
+			SqlDataAdapter da = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			da.Fill(dt);
+			dgv_HistoryLog.DataSource = dt;
+			con.Close();
+		}
 	}
 }
