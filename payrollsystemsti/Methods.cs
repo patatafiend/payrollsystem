@@ -499,6 +499,32 @@ namespace payrollsystemsti
             }
         }
 
+        public bool insertToDeductionsT(string title, int amount , decimal add)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO Deductions (DeductionType, Amount, Additional) VALUES (@type, @amount, @add)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@add", add);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error inserting into Deductions: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool insertToAllowances(int empID, int training, int trans, int load, int provision, int oba)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -852,6 +878,34 @@ namespace payrollsystemsti
                 {
                     cmd.Parameters.AddWithValue("@type", title);
                     cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error updating Deduction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateDeductionsT(string title, decimal amount, decimal add, int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Deductions SET DeductionType = @type, Amount = @amount, Additional = @add " +
+                    "WHERE DeductionID = @ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", title);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@add", add);
                     cmd.Parameters.AddWithValue("@ID", id);
 
                     try
