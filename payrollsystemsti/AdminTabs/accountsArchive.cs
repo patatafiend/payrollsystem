@@ -291,7 +291,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateDeduc(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataDeduction();
         }
 
         void activateDep()
@@ -299,7 +299,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateDepartment(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataDepartment();
         }
 
         void activateHol()
@@ -307,7 +307,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateHoliday(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataHolidays();
         }
 
         void activateLeave()
@@ -315,7 +315,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateLeave(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataLeaves();
         }
 
         void activateRole()
@@ -323,7 +323,7 @@ namespace payrollsystemsti.AdminTabs
             m.activateRoles(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataRoles();
         }
 
         void activatePosition()
@@ -331,7 +331,7 @@ namespace payrollsystemsti.AdminTabs
             m.activatePosition(id);
             btnActivate.Enabled = false;
             m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Account Archive Activated");
-            LoadDataEmployee();
+            LoadDataPosition();
         }
 
         private void archives_MouseDoubleClick(object sender, MouseEventArgs e)
