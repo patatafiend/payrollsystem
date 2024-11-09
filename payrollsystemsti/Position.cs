@@ -37,6 +37,7 @@ namespace payrollsystemsti
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             DeactivatePositon();
+            LoadPositionData();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
