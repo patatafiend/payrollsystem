@@ -102,7 +102,7 @@ namespace payrollsystemsti
             {
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    m.deactivateDeduction(titleID);
+                    m.deactivateLeave(titleID);
                     LoadLeaveCategoryData();
                     tb1.Clear();
                 }

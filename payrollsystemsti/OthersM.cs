@@ -147,5 +147,12 @@ namespace payrollsystemsti
                 btnCancel.Visible = false;
             }
         }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            AdjustmentID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value);
+            tb1.Text = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg3rd"].Value).ToString();
+            tbRemarks.Text = dataGridView1.SelectedRows[0].Cells["dgRemarks"].Value.ToString();
+        }
     }
 }

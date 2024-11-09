@@ -69,11 +69,7 @@ namespace payrollsystemsti
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            btnUpdate.Enabled = true;
-            btnAdd.Enabled = false;
-
-            titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
-            tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
+            
         }
 
         private void LoadRoleData()
@@ -92,7 +88,13 @@ namespace payrollsystemsti
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["RoleID"].ToString();
-                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["RoleTitle"].ToString();
+                        dataGridView1.Rows[n].Cells["dg2nd"].Value = row["Maintenance"].ToString();
+                        dataGridView1.Rows[n].Cells["dg3rd"].Value = row["ViewHistory"].ToString();
+                        dataGridView1.Rows[n].Cells["dg4th"].Value = row["LeaveManagement"].ToString();
+                        dataGridView1.Rows[n].Cells["dg5th"].Value = row["AccountArchive"].ToString();
+                        dataGridView1.Rows[n].Cells["dg6th"].Value = row["BackupRestore"].ToString();
+                        dataGridView1.Rows[n].Cells["dg7th"].Value = row["EmployeeManagement"].ToString();
+                        dataGridView1.Rows[n].Cells["dg8th"].Value = row["Attendance"].ToString();
                     }
                 }
             }
@@ -185,6 +187,7 @@ namespace payrollsystemsti
             {
                 case CheckState.Checked:
                     return true;
+                    return true;
                 case CheckState.Unchecked:
                     return false;
                 default:
@@ -242,6 +245,15 @@ namespace payrollsystemsti
             {
                 btnCancel.Visible = false;
             }
+        }
+
+        private void dataGridView1_MouseDoubleClick_1(object sender, MouseEventArgs e)
+        {
+            btnUpdate.Enabled = true;
+            btnAdd.Enabled = false;
+
+            titleID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+            tb1.Text = dataGridView1.SelectedRows[0].Cells["dg2nd"].Value.ToString();
         }
     }
 }
