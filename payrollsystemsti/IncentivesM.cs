@@ -99,7 +99,7 @@ namespace payrollsystemsti
         private void LoadIncentivesData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
+            string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
                 "Others.Incentives, Others.ITremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
                 "WHERE IsDeactivated = @status";
 
@@ -117,6 +117,7 @@ namespace payrollsystemsti
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Incentives"].ToString();
                         dataGridView1.Rows[n].Cells["dgRemarks"].Value = row["ITremarks"].ToString();
@@ -163,7 +164,8 @@ namespace payrollsystemsti
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg1st"].Value.ToString());
+            empID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value);
+            tb1.Text = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["dg3rd"].Value).ToString();
             tbRemarks.Text = dataGridView1.SelectedRows[0].Cells["dgRemarks"].Value.ToString();
         }
 
@@ -202,7 +204,7 @@ namespace payrollsystemsti
             dataGridView1.Rows.Clear();
             string searchText = tbSearch.Text.Trim(); // Assuming txtSearchEmployee is your textbox
 
-            string query = "SELECT EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
+            string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.FirstName, EmployeeAccounts.LastName, Others.OtherID, " +
                 "Others.Incentives, Others.ITremarks FROM EmployeeAccounts INNER JOIN Others ON EmployeeAccounts.EmployeeID = Others.EmployeeID " +
                 "WHERE IsDeactivated = 0";
 
@@ -224,6 +226,7 @@ namespace payrollsystemsti
                     {
                         int n = dataGridView1.Rows.Add();
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["OtherID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["FirstName"].ToString() + " " + row["LastName"].ToString();
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Incentives"].ToString();
                         dataGridView1.Rows[n].Cells["dgRemarks"].Value = row["ITremarks"].ToString();

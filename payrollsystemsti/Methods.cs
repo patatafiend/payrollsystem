@@ -721,7 +721,7 @@ namespace payrollsystemsti
             {
                 conn.Open();
                 string query = @"UPDATE Others SET Incentives = @incentives, ITremarks = @remarks
-                                 WHERE EmployeeID = @employeeID;";
+                                 WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -750,7 +750,7 @@ namespace payrollsystemsti
             {
                 conn.Open();
                 string query = @"UPDATE Others SET Adjustment = @adj, ATremarks = @remarks 
-                                 WHERE EmployeeID = @employeeID;";
+                                 WHERE EmployeeID = @employeeID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
