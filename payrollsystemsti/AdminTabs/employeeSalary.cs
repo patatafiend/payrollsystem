@@ -330,7 +330,7 @@ namespace payrollsystemsti.AdminTabs
             basicSalary = calBasicSalary(basicRate, totalHoursW);
             overtimePay = calOvertimePay(totalOvertime, basicRate);
 
-            tbBasic.Text = basicSalary.ToString();
+            tbBasic.Text = basicRate.ToString();
             tbOT.Text = overtimePay.ToString();
             tbLate.Text = Math.Round(calLate(totalLate), 2).ToString();
             //MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
@@ -350,6 +350,8 @@ namespace payrollsystemsti.AdminTabs
                 Convert.ToDecimal(tbTransA.Text), Convert.ToDecimal(tbLoadA.Text), Convert.ToDecimal(tbPTA.Text),
                 overtimePay, Convert.ToDecimal(tbRegularH.Text), Convert.ToDecimal(tbSpecialH.Text),
                 Convert.ToDecimal(tbAdjustment.Text), Convert.ToDecimal(tbOBA.Text));
+
+            tbGross.Text = gross.ToString();
 
             if (cbSSS.Checked)
             {

@@ -50,9 +50,6 @@
             this.tbTA = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gb3 = new System.Windows.Forms.GroupBox();
-            this.cbSSS = new System.Windows.Forms.CheckBox();
-            this.cbPG = new System.Windows.Forms.CheckBox();
-            this.cbPH = new System.Windows.Forms.CheckBox();
             this.tbPH = new System.Windows.Forms.TextBox();
             this.tbPagibig = new System.Windows.Forms.TextBox();
             this.tbSSS = new System.Windows.Forms.TextBox();
@@ -86,6 +83,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTax = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.tbGross = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -96,6 +98,8 @@
             // 
             // gb1
             // 
+            this.gb1.Controls.Add(this.tbGross);
+            this.gb1.Controls.Add(this.label7);
             this.gb1.Controls.Add(this.tbOT);
             this.gb1.Controls.Add(this.label4);
             this.gb1.Controls.Add(this.tbAdjustment);
@@ -111,7 +115,7 @@
             this.gb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb1.Location = new System.Drawing.Point(54, 89);
             this.gb1.Name = "gb1";
-            this.gb1.Size = new System.Drawing.Size(287, 271);
+            this.gb1.Size = new System.Drawing.Size(287, 305);
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Income";
@@ -119,7 +123,7 @@
             // tbOT
             // 
             this.tbOT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbOT.Location = new System.Drawing.Point(156, 231);
+            this.tbOT.Location = new System.Drawing.Point(156, 262);
             this.tbOT.Multiline = true;
             this.tbOT.Name = "tbOT";
             this.tbOT.ReadOnly = true;
@@ -129,7 +133,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 233);
+            this.label4.Location = new System.Drawing.Point(15, 264);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 11;
@@ -138,7 +142,7 @@
             // tbAdjustment
             // 
             this.tbAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAdjustment.Location = new System.Drawing.Point(156, 195);
+            this.tbAdjustment.Location = new System.Drawing.Point(156, 226);
             this.tbAdjustment.Multiline = true;
             this.tbAdjustment.Name = "tbAdjustment";
             this.tbAdjustment.ReadOnly = true;
@@ -148,7 +152,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(15, 197);
+            this.label20.Location = new System.Drawing.Point(15, 228);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(105, 20);
             this.label20.TabIndex = 9;
@@ -157,7 +161,7 @@
             // tbSpecialH
             // 
             this.tbSpecialH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSpecialH.Location = new System.Drawing.Point(156, 161);
+            this.tbSpecialH.Location = new System.Drawing.Point(156, 192);
             this.tbSpecialH.Multiline = true;
             this.tbSpecialH.Name = "tbSpecialH";
             this.tbSpecialH.ReadOnly = true;
@@ -167,7 +171,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(15, 163);
+            this.label19.Location = new System.Drawing.Point(15, 194);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(137, 20);
             this.label19.TabIndex = 7;
@@ -176,7 +180,7 @@
             // tbRegularH
             // 
             this.tbRegularH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbRegularH.Location = new System.Drawing.Point(156, 121);
+            this.tbRegularH.Location = new System.Drawing.Point(156, 152);
             this.tbRegularH.Multiline = true;
             this.tbRegularH.Name = "tbRegularH";
             this.tbRegularH.ReadOnly = true;
@@ -186,7 +190,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(15, 123);
+            this.label18.Location = new System.Drawing.Point(15, 154);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(116, 20);
             this.label18.TabIndex = 5;
@@ -195,7 +199,7 @@
             // tbIncentives
             // 
             this.tbIncentives.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbIncentives.Location = new System.Drawing.Point(156, 74);
+            this.tbIncentives.Location = new System.Drawing.Point(156, 105);
             this.tbIncentives.Multiline = true;
             this.tbIncentives.Name = "tbIncentives";
             this.tbIncentives.ReadOnly = true;
@@ -205,7 +209,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 83);
+            this.label2.Location = new System.Drawing.Point(15, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 3;
@@ -225,11 +229,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 44);
+            this.label1.Location = new System.Drawing.Point(15, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 20);
+            this.label1.Size = new System.Drawing.Size(92, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Basic:";
+            this.label1.Text = "Basic Pay:";
             // 
             // tbPTA
             // 
@@ -309,9 +313,9 @@
             // 
             // gb3
             // 
-            this.gb3.Controls.Add(this.cbSSS);
-            this.gb3.Controls.Add(this.cbPG);
-            this.gb3.Controls.Add(this.cbPH);
+            this.gb3.Controls.Add(this.label11);
+            this.gb3.Controls.Add(this.label10);
+            this.gb3.Controls.Add(this.label9);
             this.gb3.Controls.Add(this.tbPH);
             this.gb3.Controls.Add(this.tbPagibig);
             this.gb3.Controls.Add(this.tbSSS);
@@ -322,36 +326,6 @@
             this.gb3.TabIndex = 8;
             this.gb3.TabStop = false;
             this.gb3.Text = "Mandatory Deductions";
-            // 
-            // cbSSS
-            // 
-            this.cbSSS.AutoSize = true;
-            this.cbSSS.Location = new System.Drawing.Point(37, 95);
-            this.cbSSS.Name = "cbSSS";
-            this.cbSSS.Size = new System.Drawing.Size(69, 24);
-            this.cbSSS.TabIndex = 52;
-            this.cbSSS.Text = "SSS:";
-            this.cbSSS.UseVisualStyleBackColor = true;
-            // 
-            // cbPG
-            // 
-            this.cbPG.AutoSize = true;
-            this.cbPG.Location = new System.Drawing.Point(37, 63);
-            this.cbPG.Name = "cbPG";
-            this.cbPG.Size = new System.Drawing.Size(100, 24);
-            this.cbPG.TabIndex = 51;
-            this.cbPG.Text = "Pag-Ibig:";
-            this.cbPG.UseVisualStyleBackColor = true;
-            // 
-            // cbPH
-            // 
-            this.cbPH.AutoSize = true;
-            this.cbPH.Location = new System.Drawing.Point(37, 33);
-            this.cbPH.Name = "cbPH";
-            this.cbPH.Size = new System.Drawing.Size(115, 24);
-            this.cbPH.TabIndex = 50;
-            this.cbPH.Text = "PhilHealth:";
-            this.cbPH.UseVisualStyleBackColor = true;
             // 
             // tbPH
             // 
@@ -714,6 +688,52 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "Withholding Tax:";
             // 
+            // tbGross
+            // 
+            this.tbGross.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbGross.Location = new System.Drawing.Point(156, 69);
+            this.tbGross.Multiline = true;
+            this.tbGross.Name = "tbGross";
+            this.tbGross.ReadOnly = true;
+            this.tbGross.Size = new System.Drawing.Size(94, 28);
+            this.tbGross.TabIndex = 49;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 77);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 20);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Gross Pay:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(29, 28);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 20);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "PhilHealth :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(29, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 20);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "PagIbig :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(29, 97);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 20);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "SSS :";
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,9 +822,6 @@
         private System.Windows.Forms.Button btnPayslip;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.CheckBox cbSSS;
-        private System.Windows.Forms.CheckBox cbPG;
-        private System.Windows.Forms.CheckBox cbPH;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBasic;
@@ -816,5 +833,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbTax;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbGross;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
