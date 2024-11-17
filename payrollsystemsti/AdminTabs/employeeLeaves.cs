@@ -60,7 +60,7 @@ namespace payrollsystemsti.AdminTabs
 					string columnName = row["COLUMN_NAME"].ToString();
 					if (columnName != "Id")
 					{
-						columns.Add($"[{columnName}]");
+						columns.Add($"LeaveTypeAvailable.[{columnName}]");
 					}
 				}
 
@@ -68,7 +68,10 @@ namespace payrollsystemsti.AdminTabs
 				string columnList = string.Join(", ", columns);
 
 				// Create the SQL query dynamically
-				string query = $"SELECT {columnList} FROM LeaveTypeAvailable";
+				string query = $@"
+				 SELECT EmployeeAccounts.LastName, EmployeeAccounts.FirstName, {columnList}
+				 FROM LeaveTypeAvailable
+				INNER JOIN EmployeeAccounts ON LeaveTypeAvailable.[Employee ID] = EmployeeAccounts.EmployeeID";
 
 				SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -78,6 +81,8 @@ namespace payrollsystemsti.AdminTabs
 				dgv_empLeaves.DataSource = dt;
 			}
 		}
+
+
 
 		//available leaves for the current user
 		private void availableLeaveUser()
@@ -135,10 +140,10 @@ namespace payrollsystemsti.AdminTabs
 			return false;
 		}
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
+		private void getEmployeenames()
+		{
 
-        }
+		}
     }
 
 }
