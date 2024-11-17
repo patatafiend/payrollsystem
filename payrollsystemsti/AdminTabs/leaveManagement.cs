@@ -11,7 +11,8 @@ namespace payrollsystemsti.AdminTabs
 	{
 		Methods m = new Methods();
 		private string employeeID;
-		private string date;
+        private string leaveID;
+        private string date;
 
         TimeSpan startTimeAM = new TimeSpan(9, 0, 0);  // 9:00 AM
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
@@ -35,7 +36,8 @@ namespace payrollsystemsti.AdminTabs
 		{
 			LeaveDetails ld = new LeaveDetails();
 			LeaveDetails.ld.employeeID = Int32.Parse(employeeID);
-			LeaveDetails.ld.AppDate = date;
+            LeaveDetails.ld.LeaveID = Int32.Parse(leaveID);
+            LeaveDetails.ld.AppDate = date;
 			ld.Show();
 
 		}
@@ -44,7 +46,7 @@ namespace payrollsystemsti.AdminTabs
 		{
 			dataGridView1.Rows.Clear();
 			string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-				", LeaveApplications.Status, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd, LeaveApplications.AppliedDate" +
+                ", LeaveApplications.Status, LeaveApplications.LeaveID, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd, LeaveApplications.AppliedDate" +
 				" FROM EmployeeAccounts JOIN LeaveApplications ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
 
 			using (SqlConnection conn = new SqlConnection(m.connStr))
@@ -60,7 +62,8 @@ namespace payrollsystemsti.AdminTabs
 					{
 						int n = dataGridView1.Rows.Add();
 						dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-						dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveID"].ToString();
+                        dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
 						dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
 						dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
                         dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("MM/dd/yyyy");
@@ -74,7 +77,7 @@ namespace payrollsystemsti.AdminTabs
 		private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			employeeID = dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString();
-
+            leaveID = dataGridView1.SelectedRows[0].Cells["dgLeaveID"].Value.ToString();
             date = dataGridView1.SelectedRows[0].Cells["dgAppliedDate"].Value.ToString();
 
             string status = dataGridView1.SelectedRows[0].Cells["dgStatus"].Value.ToString();
