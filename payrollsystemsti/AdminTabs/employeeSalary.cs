@@ -353,32 +353,32 @@ namespace payrollsystemsti.AdminTabs
 
             tbGross.Text = gross.ToString();
 
-            if (cbSSS.Checked)
-            {
-                tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
-            }
-            else if (!cbSSS.Checked)
-            {
-                tbSSS.Text = "0";
-            }
+            //if (cbSSS.Checked)
+            //{
+            //    tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
+            //}
+            //else if (!cbSSS.Checked)
+            //{
+            //    tbSSS.Text = "0";
+            //}
 
-            if (cbPH.Checked)
-            {
-                tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
-            } 
-            else if (!cbPH.Checked)
-            {
-                tbPH.Text = "0";
-            }
+            //if (cbPH.Checked)
+            //{
+            //    tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+            //} 
+            //else if (!cbPH.Checked)
+            //{
+            //    tbPH.Text = "0";
+            //}
 
-            if (cbPG.Checked)
-            {
-                tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
-            } 
-            else if (!cbPG.Checked)
-            {
-                tbPagibig.Text = "0";
-            }
+            //if (cbPG.Checked)
+            //{
+            //    tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
+            //} 
+            //else if (!cbPG.Checked)
+            //{
+            //    tbPagibig.Text = "0";
+            //}
 
             taxID = isTaxID((decimal)basicSalary);
             tax = calWithholdingTax(GetWTaxAmount(taxID), GetWTaxAdditional(taxID), gross);

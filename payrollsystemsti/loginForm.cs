@@ -299,39 +299,60 @@ namespace payrollsystemsti
 
 						if (!maintenance)
 						{
+
 							formDashboard.GetMaintenancePanel().Hide();
+
 						}
 
 						if (!viewHistory)
 						{
+
 							formDashboard.GetHistoryPanel().Hide();
+
 						}
 
 						if (!leaveManagement)
 						{
+
 							formDashboard.GetLeaveManagementPanel().Hide();
+
 						}
 
 						if(!accountArchive)
 						{
+
 							formDashboard.GetAccountArchivePanel().Hide();
+
 						}
 
 						if (!backupRestore)
 						{
+
 							formDashboard.GetBackupAndRestorePanel().Hide();
+
 						}
 
-						if (!employeeManagement)
+						if (employeeManagement && attendance)
 						{
-							formDashboard.GetEmployeePanel().Hide();
+
+							formDashboard.GetEmployeePanel().Show();
+
+
+
+						} else if (!employeeManagement && attendance ) {
+
+							formDashboard.GetEmployeePanel().Show();
+							formDashboard.GetEmployeeRegisterPanel().Hide();
 							formDashboard.GetOvertimeManagementPanel().Hide();
+							formDashboard.GetSalaryPanel().Hide();
+
+						} else if(!employeeManagement)
+						{
+							
+							formDashboard.GetEmployeePanel().Hide();
 						}
 
-						//if (!attendance)
-						//{
-						//	formDashboard.GetAttendancePanel().Hide();
-						//}
+						
 
 						
 
