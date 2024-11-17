@@ -36,7 +36,7 @@ namespace payrollsystemsti.AdminTabs
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
-        TimeSpan endTimePM = new TimeSpan(18, 00, 0);    // 6:00 PM
+        TimeSpan endTimePM = new TimeSpan(23, 00, 0);    // 6:00 PM
 
         TimeSpan timeOutBDYS = new TimeSpan(9, 16, 0);  // 9:16 AM
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
@@ -50,7 +50,7 @@ namespace payrollsystemsti.AdminTabs
             AMinstance = this;
             //Timer timer = new Timer() { Interval = 60000 }; // Check every minute
             //timer.Tick += (sender, e) => CheckAndUpdateTimeouts();
-            //timer.Start();
+            timer.Start();
         }
 
         private void attendanceMonitoring_Load(object sender, EventArgs e)
@@ -59,9 +59,11 @@ namespace payrollsystemsti.AdminTabs
             btnTimeIN.Enabled = true;
 
             LoadAttendanceData(date.Value);
+            //sfDateTimeEdit1.
 
             //time.Enabled = false;
-            //timer.Enabled = true;
+            //
+            
         }
 
         private async void btnTimeIN_Click(object sender, EventArgs e)
@@ -74,14 +76,12 @@ namespace payrollsystemsti.AdminTabs
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
 
-
                 string status = "Time IN";
                 double currentTime = time.Value.Hour;
                 double currentMinute = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
                 bool holiday = false;
-                string holidayT = "None";
 
                 try
                 {
@@ -90,7 +90,7 @@ namespace payrollsystemsti.AdminTabs
                     
                     if (isFingerIdExist(fID))
                     {
-                        if (insertAttendance(currentDate, currentTime, null, fID, m.getEmpID(fID)))
+                        if (InsertAttendance(currentDate, fID))
                         {
                             m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
                             //MessageBox.Show(date.Value.Month+" "+ date.Value.Day);
@@ -116,19 +116,19 @@ namespace payrollsystemsti.AdminTabs
 
                             }
 
-                            if (checkIfLatePM(time.Value.Hour, time.Value.Minute, 0))
-                            {
-                                DateTime timeIn = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, time.Value.Hour, time.Value.Minute, 0);
-                                DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 1, 15, 0);
+                            //if (checkIfLatePM(time.Value.Hour, time.Value.Minute, 0))
+                            //{
+                            //    DateTime timeIn = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, time.Value.Hour, time.Value.Minute, 0);
+                            //    DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 1, 0, 1);
 
-                                TimeSpan difference = timeIn - lateStartTime;
-                                double minutesLate = difference.TotalMinutes;
+                            //    TimeSpan difference = timeIn - lateStartTime;
+                            //    double minutesLate = difference.TotalMinutes;
 
-                                UpdateAttendanceForLate(m.getEmpID(fID), currentDate, minutesLate);
-                                //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
-                                MessageBox.Show("Minutes late: " + minutesLate);
+                            //    UpdateAttendanceForLate(m.getEmpID(fID), currentDate, minutesLate);
+                            //    //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
+                            //    MessageBox.Show("Minutes late: " + minutesLate);
 
-                            }
+                            //}
 
                             if (checkIfEarly(time.Value.Hour, time.Value.Minute, 0))
                             {
@@ -309,7 +309,7 @@ namespace payrollsystemsti.AdminTabs
         private bool checkIfLate(int hour, int minute, int second)
         {
             TimeSpan currentTime = new TimeSpan(hour, minute, second);
-            TimeSpan startTime = new TimeSpan(9, 15, 0);
+            TimeSpan startTime = new TimeSpan(9, 0, 1);
             TimeSpan endTime = new TimeSpan(11, 59, 0);
 
             if (currentTime >= startTime && currentTime <= endTime)
@@ -326,7 +326,7 @@ namespace payrollsystemsti.AdminTabs
         {
             TimeSpan currentTime = new TimeSpan(hour, minute, second);
             TimeSpan startTime = new TimeSpan(6, 0, 0);
-            TimeSpan endTime = new TimeSpan(9, 14, 0);
+            TimeSpan endTime = new TimeSpan(9, 0, 0);
 
             if (currentTime >= startTime && currentTime <= endTime)
             {
@@ -341,7 +341,7 @@ namespace payrollsystemsti.AdminTabs
         private bool checkIfLatePM(int hour, int minute, int second)
         {
             TimeSpan currentTime = new TimeSpan(hour, minute, second);
-            TimeSpan startTime = new TimeSpan(1, 15, 0);
+            TimeSpan startTime = new TimeSpan(1, 0, 1);
             TimeSpan endTime = new TimeSpan(5, 59, 0);
 
             if (currentTime >= startTime && currentTime <= endTime)
@@ -358,7 +358,7 @@ namespace payrollsystemsti.AdminTabs
             DialogResult dialogResult = MessageBox.Show("Time OUT?", "Action", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                TimeSpan timeNow = TimeSpan.FromHours(time.Value.Hour);
+                TimeSpan timeNow = new TimeSpan(time.Value.Hour, time.Value.Minute, 0);
                 loadingIndicator.Visible = true;
                 btnTimeIN.Enabled = false;
                 btnTimeOUT.Enabled = false;
@@ -368,6 +368,7 @@ namespace payrollsystemsti.AdminTabs
                 float late = time.Value.Minute;
                 string currentTimeString = time.Value.ToString("hh:mm tt");
                 string currentDate = date.Value.ToString("MM/dd/yyyy");
+                decimal totalH;
 
                 try
                 {
@@ -376,10 +377,36 @@ namespace payrollsystemsti.AdminTabs
 
                     if (isFingerIdExist(fID))
                     {
-                        if (insertAttendance(currentDate, null, currentTime, fID, m.getEmpID(fID)))
+                        if (UpdateAttendance(currentDate, fID))
                         {
                             m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
                             MessageBox.Show($"check out of {m.getEmpName(fID)} ");
+                            totalH = GetTotalHours(m.getEmpID(fID), currentDate);
+
+                            if (m.IsTimedOutAM(fID, currentDate) && (totalH == 0) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
+                            {
+                                //MessageBox.Show(GetTimeInAM(m.getEmpID(fID), currentDate).ToString());
+                                //MessageBox.Show(timeNow.ToString());
+                                //MessageBox.Show(TotalHoursWorkedAM(m.getEmpID(fID), currentDate).ToString());
+
+                                UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInAM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+                            }
+                            else if ((totalH >= 0 && totalH <= 8) && (timeNow >= startTimePM && timeNow <= endTimePM) && m.IsTimedInPM(fID, currentDate))
+                            {
+                                UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInPM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+                            }
+                            else if ((totalH >= 0 && totalH <= 8) && (timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInPM(fID, currentDate))
+                            {
+                                UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInAM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+                            }
+                            else if(totalH > 8)
+                            {
+                                MessageBox.Show("total hours greater than 8");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"nothing ");
                         }
                     }
                     else
@@ -407,7 +434,104 @@ namespace payrollsystemsti.AdminTabs
             LoadAttendanceData(date.Value);
         }
 
+        public decimal GetTotalHours(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TotalHours FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return Convert.ToDecimal(reader["TotalHours"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
 
+        public string GetTimeInAM(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_AM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["TimeIn_AM"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+        }
+
+        public string GetTimeInPM(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_PM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["TimeIn_PM"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+        }
+
+        public bool UpdateTotalHours(int empID, string date, string startT, string endT, decimal currentH)
+        {
+            TimeSpan totalHours = TimeSpan.Parse(endT) - TimeSpan.Parse(startT);
+            decimal totalHoursDecimal = (decimal)totalHours.TotalHours + currentH;
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET TotalHours = @thours WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@thours", totalHoursDecimal);  // Assign calculated total hours
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception message
+                        Console.Error.WriteLine($"Error updating total hours: {ex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
 
         public void LoadAttendanceData(DateTime date)
         {
@@ -476,7 +600,7 @@ namespace payrollsystemsti.AdminTabs
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            time.Value = DateTime.Now;
+            time.Value = time.Value.AddSeconds(1);
         }
 
         private void btnOvertime_Click(object sender, EventArgs e)
@@ -630,212 +754,258 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public bool insertAttendance(string date, double? timeIn, double? timeOut, int fingerID, int empID)
+        public bool InsertAttendance(string date, int fingerID)
         {
             TimeSpan timeNow = new TimeSpan(time.Value.Hour, time.Value.Minute, time.Value.Second);
+
+            if ((!m.IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
+            {
+                return insertTimeInAM(timeNow.ToString(), fingerID, date);
+            }
+            else if ((timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInAM(fingerID, date))
+            {
+                return insertTimeInPM(timeNow.ToString(), fingerID, date);
+            }
+            else if ((timeNow >= startTimePM && timeNow <= endTimePM) && m.IsTimedInAM(fingerID, date))
+            {
+                return updateTimeInPM(timeNow.ToString(), fingerID, date);
+            }
+            else
+            {
+                MessageBox.Show("Failed to insert attendance...");
+                return false;
+            }
+        }
+
+        public bool UpdateAttendance(string date, int fingerID)
+        {
+            TimeSpan timeNow = new TimeSpan(time.Value.Hour, time.Value.Minute, time.Value.Second);
+
+            if ((m.IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
+            {
+                return updateTimeOutAM(timeNow.ToString(), fingerID, date);
+            }
+            else if ((timeNow >= startTimePM && timeNow <= endTimePM) && m.IsTimedInAM(fingerID, date))
+            {
+                return updateTimeOutPM(timeNow.ToString(), fingerID, date);
+            }
+            else if ((timeNow >= startTimePM && timeNow <= endTimePM) && (m.IsTimedInAM(fingerID, date) || m.IsTimedInPM(fingerID, date)))
+            {
+                return updateTimeOutPM(timeNow.ToString(), fingerID, date);
+            }
+            else
+            {
+                MessageBox.Show("Failed to update attendance...");
+                return false;
+            }
+        }
+
+        public bool insertTimeInAM(string timeIn, int fingerID, string date)
+        {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query;
-
-                if ((!m.IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)) || (!m.IsTimedOutAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
+                
+                string query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    if ((timeIn != null && timeOut == null) && !m.IsTimedInAM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_AM, fingerID, EmployeeID) VALUES (@Date, @timeInAM, @fingerID, @empID)";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInAM", timeInString);
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@empID", m.getEmpID(fingerID));
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@timeInAM", timeIn);
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@empID", m.getEmpID(fingerID));
 
-                            MessageBox.Show("this printed");
+                    
 
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if ((timeIn == null && timeOut != null) && m.IsTimedInAM(fingerID, date))
+                    try
                     {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_AM = @timeOutAM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutAM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
                     }
-                    else if (m.IsTimedInAM(fingerID, date) || m.IsTimedOutAM(fingerID, date))
+                    catch (SqlException ex)
                     {
-                        MessageBox.Show("Duplicated attendance");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("you dont have a time-in(AM) record yet...");
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
                         return false;
                     }
                 }
-                else if (m.IsTimedOutAM(fingerID, date))
+            }
+        }
+        public bool insertTimeInPM(string timeIn, int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                
+                string query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID, EmployeeID) VALUES (@Date, @timeInPM, @fingerID, @empID)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    if ((timeIn != null && timeOut == null) && !m.IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeIn_PM = @timeInPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@timeInPM", timeIn);
+                    cmd.Parameters.AddWithValue("@empID", m.getEmpID(fingerID));
 
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if ((timeIn == null && timeOut != null) && m.IsTimedInPM(fingerID, date) && !m.IsTimedOutPM(fingerID, date))
+                    try
                     {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("First Time in afternoon");
+                        return rowsAffected > 0;
                     }
-                    else if (m.IsTimedInPM(fingerID, date) || m.IsTimedOutPM(fingerID, date))
+                    catch (SqlException ex)
                     {
-                        MessageBox.Show("you already have that attendance");
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
                         return false;
                     }
-                    else if (m.IsTimedOutAM(fingerID, date))
-                    {
-                        MessageBox.Show("you already have that attendance");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("You don't have a time-in(PM) record yet");
-                        return false;
-                    }
-                }
-                else if ((timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInAM(fingerID, date))
-                {
-                    if ((timeIn != null && timeOut == null) && !m.IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeInSpan = TimeSpan.FromHours(timeIn.Value);
-                        string timeInString = timeInSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "INSERT INTO Attendance (Date, TimeIn_PM, fingerID, EmployeeID) VALUES (@Date, @timeInPM, @fingerID, @empID)";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeInPM", timeInString);
-                            cmd.Parameters.AddWithValue("@empID", empID);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                Console.WriteLine("First Time in afternoon");
-                                Console.WriteLine("this printed");
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if ((timeIn == null && timeOut != null) && m.IsTimedInPM(fingerID, date))
-                    {
-                        TimeSpan timeOutSpan = TimeSpan.FromHours(timeOut.Value);
-                        string timeOutString = timeOutSpan.ToString(@"hh\:mm\:ss\.fffffff");
-                        query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fingerID", fingerID);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@timeOutPM", timeOutString);
-
-                            try
-                            {
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                Console.WriteLine("first time out afternoon");
-                                return rowsAffected > 0;
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Error Inserting Attedance: " + ex.Message);
-                                return false;
-                            }
-                        }
-                    }
-                    else if (m.IsTimedInPM(fingerID, date) || m.IsTimedOutPM(fingerID, date))
-                    {
-                        MessageBox.Show("You already have that attendnace");
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("you dont have a time-in(PM) record");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Failed to insert attendance...");
-                    return false;
                 }
             }
         }
 
-        
+        public bool updateTimeOutAM(string timeOut, int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET TimeOut_AM = @timeOutAM WHERE fingerID = @fingerID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@timeOutAM", timeOut);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateTimeInPM(string timeIn, int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET TimeIn_PM = @timeInPM WHERE fingerID = @fingerID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@timeInPM", timeIn);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool updateTimeOutPM(string timeOut, int fingerID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET TimeOut_PM = @timeOutPM WHERE fingerID = @fingerID AND Date = @Date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fingerID", fingerID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@timeOutPM", timeOut);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public decimal TotalHoursWorked(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_AM, TimeOut_AM, TimeIn_PM, TimeOut_PM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        TimeSpan totalHours = TimeSpan.Zero;
+
+                        // Check for TimeOut_AM
+                        if (reader["TimeOut_AM"] != null)
+                        {
+                            totalHours = TimeSpan.Parse((string)reader["TimeIn_AM"]) - TimeSpan.Parse((string)reader["TimeOut_AM"]);
+                        }
+                        else if (reader["TimeOut_PM"] != null)
+                        {
+                            // Handle lunch break logic here (optional)
+                            totalHours = TimeSpan.Parse((string)reader["TimeIn_AM"]) - TimeSpan.Parse((string)reader["TimeOut_PM"]);
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+
+                        return (decimal)totalHours.TotalHours;
+                    }
+                    else
+                    {
+                        return 0; // No attendance record found
+                    }
+                }
+            }
+        }
+
+        public decimal TotalHoursWorkedAM(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT TimeIn_AM, TimeOut_AM FROM Attendance WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        TimeSpan timeInAM = (TimeSpan)reader["TimeIn_AM"];
+                        TimeSpan timeOutAM = (TimeSpan)reader["TimeOut_AM"];
+
+                        TimeSpan totalHours = timeOutAM - timeInAM;
+
+                        return (decimal)totalHours.TotalHours;
+                    }
+                    else
+                    {
+                        return 0; // No attendance record found
+                    }
+                }
+            }
+        }
 
         public bool UpdateOvertimeTimeOut(string date, double? timeOut, int fingerID, int empID)
         {

@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leaveManagement));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbLM = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
@@ -44,6 +37,14 @@
             this.btnReload = new System.Windows.Forms.Button();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
+            this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgLeaveType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,14 +52,16 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgEmpID,
+            this.dgLeaveID,
             this.dgName,
             this.dgLeaveType,
             this.dgStatus,
@@ -75,49 +78,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(599, 452);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
-            // 
-            // dgEmpID
-            // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            this.dgEmpID.Visible = false;
-            // 
-            // dgName
-            // 
-            this.dgName.HeaderText = "Name";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "Leave Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgDateStart
-            // 
-            this.dgDateStart.HeaderText = "DateStart";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            // 
-            // dgDateEnd
-            // 
-            this.dgDateEnd.HeaderText = "DateEnd";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            // 
-            // dgAppliedDate
-            // 
-            this.dgAppliedDate.HeaderText = "AppliedDate";
-            this.dgAppliedDate.Name = "dgAppliedDate";
-            this.dgAppliedDate.ReadOnly = true;
             // 
             // lbLM
             // 
@@ -209,6 +169,56 @@
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 37;
             // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
+            // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            this.dgLeaveID.Visible = false;
+            // 
+            // dgName
+            // 
+            this.dgName.HeaderText = "Name";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgLeaveType
+            // 
+            this.dgLeaveType.HeaderText = "Leave Type";
+            this.dgLeaveType.Name = "dgLeaveType";
+            this.dgLeaveType.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgDateStart
+            // 
+            this.dgDateStart.HeaderText = "DateStart";
+            this.dgDateStart.Name = "dgDateStart";
+            this.dgDateStart.ReadOnly = true;
+            // 
+            // dgDateEnd
+            // 
+            this.dgDateEnd.HeaderText = "DateEnd";
+            this.dgDateEnd.Name = "dgDateEnd";
+            this.dgDateEnd.ReadOnly = true;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "AppliedDate";
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
+            // 
             // leaveManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -246,6 +256,7 @@
         private System.Windows.Forms.DateTimePicker dtStart;
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;

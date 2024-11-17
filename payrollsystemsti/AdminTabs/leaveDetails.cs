@@ -21,6 +21,7 @@ namespace payrollsystemsti.AdminTabs
             ld = this;
         }
         private int empID;
+        private int leaveID;
         private string date;
         public int employeeID
         {
@@ -31,6 +32,18 @@ namespace payrollsystemsti.AdminTabs
             get
             {
                 return empID;
+            }
+        }
+
+        public int LeaveID
+        {
+            set
+            {
+                leaveID = value;
+            }
+            get
+            {
+                return leaveID;
             }
         }
 
@@ -54,9 +67,9 @@ namespace payrollsystemsti.AdminTabs
             lbEmpID.Text = empID.ToString();
             lbDepartment.Text = m.getDepartmentName(depID);
             lbPosition.Text = m.getPositionTitle(position);
-            lbDateRange.Text = GetDateRange(empID, date);
-            lbLeaveType.Text = GetLeaveType(empID, date);
-            lbReason.Text = GetReason(empID, date);
+            lbDateRange.Text = GetDateRange(empID, leaveID, date);
+            lbLeaveType.Text = GetLeaveType(empID, leaveID,date);
+            lbReason.Text = GetReason(empID, leaveID, date);
 
             pbProfile.Image = m.ConvertToImage(m.GetEmpPicture(empID));
             pbProof.Image = m.ConvertToImage(GetEmpProof(empID));
@@ -93,15 +106,16 @@ namespace payrollsystemsti.AdminTabs
                 }
             }
         }
-        public string GetDateRange(int empID, string date)
+        public string GetDateRange(int empID, int leaveID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT DateStart, DateEnd FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                string query = "SELECT DateStart, DateEnd FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date AND LeaveID = @id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@id", leaveID);
                     cmd.Parameters.AddWithValue("@date", date);
                     SqlDataReader reader = cmd.ExecuteReader();
                     try
@@ -123,15 +137,16 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public string GetReason(int empID, string date)
+        public string GetReason(int empID, int leaveID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT Reason FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                string query = "SELECT Reason FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date AND LeaveID = @id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@id", leaveID);
                     cmd.Parameters.AddWithValue("@date", date);
                     SqlDataReader reader = cmd.ExecuteReader();
                     try
@@ -153,14 +168,15 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public string GetLeaveType(int empID, string date)
+        public string GetLeaveType(int empID, int leaveID,  string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT CategoryName FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date";
+                string query = "SELECT CategoryName FROM LeaveApplications WHERE EmployeeID = @empID AND AppliedDate = @date AND LeaveID = @id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@id", leaveID);
                     cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@date", date);
                     SqlDataReader reader = cmd.ExecuteReader();
