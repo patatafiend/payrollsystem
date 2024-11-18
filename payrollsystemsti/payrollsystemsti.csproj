@@ -299,6 +299,12 @@
     <Compile Include="AdminTabs\overtimeApplication.Designer.cs">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminTabs\PayPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabs\PayPeriod.Designer.cs">
+      <DependentUpon>PayPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminTabs\PaySlipReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -568,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\overtimeApplication.resx">
       <DependentUpon>overtimeApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminTabs\PayPeriod.resx">
+      <DependentUpon>PayPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminTabs\PaySlipReport.resx">
       <DependentUpon>PaySlipReport.cs</DependentUpon>

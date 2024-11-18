@@ -525,7 +525,6 @@ namespace payrollsystemsti.AdminTabs
                 btnSave.Enabled = false;
             }
         }
-
         
         public int isTaxID(decimal salary)
         {
@@ -568,6 +567,48 @@ namespace payrollsystemsti.AdminTabs
             else
             {
                 return value;
+            }
+        }
+
+        public int GetPayStart()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT PayStart FROM PayDefault";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["PayStart"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public int GetPayEnd()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT PayEnd FROM PayDefault";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["PayEnd"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
             }
         }
 
