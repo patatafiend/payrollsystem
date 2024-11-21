@@ -31,7 +31,7 @@ namespace payrollsystemsti
         {
             if (!m.ifDeductionExist(tb1.Text.ToString()))
             {
-                m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text));
+                m.insertToDeductions(tb1.Text, Convert.ToInt32(tb2.Text), cbPeriod.Text);
                 m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Add");
                 LoadContributionData();
                 tb1.Clear();
@@ -46,6 +46,7 @@ namespace payrollsystemsti
                 MessageBox.Show("Unknown Error");
             }
         }
+
         public void insertDeductionT()
         {
             if (!m.ifDeductionExist(tb1.Text.ToString()))
@@ -105,7 +106,8 @@ namespace payrollsystemsti
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                m.updateDeductions(tb1.Text, Convert.ToInt32(tb1.Text), titleID);
+                MessageBox.Show("yes");
+                m.updateDeductions(tb1.Text, Convert.ToInt32(tb2.Text), titleID, cbPeriod.Text);
                 m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
                 LoadContributionData();
                 tb1.Clear();
@@ -122,7 +124,7 @@ namespace payrollsystemsti
             DialogResult dialogResult = MessageBox.Show("Update this row?", "Deactivation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                m.updateDeductionsT(tb1.Text, Convert.ToInt32(tb1.Text), Convert.ToDecimal(tbAdd.Text), titleID);
+                m.updateDeductionsT(tb1.Text, Convert.ToInt32(tb2.Text), Convert.ToDecimal(tbAdd.Text), titleID);
                 m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Deduction Edit");
                 LoadContributionData();
                 tb1.Clear();
@@ -193,6 +195,7 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dg1st"].Value = row["DeductionID"].ToString();
                         dataGridView1.Rows[n].Cells["dg2nd"].Value = row["DeductionType"].ToString();
                         dataGridView1.Rows[n].Cells["dg3rd"].Value = row["Amount"].ToString();
+                        dataGridView1.Rows[n].Cells["dgPeriod"].Value = row["Period"].ToString();
                     }
                 }
             }
@@ -293,13 +296,19 @@ namespace payrollsystemsti
         {
             tbAdd.Visible = false;
             lbAdd.Visible = false;
+            lbPeriod.Visible = true;
+            cbPeriod.Visible = true;
             dataGridView1.Columns["dgAdd"].Visible = false;
+            dataGridView1.Columns["dgPeriod"].Visible = true;
         }
         void interfaceTwo()
         {
             tbAdd.Visible = true;
             lbAdd.Visible = true;
+            lbPeriod.Visible = false;
+            cbPeriod.Visible = false;
             dataGridView1.Columns["dgAdd"].Visible = true;
+            dataGridView1.Columns["dgPeriod"].Visible = false;
         }
     }
 }

@@ -485,16 +485,17 @@ namespace payrollsystemsti
             }
         }
 
-        public bool insertToDeductions(string title, int amount)
+        public bool insertToDeductions(string title, int amount, string period)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO Deductions (DeductionType, Amount) VALUES (@type, @amount)";
+                string query = "INSERT INTO Deductions (DeductionType, Amount, Period) VALUES (@type, @amount, @period)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@type", title);
                     cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@period", period);
 
                     try
                     {
@@ -878,18 +879,19 @@ namespace payrollsystemsti
             }
         }
 
-        public bool updateDeductions(string title, int amount, int id)
+        public bool updateDeductions(string title, int amount, int id, string period)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "UPDATE Deductions SET DeductionType = @type, Amount = @amount " +
+                string query = "UPDATE Deductions SET DeductionType = @type, Amount = @amount, Period = @period " +
                     "WHERE DeductionID = @ID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@type", title);
                     cmd.Parameters.AddWithValue("@amount", amount);
                     cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@period", period);
 
                     try
                     {
@@ -2264,5 +2266,47 @@ namespace payrollsystemsti
 			}
 		}
 
-	}
+        public int GetPayStart()
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT PayStart FROM PayDefault";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["PayStart"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public int GetPayEnd()
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT PayEnd FROM PayDefault";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return (int)reader["PayEnd"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+    }
 }

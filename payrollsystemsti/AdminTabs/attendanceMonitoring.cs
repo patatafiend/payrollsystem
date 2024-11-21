@@ -281,7 +281,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public bool CheckAttendanceRecord(int empID, DateTime date)
+        public bool CheckAttendanceRecord(int empID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -756,15 +756,34 @@ namespace payrollsystemsti.AdminTabs
 
         public bool InsertAttendance(string date, int fingerID)
         {
+            
+
             TimeSpan timeNow = new TimeSpan(time.Value.Hour, time.Value.Minute, time.Value.Second);
 
             if ((!m.IsTimedInAM(fingerID, date) && (timeNow >= startTimeAM && timeNow <= endTimeAM)))
             {
-                return insertTimeInAM(timeNow.ToString(), fingerID, date);
+                if (!CheckAttendanceRecord(m.getEmpID(fingerID), date))
+                {
+                    return insertTimeInAM(timeNow.ToString(), fingerID, date);
+                }
+                else
+                {
+                    MessageBox.Show("Duplicated attendance");
+                    return false;
+                }
             }
             else if ((timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInAM(fingerID, date))
             {
-                return insertTimeInPM(timeNow.ToString(), fingerID, date);
+                if (!CheckAttendanceRecord(m.getEmpID(fingerID), date))
+                {
+                    return insertTimeInPM(timeNow.ToString(), fingerID, date);
+                }
+                else
+                {
+                    MessageBox.Show("Duplicated attendance");
+                    return false;
+                }
+                
             }
             else if ((timeNow >= startTimePM && timeNow <= endTimePM) && m.IsTimedInAM(fingerID, date))
             {
@@ -775,6 +794,7 @@ namespace payrollsystemsti.AdminTabs
                 MessageBox.Show("Failed to insert attendance...");
                 return false;
             }
+
         }
 
         public bool UpdateAttendance(string date, int fingerID)

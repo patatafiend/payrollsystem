@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(employeeSalary));
             this.gb1 = new System.Windows.Forms.GroupBox();
             this.tbGross = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTax = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.btnEditPeriod = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -608,6 +610,7 @@
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
+            this.dtStart.Visible = false;
             this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
             // 
             // dtEnd
@@ -633,6 +636,7 @@
             this.lbStart.Size = new System.Drawing.Size(120, 16);
             this.lbStart.TabIndex = 37;
             this.lbStart.Text = "Pay Period Start";
+            this.lbStart.Visible = false;
             // 
             // lbEnd
             // 
@@ -734,12 +738,27 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "Withholding Tax:";
             // 
+            // btnEditPeriod
+            // 
+            this.btnEditPeriod.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnEditPeriod.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditPeriod.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEditPeriod.Image = ((System.Drawing.Image)(resources.GetObject("btnEditPeriod.Image")));
+            this.btnEditPeriod.Location = new System.Drawing.Point(638, 482);
+            this.btnEditPeriod.Name = "btnEditPeriod";
+            this.btnEditPeriod.Size = new System.Drawing.Size(38, 39);
+            this.btnEditPeriod.TabIndex = 48;
+            this.btnEditPeriod.UseVisualStyleBackColor = false;
+            this.btnEditPeriod.Click += new System.EventHandler(this.btnEditPeriod_Click);
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1147, 753);
+            this.Controls.Add(this.btnEditPeriod);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnReport);
@@ -838,5 +857,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnEditPeriod;
     }
 }

@@ -310,12 +310,12 @@ namespace payrollsystemsti.AdminTabs
             DateTime endDate = dtEnd.Value.Date;
             dtStart.Value = endDate.AddDays(-15);
             dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
-            //if (dtEnd.Value.Day != 12 && dtEnd.Value.Day != 28)
-            //{
-            //    MessageBox.Show("Only the 12th and 28th are allowed.");
-            //    dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
+            if (dtEnd.Value.Day != m.GetPayStart() && dtEnd.Value.Day != m.GetPayEnd())
+            {
+                MessageBox.Show("Only the "+m.GetPayStart()+"th and "+m.GetPayEnd()+"th are allowed.");
+                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
 
-            //}
+            }
         }
 
 
@@ -352,33 +352,39 @@ namespace payrollsystemsti.AdminTabs
                 Convert.ToDecimal(tbAdjustment.Text), Convert.ToDecimal(tbOBA.Text));
 
             tbGross.Text = gross.ToString();
+            tbSSS.Text = "0";
+            tbPagibig.Text = "0";
+            tbPH.Text = "0";
 
-            //if (cbSSS.Checked)
-            //{
-            //    tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
-            //}
-            //else if (!cbSSS.Checked)
-            //{
-            //    tbSSS.Text = "0";
-            //}
+            if(getPeriod(1) == "1st" && dtEnd.Value.Day == m.GetPayStart())
+            {
+                tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+            }
 
-            //if (cbPH.Checked)
-            //{
-            //    tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
-            //} 
-            //else if (!cbPH.Checked)
-            //{
-            //    tbPH.Text = "0";
-            //}
+            if (getPeriod(2) == "1st" && dtEnd.Value.Day == m.GetPayStart())
+            {
+                tbSSS.Text = calPH(setDeductions(2), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+            }
 
-            //if (cbPG.Checked)
-            //{
-            //    tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
-            //} 
-            //else if (!cbPG.Checked)
-            //{
-            //    tbPagibig.Text = "0";
-            //}
+            if (getPeriod(3) == "1st" && dtEnd.Value.Day == m.GetPayStart())
+            {
+                tbPagibig.Text = calPH(setDeductions(3), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+            }
+
+            if (getPeriod(1) == "2nd" && dtEnd.Value.Day == m.GetPayEnd())
+            {
+                tbPH.Text = calPH(setDeductions(1), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+            }
+
+            if (getPeriod(2) == "2nd" && dtEnd.Value.Day == m.GetPayEnd())
+            {
+                tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
+            }
+
+            if (getPeriod(3) == "2nd" && dtEnd.Value.Day == m.GetPayEnd())
+            {
+                tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
+            }
 
             taxID = isTaxID((decimal)basicSalary);
             tax = calWithholdingTax(GetWTaxAmount(taxID), GetWTaxAdditional(taxID), gross);
@@ -396,7 +402,28 @@ namespace payrollsystemsti.AdminTabs
 			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Salary Computed");
 		}
 
-        
+        public string getPeriod(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT Period WHERE DeductionID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Period"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+        }
 
         private void btnPayslip_Click_1(object sender, EventArgs e)
         {
@@ -570,47 +597,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        public int GetPayStart()
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT PayStart FROM PayDefault";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        return (int)reader["PayStart"];
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        public int GetPayEnd()
-        {
-            using (SqlConnection conn = new SqlConnection(m.connStr))
-            {
-                conn.Open();
-                string query = "SELECT PayEnd FROM PayDefault";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        return (int)reader["PayEnd"];
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
+        
 
         public int GetWTaxAmount(int id)
         {
@@ -784,18 +771,15 @@ namespace payrollsystemsti.AdminTabs
             DateTime today = DateTime.Today;
             DateTime payPeriodStart, payPeriodEnd;
 
-            if (today.Day <= 12)
+            if (today.Day <= m.GetPayStart())
             {
-                payPeriodStart = new DateTime(today.Year, today.Month, 1);
-                payPeriodEnd = new DateTime(today.Year, today.Month, 12);
+                payPeriodEnd = new DateTime(today.Year, today.Month, m.GetPayStart());
             }
             else
             {
-                payPeriodStart = new DateTime(today.Year, today.Month, 13);
-                payPeriodEnd = new DateTime(today.Year, today.Month, 28);
+                payPeriodEnd = new DateTime(today.Year, today.Month, m.GetPayEnd());
             }
 
-            dtStart.Value = payPeriodStart;
             dtEnd.Value = payPeriodEnd;
         }
 
@@ -876,27 +860,15 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
 
-        //private void SetDateTimePickerDates()
-        //{
-        //    // Get the current year
-        //    int currentYear = DateTime.Now.Year;
+        }
 
-        //    // Set the minimum and maximum dates for each month
-        //    for (int month = 1; month <= 12; month++)
-        //    {
-        //        // Calculate the 12th day of the month
-        //        DateTime twelfthDay = new DateTime(currentYear, month, 12);
-
-        //        // Set the minimum and maximum dates for the DateTimePicker
-        //        dtEnd.MaxDate = twelfthDay;
-
-        //        // Break the loop if the current month is reached
-        //        if (month == DateTime.Now.Month)
-        //        {
-        //            break;
-        //        }
-        //    }
-        //}
+        private void btnEditPeriod_Click(object sender, EventArgs e)
+        {
+            PayPeriod pay = new PayPeriod();
+            pay.Show();
+        }
     }
 }
