@@ -105,7 +105,7 @@ namespace payrollsystemsti.AdminTabs
                             if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))
                             {
                                 DateTime timeIn = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, time.Value.Hour,time.Value.Minute, 0);
-                                DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 9, 15, 0);
+                                DateTime lateStartTime = new DateTime(time.Value.Year, time.Value.Month, time.Value.Day, 9, 0, 0);
 
                                 TimeSpan difference = timeIn - lateStartTime;
                                 double minutesLate = difference.TotalMinutes;
@@ -288,7 +288,7 @@ namespace payrollsystemsti.AdminTabs
                 conn.Open();
                 try
                 {
-                    string query = "SELECT EmployeeID WHERE Date = @date";
+                    string query = "SELECT EmployeeID FROM Attendance WHERE Date = @date";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@empID", empID);
