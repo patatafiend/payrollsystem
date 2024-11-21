@@ -610,7 +610,7 @@ namespace payrollsystemsti
                 {
                     cmd.Parameters.AddWithValue("@employeeID", employeeID);
                     cmd.Parameters.AddWithValue("@adj", adjustment);
-                    cmd.Parameters.AddWithValue("@adj", remarks);
+                    cmd.Parameters.AddWithValue("@remarks", remarks);
 
                     try
                     {

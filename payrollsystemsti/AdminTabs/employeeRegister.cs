@@ -10,6 +10,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using static payrollsystemsti.Methods;
@@ -29,6 +30,8 @@ namespace payrollsystemsti.AdminTabs
         {
             InitializeComponent();
         }
+
+
         // adds image
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -38,9 +41,39 @@ namespace payrollsystemsti.AdminTabs
                 {
                     fileName = ofd.FileName;
                     lbFileName.Text = fileName;
-                    pbEmployee.Image = Image.FromFile(fileName);
+
+                    // Load the image asynchronously to avoid blocking the UI thread
+                    Task.Run(() =>
+                    {
+                        try
+                        {
+                            // Resize the image to a suitable size
+                            Bitmap resizedImage = ResizeImage(Image.FromFile(fileName), 300, 300); // Adjust the dimensions as needed
+
+                            // Update the PictureBox on the UI thread
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                pbEmployee.Image = resizedImage;
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            // Handle exceptions, e.g., log the error or display an error message
+                            MessageBox.Show("Error loading image: " + ex.Message);
+                        }
+                    });
                 }
             }
+        }
+
+        private Bitmap ResizeImage(Image img, int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+            using (Graphics graphic = Graphics.FromImage(bmp))
+            {
+                graphic.DrawImage(img, 0, 0, width, height);
+            }
+            return bmp;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -60,7 +93,69 @@ namespace payrollsystemsti.AdminTabs
             btnDeactivate.Enabled = false;
             btnCreate.Enabled = false;
         }
-        
+
+        public int GenerateEmployeeId()
+        {
+            int lastUsedId = GetLastUsedEmployeeId();
+            int nextId = lastUsedId + 1;
+
+            string employeeId = nextId.ToString().PadLeft(4, '0');
+
+            if (!UpdateLastUsedEmployeeId(nextId))
+            {
+                // Handle error updating last used ID (log or display message)
+                Console.WriteLine("Error updating last used employee ID");
+            }
+
+            return Convert.ToInt32(employeeId);
+        }
+
+        private int GetLastUsedEmployeeId()
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "SELECT MAX(EmployeeID) FROM EmployeeAccounts";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        return reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        // No records found in the table, return a starting value
+                        return 1;
+                    }
+                }
+            }
+        }
+
+        private bool UpdateLastUsedEmployeeId(int newId)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeIdSettings SET LastUsedId = @newId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@newId", newId);
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception and return false
+                        Console.Error.WriteLine($"Error updating LastUsedId: {ex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
         // checks if textboxes are filled
         private bool Validation()
         {
@@ -133,11 +228,11 @@ namespace payrollsystemsti.AdminTabs
 				}
 				else
 				{
-					bool isInserted = InsertToEmployeeAccounts(
+					bool isInserted = InsertToEmployeeAccounts(GenerateEmployeeId(),
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
-						dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, Convert.ToDateTime(dateNow.ToString("MM/dd/yyyy")), cbGender.Text, cbCivil.Text, dtStartDate.Value);
+						dtDob.Value, tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
+						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, DateTime.Now, cbGender.Text, cbCivil.Text, dtStartDate.Value);
 
 					if (isInserted)
 					{
@@ -371,19 +466,20 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
-        private bool InsertToEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil, DateTime sdate)
+        private bool InsertToEmployeeAccounts(int empID, string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, DateTime dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil, DateTime sdate)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO EmployeeAccounts (FirstName, LastName, " +
+                string query = "INSERT INTO EmployeeAccounts (EmployeeID, FirstName, LastName, " +
                            "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
                            "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender, CivilStatus, StartDate) " +
-                           "OUTPUT INSERTED.EmployeeID VALUES(@FirstName, @LastName, " +
+                           "OUTPUT INSERTED.EmployeeID VALUES(@empID, @FirstName, @LastName, " +
                            "@Department, @Position, @Role, @SSN, @Email, @Address, @Dob, @BasicRate, " +
                            "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender, @civil, @startdate)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@Department", department);
