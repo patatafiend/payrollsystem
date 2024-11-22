@@ -29,31 +29,45 @@ namespace payrollsystemsti.AdminTabs
         {
             if(!string.IsNullOrEmpty(tb1.Text) && rb1.Checked)
             {
-                if(Convert.ToInt32(tb1.Text) < m.GetPayEnd())
+                if(!(Convert.ToInt32(tb1.Text) == 0) || !(Convert.ToInt32(tb1.Text) > 31))
                 {
-                    UpdateFirst(Convert.ToInt32(tb1.Text));
-                    MessageBox.Show("period updated");
-                    lb1st.Text = m.GetPayStart().ToString();
+                    if (Convert.ToInt32(tb1.Text) < m.GetPayEnd())
+                    {
+                        UpdateFirst(Convert.ToInt32(tb1.Text));
+                        MessageBox.Show("period updated");
+                        lb1st.Text = m.GetPayStart().ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("1st cut off should be less than 2nd cut off");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("1st cut off should be less than 2nd cut off");
+                    MessageBox.Show("Invalid Input");
                 }
+                
             }
 
             if (!string.IsNullOrEmpty(tb1.Text) && rb2.Checked)
             {
-                if (Convert.ToInt32(tb1.Text) > m.GetPayStart())
+                if (!(Convert.ToInt32(tb1.Text) == 0) || !(Convert.ToInt32(tb1.Text) > 31))
                 {
-                    UpdateSecond(Convert.ToInt32(tb1.Text));
-                    MessageBox.Show("period updated");
-                    lb2nd.Text = m.GetPayEnd().ToString();
+                    if (Convert.ToInt32(tb1.Text) > m.GetPayStart())
+                    {
+                        UpdateSecond(Convert.ToInt32(tb1.Text));
+                        MessageBox.Show("period updated");
+                        lb2nd.Text = m.GetPayEnd().ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("2nd cut off should be greater than 1st cut off");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("2nd cut off should be greater than 1st cut off");
+                    MessageBox.Show("Invalid Input");
                 }
-                
             }
         }
 
