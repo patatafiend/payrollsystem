@@ -603,8 +603,10 @@ namespace payrollsystemsti.AdminTabs
                     m.InsertAdjustmentData(Convert.ToInt32(id), 0, "");
                     m.InsertIncentivesData(Convert.ToInt32(id), 0, "");
                     m.InsertLoan(Convert.ToInt32(id), 0, 0, 0);
-                    
-                    MessageBox.Show("Created User Succesfully");
+                    updateLeaveTypeAvailableIfFemaleOrMale(NempID);
+
+
+					MessageBox.Show("Created User Succesfully");
 					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Registered Account created");
 				}
 
@@ -1260,5 +1262,40 @@ namespace payrollsystemsti.AdminTabs
         {
             LoadData();
         }
-    }
+
+		private void updateLeaveTypeAvailableIfFemaleOrMale(int empid)
+		{
+			using (SqlConnection conn = new SqlConnection(m.connStr))
+			{
+				conn.Open();
+				string query = "SELECT [Maternity Leave], [Paternity Leave] FROM LeaveTypeAvailable WHERE [Employee ID] = @empID";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				cmd.Parameters.AddWithValue("@empID", empid);
+
+				SqlDataReader reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					reader.Close();
+
+					if (m.GetEmpGender(empid).Equals("Male"))
+					{
+						// Update MaternityLeave to 0 for male employees
+						string updateQuery = "UPDATE LeaveTypeAvailable SET [Maternity Leave] = 0 WHERE [Employee ID] = @empID";
+						SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
+						updateCmd.Parameters.AddWithValue("@empID", empid);
+						updateCmd.ExecuteNonQuery();
+					}
+					else if (m.GetEmpGender(empid).Equals("Female"))
+					{
+						// Update PaternityLeave to 0 for female employees
+						string updateQuery = "UPDATE LeaveTypeAvailable SET [Paternity Leave] = 0 WHERE [Employee ID] = @empID";
+						SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
+						updateCmd.Parameters.AddWithValue("@empID", empid);
+						updateCmd.ExecuteNonQuery();
+					}
+				}
+			}
+		}
+
+	}
 }
