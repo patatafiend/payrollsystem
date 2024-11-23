@@ -99,6 +99,9 @@ namespace payrollsystemsti.AdminTabs
                             //{
                             //    InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
                             //}
+                            m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
+                            lbStatus.Text = "Time IN";
+                            lbTime.Text = currentTimeString;
                             MessageBox.Show($"Welcome {m.getEmpName(fID)}!!!");
                             LoadAttendanceData(date.Value);
 
@@ -380,6 +383,10 @@ namespace payrollsystemsti.AdminTabs
                         if (UpdateAttendance(currentDate, fID))
                         {
                             m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
+                            m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
+                            lbStatus.Text = "Time OUT";
+                            lbTime.Text = currentTimeString;
+
                             MessageBox.Show($"check out of {m.getEmpName(fID)} ");
                             totalH = GetTotalHours(m.getEmpID(fID), currentDate);
 

@@ -298,6 +298,7 @@ namespace payrollsystemsti
             lbAdd.Visible = false;
             lbPeriod.Visible = true;
             cbPeriod.Visible = true;
+            btnAdd.Enabled = false;
             dataGridView1.Columns["dgAdd"].Visible = false;
             dataGridView1.Columns["dgPeriod"].Visible = true;
         }
@@ -307,6 +308,7 @@ namespace payrollsystemsti
             lbAdd.Visible = true;
             lbPeriod.Visible = false;
             cbPeriod.Visible = false;
+            btnAdd.Enabled = true;
             dataGridView1.Columns["dgAdd"].Visible = true;
             dataGridView1.Columns["dgPeriod"].Visible = false;
         }

@@ -298,24 +298,33 @@ namespace payrollsystemsti.AdminTabs
 
         private void dtStart_ValueChanged(object sender, EventArgs e)
         {
-            LoadPayrollData();
-            DateTime startDate = dtStart.Value.Date;
-            dtEnd.Value = startDate.AddDays(15);
-            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
         }
 
         private void dtEnd_ValueChanged(object sender, EventArgs e)
         {
-            LoadPayrollData();
             DateTime endDate = dtEnd.Value.Date;
-            dtStart.Value = endDate.AddDays(-15);
-            dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
+            //m.GetPayStart() value is 12
+            //m.GetPayEnd() value is 28
+
             if (dtEnd.Value.Day != m.GetPayStart() && dtEnd.Value.Day != m.GetPayEnd())
             {
-                MessageBox.Show("Only the "+m.GetPayStart()+"th and "+m.GetPayEnd()+"th are allowed.");
-                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, 12); // Set default to 12
+                MessageBox.Show("Only days" + m.GetPayStart() + " and " + m.GetPayEnd() + " are allowed.");
+                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, m.GetPayStart());
 
             }
+
+            if (endDate.Day == m.GetPayStart())
+            {
+                
+                dtStart.Value = new DateTime(endDate.Year, endDate.Month - 1, m.GetPayEnd() + 1);
+            }
+            else if (endDate.Day == m.GetPayEnd())
+            {
+                
+                dtStart.Value = new DateTime(endDate.Year, endDate.Month, m.GetPayStart() + 1);
+            }
+
+            LoadPayrollData();
         }
 
 
@@ -326,13 +335,23 @@ namespace payrollsystemsti.AdminTabs
 
         private void ComputePayroll()
         {
+            decimal workdays = CalculateWorkdays(dtStart.Value, dtEnd.Value);
+            if(m.GetEmployeeType(empID).ToString() == "Regular" || m.GetEmployeeType(empID).ToString() == "Probationary")
+            {
+                basicSalary = basicRate * workdays;
+            }
 
-            basicSalary = calBasicSalary(basicRate, totalHoursW);
+            if (m.GetEmployeeType(empID).ToString() == "Part-Time")
+            {
+                basicSalary = calBasicSalary(basicRate, totalHoursW);
+            }
+            
             overtimePay = calOvertimePay(totalOvertime, basicRate);
 
-            tbBasic.Text = basicRate.ToString();
+            tbBasic.Text = basicSalary.ToString();
             tbOT.Text = overtimePay.ToString();
-            tbLate.Text = Math.Round(calLate(totalLate), 2).ToString();
+            tbLate.Text = Math.Round(calLate(totalLate, basicRate), 2).ToString();
+            tbAbsent.Text = CountAbsences(dtStart.Value, dtEnd.Value, empID).ToString();
             //MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
 
             tbIncentives.Text = GetIncentives(empID).ToString();
@@ -345,6 +364,8 @@ namespace payrollsystemsti.AdminTabs
             tbSpecialH.Text = Math.Round(calSpecialH(basicRate, thwSH), 2).ToString();
 
             setAllowance(empID);
+
+            basicSalary = basicSalary - Convert.ToDecimal(tbLate.Text);
 
             gross = grossPay(Convert.ToDecimal(tbBasic.Text), Convert.ToDecimal(tbIncentives.Text), Convert.ToDecimal(tbTA.Text),
                 Convert.ToDecimal(tbTransA.Text), Convert.ToDecimal(tbLoadA.Text), Convert.ToDecimal(tbPTA.Text),
@@ -402,12 +423,86 @@ namespace payrollsystemsti.AdminTabs
 			m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Salary Computed");
 		}
 
+        public int CalculateWorkdays(DateTime startDate, DateTime endDate)
+        {
+            int totalDays = (endDate - startDate).Days + 1;
+
+            // Calculate Sundays between the dates
+            int sundays = totalDays / 7;
+
+            // Adjust for partial weeks at the beginning and end
+            if (startDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                sundays--;
+            }
+            if (endDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                sundays--;
+            }
+
+            return totalDays - sundays;
+        }
+
+        public int CountAbsences(DateTime startDate, DateTime endDate, int employeeId)
+        {
+            // Calculate the total number of days between the two dates, including both endpoints
+            int totalDays = (endDate - startDate).Days + 1;
+
+            // Calculate the number of Sundays between the two dates
+            int sundays = totalDays / 7;
+
+            // Adjust for partial weeks at the beginning and end
+            if (startDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                sundays--;
+            }
+            if (endDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                sundays--;
+            }
+
+            // Calculate the expected number of workdays
+            int expectedWorkdays = totalDays - sundays;
+
+            // Get the actual number of workdays from the database
+            int actualWorkdays = GetActualWorkdays(startDate, endDate, employeeId);
+
+            // Calculate the number of absences
+            int absences = expectedWorkdays - actualWorkdays;
+
+            return absences;
+        }
+
+        private int GetActualWorkdays(DateTime startDate, DateTime endDate, int employeeId)
+        {
+            // SQL query to count workdays
+            string query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeID = @employeeId AND Date BETWEEN @startDate AND @endDate AND TotalHours != 0";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@employeeId",
+         employeeId);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@endDate", endDate);
+
+
+                    int actualWorkdays = (int)cmd.ExecuteScalar();
+                    return actualWorkdays;
+                }
+            }
+        }
+
+
         public string getPeriod(int id)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "SELECT Period WHERE DeductionID = @id";
+                string query = "SELECT Period FROM Deductions WHERE DeductionID = @id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
@@ -441,7 +536,6 @@ namespace payrollsystemsti.AdminTabs
         {
             setAllowance(empID);
             //setOthers(empID);
-            tbAbsent.Text = totalAbsent.ToString();
         }
 
         public bool InsertIntoPayroll(int empID, decimal semiP, decimal dailyR, DateTime payStart, DateTime payEnd, DateTime payOut,
@@ -553,6 +647,8 @@ namespace payrollsystemsti.AdminTabs
             }
         }
         
+        
+
         public int isTaxID(decimal salary)
         {
             if (salary <= 10417)
@@ -726,9 +822,9 @@ namespace payrollsystemsti.AdminTabs
             return ((basicRate / 8) * thW) * 0.30m;
         }
 
-        private decimal calLate(decimal late)
+        private decimal calLate(decimal late, decimal basicRate)
         {
-            return late / 60;
+            return (basicRate / 8) * (late / 60);
         }
 
         private decimal grossPay(decimal basicSalary, decimal incentives, decimal trainA, decimal transA, decimal loadA, decimal provA, decimal ot, decimal regH, decimal slH, decimal adj ,decimal ob)

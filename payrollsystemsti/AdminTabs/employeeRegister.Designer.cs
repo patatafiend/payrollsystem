@@ -97,6 +97,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbEmployee = new System.Windows.Forms.PictureBox();
             this.btnReload = new System.Windows.Forms.Button();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -152,7 +154,7 @@
             // tbSSN
             // 
             this.tbSSN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSSN.Location = new System.Drawing.Point(132, 192);
+            this.tbSSN.Location = new System.Drawing.Point(132, 243);
             this.tbSSN.Multiline = true;
             this.tbSSN.Name = "tbSSN";
             this.tbSSN.Size = new System.Drawing.Size(172, 28);
@@ -163,7 +165,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 194);
+            this.label4.Location = new System.Drawing.Point(16, 245);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 20);
             this.label4.TabIndex = 11;
@@ -590,6 +592,8 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.cbType);
+            this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.dtStartDate);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.label15);
@@ -606,7 +610,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(699, 77);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 307);
+            this.groupBox3.Size = new System.Drawing.Size(319, 357);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employee Details";
@@ -615,7 +619,7 @@
             // 
             this.dtStartDate.CustomFormat = "dd/MM/yyyy";
             this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStartDate.Location = new System.Drawing.Point(132, 258);
+            this.dtStartDate.Location = new System.Drawing.Point(132, 309);
             this.dtStartDate.Name = "dtStartDate";
             this.dtStartDate.Size = new System.Drawing.Size(172, 26);
             this.dtStartDate.TabIndex = 37;
@@ -623,7 +627,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(20, 263);
+            this.label18.Location = new System.Drawing.Point(20, 314);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(98, 20);
             this.label18.TabIndex = 36;
@@ -633,7 +637,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 215);
+            this.label15.Location = new System.Drawing.Point(14, 266);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(100, 26);
             this.label15.TabIndex = 24;
@@ -681,7 +685,7 @@
             // tbBasicRate
             // 
             this.tbBasicRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBasicRate.Location = new System.Drawing.Point(132, 154);
+            this.tbBasicRate.Location = new System.Drawing.Point(132, 205);
             this.tbBasicRate.Multiline = true;
             this.tbBasicRate.Name = "tbBasicRate";
             this.tbBasicRate.Size = new System.Drawing.Size(172, 28);
@@ -691,7 +695,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 156);
+            this.label1.Location = new System.Drawing.Point(16, 207);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 19;
@@ -828,6 +832,29 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
+            // cbType
+            // 
+            this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "Part-Time",
+            "Regular",
+            "Probationary"});
+            this.cbType.Location = new System.Drawing.Point(132, 158);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(172, 24);
+            this.cbType.TabIndex = 39;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(16, 161);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(67, 20);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Status:";
+            // 
             // employeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -939,5 +966,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dgImage;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.ComboBox cbType;
+        private System.Windows.Forms.Label label19;
     }
 }

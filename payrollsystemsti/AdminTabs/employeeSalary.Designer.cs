@@ -610,7 +610,6 @@
             this.dtStart.Name = "dtStart";
             this.dtStart.Size = new System.Drawing.Size(210, 26);
             this.dtStart.TabIndex = 35;
-            this.dtStart.Visible = false;
             this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
             // 
             // dtEnd
@@ -745,7 +744,7 @@
             this.btnEditPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditPeriod.ForeColor = System.Drawing.SystemColors.Control;
             this.btnEditPeriod.Image = ((System.Drawing.Image)(resources.GetObject("btnEditPeriod.Image")));
-            this.btnEditPeriod.Location = new System.Drawing.Point(638, 482);
+            this.btnEditPeriod.Location = new System.Drawing.Point(342, 478);
             this.btnEditPeriod.Name = "btnEditPeriod";
             this.btnEditPeriod.Size = new System.Drawing.Size(38, 39);
             this.btnEditPeriod.TabIndex = 48;

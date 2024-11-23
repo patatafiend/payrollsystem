@@ -50,6 +50,9 @@
             this.time = new System.Windows.Forms.DateTimePicker();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.loadingIndicator = new System.Windows.Forms.PictureBox();
+            this.pbEmployee = new System.Windows.Forms.PictureBox();
+            this.lbStatus = new System.Windows.Forms.Label();
+            this.lbTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.attendanceHeader.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -57,6 +60,7 @@
             this.panel12.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -86,7 +90,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(911, 420);
+            this.dataGridView1.Size = new System.Drawing.Size(911, 173);
             this.dataGridView1.TabIndex = 3;
             // 
             // dgEmpID
@@ -276,12 +280,45 @@
             this.loadingIndicator.TabStop = false;
             this.loadingIndicator.Visible = false;
             // 
+            // pbEmployee
+            // 
+            this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbEmployee.Location = new System.Drawing.Point(418, 369);
+            this.pbEmployee.Name = "pbEmployee";
+            this.pbEmployee.Size = new System.Drawing.Size(177, 160);
+            this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEmployee.TabIndex = 42;
+            this.pbEmployee.TabStop = false;
+            // 
+            // lbStatus
+            // 
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(414, 532);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(62, 20);
+            this.lbStatus.TabIndex = 43;
+            this.lbStatus.Text = "Status";
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.Location = new System.Drawing.Point(533, 532);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(47, 20);
+            this.lbTime.TabIndex = 44;
+            this.lbTime.Text = "Time";
+            // 
             // attendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1008, 609);
+            this.Controls.Add(this.lbTime);
+            this.Controls.Add(this.lbStatus);
+            this.Controls.Add(this.pbEmployee);
             this.Controls.Add(this.loadingIndicator);
             this.Controls.Add(this.time);
             this.Controls.Add(this.attendanceHeader);
@@ -301,6 +338,7 @@
             this.panel12.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadingIndicator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +365,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
+        private System.Windows.Forms.PictureBox pbEmployee;
+        private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Label lbTime;
     }
 }

@@ -232,7 +232,7 @@ namespace payrollsystemsti.AdminTabs
 						tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
 						getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
 						dtDob.Value, tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, DateTime.Now, cbGender.Text, cbCivil.Text, dtStartDate.Value);
+						tbMob.Text, 0, defaultAvailableTotalLeaves(), 0, DateTime.Now, cbGender.Text, cbCivil.Text, dtStartDate.Value, cbType.Text);
 
 					if (isInserted)
 					{
@@ -466,17 +466,17 @@ namespace payrollsystemsti.AdminTabs
 			}
 		}
 
-        private bool InsertToEmployeeAccounts(int empID, string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, DateTime dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil, DateTime sdate)
+        private bool InsertToEmployeeAccounts(int empID, string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, DateTime dob, string basic, string fileName, byte[] imageData, string mobile, byte isDeleted, int leaves, int absents, DateTime hdate, string gender, string civil, DateTime sdate, string type)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
                 string query = "INSERT INTO EmployeeAccounts (EmployeeID, FirstName, LastName, " +
                            "DepartmentID, PositionID, RoleID, SSN, Email, Address, Dob, BasicRate, FileName, " +
-                           "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender, CivilStatus, StartDate) " +
+                           "ImageData, Mobile, IsDeleted, Leaves, Absents, HiredDate, Gender, CivilStatus, StartDate, Type) " +
                            "OUTPUT INSERTED.EmployeeID VALUES(@empID, @FirstName, @LastName, " +
                            "@Department, @Position, @Role, @SSN, @Email, @Address, @Dob, @BasicRate, " +
-                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender, @civil, @startdate)";
+                           "@FileName, @ImageData, @Mobile, @IsDeleted, @Leaves, @Absents, @hireddate, @gender, @civil, @startdate, @type)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@empID", empID);
@@ -500,6 +500,7 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@gender", gender);
                     cmd.Parameters.AddWithValue("@civil", civil);
                     cmd.Parameters.AddWithValue("@startdate", sdate);
+                    cmd.Parameters.AddWithValue("@type", type);
 
 
 
@@ -524,7 +525,7 @@ namespace payrollsystemsti.AdminTabs
                 if (UpdateEmployeeAccounts(tbFirstName.Text, tbLastName.Text, getDepartmentID(cbDeparment.Text),
                         getPositionID(cbPosition.Text), getRoleID(cbRole.Text), tbSSN.Text, tbEmail.Text, tbAddress.Text,
                         dtDob.Value.ToString("MM/dd/yyyy"), tbBasicRate.Text, lbFileName.Text, m.ConvertImageToBinary(pbEmployee.Image),
-                        tbMob.Text, Convert.ToInt32(empID.Text), cbGender.Text, cbCivil.Text));
+                        tbMob.Text, Convert.ToInt32(empID.Text), cbGender.Text, cbCivil.Text, cbType.Text));
                 {
                     MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Register Edit");
@@ -542,7 +543,7 @@ namespace payrollsystemsti.AdminTabs
             }
         }
 
-        private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID, string gender, string civil)
+        private bool UpdateEmployeeAccounts(string firstName, string lastName, int department, int position, int role, string ssn, string email, string address, string dob, string basic, string fileName, byte[] imageData, string mobile, int empID, string gender, string civil, string type)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -571,6 +572,7 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@employeeId", empID);
                     cmd.Parameters.AddWithValue("@gender", gender);
                     cmd.Parameters.AddWithValue("@civil", civil);
+                    cmd.Parameters.AddWithValue("@type", type);
 
                     try
                     {

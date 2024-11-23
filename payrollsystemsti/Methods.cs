@@ -2308,5 +2308,26 @@ namespace payrollsystemsti
             }
         }
 
+        public string GetEmployeeType(int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT Type FROM EmployeeAccounts WHERE EmployeeID = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", empID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return reader["Type"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
+        }
     }
 }
