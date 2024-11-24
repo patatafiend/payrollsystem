@@ -406,7 +406,8 @@ namespace payrollsystemsti.AdminTabs
                             {
                                 UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInAM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
                             }
-                            else if(totalH > 8)
+                            
+                            if(totalH > 8)
                             {
                                 MessageBox.Show("total hours greater than 8");
                             }
