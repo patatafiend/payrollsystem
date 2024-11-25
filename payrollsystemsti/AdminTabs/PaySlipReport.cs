@@ -226,16 +226,29 @@ namespace payrollsystemsti.AdminTabs
 
         private void dtStart_ValueChanged_1(object sender, EventArgs e)
         {
-            DateTime startDate = dtStart.Value.Date;
-            dtEnd.Value = startDate.AddDays(15);
-            dtEnd.Value = dtEnd.Value.Date <= startDate.AddMonths(1).AddDays(-1) ? dtEnd.Value.Date : startDate.AddMonths(1).AddDays(-1);
         }
 
         private void dtEnd_ValueChanged_1(object sender, EventArgs e)
         {
             DateTime endDate = dtEnd.Value.Date;
-            dtStart.Value = endDate.AddDays(-15);
-            dtStart.Value = dtStart.Value.Date >= endDate.AddMonths(-1).AddDays(1) ? dtStart.Value.Date : endDate.AddMonths(-1).AddDays(1);
+            //m.GetPayStart() value is 12
+            //m.GetPayEnd() value is 28
+
+            if (dtEnd.Value.Day != m.GetPayStart() && dtEnd.Value.Day != m.GetPayEnd())
+            {
+                MessageBox.Show("Only days" + m.GetPayStart() + " and " + m.GetPayEnd() + " are allowed.");
+                dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, m.GetPayStart());
+            }
+
+            if (endDate.Day == m.GetPayStart())
+            {
+                dtStart.Value = new DateTime(endDate.Year, endDate.Month - 1, m.GetPayEnd() + 1);
+            }
+            else if (endDate.Day == m.GetPayEnd())
+            {
+
+                dtStart.Value = new DateTime(endDate.Year, endDate.Month, m.GetPayStart() + 1);
+            }
         }
 
         //public void SetPaySlipInfo(int empID)

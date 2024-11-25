@@ -76,7 +76,8 @@ namespace payrollsystemsti.AdminTabs
         {
             if (Validation())
             {
-                InsertToOvertimeApplications(empID);
+                //InsertToOvertimeApplications(empID);
+
             }
             
         }
@@ -214,14 +215,40 @@ namespace payrollsystemsti.AdminTabs
 					}
 				}
 			}
-
 		}
 
-        
+        private bool UpdateOvertimeTable(int empID, string date)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE OvertimeApplications SET Submitted = @sub, Date = @date WHERE EmployeeID = @empID";
 
-		private void btnCancel_Click(object sender, EventArgs e)
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@sub", 1);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Updating Overtime Application: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+
+        }
+
+
+
+        private void btnCancel_Click(object sender, EventArgs e)
 		{
-            
             if(btnSubmit.Enabled == false)
 			{
 				btnSubmit.Enabled = true;
@@ -239,6 +266,7 @@ namespace payrollsystemsti.AdminTabs
             tbReason.Text = overtimegrid.SelectedRows[0].Cells["dgReason"].Value.ToString();
             time.Text = overtimegrid.SelectedRows[0].Cells["dgStart"].Value.ToString();
             timeout.Text = overtimegrid.SelectedRows[0].Cells["dgEnd"].Value.ToString();
+            dtDate.Value = Convert.ToDateTime(overtimegrid.SelectedRows[0].Cells["dgDate"].Value);
             btnUpdate.Enabled = true;
         }
 

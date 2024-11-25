@@ -310,12 +310,10 @@ namespace payrollsystemsti.AdminTabs
             {
                 MessageBox.Show("Only days" + m.GetPayStart() + " and " + m.GetPayEnd() + " are allowed.");
                 dtEnd.Value = new DateTime(dtEnd.Value.Year, dtEnd.Value.Month, m.GetPayStart());
-
             }
 
             if (endDate.Day == m.GetPayStart())
             {
-                
                 dtStart.Value = new DateTime(endDate.Year, endDate.Month - 1, m.GetPayEnd() + 1);
             }
             else if (endDate.Day == m.GetPayEnd())
@@ -351,7 +349,7 @@ namespace payrollsystemsti.AdminTabs
             tbBasic.Text = basicSalary.ToString();
             tbOT.Text = overtimePay.ToString();
             tbLate.Text = Math.Round(calLate(totalLate, basicRate), 2).ToString();
-            tbAbsent.Text = CountAbsences(dtStart.Value, dtEnd.Value, empID).ToString();
+            tbAbsent.Text = (CountAbsences(dtStart.Value, dtEnd.Value, empID) * basicRate).ToString();
             //MessageBox.Show(Math.Round((calLate(totalLate) * (basicRate / 8)), 2).ToString());
 
             tbIncentives.Text = GetIncentives(empID).ToString();
@@ -365,7 +363,7 @@ namespace payrollsystemsti.AdminTabs
 
             setAllowance(empID);
 
-            basicSalary = basicSalary - Convert.ToDecimal(tbLate.Text);
+            //basicSalary = basicSalary - Convert.ToDecimal(tbLate.Text);
 
             gross = grossPay(Convert.ToDecimal(tbBasic.Text), Convert.ToDecimal(tbIncentives.Text), Convert.ToDecimal(tbTA.Text),
                 Convert.ToDecimal(tbTransA.Text), Convert.ToDecimal(tbLoadA.Text), Convert.ToDecimal(tbPTA.Text),
@@ -384,12 +382,13 @@ namespace payrollsystemsti.AdminTabs
 
             if (getPeriod(2) == "1st" && dtEnd.Value.Day == m.GetPayStart())
             {
-                tbSSS.Text = calPH(setDeductions(2), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+                tbSSS.Text = calSSS(setDeductions(2), (decimal)gross).ToString();
             }
 
             if (getPeriod(3) == "1st" && dtEnd.Value.Day == m.GetPayStart())
             {
-                tbPagibig.Text = calPH(setDeductions(3), (decimal)Convert.ToDouble(tbBasic.Text)).ToString();
+                MessageBox.Show(calPH(setDeductions(3), Convert.ToDecimal(tbBasic.Text)).ToString());
+                tbPagibig.Text = calPagIbig(setDeductions(3)).ToString();
             }
 
             if (getPeriod(1) == "2nd" && dtEnd.Value.Day == m.GetPayEnd())
@@ -443,7 +442,7 @@ namespace payrollsystemsti.AdminTabs
             return totalDays - sundays;
         }
 
-        public int CountAbsences(DateTime startDate, DateTime endDate, int employeeId)
+        public decimal CountAbsences(DateTime startDate, DateTime endDate, int employeeId)
         {
             // Calculate the total number of days between the two dates, including both endpoints
             int totalDays = (endDate - startDate).Days + 1;
@@ -610,6 +609,7 @@ namespace payrollsystemsti.AdminTabs
             decimal regH = Convert.ToDecimal(tbRegularH.Text);
             decimal specialH = Convert.ToDecimal(tbSpecialH.Text);
             decimal adj = Convert.ToDecimal(tbAdjustment.Text);
+            decimal lateA = Convert.ToDecimal(tbAbsent.Text) + Convert.ToDecimal(tbLate.Text); ;
 
             decimal trainA = Convert.ToDecimal(tbTA.Text);
             decimal transA = Convert.ToDecimal(tbTransA.Text);
@@ -623,9 +623,10 @@ namespace payrollsystemsti.AdminTabs
 
             decimal deductionT = phil + pagibig + sss;
             decimal grossPay = gross - tax;
-            decimal netpay = grossPay - deductionT;
+            decimal netpay = grossPay - (deductionT + lateA);
             decimal totalHP = ((decimal)totalHoursW / 8) * basicRate;
-            decimal semiM = basicRate * 15;
+            decimal semiM = Convert.ToDecimal(tbBasic.Text);
+
 
             DateTime dateStart = Convert.ToDateTime(dtStart.Value);
             DateTime dateEnd = Convert.ToDateTime(dtEnd.Value);
@@ -634,7 +635,7 @@ namespace payrollsystemsti.AdminTabs
             if (!IfPaySlipExist(empID, dateStart, dateEnd))
             {
                 InsertIntoPayroll(empID, semiM, basicRate, dateStart, dateEnd, dateEnd.AddDays(2), totalHoursW,
-                totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, totalLate,
+                totalOvertime, regH, specialH, obA, 0, loadA, transA, adj, incentives, trainA, provA, lateA,
                 0, 0, grossPay, netpay, phil, pagibig, sss, deductionT, totalHP);
 
                 MessageBox.Show("Payslip Recorded!");
@@ -965,6 +966,13 @@ namespace payrollsystemsti.AdminTabs
         {
             PayPeriod pay = new PayPeriod();
             pay.Show();
+        }
+
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            tbPagibig.Text = "0";
+            tbPH.Text = "0";
+            tbSSS.Text = "0";
         }
     }
 }

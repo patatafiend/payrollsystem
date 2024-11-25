@@ -2337,7 +2337,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!GrossPay.Value-Fields!DeductionTotal.Value</Value>
+                                      <Value>=Fields!NetPay.Value</Value>
                                       <Style>
                                         <Format>#,0.00;(#,0.00)</Format>
                                       </Style>
@@ -2430,6 +2430,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

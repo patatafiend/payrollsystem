@@ -90,6 +90,7 @@
             this.tbTax = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnEditPeriod = new System.Windows.Forms.Button();
+            this.btnC = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -751,12 +752,28 @@
             this.btnEditPeriod.UseVisualStyleBackColor = false;
             this.btnEditPeriod.Click += new System.EventHandler(this.btnEditPeriod_Click);
             // 
+            // btnC
+            // 
+            this.btnC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnC.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnC.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnC.Image = ((System.Drawing.Image)(resources.GetObject("btnC.Image")));
+            this.btnC.Location = new System.Drawing.Point(1081, 98);
+            this.btnC.Name = "btnC";
+            this.btnC.Size = new System.Drawing.Size(38, 39);
+            this.btnC.TabIndex = 49;
+            this.btnC.UseVisualStyleBackColor = false;
+            this.btnC.Click += new System.EventHandler(this.btnC_Click);
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1147, 753);
+            this.Controls.Add(this.btnC);
             this.Controls.Add(this.btnEditPeriod);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbSearch);
@@ -857,5 +874,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnEditPeriod;
+        private System.Windows.Forms.Button btnC;
     }
 }

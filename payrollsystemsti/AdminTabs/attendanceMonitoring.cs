@@ -36,7 +36,7 @@ namespace payrollsystemsti.AdminTabs
         TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
-        TimeSpan endTimePM = new TimeSpan(23, 00, 0);    // 6:00 PM
+        TimeSpan endTimePM = new TimeSpan(23, 00, 0);    // 11:00 PM
 
         TimeSpan timeOutBDYS = new TimeSpan(9, 16, 0);  // 9:16 AM
         TimeSpan timeOutBDYE = new TimeSpan(12, 59, 0);    // 12:59 PM
@@ -99,10 +99,14 @@ namespace payrollsystemsti.AdminTabs
                             //{
                             //    InsertToHoliday(getEmpID(fID), Convert.ToDateTime(currentDate), GetHolidayID(Convert.ToDateTime(currentDate)));
                             //}
-                            m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
+                            pbEmployee.Image = m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
                             lbStatus.Text = "Time IN";
                             lbTime.Text = currentTimeString;
                             MessageBox.Show($"Welcome {m.getEmpName(fID)}!!!");
+                            pbEmployee.Image = null;
+                            lbStatus.Text = "Status";
+                            lbTime.Text = "";
+
                             LoadAttendanceData(date.Value);
 
                             if(checkIfLate(time.Value.Hour, time.Value.Minute, 0))
@@ -390,27 +394,50 @@ namespace payrollsystemsti.AdminTabs
                             MessageBox.Show($"check out of {m.getEmpName(fID)} ");
                             totalH = GetTotalHours(m.getEmpID(fID), currentDate);
 
+                            //MessageBox.Show(totalH.ToString());
+
                             if (m.IsTimedOutAM(fID, currentDate) && (totalH == 0) && (timeNow >= startTimeAM && timeNow <= endTimeAM))
                             {
                                 //MessageBox.Show(GetTimeInAM(m.getEmpID(fID), currentDate).ToString());
                                 //MessageBox.Show(timeNow.ToString());
                                 //MessageBox.Show(TotalHoursWorkedAM(m.getEmpID(fID), currentDate).ToString());
+                                //MessageBox.Show("1");
 
                                 UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInAM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+
                             }
                             else if ((totalH >= 0 && totalH <= 8) && (timeNow >= startTimePM && timeNow <= endTimePM) && m.IsTimedInPM(fID, currentDate))
                             {
+                                //MessageBox.Show("2");
                                 UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInPM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+                                totalH = GetTotalHours(m.getEmpID(fID), currentDate);
+                                if (totalH > 8)
+                                {
+                                    //MessageBox.Show((totalH % 8).ToString());
+                                    totalH = totalH - 8;
+                                    UpdateTotalHours(m.getEmpID(fID), currentDate, 8);
+                                    InsertOvertimeApp(m.getEmpID(fID), currentDate, totalH);
+                                }
                             }
                             else if ((totalH >= 0 && totalH <= 8) && (timeNow >= startTimePM && timeNow <= endTimePM) && !m.IsTimedInPM(fID, currentDate))
                             {
+                                //MessageBox.Show("3");
                                 UpdateTotalHours(m.getEmpID(fID), currentDate, GetTimeInAM(m.getEmpID(fID), currentDate), timeNow.ToString(), totalH);
+                                totalH = GetTotalHours(m.getEmpID(fID), currentDate);
+                                if (totalH > 8)
+                                {
+                                    //MessageBox.Show((totalH % 8).ToString());
+                                    totalH = totalH - 8;
+                                    UpdateTotalHours(m.getEmpID(fID), currentDate, 8);
+                                    InsertOvertimeApp(m.getEmpID(fID), currentDate, totalH);
+                                }
                             }
                             
-                            if(totalH > 8)
-                            {
-                                MessageBox.Show("total hours greater than 8");
-                            }
+                            
+
+                            CalculateAndUpdateUndertime(m.getEmpID(fID), currentDate);
+                            
+
                         }
                         else
                         {
@@ -440,6 +467,128 @@ namespace payrollsystemsti.AdminTabs
                 loadingIndicator.Visible = false;
             }
             LoadAttendanceData(date.Value);
+        }
+
+        public bool InsertOvertimeApp(int empID, string date, decimal overtimeT)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "INSERT INTO OvertimeApplications(EmployeeID, Date, OvertimeHours, Submitted) VALUES (@empID, @date, @hours, @sub)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@hours", overtimeT);
+                    cmd.Parameters.AddWithValue("@sub", 0);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; // Return true if insert was successful
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception (e.g., log, display error message)
+                        MessageBox.Show($"Error inserting into OT: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public class Attendance
+        {
+            public int AttendanceID { get; set; }
+            public DateTime Date { get; set; }
+            public TimeSpan TimeInAM { get; set; }
+            public TimeSpan TimeOutAM { get; set; }
+            public TimeSpan TimeInPM { get; set; }
+            public TimeSpan TimeOutPM { get; set; }
+            public decimal TotalHours { get; set; }
+            public int EmployeeID { get; set; }
+            public decimal Late { get; set; }
+            public decimal TotalOvertime { get; set; }
+            public bool IsHoliday { get; set; }
+            public string HolidayType { get; set; }
+        }
+
+        public void CalculateAndUpdateUndertime(int employeeId, string date)
+        {
+            var attendanceRecord = GetAttendanceRecord(employeeId, date);
+
+            Console.WriteLine(attendanceRecord);
+
+            if (attendanceRecord == null)
+            {
+                return;
+            }
+
+            
+            TimeSpan totalHours = TimeSpan.Zero;
+            if (attendanceRecord.TimeInAM != default && attendanceRecord.TimeOutAM != default)
+            {
+                totalHours += attendanceRecord.TimeOutAM - attendanceRecord.TimeInAM;
+            }
+            if (attendanceRecord.TimeInPM != default && attendanceRecord.TimeOutPM != default)
+            {
+                totalHours += attendanceRecord.TimeOutPM - attendanceRecord.TimeInPM;
+            }
+
+            TimeSpan undertime = TimeSpan.FromHours(8) - totalHours;
+
+            if (undertime > TimeSpan.Zero)
+            {
+                UpdateUndertime(attendanceRecord.AttendanceID, (decimal)undertime.TotalHours);
+            }
+        }
+
+        private Attendance GetAttendanceRecord(int employeeId, string date)
+        {
+            using (SqlConnection connection = new SqlConnection(m.connStr))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Attendance WHERE EmployeeID = @employeeId AND Date = @date";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@employeeId", employeeId);
+                    command.Parameters.AddWithValue("@date", date);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Attendance attendanceRecord = new Attendance();
+                            attendanceRecord.AttendanceID = (int)reader["AttendanceID"];
+                            attendanceRecord.TimeInAM = (TimeSpan)reader["TimeIn_AM"];
+                            attendanceRecord.TimeOutAM = (TimeSpan)reader["TimeOut_AM"];
+                            attendanceRecord.TimeInPM = (TimeSpan)reader["TimeIn_PM"];
+                            attendanceRecord.TimeOutPM = (TimeSpan)reader["TimeOut_PM"];
+
+                            return attendanceRecord;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void UpdateUndertime(int attendanceId, decimal undertimeHours)
+        {
+            using (SqlConnection connection = new SqlConnection(m.connStr))
+            {
+                connection.Open();
+                string query = "UPDATE Attendance SET Late = @undertime WHERE AttendanceID = @attendanceId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@undertime", undertimeHours);
+                    command.Parameters.AddWithValue("@attendanceId", attendanceId);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public decimal GetTotalHours(int empID, string date)
@@ -525,6 +674,33 @@ namespace payrollsystemsti.AdminTabs
                     cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@thours", totalHoursDecimal);  // Assign calculated total hours
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception message
+                        Console.Error.WriteLine($"Error updating total hours: {ex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateTotalHours(int empID, string date, decimal currentH)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET TotalHours = @thours WHERE EmployeeID = @empID AND Date = @date";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@thours", 8);  // Assign calculated total hours
 
                     try
                     {
