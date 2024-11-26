@@ -126,36 +126,37 @@ namespace payrollsystemsti.AdminTabs
         }
 
         private void LoadData()
+{
+    overtimegrid.Rows.Clear();
+    string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID";
+
+    using (SqlConnection conn = new SqlConnection(m.connStr))
+    {
+        conn.Open();
+        using (SqlCommand cmd = new SqlCommand(query, conn))
         {
-            overtimegrid.Rows.Clear();
-            string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID";
+            cmd.Parameters.AddWithValue("empID", empID);
 
-            using (SqlConnection conn = new SqlConnection(m.connStr))
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("empID", empID);
-                   
+                int n = overtimegrid.Rows.Add();
 
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-
-                    sda.Fill(dt);
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int n = overtimegrid.Rows.Add();
-                        overtimegrid.Rows[n].Cells["dgOvertimeID"].Value = row["OvertimeID"].ToString();
-                        overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"]).ToString("MM/dd/yyyy");
+                // Handle null values and format dates and times
+                overtimegrid.Rows[n].Cells["dgOvertimeID"].Value = row["OvertimeID"] ?? DBNull.Value;
+                overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = row["AppliedDate"] != DBNull.Value ? Convert.ToDateTime(row["AppliedDate"]).ToString("MM/dd/yyyy") : string.Empty;
                         overtimegrid.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
                         overtimegrid.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
-                        overtimegrid.Rows[n].Cells["dgReason"].Value = row["Justification"].ToString();
-                        overtimegrid.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
-                        overtimegrid.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
-                    }
-                }
+                        overtimegrid.Rows[n].Cells["dgReason"].Value = row["Justification"] ?? string.Empty;
+                overtimegrid.Rows[n].Cells["dgStatus"].Value = row["Status"] ?? string.Empty;
+                overtimegrid.Rows[n].Cells["dgDate"].Value = row["Date"] != DBNull.Value ? Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy") : string.Empty;
             }
         }
+    }
+}
 
 		private void btnUpdate_Click_1(object sender, EventArgs e)
 		{
