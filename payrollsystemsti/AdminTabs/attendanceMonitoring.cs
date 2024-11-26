@@ -387,11 +387,17 @@ namespace payrollsystemsti.AdminTabs
                         if (UpdateAttendance(currentDate, fID))
                         {
                             m.insertAttedanceHistory(m.getEmpID(fID), currentTimeString, currentDate, status);
-                            m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
+
+                            pbEmployee.Image = m.ConvertToImage(m.GetEmpPicture(m.getEmpID(fID)));
                             lbStatus.Text = "Time OUT";
                             lbTime.Text = currentTimeString;
 
                             MessageBox.Show($"check out of {m.getEmpName(fID)} ");
+
+                            pbEmployee.Image = null;
+                            lbStatus.Text = "Status";
+                            lbTime.Text = "";
+
                             totalH = GetTotalHours(m.getEmpID(fID), currentDate);
 
                             //MessageBox.Show(totalH.ToString());

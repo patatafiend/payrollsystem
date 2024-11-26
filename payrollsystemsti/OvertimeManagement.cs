@@ -18,6 +18,7 @@ namespace payrollsystemsti
         leaveManagement lm = new leaveManagement();
         int empID = 0;
         string date, timein, timeout;
+        decimal totalHours;
         public OvertimeManagement()
         {
             InitializeComponent();
@@ -37,40 +38,12 @@ namespace payrollsystemsti
             OTD.Show();
         }
 
-        //private void LoadData()
-        //{
-        //    dataGridView1.Rows.Clear();
-        //    string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-        //        ", OvertimeApplications.Status, OvertimeApplications.Date, OvertimeApplications.StartTime, OvertimeApplications.EndTime" +
-        //        " FROM EmployeeAccounts JOIN OvertimeApplications ON EmployeeAccounts.EmployeeID = OvertimeApplications.EmployeeID";
-
-        //    using (SqlConnection conn = new SqlConnection(m.connStr))
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            sda.Fill(dt);
-
-        //            foreach (DataRow row in dt.Rows)
-        //            {
-        //                int n = dataGridView1.Rows.Add();
-        //                dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
-        //                dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
-        //                dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
-        //                dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
-        //            }
-        //        }
-        //    }
-        //}
+        
 
         private void LoadData()
         {
             dataGridView1.Rows.Clear();
-            string query = "SELECT * FROM OvertimeApplications WHERE Status = @status";
+            string query = "SELECT * FROM OvertimeApplications WHERE Status = @status AND Submitted = @sub";
 
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
@@ -78,6 +51,7 @@ namespace payrollsystemsti
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@status", "Pending");
+                    cmd.Parameters.AddWithValue("@sub", 0);
 
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -92,6 +66,7 @@ namespace payrollsystemsti
                         dataGridView1.Rows[n].Cells["dgDate"].Value = Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy");
                         dataGridView1.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
                         dataGridView1.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
+                        dataGridView1.Rows[n].Cells["dgTotalH"].Value = row["OvertimeHours"].ToString();
                     }
                 }
             }
@@ -103,6 +78,7 @@ namespace payrollsystemsti
             date = dataGridView1.SelectedRows[0].Cells["dgDate"].Value.ToString();
             timein = dataGridView1.SelectedRows[0].Cells["dgStart"].Value.ToString();
             timeout = dataGridView1.SelectedRows[0].Cells["dgEnd"].Value.ToString();
+            totalHours = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["dgTotalH"].Value);
             btnApprove.Enabled = true;
             btnReject.Enabled = true;
             btnView.Enabled = true;
@@ -134,7 +110,7 @@ namespace payrollsystemsti
             if (dialogResult == DialogResult.Yes)
             {
                 Action("Approved", empID);
-                if (UpdateOvertimeTime(date, timein, timeout, empID))
+                if (UpdateOvertimeTime(date, totalHours, empID))
                 {
                     MessageBox.Show("Record Updated");
                 }
@@ -197,17 +173,16 @@ namespace payrollsystemsti
             }
         }
 
-        public bool UpdateOvertimeTime(string date, string start, string end, int empID)
+        public bool UpdateOvertimeTime(string date, decimal ot, int empID)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "UPDATE Attendance SET OverTime_TimeIn = @timein, OverTime_TimeOut = @timeout" +
+                string query = "UPDATE Attendance SET TotalOvertime = @ot" +
                     " WHERE EmployeeID = @empID AND Date = @Date";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@timein", start);
-                    cmd.Parameters.AddWithValue("@timeout", end);
+                    cmd.Parameters.AddWithValue("@ot", ot);
                     cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@Date", date);
                     try

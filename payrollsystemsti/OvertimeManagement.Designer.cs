@@ -34,13 +34,14 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lbLM = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnReload = new System.Windows.Forms.Button();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReload = new System.Windows.Forms.Button();
+            this.dgTotalH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +119,8 @@
             this.dgStatus,
             this.dgStart,
             this.dgEnd,
-            this.dgDate});
+            this.dgDate,
+            this.dgTotalH});
             this.dataGridView1.Location = new System.Drawing.Point(52, 182);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
@@ -129,6 +131,20 @@
             this.dataGridView1.Size = new System.Drawing.Size(755, 368);
             this.dataGridView1.TabIndex = 32;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(445, 135);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(42, 34);
+            this.btnReload.TabIndex = 35;
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // dgEmpID
             // 
@@ -154,12 +170,14 @@
             this.dgStart.HeaderText = "Start Time";
             this.dgStart.Name = "dgStart";
             this.dgStart.ReadOnly = true;
+            this.dgStart.Visible = false;
             // 
             // dgEnd
             // 
             this.dgEnd.HeaderText = "End Time";
             this.dgEnd.Name = "dgEnd";
             this.dgEnd.ReadOnly = true;
+            this.dgEnd.Visible = false;
             // 
             // dgDate
             // 
@@ -167,19 +185,11 @@
             this.dgDate.Name = "dgDate";
             this.dgDate.ReadOnly = true;
             // 
-            // btnReload
+            // dgTotalH
             // 
-            this.btnReload.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.Location = new System.Drawing.Point(445, 135);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(42, 34);
-            this.btnReload.TabIndex = 35;
-            this.btnReload.UseVisualStyleBackColor = false;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            this.dgTotalH.HeaderText = "Total Hours";
+            this.dgTotalH.Name = "dgTotalH";
+            this.dgTotalH.ReadOnly = true;
             // 
             // OvertimeManagement
             // 
@@ -216,5 +226,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTotalH;
     }
 }

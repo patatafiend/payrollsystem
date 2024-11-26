@@ -42,39 +42,49 @@ namespace payrollsystemsti.AdminTabs
 
 		}
 
-		private void LoadData()
-		{
-			dataGridView1.Rows.Clear();
-			string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName" +
-                ", LeaveApplications.Status, LeaveApplications.LeaveID, LeaveApplications.CategoryName, LeaveApplications.DateStart, LeaveApplications.DateEnd, LeaveApplications.AppliedDate" +
-				" FROM EmployeeAccounts JOIN LeaveApplications ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID";
+        private void LoadData()
+        {
+            dataGridView1.Rows.Clear();
 
-			using (SqlConnection conn = new SqlConnection(m.connStr))
-			{
-				conn.Open();
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					SqlDataAdapter sda = new SqlDataAdapter(cmd);
-					DataTable dt = new DataTable();
-					sda.Fill(dt);
+            int selectedMonth = dtDate.Value.Month;
+            int selectedYear = dtDate.Value.Year;
 
-					foreach (DataRow row in dt.Rows)
-					{
-						int n = dataGridView1.Rows.Add();
-						dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
+            string query = "SELECT EmployeeAccounts.EmployeeID, EmployeeAccounts.LastName, EmployeeAccounts.FirstName, " +
+                           "LeaveApplications.Status, LeaveApplications.LeaveID, LeaveApplications.CategoryName, " +
+                           "LeaveApplications.DateStart, LeaveApplications.DateEnd, LeaveApplications.AppliedDate " +
+                           "FROM EmployeeAccounts " +
+                           "JOIN LeaveApplications ON EmployeeAccounts.EmployeeID = LeaveApplications.EmployeeID " +
+                           "WHERE MONTH(LeaveApplications.DateStart) = @selectedMonth AND YEAR(LeaveApplications.DateStart) = @selectedYear";
+
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@selectedMonth", selectedMonth);
+                    cmd.Parameters.AddWithValue("@selectedYear", selectedYear);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[n].Cells["dgEmpID"].Value = row["EmployeeID"].ToString();
                         dataGridView1.Rows[n].Cells["dgLeaveID"].Value = row["LeaveID"].ToString();
                         dataGridView1.Rows[n].Cells["dgName"].Value = row["LastName"].ToString() + ", " + row["FirstName"].ToString();
-						dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
-						dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
+                        dataGridView1.Rows[n].Cells["dgStatus"].Value = row["Status"].ToString();
+                        dataGridView1.Rows[n].Cells["dgLeaveType"].Value = row["CategoryName"].ToString();
                         dataGridView1.Rows[n].Cells["dgDateStart"].Value = Convert.ToDateTime(row["DateStart"].ToString()).ToString("MM/dd/yyyy");
-						dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("MM/dd/yyyy");
-						dataGridView1.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("MM/dd/yyyy");
-					}
-				}
-			}
-		}
+                        dataGridView1.Rows[n].Cells["dgDateEnd"].Value = Convert.ToDateTime(row["DateEnd"].ToString()).ToString("MM/dd/yyyy");
+                        dataGridView1.Rows[n].Cells["dgAppliedDate"].Value = Convert.ToDateTime(row["AppliedDate"].ToString()).ToString("MM/dd/yyyy");
+                    }
+                }
+            }
+        }
 
-		private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			employeeID = dataGridView1.SelectedRows[0].Cells["dgEmpID"].Value.ToString();
             leaveID = dataGridView1.SelectedRows[0].Cells["dgLeaveID"].Value.ToString();
@@ -291,7 +301,10 @@ namespace payrollsystemsti.AdminTabs
 				}
 			}
 		}
-		
 
-	}
+        private void dtDate_ValueChanged(object sender, EventArgs e)
+        {
+			LoadData();
+        }
+    }
 }

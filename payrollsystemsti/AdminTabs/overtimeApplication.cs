@@ -76,15 +76,41 @@ namespace payrollsystemsti.AdminTabs
         {
             if (Validation())
             {
-                //InsertToOvertimeApplications(empID);
-
+                UpdateOvertimeTime(dtDate.Value.ToString("MM/dd/yyyy"), empID);
             }
             
         }
 
+        public bool UpdateOvertimeTime(string date, int empID)
+        {
+            using (SqlConnection conn = new SqlConnection(m.connStr))
+            {
+                conn.Open();
+                string query = "UPDATE Attendance SET Status = @status, Submitted = @sub" +
+                    " WHERE EmployeeID = @empID AND Date = @Date";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@Date", date);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        Console.WriteLine("Time record updated for OT");
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error Inserting Attedance: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
         public void InsertToOvertimeApplications(int empID)
         {
-            
             try
             {
                 TimeSpan datetimestart = time.Value.TimeOfDay;
@@ -126,37 +152,40 @@ namespace payrollsystemsti.AdminTabs
         }
 
         private void LoadData()
-{
-    overtimegrid.Rows.Clear();
-    string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID";
-
-    using (SqlConnection conn = new SqlConnection(m.connStr))
-    {
-        conn.Open();
-        using (SqlCommand cmd = new SqlCommand(query, conn))
         {
-            cmd.Parameters.AddWithValue("empID", empID);
+            overtimegrid.Rows.Clear();
 
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-
-            sda.Fill(dt);
-            foreach (DataRow row in dt.Rows)
+            string query = "SELECT * FROM OvertimeApplications WHERE EmployeeID = @empID";
+            
+            using (SqlConnection conn = new SqlConnection(m.connStr))
             {
-                int n = overtimegrid.Rows.Add();
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("empID", empID);
+                    
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    
+                    sda.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int n = overtimegrid.Rows.Add();
 
-                // Handle null values and format dates and times
-                overtimegrid.Rows[n].Cells["dgOvertimeID"].Value = row["OvertimeID"] ?? DBNull.Value;
-                overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = row["AppliedDate"] != DBNull.Value ? Convert.ToDateTime(row["AppliedDate"]).ToString("MM/dd/yyyy") : string.Empty;
+                        // Handle null values and format dates and times
+                        overtimegrid.Rows[n].Cells["dgOvertimeID"].Value = row["OvertimeID"] ?? DBNull.Value;
+                        overtimegrid.Rows[n].Cells["dgAppliedDate"].Value = row["AppliedDate"] != DBNull.Value ? Convert.ToDateTime(row["AppliedDate"]).ToString("MM/dd/yyyy") : string.Empty;
                         overtimegrid.Rows[n].Cells["dgStart"].Value = Convert.ToDateTime(row["StartTime"].ToString()).ToString("hh:mm tt");
                         overtimegrid.Rows[n].Cells["dgEnd"].Value = Convert.ToDateTime(row["EndTime"].ToString()).ToString("hh:mm tt");
                         overtimegrid.Rows[n].Cells["dgReason"].Value = row["Justification"] ?? string.Empty;
-                overtimegrid.Rows[n].Cells["dgStatus"].Value = row["Status"] ?? string.Empty;
-                overtimegrid.Rows[n].Cells["dgDate"].Value = row["Date"] != DBNull.Value ? Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy") : string.Empty;
+                        overtimegrid.Rows[n].Cells["dgStatus"].Value = row["Status"] ?? string.Empty;
+                        overtimegrid.Rows[n].Cells["dgDate"].Value = row["Date"] != DBNull.Value ? Convert.ToDateTime(row["Date"]).ToString("MM/dd/yyyy") : string.Empty;
+                        overtimegrid.Rows[n].Cells["dgHours"].Value = row["OvertimeHours"] ?? DBNull.Value;
+
+                    }
+                }
             }
         }
-    }
-}
 
 		private void btnUpdate_Click_1(object sender, EventArgs e)
 		{

@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leaveManagement));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lbLM = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
-            this.btnApprove = new System.Windows.Forms.Button();
-            this.btnReject = new System.Windows.Forms.Button();
-            this.btnReload = new System.Windows.Forms.Button();
-            this.dtStart = new System.Windows.Forms.DateTimePicker();
-            this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.dgEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLeaveID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +38,14 @@
             this.dgDateStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbLM = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
+            this.btnApprove = new System.Windows.Forms.Button();
+            this.btnReject = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
+            this.dtEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtStart = new System.Windows.Forms.DateTimePicker();
+            this.dtDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +79,56 @@
             this.dataGridView1.Size = new System.Drawing.Size(599, 452);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // dgEmpID
+            // 
+            this.dgEmpID.HeaderText = "Employee ID";
+            this.dgEmpID.Name = "dgEmpID";
+            this.dgEmpID.ReadOnly = true;
+            this.dgEmpID.Visible = false;
+            // 
+            // dgLeaveID
+            // 
+            this.dgLeaveID.HeaderText = "Leave ID";
+            this.dgLeaveID.Name = "dgLeaveID";
+            this.dgLeaveID.ReadOnly = true;
+            this.dgLeaveID.Visible = false;
+            // 
+            // dgName
+            // 
+            this.dgName.HeaderText = "Name";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgLeaveType
+            // 
+            this.dgLeaveType.HeaderText = "Leave Type";
+            this.dgLeaveType.Name = "dgLeaveType";
+            this.dgLeaveType.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgDateStart
+            // 
+            this.dgDateStart.HeaderText = "DateStart";
+            this.dgDateStart.Name = "dgDateStart";
+            this.dgDateStart.ReadOnly = true;
+            // 
+            // dgDateEnd
+            // 
+            this.dgDateEnd.HeaderText = "DateEnd";
+            this.dgDateEnd.Name = "dgDateEnd";
+            this.dgDateEnd.ReadOnly = true;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "AppliedDate";
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
             // 
             // lbLM
             // 
@@ -147,77 +198,42 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // dtStart
-            // 
-            this.dtStart.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtStart.CustomFormat = "MM,dd,yyyy";
-            this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStart.Location = new System.Drawing.Point(385, 111);
-            this.dtStart.Name = "dtStart";
-            this.dtStart.Size = new System.Drawing.Size(143, 26);
-            this.dtStart.TabIndex = 36;
-            // 
             // dtEnd
             // 
             this.dtEnd.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.CustomFormat = "MMMM,dd,yyyy";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnd.Location = new System.Drawing.Point(550, 111);
+            this.dtEnd.Location = new System.Drawing.Point(560, 44);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.Size = new System.Drawing.Size(210, 26);
             this.dtEnd.TabIndex = 37;
+            this.dtEnd.Visible = false;
             // 
-            // dgEmpID
+            // dtStart
             // 
-            this.dgEmpID.HeaderText = "Employee ID";
-            this.dgEmpID.Name = "dgEmpID";
-            this.dgEmpID.ReadOnly = true;
-            this.dgEmpID.Visible = false;
+            this.dtStart.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtStart.CustomFormat = "MM,dd,yyyy";
+            this.dtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStart.Location = new System.Drawing.Point(598, 12);
+            this.dtStart.Name = "dtStart";
+            this.dtStart.Size = new System.Drawing.Size(143, 26);
+            this.dtStart.TabIndex = 36;
+            this.dtStart.Visible = false;
             // 
-            // dgLeaveID
+            // dtDate
             // 
-            this.dgLeaveID.HeaderText = "Leave ID";
-            this.dgLeaveID.Name = "dgLeaveID";
-            this.dgLeaveID.ReadOnly = true;
-            this.dgLeaveID.Visible = false;
-            // 
-            // dgName
-            // 
-            this.dgName.HeaderText = "Name";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgLeaveType
-            // 
-            this.dgLeaveType.HeaderText = "Leave Type";
-            this.dgLeaveType.Name = "dgLeaveType";
-            this.dgLeaveType.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgDateStart
-            // 
-            this.dgDateStart.HeaderText = "DateStart";
-            this.dgDateStart.Name = "dgDateStart";
-            this.dgDateStart.ReadOnly = true;
-            // 
-            // dgDateEnd
-            // 
-            this.dgDateEnd.HeaderText = "DateEnd";
-            this.dgDateEnd.Name = "dgDateEnd";
-            this.dgDateEnd.ReadOnly = true;
-            // 
-            // dgAppliedDate
-            // 
-            this.dgAppliedDate.HeaderText = "AppliedDate";
-            this.dgAppliedDate.Name = "dgAppliedDate";
-            this.dgAppliedDate.ReadOnly = true;
+            this.dtDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDate.CustomFormat = "MMMM,yyyy";
+            this.dtDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDate.Location = new System.Drawing.Point(560, 111);
+            this.dtDate.Name = "dtDate";
+            this.dtDate.Size = new System.Drawing.Size(210, 26);
+            this.dtDate.TabIndex = 38;
+            this.dtDate.ValueChanged += new System.EventHandler(this.dtDate_ValueChanged);
             // 
             // leaveManagement
             // 
@@ -225,6 +241,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(815, 684);
+            this.Controls.Add(this.dtDate);
             this.Controls.Add(this.dtEnd);
             this.Controls.Add(this.dtStart);
             this.Controls.Add(this.btnReject);
@@ -253,7 +270,6 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Button btnReject;
-        private System.Windows.Forms.DateTimePicker dtStart;
         private System.Windows.Forms.DateTimePicker dtEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgLeaveID;
@@ -263,5 +279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAppliedDate;
+        private System.Windows.Forms.DateTimePicker dtStart;
+        private System.Windows.Forms.DateTimePicker dtDate;
     }
 }

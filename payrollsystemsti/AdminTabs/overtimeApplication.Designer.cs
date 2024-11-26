@@ -36,13 +36,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.overtimegrid = new System.Windows.Forms.DataGridView();
-            this.dgOvertimeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DateTimePicker();
             this.timeout = new System.Windows.Forms.DateTimePicker();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -51,6 +44,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgOvertimeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAppliedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.overtimegrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -75,6 +76,7 @@
             this.label3.Size = new System.Drawing.Size(46, 20);
             this.label3.TabIndex = 22;
             this.label3.Text = "End:";
+            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -85,6 +87,7 @@
             this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Start:";
+            this.label2.Visible = false;
             // 
             // tbReason
             // 
@@ -138,7 +141,8 @@
             this.dgEnd,
             this.dgReason,
             this.dgStatus,
-            this.dgDate});
+            this.dgDate,
+            this.dgHours});
             this.overtimegrid.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.overtimegrid.Location = new System.Drawing.Point(33, 195);
             this.overtimegrid.Name = "overtimegrid";
@@ -148,55 +152,6 @@
             this.overtimegrid.Size = new System.Drawing.Size(801, 238);
             this.overtimegrid.TabIndex = 24;
             this.overtimegrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.overtimegrid_MouseDoubleClick);
-            // 
-            // dgOvertimeID
-            // 
-            this.dgOvertimeID.HeaderText = "Overtime ID";
-            this.dgOvertimeID.MinimumWidth = 8;
-            this.dgOvertimeID.Name = "dgOvertimeID";
-            this.dgOvertimeID.ReadOnly = true;
-            this.dgOvertimeID.Visible = false;
-            // 
-            // dgAppliedDate
-            // 
-            this.dgAppliedDate.HeaderText = "Date Applied";
-            this.dgAppliedDate.MinimumWidth = 8;
-            this.dgAppliedDate.Name = "dgAppliedDate";
-            this.dgAppliedDate.ReadOnly = true;
-            // 
-            // dgStart
-            // 
-            this.dgStart.HeaderText = "From";
-            this.dgStart.MinimumWidth = 8;
-            this.dgStart.Name = "dgStart";
-            this.dgStart.ReadOnly = true;
-            // 
-            // dgEnd
-            // 
-            this.dgEnd.HeaderText = "To";
-            this.dgEnd.MinimumWidth = 8;
-            this.dgEnd.Name = "dgEnd";
-            this.dgEnd.ReadOnly = true;
-            // 
-            // dgReason
-            // 
-            this.dgReason.HeaderText = "Justification";
-            this.dgReason.MinimumWidth = 8;
-            this.dgReason.Name = "dgReason";
-            this.dgReason.ReadOnly = true;
-            // 
-            // dgStatus
-            // 
-            this.dgStatus.HeaderText = "Status";
-            this.dgStatus.MinimumWidth = 8;
-            this.dgStatus.Name = "dgStatus";
-            this.dgStatus.ReadOnly = true;
-            // 
-            // dgDate
-            // 
-            this.dgDate.HeaderText = "Date";
-            this.dgDate.Name = "dgDate";
-            this.dgDate.ReadOnly = true;
             // 
             // time
             // 
@@ -211,6 +166,7 @@
             this.time.Size = new System.Drawing.Size(116, 24);
             this.time.TabIndex = 37;
             this.time.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            this.time.Visible = false;
             // 
             // timeout
             // 
@@ -224,6 +180,7 @@
             this.timeout.Size = new System.Drawing.Size(116, 24);
             this.timeout.TabIndex = 38;
             this.timeout.Value = new System.DateTime(2024, 5, 12, 17, 51, 0, 0);
+            this.timeout.Visible = false;
             this.timeout.ValueChanged += new System.EventHandler(this.timeout_ValueChanged);
             // 
             // btnCancel
@@ -298,6 +255,64 @@
             this.groupBox1.Text = "OT Form Details:";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // dgOvertimeID
+            // 
+            this.dgOvertimeID.HeaderText = "Overtime ID";
+            this.dgOvertimeID.MinimumWidth = 8;
+            this.dgOvertimeID.Name = "dgOvertimeID";
+            this.dgOvertimeID.ReadOnly = true;
+            this.dgOvertimeID.Visible = false;
+            // 
+            // dgAppliedDate
+            // 
+            this.dgAppliedDate.HeaderText = "Date Applied";
+            this.dgAppliedDate.MinimumWidth = 8;
+            this.dgAppliedDate.Name = "dgAppliedDate";
+            this.dgAppliedDate.ReadOnly = true;
+            this.dgAppliedDate.Visible = false;
+            // 
+            // dgStart
+            // 
+            this.dgStart.HeaderText = "From";
+            this.dgStart.MinimumWidth = 8;
+            this.dgStart.Name = "dgStart";
+            this.dgStart.ReadOnly = true;
+            this.dgStart.Visible = false;
+            // 
+            // dgEnd
+            // 
+            this.dgEnd.HeaderText = "To";
+            this.dgEnd.MinimumWidth = 8;
+            this.dgEnd.Name = "dgEnd";
+            this.dgEnd.ReadOnly = true;
+            this.dgEnd.Visible = false;
+            // 
+            // dgReason
+            // 
+            this.dgReason.HeaderText = "Justification";
+            this.dgReason.MinimumWidth = 8;
+            this.dgReason.Name = "dgReason";
+            this.dgReason.ReadOnly = true;
+            // 
+            // dgStatus
+            // 
+            this.dgStatus.HeaderText = "Status";
+            this.dgStatus.MinimumWidth = 8;
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            // 
+            // dgDate
+            // 
+            this.dgDate.HeaderText = "Date";
+            this.dgDate.Name = "dgDate";
+            this.dgDate.ReadOnly = true;
+            // 
+            // dgHours
+            // 
+            this.dgHours.HeaderText = "Total Hours";
+            this.dgHours.Name = "dgHours";
+            this.dgHours.ReadOnly = true;
+            // 
             // overtimeApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +351,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DateTimePicker dtDate;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOvertimeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAppliedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStart;
@@ -343,7 +360,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDate;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgHours;
     }
 }

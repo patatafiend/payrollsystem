@@ -71,9 +71,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -85,13 +84,14 @@
             this.dgDate,
             this.dgStatus});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.Location = new System.Drawing.Point(49, 176);
+            this.dataGridView1.Location = new System.Drawing.Point(49, 473);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(911, 173);
+            this.dataGridView1.Size = new System.Drawing.Size(343, 63);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.Visible = false;
             // 
             // dgEmpID
             // 
@@ -122,7 +122,7 @@
             this.date.CustomFormat = "dddd, MM/dd/yyyy";
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.date.Location = new System.Drawing.Point(49, 58);
+            this.date.Location = new System.Drawing.Point(23, 58);
             this.date.Name = "date";
             this.date.ShowUpDown = true;
             this.date.Size = new System.Drawing.Size(248, 30);
@@ -132,14 +132,13 @@
             // 
             // btnTimeIN
             // 
-            this.btnTimeIN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimeIN.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnTimeIN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeIN.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeIN.Location = new System.Drawing.Point(49, 125);
+            this.btnTimeIN.Location = new System.Drawing.Point(61, 125);
             this.btnTimeIN.Name = "btnTimeIN";
-            this.btnTimeIN.Size = new System.Drawing.Size(118, 44);
+            this.btnTimeIN.Size = new System.Drawing.Size(113, 44);
             this.btnTimeIN.TabIndex = 26;
             this.btnTimeIN.Text = "Time IN";
             this.btnTimeIN.UseVisualStyleBackColor = false;
@@ -147,14 +146,13 @@
             // 
             // btnTimeOUT
             // 
-            this.btnTimeOUT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimeOUT.BackColor = System.Drawing.Color.Red;
             this.btnTimeOUT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimeOUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimeOUT.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnTimeOUT.Location = new System.Drawing.Point(206, 125);
+            this.btnTimeOUT.Location = new System.Drawing.Point(218, 125);
             this.btnTimeOUT.Name = "btnTimeOUT";
-            this.btnTimeOUT.Size = new System.Drawing.Size(118, 44);
+            this.btnTimeOUT.Size = new System.Drawing.Size(113, 44);
             this.btnTimeOUT.TabIndex = 34;
             this.btnTimeOUT.Text = "Time OUT";
             this.btnTimeOUT.UseVisualStyleBackColor = false;
@@ -167,7 +165,7 @@
             this.attendanceHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.attendanceHeader.Location = new System.Drawing.Point(0, 0);
             this.attendanceHeader.Name = "attendanceHeader";
-            this.attendanceHeader.Size = new System.Drawing.Size(1008, 39);
+            this.attendanceHeader.Size = new System.Drawing.Size(468, 39);
             this.attendanceHeader.TabIndex = 35;
             this.attendanceHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.attendanceHeader_MouseDown);
             // 
@@ -177,7 +175,7 @@
             this.controlBox.Controls.Add(this.panel12);
             this.controlBox.Controls.Add(this.panel16);
             this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.controlBox.Location = new System.Drawing.Point(868, 0);
+            this.controlBox.Location = new System.Drawing.Point(328, 0);
             this.controlBox.Name = "controlBox";
             this.controlBox.Size = new System.Drawing.Size(140, 39);
             this.controlBox.TabIndex = 6;
@@ -253,10 +251,11 @@
             // 
             // time
             // 
+            this.time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.time.CustomFormat = "hh:mm tt";
             this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.time.Location = new System.Drawing.Point(820, 58);
+            this.time.Location = new System.Drawing.Point(290, 58);
             this.time.Name = "time";
             this.time.ShowUpDown = true;
             this.time.Size = new System.Drawing.Size(140, 30);
@@ -272,7 +271,7 @@
             // loadingIndicator
             // 
             this.loadingIndicator.Image = ((System.Drawing.Image)(resources.GetObject("loadingIndicator.Image")));
-            this.loadingIndicator.Location = new System.Drawing.Point(912, 125);
+            this.loadingIndicator.Location = new System.Drawing.Point(303, 188);
             this.loadingIndicator.Name = "loadingIndicator";
             this.loadingIndicator.Size = new System.Drawing.Size(48, 48);
             this.loadingIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -283,7 +282,7 @@
             // pbEmployee
             // 
             this.pbEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbEmployee.Location = new System.Drawing.Point(418, 369);
+            this.pbEmployee.Location = new System.Drawing.Point(94, 188);
             this.pbEmployee.Name = "pbEmployee";
             this.pbEmployee.Size = new System.Drawing.Size(177, 160);
             this.pbEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -294,7 +293,7 @@
             // 
             this.lbStatus.AutoSize = true;
             this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(414, 532);
+            this.lbStatus.Location = new System.Drawing.Point(90, 351);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(62, 20);
             this.lbStatus.TabIndex = 43;
@@ -304,7 +303,7 @@
             // 
             this.lbTime.AutoSize = true;
             this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.Location = new System.Drawing.Point(533, 532);
+            this.lbTime.Location = new System.Drawing.Point(224, 351);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(47, 20);
             this.lbTime.TabIndex = 44;
@@ -315,7 +314,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1008, 609);
+            this.ClientSize = new System.Drawing.Size(468, 609);
             this.Controls.Add(this.lbTime);
             this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.pbEmployee);
