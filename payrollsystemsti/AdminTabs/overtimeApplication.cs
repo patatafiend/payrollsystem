@@ -7,6 +7,7 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -77,6 +78,7 @@ namespace payrollsystemsti.AdminTabs
             if (Validation())
             {
                 UpdateOvertimeTime(dtDate.Value.ToString("MM/dd/yyyy"), empID);
+                MessageBox.Show("Application submitted!");
             }
             
         }
@@ -86,11 +88,13 @@ namespace payrollsystemsti.AdminTabs
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "UPDATE Attendance SET Status = @status, Submitted = @sub" +
+                string query = "UPDATE OvertimeApplications SET Status = @status, Submitted = @sub" +
                     " WHERE EmployeeID = @empID AND Date = @Date";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@status", "Pending");
+                    cmd.Parameters.AddWithValue("@sub", 1);
                     cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@Date", date);
 
@@ -201,7 +205,7 @@ namespace payrollsystemsti.AdminTabs
                 TimeSpan time = this.time.Value.TimeOfDay;
                 TimeSpan timeout = this.timeout.Value.TimeOfDay;
 
-                if (UpdateOvertimeTable(empID, time, timeout, tbReason.Text, dtDate.Value))
+                if (UpdateOvertimeTable(empID, tbReason.Text, dtDate.Value.ToString("MM/dd/yyyy")))
                 {
                     MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					m.Add_HistoryLog(Methods.CurrentUser.UserID, Methods.CurrentUser.FirstName, Methods.CurrentUser.LastName, Methods.CurrentUser.DepartmentID, "User: " + Methods.CurrentUser.LastName + " " + Methods.CurrentUser.FirstName + ", Overtime Edited");
@@ -218,17 +222,15 @@ namespace payrollsystemsti.AdminTabs
 
             LoadData();
         }
-		private bool UpdateOvertimeTable(int empID, TimeSpan starttm, TimeSpan endtm, string reason, DateTime date)
+		private bool UpdateOvertimeTable(int empID, string reason, string date)
 		{
 			using (SqlConnection conn = new SqlConnection(m.connStr))
 			{
 				conn.Open();
-				string query = "UPDATE OvertimeApplications SET StartTime = @starttime, EndTime = @endtime, Justification = @justification, Date = @date WHERE EmployeeID = @empID";
+				string query = "UPDATE OvertimeApplications SET Justification = @justification WHERE EmployeeID = @empID AND Date = @date";
 
 				using (SqlCommand cmd = new SqlCommand(query, conn))
 				{
-					cmd.Parameters.AddWithValue("@starttime", starttm);
-					cmd.Parameters.AddWithValue("@endtime", endtm);
 					cmd.Parameters.AddWithValue("@justification", reason);
 					cmd.Parameters.AddWithValue("@empID", empID);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -296,7 +298,19 @@ namespace payrollsystemsti.AdminTabs
             tbReason.Text = overtimegrid.SelectedRows[0].Cells["dgReason"].Value.ToString();
             time.Text = overtimegrid.SelectedRows[0].Cells["dgStart"].Value.ToString();
             timeout.Text = overtimegrid.SelectedRows[0].Cells["dgEnd"].Value.ToString();
-            dtDate.Value = Convert.ToDateTime(overtimegrid.SelectedRows[0].Cells["dgDate"].Value);
+            //dtDate.Value = Convert.ToDateTime(overtimegrid.SelectedRows[0].Cells["dgDate"].Value).ToString("MM/dd/yyyy");
+
+            string dobCellValue = overtimegrid.SelectedRows[0].Cells["dgDate"].Value.ToString();
+            DateTime dob;
+
+            if (DateTime.TryParseExact(dobCellValue, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
+            {
+                dtDate.Value = dob;
+            }
+            else
+            {
+                MessageBox.Show("Invalid date format");
+            }
             btnUpdate.Enabled = true;
         }
 

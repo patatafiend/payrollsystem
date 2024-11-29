@@ -51,7 +51,7 @@ namespace payrollsystemsti
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@status", "Pending");
-                    cmd.Parameters.AddWithValue("@sub", 0);
+                    cmd.Parameters.AddWithValue("@sub", 1);
 
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -109,14 +109,14 @@ namespace payrollsystemsti
             DialogResult dialogResult = MessageBox.Show("Approve this application?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Action("Approved", empID);
+                Action("Approved", empID, date);
                 if (UpdateOvertimeTime(date, totalHours, empID))
                 {
                     MessageBox.Show("Record Updated");
                 }
                 else
                 {
-                    Action("Pending", empID);
+                    Action("Pending", empID, date);
                     MessageBox.Show("You dont have a record for this date.");
                 }
                 m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Approved");
@@ -132,7 +132,7 @@ namespace payrollsystemsti
             DialogResult dialogResult = MessageBox.Show("Approve this application?", "Update", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Action("Rejected", empID);
+                Action("Rejected", empID, date);
                 MessageBox.Show("Application Rejected");
                 m.Add_Notification_AcceptedOrRejected(empID.ToString(), "Overtime Application", "Rejected");
                 
@@ -148,16 +148,17 @@ namespace payrollsystemsti
             LoadData();
         }
 
-        public bool Action(string action, int empID)
+        public bool Action(string action, int empID, string date)
         {
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();
-                string query = "UPDATE OvertimeApplications SET Status = @status WHERE EmployeeID = @empID";
+                string query = "UPDATE OvertimeApplications SET Status = @status WHERE EmployeeID = @empID AND Date = @date";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@status", action);
                     cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@date", date);
 
                     try
                     {

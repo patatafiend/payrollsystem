@@ -92,6 +92,8 @@ namespace payrollsystemsti.AdminTabs
             btnUpdate.Enabled = false;
             btnDeactivate.Enabled = false;
             btnCreate.Enabled = false;
+            dataGridView1.Font = new Font("Arial", 15);
+            dataGridView1.Columns["dgDepartment"].Width = 250;
         }
 
         public int GenerateEmployeeId()
