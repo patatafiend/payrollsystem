@@ -45,7 +45,7 @@ namespace payrollsystemsti.EmployeeTabs
             LoadData(loggedInID);
             if(cbLeaves.Text == "Sick Leave" || cbLeaves.Text == "Emergency Leave")
             {
-                dtStart.MinDate = DateTime.Now.AddDays(1);
+                dtStart.MinDate = DateTime.Now;
             }
             else
             {
@@ -440,10 +440,11 @@ namespace payrollsystemsti.EmployeeTabs
             switch (cbLeaves.Text)
             {
                 case "Sick Leave":
-                    dtStart.MinDate = DateTime.Now.AddDays(1);
+                    dtStart.MinDate = DateTime.Now;
+                    dtEnd.MinDate = DateTime.Now;
                     break;
                 case "Emergency Leave":
-                    dtStart.MinDate = DateTime.Now.AddDays(1);
+                    dtStart.MinDate = DateTime.Now;
                     break;
                 default:
                     dtStart.MinDate = DateTime.Now.AddDays(14);
