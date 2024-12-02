@@ -441,6 +441,7 @@ namespace payrollsystemsti.EmployeeTabs
             {
                 case "Sick Leave":
                     dtStart.MinDate = DateTime.Now;
+                    dtStart.MaxDate = DateTime.Now;
                     dtEnd.MinDate = DateTime.Now;
                     break;
                 case "Emergency Leave":

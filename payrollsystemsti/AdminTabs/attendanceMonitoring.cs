@@ -33,7 +33,7 @@ namespace payrollsystemsti.AdminTabs
         public int loggedInEmpID;
 
         TimeSpan startTimeAM = new TimeSpan(6, 0, 0);  // 9:00 AM
-        TimeSpan endTimeAM = new TimeSpan(12, 0, 0);    // 12:00 PM
+        TimeSpan endTimeAM = new TimeSpan(12, 59, 59);    // 12:00 PM
 
         TimeSpan startTimePM = new TimeSpan(13, 0, 0);  // 1:00 PM
         TimeSpan endTimePM = new TimeSpan(23, 00, 0);    // 11:00 PM
@@ -120,7 +120,6 @@ namespace payrollsystemsti.AdminTabs
                                 UpdateAttendanceForLate(m.getEmpID(fID), currentDate, minutesLate);
                                 //bool iswhat1 = UpdateAttendanceForLate(getEmpID(fID), currentDate, currentMinute);
                                 MessageBox.Show("Minutes late: " + minutesLate);
-
                             }
 
                             //if (checkIfLatePM(time.Value.Hour, time.Value.Minute, 0))
@@ -207,6 +206,15 @@ namespace payrollsystemsti.AdminTabs
 
         public bool UpdateAttendanceForLate(int empID, string date, double minutes)
         {
+            if (minutes > 15)
+            {
+                minutes = Math.Ceiling(minutes / 60) * 60;
+            }
+            else
+            {
+                minutes = 0;
+            }
+
             using (SqlConnection conn = new SqlConnection(m.connStr))
             {
                 conn.Open();

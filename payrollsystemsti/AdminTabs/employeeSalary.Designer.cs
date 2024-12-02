@@ -91,6 +91,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnEditPeriod = new System.Windows.Forms.Button();
             this.btnC = new System.Windows.Forms.Button();
+            this.cbPeriod = new System.Windows.Forms.ComboBox();
             this.gb1.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
@@ -768,12 +769,25 @@
             this.btnC.UseVisualStyleBackColor = false;
             this.btnC.Click += new System.EventHandler(this.btnC_Click);
             // 
+            // cbPeriod
+            // 
+            this.cbPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPeriod.FormattingEnabled = true;
+            this.cbPeriod.Items.AddRange(new object[] {
+            "1st",
+            "2nd"});
+            this.cbPeriod.Location = new System.Drawing.Point(772, 424);
+            this.cbPeriod.Name = "cbPeriod";
+            this.cbPeriod.Size = new System.Drawing.Size(121, 21);
+            this.cbPeriod.TabIndex = 86;
+            // 
             // employeeSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(1147, 753);
+            this.Controls.Add(this.cbPeriod);
             this.Controls.Add(this.btnC);
             this.Controls.Add(this.btnEditPeriod);
             this.Controls.Add(this.groupBox1);
@@ -876,5 +890,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnEditPeriod;
         private System.Windows.Forms.Button btnC;
+        private System.Windows.Forms.ComboBox cbPeriod;
     }
 }
